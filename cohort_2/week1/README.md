@@ -12,7 +12,7 @@ In this folder, we have the following notebooks:
 
 2. `benchmark_retrieval.ipynb` - Now that we have some synthetic questions, how can use them effectively to compare different retrieval systems? What metrics should we be looking at?
 
-3. `visualize_retrieval.ipynb` - Now that we've got some benchmarks, how can we break them down and understand the main failure modes of our retrieval system? What are the common mistakes here that people make when doing so.
+3. `visualize_retrieval.ipynb` - How can we use the results from our retrieval benchmarks and do some statistical testing to see if there are any significant differences between each retrieval method?
 
 ## Instructions
 
