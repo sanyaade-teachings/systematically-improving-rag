@@ -1,0 +1,50 @@
+{"transaction_name": "SkillsFuture inc", "description": "Professional development including certifications, training programs, and educational resources.", "amount": "125.91", "location": "Mauritania"}
+{"transaction_name": "Creative Insights Consulting", "amount": "966.45", "location": "Sydney"}
+{"transaction_name": "Jade & Spice", "amount": "756.93", "location": "San Jose"}
+{"transaction_name": "Walnut Consulting", "amount": "457.37", "location": "Singapore"}
+{"transaction_name": "SEA-ENG Facility Operations Supply Order", "amount": "338.01", "location": "Seattle", "department": "Engineering", "category": "9200-FACILITY-OPS"}
+{"transaction_name": "Windy City Consulting Solutions", "amount": "17.68", "location": "Chicago", "department": "Sales", "category": "7300-CONSULTING"}
+{"transaction_name": "Cape Care Insurance Co.", "amount": "428.6", "location": "Cape Town", "department": "Sales", "category": "7100-INSURANCE"}
+{"transaction_name": "Bell Mobility", "amount": "878.61", "location": "Calgary", "department": "Engineering", "category": "9100-TELECOM"}
+{"transaction_name": "Beijing Cultural Experience Expo", "amount": "415.47", "location": "Beijing", "department": "Sales", "category": "4700-EVENTS"}
+{"transaction_name": "Windy City Assurance Co.", "amount": "153.27", "location": "Chicago", "department": "Research", "category": "7100-INSURANCE"}
+{"transaction_name": "Harbor View Maintenance Services", "amount": "478.07", "location": "Sydney", "department": "Operations", "category": "9200-FACILITY-OPS"}
+{"transaction_name": "Skyline Expeditions", "amount": "954.18", "location": "Phoenix", "department": "Customer Service", "category": "4450-CORPORATE-TRAVEL"}
+{"transaction_name": "Digital Fortress Solutions", "amount": "888.99", "location": "Melbourne", "department": "Security", "category": "8100-DATA-SERVICES"}
+{"transaction_name": "Montreal Tech Academy", "amount": "482.89", "location": "Montreal", "department": "Engineering", "category": "7400-TRAINING"}
+{"transaction_name": "Desert Sage Training Solutions", "amount": "960.84", "location": "Phoenix", "department": "Research", "category": "7400-TRAINING"}
+{"transaction_name": "CloudNimbus Subscription Services", "amount": "580.36", "location": "Singapore", "department": "IT", "category": "5100-CORE-SUBSCRIPTIONS"}
+{"transaction_name": "Metro Trains Sydney", "amount": "25.84", "location": "Sydney", "department": "Finance", "category": "4400-LOCAL-TRANSPORT"}
+{"transaction_name": "Cape Town Capital Advisors", "amount": "59.01", "location": "Cape Town", "department": "Sales", "category": "1600-FINANCIAL-SERVICES"}
+{"transaction_name": "Phoenix Club Membership Gold", "amount": "371.59", "location": "Phoenix", "department": "Product", "category": "1650-MEMBERSHIPS"}
+{"transaction_name": "Oceanic Wealth Strategies", "amount": "139.28", "location": "Miami", "department": "Research", "category": "1600-FINANCIAL-SERVICES"}
+{"transaction_name": "Seaside Event Management", "amount": "180.42", "location": "San Diego", "department": "Operations", "category": "4700-EVENTS"}
+{"transaction_name": "Guardian Shield Insurances", "amount": "326.34", "location": "Los Angeles", "department": "Product", "category": "7100-INSURANCE"}
+{"transaction_name": "Skyline Travel Agency", "amount": "736.3", "location": "Calgary", "department": "Customer Service", "category": "4450-CORPORATE-TRAVEL"}
+{"transaction_name": "Tech Innovations Supply Co.", "amount": "489.73", "location": "Houston", "department": "HR", "category": "8200-AI-ML"}
+{"transaction_name": "Insight Development Workshops", "amount": "316.68", "location": "Singapore", "department": "HR", "category": "7400-TRAINING"}
+{"transaction_name": "Atlantic Wealth Management Services", "amount": "472.64", "location": "Atlanta", "department": "Product", "category": "1600-FINANCIAL-SERVICES"}
+{"transaction_name": "Tech Haven Innovations", "amount": "226.48", "location": "Atlanta", "department": "Marketing", "category": "8200-AI-ML"}
+{"transaction_name": "Saguaro Insurance Solutions", "amount": "387.13", "location": "Phoenix", "department": "Design", "category": "7100-INSURANCE"}
+{"transaction_name": "Dallas Event Space Rentals", "amount": "191.19", "location": "Dallas", "department": "Finance", "category": "4700-EVENTS"}
+{"transaction_name": "Alberta Corporate Adventures", "amount": "589.32", "location": "Alberta", "department": "Product", "category": "4450-CORPORATE-TRAVEL"}
+{"transaction_name": "International Skills Accelerator Program", "amount": "719.89", "location": "London", "department": "Sales", "category": "7400-TRAINING"}
+{"transaction_name": "HarborView Team Experiences", "amount": "8.12", "location": "Hong Kong", "department": "Legal", "category": "4700-EVENTS"}
+{"transaction_name": "Latent Fusion Solutions", "amount": "139.26", "location": "Seattle", "department": "Engineering", "category": "8100-DATA-SERVICES"}
+{"transaction_name": "Peach City Rides", "amount": "164.87", "location": "Atlanta", "department": "Operations", "category": "4400-LOCAL-TRANSPORT"}
+{"transaction_name": "Pinnacle Professional Society", "amount": "258.41", "location": "Calgary", "department": "Finance", "category": "1650-MEMBERSHIPS"}
+{"transaction_name": "Austex Connectivity Hub", "amount": "786.74", "location": "Austin", "department": "Operations", "category": "9100-TELECOM"}
+{"transaction_name": "Pacific AI Innovations", "amount": "178.85", "location": "Vancouver", "department": "Sales", "category": "8200-AI-ML"}
+{"transaction_name": "Finance Nexus International", "amount": "262.24", "location": "Hong Kong", "department": "Sales", "category": "1600-FINANCIAL-SERVICES"}
+{"transaction_name": "Evergreen Safety Insurance Group", "amount": "467.1", "location": "Seattle", "department": "Engineering", "category": "7100-INSURANCE"}
+{"transaction_name": "Seattle Security Solutions", "amount": "834.31", "location": "Seattle", "department": "Operations", "category": "9200-FACILITY-OPS"}
+{"transaction_name": "Sapphire Security Solutions", "amount": "402.91", "location": "Shanghai", "department": "Security", "category": "9200-FACILITY-OPS"}
+{"transaction_name": "Prairie Professional Network", "amount": "554.43", "location": "Calgary", "department": "Operations", "category": "1650-MEMBERSHIPS"}
+{"transaction_name": "SF Rooster and Rice", "amount": "482.67", "location": "Cape Town", "department": "Engineering", "category": "4800-MEALS"}
+{"transaction_name": "Creative Minds Academy", "amount": "278.31", "location": "Los Angeles", "department": "Design", "category": "7400-TRAINING"}
+{"transaction_name": "Oceanic Support Solutions", "amount": "511.74", "location": "Miami", "department": "Customer Service", "category": "8300-CUSTOMER-PLATFORM"}
+{"transaction_name": "Hubspot", "amount": "166.48", "location": "Miami", "department": "Marketing", "category": "8300-CUSTOMER-PLATFORM"}
+{"transaction_name": "Cortex AI Solutions", "amount": "540.9", "location": "Austin", "department": "Finance", "category": "8200-AI-ML"}
+{"transaction_name": "Owl Labs", "amount": "540.4", "location": "San Jose", "department": "Operations", "category": "8300-CUSTOMER-PLATFORM"}
+{"transaction_name": "Dallas Accountants CPA", "amount": "106.81", "location": "Dallas", "department": "Finance", "category": "1650-MEMBERSHIPS"}
+{"transaction_name": "Savory Moments Catering", "amount": "564.8", "location": "Boston", "department": "Marketing", "category": "4800-MEALS"}

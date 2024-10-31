@@ -1,0 +1,16 @@
+[project]
+name = "week2"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "faker>=30.8.1",
+    "instructor>=1.6.3",
+    "ipykernel>=6.29.5",
+    "ipywidgets>=8.1.5",
+    "openai>=1.53.0",
+    "pandas>=2.2.3",
+    "requests>=2.32.3",
+    "streamlit>=1.39.0",
+]
