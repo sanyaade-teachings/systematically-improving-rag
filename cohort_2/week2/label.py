@@ -1,13 +1,14 @@
 import streamlit as st
 import json
 import pandas as pd
-from const import gl_codes, departments
+
+gl_codes = json.load(open("./data/categories.json"))
 
 
 def load_transactions():
     transactions = []
     try:
-        with open("transactions.jsonl", "r") as f:
+        with open("./data/transactions.json", "r") as f:
             for line in f:
                 transactions.append(json.loads(line))
         return pd.DataFrame(transactions)
@@ -17,7 +18,7 @@ def load_transactions():
 
 
 def save_transaction(transaction):
-    with open("generated.jsonl", "a") as f:
+    with open("./data/cleaned.jsonl", "a") as f:
         f.write(json.dumps(transaction) + "\n")
 
 
@@ -60,10 +61,13 @@ def main():
     # Get the selected transaction
     selected_transaction = df.iloc[selected_index]
 
+    print(selected_transaction)
+
     # Display transaction details in text fields with editing enabled
     edited_transaction = {}
-    edited_transaction["transaction_name"] = st.text_input(
-        "Transaction Name", selected_transaction["transaction_name"]
+
+    edited_transaction["merchant_name"] = st.text_input(
+        "Merchant Name", selected_transaction["merchant_name"]
     )
     edited_transaction["amount"] = st.text_input(
         "Amount", selected_transaction["amount"]
@@ -71,19 +75,21 @@ def main():
     edited_transaction["location"] = st.text_input(
         "Location", selected_transaction["location"]
     )
-    edited_transaction["department"] = st.selectbox(
-        "Department",
-        options=departments,
-        index=departments.index(selected_transaction["department"]),
+    edited_transaction["mccs"] = st.text_input("MCCs", selected_transaction["mccs"])
+    edited_transaction["card"] = st.text_input("Card", selected_transaction["card"])
+    edited_transaction["trip_name"] = st.text_input(
+        "Trip Name", selected_transaction["trip_name"]
     )
+    edited_transaction["remarks"] = st.text_input(
+        "Transaction Remarks", selected_transaction["remarks"]
+    )
+
     edited_transaction["category"] = st.selectbox(
         "Category",
         options=[code["name"] for code in gl_codes],
         index=[code["name"] for code in gl_codes].index(
-            selected_transaction["category"]
-        )
-        if selected_transaction["category"] in [code["name"] for code in gl_codes]
-        else 0,
+            selected_transaction["label"]["name"]
+        ),
     )
 
     # Add approve/reject buttons

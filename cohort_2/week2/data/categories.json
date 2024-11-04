@@ -1,0 +1,258 @@
+[
+    {
+        "name": "6010-CLOUD-COMPUTING",
+        "description": "Cloud infrastructure costs including AWS, Azure, and Google Cloud Platform services"
+    },
+    {
+        "name": "6015-CDN-SERVICES",
+        "description": "Content Delivery Network services for global content distribution"
+    },
+    {
+        "name": "6020-SOFTWARE-LICENSES",
+        "description": "Recurring software licenses and subscription fees for development and operations tools"
+    },
+    {
+        "name": "6025-DEV-ENVIRONMENT",
+        "description": "Development environment tools and software for engineering team"
+    },
+    {
+        "name": "6030-CICD-TOOLS",
+        "description": "Continuous Integration and Continuous Deployment tools and services"
+    },
+    {
+        "name": "6035-VERSION-CONTROL",
+        "description": "Version control system licenses and related services"
+    },
+    {
+        "name": "6040-DOMAIN-HOSTING",
+        "description": "Domain registration and web hosting fees"
+    },
+    {
+        "name": "6045-SSL-CERTIFICATES",
+        "description": "SSL certificate purchases and renewals"
+    },
+    {
+        "name": "6050-IT-SECURITY",
+        "description": "IT security tools, compliance software, and related services"
+    },
+    {
+        "name": "6055-SECURITY-MONITORING",
+        "description": "Security monitoring and incident response services"
+    },
+    {
+        "name": "6060-DATABASE-MANAGEMENT",
+        "description": "Database management systems and related services"
+    },
+    {
+        "name": "6065-BACKUP-RECOVERY",
+        "description": "Data backup and disaster recovery services"
+    },
+    {
+        "name": "6070-API-INTEGRATION",
+        "description": "Third-party API fees and integration costs"
+    },
+    {
+        "name": "6075-APP-STORE-FEES",
+        "description": "Mobile app store fees and related platform charges"
+    },
+    {
+        "name": "6080-TECHNICAL-DOCS",
+        "description": "Technical documentation tools and platforms"
+    },
+    {
+        "name": "6110-ENGINEERING-SALARIES",
+        "description": "Base salaries and bonuses for engineering team members"
+    },
+    {
+        "name": "6115-PRODUCT-MGMT-SALARIES",
+        "description": "Base salaries and bonuses for product management team"
+    },
+    {
+        "name": "6120-SALES-MARKETING-SALARIES",
+        "description": "Base salaries and bonuses for sales and marketing staff"
+    },
+    {
+        "name": "6125-CUSTOMER-SUCCESS-SALARIES",
+        "description": "Base salaries and bonuses for customer success team"
+    },
+    {
+        "name": "6130-EXECUTIVE-SALARIES",
+        "description": "Base salaries and bonuses for executive team members"
+    },
+    {
+        "name": "6135-ADMIN-SALARIES",
+        "description": "Base salaries and bonuses for administrative staff"
+    },
+    {
+        "name": "6140-HEALTH-INSURANCE",
+        "description": "Employee health insurance premiums and related costs"
+    },
+    {
+        "name": "6145-DENTAL-VISION",
+        "description": "Employee dental and vision insurance premiums"
+    },
+    {
+        "name": "6150-401K-MATCHING",
+        "description": "Company 401(k) matching contributions"
+    },
+    {
+        "name": "6155-LIFE-INSURANCE",
+        "description": "Employee life insurance premiums"
+    },
+    {
+        "name": "6160-PAYROLL-TAXES",
+        "description": "Employer portion of payroll taxes"
+    },
+    {
+        "name": "6165-WORKERS-COMP",
+        "description": "Workers compensation insurance premiums"
+    },
+    {
+        "name": "6170-TRAINING",
+        "description": "Employee training programs and professional development"
+    },
+    {
+        "name": "6175-CERTIFICATIONS",
+        "description": "Professional certifications and continuing education"
+    },
+    {
+        "name": "6180-EMPLOYEE-TRAVEL",
+        "description": "Employee business travel expenses"
+    },
+    {
+        "name": "6185-EMPLOYEE-ENTERTAINMENT",
+        "description": "Team building and employee entertainment expenses"
+    },
+    {
+        "name": "6190-REMOTE-WORK",
+        "description": "Remote work stipends and home office equipment"
+    },
+    {
+        "name": "6210-DIGITAL-MARKETING",
+        "description": "Digital marketing campaigns and advertising expenses"
+    },
+    {
+        "name": "6215-SOCIAL-MEDIA",
+        "description": "Social media marketing and management tools"
+    },
+    {
+        "name": "6220-CONTENT-MARKETING",
+        "description": "Content creation and content marketing expenses"
+    },
+    {
+        "name": "6225-EMAIL-MARKETING",
+        "description": "Email marketing platform and campaign costs"
+    },
+    {
+        "name": "6230-SEO-SERVICES",
+        "description": "Search engine optimization services and tools"
+    },
+    {
+        "name": "6235-PPC-ADVERTISING",
+        "description": "Pay-per-click advertising expenses"
+    },
+    {
+        "name": "6240-TRADE-SHOWS",
+        "description": "Trade show participation and booth expenses"
+    },
+    {
+        "name": "6245-CONFERENCE-SPONSORSHIPS",
+        "description": "Industry conference sponsorships and related expenses"
+    },
+    {
+        "name": "6250-SALES-TOOLS",
+        "description": "Sales tools, CRM, and related software expenses"
+    },
+    {
+        "name": "6255-MARKETING-AUTOMATION",
+        "description": "Marketing automation software and related tools"
+    },
+    {
+        "name": "6260-LEAD-GENERATION",
+        "description": "Lead generation services and related expenses"
+    },
+    {
+        "name": "6265-PR-COMMUNICATIONS",
+        "description": "Public relations and corporate communications expenses"
+    },
+    {
+        "name": "6270-BRAND-DEVELOPMENT",
+        "description": "Brand development and design services"
+    },
+    {
+        "name": "6275-MARKET-RESEARCH",
+        "description": "Market research tools and services"
+    },
+    {
+        "name": "6280-REFERRAL-PROGRAMS",
+        "description": "Customer referral program expenses"
+    },
+    {
+        "name": "6310-SUPPORT-SOFTWARE",
+        "description": "Customer support software and tools"
+    },
+    {
+        "name": "6315-KNOWLEDGE-BASE",
+        "description": "Knowledge base and documentation systems"
+    },
+    {
+        "name": "6320-CUSTOMER-TRAINING",
+        "description": "Customer training materials and programs"
+    },
+    {
+        "name": "6325-CUSTOMER-EVENTS",
+        "description": "Customer events, webinars, and education programs"
+    },
+    {
+        "name": "6330-SUCCESS-TOOLS",
+        "description": "Customer success platforms and tools"
+    },
+    {
+        "name": "6335-FEEDBACK-SYSTEMS",
+        "description": "Customer feedback and survey tools"
+    },
+    {
+        "name": "6340-USER-RESEARCH",
+        "description": "User research tools and services"
+    },
+    {
+        "name": "6345-CUSTOMER-COMMUNICATION",
+        "description": "Customer communication platforms and tools"
+    },
+    {
+        "name": "6410-OFFICE-RENT",
+        "description": "Office space rent and lease expenses"
+    },
+    {
+        "name": "6415-UTILITIES",
+        "description": "Office utilities including electricity, water, and gas"
+    },
+    {
+        "name": "6420-LEGAL-SERVICES",
+        "description": "Legal services and consultation fees"
+    },
+    {
+        "name": "6425-ACCOUNTING-SERVICES",
+        "description": "Accounting and bookkeeping services"
+    },
+    {
+        "name": "6430-TAX-SERVICES",
+        "description": "Tax preparation and advisory services"
+    },
+    {
+        "name": "6435-BUSINESS-INSURANCE",
+        "description": "General business insurance policies"
+    },
+    {
+        "name": "6440-DO-INSURANCE",
+        "description": "Directors and Officers insurance coverage"
+    },
+    {
+        "name": "6445-BANK-FEES",
+        "description": "Bank service charges and fees"
+    },
+    {
+        "name": "6450-PAYMENT-PROCESSING",
+        "description": "Payment processing and merchant fees"
+    }
+]
