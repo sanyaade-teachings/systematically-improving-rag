@@ -1,258 +1,449 @@
 [
     {
-        "name": "6010-CLOUD-COMPUTING",
-        "description": "Cloud infrastructure costs including AWS, Azure, and Google Cloud Platform services"
+        "category": "Software & Licenses",
+        "sample_transactions": [
+            "Adobe Creative Cloud Annual Subscription",
+            "Microsoft 365 Business Premium",
+            "Atlassian JIRA License",
+            "Zoom Enterprise Plan",
+            "AutoCAD Software License"
+        ],
+        "departments": [
+            "Engineering",
+            "Marketing",
+            "HR",
+            "Finance",
+            "Legal",
+            "IT Operations",
+            "Research & Development"
+        ]
     },
     {
-        "name": "6015-CDN-SERVICES",
-        "description": "Content Delivery Network services for global content distribution"
+        "category": "Cloud Infrastructure & Hosting",
+        "sample_transactions": [
+            "AWS Monthly Usage",
+            "Google Cloud Platform Services",
+            "Azure Virtual Machines",
+            "Cloudflare Enterprise Plan",
+            "DigitalOcean Droplets"
+        ],
+        "departments": [
+            "Engineering",
+            "IT Operations",
+            "Research & Development"
+        ]
     },
     {
-        "name": "6020-SOFTWARE-LICENSES",
-        "description": "Recurring software licenses and subscription fees for development and operations tools"
+        "category": "Hardware & Equipment",
+        "sample_transactions": [
+            "Dell XPS 15 Laptop",
+            "27-inch 4K Monitors",
+            "iPhone 14 Pro - Sales Team",
+            "Logitech MX Master Mouse",
+            "Server Hardware Upgrade"
+        ],
+        "departments": [
+            "Engineering",
+            "Sales",
+            "Marketing",
+            "IT Operations",
+            "Research & Development"
+        ]
     },
     {
-        "name": "6025-DEV-ENVIRONMENT",
-        "description": "Development environment tools and software for engineering team"
+        "category": "Travel: Ground Transport",
+        "sample_transactions": [
+            "Uber to Client Meeting",
+            "Airport Parking Fee",
+            "Train Ticket to Conference",
+            "Car Rental - Sales Trip",
+            "Taxi from Airport"
+        ],
+        "departments": [
+            "Sales",
+            "Executive",
+            "Marketing",
+            "HR"
+        ]
     },
     {
-        "name": "6030-CICD-TOOLS",
-        "description": "Continuous Integration and Continuous Deployment tools and services"
+        "category": "Travel: Airfare",
+        "sample_transactions": [
+            "United Airlines - SF to NYC",
+            "Delta Business Class - International",
+            "Southwest - Team Retreat Flights",
+            "Airport Lounge Access",
+            "Flight Change Fee"
+        ],
+        "departments": [
+            "Sales",
+            "Executive",
+            "Marketing",
+            "HR"
+        ]
     },
     {
-        "name": "6035-VERSION-CONTROL",
-        "description": "Version control system licenses and related services"
+        "category": "Travel: Accommodation",
+        "sample_transactions": [
+            "Marriott Hotel - Tech Conference",
+            "Airbnb - Team Offsite",
+            "Hilton - Client Visit",
+            "Hotel Cancellation Fee",
+            "Extended Stay - Project Implementation"
+        ],
+        "departments": [
+            "Sales",
+            "Executive",
+            "Marketing",
+            "HR"
+        ]
     },
     {
-        "name": "6040-DOMAIN-HOSTING",
-        "description": "Domain registration and web hosting fees"
+        "category": "Travel: Meals & Entertainment",
+        "sample_transactions": [
+            "Team Dinner - Project Completion",
+            "Client Lunch Meeting",
+            "Airport Meals",
+            "Conference Networking Event",
+            "Business Development Dinner"
+        ],
+        "departments": [
+            "Sales",
+            "Executive",
+            "Marketing",
+            "HR"
+        ]
     },
     {
-        "name": "6045-SSL-CERTIFICATES",
-        "description": "SSL certificate purchases and renewals"
+        "category": "Office Supplies & Stationery",
+        "sample_transactions": [
+            "Printer Paper Bulk Order",
+            "Office Desk Organization",
+            "Whiteboard Markers",
+            "Business Cards Printing",
+            "Filing Supplies"
+        ],
+        "departments": [
+            "Office Administration",
+            "All Departments"
+        ]
     },
     {
-        "name": "6050-IT-SECURITY",
-        "description": "IT security tools, compliance software, and related services"
+        "category": "Professional Services",
+        "sample_transactions": [
+            "Legal Consultation",
+            "Annual Audit Fees",
+            "Tax Advisory Services",
+            "Patent Filing Fees",
+            "HR Consulting"
+        ],
+        "departments": [
+            "Legal",
+            "Finance",
+            "HR",
+            "Executive"
+        ]
     },
     {
-        "name": "6055-SECURITY-MONITORING",
-        "description": "Security monitoring and incident response services"
+        "category": "Employee Training & Development",
+        "sample_transactions": [
+            "Udemy Business Subscription",
+            "Conference Tickets",
+            "Technical Certification Fees",
+            "Team Workshop Facilitator",
+            "Leadership Training Program"
+        ],
+        "departments": [
+            "HR",
+            "Sales",
+            "Executive",
+            "Marketing",
+            "Engineering",
+            "IT Operations",
+            "Legal",
+            "Product"
+        ]
     },
     {
-        "name": "6060-DATABASE-MANAGEMENT",
-        "description": "Database management systems and related services"
+        "category": "Advertising & Marketing",
+        "sample_transactions": [
+            "Google Ads Campaign",
+            "LinkedIn Premium Advertising",
+            "Marketing Video Production",
+            "Trade Show Booth",
+            "Social Media Management Tools"
+        ],
+        "departments": [
+            "Marketing",
+            "Sales"
+        ]
     },
     {
-        "name": "6065-BACKUP-RECOVERY",
-        "description": "Data backup and disaster recovery services"
+        "category": "Telecommunications",
+        "sample_transactions": [
+            "Company Mobile Plans",
+            "VoIP Phone System",
+            "Conference Call Service",
+            "International Calling Cards",
+            "Business Internet Package"
+        ],
+        "departments": [
+            "IT Operations",
+            "Sales",
+            "Customer Support"
+        ]
     },
     {
-        "name": "6070-API-INTEGRATION",
-        "description": "Third-party API fees and integration costs"
+        "category": "Insurance",
+        "sample_transactions": [
+            "Cyber Insurance Premium",
+            "Professional Liability Insurance",
+            "Office Contents Insurance",
+            "Business Travel Insurance",
+            "Workers Compensation Insurance"
+        ],
+        "departments": [
+            "Finance",
+            "Legal",
+            "HR"
+        ]
     },
     {
-        "name": "6075-APP-STORE-FEES",
-        "description": "Mobile app store fees and related platform charges"
+        "category": "Bank & Transaction Fees",
+        "sample_transactions": [
+            "Wire Transfer Fee - Payroll",
+            "Monthly Account Maintenance",
+            "Overdraft Protection Fee",
+            "Bank Statement Fees",
+            "Corporate Card Annual Fees",
+            "International Transfer Fees - Vendors",
+            "Check Processing Fees",
+            "Bank Service Charges"
+        ],
+        "departments": [
+            "Finance"
+        ]
     },
     {
-        "name": "6080-TECHNICAL-DOCS",
-        "description": "Technical documentation tools and platforms"
+        "category": "Customer Success & Support Infrastructure",
+        "sample_transactions": [
+            "Zendesk Enterprise Subscription",
+            "Intercom Annual License",
+            "Customer Success Platform - Gainsight",
+            "Knowledge Base Software License",
+            "Support Ticket Analytics Platform",
+            "Customer Training LMS Subscription",
+            "Support Chat Integration Tools",
+            "Customer Feedback Management System"
+        ],
+        "departments": [
+            "Customer Success",
+            "Customer Support",
+            "Sales",
+            "Product",
+            "IT Operations"
+        ]
     },
     {
-        "name": "6110-ENGINEERING-SALARIES",
-        "description": "Base salaries and bonuses for engineering team members"
+        "category": "Subscription & Revenue Infrastructure",
+        "sample_transactions": [
+            "Stripe Connect Platform Fee",
+            "Recurly Subscription Management",
+            "Revenue Recognition Software",
+            "Dunning Management System",
+            "Customer Billing Portal License",
+            "Quote-to-Cash Platform",
+            "SaaS Analytics Platform",
+            "Revenue Forecasting Tools"
+        ],
+        "departments": [
+            "Finance",
+            "Engineering",
+            "IT Operations",
+            "Sales"
+        ]
     },
     {
-        "name": "6115-PRODUCT-MGMT-SALARIES",
-        "description": "Base salaries and bonuses for product management team"
+        "category": "Office Rent & Utilities",
+        "sample_transactions": [
+            "Monthly Office Rent",
+            "Electricity Bill",
+            "Water & Sewage",
+            "Building Maintenance Fee",
+            "Security System Monthly Fee"
+        ],
+        "departments": [
+            "Office Administration",
+            "Finance"
+        ]
     },
     {
-        "name": "6120-SALES-MARKETING-SALARIES",
-        "description": "Base salaries and bonuses for sales and marketing staff"
+        "category": "IT Support & Maintenance",
+        "sample_transactions": [
+            "IT Help Desk Service",
+            "Network Maintenance",
+            "Hardware Repair",
+            "System Updates",
+            "Tech Support Subscription"
+        ],
+        "departments": [
+            "IT Operations"
+        ]
     },
     {
-        "name": "6125-CUSTOMER-SUCCESS-SALARIES",
-        "description": "Base salaries and bonuses for customer success team"
+        "category": "Cybersecurity Services",
+        "sample_transactions": [
+            "Antivirus Software",
+            "VPN Service",
+            "Security Audit",
+            "Penetration Testing",
+            "Security Training Platform"
+        ],
+        "departments": [
+            "IT Operations",
+            "Engineering",
+            "Information Security"
+        ]
     },
     {
-        "name": "6130-EXECUTIVE-SALARIES",
-        "description": "Base salaries and bonuses for executive team members"
+        "category": "Employee Benefits & Perks",
+        "sample_transactions": [
+            "Health Insurance Premium",
+            "Office Snacks & Beverages",
+            "Gym Membership Reimbursement",
+            "Team Building Event",
+            "Mental Health App Subscription"
+        ],
+        "departments": [
+            "HR",
+            "Office Administration"
+        ]
     },
     {
-        "name": "6135-ADMIN-SALARIES",
-        "description": "Base salaries and bonuses for administrative staff"
+        "category": "Human Resource",
+        "sample_transactions": [
+            "Job Board Posting",
+            "Recruitment Agency Fee",
+            "Background Check Service",
+            "Applicant Tracking System",
+            "Employee Onboarding Platform"
+        ],
+        "departments": [
+            "HR",
+            "Executive",
+            "Engineering",
+            "Legal",
+            "Marketing",
+            "Product",
+            "Sales"
+        ]
     },
     {
-        "name": "6140-HEALTH-INSURANCE",
-        "description": "Employee health insurance premiums and related costs"
+        "category": "Conference & Event Fees",
+        "sample_transactions": [
+            "Tech Conference Registration",
+            "Booth Space Rental",
+            "Event Sponsorship",
+            "Workshop Materials",
+            "Networking Event Tickets"
+        ],
+        "departments": [
+            "Marketing",
+            "Sales",
+            "Engineering",
+            "HR",
+            "Executive"
+        ]
     },
     {
-        "name": "6145-DENTAL-VISION",
-        "description": "Employee dental and vision insurance premiums"
+        "category": "Subscriptions & Memberships",
+        "sample_transactions": [
+            "Bloomberg Terminal",
+            "Thomson Reuters Eikon",
+            "Harvard Business Review Enterprise",
+            "World Economic Forum Membership",
+            "Salesforce Enterprise License",
+            "LinkedIn Sales Navigator",
+            "ZoomInfo Professional",
+            "Hootsuite Enterprise",
+            "Mailchimp Premium",
+            "SEMrush Business",
+            "AWS Professional Support Plan",
+            "IEEE Membership",
+            "ACM Digital Library Access",
+            "Pluralsight Team License"
+        ],
+        "departments": [
+            "Engineering",
+            "Marketing",
+            "Sales",
+            "Legal",
+            "Finance",
+            "Executive"
+        ]
     },
     {
-        "name": "6150-401K-MATCHING",
-        "description": "Company 401(k) matching contributions"
+        "category": "Office Equipment Maintenance",
+        "sample_transactions": [
+            "Printer Maintenance",
+            "Coffee Machine Service",
+            "HVAC Maintenance",
+            "Office Furniture Repair",
+            "Equipment Calibration"
+        ],
+        "departments": [
+            "Office Administration",
+            "IT Operations"
+        ]
     },
     {
-        "name": "6155-LIFE-INSURANCE",
-        "description": "Employee life insurance premiums"
+        "category": "Data Services & Analytics",
+        "sample_transactions": [
+            "Data Warehousing Service",
+            "Analytics Platform Subscription",
+            "Market Research Reports",
+            "Data Processing Service",
+            "Business Intelligence Tools"
+        ],
+        "departments": [
+            "Engineering",
+            "Marketing",
+            "Finance",
+            "Research & Development",
+            "Sales"
+        ]
     },
     {
-        "name": "6160-PAYROLL-TAXES",
-        "description": "Employer portion of payroll taxes"
+        "category": "Internet & Network Services",
+        "sample_transactions": [
+            "Fiber Internet Service",
+            "Network Equipment Lease",
+            "CDN Services",
+            "Domain Name Registration",
+            "SSL Certificates"
+        ],
+        "departments": [
+            "IT Operations",
+            "Engineering",
+            "Product"
+        ]
     },
     {
-        "name": "6165-WORKERS-COMP",
-        "description": "Workers compensation insurance premiums"
-    },
-    {
-        "name": "6170-TRAINING",
-        "description": "Employee training programs and professional development"
-    },
-    {
-        "name": "6175-CERTIFICATIONS",
-        "description": "Professional certifications and continuing education"
-    },
-    {
-        "name": "6180-EMPLOYEE-TRAVEL",
-        "description": "Employee business travel expenses"
-    },
-    {
-        "name": "6185-EMPLOYEE-ENTERTAINMENT",
-        "description": "Team building and employee entertainment expenses"
-    },
-    {
-        "name": "6190-REMOTE-WORK",
-        "description": "Remote work stipends and home office equipment"
-    },
-    {
-        "name": "6210-DIGITAL-MARKETING",
-        "description": "Digital marketing campaigns and advertising expenses"
-    },
-    {
-        "name": "6215-SOCIAL-MEDIA",
-        "description": "Social media marketing and management tools"
-    },
-    {
-        "name": "6220-CONTENT-MARKETING",
-        "description": "Content creation and content marketing expenses"
-    },
-    {
-        "name": "6225-EMAIL-MARKETING",
-        "description": "Email marketing platform and campaign costs"
-    },
-    {
-        "name": "6230-SEO-SERVICES",
-        "description": "Search engine optimization services and tools"
-    },
-    {
-        "name": "6235-PPC-ADVERTISING",
-        "description": "Pay-per-click advertising expenses"
-    },
-    {
-        "name": "6240-TRADE-SHOWS",
-        "description": "Trade show participation and booth expenses"
-    },
-    {
-        "name": "6245-CONFERENCE-SPONSORSHIPS",
-        "description": "Industry conference sponsorships and related expenses"
-    },
-    {
-        "name": "6250-SALES-TOOLS",
-        "description": "Sales tools, CRM, and related software expenses"
-    },
-    {
-        "name": "6255-MARKETING-AUTOMATION",
-        "description": "Marketing automation software and related tools"
-    },
-    {
-        "name": "6260-LEAD-GENERATION",
-        "description": "Lead generation services and related expenses"
-    },
-    {
-        "name": "6265-PR-COMMUNICATIONS",
-        "description": "Public relations and corporate communications expenses"
-    },
-    {
-        "name": "6270-BRAND-DEVELOPMENT",
-        "description": "Brand development and design services"
-    },
-    {
-        "name": "6275-MARKET-RESEARCH",
-        "description": "Market research tools and services"
-    },
-    {
-        "name": "6280-REFERRAL-PROGRAMS",
-        "description": "Customer referral program expenses"
-    },
-    {
-        "name": "6310-SUPPORT-SOFTWARE",
-        "description": "Customer support software and tools"
-    },
-    {
-        "name": "6315-KNOWLEDGE-BASE",
-        "description": "Knowledge base and documentation systems"
-    },
-    {
-        "name": "6320-CUSTOMER-TRAINING",
-        "description": "Customer training materials and programs"
-    },
-    {
-        "name": "6325-CUSTOMER-EVENTS",
-        "description": "Customer events, webinars, and education programs"
-    },
-    {
-        "name": "6330-SUCCESS-TOOLS",
-        "description": "Customer success platforms and tools"
-    },
-    {
-        "name": "6335-FEEDBACK-SYSTEMS",
-        "description": "Customer feedback and survey tools"
-    },
-    {
-        "name": "6340-USER-RESEARCH",
-        "description": "User research tools and services"
-    },
-    {
-        "name": "6345-CUSTOMER-COMMUNICATION",
-        "description": "Customer communication platforms and tools"
-    },
-    {
-        "name": "6410-OFFICE-RENT",
-        "description": "Office space rent and lease expenses"
-    },
-    {
-        "name": "6415-UTILITIES",
-        "description": "Office utilities including electricity, water, and gas"
-    },
-    {
-        "name": "6420-LEGAL-SERVICES",
-        "description": "Legal services and consultation fees"
-    },
-    {
-        "name": "6425-ACCOUNTING-SERVICES",
-        "description": "Accounting and bookkeeping services"
-    },
-    {
-        "name": "6430-TAX-SERVICES",
-        "description": "Tax preparation and advisory services"
-    },
-    {
-        "name": "6435-BUSINESS-INSURANCE",
-        "description": "General business insurance policies"
-    },
-    {
-        "name": "6440-DO-INSURANCE",
-        "description": "Directors and Officers insurance coverage"
-    },
-    {
-        "name": "6445-BANK-FEES",
-        "description": "Bank service charges and fees"
-    },
-    {
-        "name": "6450-PAYMENT-PROCESSING",
-        "description": "Payment processing and merchant fees"
+        "category": "Regulatory & Compliance Fees",
+        "sample_transactions": [
+            "Annual Business License Renewal - State",
+            "SEC Filing Fee",
+            "Data Protection Registration - GDPR",
+            "Export License - Technology Products",
+            "Financial Services Authority Annual Fee",
+            "Corporate Entity Registration Renewal",
+            "Local Business Permit - City",
+            "Industry Regulatory Compliance Fee"
+        ],
+        "departments": [
+            "Legal",
+            "Finance",
+            "Compliance"
+        ]
     }
 ]

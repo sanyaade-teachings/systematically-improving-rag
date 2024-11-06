@@ -1,14 +1,17 @@
 import streamlit as st
 import json
 import pandas as pd
+from streamlit_shortcuts import button
+from models import Transaction
 
-gl_codes = json.load(open("./data/categories.json"))
+categories = json.load(open("./data/categories.json"))
+category_names = [category["category"] for category in categories]
 
 
 def load_transactions():
     transactions = []
     try:
-        with open("./data/transactions.json", "r") as f:
+        with open("./data/generated_transactions.jsonl", "r") as f:
             for line in f:
                 transactions.append(json.loads(line))
         return pd.DataFrame(transactions)
@@ -19,7 +22,8 @@ def load_transactions():
 
 def save_transaction(transaction):
     with open("./data/cleaned.jsonl", "a") as f:
-        f.write(json.dumps(transaction) + "\n")
+        transaction["merchant_category"] = eval(transaction["merchant_category"])
+        f.write(Transaction(**transaction).model_dump_json() + "\n")
 
 
 def main():
@@ -67,45 +71,53 @@ def main():
     edited_transaction = {}
 
     edited_transaction["merchant_name"] = st.text_input(
-        "Merchant Name", selected_transaction["merchant_name"]
+        "Transaction Name", selected_transaction["merchant_name"]
     )
-    edited_transaction["amount"] = st.text_input(
-        "Amount", selected_transaction["amount"]
+    edited_transaction["merchant_category"] = st.text_input(
+        "MCCs", selected_transaction["merchant_category"]
+    )
+    edited_transaction["department"] = st.text_input(
+        "Department", selected_transaction["department"]
     )
     edited_transaction["location"] = st.text_input(
         "Location", selected_transaction["location"]
     )
-    edited_transaction["mccs"] = st.text_input("MCCs", selected_transaction["mccs"])
-    edited_transaction["card"] = st.text_input("Card", selected_transaction["card"])
+    edited_transaction["amount"] = st.text_input(
+        "Amount", selected_transaction["amount"]
+    )
+    edited_transaction["spend_program_name"] = st.text_input(
+        "Spend Program Name", selected_transaction["spend_program_name"]
+    )
     edited_transaction["trip_name"] = st.text_input(
         "Trip Name", selected_transaction["trip_name"]
     )
-    edited_transaction["remarks"] = st.text_input(
-        "Transaction Remarks", selected_transaction["remarks"]
-    )
 
-    edited_transaction["category"] = st.selectbox(
+    edited_transaction["expense_category"] = st.selectbox(
         "Category",
-        options=[code["name"] for code in gl_codes],
-        index=[code["name"] for code in gl_codes].index(
-            selected_transaction["label"]["name"]
-        ),
+        options=category_names,
+        index=category_names.index(selected_transaction["expense_category"]),
     )
 
     # Add approve/reject buttons
     col1, col2 = st.columns(2)
 
     with col1:
-        if st.button("✅ Approve"):
+        if button(
+            "✅ Approve",
+            "ctrl+e",
+            on_click=lambda: st.success("Transaction approved and saved!"),
+        ):
             save_transaction(edited_transaction)  # Save the edited version instead
             st.session_state.reviewed_indices.add(selected_index)  # Mark as reviewed
-            st.success("Transaction approved and saved!")
             st.rerun()  # Rerun to update the interface
 
     with col2:
-        if st.button("❌ Skip"):
+        if button(
+            "❌ Skip",
+            "ctrl+r",
+            on_click=lambda: st.info("Moving to next transaction..."),
+        ):
             st.session_state.reviewed_indices.add(selected_index)  # Mark as reviewed
-            st.info("Moving to next transaction...")
             st.rerun()
 
     # Show progress in the sidebar
