@@ -2,10 +2,42 @@ import streamlit as st
 import json
 import pandas as pd
 from streamlit_shortcuts import button
-from models import Transaction
+from pydantic import BaseModel, field_validator, ValidationInfo
+from typing import Optional
+from textwrap import dedent
+
 
 categories = json.load(open("./data/categories.json"))
 category_names = [category["category"] for category in categories]
+
+
+class Transaction(BaseModel):
+    merchant_name: str
+    merchant_category: list[str]
+    department: str
+    location: str
+    amount: float
+    spend_program_name: str
+    trip_name: Optional[str] = None
+    expense_category: str
+
+    def generate_transaction(self):
+        return dedent(f"""
+        Name : {self.merchant_name}
+        Category: {", ".join(self.merchant_category)}
+        Department: {self.department}
+        Location: {self.location}
+        Amount: {self.amount}
+        Card: {self.spend_program_name}
+        Trip Name: {self.trip_name if self.trip_name else "unknown"}
+        """)
+
+    @field_validator("expense_category")
+    @classmethod
+    def set_expense_category(cls, v, info: ValidationInfo):
+        if not info.context or not info.context["category"]:
+            return v
+        return info.context["category"]["category"]
 
 
 def load_transactions():
@@ -124,6 +156,14 @@ def main():
     st.sidebar.markdown("---")
     st.sidebar.subheader("Review Progress")
     st.sidebar.write(f"Remaining to Review: {len(remaining_indices)}")
+    st.sidebar.write("""
+    We've provided hotkeys for you to use in this case
+
+    1. ctrl + e to approve
+    2. ctrl + r to reject
+                     
+    All of the approved transactions will be saved to `cleaned.jsonl` and we'll use these to generate a new set of transactions that are more challenging.
+    """)
 
 
 if __name__ == "__main__":
