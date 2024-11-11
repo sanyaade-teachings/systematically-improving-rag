@@ -10,7 +10,6 @@ dependencies = [
     "cohere>=5.11.3",
     "datasets>=3.1.0",
     "faker>=30.8.1",
-    "indomee>=0.1.2",
     "instructor>=1.6.3",
     "ipykernel>=6.29.5",
     "ipywidgets>=8.1.5",
