@@ -23,5 +23,6 @@ dependencies = [
     "streamlit>=1.39.0",
     "tantivy>=0.22.0",
     "transformers==4.45.2",
-    "accelerate>=0.26.0"
+    "accelerate>=0.26.0",
+    "matplotlib>=3.9.2",
 ]

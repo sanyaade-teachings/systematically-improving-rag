@@ -21,24 +21,6 @@ class Transaction(BaseModel):
     trip_name: Optional[str] = None
     expense_category: str
 
-    def generate_transaction(self):
-        return dedent(f"""
-        Name : {self.merchant_name}
-        Category: {", ".join(self.merchant_category)}
-        Department: {self.department}
-        Location: {self.location}
-        Amount: {self.amount}
-        Card: {self.spend_program_name}
-        Trip Name: {self.trip_name if self.trip_name else "unknown"}
-        """)
-
-    @field_validator("expense_category")
-    @classmethod
-    def set_expense_category(cls, v, info: ValidationInfo):
-        if not info.context or not info.context["category"]:
-            return v
-        return info.context["category"]["category"]
-
 
 def load_transactions():
     transactions = []
