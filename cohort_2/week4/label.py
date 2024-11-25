@@ -7,10 +7,11 @@ from typing import Optional
 from textwrap import dedent
 
 
-class EvaluationQuestion(BaseModel):
+class Question(BaseModel):
+    citation: str
     question: str
+    answer: str
     category: str
-    relevant_pages: list[str]
     subcategory: str
 
 
@@ -26,27 +27,9 @@ def load_questions():
         return pd.DataFrame()
 
 
-def get_pages():
-    pages = {}
-    import os
-    from pathlib import Path
-
-    md_dir = Path("./data/md")
-    if not md_dir.exists():
-        return pages
-
-    for file in md_dir.glob("*.md"):
-        slug = file.stem
-        with open(file, "r") as f:
-            content = f.read()
-        pages[slug] = content
-
-    return pages
-
-
 def save_question(question):
     with open("./data/cleaned.jsonl", "a") as f:
-        f.write(EvaluationQuestion(**question).model_dump_json() + "\n")
+        f.write(Question(**question).model_dump_json() + "\n")
 
 
 def main():
@@ -78,7 +61,7 @@ def main():
     selected_index = st.sidebar.selectbox(
         "Select Question to Review",
         remaining_indices,
-        format_func=lambda x: f"Transaction {x + 1}",
+        format_func=lambda x: f"Question {x + 1}",
     )
 
     # Get the selected question
@@ -90,20 +73,14 @@ def main():
     edited_question["question"] = st.text_area(
         "Edit Question", value=selected_question["question"]
     )
-    st.write(edited_question["category"])
-    st.write(edited_question["subcategory"])
-    st.write(edited_question["relevant_pages"])
 
-    st.write(selected_question)
-
-    pages = get_pages()
-
-    for page in selected_question["relevant_pages"]:
-        st.write(pages[page])
+    st.write(f"Answer: {selected_question['answer']}")
+    st.write(f"Category: {selected_question['category']}")
+    st.write(f"Subcategory: {selected_question['subcategory']}")
+    st.write(f"Citation: {selected_question['citation']}")
 
     # Add approve/reject buttons
     col1, col2 = st.columns(2)
-
     with col1:
         if button(
             "✅ Approve",
