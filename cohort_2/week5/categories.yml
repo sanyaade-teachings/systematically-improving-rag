@@ -1,0 +1,65 @@
+Tops:
+  description: "Explore our versatile collection of tops, perfect for every style and occasion."
+  subcategories:
+    - name: T-Shirts
+      description: "Casual and comfortable T-shirts for everyday looks."
+    - name: Blouses
+      description: "Elegant and stylish blouses for work or special events."
+    - name: Tank Tops
+      description: "Light and breezy tank tops, ideal for layering or sunny days."
+    - name: Crop Tops
+      description: "Trendy crop tops to show off your unique style."
+    - name: Shirts
+      description: "Classic and contemporary shirts for formal or casual wear."
+    - name: Bodysuits
+      description: "Sleek and chic one-piece tops that stay perfectly tucked."
+    - name: Sweaters & Knits
+      description: "Cozy knits and sweaters to keep you warm and stylish."
+    - name: Sweatshirts & Hoodies
+      description: "Relaxed and comfy sweatshirts and hoodies for laid-back days."
+    - name: Outerwear Tops
+      description: "Stylish coats and jackets to complete your outfit."
+    - name: Dresses
+      description: "Beautiful dresses for every occasion, from casual to formal."
+
+Bottoms:
+  description: "Find the perfect pair of bottoms to match your style, from classic to trendy."
+  subcategories:
+    - name: Jeans
+      description: "Timeless denim essentials for every wardrobe."
+    - name: Trousers
+      description: "Smart and tailored trousers for work or leisure."
+    - name: Skirts
+      description: "Flattering skirts in a variety of styles and lengths."
+    - name: Shorts
+      description: "Stay cool with stylish shorts for warm weather."
+    - name: Leggings
+      description: "Comfortable and versatile leggings for active or casual wear."
+    - name: Joggers & Track Pants
+      description: "Relaxed-fit pants for workouts or lounging in style."
+
+Activewear:
+  description: "Gear up with performance-ready activewear for your workouts and beyond."
+  subcategories:
+    - name: Active Tops
+      description: "Breathable and supportive tops for your fitness journey."
+    - name: Active Bottoms
+      description: "Flexible and comfortable bottoms designed for movement."
+    - name: Sets & Other Activewear
+      description: "Matching sets and unique pieces to elevate your activewear game."
+
+Maternity:
+  description: "Comfortable and stylish clothing for every stage of pregnancy."
+  subcategories:
+    - name: Maternity Tops
+      description: "Soft and stretchy tops designed for moms-to-be."
+    - name: Maternity Bottoms
+      description: "Flexible and supportive bottoms for growing bellies."
+
+Accessories & Jewelry:
+  description: "Complete your look with the perfect finishing touches."
+  subcategories:
+    - name: Belts & Watches
+      description: "Add polish to your outfit with stylish belts and watches."
+    - name: Jewelry
+      description: "Beautiful earrings and other accessories to make a statement."
