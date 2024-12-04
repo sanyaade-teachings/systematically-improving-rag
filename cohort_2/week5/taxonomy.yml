@@ -222,3 +222,25 @@ common_attributes:
       - Geometric
       - Animal Print
       - Camouflage
+
+  - Occasion:
+      - Everyday Wear
+      - Casual Outings
+      - Office Wear
+      - Business Casual
+      - Workwear
+      - Semi-Formal Events
+      - Formal Events
+      - Occasionwear
+      - Partywear
+      - Club Nights
+      - Dinner Dates
+      - Wedding Guest
+      - Prom
+      - Evening Wear
+      - Smart Casual
+      - Beachwear
+      - Activewear
+      - Sportswear
+      - Loungewear
+      - Travel
