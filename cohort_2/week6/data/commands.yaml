@@ -9,25 +9,30 @@
 - command_description: Search Jira issues by text, type and project
   command_name: issue
   extension_name: jira-search
-  plugin_description: Search for Jira issues (more tolerant and powerful than built-in),
+  plugin_description:
+    Search for Jira issues (more tolerant and powerful than built-in),
     projects, boards and filters.
 - command_description: Search Jira boards by title
   command_name: board
   extension_name: jira-search
-  plugin_description: Search for Jira issues (more tolerant and powerful than built-in),
+  plugin_description:
+    Search for Jira issues (more tolerant and powerful than built-in),
     projects, boards and filters.
 - command_description: Search Jira filters by title
   command_name: filter
   extension_name: jira-search
-  plugin_description: Search for Jira issues (more tolerant and powerful than built-in),
+  plugin_description:
+    Search for Jira issues (more tolerant and powerful than built-in),
     projects, boards and filters.
 - command_description: Search Jira projects by title
   command_name: project
   extension_name: jira-search
-  plugin_description: Search for Jira issues (more tolerant and powerful than built-in),
+  plugin_description:
+    Search for Jira issues (more tolerant and powerful than built-in),
     projects, boards and filters.
 - command_description: Delete cached Jira images and reload them on next search
   command_name: image
   extension_name: jira-search
-  plugin_description: Search for Jira issues (more tolerant and powerful than built-in),
+  plugin_description:
+    Search for Jira issues (more tolerant and powerful than built-in),
     projects, boards and filters.

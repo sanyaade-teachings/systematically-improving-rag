@@ -1,0 +1,71 @@
+{"query": "What was that recent breakthrough in fusion energy that scientists achieved? I heard it was something about net energy gain but I'm not sure about the details.", "command_name": "index", "extension_name": "google-search"}
+{"query": "I'm reading an article about space exploration, and it mentions something called \"Lagrange points\". What exactly are those?", "command_name": "searchSelectText", "extension_name": "google-search"}
+{"query": "Can you help me find all the bug reports related to the login feature in our mobile app project?", "command_name": "issue", "extension_name": "jira-search"}
+{"query": "Can you help me find the \"Product Roadmap\" board? I heard our team is using it for planning, but I can't seem to locate it.", "command_name": "board", "extension_name": "jira-search"}
+{"query": "Can you help me find the saved search for all reported bugs in our current sprint?", "command_name": "filter", "extension_name": "jira-search"}
+{"query": "Can you help me find the project I'm supposed to be working on? I think it had something to do with the new mobile app we're developing.", "command_name": "project", "extension_name": "jira-search"}
+{"query": "I'm looking at some Jira tickets, but the images seem outdated. Is there a way to make sure I'm seeing the latest versions?", "command_name": "image", "extension_name": "jira-search"}
+{"query": "Can you add a new task to my project tracker for the upcoming team meeting presentation?", "command_name": "create-database-page", "extension_name": "notion"}
+{"query": "Can you help me find my project notes about the new marketing campaign?", "command_name": "search-page", "extension_name": "notion"}
+{"query": "Can you quickly jot down this idea for my project? I just thought of a great feature we should add: a dark mode option for better nighttime viewing.", "command_name": "quick-capture", "extension_name": "notion"}
+{"query": "Can you add a note to my project document saying we completed the first phase of testing today?", "command_name": "add-text-to-page", "extension_name": "notion"}
+{"query": "Can you help me find the recipe for grandma's apple pie that I wrote down a few months ago?", "command_name": "index", "extension_name": "apple-notes"}
+{"query": "Can you help me jot down some quick thoughts about my upcoming vacation plans?", "command_name": "new", "extension_name": "apple-notes"}
+{"query": "Can you help me write a quick summary about the benefits of meditation? I'd like to save it for future reference.", "command_name": "ai", "extension_name": "apple-notes"}
+{"query": "Is there a way to quickly check my most recent notes without opening the full app?", "command_name": "menu-bar", "extension_name": "apple-notes"}
+{"query": "Can you jot down a reminder for me to pick up milk and eggs on my way home from work?", "command_name": "add-text", "extension_name": "apple-notes"}
+{"query": "Can you show me the details of the note I'm currently looking at?", "command_name": "view-selected-note", "extension_name": "apple-notes"}
+{"query": "Can you help me find my notes about project management techniques I wrote last month?", "command_name": "searchNoteCommand", "extension_name": "obsidian"}
+{"query": "Could you help me find that important note I bookmarked about my project deadlines?", "command_name": "starredNotesCommand", "extension_name": "obsidian"}
+{"query": "Can you help me access my research notes from last semester?", "command_name": "openVaultCommand", "extension_name": "obsidian"}
+{"query": "Can you add a quick thought I just had to my journal for today? I want to remember that I need to call my mom this evening.", "command_name": "dailyNoteAppendCommand", "extension_name": "obsidian"}
+{"query": "Can you help me jot down my thoughts for today?", "command_name": "dailyNoteCommand", "extension_name": "obsidian"}
+{"query": "I just had a brilliant idea for a new project. Can you help me quickly write it down somewhere so I don't forget?", "command_name": "createNoteCommand", "extension_name": "obsidian"}
+{"query": "Can you help me find something interesting to read from my notes? I'm looking for inspiration but don't know where to start.", "command_name": "randomNoteCommand", "extension_name": "obsidian"}
+{"query": "Can you help me find that podcast episode I saved last week about artificial intelligence?", "command_name": "searchMedia", "extension_name": "obsidian"}
+{"query": "Can you show me a quick overview of my most important notes?", "command_name": "obsidianMenuBar", "extension_name": "obsidian"}
+{"query": "Can you add \"Buy groceries for dinner party\" to my shopping list note?", "command_name": "appendTaskCommand", "extension_name": "obsidian"}
+{"query": "What does my schedule look like for next month?", "command_name": "index", "extension_name": "calendar"}
+{"query": "Who was the first person to climb Mount Everest?", "command_name": "search-page", "extension_name": "wikipedia"}
+{"query": "Can you tell me more about the history and significance of the Eiffel Tower?", "command_name": "open-page", "extension_name": "wikipedia"}
+{"query": "I'm feeling curious and want to learn about something unexpected. Can you show me an article about a topic I might not have thought of before?", "command_name": "random-page", "extension_name": "wikipedia"}
+{"query": "What's something interesting I can learn about today?", "command_name": "featured-page", "extension_name": "wikipedia"}
+{"query": "Can you find me some good tutorials on how to make sushi at home?", "command_name": "search-videos", "extension_name": "youtube"}
+{"query": "Can you help me find some good cooking channels? I'm particularly interested in channels that focus on Italian cuisine.", "command_name": "search-channel", "extension_name": "youtube"}
+{"query": "What videos are trending right now?", "command_name": "popular-videos", "extension_name": "youtube"}
+{"query": "What are some good wireless earbuds I can buy for my daily commute?", "command_name": "index", "extension_name": "amazon-search"}
+{"query": "What are people saying online about the latest Mars rover discoveries?", "command_name": "index", "extension_name": "reddit-search"}
+{"query": "Can you help me find some songs by Adele? I'm in the mood for her soulful ballads.", "command_name": "search", "extension_name": "spotify-player"}
+{"query": "Can you show me all the music and podcasts I've saved for later?", "command_name": "yourLibrary", "extension_name": "spotify-player"}
+{"query": "What song is playing right now?", "command_name": "nowPlaying", "extension_name": "spotify-player"}
+{"query": "What song is playing right now?", "command_name": "nowPlayingMenuBar", "extension_name": "spotify-player"}
+{"query": "Can you pause my music for a moment? I need to take a quick call.", "command_name": "togglePlayPause", "extension_name": "spotify-player"}
+{"query": "Can you add the song I'm listening to right now to my workout playlist?", "command_name": "addPlayingSongToPlaylist", "extension_name": "spotify-player"}
+{"query": "I'm not really feeling this song right now. Can you take it off my workout mix?", "command_name": "removeSongFromPlaylist", "extension_name": "spotify-player"}
+{"query": "I don't really like this song. Can you play the next one?", "command_name": "next", "extension_name": "spotify-player"}
+{"query": "Can you go back to the song that was playing before this one? I liked it better.", "command_name": "previous", "extension_name": "spotify-player"}
+{"query": "This song is amazing! Can you add it to my favorites?", "command_name": "like", "extension_name": "spotify-player"}
+{"query": "I really don't enjoy this song that's playing right now. Can you mark it so it doesn't come up in my recommendations again?", "command_name": "dislike", "extension_name": "spotify-player"}
+{"query": "Hey, I want to listen to some music on my living room speakers. Can you help me switch to those?", "command_name": "devices", "extension_name": "spotify-player"}
+{"query": "Can you turn down the music a bit? It's a little too loud for my liking.", "command_name": "volume", "extension_name": "spotify-player"}
+{"query": "Can you please make the music silent? I need to take an important call.", "command_name": "volume0", "extension_name": "spotify-player"}
+{"query": "Can you turn down the music? It's a bit too loud for my liking.", "command_name": "volume25", "extension_name": "spotify-player"}
+{"query": "Can you turn down the music? It's a bit too loud, but I still want to hear it clearly.", "command_name": "volume50", "extension_name": "spotify-player"}
+{"query": "Can you turn up the music a bit? I want it loud enough to enjoy but not so loud that it's overwhelming.", "command_name": "volume75", "extension_name": "spotify-player"}
+{"query": "Can you turn the music up as loud as it can go? I really want to feel the beat!", "command_name": "volume100", "extension_name": "spotify-player"}
+{"query": "The music is a bit too loud. Can you make it a little softer, please?", "command_name": "volumeDown", "extension_name": "spotify-player"}
+{"query": "Can you make the music a bit louder? It's hard to hear from the other room.", "command_name": "volumeUp", "extension_name": "spotify-player"}
+{"query": "Can you make it so my playlist doesn't always play in the same order? I'd like some surprise in what song comes next.", "command_name": "toggleShuffle", "extension_name": "spotify-player"}
+{"query": "Can you change how my music repeats? I want it to play the whole album again when it's done.", "command_name": "cycleRepeat", "extension_name": "spotify-player"}
+{"query": "Can you start this song over from the beginning? I missed the first part.", "command_name": "replay", "extension_name": "spotify-player"}
+{"query": "What's the name of the song that's playing right now?", "command_name": "current-track", "extension_name": "spotify-player"}
+{"query": "I'm really enjoying this song. Can you find more music like this for me to listen to?", "command_name": "startRadio", "extension_name": "spotify-player"}
+{"query": "Hey, I'm listening to this awesome new song and I want to share it with my friend. Can you help me get a link to it?", "command_name": "copyUrl", "extension_name": "spotify-player"}
+{"query": "Hey, can you play \"Shape of You\" by Ed Sheeran right away?", "command_name": "justPlay", "extension_name": "spotify-player"}
+{"query": "What songs are lined up to play next?", "command_name": "queue", "extension_name": "spotify-player"}
+{"query": "Can you create a playlist for my upcoming beach party this weekend?", "command_name": "generatePlaylist", "extension_name": "spotify-player"}
+{"query": "Hey, I'm having a party tonight and I want some good music playing all evening without having to manually select songs. Can you help me set that up?", "command_name": "startDJ", "extension_name": "spotify-player"}
+{"query": "Can you show me a list of all my saved login credentials?", "command_name": "item-list", "extension_name": "1password"}
+{"query": "Is there a way to keep my password manager unlocked for longer periods without having to enter my master password every few minutes?", "command_name": "renew-auth", "extension_name": "1password"}
+{"query": "Can you show me a list of all my password vaults?", "command_name": "vault-list", "extension_name": "1password"}
+{"query": "I need a strong, unique password for my new online banking account. Can you help me create one that's really secure?", "command_name": "generate-password", "extension_name": "1password"}
