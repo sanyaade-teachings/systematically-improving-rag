@@ -2,7 +2,7 @@
 {"query": "Hey, what did Jeff say previously in our meeting with Kafka?", "labels": ["notion.search"]}
 {"query": "Check if there's a meeting with John Williams this week and find old notes on the Apple Workstation project.", "labels": ["calendar.searchCalendar", "notion.search"]}
 {"query": "Create a new page for the Robinson account and send the link to Eugene via slack", "labels": ["notion.createPage", "slack.sendMessage"]}
-{"query": "Can you compile all of the open PRs that have been tagged under the UI refactor project and add them to a new page in Notion?", "labels": ["jira.searchIssue","github.searchPullRequests", "notion.createPage"]}
+{"query": "Can you compile the issues that have been tagged under the UI refactor project and add them to a new page in Notion?", "labels": ["jira.searchIssue", "notion.createPage"]}
 {"query": "Send the rest of the team a calendar invite for a meeting on the 20th at 10am", "labels": ["calendar.addEvent"]}
 {"query": "Check if there's a team meeting today with Ariel and Eugene involved", "labels": ["calendar.searchCalendar"]}
 {"query": "Find a random interesting topic to explore today and create a Notion page for it.", "labels": ["wikipedia.random-page", "notion.createPage"]}
@@ -26,7 +26,7 @@
 {"query": "Can you create a pull request for the marketing analytics update, and schedule a review meeting for Monday at 3 PM so we can walk through it?", "labels": ["github.createPullRequest", "calendar.addEvent"]}
 {"query": "Need you to just create a note with title 'test' and content 'test'.", "labels": ["obsidian.createNote"]}
 {"query": "chk slack", "labels": ["slack.getNotifications"]}
-{"query": "Can we list all pending GitHub issues for the search optimization task and add them to our progress-tracking page in Notion?", "labels": ["github.searchIssues", "notion.quickCapture"]}
+{"query": "Can we list all pending issues for the search optimization task and add them to our progress-tracking page in Notion?", "labels": ["jira.searchIssue", "notion.quickCapture"]}
 {"query": "Urgent! Fetch past notes on the Nestle marketing launch.", "labels": ["notion.search"]}
 {"query": "Snooze notifications for 1 hour and open my unread Slack messages", "labels": ["slack.setSnooze", "slack.openUnreadMessages"]}
 {"query": "create a new feature branch for the UI refactor and link all the issues you've found about onboarding issues in the PR description", "labels": ["github.createBranch", "jira.searchIssue"]}
