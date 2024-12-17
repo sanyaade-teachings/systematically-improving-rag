@@ -1,368 +1,135 @@
-commands:
--   extension_name: google-search
-    command_name: index
-    command_description: Google search with autosuggestions
-    plugin_description: Google search with autosuggestions
--   extension_name: google-search
-    command_name: searchSelectText
-    command_description: Google search with selected text
-    plugin_description: Google search with autosuggestions
--   extension_name: jira-search
-    command_name: issue
-    command_description: Search Jira issues by text, type and project
-    plugin_description: Search for Jira issues (more tolerant and powerful than built-in),
-        projects, boards and filters.
--   extension_name: jira-search
-    command_name: board
-    command_description: Search Jira boards by title
-    plugin_description: Search for Jira issues (more tolerant and powerful than built-in),
-        projects, boards and filters.
--   extension_name: jira-search
-    command_name: filter
-    command_description: Search Jira filters by title
-    plugin_description: Search for Jira issues (more tolerant and powerful than built-in),
-        projects, boards and filters.
--   extension_name: jira-search
-    command_name: project
-    command_description: Search Jira projects by title
-    plugin_description: Search for Jira issues (more tolerant and powerful than built-in),
-        projects, boards and filters.
--   extension_name: jira-search
-    command_name: image
-    command_description: Delete cached Jira images and reload them on next search
-    plugin_description: Search for Jira issues (more tolerant and powerful than built-in),
-        projects, boards and filters.
--   extension_name: notion
-    command_name: create-database-page
-    command_description: Create a page in a Notion database.
-    plugin_description: The fastest way to search, create and update Notion pages.
--   extension_name: notion
-    command_name: search-page
-    command_description: Search for Notion databases and pages.
-    plugin_description: The fastest way to search, create and update Notion pages.
--   extension_name: notion
-    command_name: quick-capture
-    command_description: Capture something and put it out in a Notion page.
-    plugin_description: The fastest way to search, create and update Notion pages.
--   extension_name: notion
-    command_name: add-text-to-page
-    command_description: Append or prepend text, along with date, to a Notion page.
-    plugin_description: The fastest way to search, create and update Notion pages.
--   extension_name: apple-notes
-    command_name: index
-    command_description: Search through your Apple notes.
-    plugin_description: Search and create notes within the Apple Notes application.
--   extension_name: apple-notes
-    command_name: new
-    command_description: Create a new note in your Apple Notes.
-    plugin_description: Search and create notes within the Apple Notes application.
--   extension_name: apple-notes
-    command_name: ai
-    command_description: Create a new note filled with AI in your Apple notes.
-    plugin_description: Search and create notes within the Apple Notes application.
--   extension_name: apple-notes
-    command_name: menu-bar
-    command_description: View your recent and pinned Apple notes in the menu bar.
-    plugin_description: Search and create notes within the Apple Notes application.
--   extension_name: apple-notes
-    command_name: add-text
-    command_description: Add some text to an Apple note.
-    plugin_description: Search and create notes within the Apple Notes application.
--   extension_name: apple-notes
-    command_name: view-selected-note
-    command_description: View the currently selected note in Raycast.
-    plugin_description: Search and create notes within the Apple Notes application.
--   extension_name: obsidian
-    command_name: searchNoteCommand
-    command_description: Search, open, view, copy, paste and edit any note in Obsidian.
-    plugin_description: Control Obsidian with Raycast
--   extension_name: obsidian
-    command_name: starredNotesCommand
-    command_description: Search, open, view, copy, paste and edit bookmarked notes
-        in Obsidian.
-    plugin_description: Control Obsidian with Raycast
--   extension_name: obsidian
-    command_name: openVaultCommand
-    command_description: Open a vault in Obsidian.
-    plugin_description: Control Obsidian with Raycast
--   extension_name: obsidian
-    command_name: dailyNoteAppendCommand
-    command_description: Append text to your daily note
-    plugin_description: Control Obsidian with Raycast
--   extension_name: obsidian
-    command_name: dailyNoteCommand
-    command_description: Open daily note in Obsidian. Will create new daily note when
-        it doesn't exist yet.
-    plugin_description: Control Obsidian with Raycast
--   extension_name: obsidian
-    command_name: createNoteCommand
-    command_description: Create new note
-    plugin_description: Control Obsidian with Raycast
--   extension_name: obsidian
-    command_name: randomNoteCommand
-    command_description: Open random note
-    plugin_description: Control Obsidian with Raycast
--   extension_name: obsidian
-    command_name: searchMedia
-    command_description: Search for media in your vault
-    plugin_description: Control Obsidian with Raycast
--   extension_name: obsidian
-    command_name: obsidianMenuBar
-    command_description: See your pinned notes at a glance and control actions from
-        the menu bar.
-    plugin_description: Control Obsidian with Raycast
--   extension_name: obsidian
-    command_name: appendTaskCommand
-    command_description: Append a task to a note of your choice
-    plugin_description: Control Obsidian with Raycast
--   extension_name: calendar
-    command_name: index
-    command_description: Shows calendar for a month
-    plugin_description: View calendar month-by-month
--   extension_name: wikipedia
-    command_name: search-page
-    command_description: Search Wikipedia pages by title
-    plugin_description: Search Wikipedia from Raycast
--   extension_name: wikipedia
-    command_name: open-page
-    command_description: Open Wikipedia page in Raycast
-    plugin_description: Search Wikipedia from Raycast
--   extension_name: wikipedia
-    command_name: random-page
-    command_description: Open a random Wikipedia page in browser
-    plugin_description: Search Wikipedia from Raycast
--   extension_name: wikipedia
-    command_name: featured-page
-    command_description: Open today's featured Wikipedia page in browser
-    plugin_description: Search Wikipedia from Raycast
--   extension_name: youtube
-    command_name: search-videos
-    command_description: Search YouTube Videos
-    plugin_description: Search Videos, Channels, and more...
--   extension_name: youtube
-    command_name: search-channel
-    command_description: Search YouTube Channels
-    plugin_description: Search Videos, Channels, and more...
--   extension_name: youtube
-    command_name: popular-videos
-    command_description: Show Popular YouTube Videos
-    plugin_description: Search Videos, Channels, and more...
--   extension_name: amazon-search
-    command_name: index
-    command_description: Amazon search with autosuggestions
-    plugin_description: Amazon search with autosuggestions
--   extension_name: reddit-search
-    command_name: index
-    command_description: Searches Reddit and lists the results with the option to
-        sort, show more, or show the results on Reddit.
-    plugin_description: Search Reddit, Subreddits, or within Subreddits and list the
-        results in Raycast.
--   extension_name: spotify-player
-    command_name: search
-    command_description: A single unified search command. Search for artists, albums,
-        songs, playlists, podcasts, and episodes. Use the dropdown menu to filter
-        your search to a specific category. Each category offers contextual actions,
-        so you can dive deeper into the search.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: yourLibrary
-    command_description: See your saved artists, albums, songs, playlists, and podcasts.
-        Similar to the "Search" command, it includes a category dropdown and contextual
-        actions.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: nowPlaying
-    command_description: "See what's currently playing. Use the actions (\u2318 K)\
-        \ for further actions, such as Play/Pause, Like/Dislike, Skip, Start Radio,\
-        \ Add to Playlist, Connect Device and more."
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: nowPlayingMenuBar
-    command_description: See what's currently playing in your Menu Bar. Click for
-        further actions, such as Play/Pause, Like/Dislike, Skip, Start Radio, Add
-        to Playlist, Connect Device and more. Refreshes every 10 seconds.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: togglePlayPause
-    command_description: Toggle the playback of the current song.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: addPlayingSongToPlaylist
-    command_description: Adds the current song to a playlist of your choice.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: removeSongFromPlaylist
-    command_description: Remove the current song from a playlist of your choice.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: next
-    command_description: Skip to the next song/episode.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: previous
-    command_description: Skip to the previous song/episode.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: like
-    command_description: Like the current song.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: dislike
-    command_description: Dislike the current song.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: devices
-    command_description: Select a device to play music on.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: volume
-    command_description: Set the volume to an arbitrary percent.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: volume0
-    command_description: Mute the volume.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: volume25
-    command_description: Set the volume to 25%.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: volume50
-    command_description: Set the volume to 50%.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: volume75
-    command_description: Set the volume to 75%.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: volume100
-    command_description: Set the volume to 100%.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: volumeDown
-    command_description: Turn the volume down by 10%.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: volumeUp
-    command_description: Turn the volume up by 10%.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: toggleShuffle
-    command_description: Toggle shuffle.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: cycleRepeat
-    command_description: Cycle the repeat state between off, context (meaning the
-        current playlist/album), and track.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: replay
-    command_description: Replay the current song/episode form the beginning.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: current-track
-    command_description: Show the current song/episode state.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: startRadio
-    command_description: Start a radio station based on the current song.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: copyUrl
-    command_description: Copy the URL of the current song/episode.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: justPlay
-    command_description: Quickly start playing a song based on your query.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: queue
-    command_description: See your queue.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: generatePlaylist
-    command_description: Generate a Spotify playlist using Raycast AI.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: spotify-player
-    command_name: startDJ
-    command_description: Start the DJ.
-    plugin_description: Spotify's most common features, now at your fingertips. Search
-        for music and podcasts, browse your library, and control the playback. Glance
-        at what's currently playing directly from the menu bar.
--   extension_name: 1password
-    command_name: item-list
-    command_description: List of all your 1Password items. Then open in your default
-        browser, view items in 1Password, or open items in 1Password for editing.
-    plugin_description: Search, open or edit your 1Password passwords from Raycast
--   extension_name: 1password
-    command_name: renew-auth
-    command_description: Renews the authorization each 9 minutes. Avoiding the prompt
-        for user's password each use after 10 minutes.
-    plugin_description: Search, open or edit your 1Password passwords from Raycast
--   extension_name: 1password
-    command_name: vault-list
-    command_description: List of all your 1Password vaults. Then open all items related
-        to each vault.
-    plugin_description: Search, open or edit your 1Password passwords from Raycast
--   extension_name: 1password
-    command_name: generate-password
-    command_description: Generate a random password with 1Password.
-    plugin_description: Search, open or edit your 1Password passwords from Raycast
+extensions:
+  obsidian:
+    description: I use obsidian to take down notes when I'm studying or taking online courses. I've been taking a variety of different courses on topics such as machine learning, marketing, copywriting etc. I'll use this specific extension when I want to search for notes on a specific topic or ask questions about a topic. Sometimes I might also want to create a quick dailyNote to log my progress for the day.
+
+    commands:
+      - name: searchNote
+        description: Full-text search across all vault notes and their metadata
+      - name: dailyNote
+        description: Create or open the daily note file in your configured daily notes folder
+      - name: createNote
+        description: Create a new markdown note in your specified vault location
+
+  apple-notes:
+    description: I use Apple Notes for day-to-day personal notes. Ideal for lightweight tasks like shopping lists, quick reminders, and temporary notes that don't require extensive organization. These should be short and to the point.
+    commands:
+      - name: search
+        description: Full-text search across all notes and folders
+      - name: quickActions
+        description: Create a new note in your selected folder
+      - name: aiAssist
+        description: Automatically generate note content by providing AI-powered suggestions based on your request
+
+  notion:
+    description: I use Notion for work-related content (meeting notes, company documentation, onboarding materials) alongside personal planning (travel itineraries, project planning, life organization).
+    commands:
+      - name: search
+        description: Global search across all workspace pages and databases
+      - name: createPage
+        description: Create a new Notion Page
+      - name: quickCapture
+        description: Add new blocks to any page using the quick-add menu
+      - name: modifyDatabaseRow
+        description: Update existing entries in any database with custom properties
+      - name: createDatabaseRow
+        description: Create new entries in any database with custom properties
+
+  jira:
+    description: I use Jira to track work-related tasks and the status of all existing things I'm being blocked on, waiting on approval for or have to do.
+    commands:
+      - name: searchIssue
+        description: Filter issues by type (bug, story, task) or custom fields
+      - name: searchProject
+        description: Navigate project spaces and filter by project metadata
+      - name: projectManagement
+        description: Create and update sprints, epics, and board configurations
+
+  google-search:
+    description: I use google search to find information quickly without opening up a browser. I often use this to find information on a specific person or company, or to find information on a specific topic.
+    commands:
+      - name: googleSearch
+        description: "Search Google for a specific query"
+
+  wikipedia:
+    description: I use wikipedia to find information on a specific topic.
+    commands:
+      - name: SearchWikipedia
+        description: Search Wikipedia pages by title
+      - name: random-page
+        description: Open a random Wikipedia page in browser
+      - name: featured-page
+        description: Open today's featured Wikipedia page in browser
+
+  youtube:
+    description: I use youtube when I'm bored and want to watch something for entertainment, or would like to learn something new.
+    commands:
+      - name: searchVideos
+        description: Search YouTube Videos
+      - name: searchChannel
+        description: Search YouTube Channels
+      - name: popularVideos
+        description: Show Popular YouTube Videos
+
+  calendar:
+    description: I use the calendar application to schedule and lookup meetings, events and deadlines. Note that I use apple notes for reminders and not the calendar application itself.
+    commands:
+      - name: searchCalendar
+        description: Search the calendar for events, meetings or deadlines
+      - name: addEvent
+        description: Add a new event to the calendar
+      - name: cancelEvent
+        description: Cancel an event from the calendar
+      - name: rescheduleEvent
+        description: Reschedule an event from the calendar
+
+  slack:
+    description: I use slack to communicate with my teamates for work related matters
+    commands:
+      - name: searchSlack
+        description: Search for all workspace members, group chats, and channels and open them directly in your Slack app.
+      - name: searchMessages
+        description: Search for Slack messages.
+      - name: openUnreadMessages
+        description: Open an overview of unread messages directly in your native
+          Slack app.
+      - name: sendMessage
+        description: Send a message to a specific channel or user
+      - name: setSnooze
+        description: Set settings for how long you want to snooze notifications.
+      - name: getNotifications
+        description: Fetch all notifications from Slack
+      - name: setPresence
+        description: Set your presence status to online, away, or offline.
+
+  github:
+    description: I use github to track my open source projects, collaborate with my team-mates and see the status of my pull requests. Often times, i'll be asking questions here about the status of a pull request, specific pipelines whether they've failed, whether my pull requests have been merged or approved and if any fdeedback has been given. Additionally I might also enquire to see if I have any new notifications to review a PR etc
+    commands:
+      - name: searchPullRequests
+        description: List or search pull requests across your repositories.
+
+      - name: searchIssues
+        description: List or search issues across your repositories.
+
+      - name: createPullRequest
+        description: Create a new pull request in a specified repository.
+
+      - name: createIssue
+        description: Create a new issue in a specified repository.
+
+      - name: searchRepositories
+        description: List or search your repositories.
+
+      - name: createBranch
+        description: Create or list branches in a specified repository.
+
+      - name: getWorkflowRuns
+        description: View or manage workflow runs for a repository.
+
+      - name: getNotifications
+        description: View your notifications, including unread ones, across repositories.
+
+      - name: searchDiscussions
+        description: List or search discussions across repositories.
+
+      - name: searchProjects
+        description: View your GitHub projects.
