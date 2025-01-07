@@ -15,4 +15,4 @@
 {"query": "create pr against main branch for hello-world branch", "labels": ["github.create-pull-request"]}
 {"query": "chk if latest workflow for pytest failed on main. if so, create a jira issue to go fix it", "labels": ["github.workflow-runs", "jira.create-issue"]}
 {"query": "help me find the top 3 hiking trails nearby in Toronto and let's add it to my apple notes so I can get back to it later", "labels": ["apple-notes.new", "google-search.index"]}
-{"query": "database connection failure seems to be happening again, let's create a new page to track it along with a ticket to go resolve it once and for all lmfao", "labels": ["confluence-search.new-page", "jira.create-issue"]}
+{"query": "database connection failure seems to be happening again, let's create a new page to track it along with a ticket to go resolve it", "labels": ["confluence-search.new-page", "jira.create-issue"]}
