@@ -1,44 +1,18 @@
-{"query": "Create a note for today's meeting summary with Intel. Seems like they're keen on expanding in Asia and getting more into AI", "labels": ["notion.createPage"]}
-{"query": "Hey, what did Jeff say previously in our meeting with Kafka?", "labels": ["notion.search"]}
-{"query": "Check if there's a meeting with John Williams this week and find old notes on the Apple Workstation project.", "labels": ["calendar.searchCalendar", "notion.search"]}
-{"query": "Create a new page for the Robinson account and send the link to Eugene via slack", "labels": ["notion.createPage", "slack.sendMessage"]}
-{"query": "Can you compile the issues that have been tagged under the UI refactor project and add them to a new page in Notion?", "labels": ["jira.searchIssue", "notion.createPage"]}
-{"query": "Send the rest of the team a calendar invite for a meeting on the 20th at 10am", "labels": ["calendar.addEvent"]}
-{"query": "Check if there's a team meeting today with Ariel and Eugene involved", "labels": ["calendar.searchCalendar"]}
-{"query": "Find a random interesting topic to explore today and create a Notion page for it.", "labels": ["wikipedia.random-page", "notion.createPage"]}
-{"query": "Just got approval for the Nike summer campaign we did, can u update the project page?", "labels": ["notion.modifyDatabaseRow"]}
-{"query": "What did we discuss last week in the meeting with Nike?", "labels": ["notion.search"]}
-{"query": "Cancel the meeting tomorrow with the team", "labels": ["calendar.cancelEvent"]}
-{"query": "Create a new feature branch for the payment gateway update?", "labels": ["github.createBranch"]}
-{"query": "cute seal vids pls.", "labels": ["youtube.searchVideos"]}
-{"query": "Did we schedule a follow up call with the ollama team?", "labels": ["calendar.searchCalendar"]}
-{"query": "Find something random and interesting to learn about today.", "labels": ["wikipedia.random-page"]}
-{"query": "Snooze notifications for an hour, I wanna focus on work.", "labels": ["slack.setSnooze"]}
-{"query": "Do I have anymore prs to review?", "labels": ["github.getNotifications"]}
-{"query": "Search up the new Nsync music video.", "labels": ["youtube.searchVideos"]}
-{"query": "Find videos and articles on Microsoft's Dark Mode software.", "labels": ["youtube.searchVideos","google-search.googleSearch"]}
-{"query": "Create a new page with our usual template for the quarterly review with the rest of the team.", "labels": ["notion.createPage"]}
-{"query": "Can you organize notes from today's meeting about Nike's shoe lineup launch?", "labels": ["notion.createPage"]}
-{"query": "Any updates for the UI refactor while I was away on leave?", "labels": ["jira.searchIssue", "github.searchPullRequests"]}
-{"query": "Reset my slack status to 'away' for 2 hours", "labels": ["slack.setPresence"]}
-{"query": "Did Jason send me a message about the meeting we're having later?", "labels": ["slack.searchMessages"]}
-{"query": "find me the sakana ai youtube channel", "labels": ["youtube.searchChannel"]}
-{"query": "Can you create a pull request for the marketing analytics update, and schedule a review meeting for Monday at 3 PM so we can walk through it?", "labels": ["github.createPullRequest", "calendar.addEvent"]}
-{"query": "Need you to just create a note with title 'test' and content 'test'.", "labels": ["obsidian.createNote"]}
-{"query": "chk slack", "labels": ["slack.getNotifications"]}
-{"query": "Can we list all pending issues for the search optimization task and add them to our progress-tracking page in Notion?", "labels": ["jira.searchIssue", "notion.quickCapture"]}
-{"query": "Urgent! Fetch past notes on the Nestle marketing launch.", "labels": ["notion.search"]}
-{"query": "Snooze notifications for 1 hour and open my unread Slack messages", "labels": ["slack.setSnooze", "slack.openUnreadMessages"]}
-{"query": "create a new feature branch for the UI refactor and link all the issues you've found about onboarding issues in the PR description", "labels": ["github.createBranch", "jira.searchIssue"]}
-{"query": "Any open pull requests or issues for the mobile app beta launch?", "labels": ["github.searchPullRequests", "github.searchIssues"]}
-{"query": "Create a new issue for the payment processing bug and reschedule the meeting about it tomorrow to 10am instead.", "labels": ["github.createIssue", "calendar.cancelEvent"]}
-{"query": "Could you find where the AI Engineering Summit is being held next week and add it to my calendar?", "labels": ["google-search.googleSearch", "calendar.addEvent"]}
-{"query": "Can you find some popular YouTube channels about gardening and help me reschedule my garden club meeting to 6pm instead? Work has been so busy man", "labels": ["youtube.searchChannel", "calendar.rescheduleEvent"]}
-{"query": "Snooze notifications for the rest of the day and schedule a meeting to discuss UI improvements tomorrow.", "labels": ["slack.setSnooze", "calendar.addEvent"]}
-{"query": "get message about the new trello features", "labels": ["slack.searchMessages"]}
-{"query": "cancel my 3pm meeting", "labels": ["calendar.cancelEvent"]}
-{"query": "wanna make dong po pork tonight, i know i need pork and a bunch fo herbs can u generate a shopping list for me?", "labels": ["apple-notes.aiAssist"]}
-{"query": "report dependency bug for pytorch, it hink im using... maybe version 11.3 and up or something on a mac", "labels": ["github.createIssue"]}
-{"query": "Find any open issues for the 'Login Feature' and discussions from 'WebApp Team'.", "labels": ["jira.searchIssue", "github.searchDiscussions"]}
-{"query": "Check latest workflow runs for Zapier integration project.", "labels": ["github.getWorkflowRuns"]}
-{"query": "search for notes on our smartphone release campaign, find YouTube reviews, and schedule a meeting to discuss tomorrow afternoon.", "labels": ["notion.search", "youtube.searchChannel", "calendar.addEvent"]}
+{"query": "any security alerts raised since we upgraded our nextjs dependencies over to 14.2.0? ", "labels": ["github.unread-notifications"]}
+{"query": "create a new page for the notes on how to onboard new team members", "labels": ["confluence-search.new-page"]}
+{"query": "what did I write down in my shopping list for the christmas event?", "labels": ["apple-notes.index"]}
+{"query": "open issue to track broken auth flow in staging - indicate that we're getting 500 error + tag it to Cerebras", "labels": ["jira.create-issue"]}
+{"query": "pull up my pinned notes, want to take a look at what shopping lists I pinned down for the christmas event", "labels": ["apple-notes.menu-bar"]}
+{"query": "How many issues were opened for the pytorch repo in the last 24 hours?", "labels": ["github.search-issues"]}
+{"query": "Could you please help to show my open pull requests in menu bar", "labels": ["github.my-pull-requests-menu"]}
+{"query": "Open the issue corresponding to the key I just copied to the clipboard regarding the reported backend service outage impacting user authentication and the newly integrated payment gateway", "labels": ["jira.open-from-clipboard"]}
+{"query": "pull up that doc i just read recently about the new backend api architecture", "labels": ["confluence-search.recent"]}
+{"query": "Grab my previous recipes on potato salad and mash, and create a shopping list based off that for dinner tonight", "labels": ["apple-notes.new", "apple-notes.index"]}
+{"query": "Any new discussions or code that we've pushed up in the Apollo repo regarding the new authentication flow?", "labels": ["github.search-discussions", "github.search-pull-requests"]}
+{"query": "add a link to the new solution for CS422 I pushed up to github to my daily note", "labels": ["obsidian.dailyNoteAppendCommand", "github.my-pull-requests"]}
+{"query": "find my pr for the new modal integration using @shadcn/ui and the notes I wrote on it", "labels": ["confluence-search.search", "github.my-pull-requests"]}
+{"query": "add a quick note about the 500 error on our staging environment between the artemis and apollo services and open a ticket to track it please", "labels": ["confluence-search.new-page", "jira.create-issue"]}
+{"query": "create pr against main branch for hello-world branch", "labels": ["github.create-pull-request"]}
+{"query": "chk if latest workflow for pytest failed on main. if so, create a jira issue to go fix it", "labels": ["github.workflow-runs", "jira.create-issue"]}
+{"query": "help me find the top 3 hiking trails nearby in Toronto and let's add it to my apple notes so I can get back to it later", "labels": ["apple-notes.new", "google-search.index"]}
+{"query": "database connection failure seems to be happening again, let's create a new page to track it along with a ticket to go resolve it once and for all lmfao", "labels": ["confluence-search.new-page", "jira.create-issue"]}
