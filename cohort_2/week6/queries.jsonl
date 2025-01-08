@@ -1,18 +1,3 @@
-{"query": "any security alerts raised since we upgraded our nextjs dependencies over to 14.2.0? ", "labels": ["github.unread-notifications"]}
-{"query": "create a new page for the notes on how to onboard new team members", "labels": ["confluence-search.new-page"]}
-{"query": "what did I write down in my shopping list for the christmas event?", "labels": ["apple-notes.index"]}
-{"query": "open issue to track broken auth flow in staging - indicate that we're getting 500 error + tag it to Cerebras", "labels": ["jira.create-issue"]}
-{"query": "pull up my pinned notes, want to take a look at what shopping lists I pinned down for the christmas event", "labels": ["apple-notes.menu-bar"]}
-{"query": "How many issues were opened for the pytorch repo in the last 24 hours?", "labels": ["github.search-issues"]}
-{"query": "Could you please help to show my open pull requests in menu bar", "labels": ["github.my-pull-requests-menu"]}
-{"query": "Open the issue corresponding to the key I just copied to the clipboard regarding the reported backend service outage impacting user authentication and the newly integrated payment gateway", "labels": ["jira.open-from-clipboard"]}
-{"query": "pull up that doc i just read recently about the new backend api architecture", "labels": ["confluence-search.recent"]}
-{"query": "Grab my previous recipes on potato salad and mash, and create a shopping list based off that for dinner tonight", "labels": ["apple-notes.new", "apple-notes.index"]}
-{"query": "Any new discussions or code that we've pushed up in the Apollo repo regarding the new authentication flow?", "labels": ["github.search-discussions", "github.search-pull-requests"]}
-{"query": "add a link to the new solution for CS422 I pushed up to github to my daily note", "labels": ["obsidian.dailyNoteAppendCommand", "github.my-pull-requests"]}
-{"query": "find my pr for the new modal integration using @shadcn/ui and the notes I wrote on it", "labels": ["confluence-search.search", "github.my-pull-requests"]}
-{"query": "add a quick note about the 500 error on our staging environment between the artemis and apollo services and open a ticket to track it please", "labels": ["confluence-search.new-page", "jira.create-issue"]}
-{"query": "create pr against main branch for hello-world branch", "labels": ["github.create-pull-request"]}
-{"query": "chk if latest workflow for pytest failed on main. if so, create a jira issue to go fix it", "labels": ["github.workflow-runs", "jira.create-issue"]}
-{"query": "help me find the top 3 hiking trails nearby in Toronto and let's add it to my apple notes so I can get back to it later", "labels": ["apple-notes.new", "google-search.index"]}
-{"query": "database connection failure seems to be happening again, let's create a new page to track it along with a ticket to go resolve it", "labels": ["confluence-search.new-page", "jira.create-issue"]}
+{"query": "Tell mum i'll be back for dinner around 7pm", "labels": ["imessage.sendMessage"]}
+{"query": "What's left to do for today?", "labels": ["apple-notes.index"]}
+{"query": "Find messages from last week about the project kickoff meeting in Microsoft Teams and ping #dev to remind them that we have a meeting tomorrow with stakeholders.", "labels": ["microsoft-teams.searchMessages","microsoft-teams.sendMessage"]}
