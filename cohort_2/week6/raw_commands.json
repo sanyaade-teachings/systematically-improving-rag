@@ -80,16 +80,6 @@
     "extension_name": "jira"
   },
   {
-    "name": "open-from-clipboard",
-    "title": "Open Issue from Clipboard",
-    "subtitle": "Jira",
-    "description": "Open an issue by its key from the clipboard.",
-    "mode": "view",
-    "source_name": "open-from-clipboard",
-    "source_description": "Open an issue by its key from the clipboard.",
-    "extension_name": "jira"
-  },
-  {
     "name": "my-pull-requests",
     "title": "My Pull Requests",
     "description": "List pull requests you created, participated in, or were mentioned in.",
@@ -121,10 +111,7 @@
     "title": "My Issues",
     "description": "List issues created by you, assigned to you or mentioning you.",
     "mode": "view",
-    "keywords": [
-      "open issues",
-      "created issues"
-    ],
+    "keywords": ["open issues", "created issues"],
     "source_name": "my-issues",
     "source_description": "List issues created by you, assigned to you or mentioning you.",
     "extension_name": "github"
@@ -237,9 +224,7 @@
     "title": "My Issues Menu Bar",
     "description": "Display My Issues in the Menu Bar",
     "mode": "menu-bar",
-    "keywords": [
-      "open issues"
-    ],
+    "keywords": ["open issues"],
     "interval": "15m",
     "source_name": "my-issues-menu",
     "source_description": "Display My Issues in the Menu Bar",
@@ -333,6 +318,16 @@
     "mode": "no-view",
     "source_name": "new-blog",
     "source_description": "Create a new blog.",
+    "extension_name": "confluence-search"
+  },
+  {
+    "name": "add-text",
+    "title": "Add Text",
+    "subtitle": "Confluence",
+    "description": "Add text to a page or blog",
+    "mode": "view",
+    "source_name": "add-text",
+    "source_description": "Add text to a page.",
     "extension_name": "confluence-search"
   },
   {
@@ -562,12 +557,7 @@
     "subtitle": "Apple Notes",
     "description": "Create a new note in your Apple Notes.",
     "mode": "no-view",
-    "keywords": [
-      "write note",
-      "add note",
-      "make note",
-      "create note"
-    ],
+    "keywords": ["write note", "add note", "make note", "create note"],
     "arguments": [
       {
         "name": "text",
@@ -577,29 +567,6 @@
     ],
     "source_name": "new",
     "source_description": "Create a new note in your Apple Notes.",
-    "extension_name": "apple-notes"
-  },
-  {
-    "name": "ai",
-    "title": "AI Note",
-    "subtitle": "Apple Notes",
-    "description": "Create a new note filled with AI in your Apple notes.",
-    "mode": "no-view",
-    "arguments": [
-      {
-        "name": "text",
-        "type": "text",
-        "placeholder": "Text",
-        "required": true
-      },
-      {
-        "name": "instructions",
-        "type": "text",
-        "placeholder": "Additional instructions"
-      }
-    ],
-    "source_name": "ai",
-    "source_description": "Create a new note filled with AI in your Apple notes.",
     "extension_name": "apple-notes"
   },
   {
@@ -659,5 +626,145 @@
     "source_name": "index",
     "source_description": "Search arXiv",
     "extension_name": "arxiv"
+  },
+  {
+    "name": "searchMessages",
+    "title": "Search Messages",
+    "subtitle": "microsoft-teams",
+    "description": "Search through message history in microsoft-teams",
+    "mode": "view",
+    "source_name": "searchMessages",
+    "source_description": "Search through message history in microsoft-teams",
+    "extension_name": "microsoft-teams"
+  },
+  {
+    "name": "sendMessage",
+    "title": "Send Message",
+    "subtitle": "microsoft-teams",
+    "description": "Send a new message in microsoft-teams",
+    "mode": "view",
+    "source_name": "sendMessage",
+    "source_description": "Send a new message in microsoft-teams",
+    "extension_name": "microsoft-teams"
+  },
+  {
+    "name": "setStatus",
+    "title": "Set Status",
+    "subtitle": "microsoft-teams",
+    "description": "Set online/away/busy status in microsoft-teams",
+    "mode": "view",
+    "source_name": "setStatus",
+    "source_description": "Set online/away/busy status in microsoft-teams",
+    "extension_name": "microsoft-teams"
+  },
+  {
+    "name": "findChat",
+    "title": "Find Chat",
+    "subtitle": "microsoft-teams",
+    "description": "Find and open a specific chat/channel in microsoft-teams",
+    "mode": "view",
+    "source_name": "findChat",
+    "source_description": "Find and open a specific chat/channel in microsoft-teams",
+    "extension_name": "microsoft-teams"
+  },
+  {
+    "name": "unreadMessages",
+    "title": "Unread Messages",
+    "subtitle": "microsoft-teams",
+    "description": "Show unread messages in microsoft-teams",
+    "mode": "view",
+    "source_name": "unreadMessages",
+    "source_description": "Show unread messages in microsoft-teams",
+    "extension_name": "microsoft-teams"
+  },
+  {
+    "name": "searchMessages",
+    "title": "Search Messages",
+    "subtitle": "discord",
+    "description": "Search through message history in discord",
+    "mode": "view",
+    "source_name": "searchMessages",
+    "source_description": "Search through message history in discord",
+    "extension_name": "discord"
+  },
+  {
+    "name": "sendMessage",
+    "title": "Send Message",
+    "subtitle": "discord",
+    "description": "Send a new message in discord",
+    "mode": "view",
+    "source_name": "sendMessage",
+    "source_description": "Send a new message in discord",
+    "extension_name": "discord"
+  },
+  {
+    "name": "setStatus",
+    "title": "Set Status",
+    "subtitle": "discord",
+    "description": "Set online/away/busy status in discord",
+    "mode": "view",
+    "source_name": "setStatus",
+    "source_description": "Set online/away/busy status in discord",
+    "extension_name": "discord"
+  },
+  {
+    "name": "findChat",
+    "title": "Find Chat",
+    "subtitle": "discord",
+    "description": "Find and open a specific chat/channel in discord",
+    "mode": "view",
+    "source_name": "findChat",
+    "source_description": "Find and open a specific chat/channel in discord",
+    "extension_name": "discord"
+  },
+  {
+    "name": "unreadMessages",
+    "title": "Unread Messages",
+    "subtitle": "discord",
+    "description": "Show unread messages in discord",
+    "mode": "view",
+    "source_name": "unreadMessages",
+    "source_description": "Show unread messages in discord",
+    "extension_name": "discord"
+  },
+  {
+    "name": "searchMessages",
+    "title": "Search Messages",
+    "subtitle": "imessage",
+    "description": "Search through message history in imessage",
+    "mode": "view",
+    "source_name": "searchMessages",
+    "source_description": "Search through message history in imessage",
+    "extension_name": "imessage"
+  },
+  {
+    "name": "sendMessage",
+    "title": "Send Message",
+    "subtitle": "imessage",
+    "description": "Send a new message in imessage",
+    "mode": "view",
+    "source_name": "sendMessage",
+    "source_description": "Send a new message in imessage",
+    "extension_name": "imessage"
+  },
+  {
+    "name": "findChat",
+    "title": "Find Chat",
+    "subtitle": "imessage",
+    "description": "Find and open a specific chat/channel in imessage",
+    "mode": "view",
+    "source_name": "findChat",
+    "source_description": "Find and open a specific chat/channel in imessage",
+    "extension_name": "imessage"
+  },
+  {
+    "name": "unreadMessages",
+    "title": "Unread Messages",
+    "subtitle": "imessage",
+    "description": "Show unread messages in imessage",
+    "mode": "view",
+    "source_name": "unreadMessages",
+    "source_description": "Show unread messages in imessage",
+    "extension_name": "imessage"
   }
 ]
