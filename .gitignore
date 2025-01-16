@@ -4,3 +4,7 @@
 # uv lock files (recursive)
 **/uv.lock
 
+# Markdown files (recursive)
+**/md/*.md
+.DS_Store
+
