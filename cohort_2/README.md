@@ -1,0 +1,57 @@
+# Systematically Improving RAG -- Cohort 2 Code
+
+To install the requirements, run `pip install -r requirements.txt`. Make sure that you're using the correct Python version - this course requires Python 3.9 because of our `BERTopic` dependency.
+
+If you are using `uv` to install the requirements, you can run the following command to create a virtual environment with Python 3.9:
+
+```
+> uv venv --python 3.9
+Using CPython 3.9.6 interpreter at: /Library/Developer/CommandLineTools/usr/bin/python3
+Creating virtual environment at: .venv
+```
+
+Here is an overview of the notebooks by week:
+
+**Week 1: RAG Evaluation Foundations**
+
+In this week, we'll cover how to systematically evaluate RAG systems with synthetic data. We'll benchmark the performance of different retrieval strategies and then apply simple statistical tests to verify our improvements.
+
+- _Notebook 1:_ Generate synthetic questions to test our retrieval system using a Text-2-SQL example and establish core retrieval metrics.
+
+- _Notebook 2:_ Compare the performance of different retrieval strategies (embedding vs hybrid search) using our synthetic evaluation dataset.
+
+- _Notebook 3:_ Apply statistical validation techniques to verify that our improvements are meaningful and reproducible.
+
+**Week 2: Embedding Fine-tuning**
+
+- _Notebook 1:_ Generate synthetic transaction data for fine-tuning
+- _Notebook 2:_ Fine-tune Cohere's managed re-ranker service
+- _Notebook 3:_ Implement open-source fine-tuning using sentence-transformers
+
+**Week 4: Query Understanding**
+
+- _Notebook 1:_ Generate diverse test queries and establish segmentation strategy
+- _Notebook 2:_ Use topic modeling (BERTopic) to discover query patterns
+- _Notebook 3:_ Build a classification system based on discovered patterns
+
+**Week 5: Structured Data & Metadata**
+
+- _Notebook 1:_ Generate structured metadata using LLMs and implement validation
+- _Notebook 2:_ Combine metadata filtering with semantic search
+- _Notebook 3:_ Add SQL database access through safe query generation
+
+**Week 6: Tool Selection**
+
+- _Notebook 1:_ Define and implement tool selection evaluation metrics
+- _Notebook 2:_ Create comprehensive test suite for tool selection
+- _Notebook 3:_ Improve performance through system prompts and few-shot examples
+
+Each week builds on previous concepts while introducing new techniques:
+
+- Week 1 establishes evaluation foundations
+- Week 2 shows how to improve base retrieval
+- Week 4 adds query understanding capabilities
+- Week 5 introduces structured data handling
+- Week 6 brings everything together in a multi-tool system
+
+The progression moves from basic RAG capabilities to increasingly sophisticated features while maintaining focus on systematic evaluation and improvement.
