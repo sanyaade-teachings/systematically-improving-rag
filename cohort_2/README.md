@@ -14,7 +14,7 @@ Here is an overview of the notebooks by week:
 
 **Week 1: RAG Evaluation Foundations**
 
-In this week, we'll cover how to systematically evaluate RAG systems with synthetic data. We'll benchmark the performance of different retrieval strategies and then apply simple statistical tests to verify our improvements.
+In Week 1, we'll cover how to systematically evaluate RAG systems with synthetic data. We'll benchmark the performance of different retrieval strategies and then apply simple statistical tests to verify our improvements.
 
 - _Notebook 1:_ Generate synthetic questions to test our retrieval system using a Text-2-SQL example and establish core retrieval metrics.
 
@@ -34,15 +34,19 @@ In Week 2, we'll focus on different approaches to fine-tuning embedding models, 
 
 **Week 4: Query Understanding**
 
-- _Notebook 1:_ Generate diverse test queries and establish segmentation strategy
-- _Notebook 2:_ Use topic modeling (BERTopic) to discover query patterns
-- _Notebook 3:_ Build a classification system based on discovered patterns
+In Week 4, we'll look at how we can understand how users are interacting with our RAG system. We'll do so by leveraging topic modelling, which will help us identify patterns in user queries and prioritise improvements where they matter most. Through a combination of topic modeling and query classification, we'll learn how to identify patterns in user behavior and prioritize improvements where they matter most. Once we've done so, we'll see how we can apply this in production to classify user queries in real-time.
+
+- _Notebook 1:_ Generate a diverse dataset of synthetic user queries based on Klarna's FAQ pages, creating realistic examples that cover different user intents and writing styles.
+- _Notebook 2:_ Use BERTopic to automatically discover query patterns and identify problematic areas by combining topic modeling with user satisfaction metrics.
+- _Notebook 3:_ Build a flexible classification system that can categorize incoming queries into the patterns we discovered, making it easier to monitor and improve specific areas of our RAG system over time.
 
 **Week 5: Structured Data & Metadata**
 
-- _Notebook 1:_ Generate structured metadata using LLMs and implement validation
-- _Notebook 2:_ Combine metadata filtering with semantic search
-- _Notebook 3:_ Add SQL database access through safe query generation
+In Week 5, we explore how to enhance RAG systems by intelligently handling structured metadata using language models. Starting with a clothing dataset, we demonstrate how to use LLMs to generate consistent metadata tags, build effective filtering mechanisms, and handle complex queries through SQL integration. This progression shows how combining structured data with semantic search leads to more accurate and useful recommendations, particularly for e-commerce applications where users often have specific requirements around attributes like size, color, and price.
+
+- _Notebook 1:_ Use GPT-4o to extract structured metadata from a clothing daaset and build a consistent product catalog that follows a predefined taxonomy.
+- _Notebook 2:_ Demonstrates how combining semantic search with metadata filters significantly improves retrieval accuracy, particularly for queries with specific requirements like "Cotton Shirts under $50".
+- _Notebook 3:_ How can we integrate SQL queries with retrieval to answer complex questions about product availability, order history and inventory by implementing safe database access through LLMs.
 
 **Week 6: Tool Selection**
 
