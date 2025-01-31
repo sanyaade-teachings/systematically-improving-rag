@@ -31,3 +31,4 @@ streamlit>=1.40.1
 streamlit-shortcuts>=0.1.9
 tantivy>=0.22.0
 transformers==4.45.2 
+eval_type_backport==0.2.2
