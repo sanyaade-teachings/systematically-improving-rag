@@ -24,9 +24,13 @@ In this week, we'll cover how to systematically evaluate RAG systems with synthe
 
 **Week 2: Embedding Fine-tuning**
 
-- _Notebook 1:_ Generate synthetic transaction data for fine-tuning
-- _Notebook 2:_ Fine-tune Cohere's managed re-ranker service
-- _Notebook 3:_ Implement open-source fine-tuning using sentence-transformers
+In Week 2, we'll focus on different approaches to fine-tuning embedding models, starting with managed services and progressing to open-source solutions. We'll explore how even small datasets can yield significant improvements in retrieval performance through careful fine-tuning.
+
+- _Notebook 1:_ Generate synthetic transaction data for fine-tuning using a systematic approach to create diverse, challenging test cases.
+
+- _Notebook 2:_ Fine-tune Cohere's managed re-ranker service, demonstrating how to achieve quick wins with minimal engineering overhead using just a few hundred examples.
+
+- _Notebook 3:_ Implement open-source fine-tuning using sentence-transformers, providing greater control and customization while potentially achieving better performance at lower inference costs.
 
 **Week 4: Query Understanding**
 
