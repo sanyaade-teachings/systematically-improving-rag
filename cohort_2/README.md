@@ -50,9 +50,11 @@ In Week 5, we explore how to enhance RAG systems by intelligently handling struc
 
 **Week 6: Tool Selection**
 
-- _Notebook 1:_ Define and implement tool selection evaluation metrics
-- _Notebook 2:_ Create comprehensive test suite for tool selection
-- _Notebook 3:_ Improve performance through system prompts and few-shot examples
+In Week 6, we'll explore how to evaluate tool selection in RAG systems. Starting with metrics like precision and recall, we explore how to generate comprehensive test suites to assess tool selection accuracy. Through a combination of system prompts and few-shot examples, we demonstrate techniques to significantly improve a model's ability to select the right tools for user queries.
+
+- _Notebook 1:_ Learn how to measure a model's ability to select appropriate tools through precision and recall metrics and how to choose between parallel and sequential tool selection.
+- _Notebook 2:_ Create a comprehensive synthetic dataset that tests different failure modes in tool selection, from handling context-dependent choices to managing multi-step tasks
+- _Notebook 3:_ See how we can use system prompts and few-shot examples to improve a model's ability to select the right tools for user queries, measuring the impact of this tool selection against our baseline using the evaluation framework established in earlier notebooks.
 
 Each week builds on previous concepts while introducing new techniques:
 
