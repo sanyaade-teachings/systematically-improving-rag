@@ -10,6 +10,26 @@ Using CPython 3.9.6 interpreter at: /Library/Developer/CommandLineTools/usr/bin/
 Creating virtual environment at: .venv
 ```
 
+## Checklist
+
+Before starting the course, please make sure that you've done the following
+
+1. Set up your environment variables
+
+> **Important** : Your Cohere Key must be a PRODUCTION key and not a trial key. Also make sure that you've bumped yourself to higher tier on Braintrust so that you don't run into rate limit issues.
+>
+> You can do so by filling out the form on Maven. Please reach out to Marian on Slack if you run into any issues.
+
+You should have the following environment variables set in your shell - [Here is an article on how to do so](https://www3.ntu.edu.sg/home/ehchua/programming/howto/Environment_Variables.html)
+
+```
+export OPENAI_API_KEY=
+export COHERE_API_KEY=
+export BRAINTRUST_API_KEY
+```
+
+## Notebook Overview
+
 Here is an overview of the notebooks by week:
 
 **Week 1: RAG Evaluation Foundations**
@@ -65,3 +85,29 @@ Each week builds on previous concepts while introducing new techniques:
 - Week 6 brings everything together in a multi-tool system
 
 The progression moves from basic RAG capabilities to increasingly sophisticated features while maintaining focus on systematic evaluation and improvement.
+
+## Troubleshooting
+
+### Running in a File
+
+If you are running the code in a file instead of a Jupyter Notebook, make sure to wrap the async calls in a asyncio.run method call.
+
+```python
+async def main():
+    // do something
+
+main()
+```
+
+Instead you need to wrap it in an asyncio.run method call as seen below
+
+```python
+import asyncio
+
+# This will await the main function and run it
+asyncio.run(main())
+```
+
+We highly recommend running the code in the Jupyter Notebooks as this will make the code more readable and easier to debug.
+
+Visualisations are also built into the notebooks which makes them much easier to use to understand the data
