@@ -20,12 +20,13 @@ Before starting the course, please make sure that you've done the following
 >
 > You can do so by filling out the form on Maven. Please reach out to Marian on Slack if you run into any issues.
 
-You should have the following environment variables set in your shell - [Here is an article on how to do so](https://www3.ntu.edu.sg/home/ehchua/programming/howto/Environment_Variables.html)
+You should have the following environment variables set in your shell - [Here is an article on how to do so](https://www3.ntu.edu.sg/home/ehchua/programming/howto/Environment_Variables.html). Make sure that a hugging face token with write access is set as an environment variable.
 
 ```
 export OPENAI_API_KEY=
 export COHERE_API_KEY=
 export BRAINTRUST_API_KEY
+export HF_TOKEN=
 ```
 
 ## Notebook Overview
