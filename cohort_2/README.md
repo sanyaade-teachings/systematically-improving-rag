@@ -25,7 +25,7 @@ You should have the following environment variables set in your shell - [Here is
 ```
 export OPENAI_API_KEY=
 export COHERE_API_KEY=
-export BRAINTRUST_API_KEY
+export BRAINTRUST_API_KEY=
 export HF_TOKEN=
 ```
 
