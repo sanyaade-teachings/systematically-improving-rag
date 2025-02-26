@@ -9,3 +9,9 @@
 cohort_2/md
 .DS_Store
 *.vtt
+
+# Participation statistics outputs
+participation.py
+**/participation_stats.csv
+**/visualization/*.png
+**/visualization/
