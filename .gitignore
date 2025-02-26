@@ -4,3 +4,9 @@
 # uv lock files (recursive)
 **/uv.lock
 
+# Transcript files and merged text files
+**/*.txt
+cohort_2/md
+.DS_Store
+*.vtt
+merge.py
