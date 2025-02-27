@@ -202,6 +202,110 @@ Lovable has emerged as a powerful tool for no-code app generation:
 
 Users report that Lovable outperforms alternatives like V0 and Bolt for creating complete applications, though it can be expensive ($200+ for complex projects). The tight integration with Supabase is particularly valuable, with many users becoming paid Supabase customers after using Lovable to build their applications.
 
+## What emerging techniques are promising for handling long documents in RAG?
+
+Handling long documents effectively is still evolving, with several promising approaches:
+
+1. **Hierarchical retrieval**: Create summary or header-level embeddings for entire documents/chapters, then more granular embeddings for sections/paragraphs. This allows multi-stage retrieval that narrows down from document to specific passages.
+
+2. **Graph-based approaches**: Build knowledge graphs connecting concepts across documents, enabling retrieval that follows conceptual relationships rather than just lexical similarity.
+
+3. **Hybrid sparse-dense retrieval**: Combine embedding-based retrieval with keyword/BM25 approaches to capture both semantic and lexical matches, which is particularly valuable for documents with specialized terminology.
+
+4. **Learning to rewrite**: Train models to rewrite retrieved chunks into more coherent contexts that preserve the key information while eliminating redundancy.
+
+5. **Recursive summarization**: For extremely long documents, apply recursive summarization techniques that gradually compress information while maintaining key details.
+
+Projects like LangChain's Document Transformer framework and repositories focusing on document processing show significant advances in these areas. The most effective systems often combine multiple approaches based on the specific characteristics of their document collections.
+
+## How can I approach RAG for messy knowledge bases with duplicate documents?
+
+When dealing with messy knowledge bases that contain duplicate or near-duplicate documents:
+
+1. **Pre-processing pipeline**: Implement de-duplication strategies during ingestion. This could involve computing similarity scores between documents and merging or filtering based on a threshold.
+
+2. **Metadata extraction and filtering**: Add more metadata to your ontology by building classifiers for different document types or topics. This allows you to filter for specific categories during retrieval.
+
+3. **Query classification**: For ambiguous queries, implement both pre-retrieval and post-retrieval classification to identify query intent and determine when clarification is needed.
+
+4. **Progressive disclosure**: Consider displaying intermediate results with summarized information about potential topics before generating a complete answer. This helps users navigate ambiguity, especially for queries that could refer to multiple topics.
+
+5. **Dynamic presentation**: For high-latency requirements (e.g., responses needed in under 6 seconds), consider showing retrieved documents first while the full answer is being generated, allowing users to see some results immediately.
+
+Remember that the goal isn't perfect retrieval but helping users find the information they need. Sometimes showing multiple possible interpretations of a query is more helpful than trying to guess the single "right" answer.
+
+## When is it better to use DAGs versus agentic approaches?
+
+For specific workflows with well-defined steps, DAGs (Directed Acyclic Graphs) often provide more reliable and predictable results than fully agentic approaches:
+
+1. **Use DAGs when**:
+   - The workflow has clear, sequential steps
+   - You know the process is correct and just need to choose the right workflow
+   - You're implementing established protocols (like therapy approaches or compliance processes)
+   - Predictability and consistency are critical
+
+2. **Use agentic approaches when**:
+   - The problem space is exploratory
+   - Tasks require adaptation to unpredictable user input
+   - The workflow needs to evolve based on intermediate results
+   - You need to handle a wide variety of open-ended requests
+
+The distinction often comes down to control versus flexibility. DAGs provide more control over the exact process, while agentic approaches offer more flexibility but less predictability.
+
+For example, in a therapeutic chatbot following an established CBT protocol, a DAG approach ensures the conversation follows the correct therapeutic sequence. However, for an open-ended research assistant, an agentic approach allows for more dynamic problem-solving.
+
+## How do I create effective negative examples for training retrieval models?
+
+Creating effective negative examples for training retrieval models involves several strategies:
+
+1. **Hard negative mining**: Find examples that are semantically similar but actually irrelevant. For job listings, "software engineer recruiter" is a hard negative for "software engineer" queries - they look similar textually but represent different job categories.
+
+2. **Top-K analysis**: Run retrieval with your current model, then have an LLM evaluate which results in the top K are actually irrelevant. These make excellent negative examples because they expose weaknesses in your current model.
+
+3. **Controlled random sampling**: While pure random sampling provides some signal, it's often too easy for the model to distinguish. Instead, use controlled randomization that preserves some properties of the positive examples.
+
+When working with triplet learning (query, positive example, negative example), the quality of your negative examples often has more impact on model performance than adding more positive examples. Focus on finding negative examples that are difficult to distinguish from positive ones.
+
+For multimodal or multilingual applications, you may need to create synthetic data, especially for languages with limited training data. This can be done by using LLMs to generate examples that explore edge cases in your domain.
+
+## What strategies can improve response time in RAG systems with tight latency requirements?
+
+For applications requiring responses in just a few seconds:
+
+1. **Progressive rendering**: Show retrieved documents first (which can be returned in 150-400ms) while the LLM generates the complete answer in the background. This gives users immediate results while they wait for the full response.
+
+2. **Caching**: Implement aggressive caching for common queries. When a question-answer pair receives positive feedback (like being forwarded, shared, or rated highly), save it as a new document that can be quickly retrieved for similar questions.
+
+3. **Response type classification**: Use a lightweight classifier to determine if a query needs full retrieval and generation or if it can be answered with a simpler approach.
+
+4. **Contextual snippet generation**: During retrieval, generate quick summaries of each chunk that can be displayed alongside search results before the complete answer is ready.
+
+5. **Parallel processing**: Run multiple retrieval strategies in parallel and combine the results, rather than using sequential processing that adds to the total latency.
+
+The key insight is to avoid an all-or-nothing approach to response generation. By decomposing the process into steps that can be displayed incrementally, you can significantly improve perceived latency even when the complete answer takes longer to generate.
+
+## What are your experiences with the Model Context Protocol (MCP)?
+
+MCP (Model Context Protocol) is becoming increasingly important as it allows different AI systems to connect with each other:
+
+1. **Key benefits**:
+   - Standardizes integrations between AI systems
+   - Reduces boilerplate code when connecting to different services
+   - Allows models to access data and functionality they wouldn't normally have permission to use
+
+2. **Practical examples**:
+   - Image generation servers in Cursor for creating assets while building applications
+   - Servers that connect to network logs for debugging web applications
+   - Connectors to production databases that help models understand schemas and write SQL
+   - Automation tools that write conversation notes directly to Notion or other note-taking systems
+
+3. **Comparison to function calling**:
+   - When you own all the code, function calling may be simpler
+   - MCP becomes valuable when connecting separate systems with different permission models
+   - Provides a standardized way to expose capabilities across different AI platforms
+
+The protocol is still evolving but shows promise for creating more powerful AI systems by composing specialized components. Some implementations like Claude 3.7 with Claude Code demonstrate how MCP can enable better context management and more sophisticated agent capabilities.
+
 ## Key Takeaways and Additional Resources
 
 ### Key Takeaways:
@@ -215,6 +319,11 @@ Users report that Lovable outperforms alternatives like V0 and Bolt for creating
 - MCP is becoming increasingly important for connecting different AI systems together
 - Use structured JSON consistently in few-shot examples rather than plain text
 - For slide creation, AI tools can generate both content and formatting in vector-based formats
+- For long documents, consider hierarchical retrieval, graph-based approaches, hybrid sparse-dense retrieval, learning to rewrite, and recursive summarization
+- For messy knowledge bases, implement pre-processing pipeline, metadata extraction and filtering, query classification, progressive disclosure, and dynamic presentation
+- For DAGs versus agentic approaches, use DAGs when the workflow has clear, sequential steps, and use agentic approaches when the problem space is exploratory
+- For negative examples, use hard negative mining, top-K analysis, and controlled random sampling
+- For response time, implement progressive rendering, caching, response type classification, contextual snippet generation, and parallel processing
 
 ### Additional Resources:
 - BERTTopic: https://maartengr.github.io/BERTopic/index.html
