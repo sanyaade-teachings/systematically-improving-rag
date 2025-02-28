@@ -33,7 +33,7 @@ def save_question(question):
 
 
 def load_source_content(source_path):
-    path = f"{os.getcwd()}/data/md/{source_path}.md"
+    path = os.path.join(os.getcwd(), "data", "md", f"{source_path}.md")
     try:
         with open(path, "r") as f:
             return f.read()
