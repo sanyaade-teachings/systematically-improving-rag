@@ -68,6 +68,7 @@ In Week 5, we explore how to enhance RAG systems by intelligently handling struc
 - _Notebook 1:_ Use GPT-4o to extract structured metadata from a clothing daaset and build a consistent product catalog that follows a predefined taxonomy.
 - _Notebook 2:_ Demonstrates how combining semantic search with metadata filters significantly improves retrieval accuracy, particularly for queries with specific requirements like "Cotton Shirts under $50".
 - _Notebook 3:_ How can we integrate SQL queries with retrieval to answer complex questions about product availability, order history and inventory by implementing safe database access through LLMs.
+- _Notebook 4:_ : How we can use OCR and Vision Language Models to generate visual citations when building RAG applications dealing with PDFs
 
 **Week 6: Tool Selection**
 
