@@ -6,7 +6,7 @@ bs4>=0.0.2
 cohere>=5.11.3
 datasets>=3.1.0
 faker>=33.1.0
-fuzzywuzzy>=0.18.0
+thefuzz==0.22.1
 instructor[google-generativeai]>=1.7.2
 ipykernel>=6.29.5
 ipywidgets>=8.1.5
@@ -32,3 +32,4 @@ streamlit-shortcuts>=0.1.9
 tantivy>=0.22.0
 transformers==4.45.2 
 eval_type_backport==0.2.2
+docling==2.25.0
