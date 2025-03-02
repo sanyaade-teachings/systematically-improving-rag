@@ -20,14 +20,48 @@ Before starting the course, please make sure that you've done the following
 >
 > You can do so by filling out the form on Maven. Please reach out to Marian on Slack if you run into any issues.
 
-You should have the following environment variables set in your shell - [Here is an article on how to do so](https://www3.ntu.edu.sg/home/ehchua/programming/howto/Environment_Variables.html). Make sure that a hugging face token with write access is set as an environment variable.
+For this course, you'll need the following four environment variables
 
-```
+```bash
 export OPENAI_API_KEY=
 export COHERE_API_KEY=
 export BRAINTRUST_API_KEY=
 export HF_TOKEN=
 ```
+
+To check that you've added all of the necessary variables, you can run the following command
+
+```bash
+python3 ./scripts/check_env.py
+```
+
+You have two ways that you can set the environment variables
+
+1. **Set them in a config file (Recomended)**: While this might take a bit more effort, this ensures that your shell is always set up with the right environment variables. [Here is an article on how to do so](https://www3.ntu.edu.sg/home/ehchua/programming/howto/Environment_Variables.html). Make sure that a hugging face token with write access is set as an environment variable.
+
+2. **Use our setup scripts** : We've provided setup scripts for both `bash`, `fish` and `zshrc` shell environments. If you're unsure which one you're using, you can see it at the right hand side of the Terminal window in VSCode.
+
+Create a .env file in the root directory with the command
+
+```
+touch .env
+```
+
+Then paste the follow
+
+```
+OPENAI_API_KEY=Fill in OpenAI API Key Here
+COHERE_API_KEY=Fill in Cohere API Key Here ( Make sure it's a production key )
+BRAINTRUST_API_KEY=Fill in Braintrust Key here
+HF_TOKEN=Fill in Hugging Face token here ( Make sure it's a key with write access )
+```
+
+Next, once you've confirmed that the keys are of the right value, run the relevant script below
+
+- If you're using `bash` or `zshrc`, make sure to run `source ./scripts/setup.sh`
+- if you're using `fish`, then make sure to run `source ./scripts/setup_fish.sh`
+
+You can then run `python ./scripts/check_env.py` to make sure all of the environment variables have been set
 
 ## Notebook Overview
 

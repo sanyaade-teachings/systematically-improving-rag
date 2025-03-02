@@ -43,10 +43,10 @@ To create a virtual environment, you can use the following command:
 uv venv
 ```
 
-This will in turn create a new virtual environment in the `.venv` directory. We can also specify a specific python version to use for the environment.
+This will in turn create a new virtual environment in the `.venv` directory. We can also specify a specific python version to use for the environment. We recommend using python 3.9 for this course since that's required for BERTopic.
 
 ```bash
-uv venv --python 3.10
+uv venv --python 3.9
 ```
 
 If you'd like to also name your virtual environment something other than `.venv`, you can do so by specifying the name as follows:
