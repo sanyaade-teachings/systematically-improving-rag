@@ -37,7 +37,7 @@ python3 ./scripts/check_env.py
 
 You have two ways that you can set the environment variables
 
-1. **Set them in a config file (Recomended)**: While this might take a bit more effort, this ensures that your shell is always set up with the right environment variables. [Here is an article on how to do so](https://www3.ntu.edu.sg/home/ehchua/programming/howto/Environment_Variables.html). Make sure that a hugging face token with write access is set as an environment variable.
+1. **Set them in a config file (Recommended)**: While this might take a bit more effort, this ensures that your shell is always set up with the right environment variables. [Here is an article on how to do so](https://www3.ntu.edu.sg/home/ehchua/programming/howto/Environment_Variables.html). Make sure that a hugging face token with write access is set as an environment variable.
 
 2. **Use our setup scripts** : We've provided setup scripts for both `bash`, `fish` and `zshrc` shell environments. If you're unsure which one you're using, you can see it at the right hand side of the Terminal window in VSCode.
 
