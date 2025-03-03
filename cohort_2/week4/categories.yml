@@ -1,17 +1,11 @@
 question_type:
-  Returns & Refunds:
-    - title: Return/Refund Process
-      description: User is asking how to initiate a return or refund for their order
-    - title: Return/Refund Status
-      description: User is inquiring about the status of their return or refund
-    - title: Eligibility
-      description: User wants to know if their order is eligible for a return or refund
-    - title: Policy Details
-      description: User is asking about the company's return and refund policies
-    - title: Refund Method
-      description: User wants to know how they will receive their refund (e.g., original payment method, store credit)
-    - title: Store Response
-      description: User is seeking help because the store didn't respond to their return or refund requests
+  Payment Methods & Changes:
+    - title: Payment Method Changes
+      description: User needs to switch payment methods after making a purchase
+    - title: Payment Options
+      description: User is asking about available payment methods or how to set them up
+    - title: Early Payoff
+      description: User wants to pay their balance in full rather than continuing with installments
 
   Account & Settings:
     - title: Login Issues
