@@ -105,7 +105,7 @@ def calculate_precision_recall_for_queries(df):
         lambda x: calculate_recall(x["actual"], x["expected"]), axis=1
     )
     df["CORRECT"] = df.apply(
-        lambda x: "Y" if x["expected"] == x["actual"] else "N", axis=1
+        lambda x: "Y" if set(x["expected"]) == set(x["actual"]) else "N", axis=1
     )
     return df
 
@@ -119,20 +119,20 @@ def calculate_per_tool_recall(df):
     for tools in df["expected"] + df["actual"]:
         all_tools.update(tools)
 
-    occurences = {tool: 0 for tool in all_tools}
-    expected_occurences = {tool: 0 for tool in all_tools}
+    occurrences = {tool: 0 for tool in all_tools}
+    expected_occurrences = {tool: 0 for tool in all_tools}
 
     # Count occurrences for each individual tool
-    for index, row in df.iterrows():
+    for _, row in df.iterrows():
         expected_tools = set(row["expected"])
         actual_tools = set(row["actual"])
 
         for tool in expected_tools:
-            expected_occurences[tool] += 1
+            expected_occurrences[tool] += 1
 
         for tool in actual_tools:
             if tool in expected_tools:
-                occurences[tool] += 1
+                occurrences[tool] += 1
 
     # Calculate per-tool recall
     per_tool_recall = []
@@ -140,11 +140,11 @@ def calculate_per_tool_recall(df):
         per_tool_recall.append(
             {
                 "Tool": tool,
-                "Correct Identification": occurences[tool],
-                "Total Targets": expected_occurences[tool],
+                "Correct Identification": occurrences[tool],
+                "Total Targets": expected_occurrences[tool],
                 "Recall": (
-                    occurences[tool] / expected_occurences[tool]
-                    if expected_occurences[tool] > 0
+                    occurrences[tool] / expected_occurrences[tool]
+                    if expected_occurrences[tool] > 0
                     else 1
                 ),
             }
