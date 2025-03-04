@@ -139,10 +139,10 @@ def calculate_per_tool_recall(df):
     for tool in all_tools:
         per_tool_recall.append(
             {
-                "Tool": tool,
-                "Correct Identification": occurrences[tool],
-                "Total Targets": expected_occurrences[tool],
-                "Recall": (
+                "tool": tool,
+                "actual": occurrences[tool],
+                "expected": expected_occurrences[tool],
+                "recall": (
                     occurrences[tool] / expected_occurrences[tool]
                     if expected_occurrences[tool] > 0
                     else 1
@@ -151,3 +151,32 @@ def calculate_per_tool_recall(df):
         )
 
     return pd.DataFrame(per_tool_recall).round(2)
+
+
+def get_mismatched_examples_for_tool(df, tool_substring, num_examples=3):
+    """
+    Filter dataframe for rows where a specific tool substring appears in expected tools
+    and the actual output doesn't match the expected output.
+
+    Args:
+        df: DataFrame containing the data
+        tool_substring: String to search for in the expected tools
+        num_examples: Number of examples to display (default: 3)
+
+    Returns:
+        DataFrame containing filtered examples where actual != expected
+    """
+    # Filter for rows where the tool substring is in expected tools
+    filtered_df = df[
+        df["expected"].apply(lambda x: any(tool_substring in item for item in x))
+    ]
+
+    # Filter for rows where actual doesn't match expected
+    mismatched_df = filtered_df[
+        filtered_df.apply(
+            lambda row: set(row["expected"]) != set(row["actual"]), axis=1
+        )
+    ]
+
+    # Return the top examples
+    return mismatched_df.head(num_examples)
