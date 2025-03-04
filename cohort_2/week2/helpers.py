@@ -1,6 +1,7 @@
 import itertools
 from lancedb.rerankers import Reranker
 from lancedb.table import Table
+import json
 
 
 def calculate_mrr(predictions: list[str], gt: list[str]):
@@ -45,3 +46,8 @@ def task(user_query: str, table: Table, reranker: Reranker, max_k: int):
         query = query.rerank(reranker)
 
     return [item["text"] for item in query.to_list()]
+
+
+def get_dataset_split(file_path: str):
+    with open(file_path, "r") as f:
+        return [json.loads(line) for line in f]
