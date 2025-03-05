@@ -10,6 +10,14 @@ Using CPython 3.9.6 interpreter at: /Library/Developer/CommandLineTools/usr/bin/
 Creating virtual environment at: .venv
 ```
 
+You can then install the dependencies with
+
+```bash
+uv sync
+```
+
+Our recommendation is to use [uv](https://docs.astral.sh/uv/) where possible
+
 ## Checklist
 
 Before starting the course, please make sure that you've done the following
