@@ -38,7 +38,7 @@ import dotenv
 dotenv.load_dotenv()
 ```
 
-This should print out `True` to indicate that it's loaded in the variables succesfully.
+This should print out `True` to indicate that it's loaded in the variables successfully.
 
 To verify that the shell variables have been set in the notebook, run the command below.
 
@@ -46,7 +46,7 @@ To verify that the shell variables have been set in the notebook, run the comman
 !echo $OPENAI_API_KEY
 ```
 
-This should print out the value of `OPENAI_API_KEY` that you provided in the .env` file. You can do the same for the other shell variables and verify they have been set.
+This should print out the value of `OPENAI_API_KEY` that you provided in the `.env` file. You can do the same for the other shell variables and verify they have been set.
 
 ## Notebook Overview
 
