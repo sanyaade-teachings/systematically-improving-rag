@@ -132,3 +132,23 @@ asyncio.run(main())
 We highly recommend running the code in the Jupyter Notebooks as this will make the code more readable and easier to debug.
 
 Visualisations are also built into the notebooks which makes them much easier to use to understand the data
+
+## Development Setup
+
+### Pre-commit Hooks
+
+This repository uses pre-commit hooks to ensure code quality. To set up pre-commit hooks, run:
+
+```bash
+pip install pre-commit
+pre-commit install
+```
+
+The pre-commit hooks will:
+- Run Black for code formatting
+- Run Ruff with the --fix option to automatically fix linting issues
+- Check for trailing whitespace and file endings
+- Validate YAML files
+- Check for large files being added
+
+These hooks run automatically when you commit changes, helping maintain consistent code quality across the project.
