@@ -33,9 +33,9 @@ Before starting the course, please make sure that you've done the following
 We've provided a `.env` file in the repository that shows the environment variables that you'll need for this course. You can either set it in your shell ( [Here is an article on how to do so](https://www3.ntu.edu.sg/home/ehchua/programming/howto/Environment_Variables.html) or run the following code snippet in your notebooks to load it from the `.env` file we've provided.
 
 ```python
-import dotenv
+from dotenv import find_dotenv, load_dotenv
 
-dotenv.load_dotenv()
+load_dotenv(find_dotenv())
 ```
 
 This should print out `True` to indicate that it's loaded in the variables successfully.
