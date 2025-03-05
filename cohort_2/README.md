@@ -16,18 +16,29 @@ Before starting the course, please make sure that you've done the following
 
 1. Set up your environment variables
 
-> **Important** : Your Cohere Key must be a PRODUCTION key and not a trial key. Also make sure that you've bumped yourself to higher tier on Braintrust so that you don't run into rate limit issues.
+> **Important** :
 >
-> You can do so by filling out the form on Maven. Please reach out to Marian on Slack if you run into any issues.
+> 1. Your Cohere Key must be a PRODUCTION key and not a trial key.
+> 2. Make sure that you've bumped yourself to higher tier on Braintrust so that you don't run into rate limit issues.
+> 3. Your HF_Token must have write access so that you can upload the models that you'll be training in week 2
 
-You should have the following environment variables set in your shell - [Here is an article on how to do so](https://www3.ntu.edu.sg/home/ehchua/programming/howto/Environment_Variables.html). Make sure that a hugging face token with write access is set as an environment variable.
+We've provided a `.env` file in the repository that shows the environment variables that you'll need for this course. You can either set it in your shell ( [Here is an article on how to do so](https://www3.ntu.edu.sg/home/ehchua/programming/howto/Environment_Variables.html) or run the following code snippet in your notebooks to load it from the `.env` file we've provided.
+
+```python
+import dotenv
+
+dotenv.load_dotenv()
+```
+
+This should print out `True` to indicate that it's loaded in the variables succesfully.
+
+To verify that the shell variables have been set in the notebook, run the command below.
 
 ```
-export OPENAI_API_KEY=
-export COHERE_API_KEY=
-export BRAINTRUST_API_KEY=
-export HF_TOKEN=
+!echo $OPENAI_API_KEY
 ```
+
+This should print out the value of `OPENAI_API_KEY` that you provided in the .env` file. You can do the same for the other shell variables and verify they have been set.
 
 ## Notebook Overview
 
