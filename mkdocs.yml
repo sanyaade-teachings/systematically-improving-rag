@@ -24,11 +24,7 @@ theme:
     repo: fontawesome/brands/github
 
 nav:
-  - "Home":
-      - index.md
-      - "Introduction": introduction.md
-      - "Learning Goals": learning-goals.md
-      - "What I want you to take away": what-i-want-you-to-takeaway.md
+  - "Home": "index.md"
   - "Workshops":
       - "Overview": "workshops/index.md"
       - "Introduction": "workshops/chapter0.md"

@@ -9,10 +9,11 @@ This section contains summaries and key insights from our weekly office hours se
 
 ## Available Sessions
 
-- [Week 1 Summary](week1-summary.md) - Introduction to RAG evaluation and data collection
-- [Week 2 Summary](week2-summary.md) - User experience design and feedback mechanisms
-- [Week 3 Summary](week3-summary.md) - User segmentation and specialized capabilities
-- [Week 4 Summary](week4-summary.md) - Building a unified product architecture
+- [Feb 4 Summary](week1-summary.md)
+- [Feb 11 Summary](week2-summary.md)
+- [Feb 18 Summary](week3-summary.md)
+- [Feb 25 Summary](week4-summary.md)
+- [Mar 4 Summary](week5-summary.md)
 
 Each summary captures the questions, answers, and discussions from our sessions, providing additional context and real-world examples to complement the workshop materials.
 
