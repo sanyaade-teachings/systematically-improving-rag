@@ -1,0 +1,7 @@
+.cache
+.DS_Store
+.venv
+.vscode
+.idea
+.pytest_cache
+notes
