@@ -14,8 +14,8 @@ tags:
 # Topic Modeling and Clustering: Finding Patterns in User Feedback
 
 !!! abstract "Chapter Overview"
-    This chapter explores how to identify patterns in user queries and feedback to prioritize improvements:
-    
+This chapter explores how to identify patterns in user queries and feedback to prioritize improvements:
+
     - Understanding the difference between topics and capabilities
     - Applying topic modeling techniques to user queries
     - Categorizing queries for targeted improvements
@@ -31,7 +31,7 @@ The first time I deployed a successful RAG system with robust feedback collectio
 This is where topic modeling and clustering become transformative. While it's tempting to dive into individual feedback instances or fixate on particularly negative comments, the real power comes from identifying patterns that reveal systematic opportunities for improvement. By grouping similar queries and analyzing performance patterns, you move from reacting to individual feedback to making strategic decisions about where to invest your limited resources.
 
 !!! quote "Key Philosophy"
-    "Not all improvements are created equal. The art of systematic RAG development is identifying which capabilities will deliver the most value to your users."
+"Not all improvements are created equal. The art of systematic RAG development is identifying which capabilities will deliver the most value to your users."
 
 Think of this process as similar to a product manager analyzing customer segments. Just as not all customers have the same needs or value, not all query types deserve the same attention. Some query categories might represent a small percentage of volume but be critical to your most valuable users. Others might be frequent but easily satisfied with simple improvements. The goal is to move beyond "making the AI better" to precisely targeting your efforts where they'll have the maximum impact.
 
@@ -43,9 +43,7 @@ Before diving into techniques, let's clarify two key concepts: topics and capabi
 
 ### Topics vs. Capabilities
 
-!!! info "Key Definitions"
-    - **Topics**: Subject matter domains in your content (e.g., "account management," "pricing," "technical specifications")
-    - **Capabilities**: Functional abilities your system should have (e.g., "summarization," "comparison," "step-by-step instructions")
+!!! info "Key Definitions" - **Topics**: Subject matter domains in your content (e.g., "account management," "pricing," "technical specifications") - **Capabilities**: Functional abilities your system should have (e.g., "summarization," "comparison," "step-by-step instructions")
 
 These concepts provide two complementary lenses for analyzing user needs. When I work with teams to improve their RAG systems, I often find they conflate these two dimensions, leading to unfocused efforts. A topic tells you what users are asking about, while a capability tells you what they want the system to do with that information.
 
@@ -53,13 +51,13 @@ These concepts provide two complementary lenses for analyzing user needs. When I
 graph LR
     A[User Queries] --> B[Topic Analysis]
     A --> C[Capability Analysis]
-    
+
     B --> D[What users ask about]
     C --> E[What users want the system to do]
-    
+
     D --> F[Content Coverage Improvements]
     E --> G[Functional Improvements]
-    
+
     F --> H[System Enhancements]
     G --> H
 ```
@@ -67,16 +65,16 @@ graph LR
 I remember working with a healthcare company whose initial analysis simply categorized queries by medical conditions. While helpful, this one-dimensional view missed critical patterns. When we added capability analysis, we discovered that queries about common conditions like diabetes primarily needed comparison capabilities ("How does medication A compare to B?"), while queries about rare conditions needed comprehensive summarization ("Give me an overview of treatment options for X"). This insight completely changed their improvement priorities.
 
 !!! example "Topics vs. Capabilities Example"
-    Consider these user queries in a product support RAG:
-    
-    - "How do I reset my password?" 
+Consider these user queries in a product support RAG:
+
+    - "How do I reset my password?"
       - **Topic**: Account security
       - **Capability**: Step-by-step instructions
-      
+
     - "Compare the Pro and Basic plans"
       - **Topic**: Pricing/Plans
       - **Capability**: Comparison
-      
+
     - "Summarize the latest product release notes"
       - **Topic**: Product updates
       - **Capability**: Summarization
@@ -99,47 +97,42 @@ When I began applying topic modeling to RAG applications in 2022, I used traditi
 
 #### Useful Clustering Libraries
 
-!!! tip "Recommended Clustering Tools"
-    - **[BERTopic](https://github.com/MaartenGr/BERTopic)**: A powerful library that combines transformers with traditional clustering
-    - **[Top2Vec](https://github.com/ddangelov/Top2Vec)**: Generates topic vectors without predefined numbers of topics
-    - **[LLMClustering](https://github.com/Thinkall/LLM-Clustering)**: Uses large language models for clustering with zero-shot classification
-    - **[HDBSCAN](https://github.com/scikit-learn-contrib/hdbscan)**: Density-based clustering that works well for identifying natural groupings
-    - **[OpenAI Text Embedding Clustering](https://platform.openai.com/docs/guides/embeddings/use-cases)**: Using OpenAI embeddings with standard clustering algorithms
+!!! tip "Recommended Clustering Tools" - **[BERTopic](https://github.com/MaartenGr/BERTopic)**: A powerful library that combines transformers with traditional clustering - **[Top2Vec](https://github.com/ddangelov/Top2Vec)**: Generates topic vectors without predefined numbers of topics - **[LLMClustering](https://github.com/Thinkall/LLM-Clustering)**: Uses large language models for clustering with zero-shot classification - **[HDBSCAN](https://github.com/scikit-learn-contrib/hdbscan)**: Density-based clustering that works well for identifying natural groupings - **[OpenAI Text Embedding Clustering](https://platform.openai.com/docs/guides/embeddings/use-cases)**: Using OpenAI embeddings with standard clustering algorithms
 
-Each of these approaches has different strengths. BERTopic excels at finding coherent topics in varied document collections, while LLM-based approaches can provide more intuitive topic labels. The key is that these tools are for *analysis* purposes—they help you understand patterns in your data that would be difficult to detect manually.
+Each of these approaches has different strengths. BERTopic excels at finding coherent topics in varied document collections, while LLM-based approaches can provide more intuitive topic labels. The key is that these tools are for _analysis_ purposes—they help you understand patterns in your data that would be difficult to detect manually.
 
 !!! tip "Cross-Reference"
-    Remember the synthetic data approaches from [Chapter 1](chapter1.md)? You can use similar techniques to generate additional examples for each discovered topic to improve your evaluation sets.
+Remember the synthetic data approaches from [Chapter 1](chapter1.md)? You can use similar techniques to generate additional examples for each discovered topic to improve your evaluation sets.
 
 #### Example: BERTopic Implementation
 
 !!! example "BERTopic Code Example"
-    ```python
-    from bertopic import BERTopic
-    import pandas as pd
-    from sklearn.feature_extraction.text import CountVectorizer
-    
+```python
+from bertopic import BERTopic
+import pandas as pd
+from sklearn.feature_extraction.text import CountVectorizer
+
     # Assuming 'queries' is a list of user query strings
     # Configure BERTopic with more options for better control
     vectorizer = CountVectorizer(ngram_range=(1, 2), stop_words="english", min_df=5)
-    
+
     topic_model = BERTopic(
-        language="english", 
+        language="english",
         min_topic_size=10,
         vectorizer_model=vectorizer,
         calculate_probabilities=True,
         verbose=True
     )
-    
+
     # Fit the model and transform documents to topics
     topics, probs = topic_model.fit_transform(queries)
-    
+
     # View topic information
     topic_info = topic_model.get_topic_info()
-    
+
     # Extract the top 10 topics
     top_topics = topic_info.head(10)
-    
+
     # For each top topic, get the representative documents
     for topic_id in top_topics['Topic']:
         if topic_id == -1:  # Skip the outlier topic
@@ -149,10 +142,10 @@ Each of these approaches has different strengths. BERTopic excels at finding coh
         for doc in topic_docs[:5]:
             print(f"  - {doc}")
         print()
-    
+
     # Visualize topics
     topic_model.visualize_topics()
-    
+
     # Save model for later use
     topic_model.save("topic_model")
     ```
@@ -185,17 +178,17 @@ These visualizations are invaluable for communicating your findings to stakehold
 While traditional clustering methods work well, I've found that LLM-based approaches can provide more intuitive and actionable results, especially for domain-specific applications.
 
 !!! example "OpenAI Embeddings + HDBSCAN Clustering"
-    ```python
-    import numpy as np
-    import openai
-    import pandas as pd
-    from sklearn.metrics.pairwise import cosine_similarity
-    import hdbscan
-    
+```python
+import numpy as np
+import openai
+import pandas as pd
+from sklearn.metrics.pairwise import cosine_similarity
+import hdbscan
+
     # Get embeddings for queries
     def get_embeddings(queries, model="text-embedding-3-large"):
         embeddings = []
-        
+
         for query in queries:
             response = openai.Embedding.create(
                 model=model,
@@ -203,12 +196,12 @@ While traditional clustering methods work well, I've found that LLM-based approa
             )
             embedding = response['data'][0]['embedding']
             embeddings.append(embedding)
-            
+
         return np.array(embeddings)
-    
+
     # Get embeddings
     query_embeddings = get_embeddings(queries)
-    
+
     # Cluster the embeddings
     clusterer = hdbscan.HDBSCAN(
         min_cluster_size=5,
@@ -216,34 +209,34 @@ While traditional clustering methods work well, I've found that LLM-based approa
         metric='euclidean',
         cluster_selection_method='eom'
     )
-    
+
     cluster_labels = clusterer.fit_predict(query_embeddings)
-    
+
     # Add cluster labels to original data
     df = pd.DataFrame({
         'query': queries,
         'cluster': cluster_labels
     })
-    
+
     # For each cluster, get representative examples
     for cluster_id in sorted(set(cluster_labels)):
         if cluster_id == -1:
             continue  # Skip noise points
-            
+
         cluster_examples = df[df['cluster'] == cluster_id]['query'].values
         print(f"Cluster {cluster_id}:")
         for example in cluster_examples[:5]:
             print(f"  - {example}")
         print()
-    
+
     # Use LLM to label each cluster
     def get_cluster_label(examples):
         prompt = f"""Given these example queries that belong to the same topic:
         {examples}
-        
+
         Provide a short, descriptive label (3-5 words) for this topic that captures what these queries have in common.
         """
-        
+
         response = openai.ChatCompletion.create(
             model="gpt-4",
             messages=[
@@ -251,18 +244,18 @@ While traditional clustering methods work well, I've found that LLM-based approa
                 {"role": "user", "content": prompt}
             ]
         )
-        
+
         return response.choices[0].message.content.strip()
-    
+
     # Label each cluster
     for cluster_id in sorted(set(cluster_labels)):
         if cluster_id == -1:
             continue
-            
+
         examples = df[df['cluster'] == cluster_id]['query'].values[:10]
         examples_text = "\n".join([f"- {ex}" for ex in examples])
         label = get_cluster_label(examples_text)
-        
+
         print(f"Cluster {cluster_id} → {label}")
     ```
 
@@ -271,7 +264,7 @@ This hybrid approach uses state-of-the-art embeddings with traditional clusterin
 ### From Clustering to Classification
 
 !!! important "Analysis vs. Production"
-    It's critical to understand that clustering is primarily an **analytical tool**, not a production monitoring solution. The clusters you discover during analysis should inform the development of robust classifiers that can categorize incoming queries in real-time.
+It's critical to understand that clustering is primarily an **analytical tool**, not a production monitoring solution. The clusters you discover during analysis should inform the development of robust classifiers that can categorize incoming queries in real-time.
 
 In my experience, the journey from analysis to production follows a clear pattern:
 
@@ -320,7 +313,7 @@ With your classifiers in place, you can now implement a production monitoring sy
 def log_query_metrics(query, response, user_feedback=None):
     """
     Log metrics for a user query, categorizing it and tracking performance.
-    
+
     Parameters:
     - query: The user's query
     - response: The system's response
@@ -329,11 +322,11 @@ def log_query_metrics(query, response, user_feedback=None):
     # Classify the query
     query_category = classify_query(query, category_examples)
     query_capability = identify_capability(query)
-    
+
     # Calculate metrics (customize based on your evaluation framework)
     retrieval_quality = calculate_retrieval_quality(query, response)
     generation_quality = calculate_generation_quality(response)
-    
+
     # Log to your monitoring system
     log_entry = {
         "timestamp": datetime.now().isoformat(),
@@ -344,12 +337,13 @@ def log_query_metrics(query, response, user_feedback=None):
         "generation_quality": generation_quality,
         "user_feedback": user_feedback
     }
-    
+
     # Add to your logging/monitoring solution
     monitoring_db.insert_one(log_entry)
 ```
 
 This structured approach allows you to:
+
 - Track performance trends by category over time
 - Identify emerging query types that might need new categories
 - Spot performance degradation in specific categories
@@ -368,7 +362,7 @@ While automated methods are helpful, manual review offers valuable insights that
 Manual review is particularly valuable for understanding the "why" behind query patterns. For example, in a legal research application, we initially categorized certain queries as "precedent searches" based on automated clustering. However, manual review revealed that users weren't primarily interested in precedents; they were looking for contradictions between cases to support arguments. This nuance completely changed how we approached retrieval for those queries.
 
 !!! warning "Sample Size Considerations"
-    You don't need to manually categorize every query. A representative sample of 100-200 queries can provide significant insights while keeping the task manageable.
+You don't need to manually categorize every query. A representative sample of 100-200 queries can provide significant insights while keeping the task manageable.
 
 ### Combining Automated and Manual Approaches
 
@@ -387,19 +381,12 @@ Beyond topics, understanding the capabilities users need is crucial. This analys
 
 ### Common RAG Capabilities
 
-!!! info "Core RAG Capabilities"
-    - **Factual retrieval**: Finding and presenting specific facts
-    - **Summarization**: Condensing information into concise overviews
-    - **Comparison**: Highlighting similarities and differences
-    - **Step-by-step procedures**: Breaking down complex tasks
-    - **Reasoning with context**: Drawing conclusions from multiple pieces of information
-    - **Numerical analysis**: Working with numbers, statistics, and calculations
-    - **Visual information processing**: Handling charts, images, and diagrams
+!!! info "Core RAG Capabilities" - **Factual retrieval**: Finding and presenting specific facts - **Summarization**: Condensing information into concise overviews - **Comparison**: Highlighting similarities and differences - **Step-by-step procedures**: Breaking down complex tasks - **Reasoning with context**: Drawing conclusions from multiple pieces of information - **Numerical analysis**: Working with numbers, statistics, and calculations - **Visual information processing**: Handling charts, images, and diagrams
 
 These capabilities often require specialized approaches beyond basic retrieval and generation. For example, effective comparison capabilities might need parallel queries or specialized prompting techniques, while numerical analysis might require formula extraction and calculation capabilities.
 
 !!! tip "Cross-Reference"
-    These capabilities become the foundation for specialized indices we'll build in [Chapter 5](chapter5.md).
+These capabilities become the foundation for specialized indices we'll build in [Chapter 5](chapter5.md).
 
 ### Analyzing Capability Gaps
 
@@ -441,11 +428,11 @@ With topics and capabilities identified, how do you prioritize improvements? Too
 The classic impact/effort matrix provides a simple but effective framework for prioritization. I've used this approach with numerous teams to transform vague improvement plans into clear roadmaps with stakeholder buy-in.
 
 !!! example "Impact/Effort Prioritization"
-    Plot potential improvements on two axes:
-    
+Plot potential improvements on two axes:
+
     - **Impact**: Frequency × Value to users
     - **Effort**: Development complexity and resources required
-    
+
     Prioritize high-impact, low-effort improvements first, followed by high-impact, high-effort strategic investments.
 
 ```mermaid
@@ -480,8 +467,8 @@ Beyond simple impact/effort, a more sophisticated approach considers multiple di
 I once worked with a team that initially deprioritized table extraction capabilities based purely on query frequency. However, when we considered business value, we discovered that table-based queries, while less common, primarily came from procurement teams making high-value purchasing decisions. The business impact of improving this capability far outweighed its relatively low frequency.
 
 !!! tip "Value Calculation"
-    Value = (Frequency × Importance × Success Gap) / Effort
-    
+Value = (Frequency × Importance × Success Gap) / Effort
+
     Where:
     - Frequency = How often users ask about this topic/capability
     - Importance = How critical it is to their goals (1-5 scale)
@@ -497,8 +484,8 @@ Based on your analysis, the next step is developing a strategic roadmap for impr
 ### Roadmap Components
 
 !!! info "Strategic Roadmap Elements"
-    A complete RAG improvement roadmap includes:
-    
+A complete RAG improvement roadmap includes:
+
     - **Short-term wins**: Quick, high-impact improvements
     - **Medium-term projects**: Substantial capability enhancements
     - **Long-term investments**: Fundamental architectural improvements
@@ -508,7 +495,7 @@ Based on your analysis, the next step is developing a strategic roadmap for impr
 I've found that successful roadmaps maintain a balance of 60% capability-focused improvements and 40% topic-focused improvements. The capability improvements tend to have broader impact across multiple query types, while topic improvements address specific content needs for high-value domains.
 
 !!! tip "Cross-Reference"
-    This roadmap should align with the specialized indices and multimodal RAG strategies we'll explore in [Chapter 5](chapter5.md).
+This roadmap should align with the specialized indices and multimodal RAG strategies we'll explore in [Chapter 5](chapter5.md).
 
 ### Example Strategic Roadmap
 
@@ -518,20 +505,20 @@ Consider this example roadmap based on analysis of a product support RAG:
 gantt
     title RAG Improvement Roadmap
     dateFormat  YYYY-MM-DD
-    
+
     section Quick Wins
     Improve Password Reset Instructions     :2025-04-01, 7d
     Fix Citation Formatting                 :2025-04-01, 5d
     Enhance Error Messages                  :2025-04-08, 7d
-    
+
     section Medium-Term Projects
     Add Product Comparison Capability       :2025-04-15, 14d
     Implement Summarization                 :2025-04-22, 21d
-    
+
     section Strategic Investments
     Table Extraction & Querying             :2025-05-01, 30d
     Image Analysis Integration              :2025-05-15, 45d
-    
+
     section Continuous Improvement
     Weekly Metric Reviews                   :2025-04-01, 180d
     Monthly Content Updates                 :2025-04-01, 180d
@@ -548,24 +535,24 @@ Beyond basic clustering, several advanced techniques can provide deeper insights
 Use dimensionality reduction to visualize query clusters, revealing relationships that might not be apparent in simple categorization. I've found this approach particularly valuable for identifying edge cases and understanding the boundaries between different query categories.
 
 !!! example "UMAP Visualization Code"
-    ```python
-    import numpy as np
-    import umap
-    import matplotlib.pyplot as plt
-    import seaborn as sns
-    
+```python
+import numpy as np
+import umap
+import matplotlib.pyplot as plt
+import seaborn as sns
+
     # Assuming 'query_embeddings' is an array of embedding vectors
     # and 'topic_labels' contains the topic for each query
-    
+
     # Reduce embeddings to 2D for visualization
     reducer = umap.UMAP(random_state=42)
     embedding_2d = reducer.fit_transform(np.array(query_embeddings))
-    
+
     # Create a scatter plot colored by topic
     plt.figure(figsize=(12, 10))
     sns.scatterplot(
-        x=embedding_2d[:, 0], 
-        y=embedding_2d[:, 1], 
+        x=embedding_2d[:, 0],
+        y=embedding_2d[:, 1],
         hue=topic_labels,
         palette="tab20",
         alpha=0.7
@@ -587,12 +574,7 @@ Beyond identifying what fails, understanding why certain queries fail can reveal
 
 In one project, we discovered that a significant portion of failures weren't due to missing content or poor retrieval, but rather the system's inability to reconcile conflicting information from different sources. This insight led us to develop specific prompting techniques for handling contradictory information, dramatically improving satisfaction scores for those query types.
 
-!!! warning "Common Failure Modes"
-    - **Retrieval failures**: System can't find relevant documents
-    - **Context limitations**: Relevant documents exist but don't contain needed information
-    - **Generation problems**: The retrieved context is good, but the generation is poor
-    - **Hallucinations**: The system fabricates information not in the context
-    - **Format issues**: The information is correct but poorly presented
+!!! warning "Common Failure Modes" - **Retrieval failures**: System can't find relevant documents - **Context limitations**: Relevant documents exist but don't contain needed information - **Generation problems**: The retrieved context is good, but the generation is poor - **Hallucinations**: The system fabricates information not in the context - **Format issues**: The information is correct but poorly presented
 
 Understanding these failure modes is critical because each requires a different solution approach. Retrieval failures might need better embedding models or query processing, while hallucinations often require improved prompting or validation steps.
 
@@ -605,6 +587,7 @@ Once you've identified patterns in your user queries and system performance, the
 Inventory issues occur when your system lacks the content needed to answer certain questions. The solution typically involves expanding your knowledge base or improving ingestion processes.
 
 Signs of inventory issues include:
+
 - Low cosine similarities across retrieved documents
 - No results from lexical search
 - LLM refusing to answer due to missing information
@@ -689,4 +672,4 @@ As we move into [Chapter 5](chapter5.md), we'll explore how to implement special
 The journey from collecting feedback to understanding patterns to implementing targeted improvements forms the core of systematic RAG development—a methodical approach that replaces guesswork with data-driven decision making.
 
 !!! tip "What's Coming Next"
-    In [Chapter 5](chapter5.md), we'll explore specialized improvements through multimodal search and contextual retrieval. We'll build on the priorities identified in this chapter to create targeted solutions for specific query types. 
+In [Chapter 5](chapter5.md), we'll explore specialized improvements through multimodal search and contextual retrieval. We'll build on the priorities identified in this chapter to create targeted solutions for specific query types.

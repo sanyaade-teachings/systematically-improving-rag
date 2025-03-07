@@ -5,7 +5,7 @@ author: "Jason Liu"
 ---
 
 !!! abstract "Chapter Overview"
-    This chapter explores how to overcome the critical challenge of latency in RAG applications. You'll learn strategies for streaming responses, designing meaningful interstitials, and employing various technical optimizations to enhance both actual and perceived performance. The chapter demonstrates how techniques like streaming structured data and dynamic content updates can transform waiting time from a frustrating experience into an engaging one, ultimately improving user satisfaction and feedback collection rates. By implementing these approaches, you'll create RAG applications that feel responsive even during complex processing operations.
+This chapter explores how to overcome the critical challenge of latency in RAG applications. You'll learn strategies for streaming responses, designing meaningful interstitials, and employing various technical optimizations to enhance both actual and perceived performance. The chapter demonstrates how techniques like streaming structured data and dynamic content updates can transform waiting time from a frustrating experience into an engaging one, ultimately improving user satisfaction and feedback collection rates. By implementing these approaches, you'll create RAG applications that feel responsive even during complex processing operations.
 
 # Overcoming Latency: Streaming and Interstitials
 
@@ -18,7 +18,7 @@ The reality is that RAG processes—retrieval, generation, validation, citation 
 Perceived performance often matters more than actual performance. Research shows that users perceive responsive systems as faster even when the total completion time is identical. This psychological principle is at the heart of the strategies we'll explore in this chapter.
 
 !!! warning "The Perception Gap"
-    Studies show that perceived wait times can be up to 25% longer than actual wait times when users have no visibility into system progress. Conversely, showing meaningful progress can make perceived wait times up to 40% shorter than actual wait times.
+Studies show that perceived wait times can be up to 25% longer than actual wait times when users have no visibility into system progress. Conversely, showing meaningful progress can make perceived wait times up to 40% shorter than actual wait times.
 
 We'll explore two complementary approaches to addressing latency:
 
@@ -32,7 +32,7 @@ These techniques not only improve user experience but also lead to higher engage
 Before diving into streaming implementations, let's understand why animated indicators are so effective at improving perceived performance. Research in cognitive psychology reveals that humans perceive time differently when observing movement.
 
 !!! example "The Power of Progress Indicators"
-    In a study by the Nielsen Norman Group, users reported a 15-20% faster perceived load time when shown an animated progress indicator compared to a static wait screen, even though the actual load times were identical.
+In a study by the Nielsen Norman Group, users reported a 15-20% faster perceived load time when shown an animated progress indicator compared to a static wait screen, even though the actual load times were identical.
 
 Animated indicators work by:
 
@@ -67,24 +67,24 @@ sequenceDiagram
     participant Backend
     participant Retriever
     participant Generator
-    
+
     User->>Frontend: Submits query
     Frontend->>Backend: Sends query
     Note over Frontend: Shows "Thinking..." animation
-    
+
     Backend->>Retriever: Requests relevant documents
     Retriever->>Backend: Returns documents
     Note over Backend: Documents retrieved
-    
+
     Backend->>Generator: Generates response with documents
     Note over Frontend: Shows "Generating response..."
-    
+
     loop Streaming
         Generator->>Backend: Streams token chunks
         Backend->>Frontend: Forwards token chunks
         Frontend->>User: Displays incremental response
     end
-    
+
     Note over Frontend: Full response displayed
 ```
 
@@ -113,7 +113,7 @@ app = FastAPI()
 async def stream_query_response(request: Request):
     """
     Stream a response to a user query.
-    
+
     This endpoint:
     1. Processes the incoming query
     2. Retrieves relevant documents
@@ -122,11 +122,11 @@ async def stream_query_response(request: Request):
     # Parse the incoming request
     data = await request.json()
     query = data.get("query")
-    
+
     # Retrieve relevant documents (non-streaming part)
     documents = retrieve_documents(query)
     context = prepare_context(documents)
-    
+
     # Set up streaming response
     async def event_generator():
         # Create a streaming completion
@@ -138,15 +138,15 @@ async def stream_query_response(request: Request):
             ],
             stream=True  # Enable streaming
         )
-        
+
         # Yield chunks as they arrive
         async for chunk in response:
             if chunk.choices[0].delta.get("content"):
                 yield f"data: {chunk.choices[0].delta.content}\n\n"
             await asyncio.sleep(0.01)  # Small delay to control flow rate
-        
+
         yield "data: [DONE]\n\n"
-    
+
     # Return a streaming response
     return StreamingResponse(
         event_generator(),
@@ -159,49 +159,49 @@ On the frontend, you'll need to handle Server-Sent Events (SSE) or WebSockets to
 ```javascript
 function streamResponse(query) {
   // Clear previous response
-  const responseElement = document.getElementById('response');
-  responseElement.innerHTML = '';
-  
+  const responseElement = document.getElementById("response");
+  responseElement.innerHTML = "";
+
   // Show that we're working on it
   responseElement.innerHTML = '<div class="typing-indicator">Thinking...</div>';
-  
+
   // Make a request to the streaming endpoint
-  fetch('/query/stream', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+  fetch("/query/stream", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ query: query }),
   })
-  .then(response => {
-    // Create a reader for the response stream
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
-    
-    // Remove the typing indicator
-    responseElement.innerHTML = '';
-    
-    // Function to process stream chunks
-    function readChunk() {
-      reader.read().then(({ done, value }) => {
-        if (done) return;
-        
-        // Decode and display the chunk
-        const chunk = decoder.decode(value);
-        responseElement.innerHTML += chunk;
-        
-        // Scroll to the bottom to show new content
-        responseElement.scrollTop = responseElement.scrollHeight;
-        
-        // Read the next chunk
-        readChunk();
-      });
-    }
-    
-    // Start reading chunks
-    readChunk();
-  })
-  .catch(error => {
-    responseElement.innerHTML = `Error: ${error.message}`;
-  });
+    .then((response) => {
+      // Create a reader for the response stream
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+
+      // Remove the typing indicator
+      responseElement.innerHTML = "";
+
+      // Function to process stream chunks
+      function readChunk() {
+        reader.read().then(({ done, value }) => {
+          if (done) return;
+
+          // Decode and display the chunk
+          const chunk = decoder.decode(value);
+          responseElement.innerHTML += chunk;
+
+          // Scroll to the bottom to show new content
+          responseElement.scrollTop = responseElement.scrollHeight;
+
+          // Read the next chunk
+          readChunk();
+        });
+      }
+
+      // Start reading chunks
+      readChunk();
+    })
+    .catch((error) => {
+      responseElement.innerHTML = `Error: ${error.message}`;
+    });
 }
 ```
 
@@ -221,27 +221,25 @@ function processStreamChunk(chunk) {
   if (chunk.startsWith("THINKING: ")) {
     // Update the current thought
     currentThought = chunk.replace("THINKING: ", "");
-    
+
     // Only update the display occasionally to avoid flickering
     if (Date.now() - lastUpdateTime > 200) {
-      document.getElementById('thinking').innerText = currentThought;
+      document.getElementById("thinking").innerText = currentThought;
       lastUpdateTime = Date.now();
     }
-  } 
-  else if (chunk.startsWith("FUNCTION: ")) {
+  } else if (chunk.startsWith("FUNCTION: ")) {
     // Extract and display function call information
     const functionData = JSON.parse(chunk.replace("FUNCTION: ", ""));
-    
-    document.getElementById('functions').innerHTML += `
+
+    document.getElementById("functions").innerHTML += `
       <div class="function-call">
         <div class="function-name">${functionData.name}</div>
         <div class="function-args">${JSON.stringify(functionData.arguments, null, 2)}</div>
       </div>
     `;
-  }
-  else {
+  } else {
     // Regular content chunk for the response
-    document.getElementById('response').innerHTML += chunk;
+    document.getElementById("response").innerHTML += chunk;
   }
 }
 ```
@@ -258,27 +256,27 @@ Here's how you might implement structured streaming for a response that includes
 async def stream_structured_response(query: str):
     """
     Stream a structured response with multiple components.
-    
+
     Parameters:
     - query: The user's question
-    
+
     Returns:
     - A streaming response with structured components
     """
     # Retrieve documents (non-streaming)
     documents = retrieve_documents(query)
-    
+
     # Start streaming response components
     async def generate_stream():
         # Send response type indicator
         yield json.dumps({"type": "start", "components": ["answer", "citations", "followup"]}) + "\n"
-        
+
         # Stream the answer generation
         answer_chunks = generate_answer_stream(query, documents)
         async for chunk in answer_chunks:
             yield json.dumps({"type": "answer", "content": chunk}) + "\n"
             await asyncio.sleep(0.02)
-        
+
         # Stream citations after the answer
         citations = extract_citations(documents)
         for citation in citations:
@@ -286,18 +284,18 @@ async def stream_structured_response(query: str):
                 "type": "citation",
                 "id": citation["id"],
                 "title": citation["title"],
-                "text": citation["text"][:100] + "...", 
+                "text": citation["text"][:100] + "...",
                 "relevance": citation["relevance"]
             }) + "\n"
             await asyncio.sleep(0.05)
-        
+
         # Generate and stream follow-up questions
         followups = generate_followup_questions(query, documents)
         yield json.dumps({"type": "followup", "questions": followups}) + "\n"
-        
+
         # Signal completion
         yield json.dumps({"type": "end"}) + "\n"
-    
+
     return StreamingResponse(generate_stream(), media_type="application/json")
 ```
 
@@ -307,74 +305,75 @@ On the frontend, you'd handle this structured stream by updating different UI co
 function handleStructuredStream(stream) {
   const reader = stream.getReader();
   const decoder = new TextDecoder();
-  
+
   function processChunk() {
     reader.read().then(({ done, value }) => {
       if (done) return;
-      
+
       // Decode and parse the chunk
       const chunk = decoder.decode(value);
-      const lines = chunk.split('\n').filter(line => line.trim() !== '');
-      
+      const lines = chunk.split("\n").filter((line) => line.trim() !== "");
+
       // Process each line as a separate JSON message
       for (const line of lines) {
         try {
           const message = JSON.parse(line);
-          
+
           switch (message.type) {
             case "start":
               // Initialize UI components
-              document.getElementById('answer').innerHTML = '';
-              document.getElementById('citations').innerHTML = '';
-              document.getElementById('followup').innerHTML = '';
+              document.getElementById("answer").innerHTML = "";
+              document.getElementById("citations").innerHTML = "";
+              document.getElementById("followup").innerHTML = "";
               break;
-              
+
             case "answer":
               // Append to the answer section
-              document.getElementById('answer').innerHTML += message.content;
+              document.getElementById("answer").innerHTML += message.content;
               break;
-              
+
             case "citation":
               // Add a new citation
-              const citationEl = document.createElement('div');
-              citationEl.classList.add('citation');
+              const citationEl = document.createElement("div");
+              citationEl.classList.add("citation");
               citationEl.innerHTML = `
                 <h4>${message.title}</h4>
                 <p>${message.text}</p>
                 <div class="relevance-meter" style="width: ${message.relevance * 100}%"></div>
               `;
-              document.getElementById('citations').appendChild(citationEl);
+              document.getElementById("citations").appendChild(citationEl);
               break;
-              
+
             case "followup":
               // Add follow-up questions
-              const followupEl = document.getElementById('followup');
-              followupEl.innerHTML = '<h3>Follow-up Questions:</h3>';
-              
+              const followupEl = document.getElementById("followup");
+              followupEl.innerHTML = "<h3>Follow-up Questions:</h3>";
+
               for (const question of message.questions) {
-                const questionEl = document.createElement('button');
-                questionEl.classList.add('followup-question');
+                const questionEl = document.createElement("button");
+                questionEl.classList.add("followup-question");
                 questionEl.innerText = question;
                 questionEl.onclick = () => submitQuery(question);
                 followupEl.appendChild(questionEl);
               }
               break;
-              
+
             case "end":
               // Complete the response, perhaps with a final animation
-              document.querySelector('.loading-indicator').style.display = 'none';
+              document.querySelector(".loading-indicator").style.display =
+                "none";
               break;
           }
         } catch (error) {
           console.error("Error parsing stream message:", error);
         }
       }
-      
+
       // Continue reading
       processChunk();
     });
   }
-  
+
   // Start processing chunks
   processChunk();
 }
@@ -389,9 +388,9 @@ For situations where some processing must happen before any content can be displ
 The key principle is to make interstitials meaningful rather than generic. Instead of a simple spinning wheel, show information that helps users understand what's happening and build confidence that their query is being handled effectively.
 
 !!! example "Meaningful vs. Generic Interstitials"
-    **Generic Interstitial:** "Loading..."
-    
-    **Meaningful Interstitial:** 
+**Generic Interstitial:** "Loading..."
+
+    **Meaningful Interstitial:**
     "Searching 382,549 documents in our knowledge base..."
     "Finding relevant precedent cases from 2021-2022..."
     "Analyzing 3 legal frameworks that might apply to your question..."
@@ -409,16 +408,16 @@ Here's how you might implement meaningful interstitials:
 async def generate_interstitials(query: str):
     """
     Generate meaningful interstitial messages for a query.
-    
+
     Parameters:
     - query: The user's question
-    
+
     Returns:
     - A sequence of interstitial messages
     """
     # Analyze the query to determine appropriate interstitials
     category = classify_query(query)
-    
+
     # Define category-specific interstitials
     interstitials = {
         "technical": [
@@ -438,14 +437,14 @@ async def generate_interstitials(query: str):
         ],
         # Add other categories as needed
     }
-    
+
     # Add domain-specific metrics if available
     try:
         # For technical queries, add repository info
         if category == "technical":
             repo_count = get_repository_count()
             interstitials["technical"].append(f"Searching across {repo_count} code repositories...")
-            
+
         # For legal queries, add document counts
         elif category == "legal":
             case_count = get_case_count()
@@ -453,14 +452,14 @@ async def generate_interstitials(query: str):
     except:
         # Fall back to generic but still domain-specific messages
         pass
-    
+
     # Get the relevant list based on category, or use default
     message_list = interstitials.get(category, [
         "Processing your query...",
         "Searching for relevant information...",
         "Analyzing related documents..."
     ])
-    
+
     # Return the message list
     return message_list
 ```
@@ -470,46 +469,46 @@ On the frontend, you'd display these interstitials in sequence during the waitin
 ```javascript
 async function showInterstitials(query) {
   // Request interstitial messages
-  const response = await fetch('/interstitials', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query })
+  const response = await fetch("/interstitials", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query }),
   });
-  
+
   const interstitials = await response.json();
-  const interstitialElement = document.getElementById('interstitial');
-  
+  const interstitialElement = document.getElementById("interstitial");
+
   // Display each interstitial in sequence
   let index = 0;
-  
+
   function showNextInterstitial() {
     if (index >= interstitials.length) index = 0;
-    
+
     // Fade out current message
-    interstitialElement.classList.add('fade-out');
-    
+    interstitialElement.classList.add("fade-out");
+
     // After fade out, update text and fade in
     setTimeout(() => {
       interstitialElement.textContent = interstitials[index];
-      interstitialElement.classList.remove('fade-out');
-      interstitialElement.classList.add('fade-in');
-      
+      interstitialElement.classList.remove("fade-out");
+      interstitialElement.classList.add("fade-in");
+
       // Remove the fade-in class after animation completes
       setTimeout(() => {
-        interstitialElement.classList.remove('fade-in');
+        interstitialElement.classList.remove("fade-in");
       }, 500);
-      
+
       index++;
     }, 500);
   }
-  
+
   // Show first interstitial immediately
   interstitialElement.textContent = interstitials[0];
   index++;
-  
+
   // Change interstitial every few seconds
   const intervalId = setInterval(showNextInterstitial, 3000);
-  
+
   // Return a function to clear the interval when response arrives
   return () => clearInterval(intervalId);
 }
@@ -545,7 +544,7 @@ class SemanticCache:
     def __init__(self, embedding_function, similarity_threshold=0.92):
         """
         Initialize a semantic cache.
-        
+
         Parameters:
         - embedding_function: Function to convert text to embeddings
         - similarity_threshold: Threshold above which queries are considered similar
@@ -553,51 +552,51 @@ class SemanticCache:
         self.embedding_function = embedding_function
         self.similarity_threshold = similarity_threshold
         self.cache = []  # List of (query, embedding, result) tuples
-        
+
     def get(self, query):
         """
         Try to retrieve a result from cache based on semantic similarity.
-        
+
         Parameters:
         - query: The current query
-        
+
         Returns:
         - Cached result if a similar query exists, None otherwise
         """
         if not self.cache:
             return None
-            
+
         # Compute embedding for the current query
         query_embedding = self.embedding_function(query)
-        
+
         # Find the most similar cached query
         best_similarity = 0
         best_result = None
-        
+
         for cached_query, cached_embedding, cached_result in self.cache:
             similarity = 1 - cosine(query_embedding, cached_embedding)
-            
+
             if similarity > best_similarity:
                 best_similarity = similarity
                 best_result = cached_result
-                
+
         # Return the result if similarity is above threshold
         if best_similarity >= self.similarity_threshold:
             return best_result
-            
+
         return None
-        
+
     def add(self, query, result):
         """
         Add a query-result pair to the cache.
-        
+
         Parameters:
         - query: The query string
         - result: The result to cache
         """
         query_embedding = self.embedding_function(query)
         self.cache.append((query, query_embedding, result))
-        
+
         # Optionally implement cache eviction strategies here
 ```
 
@@ -662,4 +661,4 @@ Latency is a critical challenge in RAG applications that affects both user exper
 
 3. OpenAI Documentation, ["Streaming API Best Practices"](https://platform.openai.com/docs/guides/chat/streaming)
 
-4. GitHub Repository: [Streaming-RAG-Implementation](https://github.com/langchain-ai/langchain/blob/master/docs/docs/get_started/quickstart.ipynb) - Example implementation of a streaming RAG application 
+4. GitHub Repository: [Streaming-RAG-Implementation](https://github.com/langchain-ai/langchain/blob/master/docs/docs/get_started/quickstart.ipynb) - Example implementation of a streaming RAG application

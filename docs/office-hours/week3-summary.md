@@ -27,6 +27,7 @@ The real goal isn't to get a number right - it's to figure out what to do next. 
 ## Can you elaborate on your view on RAG versus recommendations? How would you approach the use case of friend suggestions?
 
 When you build a recommendation system, there are several steps:
+
 1. **Sourcing** - What inventory can I show my customer? In the friends case, this would be all users on the platform.
 2. **Query** - Either your user ID or a question embedding.
 3. **Scoring** - For simple RAG, this is cosine distance of embeddings and maybe re-ranker distance. For friends, it might include mutual connections, location, etc.
@@ -66,6 +67,7 @@ For embedding models specifically, I'd typically include everything, as more dat
 Yes and no. Thumbs up/down is super useful, and it would be hard to convince me not to use these binary labels. Going to a 5-star scale creates issues where you don't know if users consider 3 or 4 stars to be "average."
 
 With free text feedback, you'll face two issues:
+
 1. Probably less than 10% of users will give a text response. If only 1% of users leave feedback at all, and only 10% of those leave text, you get very little text data, and you don't know how biased that sample is.
 2. You likely won't be able to read all the free text, so you'll build clustering models to analyze the feedback - in which case, you might as well just have 5 buttons for the most common issues (too slow, answer too long, format incorrect, etc.).
 
@@ -79,7 +81,7 @@ But think about how often you've thumbs-downed a ChatGPT response, let alone wri
 
 This is challenging, especially with something like a large software product knowledge base (44,000+ documents) where many people have been adding content, creating overlap and interstitial hub pages.
 
-One approach is to build a system where if you retrieve a subset of pages, you can reference the connections. Similar to how e-commerce sites show "people who viewed this also viewed" suggestions. 
+One approach is to build a system where if you retrieve a subset of pages, you can reference the connections. Similar to how e-commerce sites show "people who viewed this also viewed" suggestions.
 
 As context windows get larger, you could implement a system where if you pull in a page that references other documents, you traverse one level and bring in those referenced documents too.
 
@@ -92,6 +94,7 @@ The more fundamental question is about how you define relevance. Do you have a p
 I prefer not to think about systems as "classical" versus "agent-based" RAG systems. Most RAG systems are essentially function calling in a for-loop or while-loop.
 
 The goal is to provide the language model with two things:
+
 1. Good functions
 2. Good indices for each function to query that are well-defined
 
@@ -202,6 +205,7 @@ With these tools, the implementation is fairly straightforward. The bigger chall
 This is an interesting historical shift. Around 2018, data labeling was a huge focus because the biggest models were vision models that required massive amounts of labeled data. Vision models aren't very data-efficient - training ImageNet required labeling a million JPEGs. Companies like Scale AI won by excelling at tasks like self-driving car LiDAR labeling.
 
 As we've moved to LLMs, two things have changed:
+
 1. The big winners (like Scale AI) have already established themselves and now focus on large contracts. Smaller players either grew or struggled to find viable business models on smaller contracts.
 2. LLMs are much more data-efficient.
 
@@ -220,6 +224,7 @@ In e-commerce, we have additional rankers for things like price sensitivity, sea
 As AI systems accumulate multiple years of memories about users, figuring out what information to put in context will become much more interesting. Re-rankers won't just measure string similarity between a question and document - they'll likely incorporate user features, environmental features, and contextual information to determine relevance.
 
 For example:
+
 - Security constraints (only searching documents you have access to)
 - Time/recency components for memories
 - Domain authority when sources disagree
@@ -232,6 +237,7 @@ Even systems like Deep Research might evolve to pull from sources you tend to ag
 ## Key Takeaways and Additional Resources
 
 ### Key Takeaways:
+
 - Data quality is becoming more important than ever - good models make data quality the differentiator
 - When collecting feedback, be specific with your questions to increase response rates
 - Focus on economically valuable workflows, not just answering questions
@@ -242,11 +248,12 @@ Even systems like Deep Research might evolve to pull from sources you tend to ag
 - Focus on impact (economic value) rather than just query volume
 
 ### Additional Resources:
-- Google Search Relevancy document/policy is a good reference for defining relevance 
+
+- Google Search Relevancy document/policy is a good reference for defining relevance
 - RAPTOR paper for document summarization approaches
 - Week 3-4 content in the course covers more on these topics
 - For prompt rewriting, Claude's prompt rewriter is highly recommended
 - When dealing with streaming UIs and latencies, Notion's approach of showing steps visually is a good reference
 - For friends example in recommendation systems, consider platforms like Facebook's friend recommendation system as reference implementations
 
-*Note: I'll continue to add resources and notes from future office hours sessions* 
+_Note: I'll continue to add resources and notes from future office hours sessions_

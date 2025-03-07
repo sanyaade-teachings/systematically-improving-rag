@@ -28,4 +28,4 @@ Office hours cover a wide range of topics including:
 - Product development approaches
 
 !!! tip "Get the Most from Office Hours"
-    Review the workshop materials before office hours sessions to come prepared with specific questions and challenges from your own RAG implementations.
+Review the workshop materials before office hours sessions to come prepared with specific questions and challenges from your own RAG implementations.

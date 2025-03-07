@@ -24,28 +24,28 @@ theme:
     repo: fontawesome/brands/github
 
 nav:
-  - "Home": 
-    - index.md
-    - "Introduction": introduction.md
-    - "Learning Goals": learning-goals.md
-    - "What I want you to take away": what-i-want-you-to-takeaway.md
+  - "Home":
+      - index.md
+      - "Introduction": introduction.md
+      - "Learning Goals": learning-goals.md
+      - "What I want you to take away": what-i-want-you-to-takeaway.md
   - "Workshops":
-    - "Overview": "workshops/index.md"
-    - "Introduction": "workshops/chapter0.md"
-    - "Chapter 1: Starting the Flywheel": "workshops/chapter1.md"
-    - "Chapter 2: From Evaluation to Enhancement": "workshops/chapter2.md"
-    - "Chapter 3 Part 1: Design Principles": "workshops/chapter3-1.md"
-    - "Chapter 3 Part 2: Feedback Collection": "workshops/chapter3-2.md"
-    - "Chapter 3 Part 3: Iterative Improvement": "workshops/chapter3-3.md"
-    - "Chapter 4: Understanding Your Users": "workshops/chapter4.md"
-    - "Chapter 5: Building Specialized Capabilities": "workshops/chapter5.md"
-    - "Chapter 6: Unified Product Architecture": "workshops/chapter6.md"
+      - "Overview": "workshops/index.md"
+      - "Introduction": "workshops/chapter0.md"
+      - "Chapter 1: Starting the Flywheel": "workshops/chapter1.md"
+      - "Chapter 2: From Evaluation to Enhancement": "workshops/chapter2.md"
+      - "Chapter 3 Part 1: Design Principles": "workshops/chapter3-1.md"
+      - "Chapter 3 Part 2: Feedback Collection": "workshops/chapter3-2.md"
+      - "Chapter 3 Part 3: Iterative Improvement": "workshops/chapter3-3.md"
+      - "Chapter 4: Understanding Your Users": "workshops/chapter4.md"
+      - "Chapter 5: Building Specialized Capabilities": "workshops/chapter5.md"
+      - "Chapter 6: Unified Product Architecture": "workshops/chapter6.md"
   - "Office Hours":
-    - "office-hours/index.md"
-    - "Week 1": "office-hours/week1-summary.md"
-    - "Week 2": "office-hours/week2-summary.md"
-    - "Week 3": "office-hours/week3-summary.md"
-    - "Week 4": "office-hours/week4-summary.md"
+      - "office-hours/index.md"
+      - "Week 1": "office-hours/week1-summary.md"
+      - "Week 2": "office-hours/week2-summary.md"
+      - "Week 3": "office-hours/week3-summary.md"
+      - "Week 4": "office-hours/week4-summary.md"
 markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences:

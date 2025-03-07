@@ -23,7 +23,7 @@ Your RAG application should be smarter next month than it is today. If it isn't,
 
 ## Stop Guessing, Start Measuring
 
-I've watched too many brilliant engineers waste countless hours debating which embedding model or chunking strategy is "best" without ever defining how they'd measure "best" in the first place. 
+I've watched too many brilliant engineers waste countless hours debating which embedding model or chunking strategy is "best" without ever defining how they'd measure "best" in the first place.
 
 Don't fall into this trap. Before you change anything in your system, know exactly how you'll measure the impact of that change. Without this discipline, you're just accumulating technical debt while pretending to make improvements.
 
@@ -92,4 +92,4 @@ Build systems that learn. Measure before you change. Put users first. Specialize
 
 I can't wait to see what you build.
 
-– Jason 
+– Jason

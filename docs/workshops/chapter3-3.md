@@ -59,7 +59,7 @@ graph TD
     B -->|User Marks Relevant| D[Positive Training Example]
     B -->|User Marks Irrelevant| E[Negative Training Example]
     B -->|User Removes| F[Regeneration Request]
-    
+
     style B fill:#f9d77e,stroke:#333,stroke-width:2px
 ```
 
@@ -68,7 +68,7 @@ I worked with a legal research team that implemented this approach for their in-
 This interaction served two purposes: it immediately improved the user experience by removing unhelpful information, and it generated invaluable training data for our retrieval system. Each marked citation became labeled data that helped us fine-tune our embedding models. Within three months, we had collected over 50,000 labeled examples—a dataset that would have been prohibitively expensive to create manually.
 
 !!! tip "Citations as UI Elements"
-    Design your citations not just as references but as interactive UI elements. When users can explore, evaluate, and modify citations, they become active participants in improving your system rather than passive consumers of information.
+Design your citations not just as references but as interactive UI elements. When users can explore, evaluate, and modify citations, they become active participants in improving your system rather than passive consumers of information.
 
 ### Crafting Citation-Rich Responses
 
@@ -80,11 +80,11 @@ Here's a prompt template that encourages detailed, well-structured citations:
 def create_citation_prompt(query: str, documents: list):
     """
     Create a prompt that encourages detailed citation usage.
-    
+
     Parameters:
     - query: The user's question
     - documents: Retrieved documents for context
-    
+
     Returns:
     - A structured prompt that will generate well-cited responses
     """
@@ -92,25 +92,25 @@ def create_citation_prompt(query: str, documents: list):
     formatted_docs = []
     for i, doc in enumerate(documents):
         formatted_docs.append(f"DOCUMENT [{i+1}]: {doc.title}\n{doc.content}")
-    
+
     context = "\n\n".join(formatted_docs)
-    
+
     prompt = f"""
     Answer the following question based ONLY on the provided documents.
     For each piece of information in your answer, include a citation to the specific document it came from using the format [X] where X is the document number.
-    
+
     If the documents don't contain enough information to fully answer the question, say so clearly and cite which documents you used for the partial answer.
-    
+
     At the end of your answer, include a "Sources" section that lists all the documents you cited.
-    
+
     QUESTION: {query}
-    
+
     DOCUMENTS:
     {context}
-    
+
     ANSWER (with citations):
     """
-    
+
     return prompt
 ```
 
@@ -120,7 +120,8 @@ On the frontend, you can transform these citations into interactive elements:
 function renderCitedResponse(response) {
   // Parse the response to extract citations
   const citationRegex = /\[(\d+)\]/g;
-  const citedResponse = response.answer.replace(citationRegex, 
+  const citedResponse = response.answer.replace(
+    citationRegex,
     (match, docNum) => {
       // Create an interactive citation element
       return `<span class="citation" 
@@ -128,17 +129,17 @@ function renderCitedResponse(response) {
                    onclick="expandCitation(${docNum})">
                 ${match}
               </span>`;
-    }
+    },
   );
-  
+
   // Render the response
-  document.getElementById('response').innerHTML = citedResponse;
-  
+  document.getElementById("response").innerHTML = citedResponse;
+
   // Render the sources section
-  const sourcesElement = document.getElementById('sources');
+  const sourcesElement = document.getElementById("sources");
   response.sources.forEach((source, index) => {
-    const sourceElement = document.createElement('div');
-    sourceElement.className = 'source';
+    const sourceElement = document.createElement("div");
+    sourceElement.className = "source";
     sourceElement.innerHTML = `
       <div class="source-header">
         <span class="source-number">[${index + 1}]</span>
@@ -168,7 +169,7 @@ One of the most underutilized yet powerful techniques for improving RAG response
 I've found chain of thought particularly valuable for complex retrieval tasks where multiple documents need to be synthesized or where subtle judgments about relevance are required. By making the reasoning explicit, you can identify where things might be going wrong and provide more targeted guidance.
 
 !!! note "Performance Impact"
-    In our testing across multiple domains, chain of thought prompting consistently improved answer accuracy by 8-15%, with the biggest gains coming in complex reasoning scenarios like multi-hop questions and comparative analyses.
+In our testing across multiple domains, chain of thought prompting consistently improved answer accuracy by 8-15%, with the biggest gains coming in complex reasoning scenarios like multi-hop questions and comparative analyses.
 
 When implementing chain of thought, structure it clearly to separate the thinking process from the final response. XML tags work well for this purpose, creating distinct sections that can be processed differently by your application:
 
@@ -176,36 +177,36 @@ When implementing chain of thought, structure it clearly to separate the thinkin
 def chain_of_thought_prompt(query: str, documents: list):
     """
     Create a prompt that encourages step-by-step reasoning.
-    
+
     Parameters:
     - query: The user's question
     - documents: Retrieved documents for context
-    
+
     Returns:
     - A prompt that will generate reasoning steps and a final answer
     """
     context = "\n\n".join([f"DOCUMENT: {doc.content}" for doc in documents])
-    
+
     prompt = f"""
     You will answer the user's question based on the provided documents.
     First, think step by step about how to answer the question using the documents.
     Then provide your final answer.
-    
+
     Structure your response like this:
     <thinking>
     Your step-by-step reasoning process here...
     </thinking>
-    
+
     <answer>
     Your final answer here, with citations to specific documents...
     </answer>
-    
+
     USER QUESTION: {query}
-    
+
     DOCUMENTS:
     {context}
     """
-    
+
     return prompt
 ```
 
@@ -226,8 +227,8 @@ function processStreamedToken(token) {
     thinkingComplete = true;
     currentSection = null;
     // Render the complete thinking section
-    document.getElementById('thinking-container').style.display = 'block';
-    document.getElementById('thinking').innerHTML = thinking;
+    document.getElementById("thinking-container").style.display = "block";
+    document.getElementById("thinking").innerHTML = thinking;
     return;
   } else if (token.includes("<answer>")) {
     currentSection = "answer";
@@ -236,18 +237,18 @@ function processStreamedToken(token) {
     currentSection = null;
     return;
   }
-  
+
   // Process tokens based on current section
   if (currentSection === "thinking") {
     thinking += token;
     // If thinking isn't complete yet, show it streaming
     if (!thinkingComplete) {
-      document.getElementById('thinking-container').style.display = 'block';
-      document.getElementById('thinking').innerHTML = thinking;
+      document.getElementById("thinking-container").style.display = "block";
+      document.getElementById("thinking").innerHTML = thinking;
     }
   } else if (currentSection === "answer") {
     answer += token;
-    document.getElementById('answer').innerHTML = answer;
+    document.getElementById("answer").innerHTML = answer;
   }
 }
 ```
@@ -281,36 +282,36 @@ Here's an example prompt for implementing monologues:
 def monologue_prompt(query: str, documents: list, pricing_data: str):
     """
     Create a prompt that encourages monologuing for improved comprehension.
-    
+
     Parameters:
     - query: The user's question about pricing options
     - documents: Relevant call transcripts or customer information
     - pricing_data: Pricing documentation and guidelines
-    
+
     Returns:
     - A prompt that will generate a structured monologue before answering
     """
     context = "\n\n".join([f"TRANSCRIPT: {doc.content}" for doc in documents])
-    
+
     prompt = f"""
     You'll help generate a pricing quote based on the call transcript and pricing documentation.
-    
+
     First, reiterate the key variables that determine pricing options according to the documentation.
     Then, identify specific parts of the transcript that relate to these variables.
     Next, determine which pricing options from the documentation are most relevant.
     Finally, provide a recommended pricing quote with justification.
-    
+
     QUESTION: {query}
-    
+
     TRANSCRIPT:
     {context}
-    
+
     PRICING DOCUMENTATION:
     {pricing_data}
-    
+
     MONOLOGUE AND ANSWER:
     """
-    
+
     return prompt
 ```
 
@@ -326,34 +327,34 @@ We implemented a monologue-based approach that instructed the model to:
 The results were remarkable—quote accuracy improved from 62% to 94%, and sales representatives reported much greater confidence in the system's recommendations. The monologue approach helped the model connect scattered information from the transcript with the precise rules in the pricing document, creating much more coherent reasoning.
 
 !!! example "Monologue in Action"
-    **Query:** What pricing should we offer based on this call transcript?
-    
+**Query:** What pricing should we offer based on this call transcript?
+
     **Monologue:**
     Let me identify the key pricing variables from our documentation:
     1. Number of users (determines tier)
     2. Required features (basic, professional, enterprise)
     3. Length of contract commitment (monthly vs. annual)
     4. Add-on options (API access, premium support)
-    
+
     From the transcript, I can see:
     - The customer mentioned needing "around 50 user seats" (line 127)
     - They specifically asked about the "workflow automation feature" (line 213)
     - They stated "we're looking for an annual commitment" (line 289)
     - They expressed interest in "API access for integration" (line 342)
-    
+
     According to our pricing documentation:
     - 50 users falls into the Medium Business tier ($30/user/month)
     - Workflow automation is part of the Professional plan
     - Annual commitment provides a 20% discount
     - API access is a $500/month add-on
-    
+
     **Answer:**
     Based on the call transcript, I recommend offering the Professional plan with API access add-on:
     - 50 users × $30/user/month = $1,500/month
     - API access add-on: $500/month
     - Subtotal: $2,000/month
     - Annual commitment (20% discount): $19,200/year
-    
+
     This aligns with their needs for workflow automation and API access while providing the annual discount they're expecting.
 
 This example shows how monologues can dramatically improve comprehension and reasoning, especially for complex tasks with multiple documents. The approach doesn't require any special architecture—just thoughtful prompting that encourages the model to organize information before generating a response.
@@ -375,12 +376,12 @@ sequenceDiagram
     participant User
     participant RAG as RAG System
     participant Validator
-    
+
     User->>RAG: Submits Query
     RAG->>RAG: Retrieves Documents
     RAG->>RAG: Generates Response
     RAG->>Validator: Submits Response for Validation
-    
+
     alt Response Passes Validation
         Validator->>RAG: Approves Response
         RAG->>User: Delivers Validated Response
@@ -414,20 +415,20 @@ Rather than scrapping the approach or implementing a complex agent system, we ad
 def validate_urls_in_email(email_body: str, allowed_domains: list):
     """
     Validate that all URLs in an email are valid and from allowed domains.
-    
+
     Parameters:
     - email_body: The generated email content
     - allowed_domains: List of allowed domains for links
-    
+
     Returns:
     - (is_valid, issues): Tuple of validation result and list of issues
     """
     # Extract all URLs using regex
     url_regex = r'https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+'
     urls = re.findall(url_regex, email_body)
-    
+
     issues = []
-    
+
     # Check each URL
     for url in urls:
         # Check if the domain is allowed
@@ -435,7 +436,7 @@ def validate_urls_in_email(email_body: str, allowed_domains: list):
         if domain not in allowed_domains:
             issues.append(f"URL {url} contains disallowed domain {domain}")
             continue
-            
+
         # Check if the URL exists (returns 200)
         try:
             response = requests.head(url, timeout=3)
@@ -443,7 +444,7 @@ def validate_urls_in_email(email_body: str, allowed_domains: list):
                 issues.append(f"URL {url} returned status code {response.status_code}")
         except Exception as e:
             issues.append(f"URL {url} failed to connect: {str(e)}")
-    
+
     return len(issues) == 0, issues
 
 def regenerate_email_if_needed(query: str, initial_email: str, allowed_domains: list):
@@ -451,23 +452,23 @@ def regenerate_email_if_needed(query: str, initial_email: str, allowed_domains: 
     Validate and potentially regenerate an email if URLs are problematic.
     """
     is_valid, issues = validate_urls_in_email(initial_email, allowed_domains)
-    
+
     if is_valid:
         return initial_email
-        
+
     # If validation failed, regenerate with specific guidance
     issues_text = "\n".join(issues)
     regeneration_prompt = f"""
     The previously generated email contained the following URL issues:
     {issues_text}
-    
+
     Please regenerate the email, either:
     1. Removing any problematic URLs entirely, or
     2. Replacing them with valid URLs from these domains: {', '.join(allowed_domains)}
-    
+
     Original request: {query}
     """
-    
+
     regenerated_email = generate_email(regeneration_prompt)
     return regenerated_email
 ```
@@ -495,26 +496,26 @@ This pattern works particularly well for specialized domains where some question
 def should_reject_query(query: str, confidence_threshold: float = 0.85):
     """
     Determine if a query should be politely rejected.
-    
+
     Parameters:
     - query: The user's question
     - confidence_threshold: Minimum confidence to accept the query
-    
+
     Returns:
     - (should_reject, reason): Whether to reject and why
     """
-    # Analyze the query 
+    # Analyze the query
     query_category = classify_query(query)
     query_complexity = assess_complexity(query)
     expected_confidence = predict_confidence(query, query_category, query_complexity)
-    
+
     # Check against thresholds
     if expected_confidence < confidence_threshold:
         reason = f"This appears to be a {query_category} question with {query_complexity} complexity. " \
                  f"Based on similar questions, our confidence is {expected_confidence:.2f}, " \
                  f"which is below our threshold of {confidence_threshold:.2f}."
         return True, reason
-        
+
     return False, None
 
 def handle_query_with_rejection(query: str):
@@ -522,7 +523,7 @@ def handle_query_with_rejection(query: str):
     Process a query with potential rejection if the system isn't confident.
     """
     should_reject, reason = should_reject_query(query)
-    
+
     if should_reject:
         return {
             "type": "rejection",
@@ -594,4 +595,4 @@ This completes our exploration of deployment and feedback collection. We've now 
 
 In Chapter 4, we'll shift our focus to analyzing the wealth of data you're now collecting. Through topic modeling and clustering techniques, you'll learn to identify patterns in user queries and system performance, revealing focused opportunities for improvement. This marks an exciting transition from building a great system to understanding how it's being used in the real world and systematically enhancing its capabilities based on that understanding.
 
-By implementing the techniques from all three parts of Chapter 3, you've built the foundation for a continuous improvement cycle driven by user feedback and data analysis—a system that doesn't just answer questions but gets better with every interaction. 
+By implementing the techniques from all three parts of Chapter 3, you've built the foundation for a continuous improvement cycle driven by user feedback and data analysis—a system that doesn't just answer questions but gets better with every interaction.

@@ -14,8 +14,8 @@ tags:
 # Kickstarting the Data Flywheel with Synthetic Data
 
 !!! abstract "Chapter Overview"
-    This chapter focuses on starting the improvement flywheel by establishing proper evaluation frameworks:
-    
+This chapter focuses on starting the improvement flywheel by establishing proper evaluation frameworks:
+
     - Understanding common pitfalls in AI development
     - Distinguishing between different types of metrics
     - Creating synthetic data for evaluation
@@ -30,7 +30,7 @@ Welcome to the first practical chapter on systematically improving RAG applicati
 The main challenge many teams face is knowing where to start when improving RAG applications. Without proper evaluation frameworks, teams often fall into a cycle of making random changes based on intuition rather than data. This chapter aims to break that cycle by establishing data-driven methods for improvement.
 
 !!! quote "Key Philosophy"
-    "You can't improve what you don't measure. The goal is not to chase the latest AI techniques blindly, but to establish a flywheel of continuous improvement driven by clear metrics aligned with user outcomes."
+"You can't improve what you don't measure. The goal is not to chase the latest AI techniques blindly, but to establish a flywheel of continuous improvement driven by clear metrics aligned with user outcomes."
 
 ## Common Pitfalls in AI Development
 
@@ -41,8 +41,8 @@ When I work with companies building RAG applications, I consistently see the sam
 How often do we hear statements like "we need more complex reasoning" or "the model isn't smart enough"? In my experience, this is rarely the actual problem. Instead, it usually indicates a fundamental lack of user empathy and specificity in the tools we build.
 
 !!! warning "Common Mistake"
-    When you hear statements like "we need more reasoning power," challenge yourself to answer:
-    
+When you hear statements like "we need more reasoning power," challenge yourself to answer:
+
     - When was the last time we looked at data from customers?
     - When did we last read user feedback?
     - Are we actively asking for feedback?
@@ -86,14 +86,14 @@ flowchart TD
         A3[User Feedback Collection Rate]
         A4[Evaluation Coverage]
     end
-    
+
     subgraph "Lagging Metrics<br>(Business Outcomes)"
         B1[User Satisfaction]
         B2[Application Quality]
         B3[Churn Rate]
         B4[Revenue]
     end
-    
+
     A1 -->|"predicts & influences"| B1
     A1 -->|"predicts & influences"| B2
     A2 -->|"predicts & influences"| B1
@@ -102,15 +102,15 @@ flowchart TD
     A3 -->|"predicts & influences"| B3
     A4 -->|"predicts & influences"| B2
     A4 -->|"predicts & influences"| B3
-    
+
     B1 -->|"eventually impacts"| B3
     B1 -->|"eventually impacts"| B4
     B2 -->|"eventually impacts"| B1
     B3 -->|"eventually impacts"| B4
-    
+
     classDef leading fill:#D4F1F9,stroke:#05445E
     classDef lagging fill:#FFD700,stroke:#B8860B
-    
+
     class A1,A2,A3,A4 leading
     class B1,B2,B3,B4 lagging
 ```
@@ -120,6 +120,7 @@ flowchart TD
 Lagging metrics are outcomes that are difficult to improve directly but easy to measure. They're measurements of past results, often unresponsive to immediate changes, and represent the outputs of your system.
 
 Examples of lagging metrics include:
+
 - Application quality
 - User satisfaction
 - Churn rates
@@ -132,6 +133,7 @@ Think of lagging metrics like your body weight or strength. You can easily measu
 Leading metrics, by contrast, are factors you can easily change but might be harder to measure perfectly. They predict future performance and provide feedback on when and where to intervene.
 
 Examples of leading metrics include:
+
 - Number of experiments run per week
 - Evaluation coverage of different question types
 - Retrieval precision and recall
@@ -155,7 +157,7 @@ Absence blindness is simple: you don't fix what you can't see. In RAG applicatio
 graph LR
     classDef visible fill:#FF9999,stroke:#CC0000
     classDef invisible fill:#CCCCCC,stroke:#666666,stroke-dasharray: 5 5
-    
+
     subgraph "RAG System Components"
         A[Data Extraction]:::invisible
         B[Text Chunking]:::invisible
@@ -164,11 +166,11 @@ graph LR
         E[Generation]:::visible
         F[UI/UX]:::visible
         G[Response Time]:::visible
-        
+
         A --> B --> C --> D --> E --> F
         E -.-> G
     end
-    
+
     subgraph "Team Focus"
         H["✅ High Attention<br>(Visible Components)"]:::visible
         I["❌ Low Attention<br>(Invisible Components)"]:::invisible
@@ -195,12 +197,12 @@ flowchart TD
     B -->|"measure impact"| C["3. Observe<br>Performance Changes"]
     C -->|"collect real data"| D["4. Gather User<br>Behavior & Feedback"]
     D -->|"refine evaluation set"| A
-    
+
     style A fill:#FFD700,stroke:#B8860B,stroke-width:2px
     style B fill:#98FB98,stroke:#006400,stroke-width:2px
     style C fill:#ADD8E6,stroke:#0000A0,stroke-width:2px
     style D fill:#FFA07A,stroke:#A52A2A,stroke-width:2px
-    
+
     %% Arrow styling to create flywheel effect
     linkStyle 0,1,2,3 stroke-width:2px
 ```
@@ -225,31 +227,31 @@ Before diving into implementation, let's clarify what precision and recall actua
 ```mermaid
 graph TD
     subgraph "Document Universe"
-        subgraph "All Relevant Documents" 
+        subgraph "All Relevant Documents"
             A["Relevant &<br>Retrieved<br>(True Positives)"]
             B["Relevant but<br>Not Retrieved<br>(False Negatives)"]
         end
-        
+
         subgraph "All Retrieved Documents"
             A
             C["Retrieved but<br>Not Relevant<br>(False Positives)"]
         end
-        
+
         D["Not Relevant &<br>Not Retrieved<br>(True Negatives)"]
     end
-    
+
     P["Precision = <br>Relevant & Retrieved<br>All Retrieved"]
     R["Recall = <br>Relevant & Retrieved<br>All Relevant"]
-    
+
     A ~~~ P
     A ~~~ R
-    
+
     classDef relevant fill:#90EE90,stroke:#006400
     classDef retrieved fill:#ADD8E6,stroke:#00008B
     classDef both fill:#9370DB,stroke:#4B0082
     classDef neither fill:#DCDCDC,stroke:#696969
     classDef formula fill:#FFFACD,stroke:#8B8B00,stroke-width:2px
-    
+
     class A both
     class B relevant
     class C retrieved
@@ -266,7 +268,6 @@ With advanced models, recall tends to be more important than precision, as these
 ## Case Studies: Real-World Improvements
 
 Let's examine two case studies where focusing on retrieval metrics led to rapid improvements.
-
 
 ### Case Study 1: Report Generation from Expert Interviews
 
@@ -311,30 +312,30 @@ Let's walk through building a simple but effective evaluation pipeline:
 def evaluate_retrieval(evaluation_data, retriever_fn, k=10):
     """
     Evaluate retrieval performance on a dataset.
-    
+
     Args:
         evaluation_data: List of dicts with 'question' and 'relevant_docs' keys
         retriever_fn: Function that takes question text and returns docs
         k: Number of top results to consider
-        
+
     Returns:
         Dict containing evaluation metrics
     """
     results = []
-    
+
     for item in evaluation_data:
         question = item['question']
         ground_truth = set(item['relevant_docs'])
-        
+
         # Call retrieval system
         retrieved_docs = retriever_fn(question, top_k=k)
         retrieved_ids = [doc['id'] for doc in retrieved_docs]
-        
+
         # Calculate metrics
         retrieved_relevant = set(retrieved_ids) & ground_truth
         precision = len(retrieved_relevant) / len(retrieved_ids) if retrieved_ids else 0
         recall = len(retrieved_relevant) / len(ground_truth) if ground_truth else 1.0
-        
+
         # Store individual result
         results.append({
             'question_id': item.get('id', ''),
@@ -345,11 +346,11 @@ def evaluate_retrieval(evaluation_data, retriever_fn, k=10):
             'relevant_docs': list(ground_truth),
             'metadata': item.get('metadata', {})
         })
-    
+
     # Aggregate metrics
     avg_precision = sum(r['precision'] for r in results) / len(results)
     avg_recall = sum(r['recall'] for r in results) / len(results)
-    
+
     return {
         'avg_precision': avg_precision,
         'avg_recall': avg_recall,
@@ -387,22 +388,22 @@ If you're starting a RAG application without user data, synthetic data generatio
 flowchart TD
     A["Document Corpus"] --> B["Sample Representative<br>Text Chunks"]
     B --> C["LLM-Powered<br>Question Generation"]
-    
+
     C --> D1["Factual<br>Questions"]
     C --> D2["Inferential<br>Questions"]
     C --> D3["Comparative<br>Questions"]
     C --> D4["Hypothetical<br>Questions"]
-    
+
     D1 & D2 & D3 & D4 --> E["Verify Retrievability<br>with Current System"]
-    
+
     E --> F1["Easy Questions<br>(80-90% expected recall)"]
     E --> F2["Medium Questions<br>(50-70% expected recall)"]
     E --> F3["Hard Questions<br>(30-50% expected recall)"]
-    
+
     F1 & F2 & F3 --> G["Comprehensive<br>Evaluation Dataset"]
-    
+
     H["Real User<br>Questions"] -.->|"As they become<br>available"| G
-    
+
     style A fill:#CCCCFF,stroke:#0000AA
     style C fill:#FFD700,stroke:#B8860B
     style E fill:#90EE90,stroke:#006400
@@ -482,7 +483,7 @@ Here are some examples of real questions:
 Here's a text passage:
 [CHUNK]
 
-Please generate 5 new questions similar in style and intent to the examples above, 
+Please generate 5 new questions similar in style and intent to the examples above,
 that would be answered by this text passage.
 ```
 
@@ -526,23 +527,18 @@ By investing time in creating high-quality synthetic data upfront, you establish
 
 ## Additional Resources
 
-!!! info "Tools and Libraries for RAG Evaluation"
-    - **[RAGAS](https://github.com/explodinggradients/ragas)**: Open-source framework for evaluating RAG applications
-    - **[LangChain Evaluation](https://python.langchain.com/docs/guides/evaluation/)**: Tools for evaluating retrieval and generation
-    - **[Prompttools](https://github.com/promptslab/prompttools)**: Toolkit for testing and evaluating LLM applications
-    - **[MLflow for Experiment Tracking](https://mlflow.org/)**: Open-source platform for managing ML lifecycle
+!!! info "Tools and Libraries for RAG Evaluation" - **[RAGAS](https://github.com/explodinggradients/ragas)**: Open-source framework for evaluating RAG applications - **[LangChain Evaluation](https://python.langchain.com/docs/guides/evaluation/)**: Tools for evaluating retrieval and generation - **[Prompttools](https://github.com/promptslab/prompttools)**: Toolkit for testing and evaluating LLM applications - **[MLflow for Experiment Tracking](https://mlflow.org/)**: Open-source platform for managing ML lifecycle
 
 ## Reflection Questions
 
-!!! question "Self-Assessment"
-    1. What are your leading and lagging metrics for your RAG application? How do they relate to each other?
-    
+!!! question "Self-Assessment" 1. What are your leading and lagging metrics for your RAG application? How do they relate to each other?
+
     2. How might you generate more diverse and challenging synthetic questions for your specific domain?
-    
+
     3. Where does your current evaluation framework fall short, and what additional metrics might be valuable?
-    
+
     4. What experiment could you run this week to test a hypothesis about improving retrieval quality?
-    
+
     5. How will you incorporate real user feedback into your evaluation framework as it becomes available?
 
 ## Conclusion and Next Steps
@@ -552,8 +548,8 @@ In this chapter, we've established the foundation for systematically improving y
 By prioritizing retrieval metrics like precision and recall, you can run more experiments in less time, at lower cost, and with greater confidence in the results. This approach sets the stage for incorporating user feedback and advanced fine-tuning techniques.
 
 !!! tip "What's Coming Next"
-    In [Chapter 2](chapter2.md), we'll explore how to convert evaluations into training data for fine-tuning, allowing you to create specialized models that better reflect your unique business needs.
+In [Chapter 2](chapter2.md), we'll explore how to convert evaluations into training data for fine-tuning, allowing you to create specialized models that better reflect your unique business needs.
 
 ## Summary
 
-Remember, the goal is not to chase the latest AI techniques blindly, but to establish a flywheel of continuous improvement driven by clear metrics aligned with user outcomes. Start with synthetic data, focus on retrieval before generation, and measure everything. These practices will serve as the foundation for all our subsequent improvements to your RAG application. 
+Remember, the goal is not to chase the latest AI techniques blindly, but to establish a flywheel of continuous improvement driven by clear metrics aligned with user outcomes. Start with synthetic data, focus on retrieval before generation, and measure everything. These practices will serve as the foundation for all our subsequent improvements to your RAG application.
