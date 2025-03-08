@@ -15,7 +15,8 @@ tags:
 # Beyond Implementation to Improvement: A Product Mindset for RAG
 
 !!! abstract "Chapter Overview"
-In this opening chapter, I introduce you to a fundamental shift in how we approach RAG systems—from static implementations to continuously improving products. You'll discover:
+
+    In this opening chapter, I introduce you to a fundamental shift in how we approach RAG systems—from static implementations to continuously improving products. You'll discover:
 
     - Why the most successful RAG systems are built as products, not just technical implementations
     - How to think about RAG as a recommendation engine wrapped around language models
@@ -121,6 +122,15 @@ This flywheel addresses the most common challenges in RAG development:
 | **Optimization**       | Maintaining quality as usage scales              | Combining multiple specialized components  | Create unified routing architecture<br>Implement monitoring and alerts<br>Establish continuous improvement processes                |
 
 The beauty of this approach is that each phase feeds into the next, creating momentum that accelerates improvement over time. As you collect more data, you gain clearer insights into what's working and what isn't, allowing you to make increasingly targeted enhancements.
+
+### Optimizing Feedback Collection
+
+The effectiveness of your improvement flywheel depends heavily on how you collect feedback. During our office hours, we discovered that simply changing feedback prompt copy from "How did we do?" to "Did we answer your question?" increased feedback rates by 5x. This more specific framing focused users on the core value proposition rather than secondary concerns like latency or formatting.
+
+When implementing feedback mechanisms, remember that:
+- Binary feedback (thumbs up/down) generally yields higher response rates than free text fields
+- For enterprise applications, combining button options with free text and posting responses to Slack creates transparency that encourages more feedback
+- Every metric you track should lead to a specific follow-up action—it's not just about knowing the number
 
 ## The System vs. Ad Hoc Approaches
 

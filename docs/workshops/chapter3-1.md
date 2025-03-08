@@ -4,10 +4,11 @@ description: "Building feedback flywheels into your RAG applications"
 author: "Jason Liu"
 ---
 
-!!! abstract "Chapter Overview"
-This chapter explores the essential role of feedback collection in RAG systems, introducing the concept of a feedback flywheel for systematic improvement. You'll learn practical strategies for making feedback mechanisms visible and engaging to users, techniques for collecting segmented feedback that provides actionable insights, and methods for mining user behavior to generate training data. The chapter emphasizes how effective feedback collection transforms your RAG application from a static tool into a continuously improving system that grows more valuable with every interaction.
-
 # Feedback Collection: Building Your Improvement Flywheel
+
+!!! abstract "Chapter Overview"
+
+    This chapter explores the essential role of feedback collection in RAG systems, introducing the concept of a feedback flywheel for systematic improvement. You'll learn practical strategies for making feedback mechanisms visible and engaging to users, techniques for collecting segmented feedback that provides actionable insights, and methods for mining user behavior to generate training data. The chapter emphasizes how effective feedback collection transforms your RAG application from a static tool into a continuously improving system that grows more valuable with every interaction.
 
 ## Introduction
 

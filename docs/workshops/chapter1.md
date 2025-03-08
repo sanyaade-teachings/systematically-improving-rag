@@ -14,7 +14,8 @@ tags:
 # Kickstarting the Data Flywheel with Synthetic Data
 
 !!! abstract "Chapter Overview"
-This chapter focuses on starting the improvement flywheel by establishing proper evaluation frameworks:
+
+    This chapter focuses on starting the improvement flywheel by establishing proper evaluation frameworks:
 
     - Understanding common pitfalls in AI development
     - Distinguishing between different types of metrics

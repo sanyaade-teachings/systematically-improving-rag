@@ -14,7 +14,8 @@ tags:
 # Converting Evaluations into Training Data for Fine-Tuning
 
 !!! abstract "Chapter Overview"
-This chapter explores how to transform evaluation data into valuable training assets:
+
+    This chapter explores how to transform evaluation data into valuable training assets:
 
     - Converting evaluation examples into few-shot prompts
     - Understanding the limitations of generic embeddings
@@ -107,7 +108,8 @@ Creating a comprehensive few-shot example library is a strategic investment that
 6. Iterate and refine based on performance
 
 !!! example "Structured Few-Shot Prompt"
-```
+
+````
 You are an assistant specialized in answering questions about [domain].
 
     Here are some examples of how to answer questions:
@@ -187,7 +189,7 @@ graph LR
     A --- N[Negative: Irrelevant Document]
     P -.- |"Pull Closer"| A
     N -.- |"Push Away"| A
-```
+````
 
 This approach is particularly effective for embedding models because it directly optimizes for the distance relationships we care about in retrieval tasks.
 

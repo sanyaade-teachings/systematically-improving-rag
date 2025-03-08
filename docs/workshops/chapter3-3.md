@@ -13,6 +13,10 @@ tags:
 
 # 3.3 Quality of Life Improvements: Citations, Chain of Thought, and Validation
 
+!!! abstract "Chapter Overview"
+
+    This chapter explores essential quality-of-life improvements that transform RAG systems from functional to exceptional. You'll learn how to implement interactive citations that build trust while collecting valuable feedback, techniques for making reasoning transparent through chain-of-thought approaches, and validation methods that catch errors before they reach users. These enhancements not only improve immediate user experience but also strengthen your feedback flywheel by creating additional opportunities for collecting insights. By implementing these techniques, you'll create a RAG system that users genuinely enjoy using—one that explains its reasoning, justifies its answers, and demonstrates reliability through self-correction.
+
 ## Introduction: From Functional to Exceptional
 
 In the previous two chapters, we established critical foundations for successful RAG applications: robust feedback collection mechanisms in Chapter 3.1 and techniques to overcome latency in Chapter 3.2. Now we're ready to elevate our system from merely functional to truly exceptional by addressing the subtle but powerful elements that transform user experience.

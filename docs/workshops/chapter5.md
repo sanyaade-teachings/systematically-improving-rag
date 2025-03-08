@@ -14,7 +14,8 @@ tags:
 # Multimodal RAG: Building Specialized Search Indices
 
 !!! abstract "Chapter Overview"
-This chapter explores how to move beyond basic retrieval to create specialized indices for different content types:
+
+    This chapter explores how to move beyond basic retrieval to create specialized indices for different content types:
 
     - Understanding why specialized retrievers outperform general-purpose solutions
     - Implementing strategies for document, image, and table retrieval
@@ -89,7 +90,8 @@ The first approach involves defining and extracting more metadata from your text
 This approach essentially asks: "What structured information is hiding within our unstructured content that would make it easier to search?"
 
 !!! example "Financial Metadata Model"
-```python
+
+````python
 from pydantic import BaseModel
 from datetime import date
 from typing import Optional, List
@@ -167,7 +169,7 @@ graph LR
 
     B --> E[Enhanced Retrievability]
     D --> E
-```
+````
 
 ## Measuring What Matters
 
@@ -189,7 +191,8 @@ If you find that your system correctly routes 95% of queries to the appropriate 
 This two-level evaluation framework ensures you invest your improvement efforts where they'll have the greatest impact.
 
 !!! example "Performance Evaluation Code"
-```python
+
+````python
 def evaluate_system_performance(test_queries: List[dict]) -> dict:
 """
 Evaluate the overall system performance across components.
@@ -266,7 +269,7 @@ flowchart LR
     C --> D[Re-ranking]
     D --> E[Dynamic Expansion]
     E --> F[Final Context]
-```
+````
 
 The result is a document retrieval system that might return different types of content depending on the query:
 
@@ -277,7 +280,8 @@ The result is a document retrieval system that might return different types of c
 This flexibility allows the system to balance precision, recall, and presentation based on what best serves each query.
 
 !!! example "Document Processor with Contextual Retrieval"
-```python
+
+````python
 from typing import List, Dict, Any
 import re
 
@@ -657,7 +661,7 @@ flowchart TD
 
     H --> I[Response Generator]
     I --> J[User Response]
-```
+````
 
 The beauty of this framework is its recursive nature. The same playbook—synthetic data generation, segmentation, capability identification—applies whether you're building your first retrieval system or your fifth specialized index.
 

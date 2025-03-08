@@ -4,10 +4,11 @@ description: "Techniques for enhancing both actual and perceived performance in 
 author: "Jason Liu"
 ---
 
-!!! abstract "Chapter Overview"
-This chapter explores how to overcome the critical challenge of latency in RAG applications. You'll learn strategies for streaming responses, designing meaningful interstitials, and employing various technical optimizations to enhance both actual and perceived performance. The chapter demonstrates how techniques like streaming structured data and dynamic content updates can transform waiting time from a frustrating experience into an engaging one, ultimately improving user satisfaction and feedback collection rates. By implementing these approaches, you'll create RAG applications that feel responsive even during complex processing operations.
-
 # Overcoming Latency: Streaming and Interstitials
+
+!!! abstract "Chapter Overview"
+
+    This chapter explores how to overcome the critical challenge of latency in RAG applications. You'll learn strategies for streaming responses, designing meaningful interstitials, and employing various technical optimizations to enhance both actual and perceived performance. The chapter demonstrates how techniques like streaming structured data and dynamic content updates can transform waiting time from a frustrating experience into an engaging one, ultimately improving user satisfaction and feedback collection rates. By implementing these approaches, you'll create RAG applications that feel responsive even during complex processing operations.
 
 ## Introduction: The Psychology of Waiting
 

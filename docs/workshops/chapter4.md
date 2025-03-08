@@ -107,7 +107,8 @@ Remember the synthetic data approaches from [Chapter 1](chapter1.md)? You can us
 #### Example: BERTopic Implementation
 
 !!! example "BERTopic Code Example"
-```python
+
+````python
 from bertopic import BERTopic
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
@@ -169,7 +170,7 @@ topic_model.visualize_heatmap()
 # Show topic distribution over time (if you have timestamp data)
 topics_over_time = topic_model.topics_over_time(queries, timestamps)
 topic_model.visualize_topics_over_time(topics_over_time)
-```
+````
 
 These visualizations are invaluable for communicating your findings to stakeholders and building consensus around improvement priorities.
 
@@ -178,7 +179,8 @@ These visualizations are invaluable for communicating your findings to stakehold
 While traditional clustering methods work well, I've found that LLM-based approaches can provide more intuitive and actionable results, especially for domain-specific applications.
 
 !!! example "OpenAI Embeddings + HDBSCAN Clustering"
-```python
+
+````python
 import numpy as np
 import openai
 import pandas as pd
@@ -340,7 +342,7 @@ def log_query_metrics(query, response, user_feedback=None):
 
     # Add to your logging/monitoring solution
     monitoring_db.insert_one(log_entry)
-```
+````
 
 This structured approach allows you to:
 
@@ -535,7 +537,8 @@ Beyond basic clustering, several advanced techniques can provide deeper insights
 Use dimensionality reduction to visualize query clusters, revealing relationships that might not be apparent in simple categorization. I've found this approach particularly valuable for identifying edge cases and understanding the boundaries between different query categories.
 
 !!! example "UMAP Visualization Code"
-```python
+
+````python
 import numpy as np
 import umap
 import matplotlib.pyplot as plt
@@ -673,3 +676,4 @@ The journey from collecting feedback to understanding patterns to implementing t
 
 !!! tip "What's Coming Next"
 In [Chapter 5](chapter5.md), we'll explore specialized improvements through multimodal search and contextual retrieval. We'll build on the priorities identified in this chapter to create targeted solutions for specific query types.
+````
