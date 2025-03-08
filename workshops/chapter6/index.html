@@ -1,0 +1,2585 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Create a cohesive RAG system by intelligently routing queries to specialized components while maintaining a seamless user experience">
+      
+      
+      
+        <link rel="canonical" href="https://567-labs.github.io/rag/workshops/chapter6/">
+      
+      
+        <link rel="prev" href="../chapter5/">
+      
+      
+        <link rel="next" href="../../office-hours/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Unified Product Architecture - The RAG Flywheel</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Unified Product Architecture - The RAG Flywheel" >
+      
+        <meta  property="og:description"  content="Create a cohesive RAG system by intelligently routing queries to specialized components while maintaining a seamless user experience" >
+      
+        <meta  property="og:image"  content="https://567-labs.github.io/rag/assets/images/social/workshops/chapter6.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://567-labs.github.io/rag/workshops/chapter6/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Unified Product Architecture - The RAG Flywheel" >
+      
+        <meta  name="twitter:description"  content="Create a cohesive RAG system by intelligently routing queries to specialized components while maintaining a seamless user experience" >
+      
+        <meta  name="twitter:image"  content="https://567-labs.github.io/rag/assets/images/social/workshops/chapter6.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#unified-product-architecture-building-a-cohesive-rag-system" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="The RAG Flywheel" class="md-header__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The RAG Flywheel
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Unified Product Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../office-hours/" class="md-tabs__link">
+          
+  
+    
+  
+  Office Hours
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../test-math.md" class="md-tabs__link">
+        
+  
+    
+  
+  Math Test
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="The RAG Flywheel" class="md-nav__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    The RAG Flywheel
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Workshops
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Workshops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 1: Starting the Flywheel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 2: From Evaluation to Enhancement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Design Principles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Feedback Collection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Iterative Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4: Understanding Your Users
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5: Building Specialized Capabilities
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chapter 6: Unified Search Architecture
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6: Unified Search Architecture
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-beyond-specialized-retrievers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction: Beyond Specialized Retrievers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-api-mindset-tools-as-interfaces-between-models-and-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      The API Mindset: Tools as Interfaces Between Models and Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The API Mindset: Tools as Interfaces Between Models and Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-the-api-approach-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why the API Approach Works
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-tool-interfaces-for-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementing Tool Interfaces for Retrieval
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementing Tool Interfaces for Retrieval">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#building-a-blueprint-search-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building a Blueprint Search Tool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-a-document-search-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building a Document Search Tool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-power-of-tool-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Power of Tool Documentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aside-on-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aside on MCP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-the-routing-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building the Routing Layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building the Routing Layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementing-a-simple-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementing a Simple Router
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-few-shot-examples-to-improve-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Few-Shot Examples to Improve Routing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-query-routing-effectiveness" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Query Routing Effectiveness
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Query Routing Effectiveness">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tool-selection-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tool Selection Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analyzing-tool-selection-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analyzing Tool Selection Failures
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#balancing-example-diversity-vs-relevance-in-tool-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Balancing Example Diversity vs. Relevance in Tool Selection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Balancing Example Diversity vs. Relevance in Tool Selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-diversity-relevance-tradeoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Diversity-Relevance Tradeoff
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Diversity-Relevance Tradeoff">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clustering-based-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clustering-Based Selection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-coverage-guarantees" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tool Coverage Guarantees
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diversity-sampling-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diversity Sampling Techniques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-lambda-adjustment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dynamic Lambda Adjustment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#temporal-diversity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Temporal Diversity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-system-architecture-perspective" class="md-nav__link">
+    <span class="md-ellipsis">
+      The System Architecture Perspective
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-combined-success-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Combined Success Formula
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Combined Success Formula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-diagnostic-framework-for-improvement" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Diagnostic Framework for Improvement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#measuring-components-independently" class="md-nav__link">
+    <span class="md-ellipsis">
+      Measuring Components Independently
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expanding-the-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expanding the Formula
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-metrics-to-roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      From Metrics to Roadmap
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-interfaces-direct-tool-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Interfaces: Direct Tool Access
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-feedback-as-training-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Feedback as Training Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-challenges-and-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Challenges and Solutions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Challenges and Solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#low-recall-for-specific-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Low Recall for Specific Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slow-response-times" class="md-nav__link">
+    <span class="md-ellipsis">
+      Slow Response Times
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-leakage-in-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Leakage in Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confusing-user-experience" class="md-nav__link">
+    <span class="md-ellipsis">
+      Confusing User Experience
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-a-roadmap-for-continuous-improvement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building a Roadmap for Continuous Improvement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building a Roadmap for Continuous Improvement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 1: Foundation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 2: Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-expansion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 3: Expansion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-personalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 4: Personalization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion-the-end-of-the-beginning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion: The End of the Beginning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reflection-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflection Questions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Resources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../office-hours/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Office Hours
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Office Hours
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week1-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week2-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week3-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week4-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week5-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../test-math.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Math Test
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-beyond-specialized-retrievers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction: Beyond Specialized Retrievers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-api-mindset-tools-as-interfaces-between-models-and-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      The API Mindset: Tools as Interfaces Between Models and Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The API Mindset: Tools as Interfaces Between Models and Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-the-api-approach-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why the API Approach Works
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-tool-interfaces-for-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementing Tool Interfaces for Retrieval
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementing Tool Interfaces for Retrieval">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#building-a-blueprint-search-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building a Blueprint Search Tool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-a-document-search-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building a Document Search Tool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-power-of-tool-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Power of Tool Documentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aside-on-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aside on MCP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-the-routing-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building the Routing Layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building the Routing Layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementing-a-simple-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementing a Simple Router
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-few-shot-examples-to-improve-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Few-Shot Examples to Improve Routing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-query-routing-effectiveness" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Query Routing Effectiveness
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Query Routing Effectiveness">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tool-selection-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tool Selection Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analyzing-tool-selection-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analyzing Tool Selection Failures
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#balancing-example-diversity-vs-relevance-in-tool-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Balancing Example Diversity vs. Relevance in Tool Selection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Balancing Example Diversity vs. Relevance in Tool Selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-diversity-relevance-tradeoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Diversity-Relevance Tradeoff
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Diversity-Relevance Tradeoff">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clustering-based-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clustering-Based Selection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-coverage-guarantees" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tool Coverage Guarantees
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diversity-sampling-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diversity Sampling Techniques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-lambda-adjustment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dynamic Lambda Adjustment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#temporal-diversity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Temporal Diversity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-system-architecture-perspective" class="md-nav__link">
+    <span class="md-ellipsis">
+      The System Architecture Perspective
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-combined-success-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Combined Success Formula
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Combined Success Formula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-diagnostic-framework-for-improvement" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Diagnostic Framework for Improvement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#measuring-components-independently" class="md-nav__link">
+    <span class="md-ellipsis">
+      Measuring Components Independently
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expanding-the-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expanding the Formula
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-metrics-to-roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      From Metrics to Roadmap
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-interfaces-direct-tool-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Interfaces: Direct Tool Access
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-feedback-as-training-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Feedback as Training Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-challenges-and-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Challenges and Solutions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Challenges and Solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#low-recall-for-specific-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Low Recall for Specific Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slow-response-times" class="md-nav__link">
+    <span class="md-ellipsis">
+      Slow Response Times
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-leakage-in-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Leakage in Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confusing-user-experience" class="md-nav__link">
+    <span class="md-ellipsis">
+      Confusing User Experience
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-a-roadmap-for-continuous-improvement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building a Roadmap for Continuous Improvement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building a Roadmap for Continuous Improvement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 1: Foundation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 2: Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-expansion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 3: Expansion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-personalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 4: Personalization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion-the-end-of-the-beginning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion: The End of the Beginning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reflection-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflection Questions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Resources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="unified-product-architecture-building-a-cohesive-rag-system">Unified Product Architecture: Building a Cohesive RAG System</h1>
+<div class="admonition abstract">
+<p class="admonition-title">Chapter Overview</p>
+<p>This chapter explores how to build a coherent system that intelligently combines specialized retrieval components:</p>
+<ul>
+<li>Designing tool interfaces that bridge language models and specialized indices</li>
+<li>Implementing effective query routing to direct requests to appropriate tools</li>
+<li>Testing and measuring performance of both retrieval and routing components</li>
+<li>Creating user interfaces that leverage both AI and direct tool access</li>
+<li>Building systems that scale across teams and complexity levels</li>
+</ul>
+</div>
+<h2 id="introduction-beyond-specialized-retrievers">Introduction: Beyond Specialized Retrievers</h2>
+<p>In the previous chapter, we explored how to build specialized retrievers for different content types. We discussed strategies for handling documents, images, tables, and other specialized data formats. While these specialized components improve retrieval quality dramatically, they create a new challenge: how do we build a cohesive system that knows when to use each specialized component?</p>
+<p>This is the challenge of <strong>query routing</strong>—the process of understanding what a user is asking for and directing their query to the most appropriate retrieval tool or combination of tools. Effective query routing is what transforms a collection of specialized capabilities into a unified, seamless product experience.</p>
+<div class="admonition quote">
+<p class="admonition-title">Key Insight</p>
+<p>"The quality of your RAG system isn't just determined by how well each individual retriever performs, but by how effectively your system routes queries to the right retrievers at the right time. Even perfect retrievers fail if they're used for the wrong queries."</p>
+</div>
+<p>The unified architecture approach we'll explore in this chapter completes our improvement flywheel by:</p>
+<ol>
+<li>Using the specialized capabilities we built based on user segmentation</li>
+<li>Implementing intelligent routing between these components</li>
+<li>Creating interfaces that help users understand system capabilities</li>
+<li>Building feedback loops that continuously improve both routing and retrieval</li>
+</ol>
+<p>Let's begin by examining the architectural patterns that enable effective query routing in RAG systems.</p>
+<h2 id="the-api-mindset-tools-as-interfaces-between-models-and-data">The API Mindset: Tools as Interfaces Between Models and Data</h2>
+<p>At the heart of unified RAG architecture is a simple but powerful pattern: treating each specialized retriever as an API that language models can call. This "tools as APIs" approach creates a clear separation of concerns between:</p>
+<ol>
+<li><strong>Tool Interfaces</strong>: The definitions that describe what each tool does and what parameters it accepts</li>
+<li><strong>Tool Implementations</strong>: The specialized code that performs retrieval against specific indices</li>
+<li><strong>Routing Logic</strong>: The system that determines which tools to call for a given query</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">History of Tool Interfaces</p>
+<p>The tool interface pattern has evolved rapidly in AI systems. What began as simple "function calling" in APIs like OpenAI's functions or Anthropic's tools has now developed into more sophisticated frameworks with multiple tool selection strategies. This pattern mimics the development of web API frameworks like REST and GraphQL, but with language models as the primary "clients" of these APIs.</p>
+</div>
+<h3 id="why-the-api-approach-works">Why the API Approach Works</h3>
+<p>Treating specialized retrievers as APIs offers several key advantages:</p>
+<ol>
+<li><strong>Clear Boundaries</strong>: Teams can work independently on different tools</li>
+<li><strong>Testability</strong>: Each component can be tested in isolation</li>
+<li><strong>Reusability</strong>: Tools can be used by both language models and developers</li>
+<li><strong>Scalability</strong>: New capabilities can be added without changing existing components</li>
+<li><strong>Performance</strong>: Parallel execution becomes easier to implement</li>
+</ol>
+<pre class="mermaid"><code>graph TD
+    A[User Query] --&gt; B[Query Router]
+    B --&gt; C[Tool Selection]
+    C --&gt; D[Document Tool]
+    C --&gt; E[Image Tool]
+    C --&gt; F[Table Tool]
+    D --&gt; G[Ranking]
+    E --&gt; G
+    F --&gt; G
+    G --&gt; H[Context Assembly]
+    H --&gt; I[Response Generation]
+    I --&gt; J[User Interface]</code></pre>
+<p>This architecture resembles modern microservice patterns where specialized services handle specific tasks. The difference is that the "client" making API calls is often a language model rather than another service.</p>
+<h2 id="implementing-tool-interfaces-for-retrieval">Implementing Tool Interfaces for Retrieval</h2>
+<p>Let's look at how to implement this pattern with a concrete example. Imagine we're building a construction information system that includes blueprints, text documents, and project schedules.</p>
+<h3 id="building-a-blueprint-search-tool">Building a Blueprint Search Tool</h3>
+<p>Based on our analysis in Chapter 5, we've determined that users often search for blueprints by description and date range. We'll define a tool interface that captures this functionality:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SearchBlueprint</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">start_date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">BlueprintResult</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Search for blueprints matching the description and date range.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            description: Text to search for in blueprint descriptions</span>
+<span class="sd">            start_date: Optional start date in YYYY-MM-DD format</span>
+<span class="sd">            end_date: Optional end date in YYYY-MM-DD format</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of matching blueprint documents</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Implementation details would depend on your database</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_query</span><span class="p">(</span>
+            <span class="n">query</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+            <span class="n">start_date</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">start_date</span><span class="p">,</span>
+            <span class="n">end_date</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">end_date</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_results</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+        <span class="o">...</span>
+</code></pre></div>
+<h3 id="building-a-document-search-tool">Building a Document Search Tool</h3>
+<p>Similarly, we can define a tool for searching text documents:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SearchText</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">document_type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;contract&quot;</span><span class="p">,</span> <span class="s2">&quot;proposal&quot;</span><span class="p">,</span> <span class="s2">&quot;bid&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">DocumentResult</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">document_type</span><span class="p">:</span>
+            <span class="n">filter_params</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">document_type</span>
+
+        <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_search_database</span><span class="p">(</span>
+            <span class="n">query</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">,</span>
+            <span class="n">filters</span><span class="o">=</span><span class="n">filter_params</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_results</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="the-power-of-tool-documentation">The Power of Tool Documentation</h3>
+<p>Notice the detailed docstrings and examples in these tool definitions. These aren't just for human developers—they're critical for language models to understand how and when to use each tool. The examples in particular help models recognize the patterns of queries that should trigger each tool.</p>
+<h3 id="aside-on-mcp">Aside on MCP</h3>
+<p>The Model Context Protocol (MCP) is an open standard developed by Anthropic that standardizes how applications provide context to large language models. Conceptually similar to the tool interface pattern we've discussed, MCP creates a universal protocol for connecting AI systems to various data sources and tools.</p>
+<p>Think of MCP like a "USB-C port for AI applications" – just as USB-C provides a standardized way to connect devices to various peripherals, MCP provides a standardized way for AI models to interact with different data sources and tools.</p>
+<p>Key benefits of MCP include:</p>
+<ol>
+<li><strong>Standardization</strong>: Developers can build against a single protocol instead of maintaining separate connectors for each data source</li>
+<li><strong>Interoperability</strong>: AI systems can maintain context as they move between different tools and datasets</li>
+<li><strong>Ecosystem</strong>: Pre-built connectors for popular systems like GitHub, Slack, and databases can be shared and reused</li>
+<li><strong>Security</strong>: The protocol is designed with security considerations for connecting AI to sensitive data sources</li>
+</ol>
+<p>MCP represents an important step toward the unified architecture vision we've discussed in this chapter, offering a standardized way to implement the "tools as APIs" pattern across different AI systems and data sources.</p>
+<div class="admonition warning">
+<p class="admonition-title">MCP is Still Emerging</p>
+<p>While MCP represents a promising approach to standardizing AI tool interfaces, it's important to note that it's still very new. As of now, there aren't many production-ready MCP implementations available, and the ecosystem of useful MCPs is still in its early stages of development. Organizations adopting MCP should be prepared for an evolving standard and limited availability of pre-built connectors. As with any emerging technology, early adopters will need to invest in building custom implementations and should expect the standard to evolve over time.</p>
+</div>
+<h2 id="building-the-routing-layer">Building the Routing Layer</h2>
+<p>Once we have defined our specialized retrieval tools, we need a system that can route queries to the appropriate tools. This routing layer is responsible for:</p>
+<ol>
+<li>Understanding the user's query</li>
+<li>Determining which tool(s) to call</li>
+<li>Extracting the necessary parameters from the query</li>
+<li>Calling the appropriate tools with those parameters</li>
+<li>Combining results when multiple tools are used</li>
+</ol>
+<p>Modern language models excel at this kind of task, especially when provided with clear tool definitions and examples.</p>
+<h3 id="implementing-a-simple-router">Implementing a Simple Router</h3>
+<p>Here's a basic implementation of a query router:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">instructor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">instructor</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mode</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">instructor</span><span class="o">.</span><span class="n">from_openai</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ClarifyQuestion</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">question</span><span class="p">:</span> <span class="nb">str</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">AnswerQuestion</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">content</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">follow_ups</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SearchBlueprint</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">blueprint_description</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">start_date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SearchText</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">document_type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;contract&quot;</span><span class="p">,</span> <span class="s2">&quot;proposal&quot;</span><span class="p">,</span> <span class="s2">&quot;bid&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">route_query</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SearchBlueprint</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                You are a helpful assistant that creates search blueprints for building plans.</span>
+<span class="s2">                Use the SearchBlueprint model to structure your responses. Here are some examples:</span>
+
+<span class="s2">                &lt;examples&gt;</span>
+<span class="s2">                ...</span>
+<span class="s2">                &lt;/examples&gt;</span>
+<span class="s2">                &quot;&quot;&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Can you find me the plans for a the 123 main st building?&quot;</span>
+            <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="n">response_model</span><span class="o">=</span><span class="n">Iterable</span><span class="p">[</span><span class="n">SearchBlueprint</span> <span class="o">|</span> <span class="n">SearchText</span> <span class="o">|</span> <span class="n">AnswerQuestion</span> <span class="o">|</span> <span class="n">ClarifyQuestion</span><span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="using-few-shot-examples-to-improve-routing">Using Few-Shot Examples to Improve Routing</h3>
+<p>The effectiveness of the router depends significantly on providing good examples of when to use each tool. These few-shot examples help the model understand the patterns that should trigger different tools.</p>
+<p>For instance, a system prompt for routing might include examples like:</p>
+<div class="highlight"><pre><span></span><code>- &quot;Find blueprints for the city hall built in 2010.&quot;
+{
+    &quot;blueprint_description&quot;: &quot;city hall blueprints&quot;,
+    &quot;start_date&quot;: &quot;2010-01-01&quot;,
+    &quot;end_date&quot;: &quot;2010-12-31&quot;
+}
+- &quot;I need plans for residential buildings constructed after 2015.&quot;
+{
+    &quot;blueprint_description&quot;: &quot;residential building plans&quot;,
+    &quot;start_date&quot;: &quot;2015-01-01&quot;,
+    &quot;end_date&quot;: null
+}
+- &quot;Can you find me the plans for a the 123 main st building?&quot;
+{
+    &quot;blueprint_description&quot;: &quot;123 main st building&quot;,
+    &quot;start_date&quot;: null,
+    &quot;end_date&quot;: null
+}
+- &quot;Show me blueprints for schools built between 2018 and 2020.&quot;
+{
+    &quot;blueprint_description&quot;: &quot;school blueprints&quot;,
+    &quot;start_date&quot;: &quot;2018-01-01&quot;,
+    &quot;end_date&quot;: &quot;2020-12-31&quot;
+}
+- &quot;I need the contract for the Johnson project.&quot;
+{
+    &quot;query&quot;: &quot;Johnson project contract&quot;,
+    &quot;document_type&quot;: &quot;contract&quot;
+}
+- &quot;What&#39;s the difference between a blueprint and a floor plan?&quot;
+{
+    &quot;content&quot;: &quot;Blueprints are technical architectural drawings that include detailed specifications for construction, while floor plans focus primarily on the layout and dimensions of rooms and spaces within a building.&quot;,
+    &quot;follow_ups&quot;: [&quot;How do I read a blueprint?&quot;, &quot;Can you show me examples of floor plans?&quot;]
+}
+- &quot;Can you explain what a load-bearing wall is?&quot;
+{
+    &quot;content&quot;: &quot;A load-bearing wall is a structural element that supports the weight of the building above it, helping to transfer the load to the foundation. Removing or modifying load-bearing walls requires careful engineering considerations.&quot;,
+    &quot;follow_ups&quot;: [&quot;How can I identify a load-bearing wall?&quot;, &quot;What happens if you remove a load-bearing wall?&quot;]
+}
+- &quot;I&#39;m not sure what kind of building plans I need for my renovation.&quot;
+{
+    &quot;question&quot;: &quot;Could you tell me more about your renovation project? What type of building is it, what changes are you planning to make, and do you need plans for permits or for construction guidance?&quot;
+}
+&lt;/examples&gt;
+</code></pre></div>
+<p>As your system collects more data about successful interactions, these examples can be dynamically updated with the most relevant ones for each tool.</p>
+<h2 id="testing-query-routing-effectiveness">Testing Query Routing Effectiveness</h2>
+<p>Just as we need metrics for retrieval quality, we need metrics for routing quality. The fundamental question is: are we selecting the right tools for each query?</p>
+<h3 id="tool-selection-metrics">Tool Selection Metrics</h3>
+<p>To evaluate tool selection, we need a test dataset with queries annotated with the correct tool(s) to use. From there, we can calculate:</p>
+<ol>
+<li><strong>Tool Precision</strong>: When we select a tool, how often is it actually the right one?</li>
+<li><strong>Tool Recall</strong>: How often do we select all the tools that should be selected?</li>
+<li><strong>Tool F1 Score</strong>: The harmonic mean of precision and recall</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Query ID</th>
+<th>Query Text</th>
+<th>Expected Tools</th>
+<th>Realised Tools</th>
+<th>Precision</th>
+<th>Recall</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Retrieve blueprints for the museum expansion</td>
+<td>SearchBlueprint</td>
+<td>SearchBlueprint</td>
+<td>100%</td>
+<td>1/1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Find schedule and documents for the library renovation</td>
+<td>SearchSchedule, SearchText</td>
+<td>SearchSchedule</td>
+<td>100%</td>
+<td>1/2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Get both blueprints and schedule for campus construction</td>
+<td>SearchBlueprint, SearchSchedule</td>
+<td>SearchBlueprint, SearchSchedule</td>
+<td>100%</td>
+<td>2/2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Show me contract details and permit requirements for the new office</td>
+<td>SearchText, SearchBlueprint</td>
+<td>SearchText, SearchBlueprint, SearchSchedule</td>
+<td>67%</td>
+<td>2/2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Identify materials and design specs for the downtown skyscraper</td>
+<td>SearchText, SearchBlueprint</td>
+<td>SearchBlueprint, SearchText</td>
+<td>100%</td>
+<td>2/2</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Get full details on industrial park planning</td>
+<td>SearchBlueprint, SearchText, SearchSchedule</td>
+<td>SearchText, SearchInvoice, SearchPermit</td>
+<td>33%</td>
+<td>1/3</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Find emergency repair guidelines for the abandoned warehouse</td>
+<td>SearchRepair, SearchBlueprint</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>Obtain comprehensive analysis for the urban redevelopment project</td>
+<td>SearchBlueprint, SearchText, SearchSchedule, SearchPermit</td>
+<td>SearchBlueprint</td>
+<td>100%</td>
+<td>1/4</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Explain zoning regulations for the new industrial area</td>
+<td>SearchZoning</td>
+<td>SearchBlueprint, SearchText</td>
+<td>0%</td>
+<td>0/1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="analyzing-tool-selection-failures">Analyzing Tool Selection Failures</h3>
+<p>When tool selection fails, we need to understand why. A confusion matrix is particularly useful here, showing which tools are being confused with one another.</p>
+<p>For example, if we find that the <code>SearchBlueprint</code> tool is never being selected even when it should be, we might need to improve its description or add more examples to the system prompt.</p>
+<div class="admonition example">
+<p class="admonition-title">Confusion Matrix Analysis</p>
+<p>Imagine our evaluation produces this confusion matrix:</p>
+<table>
+<thead>
+<tr>
+<th>Expected\Selected</th>
+<th>SearchText</th>
+<th>SearchBlueprint</th>
+<th>SearchSchedule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SearchText</td>
+<td>85</td>
+<td>5</td>
+<td>10</td>
+</tr>
+<tr>
+<td>SearchBlueprint</td>
+<td>40</td>
+<td>50</td>
+<td>10</td>
+</tr>
+<tr>
+<td>SearchSchedule</td>
+<td>15</td>
+<td>5</td>
+<td>80</td>
+</tr>
+</tbody>
+</table>
+<p>This shows that SearchBlueprint is frequently mistaken for SearchText, indicating that we need to better differentiate these tools.</p>
+</div>
+<h2 id="balancing-example-diversity-vs-relevance-in-tool-selection">Balancing Example Diversity vs. Relevance in Tool Selection</h2>
+<p>When selecting few-shot examples for tool routing, there's an inherent tension between choosing examples that are highly relevant to the current query and maintaining diversity to cover a wide range of use cases. This balance is critical for effective tool selection.</p>
+<h3 id="the-diversity-relevance-tradeoff">The Diversity-Relevance Tradeoff</h3>
+<p>Finding the right balance between relevance and diversity requires thoughtful strategies:</p>
+<h4 id="clustering-based-selection">Clustering-Based Selection</h4>
+<p>Rather than simply selecting the k-most similar examples to the current query:
+- Cluster your historical examples based on semantic similarity
+- Select representatives from multiple clusters, prioritizing those closer to the current query
+- This ensures both relevance and coverage of different query patterns</p>
+<h4 id="tool-coverage-guarantees">Tool Coverage Guarantees</h4>
+<p>Ensure representation of all important tools in your few-shot examples:
+- Start by allocating a minimum number of slots for each tool
+- Fill these slots with the most relevant examples for each tool
+- Use remaining slots for the most relevant examples overall
+- This prevents underrepresented tools from being "forgotten"</p>
+<h4 id="diversity-sampling-techniques">Diversity Sampling Techniques</h4>
+<p>Implement algorithmic approaches to balance diversity and relevance:
+- Use Maximum Marginal Relevance (MMR) to select examples that balance similarity to the query with diversity from already-selected examples
+- Apply determinantal point processes (DPPs) to select a diverse yet relevant subset
+- Incorporate exploration-exploitation techniques from recommendation systems</p>
+<h4 id="dynamic-lambda-adjustment">Dynamic Lambda Adjustment</h4>
+<p>Adapt the diversity-relevance balance based on query characteristics:
+- For unusual or ambiguous queries, increase diversity to cover more possibilities
+- For clear, common queries, emphasize relevance
+- Use metrics like perplexity or entropy of tool probability distribution to gauge query clarity</p>
+<h4 id="temporal-diversity">Temporal Diversity</h4>
+<p>Consider the temporal dimension in example selection:
+- Include both recent and historical examples
+- Recent examples capture evolving user behaviors and data patterns
+- Historical examples maintain stability for core functionality
+- Weight by both relevance and recency with a tunable decay factor</p>
+<div class="admonition example">
+<p class="admonition-title">Example: Balanced Tool Selection</p>
+<p>Imagine you have these tools: <code>SearchBlueprint</code>, <code>SearchText</code>, <code>SearchSchedule</code>, and <code>SearchPermit</code>. When a user asks about "construction timeline for the new office building", an optimal set of examples might include:</p>
+<ul>
+<li>2 examples of <code>SearchSchedule</code> for construction timelines (highest relevance)</li>
+<li>1 example of <code>SearchBlueprint</code> for buildings (related domain)</li>
+<li>1 example of <code>SearchText</code> for office specifications (related entity)</li>
+<li>1 recent example showing how these tools can be used together (temporal freshness)</li>
+</ul>
+<p>This combination ensures the model understands the primary intent (schedules) while maintaining awareness of other potentially relevant tools.</p>
+</div>
+<h2 id="the-system-architecture-perspective">The System Architecture Perspective</h2>
+<p>Stepping back, our unified RAG architecture consists of three main layers:</p>
+<ol>
+<li><strong>Interface Layer</strong>: Defines the tools/APIs that can be used</li>
+<li><strong>Implementation Layer</strong>: Builds the actual retrieval capabilities</li>
+<li><strong>Routing Layer</strong>: Directs queries to the appropriate tools</li>
+</ol>
+<p>This separation of concerns enables different teams to work on different aspects of the system:</p>
+<ul>
+<li>One team can focus on defining and refining tool interfaces</li>
+<li>Another can implement and optimize each specialized retriever</li>
+<li>A third can improve the routing logic and evaluation</li>
+</ul>
+<p>This architecture scales well as your system grows, allowing for:</p>
+<ol>
+<li>Adding new tools without changing existing ones</li>
+<li>Improving individual retrievers independently</li>
+<li>Enhancing routing logic without affecting tool implementations</li>
+</ol>
+<h2 id="the-combined-success-formula">The Combined Success Formula</h2>
+<p>Throughout this book, we've focused on a data-driven approach to systematic improvement. In the context of unified architecture, we can express the overall success probability of our system with a simple formula:</p>
+<div class="arithmatex">\[
+P(\text{success}) = P(\text{find right document} \mid \text{right tool}) \times P(\text{right tool})
+\]</div>
+<p>This formula highlights that our system's performance depends on both:</p>
+<ol>
+<li>How well each retriever works when used correctly</li>
+<li>How often we select the right retriever for the query</li>
+</ol>
+<h3 id="a-diagnostic-framework-for-improvement">A Diagnostic Framework for Improvement</h3>
+<p>This seemingly simple formula provides a powerful diagnostic framework. When your RAG system isn't performing well, it helps pinpoint exactly where the problem lies and what type of solution to pursue:</p>
+<ul>
+<li>If tool selection recall is low, focus on improving the routing layer</li>
+<li>If retrieval recall is low (given the right tool), focus on improving that specific retriever</li>
+</ul>
+<p><strong>Example:</strong> Imagine users report that when asking about blueprints, they only get satisfactory answers 40% of the time. There are two very different scenarios that could cause this:</p>
+<p><strong>Scenario 1:</strong> The router correctly selects the blueprint search tool 95% of the time, but the blueprint search itself only finds the right blueprints 42% of the time.</p>
+<ul>
+<li>P(right tool) = 0.95</li>
+<li>P(find right document | right tool) = 0.42</li>
+<li>P(success) = 0.95 × 0.42 = 0.40 (40%)</li>
+</ul>
+<p><strong>Scenario 2:</strong> The blueprint search is excellent at finding the right blueprints 80% of the time when used, but the router only selects it 50% of the time (often choosing document search instead).</p>
+<ul>
+<li>P(right tool) = 0.50</li>
+<li>P(find right document | right tool) = 0.80</li>
+<li>P(success) = 0.50 × 0.80 = 0.40 (40%)</li>
+</ul>
+<p>Same 40% success rate, but completely different problems requiring different solution strategies:</p>
+<p><strong>For Scenario 1 (retrieval problem):</strong></p>
+<ul>
+<li>Generate synthetic data to improve the blueprint search capability</li>
+<li>Fine-tune embedding models specifically for blueprint content</li>
+<li>Improve the extraction and structuring of blueprint metadata</li>
+<li>Experiment with different chunking strategies for blueprints</li>
+</ul>
+<p><strong>For Scenario 2 (routing problem):</strong></p>
+<ul>
+<li>Add more few-shot examples showing when to use the blueprint tool</li>
+<li>Improve the blueprint tool description to make it more distinctive</li>
+<li>Add user feedback from successful interactions into your examples</li>
+<li>Consider UI changes to help users explicitly request blueprints</li>
+</ul>
+<h3 id="measuring-components-independently">Measuring Components Independently</h3>
+<p>To apply this framework effectively, you need to measure both components independently:</p>
+<ol>
+<li><strong>Per-tool recall:</strong> How often each retriever finds the right information when used</li>
+<li><strong>Tool selection accuracy:</strong> How often the router selects the right tool(s) for each query</li>
+</ol>
+<p>A simple dashboard showing these metrics gives you immediate insight into where to focus your improvement efforts.</p>
+<h3 id="expanding-the-formula">Expanding the Formula</h3>
+<p>The formula can be expanded further to account for the user experience:</p>
+<div class="arithmatex">\[
+P(\text{success}) = P(\text{success} \mid \text{right tool}) \times P(\text{right tool} \mid \text{query}) \times P(\text{query})
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(P(\text{success} \mid \text{right tool})\)</span> is the retriever quality</li>
+<li><span class="arithmatex">\(P(\text{right tool} \mid \text{query})\)</span> is the router quality</li>
+<li><span class="arithmatex">\(P(\text{query})\)</span> represents the distribution of queries users actually make</li>
+</ul>
+<p>This expanded formula reveals a third dimension for improvement: you can increase overall success by influencing which queries users make. If certain query types have higher success rates, you can design your UI to encourage those queries or educate users on the most effective ways to interact with your system.</p>
+<h3 id="from-metrics-to-roadmap">From Metrics to Roadmap</h3>
+<p>This formula provides a clear framework for planning both product and research efforts:</p>
+<table>
+<thead>
+<tr>
+<th>P(success | right tool)</th>
+<th>P(right tool | query)</th>
+<th>Strategy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>High</strong></td>
+<td><strong>High</strong></td>
+<td>These are strengths to highlight in your product</td>
+</tr>
+<tr>
+<td><strong>Low</strong></td>
+<td><strong>High</strong></td>
+<td>Research focus needed on specific retrievers</td>
+</tr>
+<tr>
+<td><strong>High</strong></td>
+<td><strong>Low</strong></td>
+<td>Focus on improving router or exposing tools directly</td>
+</tr>
+<tr>
+<td><strong>Low</strong></td>
+<td><strong>Low</strong></td>
+<td>Consider whether this query type is worth supporting</td>
+</tr>
+</tbody>
+</table>
+<p>By systematically measuring and improving these components, you create a continuous improvement flywheel for your unified RAG architecture.</p>
+<h2 id="user-interfaces-direct-tool-access">User Interfaces: Direct Tool Access</h2>
+<p>One powerful insight from the routing architecture is that tools designed for language models can often be exposed directly to users as well. Just as Google offers specialized interfaces like Google Maps, YouTube, and Google Images alongside its main search, your RAG application can offer both:</p>
+<ol>
+<li>A natural language interface using the router</li>
+<li>Direct access to specialized tools for specific needs</li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">Dual-Mode UI</p>
+<p>Imagine a construction information system that offers:</p>
+<ul>
+<li>A chat interface for general questions</li>
+<li>A blueprint search interface with date filters</li>
+<li>A document search interface with type filters</li>
+<li>A schedule search with timeline visualization</li>
+</ul>
+</div>
+<p>This dual-mode interface has several advantages:</p>
+<ol>
+<li><strong>Expert users</strong> can go directly to the tool they need</li>
+<li><strong>New users</strong> can use natural language until they learn the system</li>
+<li><strong>User interactions</strong> with direct tools provide training data for routing</li>
+<li><strong>Clear capabilities</strong> help users understand what the system can do</li>
+</ol>
+<p>The key insight is that RAG isn't just about adding chat to your product—it's about building a comprehensive information discovery system where chat is just one interface option.</p>
+<h2 id="user-feedback-as-training-data">User Feedback as Training Data</h2>
+<p>A particularly valuable aspect of direct tool access is that user interactions can provide high-quality training data for improving both retrieval and routing:</p>
+<ol>
+<li>When users select a specific tool, that's a signal about their intent</li>
+<li>When users click on search results, that's a signal about relevance</li>
+<li>When users refine their search, that's a signal about what was missing</li>
+</ol>
+<p>These interactions can be logged and used to:</p>
+<ul>
+<li>Fine-tune embedding models with user-confirmed relevant documents</li>
+<li>Improve router accuracy by learning from user tool selections</li>
+<li>Create better few-shot examples based on successful interactions</li>
+</ul>
+<p>This creates another improvement flywheel: as users interact with the system, it collects data that makes both retrieval and routing better, which leads to higher user satisfaction and more interactions.</p>
+<h2 id="common-challenges-and-solutions">Common Challenges and Solutions</h2>
+<p>As you implement a unified RAG architecture, you'll likely encounter several common challenges. Here are practical solutions to address them:</p>
+<h3 id="low-recall-for-specific-tools">Low Recall for Specific Tools</h3>
+<p><strong>Challenge</strong>: Some specialized tools are rarely selected by the router, even when they should be.</p>
+<p><strong>Solution</strong>:</p>
+<ol>
+<li>Analyze examples where the tool should have been selected</li>
+<li>Enhance the tool description to be more distinctive</li>
+<li>Add more few-shot examples focused on this tool</li>
+<li>Consider whether the tool's purpose overlaps with others and needs clearer boundaries</li>
+</ol>
+<h3 id="slow-response-times">Slow Response Times</h3>
+<p><strong>Challenge</strong>: Using multiple tools in sequence creates high latency.</p>
+<p><strong>Solution</strong>:</p>
+<ol>
+<li>Implement parallel execution of tool calls</li>
+<li>Use streaming responses to show partial results while others are loading</li>
+<li>Prioritize high-confidence tool calls and execute others asynchronously</li>
+<li>Cache common query results for faster responses</li>
+</ol>
+<h3 id="data-leakage-in-testing">Data Leakage in Testing</h3>
+<p><strong>Challenge</strong>: Testing results appear artificially high because test queries are similar to few-shot examples.</p>
+<p><strong>Solution</strong>:</p>
+<ol>
+<li>Maintain separate test and development sets</li>
+<li>Use unique identifiers for each test case to prevent overlap</li>
+<li>Regularly refresh test data with new examples</li>
+<li>Test with variations of the same query to verify robustness</li>
+</ol>
+<h3 id="confusing-user-experience">Confusing User Experience</h3>
+<p><strong>Challenge</strong>: Users don't understand when to use chat versus direct tools.</p>
+<p><strong>Solution</strong>:</p>
+<ol>
+<li>Provide clear affordances for each interface option</li>
+<li>Use onboarding to explain when each approach is most effective</li>
+<li>Show suggested direct tools alongside chat responses</li>
+<li>Collect user feedback on interface preferences</li>
+</ol>
+<h2 id="building-a-roadmap-for-continuous-improvement">Building a Roadmap for Continuous Improvement</h2>
+<p>The unified architecture approach isn't implemented in a single sprint—it's built incrementally based on user needs and system performance. Here's a roadmap for implementing this approach:</p>
+<h3 id="phase-1-foundation">Phase 1: Foundation</h3>
+<ol>
+<li>Define clear interfaces for 2-3 core retrieval tools</li>
+<li>Implement basic routing between these tools</li>
+<li>Establish baseline metrics for both routing and retrieval</li>
+<li>Deploy a simple chat interface with direct links to specialized tools</li>
+</ol>
+<h3 id="phase-2-optimization">Phase 2: Optimization</h3>
+<ol>
+<li>Analyze routing errors and improve tool descriptions and examples</li>
+<li>Implement parallel execution for better performance</li>
+<li>Add instrumentation to collect user feedback and interactions</li>
+<li>Enhance direct tool interfaces based on usage patterns</li>
+</ol>
+<h3 id="phase-3-expansion">Phase 3: Expansion</h3>
+<ol>
+<li>Add more specialized tools based on user needs</li>
+<li>Implement more sophisticated routing with multi-tool execution</li>
+<li>Build a feedback loop that automatically improves routing based on usage</li>
+<li>Develop a unified search experience that intelligently combines results</li>
+</ol>
+<h3 id="phase-4-personalization">Phase 4: Personalization</h3>
+<ol>
+<li>Track individual user preferences and interaction patterns</li>
+<li>Develop personalized routing based on user history</li>
+<li>Create user-specific fine-tuning datasets</li>
+<li>Build adaptive interfaces that highlight the most relevant tools for each user</li>
+</ol>
+<p>This phased approach allows you to deliver value quickly while continuously improving based on real-world usage.</p>
+<h2 id="conclusion-the-end-of-the-beginning">Conclusion: The End of the Beginning</h2>
+<p>Throughout this book, we've explored how to systematically improve RAG applications by treating them as continuously evolving products rather than static implementations. We've covered:</p>
+<ol>
+<li>Starting the flywheel with synthetic data</li>
+<li>Converting evaluations into training data</li>
+<li>Building feedback collection mechanisms</li>
+<li>Understanding users through segmentation</li>
+<li>Creating specialized retrieval capabilities</li>
+<li>Unifying these capabilities into a cohesive architecture</li>
+</ol>
+<p>This unified architecture approach represents the culmination of our improvement flywheel—a system that not only retrieves the right information but knows which specialized capability to use for each user need.</p>
+<p>But this isn't the end of the journey—it's just the end of the beginning. The true value of the product mindset is that it creates systems that continuously improve based on user interactions. As your users engage with your unified RAG application, you'll collect more data, refine your understanding of their needs, enhance your specialized capabilities, and improve your routing logic.</p>
+<p>The result isn't just a more capable technical system—it's a product that delivers increasingly valuable experiences to your users over time. And that, ultimately, is what separates successful AI products from those that launch with fanfare but quickly fade into irrelevance.</p>
+<h2 id="reflection-questions">Reflection Questions</h2>
+<ol>
+<li>
+<p>How clear are the boundaries between tool interfaces and implementations in your current system? Could different teams work on them independently?</p>
+</li>
+<li>
+<p>What metrics do you currently use to evaluate routing quality separate from retrieval quality?</p>
+</li>
+<li>
+<p>Have you considered exposing specialized search capabilities directly to users alongside chat?</p>
+</li>
+<li>
+<p>How are you collecting user feedback that could help improve both routing and retrieval?</p>
+</li>
+<li>
+<p>What's your biggest current limitation—routing quality or retrieval quality? How do you know?</p>
+</li>
+</ol>
+<h2 id="additional-resources">Additional Resources</h2>
+<ol>
+<li><a href="https://modelcontextprotocol.ai/">The Model Context Protocol (MCP)</a> - A standard for defining tool interfaces that work across different LLMs</li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../chapter5/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 5: Building Specialized Capabilities">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Chapter 5: Building Specialized Capabilities
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../office-hours/" class="md-footer__link md-footer__link--next" aria-label="Next: Office Hours">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Office Hours
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jxnlco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+    
+  </body>
+</html>

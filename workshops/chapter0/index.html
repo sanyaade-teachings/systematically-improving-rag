@@ -1,0 +1,1697 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Rethinking RAG as a continuously evolving product rather than a static implementation">
+      
+      
+      
+        <link rel="canonical" href="https://567-labs.github.io/rag/workshops/chapter0/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../chapter1/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Beyond Implementation to Improvement: A Product Mindset for RAG - The RAG Flywheel</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Beyond Implementation to Improvement: A Product Mindset for RAG - The RAG Flywheel" >
+      
+        <meta  property="og:description"  content="Rethinking RAG as a continuously evolving product rather than a static implementation" >
+      
+        <meta  property="og:image"  content="https://567-labs.github.io/rag/assets/images/social/workshops/chapter0.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://567-labs.github.io/rag/workshops/chapter0/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Beyond Implementation to Improvement: A Product Mindset for RAG - The RAG Flywheel" >
+      
+        <meta  name="twitter:description"  content="Rethinking RAG as a continuously evolving product rather than a static implementation" >
+      
+        <meta  name="twitter:image"  content="https://567-labs.github.io/rag/assets/images/social/workshops/chapter0.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#beyond-implementation-to-improvement-a-product-mindset-for-rag" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="The RAG Flywheel" class="md-header__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The RAG Flywheel
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Beyond Implementation to Improvement: A Product Mindset for RAG
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../office-hours/" class="md-tabs__link">
+          
+  
+    
+  
+  Office Hours
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../test-math.md" class="md-tabs__link">
+        
+  
+    
+  
+  Math Test
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="The RAG Flywheel" class="md-nav__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    The RAG Flywheel
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Workshops
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Workshops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-product-mindset-why-most-rag-implementations-fail" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Product Mindset: Why Most RAG Implementations Fail
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rag-as-a-recommendation-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      RAG as a Recommendation Engine
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-improvement-flywheel-from-static-to-dynamic-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Improvement Flywheel: From Static to Dynamic Systems
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Improvement Flywheel: From Static to Dynamic Systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optimizing-feedback-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimizing Feedback Collection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-system-vs-ad-hoc-approaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      The System vs. Ad Hoc Approaches
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The System vs. Ad Hoc Approaches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-cost-of-lacking-a-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Cost of Lacking a System
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-engineer-to-product-thinker-the-mindset-shift" class="md-nav__link">
+    <span class="md-ellipsis">
+      From Engineer to Product Thinker: The Mindset Shift
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="From Engineer to Product Thinker: The Mindset Shift">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-the-improvement-flywheel-in-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      Case Study: The Improvement Flywheel in Action
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-youll-learn-in-this-book" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You'll Learn in This Book
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What You&#39;ll Learn in This Book">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chapter-1-starting-the-flywheel-with-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chapter 1: Starting the Flywheel with Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chapter-2-from-evaluation-to-product-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chapter 2: From Evaluation to Product Enhancement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chapter-3-the-user-experience-of-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chapter 3: The User Experience of AI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chapter-4-understanding-your-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chapter 4: Understanding Your Users
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chapter-5-building-specialized-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chapter 5: Building Specialized Capabilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chapter-6-unified-product-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chapter 6: Unified Product Architecture
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reflection-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflection Questions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 1: Starting the Flywheel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 2: From Evaluation to Enhancement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Design Principles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Feedback Collection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Iterative Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4: Understanding Your Users
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5: Building Specialized Capabilities
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6: Unified Search Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../office-hours/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Office Hours
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Office Hours
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week1-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week2-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week3-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week4-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week5-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../test-math.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Math Test
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-product-mindset-why-most-rag-implementations-fail" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Product Mindset: Why Most RAG Implementations Fail
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rag-as-a-recommendation-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      RAG as a Recommendation Engine
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-improvement-flywheel-from-static-to-dynamic-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Improvement Flywheel: From Static to Dynamic Systems
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Improvement Flywheel: From Static to Dynamic Systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optimizing-feedback-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimizing Feedback Collection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-system-vs-ad-hoc-approaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      The System vs. Ad Hoc Approaches
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The System vs. Ad Hoc Approaches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-cost-of-lacking-a-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Cost of Lacking a System
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-engineer-to-product-thinker-the-mindset-shift" class="md-nav__link">
+    <span class="md-ellipsis">
+      From Engineer to Product Thinker: The Mindset Shift
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="From Engineer to Product Thinker: The Mindset Shift">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-the-improvement-flywheel-in-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      Case Study: The Improvement Flywheel in Action
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-youll-learn-in-this-book" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You'll Learn in This Book
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What You&#39;ll Learn in This Book">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chapter-1-starting-the-flywheel-with-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chapter 1: Starting the Flywheel with Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chapter-2-from-evaluation-to-product-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chapter 2: From Evaluation to Product Enhancement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chapter-3-the-user-experience-of-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chapter 3: The User Experience of AI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chapter-4-understanding-your-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chapter 4: Understanding Your Users
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chapter-5-building-specialized-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chapter 5: Building Specialized Capabilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chapter-6-unified-product-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chapter 6: Unified Product Architecture
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reflection-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflection Questions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="beyond-implementation-to-improvement-a-product-mindset-for-rag">Beyond Implementation to Improvement: A Product Mindset for RAG</h1>
+<div class="admonition abstract">
+<p class="admonition-title">Chapter Overview</p>
+<p>In this opening chapter, I introduce you to a fundamental shift in how we approach RAG systems—from static implementations to continuously improving products. You'll discover:</p>
+<ul>
+<li>Why the most successful RAG systems are built as products, not just technical implementations</li>
+<li>How to think about RAG as a recommendation engine wrapped around language models</li>
+<li>The "improvement flywheel" that transforms user interactions into system enhancements</li>
+<li>How to shift from ad-hoc tweaking to systematic, data-driven improvement</li>
+<li>The mindset that separates successful AI products from those that stagnate after launch</li>
+</ul>
+</div>
+<h2 id="the-product-mindset-why-most-rag-implementations-fail">The Product Mindset: Why Most RAG Implementations Fail</h2>
+<p>When organizations implement RAG systems, they often approach it as a purely technical challenge. They focus on selecting the right embedding model, vector database, and LLM, then consider the project "complete" once these components are integrated and deployed.</p>
+<p>This approach inevitably leads to disappointment. The system works well for demo queries and simple use cases, but struggles with the complexity and diversity of real-world questions. As users encounter these limitations, they lose trust in the system and engagement drops. Without clear metrics or improvement processes, teams resort to ad-hoc tweaking based on anecdotal feedback.</p>
+<p>The fundamental issue? They've built a technical implementation, not a product.</p>
+<p>Throughout my career building AI systems at Facebook, Stitch Fix, and for various clients, I've observed a consistent pattern: <strong>the teams that succeed are those that treat their RAG implementations as products that continuously evolve rather than projects that eventually conclude.</strong></p>
+<p>Consider these contrasting approaches:</p>
+<table>
+<thead>
+<tr>
+<th>Implementation Mindset</th>
+<th>Product Mindset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"We need to implement RAG"</td>
+<td>"We need to solve specific user problems"</td>
+</tr>
+<tr>
+<td>Technical metrics (embedding dimensions, context window)</td>
+<td>User-centered metrics (answer relevance, task completion)</td>
+</tr>
+<tr>
+<td>Project with a defined endpoint</td>
+<td>Ongoing system that improves over time</td>
+</tr>
+<tr>
+<td>Success = working demo</td>
+<td>Success = sustained user value</td>
+</tr>
+<tr>
+<td>One-time architecture decisions</td>
+<td>Evolutionary architecture that adapts</td>
+</tr>
+<tr>
+<td>Focus on model selection</td>
+<td>Focus on feedback loops and data collection</td>
+</tr>
+</tbody>
+</table>
+<p>The product mindset recognizes that launching your RAG system is just the beginning. The real work—and the real value—comes from how you systematically improve it based on user interactions.</p>
+<h2 id="rag-as-a-recommendation-engine">RAG as a Recommendation Engine</h2>
+<div class="admonition important">
+<p class="admonition-title">Mental Model</p>
+</div>
+<p>The most effective way to think about RAG isn't as a pipeline of retrieval, augmentation, and generation steps—it's as a <strong>recommendation engine wrapped around language models</strong>.</p>
+<p>This shift in perspective is transformative. When you view RAG as a recommendation system, you naturally focus on the aspects that truly determine performance: selecting the most relevant information to present to the language model.</p>
+<pre class="mermaid"><code>flowchart TD
+    A[User Query] --&gt; B[Query Understanding]
+    B --&gt; C[Multiple Retrieval Paths]
+
+    C --&gt; D[Document Index]
+    C --&gt; E[Image Index]
+    C --&gt; F[Table Index]
+    C --&gt; G[Code Index]
+
+    D --&gt; H[Filtering]
+    E --&gt; H
+    F --&gt; H
+    G --&gt; H
+
+    H --&gt; I[Scoring/Ranking]
+    I --&gt; J[Context Assembly]
+    J --&gt; K[Prompt Construction]
+    K --&gt; L[Generation]
+    L --&gt; M[Response to User]
+
+    M --&gt;|Feedback| A</code></pre>
+<p>This recommendation engine perspective reveals important insights:</p>
+<ol>
+<li>
+<p><strong>Generation quality is capped by retrieval quality.</strong> No amount of prompt engineering can overcome providing the wrong information to the LLM.</p>
+</li>
+<li>
+<p><strong>Different queries need different retrieval strategies.</strong> Just as Amazon uses different recommendation algorithms for books versus electronics, your RAG system needs specialized approaches for different query types.</p>
+</li>
+<li>
+<p><strong>User feedback is essential.</strong> Recommendation systems learn from interactions—what users click on, purchase, or engage with. Your RAG system should similarly learn from how users interact with responses.</p>
+</li>
+<li>
+<p><strong>Cold start is a significant challenge.</strong> Just as Netflix needs to learn your preferences, RAG systems need data to understand what makes a good response for your specific use case.</p>
+</li>
+<li>
+<p><strong>The best recommendations are personalized.</strong> As your system evolves, it should adapt to specific user preferences and patterns.</p>
+</li>
+</ol>
+<p>This perspective also explains why many RAG implementations underperform—they're built like simple search engines rather than sophisticated recommendation systems with feedback loops and personalization.</p>
+<h2 id="the-improvement-flywheel-from-static-to-dynamic-systems">The Improvement Flywheel: From Static to Dynamic Systems</h2>
+<p>At the core of the product mindset is what I call the "improvement flywheel"—a systematic process that transforms user interactions into continuous enhancements.</p>
+<pre class="mermaid"><code>graph TD
+    A[Build Basic RAG] --&gt; B[Create Synthetic Evaluation Data]
+    B --&gt; C[Define Metrics]
+    C --&gt; D[Test Hypotheses]
+    D --&gt; E[Deploy &amp; Collect Real User Feedback]
+    E --&gt; F[Categorize &amp; Analyze User Questions]
+    F --&gt; G[Make Targeted Improvements]
+    G --&gt; H[Implement Monitoring]
+    H --&gt; B
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style E fill:#bbf,stroke:#333,stroke-width:2px
+    style G fill:#dfd,stroke:#333,stroke-width:2px</code></pre>
+<p>This flywheel addresses the most common challenges in RAG development:</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Business Challenge</th>
+<th>Technical Challenge</th>
+<th>Flywheel Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cold Start</strong></td>
+<td>No data to guide design decisions</td>
+<td>No examples to train or evaluate against</td>
+<td>Generate synthetic questions from content<br>Establish baseline metrics<br>Compare architectural approaches</td>
+</tr>
+<tr>
+<td><strong>Initial Deployment</strong></td>
+<td>Understanding what users actually need</td>
+<td>Learning what causes poor performance</td>
+<td>Instrument application for data collection<br>Implement feedback mechanisms<br>Capture query patterns and failure modes</td>
+</tr>
+<tr>
+<td><strong>Growth</strong></td>
+<td>Prioritizing improvements with limited resources</td>
+<td>Addressing diverse query types effectively</td>
+<td>Use topic modeling to segment questions<br>Identify highest-impact opportunities<br>Build specialized capabilities for key segments</td>
+</tr>
+<tr>
+<td><strong>Optimization</strong></td>
+<td>Maintaining quality as usage scales</td>
+<td>Combining multiple specialized components</td>
+<td>Create unified routing architecture<br>Implement monitoring and alerts<br>Establish continuous improvement processes</td>
+</tr>
+</tbody>
+</table>
+<p>The beauty of this approach is that each phase feeds into the next, creating momentum that accelerates improvement over time. As you collect more data, you gain clearer insights into what's working and what isn't, allowing you to make increasingly targeted enhancements.</p>
+<h3 id="optimizing-feedback-collection">Optimizing Feedback Collection</h3>
+<p>The effectiveness of your improvement flywheel depends heavily on how you collect feedback. During our office hours, we discovered that simply changing feedback prompt copy from "How did we do?" to "Did we answer your question?" increased feedback rates by 5x. This more specific framing focused users on the core value proposition rather than secondary concerns like latency or formatting.</p>
+<p>When implementing feedback mechanisms, remember that:
+- Binary feedback (thumbs up/down) generally yields higher response rates than free text fields
+- For enterprise applications, combining button options with free text and posting responses to Slack creates transparency that encourages more feedback
+- Every metric you track should lead to a specific follow-up action—it's not just about knowing the number</p>
+<h2 id="the-system-vs-ad-hoc-approaches">The System vs. Ad Hoc Approaches</h2>
+<p>A system is a structured approach to solving problems that guides how we think about and tackle challenges. For RAG applications, this includes:</p>
+<ul>
+<li>A framework for evaluating technologies</li>
+<li>A decision-making process for prioritizing development efforts</li>
+<li>A methodology for diagnosing and improving performance</li>
+<li>Standard metrics and benchmarks for measuring success</li>
+</ul>
+<p>The contrast between systematic and ad-hoc approaches is stark:</p>
+<pre class="mermaid"><code>flowchart LR
+    A[Ad-hoc Approach] --&gt;|Leads to| B[Guesswork &amp; Anxiety]
+    C[Systematic Approach] --&gt;|Leads to| D[Confidence &amp; Progress]
+
+    subgraph "Ad-hoc Results"
+    B --&gt;|Results in| E[Inconsistent Outcomes]
+    B --&gt;|Results in| F[Resource Waste]
+    B --&gt;|Results in| G[Unclear Priorities]
+    end
+
+    subgraph "Systematic Results"
+    D --&gt;|Results in| H[Measurable Improvements]
+    D --&gt;|Results in| I[Efficient Resource Use]
+    D --&gt;|Results in| J[Clear Priorities]
+    end
+
+    style A fill:#f99,stroke:#333,stroke-width:2px
+    style C fill:#9f9,stroke:#333,stroke-width:2px</code></pre>
+<h3 id="the-cost-of-lacking-a-system">The Cost of Lacking a System</h3>
+<p>Without a systematic approach, teams face significant challenges:</p>
+<table>
+<thead>
+<tr>
+<th>Common Challenge</th>
+<th>Without a System</th>
+<th>With a System</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Make the AI better"</td>
+<td>Anxiety and guesswork</td>
+<td>Clear metrics and priority areas</td>
+</tr>
+<tr>
+<td>Allocating engineering resources</td>
+<td>Political decisions</td>
+<td>Data-driven prioritization</td>
+</tr>
+<tr>
+<td>Evaluating improvement ideas</td>
+<td>Subjective opinions</td>
+<td>Objective measurement</td>
+</tr>
+<tr>
+<td>Communicating progress</td>
+<td>Vague assertions</td>
+<td>Concrete metrics and examples</td>
+</tr>
+<tr>
+<td>Addressing user complaints</td>
+<td>Reactive firefighting</td>
+<td>Proactive improvement</td>
+</tr>
+</tbody>
+</table>
+<p>Having a system frees up mental energy for innovation and problem-solving by creating clarity around what's working, what isn't, and what to focus on next.</p>
+<h2 id="from-engineer-to-product-thinker-the-mindset-shift">From Engineer to Product Thinker: The Mindset Shift</h2>
+<p>To fully embrace the product mindset for RAG, you need to expand your thinking beyond technical implementation details. Here's what this mindset shift looks like in practice:</p>
+<table>
+<thead>
+<tr>
+<th>Technical Implementation Focus</th>
+<th>Product Development Focus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Which embedding model has the best performance?"</td>
+<td>"Which embedding approach best solves our users' problems?"</td>
+</tr>
+<tr>
+<td>"How do we implement vector search?"</td>
+<td>"How do we discover which search features matter most to users?"</td>
+</tr>
+<tr>
+<td>"What's the optimal chunk size?"</td>
+<td>"How do we measure whether our chunking approach is working for users?"</td>
+</tr>
+<tr>
+<td>"How do we reduce hallucinations?"</td>
+<td>"How do we build user trust through transparent, accurate responses?"</td>
+</tr>
+<tr>
+<td>"Which model has the best capabilities?"</td>
+<td>"Which capabilities deliver the most value for our use case?"</td>
+</tr>
+</tbody>
+</table>
+<p>This shift doesn't mean abandoning technical rigor—quite the opposite. It means applying that rigor to problems that actually matter to your users, guided by data rather than assumptions.</p>
+<h3 id="case-study-the-improvement-flywheel-in-action">Case Study: The Improvement Flywheel in Action</h3>
+<p>To illustrate the power of this approach, let's look at a real example from my consulting work with a legal technology company:</p>
+<ol>
+<li>
+<p><strong>Initial Implementation</strong>: The company built a RAG system to help lawyers search through case law and legal documents. The initial implementation used standard embeddings and chunking, with middling performance.</p>
+</li>
+<li>
+<p><strong>Synthetic Evaluation</strong>: We created a dataset of 200 synthetic legal queries with gold-standard answers derived from their knowledge base, establishing baseline metrics showing only 63% retrieval accuracy.</p>
+</li>
+<li>
+<p><strong>Hypothesis Testing</strong>: Testing different chunking strategies and embedding models revealed that legal terminology required specialized approaches, boosting performance to 72%.</p>
+</li>
+<li>
+<p><strong>Deployment and Feedback</strong>: We implemented explicit feedback buttons and implicit tracking (time spent, copy actions), collecting data on 5,000+ real queries over two months.</p>
+</li>
+<li>
+<p><strong>Pattern Analysis</strong>: Topic modeling revealed distinct query categories (case citation, legal definition, procedural question) with varying performance.</p>
+</li>
+<li>
+<p><strong>Targeted Improvements</strong>: We built specialized retrievers for each category (citation parser, definition extractor, procedure classifier), pushing overall performance to 87%.</p>
+</li>
+<li>
+<p><strong>Monitoring and Refinement</strong>: Continuous tracking showed which query types were growing in popularity and which still needed improvement, guiding ongoing development.</p>
+</li>
+</ol>
+<p>The result wasn't just better technical performance—it was significantly higher user adoption, reduced time spent on research, and ultimately, better legal outcomes for clients.</p>
+<h2 id="what-youll-learn-in-this-book">What You'll Learn in This Book</h2>
+<p>Throughout this book, I'll guide you through implementing every aspect of the improvement flywheel, with practical examples and code you can adapt to your own projects.</p>
+<p>Here's what we'll cover in the upcoming chapters:</p>
+<h3 id="chapter-1-starting-the-flywheel-with-data"><a href="../chapter1/">Chapter 1: Starting the Flywheel with Data</a></h3>
+<p>Learn how to overcome the cold-start problem through synthetic data generation, establish meaningful metrics that align with business goals, and create a foundation for data-driven improvement.</p>
+<h3 id="chapter-2-from-evaluation-to-product-enhancement"><a href="../chapter2/">Chapter 2: From Evaluation to Product Enhancement</a></h3>
+<p>Discover how to transform evaluation insights into concrete product improvements through fine-tuning, re-ranking, and targeted capability development.</p>
+<h3 id="chapter-3-the-user-experience-of-ai"><a href="chapter3.md">Chapter 3: The User Experience of AI</a></h3>
+<p>Explore how to design interfaces that both delight users and gather valuable feedback, creating the virtuous cycle at the heart of the improvement flywheel.</p>
+<h3 id="chapter-4-understanding-your-users"><a href="../chapter4/">Chapter 4: Understanding Your Users</a></h3>
+<p>Learn techniques for segmenting users and queries to identify high-value opportunities and create prioritized improvement roadmaps.</p>
+<h3 id="chapter-5-building-specialized-capabilities"><a href="../chapter5/">Chapter 5: Building Specialized Capabilities</a></h3>
+<p>Develop purpose-built solutions for different user needs, spanning documents, images, tables, and structured data.</p>
+<h3 id="chapter-6-unified-product-architecture"><a href="../chapter6/">Chapter 6: Unified Product Architecture</a></h3>
+<p>Create a cohesive product experience that intelligently routes to specialized components while maintaining a seamless user experience.</p>
+<h2 id="reflection-questions">Reflection Questions</h2>
+<p>As you prepare for the next chapter, consider these questions about your current approach to RAG:</p>
+<ol>
+<li>Are you treating your RAG implementation as a completed project or an evolving product?</li>
+<li>What mechanisms do you have in place to learn from user interactions?</li>
+<li>How do you currently measure the success of your RAG application?</li>
+<li>What processes do you have for prioritizing improvements?</li>
+<li>How would your approach change if you viewed RAG as a recommendation engine rather than a pipeline?</li>
+</ol>
+<p>By shifting from an implementation mindset to a product mindset, you'll move from building RAG systems that work once to creating AI products that continuously improve and deliver increasing value over time.</p>
+<p>In the next chapter, we'll take the first concrete step in the improvement flywheel: creating synthetic evaluation data to establish a foundation for systematic enhancement.</p>
+<hr />
+<p><em>Author Note: This approach has been refined through work with organizations ranging from startups to Fortune 500 companies across diverse domains including legal, financial, healthcare, and e-commerce. While the technical details vary by domain, the fundamental principles of the improvement flywheel remain consistent—focus on users, measure what matters, and systematically enhance based on data rather than assumptions.</em></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../chapter1/" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 1: Starting the Flywheel">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Chapter 1: Starting the Flywheel
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jxnlco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+    
+  </body>
+</html>

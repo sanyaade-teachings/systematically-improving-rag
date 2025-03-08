@@ -1,0 +1,1821 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Building feedback flywheels into your RAG applications">
+      
+      
+        <meta name="author" content="Jason Liu">
+      
+      
+        <link rel="canonical" href="https://567-labs.github.io/rag/workshops/chapter3-1/">
+      
+      
+        <link rel="prev" href="../chapter2/">
+      
+      
+        <link rel="next" href="../chapter3-2/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Chapter 3.1: Feedback Collection - The RAG Flywheel</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Chapter 3.1: Feedback Collection - The RAG Flywheel" >
+      
+        <meta  property="og:description"  content="Building feedback flywheels into your RAG applications" >
+      
+        <meta  property="og:image"  content="https://567-labs.github.io/rag/assets/images/social/workshops/chapter3-1.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://567-labs.github.io/rag/workshops/chapter3-1/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Chapter 3.1: Feedback Collection - The RAG Flywheel" >
+      
+        <meta  name="twitter:description"  content="Building feedback flywheels into your RAG applications" >
+      
+        <meta  name="twitter:image"  content="https://567-labs.github.io/rag/assets/images/social/workshops/chapter3-1.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#feedback-collection-building-your-improvement-flywheel" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="The RAG Flywheel" class="md-header__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The RAG Flywheel
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 3.1: Feedback Collection
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../office-hours/" class="md-tabs__link">
+          
+  
+    
+  
+  Office Hours
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../test-math.md" class="md-tabs__link">
+        
+  
+    
+  
+  Math Test
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="The RAG Flywheel" class="md-nav__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    The RAG Flywheel
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Workshops
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Workshops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 1: Starting the Flywheel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 2: From Evaluation to Enhancement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Design Principles
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Design Principles
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feedback-visibility-make-it-impossible-to-miss" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feedback Visibility: Make It Impossible to Miss
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feedback Visibility: Make It Impossible to Miss">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementation-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation Strategies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#segmented-feedback-make-it-actionable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Segmented Feedback: Make It Actionable
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Segmented Feedback: Make It Actionable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#collecting-segmented-negative-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Collecting Segmented Negative Feedback
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-from-user-behavior-the-implicit-feedback-gold-mine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning from User Behavior: The Implicit Feedback Gold Mine
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Learning from User Behavior: The Implicit Feedback Gold Mine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mining-hard-negatives-from-user-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mining Hard Negatives from User Behavior
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-a-feedback-driven-roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building a Feedback-Driven Roadmap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion-feedback-as-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion: Feedback as Foundation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reflection-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflection Questions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Resources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Feedback Collection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Iterative Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4: Understanding Your Users
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5: Building Specialized Capabilities
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6: Unified Search Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../office-hours/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Office Hours
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Office Hours
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week1-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week2-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week3-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week4-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week5-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../test-math.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Math Test
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feedback-visibility-make-it-impossible-to-miss" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feedback Visibility: Make It Impossible to Miss
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feedback Visibility: Make It Impossible to Miss">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementation-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation Strategies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#segmented-feedback-make-it-actionable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Segmented Feedback: Make It Actionable
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Segmented Feedback: Make It Actionable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#collecting-segmented-negative-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Collecting Segmented Negative Feedback
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-from-user-behavior-the-implicit-feedback-gold-mine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning from User Behavior: The Implicit Feedback Gold Mine
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Learning from User Behavior: The Implicit Feedback Gold Mine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mining-hard-negatives-from-user-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mining Hard Negatives from User Behavior
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-a-feedback-driven-roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building a Feedback-Driven Roadmap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion-feedback-as-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion: Feedback as Foundation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reflection-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflection Questions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Resources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="feedback-collection-building-your-improvement-flywheel">Feedback Collection: Building Your Improvement Flywheel</h1>
+<div class="admonition abstract">
+<p class="admonition-title">Chapter Overview</p>
+<p>This chapter explores the essential role of feedback collection in RAG systems, introducing the concept of a feedback flywheel for systematic improvement. You'll learn practical strategies for making feedback mechanisms visible and engaging to users, techniques for collecting segmented feedback that provides actionable insights, and methods for mining user behavior to generate training data. The chapter emphasizes how effective feedback collection transforms your RAG application from a static tool into a continuously improving system that grows more valuable with every interaction.</p>
+</div>
+<h2 id="introduction">Introduction</h2>
+<p>The true power of RAG isn't in its initial deployment—it's in how the system improves over time through feedback collection. Many RAG implementations focus exclusively on the technical details of retrieval and generation while neglecting the critical infrastructure needed to collect and utilize user feedback.</p>
+<p>In this chapter, we'll explore how to build effective feedback mechanisms that transform your RAG application from a static implementation into a continuously improving system that grows more valuable with every user interaction. This approach creates a "feedback flywheel"—a virtuous cycle where user interactions provide the data needed to make the system better, which in turn attracts more users and generates more feedback.</p>
+<div class="admonition warning">
+<p class="admonition-title">The Invisible Feedback Problem</p>
+</div>
+<p>Many RAG implementations hide feedback mechanisms in obscure UI locations or use generic "thumbs up/down" buttons that provide minimal insight. Research suggests that users interact with these minimal feedback options less than 0.1% of the time, providing insufficient data for meaningful improvements.</p>
+<p>Feedback collection is the lifeblood of systematic RAG improvement. Without it, you're flying blind—unable to identify which aspects of your system are performing well and which need enhancement. Robust feedback mechanisms tell you:</p>
+<ul>
+<li>Which queries your retrieval system handles poorly</li>
+<li>Which document segments are most valuable for answering specific questions</li>
+<li>Where your generation step produces inaccurate or unhelpful responses</li>
+</ul>
+<p>This chapter focuses on the practical implementation of feedback mechanisms in RAG applications. We'll cover strategies for making feedback visible and engaging, approaches for segmenting feedback to make it more actionable, and techniques for mining user behavior to generate training datasets.</p>
+<h2 id="feedback-visibility-make-it-impossible-to-miss">Feedback Visibility: Make It Impossible to Miss</h2>
+<p>The first principle of effective feedback collection is visibility. Your feedback mechanisms should be prominent and engaging, not hidden in dropdown menus or settings pages. Users should encounter feedback options naturally as part of their interaction flow.</p>
+<div class="admonition example">
+<p class="admonition-title">High-Visibility Feedback UI</p>
+</div>
+<p>Consider the difference between these two approaches:</p>
+<div class="highlight"><pre><span></span><code>**Low Visibility:** A small thumbs up/down icon in the corner of the response
+
+**High Visibility:**
+
+After receiving an answer, users see:
+
+&quot;Was this answer helpful? [Yes] [Somewhat] [No]&quot;
+
+If they click &quot;Somewhat&quot; or &quot;No&quot;:
+
+&quot;What could be improved?&quot;
+- [ ] More detailed explanation
+- [ ] More relevant information
+- [ ] Incorrect information
+- [ ] Better formatting
+- [ ] Other: ____________
+</code></pre></div>
+<p>The second approach not only makes feedback impossible to miss but also structures it in a way that provides more actionable insights. Research shows that visible, engaging feedback mechanisms can increase feedback rates from less than 1% to over 30%.</p>
+<h3 id="implementation-strategies">Implementation Strategies</h3>
+<p>Here are several patterns for implementing high-visibility feedback mechanisms:</p>
+<ol>
+<li><strong>Inline Feedback:</strong> Place feedback options directly beneath each response</li>
+<li><strong>Modal Prompts:</strong> Show a feedback modal after a certain number of interactions</li>
+<li><strong>Follow-up Questions:</strong> Include feedback collection as part of conversational flow</li>
+<li><strong>Email Follow-ups:</strong> Send follow-up emails asking for feedback on recent sessions</li>
+</ol>
+<p>Each approach has advantages for different use cases. The key is to make feedback collection a natural part of the user experience rather than an afterthought.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">render_response_with_feedback</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">query_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Render a response with prominent feedback mechanisms.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    - response: The generated response text</span>
+<span class="sd">    - query_id: Unique identifier for the query</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    - HTML content with embedded feedback UI</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &lt;div class=&quot;response-container&quot;&gt;</span>
+<span class="s2">        &lt;div class=&quot;response-content&quot;&gt;</span>
+<span class="s2">            </span><span class="si">{</span><span class="n">response</span><span class="si">}</span>
+<span class="s2">        &lt;/div&gt;</span>
+
+<span class="s2">        &lt;div class=&quot;feedback-container&quot;&gt;</span>
+<span class="s2">            &lt;p class=&quot;feedback-prompt&quot;&gt;Was this response helpful?&lt;/p&gt;</span>
+
+<span class="s2">            &lt;div class=&quot;feedback-options&quot;&gt;</span>
+<span class="s2">                &lt;button onclick=&quot;recordFeedback(&#39;</span><span class="si">{</span><span class="n">query_id</span><span class="si">}</span><span class="s2">&#39;, &#39;helpful&#39;)&quot;&gt;</span>
+<span class="s2">                    Very helpful</span>
+<span class="s2">                &lt;/button&gt;</span>
+
+<span class="s2">                &lt;button onclick=&quot;recordFeedback(&#39;</span><span class="si">{</span><span class="n">query_id</span><span class="si">}</span><span class="s2">&#39;, &#39;somewhat&#39;)&quot;&gt;</span>
+<span class="s2">                    Somewhat helpful</span>
+<span class="s2">                &lt;/button&gt;</span>
+
+<span class="s2">                &lt;button onclick=&quot;recordFeedback(&#39;</span><span class="si">{</span><span class="n">query_id</span><span class="si">}</span><span class="s2">&#39;, &#39;not_helpful&#39;)&quot;&gt;</span>
+<span class="s2">                    Not helpful</span>
+<span class="s2">                &lt;/button&gt;</span>
+<span class="s2">            &lt;/div&gt;</span>
+<span class="s2">        &lt;/div&gt;</span>
+<span class="s2">    &lt;/div&gt;</span>
+
+<span class="s2">    &lt;script&gt;</span>
+<span class="s2">    function recordFeedback(id, rating) </span><span class="si">{</span>
+<span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="n">Record</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">feedback</span>
+<span class="w">        </span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;/api/feedback&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">method</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">headers</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="n">body</span><span class="p">:</span><span class="w"> </span><span class="n">JSON</span><span class="o">.</span><span class="n">stringify</span><span class="p">({</span>
+<span class="w">                </span><span class="n">query_id</span><span class="p">:</span><span class="w"> </span><span class="nb">id</span><span class="p">,</span>
+<span class="w">                </span><span class="n">rating</span><span class="p">:</span><span class="w"> </span><span class="n">rating</span>
+<span class="w">            </span><span class="p">})</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">        </span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">response</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+<span class="w">        </span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="o">//</span><span class="w"> </span><span class="n">If</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">rating</span><span class="w"> </span><span class="n">wasn</span><span class="s1">&#39;t &quot;very helpful&quot;, show the detailed feedback form</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">rating</span> <span class="o">!==</span> <span class="s1">&#39;helpful&#39;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">showDetailedFeedbackForm</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">rating</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">showThankYouMessage</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+
+    <span class="n">function</span> <span class="n">showDetailedFeedbackForm</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">initialRating</span><span class="p">)</span> <span class="p">{</span>
+        <span class="o">//</span> <span class="n">Display</span> <span class="n">a</span> <span class="n">more</span> <span class="n">detailed</span> <span class="n">feedback</span> <span class="n">form</span> <span class="n">based</span> <span class="n">on</span> <span class="n">the</span> <span class="n">initial</span> <span class="n">rating</span>
+        <span class="o">//</span> <span class="o">...</span>
+    <span class="p">}</span>
+    <span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+    <span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">    return html</span>
+</code></pre></div>
+<h2 id="segmented-feedback-make-it-actionable">Segmented Feedback: Make It Actionable</h2>
+<p>Generic feedback like thumbs up/down provides minimal insight for improvement. To make feedback truly actionable, segment it into specific aspects of your RAG pipeline.</p>
+<div class="admonition warning">
+<p class="admonition-title">The Problem with Generic Feedback</p>
+</div>
+<p>A simple "thumbs down" could mean many things: - The retrieval system found irrelevant documents - The generation step produced inaccurate information - The answer was technically correct but poorly formatted - The answer was too brief or too verbose</p>
+<div class="highlight"><pre><span></span><code>Without knowing which aspect failed, you can&#39;t target improvements effectively.
+</code></pre></div>
+<p>Segmented feedback isolates specific parts of your RAG pipeline, helping you identify exactly where issues occur. Instead of asking "Was this helpful?" consider questions like:</p>
+<ul>
+<li>"Did this answer directly address your question?"</li>
+<li>"Was the information factually accurate?"</li>
+<li>"Were sources relevant to your query?"</li>
+<li>"Was the response clear and well-organized?"</li>
+</ul>
+<p>Each question targets a different aspect of your system, allowing you to pinpoint areas for improvement.</p>
+<h3 id="collecting-segmented-negative-feedback">Collecting Segmented Negative Feedback</h3>
+<p>Negative feedback is particularly valuable for improvement, but users often abandon interactions after having a bad experience. To maximize the collection of negative feedback:</p>
+<ol>
+<li>Make feedback collection immediate—don't wait until the end of a session</li>
+<li>Use progressive disclosure to collect more detailed feedback after an initial negative response</li>
+<li>Keep detailed feedback optional but make it easy to provide</li>
+<li>Explain how feedback will be used to improve the system</li>
+</ol>
+<p>Here's how you might implement segmented negative feedback collection:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">collect_negative_feedback</span><span class="p">(</span><span class="n">query_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">response_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate a detailed negative feedback form.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    - query_id: ID of the original query</span>
+<span class="sd">    - response_id: ID of the response being rated</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    - HTML for a segmented feedback form</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &lt;div class=&quot;detailed-feedback-form&quot;&gt;</span>
+<span class="s2">        &lt;p&gt;Thanks for your feedback. Could you tell us more about what wasn&#39;t helpful?&lt;/p&gt;</span>
+
+<span class="s2">        &lt;form id=&quot;detailed-feedback-</span><span class="si">{</span><span class="n">response_id</span><span class="si">}</span><span class="s2">&quot;&gt;</span>
+<span class="s2">            &lt;input type=&quot;hidden&quot; name=&quot;query_id&quot; value=&quot;</span><span class="si">{</span><span class="n">query_id</span><span class="si">}</span><span class="s2">&quot;&gt;</span>
+<span class="s2">            &lt;input type=&quot;hidden&quot; name=&quot;response_id&quot; value=&quot;</span><span class="si">{</span><span class="n">response_id</span><span class="si">}</span><span class="s2">&quot;&gt;</span>
+
+<span class="s2">            &lt;h4&gt;What issues did you notice? (Select all that apply)&lt;/h4&gt;</span>
+
+<span class="s2">            &lt;div class=&quot;feedback-section&quot;&gt;</span>
+<span class="s2">                &lt;h5&gt;Retrieval Issues:&lt;/h5&gt;</span>
+<span class="s2">                &lt;label&gt;</span>
+<span class="s2">                    &lt;input type=&quot;checkbox&quot; name=&quot;retrieval_issue&quot; value=&quot;irrelevant_sources&quot;&gt;</span>
+<span class="s2">                    Sources weren&#39;t relevant to my question</span>
+<span class="s2">                &lt;/label&gt;</span>
+<span class="s2">                &lt;label&gt;</span>
+<span class="s2">                    &lt;input type=&quot;checkbox&quot; name=&quot;retrieval_issue&quot; value=&quot;missing_information&quot;&gt;</span>
+<span class="s2">                    Important information seemed to be missing</span>
+<span class="s2">                &lt;/label&gt;</span>
+<span class="s2">            &lt;/div&gt;</span>
+
+<span class="s2">            &lt;div class=&quot;feedback-section&quot;&gt;</span>
+<span class="s2">                &lt;h5&gt;Generation Issues:&lt;/h5&gt;</span>
+<span class="s2">                &lt;label&gt;</span>
+<span class="s2">                    &lt;input type=&quot;checkbox&quot; name=&quot;generation_issue&quot; value=&quot;inaccurate&quot;&gt;</span>
+<span class="s2">                    Information was factually incorrect</span>
+<span class="s2">                &lt;/label&gt;</span>
+<span class="s2">                &lt;label&gt;</span>
+<span class="s2">                    &lt;input type=&quot;checkbox&quot; name=&quot;generation_issue&quot; value=&quot;formatting&quot;&gt;</span>
+<span class="s2">                    Response was poorly organized or formatted</span>
+<span class="s2">                &lt;/label&gt;</span>
+<span class="s2">                &lt;label&gt;</span>
+<span class="s2">                    &lt;input type=&quot;checkbox&quot; name=&quot;generation_issue&quot; value=&quot;incomplete&quot;&gt;</span>
+<span class="s2">                    Answer was incomplete or too brief</span>
+<span class="s2">                &lt;/label&gt;</span>
+<span class="s2">            &lt;/div&gt;</span>
+
+<span class="s2">            &lt;div class=&quot;feedback-section&quot;&gt;</span>
+<span class="s2">                &lt;h5&gt;Additional Comments:&lt;/h5&gt;</span>
+<span class="s2">                &lt;textarea name=&quot;comments&quot; placeholder=&quot;Any other feedback to help us improve?&quot;&gt;&lt;/textarea&gt;</span>
+<span class="s2">            &lt;/div&gt;</span>
+
+<span class="s2">            &lt;button type=&quot;submit&quot;&gt;Submit Feedback&lt;/button&gt;</span>
+<span class="s2">        &lt;/form&gt;</span>
+<span class="s2">    &lt;/div&gt;</span>
+
+<span class="s2">    &lt;script&gt;</span>
+<span class="s2">    document.getElementById(&quot;detailed-feedback-</span><span class="si">{</span><span class="n">response_id</span><span class="si">}</span><span class="s2">&quot;).addEventListener(&quot;submit&quot;, function(e) </span><span class="si">{</span>
+<span class="w">        </span><span class="n">e</span><span class="o">.</span><span class="n">preventDefault</span><span class="p">();</span>
+
+<span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="n">Collect</span><span class="w"> </span><span class="n">form</span><span class="w"> </span><span class="n">data</span>
+<span class="w">        </span><span class="n">const</span><span class="w"> </span><span class="n">formData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">FormData</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">target</span><span class="p">);</span>
+<span class="w">        </span><span class="n">const</span><span class="w"> </span><span class="n">feedbackData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">query_id</span><span class="p">:</span><span class="w"> </span><span class="n">formData</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;query_id&quot;</span><span class="p">),</span>
+<span class="w">            </span><span class="n">response_id</span><span class="p">:</span><span class="w"> </span><span class="n">formData</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;response_id&quot;</span><span class="p">),</span>
+<span class="w">            </span><span class="n">retrieval_issues</span><span class="p">:</span><span class="w"> </span><span class="n">formData</span><span class="o">.</span><span class="n">getAll</span><span class="p">(</span><span class="s2">&quot;retrieval_issue&quot;</span><span class="p">),</span>
+<span class="w">            </span><span class="n">generation_issues</span><span class="p">:</span><span class="w"> </span><span class="n">formData</span><span class="o">.</span><span class="n">getAll</span><span class="p">(</span><span class="s2">&quot;generation_issue&quot;</span><span class="p">),</span>
+<span class="w">            </span><span class="n">comments</span><span class="p">:</span><span class="w"> </span><span class="n">formData</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;comments&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">};</span>
+
+<span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="n">Submit</span><span class="w"> </span><span class="n">detailed</span><span class="w"> </span><span class="n">feedback</span>
+<span class="w">        </span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;/api/detailed-feedback&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">method</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">headers</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="n">body</span><span class="p">:</span><span class="w"> </span><span class="n">JSON</span><span class="o">.</span><span class="n">stringify</span><span class="p">(</span><span class="n">feedbackData</span><span class="p">)</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">        </span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">response</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+<span class="w">        </span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">showThankYouMessage</span><span class="p">();</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="si">}</span><span class="s2">);</span>
+<span class="s2">    &lt;/script&gt;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</code></pre></div>
+<h2 id="learning-from-user-behavior-the-implicit-feedback-gold-mine">Learning from User Behavior: The Implicit Feedback Gold Mine</h2>
+<p>While explicit feedback (ratings, comments) is valuable, users express opinions through their actions even when they don't provide direct feedback. These behavioral signals—often called implicit feedback—can be a gold mine for system improvement.</p>
+<p>Key implicit feedback signals include:</p>
+<ul>
+<li><strong>Query refinements:</strong> When users rephrase a query immediately after receiving a response</li>
+<li><strong>Abandonment:</strong> When users abandon a session after receiving a response</li>
+<li><strong>Engagement time:</strong> How long users engage with a response</li>
+<li><strong>Link clicks:</strong> Which citations or references users click on</li>
+<li><strong>Copypaste actions:</strong> What parts of responses users copy to their clipboard</li>
+<li><strong>Scrolling behavior:</strong> Whether users read the entire response or just skim</li>
+</ul>
+<p>By tracking these behaviors, you can identify patterns that indicate success or failure even when users don't provide explicit feedback.</p>
+<div class="admonition example">
+<p class="admonition-title">Implicit Feedback Collection</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Track query refinements</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">trackQueryRefinement</span><span class="p">(</span><span class="nx">originalQueryId</span><span class="p">,</span><span class="w"> </span><span class="nx">newQuery</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;/api/track-refinement&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">original_query_id</span><span class="o">:</span><span class="w"> </span><span class="nx">originalQueryId</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">new_query</span><span class="o">:</span><span class="w"> </span><span class="nx">newQuery</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">time_difference_ms</span><span class="o">:</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">lastQueryTimestamp</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">}</span>
+
+<span class="c1">// Track citation clicks</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">trackCitationClick</span><span class="p">(</span><span class="nx">queryId</span><span class="p">,</span><span class="w"> </span><span class="nx">responseId</span><span class="p">,</span><span class="w"> </span><span class="nx">citationIndex</span><span class="p">,</span><span class="w"> </span><span class="nx">documentId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;/api/track-citation-click&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">query_id</span><span class="o">:</span><span class="w"> </span><span class="nx">queryId</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">response_id</span><span class="o">:</span><span class="w"> </span><span class="nx">responseId</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">citation_index</span><span class="o">:</span><span class="w"> </span><span class="nx">citationIndex</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">document_id</span><span class="o">:</span><span class="w"> </span><span class="nx">documentId</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">timestamp</span><span class="o">:</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">}</span>
+
+<span class="c1">// Track user engagement time</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">viewStartTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">isVisible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;visibilitychange&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">visibilityState</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;hidden&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">isVisible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">trackEngagementTime</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">isVisible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">viewStartTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;beforeunload&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">trackEngagementTime</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">trackEngagementTime</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">isVisible</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">engagementTimeMs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">viewStartTime</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;/api/track-engagement&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">query_id</span><span class="o">:</span><span class="w"> </span><span class="nx">currentQueryId</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">response_id</span><span class="o">:</span><span class="w"> </span><span class="nx">currentResponseId</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">engagement_time_ms</span><span class="o">:</span><span class="w"> </span><span class="nx">engagementTimeMs</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<h3 id="mining-hard-negatives-from-user-behavior">Mining Hard Negatives from User Behavior</h3>
+<p>One particularly valuable form of implicit feedback is the identification of "hard negatives"—documents that appear relevant based on keyword or semantic matching but are actually irrelevant or misleading for a particular query.</p>
+<p>When a user submits a query, views the response and citations, then immediately refines their query or provides negative feedback, there's a good chance that the retrieved documents were not helpful. These interactions provide strong signals about weaknesses in your retrieval system.</p>
+<p>By tracking these patterns, you can build datasets of queries paired with documents that should NOT be retrieved—invaluable training data for improving embedding models or reranking systems.</p>
+<p>Here's a simple algorithm for mining hard negatives from user interactions:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">identify_potential_hard_negatives</span><span class="p">(</span>
+    <span class="n">query_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">retrieved_docs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">user_actions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Identify potential hard negative documents based on user interactions.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    - query_id: The ID of the original query</span>
+<span class="sd">    - retrieved_docs: List of document IDs retrieved for this query</span>
+<span class="sd">    - user_actions: Sequence of user actions following the response</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    - List of potential hard negative documents with confidence scores</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">hard_negative_candidates</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Check for immediate query refinement (within 30 seconds)</span>
+    <span class="n">refinement</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
+        <span class="p">(</span>
+            <span class="n">action</span> <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">user_actions</span>
+            <span class="k">if</span> <span class="n">action</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;query&quot;</span> <span class="ow">and</span> <span class="n">action</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">query_timestamp</span> <span class="o">&lt;</span> <span class="mi">30</span>
+        <span class="p">),</span>
+        <span class="kc">None</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">refinement</span><span class="p">:</span>
+        <span class="c1"># All retrieved docs from the original query are potential hard negatives</span>
+        <span class="c1"># But we assign different confidence scores based on user actions</span>
+        <span class="k">for</span> <span class="n">doc_id</span> <span class="ow">in</span> <span class="n">retrieved_docs</span><span class="p">:</span>
+            <span class="n">confidence</span> <span class="o">=</span> <span class="mf">0.7</span>  <span class="c1"># Base confidence for refinement case</span>
+
+            <span class="c1"># Check if user viewed this document (reduces confidence it&#39;s a hard negative)</span>
+            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;view_document&quot;</span> <span class="ow">and</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;document_id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">doc_id</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">user_actions</span><span class="p">):</span>
+                <span class="n">confidence</span> <span class="o">-=</span> <span class="mf">0.3</span>
+
+            <span class="c1"># Check if user explicitly marked this document as irrelevant</span>
+            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;rate_document&quot;</span> <span class="ow">and</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;document_id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">doc_id</span> <span class="ow">and</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;rating&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;irrelevant&quot;</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">user_actions</span><span class="p">):</span>
+                <span class="n">confidence</span> <span class="o">=</span> <span class="mf">0.9</span>  <span class="c1"># Very high confidence it&#39;s a hard negative</span>
+
+            <span class="n">hard_negative_candidates</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;query_id&quot;</span><span class="p">:</span> <span class="n">query_id</span><span class="p">,</span>
+                <span class="s2">&quot;document_id&quot;</span><span class="p">:</span> <span class="n">doc_id</span><span class="p">,</span>
+                <span class="s2">&quot;confidence&quot;</span><span class="p">:</span> <span class="n">confidence</span><span class="p">,</span>
+                <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="s2">&quot;query_refinement&quot;</span>
+            <span class="p">})</span>
+
+    <span class="c1"># Check for negative feedback on response</span>
+    <span class="n">negative_feedback</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
+        <span class="p">(</span>
+            <span class="n">action</span> <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">user_actions</span>
+            <span class="k">if</span> <span class="n">action</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;rate_response&quot;</span> <span class="ow">and</span> <span class="n">action</span><span class="p">[</span><span class="s2">&quot;rating&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;not_helpful&quot;</span><span class="p">,</span> <span class="s2">&quot;inaccurate&quot;</span><span class="p">]</span>
+        <span class="p">),</span>
+        <span class="kc">None</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">negative_feedback</span><span class="p">:</span>
+        <span class="c1"># Documents that weren&#39;t explicitly marked as helpful may be hard negatives</span>
+        <span class="k">for</span> <span class="n">doc_id</span> <span class="ow">in</span> <span class="n">retrieved_docs</span><span class="p">:</span>
+            <span class="c1"># Skip documents the user explicitly marked as helpful</span>
+            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;rate_document&quot;</span> <span class="ow">and</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;document_id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">doc_id</span> <span class="ow">and</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;rating&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;helpful&quot;</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">user_actions</span><span class="p">):</span>
+                <span class="k">continue</span>
+
+            <span class="n">confidence</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># Base confidence for negative feedback case</span>
+
+            <span class="c1"># Adjust confidence based on document interactions</span>
+            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;rate_document&quot;</span> <span class="ow">and</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;document_id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">doc_id</span> <span class="ow">and</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;rating&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;irrelevant&quot;</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">user_actions</span><span class="p">):</span>
+                <span class="n">confidence</span> <span class="o">=</span> <span class="mf">0.9</span>  <span class="c1"># Very high confidence it&#39;s a hard negative</span>
+
+            <span class="n">hard_negative_candidates</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;query_id&quot;</span><span class="p">:</span> <span class="n">query_id</span><span class="p">,</span>
+                <span class="s2">&quot;document_id&quot;</span><span class="p">:</span> <span class="n">doc_id</span><span class="p">,</span>
+                <span class="s2">&quot;confidence&quot;</span><span class="p">:</span> <span class="n">confidence</span><span class="p">,</span>
+                <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="s2">&quot;negative_feedback&quot;</span>
+            <span class="p">})</span>
+
+    <span class="c1"># Filter out low-confidence candidates</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">candidate</span> <span class="k">for</span> <span class="n">candidate</span> <span class="ow">in</span> <span class="n">hard_negative_candidates</span> <span class="k">if</span> <span class="n">candidate</span><span class="p">[</span><span class="s2">&quot;confidence&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.4</span><span class="p">]</span>
+</code></pre></div>
+<p>By collecting these potential hard negatives over time, you can build a dataset for fine-tuning embedding models or training re-rankers to avoid these problematic documents in future queries.</p>
+<h2 id="building-a-feedback-driven-roadmap">Building a Feedback-Driven Roadmap</h2>
+<p>The ultimate goal of feedback collection is to guide your improvement roadmap. Rather than making enhancement decisions based on intuition or technical interest, you can prioritize based on user needs revealed through feedback.</p>
+<p>A feedback-driven roadmap:</p>
+<ol>
+<li>Identifies the most common issues reported by users</li>
+<li>Quantifies the impact of each issue on user satisfaction</li>
+<li>Ranks potential improvements by expected impact</li>
+<li>Establishes clear metrics to evaluate whether changes actually improve the user experience</li>
+</ol>
+<p>This approach ensures that engineering efforts focus on changes that will have the greatest impact on user satisfaction rather than on the most technically interesting problems.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">analyze_feedback_for_roadmap</span><span class="p">(</span><span class="n">feedback_data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">],</span> <span class="n">time_period_days</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Analyze feedback data to identify high-priority improvement areas.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    - feedback_data: Collection of user feedback and interaction data</span>
+<span class="sd">    - time_period_days: Time window to analyze (default: 30 days)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    - Dictionary of issue categories with frequency and impact scores</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">recent_cutoff</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">time_period_days</span><span class="p">)</span>
+    <span class="n">recent_feedback</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">feedback_data</span> <span class="k">if</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">recent_cutoff</span><span class="p">]</span>
+
+    <span class="c1"># Group feedback by issue category</span>
+    <span class="n">issues_by_category</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">feedback</span> <span class="ow">in</span> <span class="n">recent_feedback</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">&quot;issues&quot;</span> <span class="ow">in</span> <span class="n">feedback</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">issue</span> <span class="ow">in</span> <span class="n">feedback</span><span class="p">[</span><span class="s2">&quot;issues&quot;</span><span class="p">]:</span>
+                <span class="n">category</span> <span class="o">=</span> <span class="n">issue</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span>
+                <span class="n">issues_by_category</span><span class="p">[</span><span class="n">category</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s2">&quot;feedback_id&quot;</span><span class="p">:</span> <span class="n">feedback</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;severity&quot;</span><span class="p">:</span> <span class="n">issue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;severity&quot;</span><span class="p">,</span> <span class="s2">&quot;medium&quot;</span><span class="p">),</span>
+                    <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">feedback</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;anonymous&quot;</span><span class="p">),</span>
+                    <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">feedback</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">]</span>
+                <span class="p">})</span>
+
+    <span class="c1"># Calculate impact scores</span>
+    <span class="n">impact_scores</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">category</span><span class="p">,</span> <span class="n">issues</span> <span class="ow">in</span> <span class="n">issues_by_category</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="c1"># Count unique users affected</span>
+        <span class="n">unique_users</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">issue</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">issue</span> <span class="ow">in</span> <span class="n">issues</span> <span class="k">if</span> <span class="n">issue</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;anonymous&quot;</span><span class="p">))</span>
+
+        <span class="c1"># Calculate frequency</span>
+        <span class="n">frequency</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">issues</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">recent_feedback</span><span class="p">)</span>
+
+        <span class="c1"># Calculate severity score (0-1)</span>
+        <span class="n">severity_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;low&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s2">&quot;medium&quot;</span><span class="p">:</span> <span class="mf">0.6</span><span class="p">,</span> <span class="s2">&quot;high&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">}</span>
+        <span class="n">avg_severity</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">severity_map</span><span class="p">[</span><span class="n">issue</span><span class="p">[</span><span class="s2">&quot;severity&quot;</span><span class="p">]]</span> <span class="k">for</span> <span class="n">issue</span> <span class="ow">in</span> <span class="n">issues</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">issues</span><span class="p">)</span>
+
+        <span class="c1"># Calculate recency factor (more recent issues weighted higher)</span>
+        <span class="n">most_recent</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">issue</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">issue</span> <span class="ow">in</span> <span class="n">issues</span><span class="p">)</span>
+        <span class="n">recency_factor</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="p">((</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">most_recent</span><span class="p">)</span><span class="o">.</span><span class="n">days</span> <span class="o">/</span> <span class="n">time_period_days</span><span class="p">)</span>
+
+        <span class="c1"># Calculate overall impact score</span>
+        <span class="n">impact</span> <span class="o">=</span> <span class="p">(</span><span class="n">frequency</span> <span class="o">*</span> <span class="mf">0.4</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">avg_severity</span> <span class="o">*</span> <span class="mf">0.3</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">unique_users</span> <span class="o">/</span> <span class="mi">100</span> <span class="o">*</span> <span class="mf">0.2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">recency_factor</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">)</span>
+
+        <span class="n">impact_scores</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;frequency&quot;</span><span class="p">:</span> <span class="n">frequency</span><span class="p">,</span>
+            <span class="s2">&quot;unique_users&quot;</span><span class="p">:</span> <span class="n">unique_users</span><span class="p">,</span>
+            <span class="s2">&quot;avg_severity&quot;</span><span class="p">:</span> <span class="n">avg_severity</span><span class="p">,</span>
+            <span class="s2">&quot;recency_factor&quot;</span><span class="p">:</span> <span class="n">recency_factor</span><span class="p">,</span>
+            <span class="s2">&quot;overall_impact&quot;</span><span class="p">:</span> <span class="n">impact</span><span class="p">,</span>
+            <span class="s2">&quot;example_feedbacks&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">issue</span><span class="p">[</span><span class="s2">&quot;feedback_id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">issue</span> <span class="ow">in</span> <span class="n">issues</span><span class="p">[:</span><span class="mi">5</span><span class="p">]]</span>
+        <span class="p">}</span>
+
+    <span class="c1"># Sort by impact score</span>
+    <span class="n">sorted_impact</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+        <span class="n">impact_scores</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span>
+        <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;overall_impact&quot;</span><span class="p">],</span>
+        <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;analyzed_period_days&quot;</span><span class="p">:</span> <span class="n">time_period_days</span><span class="p">,</span>
+        <span class="s2">&quot;total_feedback_count&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">recent_feedback</span><span class="p">),</span>
+        <span class="s2">&quot;prioritized_issues&quot;</span><span class="p">:</span> <span class="n">sorted_impact</span>
+    <span class="p">}</span>
+</code></pre></div>
+<h2 id="conclusion-feedback-as-foundation">Conclusion: Feedback as Foundation</h2>
+<p>Effective feedback collection is the foundation of systematic RAG improvement. Without robust feedback mechanisms, you're left guessing about which aspects of your system need enhancement and whether your changes actually improve the user experience.</p>
+<p>By implementing the strategies outlined in this chapter—making feedback visible, segmenting it for actionability, mining user behaviors for implicit signals, and using feedback to drive your roadmap—you establish a data-driven approach to continuous improvement.</p>
+<p>In the next chapter, we'll explore how to reduce perceived latency through streaming and progressive responses, building on the feedback foundation to create a more engaging user experience.</p>
+<h2 id="reflection-questions">Reflection Questions</h2>
+<ol>
+<li>
+<p>How visible are the feedback mechanisms in your current RAG implementation? What changes could make them more prominent and engaging?</p>
+</li>
+<li>
+<p>What implicit signals could you collect from user interactions with your system? How might these complement explicit feedback?</p>
+</li>
+<li>
+<p>How could you segment feedback to better pinpoint issues in specific parts of your RAG pipeline?</p>
+</li>
+<li>
+<p>What processes would you need to implement to translate feedback into a prioritized improvement roadmap?</p>
+</li>
+<li>
+<p>How might you incentivize users to provide more detailed feedback, especially after negative experiences?</p>
+</li>
+</ol>
+<h2 id="summary">Summary</h2>
+<p>Effective feedback collection is essential for systematic improvement of RAG systems. By making feedback mechanisms visible and engaging, segmenting feedback to target specific pipeline components, mining implicit signals from user behavior, and using feedback to drive your improvement roadmap, you create a foundation for continuous enhancement. The feedback flywheel turns raw user interactions into actionable insights that guide your development priorities and measure the impact of your improvements.</p>
+<h2 id="additional-resources">Additional Resources</h2>
+<ol>
+<li>
+<p>Nielsen Norman Group, <a href="https://www.nngroup.com/articles/feedback-mechanisms/">"User Feedback Mechanisms for Mobile and Web"</a></p>
+</li>
+<li>
+<p>Google Research, <a href="https://research.google/pubs/beyond-a-b-testing-implicit-feedback-for-ui-improvement/">"Beyond A/B Testing: Implicit Feedback for UI Improvement"</a></p>
+</li>
+<li>
+<p>Qualtrics, <a href="https://www.qualtrics.com/experience-management/customer/feedback-form-design/">"Designing Feedback Forms That Users Actually Complete"</a></p>
+</li>
+<li>
+<p>GitHub Repository: <a href="https://github.com/microsoft/rag-feedback-collection">RAG-Feedback-Collection</a> - Templates and examples for implementing feedback mechanisms in RAG applications</p>
+</li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../chapter2/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 2: From Evaluation to Enhancement">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Chapter 2: From Evaluation to Enhancement
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../chapter3-2/" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 3: UX - Feedback Collection">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Chapter 3: UX - Feedback Collection
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jxnlco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+    
+  </body>
+</html>

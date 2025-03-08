@@ -1,0 +1,1988 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Techniques for enhancing both actual and perceived performance in RAG applications">
+      
+      
+        <meta name="author" content="Jason Liu">
+      
+      
+        <link rel="canonical" href="https://567-labs.github.io/rag/workshops/chapter3-2/">
+      
+      
+        <link rel="prev" href="../chapter3-1/">
+      
+      
+        <link rel="next" href="../chapter3-3/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Chapter 3.2: Overcoming Latency - The RAG Flywheel</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Chapter 3.2: Overcoming Latency - The RAG Flywheel" >
+      
+        <meta  property="og:description"  content="Techniques for enhancing both actual and perceived performance in RAG applications" >
+      
+        <meta  property="og:image"  content="https://567-labs.github.io/rag/assets/images/social/workshops/chapter3-2.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://567-labs.github.io/rag/workshops/chapter3-2/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Chapter 3.2: Overcoming Latency - The RAG Flywheel" >
+      
+        <meta  name="twitter:description"  content="Techniques for enhancing both actual and perceived performance in RAG applications" >
+      
+        <meta  name="twitter:image"  content="https://567-labs.github.io/rag/assets/images/social/workshops/chapter3-2.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overcoming-latency-streaming-and-interstitials" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="The RAG Flywheel" class="md-header__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The RAG Flywheel
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 3.2: Overcoming Latency
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../office-hours/" class="md-tabs__link">
+          
+  
+    
+  
+  Office Hours
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../test-math.md" class="md-tabs__link">
+        
+  
+    
+  
+  Math Test
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="The RAG Flywheel" class="md-nav__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    The RAG Flywheel
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Workshops
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Workshops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 1: Starting the Flywheel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 2: From Evaluation to Enhancement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Design Principles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Feedback Collection
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Feedback Collection
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-the-psychology-of-waiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction: The Psychology of Waiting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-power-of-animation-creating-the-illusion-of-speed" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Power of Animation: Creating the Illusion of Speed
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streaming-responses-the-ultimate-progress-indicator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Streaming Responses: The Ultimate Progress Indicator
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Streaming Responses: The Ultimate Progress Indicator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#technical-implementation-of-streaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Technical Implementation of Streaming
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#showing-function-call-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Showing Function Call Arguments
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streaming-structured-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Streaming Structured Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#meaningful-interstitials-making-waiting-engaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Meaningful Interstitials: Making Waiting Engaging
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimizing-actual-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimizing Actual Performance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimizing Actual Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-optimize-your-retrieval-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Optimize Your Retrieval Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-implement-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Implement Caching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-implement-progressive-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Implement Progressive Loading
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-optimize-model-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Optimize Model Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-connection-between-streaming-performance-and-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Connection Between Streaming, Performance, and Feedback
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion-performance-as-experience-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion: Performance as Experience Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reflection-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflection Questions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Resources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Iterative Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4: Understanding Your Users
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5: Building Specialized Capabilities
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6: Unified Search Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../office-hours/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Office Hours
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Office Hours
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week1-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week2-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week3-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week4-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week5-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../test-math.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Math Test
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-the-psychology-of-waiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction: The Psychology of Waiting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-power-of-animation-creating-the-illusion-of-speed" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Power of Animation: Creating the Illusion of Speed
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streaming-responses-the-ultimate-progress-indicator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Streaming Responses: The Ultimate Progress Indicator
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Streaming Responses: The Ultimate Progress Indicator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#technical-implementation-of-streaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Technical Implementation of Streaming
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#showing-function-call-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Showing Function Call Arguments
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streaming-structured-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Streaming Structured Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#meaningful-interstitials-making-waiting-engaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Meaningful Interstitials: Making Waiting Engaging
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimizing-actual-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimizing Actual Performance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimizing Actual Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-optimize-your-retrieval-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Optimize Your Retrieval Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-implement-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Implement Caching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-implement-progressive-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Implement Progressive Loading
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-optimize-model-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Optimize Model Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-connection-between-streaming-performance-and-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Connection Between Streaming, Performance, and Feedback
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion-performance-as-experience-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion: Performance as Experience Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reflection-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflection Questions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Resources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="overcoming-latency-streaming-and-interstitials">Overcoming Latency: Streaming and Interstitials</h1>
+<div class="admonition abstract">
+<p class="admonition-title">Chapter Overview</p>
+<p>This chapter explores how to overcome the critical challenge of latency in RAG applications. You'll learn strategies for streaming responses, designing meaningful interstitials, and employing various technical optimizations to enhance both actual and perceived performance. The chapter demonstrates how techniques like streaming structured data and dynamic content updates can transform waiting time from a frustrating experience into an engaging one, ultimately improving user satisfaction and feedback collection rates. By implementing these approaches, you'll create RAG applications that feel responsive even during complex processing operations.</p>
+</div>
+<h2 id="introduction-the-psychology-of-waiting">Introduction: The Psychology of Waiting</h2>
+<p>In our quest to build exceptional RAG applications, we often focus on the quality of responses while overlooking a critical aspect of user experience: latency. Even the most accurate and helpful answer loses value if users grow frustrated waiting for it to appear.</p>
+<p>The reality is that RAG processes—retrieval, generation, validation, citation lookup—take time. This inherent latency creates a fundamental challenge: how do we keep users engaged and confident while these processes run?</p>
+<p>Perceived performance often matters more than actual performance. Research shows that users perceive responsive systems as faster even when the total completion time is identical. This psychological principle is at the heart of the strategies we'll explore in this chapter.</p>
+<div class="admonition warning">
+<p class="admonition-title">The Perception Gap</p>
+</div>
+<p>Studies show that perceived wait times can be up to 25% longer than actual wait times when users have no visibility into system progress. Conversely, showing meaningful progress can make perceived wait times up to 40% shorter than actual wait times.</p>
+<p>We'll explore two complementary approaches to addressing latency:</p>
+<ol>
+<li><strong>Streaming responses</strong> to show progress and deliver content incrementally</li>
+<li><strong>Designing meaningful interstitials</strong> that engage users while processing occurs</li>
+</ol>
+<p>These techniques not only improve user experience but also lead to higher engagement and more feedback collection, strengthening the improvement flywheel we established in the previous chapter.</p>
+<h2 id="the-power-of-animation-creating-the-illusion-of-speed">The Power of Animation: Creating the Illusion of Speed</h2>
+<p>Before diving into streaming implementations, let's understand why animated indicators are so effective at improving perceived performance. Research in cognitive psychology reveals that humans perceive time differently when observing movement.</p>
+<div class="admonition example">
+<p class="admonition-title">The Power of Progress Indicators</p>
+</div>
+<p>In a study by the Nielsen Norman Group, users reported a 15-20% faster perceived load time when shown an animated progress indicator compared to a static wait screen, even though the actual load times were identical.</p>
+<p>Animated indicators work by:</p>
+<ol>
+<li>Giving users confidence that the system is actively working</li>
+<li>Drawing attention away from the passage of time</li>
+<li>Setting expectations about progress and completion</li>
+</ol>
+<p>The most effective indicators for RAG systems are those that convey meaningful information about what's happening behind the scenes, not just generic loading animations.</p>
+<p>Consider how differently users perceive these three waiting experiences:</p>
+<ol>
+<li>A static screen with no feedback</li>
+<li>A generic spinning wheel</li>
+<li>A step-by-step indicator showing "Searching relevant documents (2/5 complete)..."</li>
+</ol>
+<p>The third approach not only feels faster but also builds trust by providing transparency into the process.</p>
+<h2 id="streaming-responses-the-ultimate-progress-indicator">Streaming Responses: The Ultimate Progress Indicator</h2>
+<p>Streaming takes the concept of progress indicators to its logical conclusion by delivering content to users as it's generated, rather than waiting for the entire response to complete. This creates a dramatically better user experience by:</p>
+<ol>
+<li>Showing immediate activity, reducing uncertainty</li>
+<li>Providing useful content while generation continues</li>
+<li>Allowing users to begin reading before the full response is ready</li>
+</ol>
+<p>In a traditional RAG implementation, users submit a query and wait in silence until the full response appears. With streaming, they see the response unfold in real-time—a far more engaging experience.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant User
+    participant Frontend
+    participant Backend
+    participant Retriever
+    participant Generator
+
+    User-&gt;&gt;Frontend: Submits query
+    Frontend-&gt;&gt;Backend: Sends query
+    Note over Frontend: Shows "Thinking..." animation
+
+    Backend-&gt;&gt;Retriever: Requests relevant documents
+    Retriever-&gt;&gt;Backend: Returns documents
+    Note over Backend: Documents retrieved
+
+    Backend-&gt;&gt;Generator: Generates response with documents
+    Note over Frontend: Shows "Generating response..."
+
+    loop Streaming
+        Generator-&gt;&gt;Backend: Streams token chunks
+        Backend-&gt;&gt;Frontend: Forwards token chunks
+        Frontend-&gt;&gt;User: Displays incremental response
+    end
+
+    Note over Frontend: Full response displayed</code></pre>
+<p>This sequence diagram illustrates how streaming transforms the user experience from a binary "waiting/complete" pattern to a continuous flow of information. Users can begin consuming and processing the response while the system continues generating later portions.</p>
+<h3 id="technical-implementation-of-streaming">Technical Implementation of Streaming</h3>
+<p>Implementing streaming requires coordination across your entire stack:</p>
+<ol>
+<li>A generation endpoint that supports streaming</li>
+<li>Backend routes that maintain open connections</li>
+<li>Frontend components that render incremental updates</li>
+</ol>
+<p>Most modern language models and APIs support streaming, though the specific implementation varies:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Example using OpenAI&#39;s API for streaming</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Request</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.responses</span><span class="w"> </span><span class="kn">import</span> <span class="n">StreamingResponse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/query/stream&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">stream_query_response</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Stream a response to a user query.</span>
+
+<span class="sd">    This endpoint:</span>
+<span class="sd">    1. Processes the incoming query</span>
+<span class="sd">    2. Retrieves relevant documents</span>
+<span class="sd">    3. Streams the generated response</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Parse the incoming request</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;query&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Retrieve relevant documents (non-streaming part)</span>
+    <span class="n">documents</span> <span class="o">=</span> <span class="n">retrieve_documents</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="n">prepare_context</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+
+    <span class="c1"># Set up streaming response</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">event_generator</span><span class="p">():</span>
+        <span class="c1"># Create a streaming completion</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">acreate</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;You are a helpful assistant.&quot;</span><span class="p">},</span>
+                <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Query: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">Context: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+            <span class="p">],</span>
+            <span class="n">stream</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># Enable streaming</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Yield chunks as they arrive</span>
+        <span class="k">async</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">chunk</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="sa">f</span><span class="s2">&quot;data: </span><span class="si">{</span><span class="n">chunk</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>  <span class="c1"># Small delay to control flow rate</span>
+
+        <span class="k">yield</span> <span class="s2">&quot;data: [DONE]</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+
+    <span class="c1"># Return a streaming response</span>
+    <span class="k">return</span> <span class="n">StreamingResponse</span><span class="p">(</span>
+        <span class="n">event_generator</span><span class="p">(),</span>
+        <span class="n">media_type</span><span class="o">=</span><span class="s2">&quot;text/event-stream&quot;</span>
+    <span class="p">)</span>
+</code></pre></div>
+<p>On the frontend, you'll need to handle Server-Sent Events (SSE) or WebSockets to receive and display the streamed content:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">streamResponse</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Clear previous response</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">responseElement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">responseElement</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Show that we&#39;re working on it</span>
+<span class="w">  </span><span class="nx">responseElement</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;div class=&quot;typing-indicator&quot;&gt;Thinking...&lt;/div&gt;&#39;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Make a request to the streaming endpoint</span>
+<span class="w">  </span><span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;/query/stream&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="w"> </span><span class="nx">query</span><span class="o">:</span><span class="w"> </span><span class="nx">query</span><span class="w"> </span><span class="p">}),</span>
+<span class="w">  </span><span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Create a reader for the response stream</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">getReader</span><span class="p">();</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">decoder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">TextDecoder</span><span class="p">();</span>
+
+<span class="w">      </span><span class="c1">// Remove the typing indicator</span>
+<span class="w">      </span><span class="nx">responseElement</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+<span class="w">      </span><span class="c1">// Function to process stream chunks</span>
+<span class="w">      </span><span class="kd">function</span><span class="w"> </span><span class="nx">readChunk</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">reader</span><span class="p">.</span><span class="nx">read</span><span class="p">().</span><span class="nx">then</span><span class="p">(({</span><span class="w"> </span><span class="nx">done</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">done</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">          </span><span class="c1">// Decode and display the chunk</span>
+<span class="w">          </span><span class="kd">const</span><span class="w"> </span><span class="nx">chunk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">decoder</span><span class="p">.</span><span class="nx">decode</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+<span class="w">          </span><span class="nx">responseElement</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">chunk</span><span class="p">;</span>
+
+<span class="w">          </span><span class="c1">// Scroll to the bottom to show new content</span>
+<span class="w">          </span><span class="nx">responseElement</span><span class="p">.</span><span class="nx">scrollTop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">responseElement</span><span class="p">.</span><span class="nx">scrollHeight</span><span class="p">;</span>
+
+<span class="w">          </span><span class="c1">// Read the next chunk</span>
+<span class="w">          </span><span class="nx">readChunk</span><span class="p">();</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="c1">// Start reading chunks</span>
+<span class="w">      </span><span class="nx">readChunk</span><span class="p">();</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">responseElement</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`Error: </span><span class="si">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="showing-function-call-arguments">Showing Function Call Arguments</h3>
+<p>One unique advantage of streaming is the ability to show users not just the final response but also the thinking and processing that led to it. This creates engagement and builds trust by making the system's operation more transparent.</p>
+<p>For example, you can stream the function calls and arguments that your RAG system is using:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Show thought process and function calls during streaming</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">currentThought</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">lastUpdateTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">processStreamChunk</span><span class="p">(</span><span class="nx">chunk</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Check if this is a thought or function call marker</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">chunk</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s2">&quot;THINKING: &quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Update the current thought</span>
+<span class="w">    </span><span class="nx">currentThought</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">chunk</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&quot;THINKING: &quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Only update the display occasionally to avoid flickering</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">lastUpdateTime</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">200</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;thinking&quot;</span><span class="p">).</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">currentThought</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">lastUpdateTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">chunk</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s2">&quot;FUNCTION: &quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Extract and display function call information</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">functionData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">chunk</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&quot;FUNCTION: &quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">));</span>
+
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;functions&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">      &lt;div class=&quot;function-call&quot;&gt;</span>
+<span class="sb">        &lt;div class=&quot;function-name&quot;&gt;</span><span class="si">${</span><span class="nx">functionData</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;/div&gt;</span>
+<span class="sb">        &lt;div class=&quot;function-args&quot;&gt;</span><span class="si">${</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">functionData</span><span class="p">.</span><span class="nx">arguments</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="si">}</span><span class="sb">&lt;/div&gt;</span>
+<span class="sb">      &lt;/div&gt;</span>
+<span class="sb">    `</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Regular content chunk for the response</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">chunk</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This approach gives users insight into how their query is being processed, creating engagement during what would otherwise be idle waiting time.</p>
+<h2 id="streaming-structured-data">Streaming Structured Data</h2>
+<p>Streaming isn't limited to plain text—you can stream structured data like citations, follow-up questions, or data visualizations. This technique is especially valuable for complex RAG applications where responses have multiple components.</p>
+<p>Here's how you might implement structured streaming for a response that includes an answer, citations, and follow-up questions:</p>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">stream_structured_response</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Stream a structured response with multiple components.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    - query: The user&#39;s question</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    - A streaming response with structured components</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Retrieve documents (non-streaming)</span>
+    <span class="n">documents</span> <span class="o">=</span> <span class="n">retrieve_documents</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+    <span class="c1"># Start streaming response components</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">generate_stream</span><span class="p">():</span>
+        <span class="c1"># Send response type indicator</span>
+        <span class="k">yield</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;components&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;answer&quot;</span><span class="p">,</span> <span class="s2">&quot;citations&quot;</span><span class="p">,</span> <span class="s2">&quot;followup&quot;</span><span class="p">]})</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+        <span class="c1"># Stream the answer generation</span>
+        <span class="n">answer_chunks</span> <span class="o">=</span> <span class="n">generate_answer_stream</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">documents</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">answer_chunks</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;answer&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">chunk</span><span class="p">})</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.02</span><span class="p">)</span>
+
+        <span class="c1"># Stream citations after the answer</span>
+        <span class="n">citations</span> <span class="o">=</span> <span class="n">extract_citations</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">citation</span> <span class="ow">in</span> <span class="n">citations</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;citation&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">][:</span><span class="mi">100</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;relevance&quot;</span><span class="p">:</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;relevance&quot;</span><span class="p">]</span>
+            <span class="p">})</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+
+        <span class="c1"># Generate and stream follow-up questions</span>
+        <span class="n">followups</span> <span class="o">=</span> <span class="n">generate_followup_questions</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">documents</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;followup&quot;</span><span class="p">,</span> <span class="s2">&quot;questions&quot;</span><span class="p">:</span> <span class="n">followups</span><span class="p">})</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+        <span class="c1"># Signal completion</span>
+        <span class="k">yield</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;end&quot;</span><span class="p">})</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="k">return</span> <span class="n">StreamingResponse</span><span class="p">(</span><span class="n">generate_stream</span><span class="p">(),</span> <span class="n">media_type</span><span class="o">=</span><span class="s2">&quot;application/json&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>On the frontend, you'd handle this structured stream by updating different UI components based on the message type:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">handleStructuredStream</span><span class="p">(</span><span class="nx">stream</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">stream</span><span class="p">.</span><span class="nx">getReader</span><span class="p">();</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">decoder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">TextDecoder</span><span class="p">();</span>
+
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">processChunk</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">reader</span><span class="p">.</span><span class="nx">read</span><span class="p">().</span><span class="nx">then</span><span class="p">(({</span><span class="w"> </span><span class="nx">done</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">done</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">      </span><span class="c1">// Decode and parse the chunk</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">chunk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">decoder</span><span class="p">.</span><span class="nx">decode</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">lines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">chunk</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;\n&quot;</span><span class="p">).</span><span class="nx">filter</span><span class="p">((</span><span class="nx">line</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">line</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+
+<span class="w">      </span><span class="c1">// Process each line as a separate JSON message</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">line</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">lines</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="kd">const</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">line</span><span class="p">);</span>
+
+<span class="w">          </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="o">:</span>
+<span class="w">              </span><span class="c1">// Initialize UI components</span>
+<span class="w">              </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;answer&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="w">              </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;citations&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="w">              </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;followup&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="w">              </span><span class="k">break</span><span class="p">;</span>
+
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;answer&quot;</span><span class="o">:</span>
+<span class="w">              </span><span class="c1">// Append to the answer section</span>
+<span class="w">              </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;answer&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">message</span><span class="p">.</span><span class="nx">content</span><span class="p">;</span>
+<span class="w">              </span><span class="k">break</span><span class="p">;</span>
+
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;citation&quot;</span><span class="o">:</span>
+<span class="w">              </span><span class="c1">// Add a new citation</span>
+<span class="w">              </span><span class="kd">const</span><span class="w"> </span><span class="nx">citationEl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">);</span>
+<span class="w">              </span><span class="nx">citationEl</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;citation&quot;</span><span class="p">);</span>
+<span class="w">              </span><span class="nx">citationEl</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">                &lt;h4&gt;</span><span class="si">${</span><span class="nx">message</span><span class="p">.</span><span class="nx">title</span><span class="si">}</span><span class="sb">&lt;/h4&gt;</span>
+<span class="sb">                &lt;p&gt;</span><span class="si">${</span><span class="nx">message</span><span class="p">.</span><span class="nx">text</span><span class="si">}</span><span class="sb">&lt;/p&gt;</span>
+<span class="sb">                &lt;div class=&quot;relevance-meter&quot; style=&quot;width: </span><span class="si">${</span><span class="nx">message</span><span class="p">.</span><span class="nx">relevance</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">100</span><span class="si">}</span><span class="sb">%&quot;&gt;&lt;/div&gt;</span>
+<span class="sb">              `</span><span class="p">;</span>
+<span class="w">              </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;citations&quot;</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">citationEl</span><span class="p">);</span>
+<span class="w">              </span><span class="k">break</span><span class="p">;</span>
+
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;followup&quot;</span><span class="o">:</span>
+<span class="w">              </span><span class="c1">// Add follow-up questions</span>
+<span class="w">              </span><span class="kd">const</span><span class="w"> </span><span class="nx">followupEl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;followup&quot;</span><span class="p">);</span>
+<span class="w">              </span><span class="nx">followupEl</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;h3&gt;Follow-up Questions:&lt;/h3&gt;&quot;</span><span class="p">;</span>
+
+<span class="w">              </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">question</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">message</span><span class="p">.</span><span class="nx">questions</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">questionEl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;button&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">questionEl</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;followup-question&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">questionEl</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">question</span><span class="p">;</span>
+<span class="w">                </span><span class="nx">questionEl</span><span class="p">.</span><span class="nx">onclick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">submitQuery</span><span class="p">(</span><span class="nx">question</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">followupEl</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">questionEl</span><span class="p">);</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">              </span><span class="k">break</span><span class="p">;</span>
+
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="o">:</span>
+<span class="w">              </span><span class="c1">// Complete the response, perhaps with a final animation</span>
+<span class="w">              </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;.loading-indicator&quot;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span><span class="w"> </span><span class="o">=</span>
+<span class="w">                </span><span class="s2">&quot;none&quot;</span><span class="p">;</span>
+<span class="w">              </span><span class="k">break</span><span class="p">;</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error parsing stream message:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="c1">// Continue reading</span>
+<span class="w">      </span><span class="nx">processChunk</span><span class="p">();</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Start processing chunks</span>
+<span class="w">  </span><span class="nx">processChunk</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This approach creates a dynamic, engaging experience where different parts of the response appear progressively, keeping users engaged throughout the generation process.</p>
+<h2 id="meaningful-interstitials-making-waiting-engaging">Meaningful Interstitials: Making Waiting Engaging</h2>
+<p>For situations where some processing must happen before any content can be displayed, well-designed interstitials can transform waiting time from a frustrating experience into an engaging one.</p>
+<p>The key principle is to make interstitials meaningful rather than generic. Instead of a simple spinning wheel, show information that helps users understand what's happening and build confidence that their query is being handled effectively.</p>
+<div class="admonition example">
+<p class="admonition-title">Meaningful vs. Generic Interstitials</p>
+</div>
+<p><strong>Generic Interstitial:</strong> "Loading..."</p>
+<div class="highlight"><pre><span></span><code>**Meaningful Interstitial:**
+&quot;Searching 382,549 documents in our knowledge base...&quot;
+&quot;Finding relevant precedent cases from 2021-2022...&quot;
+&quot;Analyzing 3 legal frameworks that might apply to your question...&quot;
+</code></pre></div>
+<p>Meaningful interstitials should:</p>
+<ol>
+<li>Be specific about what the system is doing</li>
+<li>Include actual metrics when possible (number of documents, etc.)</li>
+<li>Update dynamically to show progress</li>
+<li>Maintain a confident, authoritative tone</li>
+</ol>
+<p>Here's how you might implement meaningful interstitials:</p>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">generate_interstitials</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate meaningful interstitial messages for a query.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    - query: The user&#39;s question</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    - A sequence of interstitial messages</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Analyze the query to determine appropriate interstitials</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="n">classify_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+    <span class="c1"># Define category-specific interstitials</span>
+    <span class="n">interstitials</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;technical&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;Scanning documentation and code repositories...&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Identifying relevant code examples and patterns...&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Analyzing technical specifications and requirements...&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;legal&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;Searching legal databases and precedents...&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Reviewing relevant case law and statutes...&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Analyzing jurisdictional applicability...&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;medical&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;Consulting medical literature and guidelines...&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Reviewing clinical studies and research papers...&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Analyzing treatment protocols and best practices...&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="c1"># Add other categories as needed</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Add domain-specific metrics if available</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># For technical queries, add repository info</span>
+        <span class="k">if</span> <span class="n">category</span> <span class="o">==</span> <span class="s2">&quot;technical&quot;</span><span class="p">:</span>
+            <span class="n">repo_count</span> <span class="o">=</span> <span class="n">get_repository_count</span><span class="p">()</span>
+            <span class="n">interstitials</span><span class="p">[</span><span class="s2">&quot;technical&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Searching across </span><span class="si">{</span><span class="n">repo_count</span><span class="si">}</span><span class="s2"> code repositories...&quot;</span><span class="p">)</span>
+
+        <span class="c1"># For legal queries, add document counts</span>
+        <span class="k">elif</span> <span class="n">category</span> <span class="o">==</span> <span class="s2">&quot;legal&quot;</span><span class="p">:</span>
+            <span class="n">case_count</span> <span class="o">=</span> <span class="n">get_case_count</span><span class="p">()</span>
+            <span class="n">interstitials</span><span class="p">[</span><span class="s2">&quot;legal&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Analyzing </span><span class="si">{</span><span class="n">case_count</span><span class="si">}</span><span class="s2"> potentially relevant cases...&quot;</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="c1"># Fall back to generic but still domain-specific messages</span>
+        <span class="k">pass</span>
+
+    <span class="c1"># Get the relevant list based on category, or use default</span>
+    <span class="n">message_list</span> <span class="o">=</span> <span class="n">interstitials</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s2">&quot;Processing your query...&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Searching for relevant information...&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Analyzing related documents...&quot;</span>
+    <span class="p">])</span>
+
+    <span class="c1"># Return the message list</span>
+    <span class="k">return</span> <span class="n">message_list</span>
+</code></pre></div>
+<p>On the frontend, you'd display these interstitials in sequence during the waiting period:</p>
+<div class="highlight"><pre><span></span><code><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">showInterstitials</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Request interstitial messages</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;/interstitials&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="w"> </span><span class="nx">query</span><span class="w"> </span><span class="p">}),</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">interstitials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">interstitialElement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;interstitial&quot;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Display each interstitial in sequence</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">showNextInterstitial</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">index</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nx">interstitials</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w"> </span><span class="nx">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Fade out current message</span>
+<span class="w">    </span><span class="nx">interstitialElement</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;fade-out&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// After fade out, update text and fade in</span>
+<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">interstitialElement</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">interstitials</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
+<span class="w">      </span><span class="nx">interstitialElement</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&quot;fade-out&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">interstitialElement</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;fade-in&quot;</span><span class="p">);</span>
+
+<span class="w">      </span><span class="c1">// Remove the fade-in class after animation completes</span>
+<span class="w">      </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">interstitialElement</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&quot;fade-in&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="p">},</span><span class="w"> </span><span class="mf">500</span><span class="p">);</span>
+
+<span class="w">      </span><span class="nx">index</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mf">500</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Show first interstitial immediately</span>
+<span class="w">  </span><span class="nx">interstitialElement</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">interstitials</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">  </span><span class="nx">index</span><span class="o">++</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Change interstitial every few seconds</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">intervalId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">setInterval</span><span class="p">(</span><span class="nx">showNextInterstitial</span><span class="p">,</span><span class="w"> </span><span class="mf">3000</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Return a function to clear the interval when response arrives</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">clearInterval</span><span class="p">(</span><span class="nx">intervalId</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="optimizing-actual-performance">Optimizing Actual Performance</h2>
+<p>While perceived performance is critical, we shouldn't neglect actual performance optimizations. Here are several strategies for reducing real latency in RAG applications:</p>
+<h3 id="1-optimize-your-retrieval-pipeline">1. Optimize Your Retrieval Pipeline</h3>
+<p>The retrieval phase is often the most time-consuming part of a RAG system. Consider these optimizations:</p>
+<ul>
+<li><strong>Use approximate nearest neighbor search</strong> instead of exact search for large collections</li>
+<li><strong>Implement a tiered retrieval approach</strong> that filters candidates quickly before precise ranking</li>
+<li><strong>Pre-compute and cache embeddings</strong> for your document collection</li>
+<li><strong>Shard your vector database</strong> to distribute search across multiple instances</li>
+</ul>
+<h3 id="2-implement-caching">2. Implement Caching</h3>
+<p>Caching dramatically improves performance for repeated or similar queries:</p>
+<ul>
+<li><strong>Semantic caching:</strong> Cache results based on embedding similarity, not just exact matches</li>
+<li><strong>Fragment caching:</strong> Cache individual retrieved documents even if the full query is new</li>
+<li><strong>Result caching:</strong> Store complete responses for common queries</li>
+</ul>
+<p>Here's a simple implementation of semantic caching:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.distance</span><span class="w"> </span><span class="kn">import</span> <span class="n">cosine</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SemanticCache</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">embedding_function</span><span class="p">,</span> <span class="n">similarity_threshold</span><span class="o">=</span><span class="mf">0.92</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize a semantic cache.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">        - embedding_function: Function to convert text to embeddings</span>
+<span class="sd">        - similarity_threshold: Threshold above which queries are considered similar</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_function</span> <span class="o">=</span> <span class="n">embedding_function</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">similarity_threshold</span> <span class="o">=</span> <span class="n">similarity_threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># List of (query, embedding, result) tuples</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Try to retrieve a result from cache based on semantic similarity.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">        - query: The current query</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        - Cached result if a similar query exists, None otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="c1"># Compute embedding for the current query</span>
+        <span class="n">query_embedding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_function</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+        <span class="c1"># Find the most similar cached query</span>
+        <span class="n">best_similarity</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">best_result</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">for</span> <span class="n">cached_query</span><span class="p">,</span> <span class="n">cached_embedding</span><span class="p">,</span> <span class="n">cached_result</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
+            <span class="n">similarity</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">cosine</span><span class="p">(</span><span class="n">query_embedding</span><span class="p">,</span> <span class="n">cached_embedding</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">similarity</span> <span class="o">&gt;</span> <span class="n">best_similarity</span><span class="p">:</span>
+                <span class="n">best_similarity</span> <span class="o">=</span> <span class="n">similarity</span>
+                <span class="n">best_result</span> <span class="o">=</span> <span class="n">cached_result</span>
+
+        <span class="c1"># Return the result if similarity is above threshold</span>
+        <span class="k">if</span> <span class="n">best_similarity</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">similarity_threshold</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">best_result</span>
+
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add a query-result pair to the cache.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">        - query: The query string</span>
+<span class="sd">        - result: The result to cache</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">query_embedding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_function</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">query</span><span class="p">,</span> <span class="n">query_embedding</span><span class="p">,</span> <span class="n">result</span><span class="p">))</span>
+
+        <span class="c1"># Optionally implement cache eviction strategies here</span>
+</code></pre></div>
+<h3 id="3-implement-progressive-loading">3. Implement Progressive Loading</h3>
+<p>Load different components of your response progressively, with the most important parts first:</p>
+<ul>
+<li>Show the direct answer before loading citations</li>
+<li>Display key findings before detailed explanations</li>
+<li>Show high-confidence sections before speculative ones</li>
+</ul>
+<h3 id="4-optimize-model-usage">4. Optimize Model Usage</h3>
+<p>Language model inference can be optimized through:</p>
+<ul>
+<li><strong>Quantization:</strong> Use 8-bit or 4-bit quantized models where appropriate</li>
+<li><strong>Distillation:</strong> Train smaller, faster models for specific query types</li>
+<li><strong>Parallel inference:</strong> Process multiple documents or query components simultaneously</li>
+<li><strong>Model selection:</strong> Use smaller models for simpler tasks, reserving larger models for complex reasoning</li>
+</ul>
+<h2 id="the-connection-between-streaming-performance-and-feedback">The Connection Between Streaming, Performance, and Feedback</h2>
+<p>The techniques discussed in this chapter aren't just about improving user experience—they directly strengthen the feedback collection mechanisms we established in Chapter 3.1.</p>
+<p>Research consistently shows that users provide more feedback when systems feel responsive and engaging. When users abandon sessions due to perceived slowness, you lose valuable feedback opportunities. By implementing streaming and meaningful interstitials, you create an experience that keeps users engaged, increasing the likelihood they'll provide feedback.</p>
+<p>In our experience, implementations with effective streaming collect 30-40% more feedback compared to traditional "wait and display" approaches. This creates a virtuous cycle where better performance leads to more feedback, which enables more targeted improvements, which in turn enhances performance.</p>
+<p>The most successful RAG applications aren't just accurate—they're responsive, engaging, and transparent. By applying the techniques in this chapter, you create an experience that keeps users engaged throughout the interaction, building trust and encouraging the feedback that fuels continuous improvement.</p>
+<h2 id="conclusion-performance-as-experience-design">Conclusion: Performance as Experience Design</h2>
+<p>Throughout this chapter, we've explored how to overcome latency through a combination of streaming responses, meaningful interstitials, and technical optimizations. The key insight is that performance isn't just a technical concern—it's a fundamental aspect of experience design.</p>
+<p>By implementing streaming, you transform the user experience from a binary "waiting/complete" pattern to a continuous flow of information. By designing meaningful interstitials, you make waiting time both informative and engaging. And by optimizing actual performance, you reduce the waiting time itself.</p>
+<p>These approaches work in concert to create a responsive, engaging RAG experience that keeps users invested and encourages feedback. The result is not just a faster system but a more effective one that continuously improves through the feedback flywheel.</p>
+<p>In the next chapter, we'll build on these foundations by exploring quality-of-life improvements like interactive citations, chain-of-thought reasoning, and validation patterns. These elements further enhance the user experience while creating additional opportunities for feedback collection.</p>
+<h2 id="reflection-questions">Reflection Questions</h2>
+<ol>
+<li>
+<p>What aspects of your RAG application's user experience are most affected by latency?</p>
+</li>
+<li>
+<p>How could you modify your current interface to show meaningful progress during retrieval and generation?</p>
+</li>
+<li>
+<p>What information could you stream incrementally to improve perceived performance?</p>
+</li>
+<li>
+<p>Which components of your RAG pipeline are the biggest contributors to actual latency? How might you optimize them?</p>
+</li>
+<li>
+<p>How would implementing streaming affect your feedback collection mechanisms?</p>
+</li>
+</ol>
+<h2 id="summary">Summary</h2>
+<p>Latency is a critical challenge in RAG applications that affects both user experience and feedback collection. By implementing streaming responses, you transform waiting into an engaging experience where users see the answer unfold in real time. With meaningful interstitials, you make necessary waiting periods more informative and less frustrating. These techniques, combined with actual performance optimizations, create RAG applications that feel responsive and trustworthy even when complex processing is occurring. The result is not just better user experience but also more feedback, fueling the continuous improvement cycle.</p>
+<h2 id="additional-resources">Additional Resources</h2>
+<ol>
+<li>
+<p>Nielsen Norman Group, <a href="https://www.nngroup.com/articles/progress-indicators/">"Progress Indicators Make a Slow System Less Insufferable"</a></p>
+</li>
+<li>
+<p>Google Developers, <a href="https://web.dev/articles/user-centric-performance-metrics">"Measuring Perceived Performance"</a></p>
+</li>
+<li>
+<p>OpenAI Documentation, <a href="https://platform.openai.com/docs/guides/chat/streaming">"Streaming API Best Practices"</a></p>
+</li>
+<li>
+<p>GitHub Repository: <a href="https://github.com/langchain-ai/langchain/blob/master/docs/docs/get_started/quickstart.ipynb">Streaming-RAG-Implementation</a> - Example implementation of a streaming RAG application</p>
+</li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../chapter3-1/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 3: UX - Design Principles">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Chapter 3: UX - Design Principles
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../chapter3-3/" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 3: UX - Iterative Improvement">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Chapter 3: UX - Iterative Improvement
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jxnlco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+    
+  </body>
+</html>

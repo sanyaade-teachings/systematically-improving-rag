@@ -1,0 +1,1353 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://567-labs.github.io/rag/office-hours/week5-summary/">
+      
+      
+        <link rel="prev" href="../week4-summary/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Week 5 - The RAG Flywheel</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Week 5 - The RAG Flywheel" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="https://567-labs.github.io/rag/assets/images/social/office-hours/week5-summary.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://567-labs.github.io/rag/office-hours/week5-summary/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Week 5 - The RAG Flywheel" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="https://567-labs.github.io/rag/assets/images/social/office-hours/week5-summary.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rag-office-hours-qa-summary-week-5" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="The RAG Flywheel" class="md-header__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The RAG Flywheel
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Week 5
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../workshops/" class="md-tabs__link">
+          
+  
+    
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Office Hours
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../test-math.md" class="md-tabs__link">
+        
+  
+    
+  
+  Math Test
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="The RAG Flywheel" class="md-nav__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    The RAG Flywheel
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../workshops/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Workshops
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Workshops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 1: Starting the Flywheel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 2: From Evaluation to Enhancement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter3-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Design Principles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter3-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Feedback Collection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter3-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Iterative Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4: Understanding Your Users
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5: Building Specialized Capabilities
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6: Unified Search Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Office Hours
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Office Hours
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week1-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week2-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week3-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week4-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Week 5
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Week 5
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-we-handle-excel-files-with-multiple-sheets-and-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should we handle Excel files with multiple sheets and tables?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-tools-are-recommended-for-sql-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      What tools are recommended for SQL generation?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-the-linear-adapter-for-embeddings-and-how-does-it-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is the Linear Adapter for embeddings and how does it work?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-does-partitioning-work-in-retrieval-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      How does partitioning work in retrieval systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-the-model-context-protocol-mcp-and-how-does-it-differ-from-regular-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is the Model Context Protocol (MCP) and how does it differ from regular APIs?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-ai-tools-are-recommended-for-daily-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      What AI tools are recommended for daily work?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-approaches-are-being-used-for-multimodal-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      What approaches are being used for multimodal applications?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-emerging-trends-should-we-be-aware-of" class="md-nav__link">
+    <span class="md-ellipsis">
+      What emerging trends should we be aware of?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-we-handle-retrieval-across-multiple-queries-in-a-conversation" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should we handle retrieval across multiple queries in a conversation?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-innovations-are-happening-in-memory-and-context-management-for-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      What innovations are happening in memory and context management for agents?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-can-we-learn-from-examining-cloud-codes-approach-to-prompts-and-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      What can we learn from examining Cloud Code's approach to prompts and tools?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-we-create-automated-evaluation-reports-and-insights-for-rag-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can we create automated evaluation reports and insights for RAG systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-strategies-help-maintain-context-when-working-with-ai-coding-assistants" class="md-nav__link">
+    <span class="md-ellipsis">
+      What strategies help maintain context when working with AI coding assistants?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../test-math.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Math Test
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-we-handle-excel-files-with-multiple-sheets-and-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should we handle Excel files with multiple sheets and tables?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-tools-are-recommended-for-sql-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      What tools are recommended for SQL generation?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-the-linear-adapter-for-embeddings-and-how-does-it-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is the Linear Adapter for embeddings and how does it work?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-does-partitioning-work-in-retrieval-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      How does partitioning work in retrieval systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-the-model-context-protocol-mcp-and-how-does-it-differ-from-regular-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is the Model Context Protocol (MCP) and how does it differ from regular APIs?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-ai-tools-are-recommended-for-daily-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      What AI tools are recommended for daily work?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-approaches-are-being-used-for-multimodal-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      What approaches are being used for multimodal applications?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-emerging-trends-should-we-be-aware-of" class="md-nav__link">
+    <span class="md-ellipsis">
+      What emerging trends should we be aware of?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-we-handle-retrieval-across-multiple-queries-in-a-conversation" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should we handle retrieval across multiple queries in a conversation?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-innovations-are-happening-in-memory-and-context-management-for-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      What innovations are happening in memory and context management for agents?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-can-we-learn-from-examining-cloud-codes-approach-to-prompts-and-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      What can we learn from examining Cloud Code's approach to prompts and tools?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-we-create-automated-evaluation-reports-and-insights-for-rag-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can we create automated evaluation reports and insights for RAG systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-strategies-help-maintain-context-when-working-with-ai-coding-assistants" class="md-nav__link">
+    <span class="md-ellipsis">
+      What strategies help maintain context when working with AI coding assistants?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="rag-office-hours-qa-summary-week-5">RAG Office Hours Q&amp;A Summary - Week 5</h1>
+<h2 id="how-should-we-handle-excel-files-with-multiple-sheets-and-tables">How should we handle Excel files with multiple sheets and tables?</h2>
+<p>Handling Excel files with multiple sheets and tables is challenging, and few companies have solved this problem well. Experience from companies like Zapier shows that connecting Excel spreadsheets to automation tools requires many controls to work properly.</p>
+<p>The recommended approach is implementing checks on uploads to ensure files meet certain criteria. These checks might verify if an Excel file contains a single table, stays within size limits, or contains a specific number of tables. For simpler Excel files with single tables, implementing validation and processing works well, but for more complex files with multiple sheets and scattered tables, exporting to PDF might allow for easier parsing.</p>
+<p>It's important to segment data and build specific extractors based on the data's structure. Single-table files can go through a dedicated single-table pipeline, while multi-table files might work better through a PDF parsing pipeline.</p>
+<p>The most practical advice is to focus on simpler problems first and reject more complex ones until better solutions are developed. Solving for the simpler 40% of use cases while avoiding the most complex scenarios can be an effective strategy. Exporting Excel files as CSVs might also provide better compatibility with processing tools in many situations.</p>
+<h2 id="what-tools-are-recommended-for-sql-generation">What tools are recommended for SQL generation?</h2>
+<p><a href="https://www.anthropic.com/claude">Claude Sonnet</a> has proven effective for generating SQL queries. Success depends heavily on whether the system can retrieve the correct tables and CREATE statements.</p>
+<p>The key to successful SQL generation is having good descriptions and CREATE statements for the tables, as well as ensuring that embedding and search capabilities properly identify the right tables when needed.</p>
+<p>A recommended approach from <a href="https://www.timescale.com/blog/enhancing-text-to-sql-with-synthetic-summaries">Timescale</a> involves first retrieving relevant tables, then retrieving pre-existing, approved SQL snippets. When both the correct tables and appropriate SQL patterns are in context, the generation process becomes significantly more reliable.</p>
+<p>The complexity increases with many tables and columns, but focusing on retrieving the correct tables first, then incorporating approved SQL snippets to guide the generation process creates a two-step approach that significantly reduces errors in SQL generation.</p>
+<h2 id="what-is-the-linear-adapter-for-embeddings-and-how-does-it-work">What is the Linear Adapter for embeddings and how does it work?</h2>
+<p>Linear adapters provide a cost-effective way to fine-tune embeddings. An embedding model takes data and produces a vector, with the dot product of two vectors indicating how similar they are. A linear adapter learns how to "rotate" these vectors slightly to better align with specific queries.</p>
+<p>The approach is very economical - if a vector has 500 dimensions, the linear adapter is just a 500 by 500 matrix that multiplies the original vector. This allows for significant improvements in embedding quality with minimal computational cost.</p>
+<p>Linear adapters can be compared to <a href="https://research.trychroma.com/embedding-adapters">LoRA (Low-Rank Adaptation)</a>, but with key differences. LoRA works between many layers of a neural network, while a linear adapter works only at the end. Additionally, linear adapters can be applied to pre-trained embeddings like those from OpenAI without needing access to the original model weights.</p>
+<p>This approach enables domain-specific adaptations - for example, creating different adapters for marketing versus sales questions, or specialized adapters for legal, marketing, or tax information. The cost benefit is significant - training a linear adapter typically costs around $12 and can be done quickly, making it much more accessible than full model fine-tuning.</p>
+<p>Implementation uses the standard fine-tuning process with triplets (question, positive example, negative example), but specifically changes the embedding function for the query. This rotation of vectors into more effective alignments can significantly improve retrieval performance for domain-specific applications.</p>
+<h2 id="how-does-partitioning-work-in-retrieval-systems">How does partitioning work in retrieval systems?</h2>
+<p>Partitioning in retrieval systems refers to how data is organized and segmented, rather than being about individual users. In applications like Cursor, a "user" might represent a documentation page. When working with code libraries like Requests, there might be a dedicated Requests index that multiple users access, but the partition is organized around the library package, documentation URL, or codebase.</p>
+<p>Similarly, in applications like Notion, a "user" isn't an individual email account but represents an entire workspace. This means a company's complete Notion workspace would exist in a single index.</p>
+<p>An interesting approach is partition-specific fine-tuning, which involves using different models to embed questions versus text chunks. Standard fine-tuning uses one model for both the question and the text chunk, but it's possible to fine-tune only one side of that equation. This might involve using the same model to embed all text chunks but having a different model to embed the question.</p>
+<p>This technique proves particularly valuable in e-commerce settings. One embedding model might identify products that are similar to each other (creating a "similar products" carousel), while a different embedding model could identify complementary products (for "frequently bought together" recommendations). Both embeddings operate on the same product data but serve different retrieval purposes.</p>
+<h2 id="what-is-the-model-context-protocol-mcp-and-how-does-it-differ-from-regular-apis">What is the Model Context Protocol (MCP) and how does it differ from regular APIs?</h2>
+<p>The <a href="https://modelcontextprotocol.io/docs/concepts/prompts">Model Context Protocol (MCP)</a> functions like a USB-C connector for AI systems - it's about standardization rather than specific functionality. While the devices that connect may vary, the connection method itself is standardized.</p>
+<p>The key advantage of MCP over traditional APIs is the separation of client from backend. With a REST API, developers must write specific code to interact with each API, and each application needs to implement these integrations. MCP creates a standardized way for different systems to connect without custom code for each integration.</p>
+<p>Consider an enterprise example where different teams might focus on different functionality: one team might work on email search while another builds CRM search tools. Both teams can develop their MCP clients, and the chatbot developers can easily integrate both without writing extensive custom code for each system.</p>
+<p>This standardization means tools built with MCP work across multiple platforms without requiring custom integration code. A tool that works in one MCP-compatible environment (like Cursor) will work in others (like Claude desktop app) with minimal additional effort.</p>
+<p>Beyond just function execution, MCP also supports resources and prompts. The MCP developer can provide not just functionality but also the prompts needed to use that functionality effectively. This means client developers don't need to write their own prompts for common operations like summarization or action item extraction.</p>
+<p>This approach significantly reduces the need for glue code and allows developers to build applications without having to own all the client code, making integrations between different AI systems much more seamless.</p>
+<h2 id="what-ai-tools-are-recommended-for-daily-work">What AI tools are recommended for daily work?</h2>
+<p><a href="https://claude.ai/code">Claude Code</a> stands out among AI coding tools, particularly for its high-quality prompts. What makes it exceptional is how it handles context and continuity - when asked to write blog posts, it will first analyze existing posts to create a style guide, then reference that guide for every new post it writes.</p>
+<p>This attention to existing style and consistency makes it particularly effective for content creation tasks. Despite higher costs compared to some alternatives (potentially $100+ per weekend of heavy use), many users find the value justifies the expense, with some noting they would willingly pay $200 monthly for the service.</p>
+<p>For report generation specifically, there's significant value in tools that provide templated outputs. Ideally, a report generation tool would allow users to standardize formats across different reports - ensuring all market analysis reports follow the same structure, or that candidate evaluation reports maintain consistent formatting rather than varying significantly in format and depth.</p>
+<p>This points to a broader trend in AI tool development - the need for tools that not only generate content but do so in consistent, predictable formats that align with existing workflows and style guidelines.</p>
+<h2 id="what-approaches-are-being-used-for-multimodal-applications">What approaches are being used for multimodal applications?</h2>
+<p>Multimodal applications combining vision and language models are expanding into specialized domains. One example shared during office hours involved food image analysis, where a system extracts structured data from food photographs.</p>
+<p>These systems can identify cuisine type, restaurant information, nutritional content, and dietary characteristics like whether a food item is vegan. While acknowledging practical limitations ("there's a limit to what you can effectively do"), early experiments show promising results in extracting valuable information from visual food content.</p>
+<p>This example demonstrates how multimodal AI applications are moving beyond basic image recognition to extract detailed, structured information from visual content. The integration of vision models with language models allows systems to interpret and categorize visual information in ways that support practical applications like dietary tracking or restaurant recommendations.</p>
+<h2 id="what-emerging-trends-should-we-be-aware-of">What emerging trends should we be aware of?</h2>
+<p>Report generation emerges as a particularly important trend in AI applications. The ability to automatically generate structured reports from unstructured data represents significant economic value for organizations.</p>
+<p>Structured outputs and templates are increasingly valuable, especially for business use cases where standardized formats are essential. The ideal scenario allows for consistency in outputs - ensuring all reports of a specific type follow the same structure rather than varying significantly in format and organization.</p>
+<p>Several organizations are developing report generation capabilities for internal use, with teams requiring standardized reports on a regular basis. This trend spans multiple industries, with financial due diligence being one area where automated report generation from multiple PDF sources shows particular promise.</p>
+<p>The growing importance of fine-tuning approaches for handling data from multiple teams or domains also represents a significant trend. As organizations deploy AI systems across different business units, finding ways to effectively fine-tune models while maintaining performance becomes crucial.</p>
+<p>Report generation capabilities demonstrate how AI can move beyond simple question answering to create significant economic value through structured information synthesis - transforming unstructured data into formatted reports that follow organizational templates and standards.</p>
+<h2 id="how-should-we-handle-retrieval-across-multiple-queries-in-a-conversation">How should we handle retrieval across multiple queries in a conversation?</h2>
+<p>When handling retrieval across multiple queries within the same conversation, the simplest approach is often the most effective. Using function calls for retrieval is recommended, where each call retrieves text chunks and includes information in XML format specifying the context and the question.</p>
+<p>A key consideration is whether to keep retrieved context from previous queries in the message history for subsequent queries. This requires careful balancing, as including all previous context can consume tokens quickly.</p>
+<p>The recommended practice is to prompt the retrieval system to always generate fully specified queries. For example, if the first question is "Where does Jason live?" and the follow-up is "What's the population of that city?", the retrieval system should be prompted to expand the second query to "What is the population of New York City?" This approach can be implemented through few-shot examples that demonstrate how to handle conversational context.</p>
+<p>This strategy works because the model has access to both the previous question and answer in its context, allowing it to formulate complete, self-contained queries even when the user's input is ambiguous or relies on previous context.</p>
+<p>An additional benefit of this approach is the ability to generate follow-up questions based on retrieved content. For instance, if a text chunk mentions that "Jason lived in different places when he was younger versus when he was older," the system can suggest follow-up questions like "Where did Jason live when he was younger?" This not only improves information discovery but also demonstrates to users that there are more interesting questions they could ask about the topic.</p>
+<h2 id="what-innovations-are-happening-in-memory-and-context-management-for-agents">What innovations are happening in memory and context management for agents?</h2>
+<p>Recent innovations in memory and context management for agents focus on creating more dynamic and self-improving systems. Rather than simply saving memories at the end of a conversation, newer approaches incorporate real-time memory creation and utilization during interactions.</p>
+<p>Frameworks like Letta are incorporating self-editing capabilities alongside memory management. This integration allows agents to refactor their understanding and approach during a conversation rather than only learning from interactions after they conclude.</p>
+<p>Implementation of these advances requires significant infrastructure changes, as memory layers affect prompt construction and the overall flow of agent interactions. The approach involves creating memories as the conversation progresses, which in turn influences the prompts used in subsequent exchanges.</p>
+<p>With newer models like Claude 3.7 Sonnet, there's a shift in how tools are used by agents. Similar to the adaptation period seen with Claude Opus or GPT-4, these models require different prompting patterns to effectively utilize tools. Studying how systems like Cloud Code implement their tool use can provide valuable insights for optimizing agent performance with newer models.</p>
+<h2 id="what-can-we-learn-from-examining-cloud-codes-approach-to-prompts-and-tools">What can we learn from examining Cloud Code's approach to prompts and tools?</h2>
+<p>Cloud Code's approach to prompts and tools offers valuable insights for designing effective AI systems. Analysis of the Cloud Code source (extracted from their minified code) reveals highly detailed and carefully structured prompts for various tools.</p>
+<p>Cloud Code implements a robust workflow where tools are designed to work together cohesively. Each tool's prompt contains specific instructions about how to use other tools first, creating a well-defined sequence of operations. For example, tools may include instructions to check for uniqueness before proceeding or to use specific validation approaches.</p>
+<p>The prompts are remarkably detailed, with extensive instructions for common operations. For instance, batch tools contain comprehensive guidelines just for creating pull requests. This level of specificity helps ensure consistent and reliable performance.</p>
+<p>Another notable aspect is Cloud Code's implementation of specialized tools like a notebook tool, showing how diverse functionality can be incorporated into a unified system. The prompts demonstrate that Claude is capable of working with numerous tools simultaneously when the system is properly designed.</p>
+<p>This examination highlights the importance of thoughtful prompt engineering and tool design in building effective AI systems. By providing clear, detailed instructions and establishing well-defined workflows between tools, systems can achieve more reliable and sophisticated functionality.</p>
+<h2 id="how-can-we-create-automated-evaluation-reports-and-insights-for-rag-systems">How can we create automated evaluation reports and insights for RAG systems?</h2>
+<p>Automated evaluation reports can significantly enhance RAG system development by providing structured insights and clear next steps. A comprehensive approach involves building a pipeline that:</p>
+<ol>
+<li>Takes validation datasets and runs them through the RAG system</li>
+<li>Computes various metrics (correctness, citation accuracy, URL validity)</li>
+<li>Generates visualizations segmented by topic, question type, and other dimensions</li>
+<li>Uses LLMs to analyze metrics and provide insights</li>
+<li>Creates recommendations for system improvements</li>
+</ol>
+<p>The reports can include both detailed analyses (15+ pages) and condensed slides for easier consumption in meetings. Key components include:</p>
+<ul>
+<li>Methodology explanations for stakeholders who may not be familiar with technical details</li>
+<li>System architecture diagrams</li>
+<li>Performance visualizations broken down by different segments</li>
+<li>Statistical analysis of which topics or question types perform well or poorly</li>
+<li>LLM-generated insights that explain patterns in the data</li>
+<li>Specific recommendations tied to the codebase</li>
+</ul>
+<p>This process can effectively "close the loop" in the flywheel of development by identifying specific areas for improvement. For example, the system might recommend improving schema handling, enhancing retrieval tools, or adding more data for underrepresented topics.</p>
+<p>The insights generated by LLMs analyzing the metrics can often align well with developer intuitions, but having them formally documented provides better clarity for prioritization and communication with stakeholders. These insights can be directly translated into development tickets, creating a streamlined workflow from evaluation to implementation.</p>
+<p>The ultimate goal is to use these insights to guide the next iteration of development, run the evaluation again, and continue improving through this structured feedback loop.</p>
+<h2 id="what-strategies-help-maintain-context-when-working-with-ai-coding-assistants">What strategies help maintain context when working with AI coding assistants?</h2>
+<p>When working with AI coding assistants like Cursor, maintaining context throughout a development session can be challenging. Several effective strategies have emerged from practical experience:</p>
+<p>Creating and maintaining to-do lists within project documentation provides an effective way to preserve context. By instructing the AI to update the to-do list after completing each task, you ensure the progress remains in context for subsequent interactions. This approach creates a record of what has been accomplished and what remains to be done.</p>
+<p>Templates within documentation files help maintain consistent structure across generated content. For example, having templates for different documentation sections ensures the AI follows established patterns when creating new content. This approach allows you to simply prompt the AI to "make more concept templates that generally look like this," maintaining consistency through visual examples rather than complex rules.</p>
+<p>For more structured workflows, some developers create development plans using models like Claude Opus, which provide a roadmap the AI can follow. This helps prevent the AI from getting lost during implementation or going down unproductive paths.</p>
+<p>Many developers find that keeping AI agents away from certain code areas (particularly tests) helps maintain structure. This can be accomplished either through explicit instructions or by adding files to the cursor.ignore configuration, which prevents them from being indexed while still allowing the AI to run commands like pytest.</p>
+<p>Follow-up prompts at the end of interactions help maintain momentum. By asking what else needs to be done or what the next steps are, you encourage the AI to reference the to-do list and continue working on remaining tasks, creating a more cohesive development experience.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../week4-summary/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Week 4">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Week 4
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jxnlco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+    
+  </body>
+</html>

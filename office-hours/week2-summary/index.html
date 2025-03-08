@@ -1,0 +1,1865 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://567-labs.github.io/rag/office-hours/week2-summary/">
+      
+      
+        <link rel="prev" href="../week1-summary/">
+      
+      
+        <link rel="next" href="../week3-summary/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Week 2 - The RAG Flywheel</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Week 2 - The RAG Flywheel" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="https://567-labs.github.io/rag/assets/images/social/office-hours/week2-summary.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://567-labs.github.io/rag/office-hours/week2-summary/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Week 2 - The RAG Flywheel" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="https://567-labs.github.io/rag/assets/images/social/office-hours/week2-summary.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rag-office-hours-qa-summary-week-2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="The RAG Flywheel" class="md-header__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The RAG Flywheel
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Week 2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../workshops/" class="md-tabs__link">
+          
+  
+    
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Office Hours
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../test-math.md" class="md-tabs__link">
+        
+  
+    
+  
+  Math Test
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="The RAG Flywheel" class="md-nav__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    The RAG Flywheel
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../workshops/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Workshops
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Workshops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 1: Starting the Flywheel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 2: From Evaluation to Enhancement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter3-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Design Principles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter3-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Feedback Collection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter3-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Iterative Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4: Understanding Your Users
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5: Building Specialized Capabilities
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6: Unified Search Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Office Hours
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Office Hours
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week1-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-would-you-evaluate-the-effect-of-different-parsing-strategies-in-rag-notably-on-documents-with-weird-layouts-tables-and-charts" class="md-nav__link">
+    <span class="md-ellipsis">
+      How would you evaluate the effect of different parsing strategies in RAG, notably on documents with weird layouts, tables, and charts?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-does-it-make-sense-to-create-a-targeted-summary-for-an-applications-objective-versus-fine-tuning-embedding-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      When does it make sense to create a targeted summary for an application's objective versus fine-tuning embedding models?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-the-recommended-approaches-for-evaluating-rag-for-single-documents-like-report-generation-for-a-proposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the recommended approaches for evaluating RAG for single documents, like report generation for a proposal?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#could-you-distill-key-reasons-when-someone-should-consider-fine-tuning-open-source-embedding-models-over-proprietary-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Could you distill key reasons when someone should consider fine-tuning open source embedding models over proprietary models?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-there-a-reason-to-ever-fine-tune-the-llm-rather-than-or-in-combination-with-fine-tuning-the-retriever-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Is there a reason to ever fine-tune the LLM rather than or in combination with fine-tuning the retriever model?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-weakness-of-rag-is-difficulty-in-detecting-relationships-between-concepts-because-the-retriever-model-isnt-aware-of-how-concepts-relate-to-each-other-should-we-fine-tune-the-llm-for-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      One weakness of RAG is difficulty in detecting relationships between concepts because the retriever model isn't aware of how concepts relate to each other. Should we fine-tune the LLM for this?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-the-main-failure-modes-like-distribution-mismatch-or-biases-that-youve-seen-when-relying-on-synthetic-data-for-retrieval-fine-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is the main failure modes (like distribution mismatch or biases) that you've seen when relying on synthetic data for retrieval fine-tuning?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#can-you-share-the-intuition-for-the-difference-between-a-fine-tuned-embedding-model-and-a-fine-tuned-re-ranker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can you share the intuition for the difference between a fine-tuned embedding model and a fine-tuned re-ranker?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#do-we-need-more-data-to-fine-tune-re-rankers-than-bi-encoders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Do we need more data to fine-tune re-rankers than bi-encoders?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-collaborative-filtering-models-how-do-you-address-the-cold-start-problem-new-usersitems-the-model-hasnt-seen-without-retraining-the-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      For collaborative filtering models, how do you address the cold start problem (new users/items the model hasn't seen) without retraining the model?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-handle-rag-for-multimodal-content-like-powerpoint-presentations-that-have-complex-layouts" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you handle RAG for multimodal content like PowerPoint presentations that have complex layouts?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-did-you-prefer-sql-databases-over-graph-databases-at-metafacebook" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why did you prefer SQL databases over graph databases at Meta/Facebook?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-have-you-learned-about-prompt-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      What have you learned about prompt caching?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-the-difference-between-bi-encoders-and-cross-encoders" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the difference between bi-encoders and cross-encoders?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-the-process-for-fine-tuning-embedding-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the process for fine-tuning embedding models?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-non-intuitive-things-have-you-learned-about-recommendation-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      What non-intuitive things have you learned about recommendation systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-working-with-documents-with-metadata-should-search-and-retrieval-methods-change-based-on-the-level-of-metadata-provided-within-the-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      When working with documents with metadata, should search and retrieval methods change based on the level of metadata provided within the queries?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#do-you-have-a-go-to-approach-for-visual-document-image-embeddings-like-quarterly-reports-with-tables-images-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Do you have a go-to approach for visual document image embeddings (like quarterly reports with tables, images, graphs)?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-handle-multilingual-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you handle multilingual RAG?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-approach-chunking-very-long-documents-1500-2000-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you approach chunking very long documents (1,500-2,000 pages)?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-understand-metrics-like-precision-and-recall-in-one-to-one-answer-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you understand metrics like precision and recall in one-to-one answer scenarios?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-does-a-long-context-window-affect-rag-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      How does a long context window affect RAG systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-tips-do-you-have-for-making-decisions-about-rag-system-architecture-without-prototyping-everything" class="md-nav__link">
+    <span class="md-ellipsis">
+      What tips do you have for making decisions about RAG system architecture without prototyping everything?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-optimally-blend-small-pools-of-real-data-with-large-synthetic-data-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you optimally blend small pools of real data with large synthetic data sets?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-approach-function-calling-for-complex-workflows-that-require-multiple-function-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you approach function calling for complex workflows that require multiple function calls?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-constrain-a-rag-system-that-pulls-from-multiple-data-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you constrain a RAG system that pulls from multiple data sources?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#do-you-sometimes-use-differently-tuned-embeddings-within-the-same-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      Do you sometimes use differently tuned embeddings within the same query?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-reason-about-papers-and-new-research-in-rag-and-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you reason about papers and new research in RAG and LLMs?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#does-a-long-context-window-make-rag-obsolete" class="md-nav__link">
+    <span class="md-ellipsis">
+      Does a long context window make RAG obsolete?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-handle-the-upkeep-of-documents-that-go-in-and-out-of-scope-or-have-frequent-version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you handle the upkeep of documents that go in and out of scope or have frequent version changes?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-approach-building-voice-ai-for-outbound-calls-or-structured-conversations" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you approach building voice AI for outbound calls or structured conversations?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-working-with-metadata-should-you-include-it-in-the-chunk-or-add-it-separately" class="md-nav__link">
+    <span class="md-ellipsis">
+      When working with metadata, should you include it in the chunk or add it separately?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-you-best-apply-synthetic-data-generation-to-agent-workflows-with-multiple-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can you best apply synthetic data generation to agent workflows with multiple tools?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Takeaways
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week3-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week4-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week5-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../test-math.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Math Test
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-would-you-evaluate-the-effect-of-different-parsing-strategies-in-rag-notably-on-documents-with-weird-layouts-tables-and-charts" class="md-nav__link">
+    <span class="md-ellipsis">
+      How would you evaluate the effect of different parsing strategies in RAG, notably on documents with weird layouts, tables, and charts?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-does-it-make-sense-to-create-a-targeted-summary-for-an-applications-objective-versus-fine-tuning-embedding-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      When does it make sense to create a targeted summary for an application's objective versus fine-tuning embedding models?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-the-recommended-approaches-for-evaluating-rag-for-single-documents-like-report-generation-for-a-proposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the recommended approaches for evaluating RAG for single documents, like report generation for a proposal?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#could-you-distill-key-reasons-when-someone-should-consider-fine-tuning-open-source-embedding-models-over-proprietary-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Could you distill key reasons when someone should consider fine-tuning open source embedding models over proprietary models?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-there-a-reason-to-ever-fine-tune-the-llm-rather-than-or-in-combination-with-fine-tuning-the-retriever-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Is there a reason to ever fine-tune the LLM rather than or in combination with fine-tuning the retriever model?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-weakness-of-rag-is-difficulty-in-detecting-relationships-between-concepts-because-the-retriever-model-isnt-aware-of-how-concepts-relate-to-each-other-should-we-fine-tune-the-llm-for-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      One weakness of RAG is difficulty in detecting relationships between concepts because the retriever model isn't aware of how concepts relate to each other. Should we fine-tune the LLM for this?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-the-main-failure-modes-like-distribution-mismatch-or-biases-that-youve-seen-when-relying-on-synthetic-data-for-retrieval-fine-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is the main failure modes (like distribution mismatch or biases) that you've seen when relying on synthetic data for retrieval fine-tuning?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#can-you-share-the-intuition-for-the-difference-between-a-fine-tuned-embedding-model-and-a-fine-tuned-re-ranker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can you share the intuition for the difference between a fine-tuned embedding model and a fine-tuned re-ranker?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#do-we-need-more-data-to-fine-tune-re-rankers-than-bi-encoders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Do we need more data to fine-tune re-rankers than bi-encoders?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-collaborative-filtering-models-how-do-you-address-the-cold-start-problem-new-usersitems-the-model-hasnt-seen-without-retraining-the-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      For collaborative filtering models, how do you address the cold start problem (new users/items the model hasn't seen) without retraining the model?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-handle-rag-for-multimodal-content-like-powerpoint-presentations-that-have-complex-layouts" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you handle RAG for multimodal content like PowerPoint presentations that have complex layouts?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-did-you-prefer-sql-databases-over-graph-databases-at-metafacebook" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why did you prefer SQL databases over graph databases at Meta/Facebook?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-have-you-learned-about-prompt-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      What have you learned about prompt caching?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-the-difference-between-bi-encoders-and-cross-encoders" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the difference between bi-encoders and cross-encoders?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-the-process-for-fine-tuning-embedding-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the process for fine-tuning embedding models?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-non-intuitive-things-have-you-learned-about-recommendation-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      What non-intuitive things have you learned about recommendation systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-working-with-documents-with-metadata-should-search-and-retrieval-methods-change-based-on-the-level-of-metadata-provided-within-the-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      When working with documents with metadata, should search and retrieval methods change based on the level of metadata provided within the queries?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#do-you-have-a-go-to-approach-for-visual-document-image-embeddings-like-quarterly-reports-with-tables-images-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Do you have a go-to approach for visual document image embeddings (like quarterly reports with tables, images, graphs)?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-handle-multilingual-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you handle multilingual RAG?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-approach-chunking-very-long-documents-1500-2000-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you approach chunking very long documents (1,500-2,000 pages)?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-understand-metrics-like-precision-and-recall-in-one-to-one-answer-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you understand metrics like precision and recall in one-to-one answer scenarios?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-does-a-long-context-window-affect-rag-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      How does a long context window affect RAG systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-tips-do-you-have-for-making-decisions-about-rag-system-architecture-without-prototyping-everything" class="md-nav__link">
+    <span class="md-ellipsis">
+      What tips do you have for making decisions about RAG system architecture without prototyping everything?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-optimally-blend-small-pools-of-real-data-with-large-synthetic-data-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you optimally blend small pools of real data with large synthetic data sets?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-approach-function-calling-for-complex-workflows-that-require-multiple-function-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you approach function calling for complex workflows that require multiple function calls?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-constrain-a-rag-system-that-pulls-from-multiple-data-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you constrain a RAG system that pulls from multiple data sources?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#do-you-sometimes-use-differently-tuned-embeddings-within-the-same-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      Do you sometimes use differently tuned embeddings within the same query?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-reason-about-papers-and-new-research-in-rag-and-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you reason about papers and new research in RAG and LLMs?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#does-a-long-context-window-make-rag-obsolete" class="md-nav__link">
+    <span class="md-ellipsis">
+      Does a long context window make RAG obsolete?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-handle-the-upkeep-of-documents-that-go-in-and-out-of-scope-or-have-frequent-version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you handle the upkeep of documents that go in and out of scope or have frequent version changes?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-approach-building-voice-ai-for-outbound-calls-or-structured-conversations" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you approach building voice AI for outbound calls or structured conversations?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-working-with-metadata-should-you-include-it-in-the-chunk-or-add-it-separately" class="md-nav__link">
+    <span class="md-ellipsis">
+      When working with metadata, should you include it in the chunk or add it separately?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-you-best-apply-synthetic-data-generation-to-agent-workflows-with-multiple-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can you best apply synthetic data generation to agent workflows with multiple tools?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Takeaways
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="rag-office-hours-qa-summary-week-2">RAG Office Hours Q&amp;A Summary - Week 2</h1>
+<h2 id="how-would-you-evaluate-the-effect-of-different-parsing-strategies-in-rag-notably-on-documents-with-weird-layouts-tables-and-charts">How would you evaluate the effect of different parsing strategies in RAG, notably on documents with weird layouts, tables, and charts?</h2>
+<p>For documents with complex layouts like tables and charts, there are multiple levels of evaluation:</p>
+<p>First, you need to evaluate OCR accuracy - checking whether text is being parsed correctly (e.g., is a 0 being parsed as an 8?). Then there's the bounding box detection problem - checking if tables are fully recognized as single bounding boxes using metrics like intersection over union.</p>
+<p>It's generally safer to evaluate OCR/parsing and retrieval separately because parsing errors can be hard to trace back when they're part of the full RAG pipeline. If you parse an 8 as a 0 and generate synthetic data from that, you won't be able to capture that error in your evaluations.</p>
+<p>I've leaned on parsing vendors because they're the most incentivized to have good and accurate labels. This lets me focus on retrieval, which is what will create the most value for my specific use case. While there are other businesses focused on PDF processing, no one will focus specifically on your ability to do retrieval well with your data.</p>
+<h2 id="when-does-it-make-sense-to-create-a-targeted-summary-for-an-applications-objective-versus-fine-tuning-embedding-models">When does it make sense to create a targeted summary for an application's objective versus fine-tuning embedding models?</h2>
+<p>This depends on whether you have data to fine-tune and what your embedding should capture. If you're writing the summary yourself, you're essentially making an assumption about what the embedding should look like.</p>
+<p>For example, with image embeddings, maybe the most common questions aren't just about what's in the photo but about the cinematic mood. In that case, it might make sense to have a language model create a summary describing the mood because I want to be able to search for "atmospheric" or "dark and gloomy" rather than just "trees in a forest."</p>
+<p>However, if you have actual user interaction data, it's better to use that data to tell us what's similar rather than creating assumptions. For example, with blueprint images, an image model might just say "this is a blueprint," but what I specifically did was extract information like number of rooms, bathrooms, sizes, and addresses - information that would be harder for a CLIP embedding to capture.</p>
+<p>In general, I'd much rather use the data my app generates than hard-code these summaries, but summaries can be useful when you need to extract specific structured information that embedding models might miss.</p>
+<h2 id="what-are-the-recommended-approaches-for-evaluating-rag-for-single-documents-like-report-generation-for-a-proposal">What are the recommended approaches for evaluating RAG for single documents, like report generation for a proposal?</h2>
+<p>When working with a single PDF document that might be varying in length (from 10 to 400 pages), semantic chunking can be valuable to separate paragraphs based on their semantic meaning rather than just token-based chunking. This is especially important when requirements for different disciplines might be found in different sections (e.g., structural requirements mentioned within architectural requirements).</p>
+<p>One approach is to generate synthetic questions per paragraph, asking "What are the requirements being mentioned in this paragraph?" rather than "What question can you ask from this paragraph?" This helps identify the key information.</p>
+<p>For retrieval, you can also inject a summary of the page that a paragraph was extracted from and embed them together. This way, when retrieving, you have both the specific chunk and context about where it comes from, which can improve recall.</p>
+<p>Whether adding summaries improves recall is an empirical question - if it increases recall by 1%, it might not be worth the extra LLM calls, but if it improves recall by 6-8%, it could be worth investigating further.</p>
+<h2 id="could-you-distill-key-reasons-when-someone-should-consider-fine-tuning-open-source-embedding-models-over-proprietary-models">Could you distill key reasons when someone should consider fine-tuning open source embedding models over proprietary models?</h2>
+<p>If you have 6,000-10,000 examples of question-document relevancy pairs, you can likely outperform closed-source models with a fine-tuned model. This is because your tasks can be much more specific than what general models are optimized for.</p>
+<p>It can also be more valuable if you need to embed massive datasets at scale. By spinning up your own GPUs, you can process much more text per second at a lower cost. For example, embedding 20GB of text data might take only 15 minutes and cost around $20, whereas using OpenAI APIs would be more expensive and much slower.</p>
+<p>The main downside is the need to maintain your inference server, which adds complexity. It's less about whether the model will perform well and more about whether you have the time and resources to maintain the infrastructure.</p>
+<h2 id="is-there-a-reason-to-ever-fine-tune-the-llm-rather-than-or-in-combination-with-fine-tuning-the-retriever-model">Is there a reason to ever fine-tune the LLM rather than or in combination with fine-tuning the retriever model?</h2>
+<p>I'm pretty open to businesses fine-tuning their retrieval models because companies like OpenAI or Anthropic aren't primarily focused on making retrieval better - they're not launching new embedding models daily. Companies like Cohere, on the other hand, are actually thinking about retrieval.</p>
+<p>If you spend effort fine-tuning an LLM, you need to consider inference, CUDA drivers, and whether your fine-tuned model will be competitive when the original model provider releases a new version in a few months.</p>
+<p>It's generally very costly to fine-tune language models, and you often don't get much benefit. However, if there are specific reasons - like tonality, personalization, or access to proprietary data - it might make sense. But for a team of 4-5 people, it's probably not a good idea to spend effort maintaining that kind of infrastructure.</p>
+<p>In contrast, fine-tuning embedding models can be done on a laptop, run on cloud instances, and be cost-effective. For most teams, the maintenance cost of running your own LLM is just too high to justify.</p>
+<h2 id="one-weakness-of-rag-is-difficulty-in-detecting-relationships-between-concepts-because-the-retriever-model-isnt-aware-of-how-concepts-relate-to-each-other-should-we-fine-tune-the-llm-for-this">One weakness of RAG is difficulty in detecting relationships between concepts because the retriever model isn't aware of how concepts relate to each other. Should we fine-tune the LLM for this?</h2>
+<p>Before considering fine-tuning the language model, I would ask: How much can we put into few-shot examples in the prompt? Can we come up with good chain-of-thought examples that describe these relationships? Can we provide a glossary?</p>
+<p>The maintenance cost of running an LLM is so high that it's worth really trying to squeeze out as much as possible through prompt engineering, longer system prompts, more few-shot examples, and prompt caching before considering fine-tuning.</p>
+<p>For example, Bloomberg spent millions on their own model, and within 5-6 months, GPT-4 was better. Instead of fine-tuning, consider using RAG to retrieve relationship information first, put that in the context, and then add the actual question. This is more maintainable and adaptable as new models are released.</p>
+<h2 id="what-is-the-main-failure-modes-like-distribution-mismatch-or-biases-that-youve-seen-when-relying-on-synthetic-data-for-retrieval-fine-tuning">What is the main failure modes (like distribution mismatch or biases) that you've seen when relying on synthetic data for retrieval fine-tuning?</h2>
+<p>The biggest issue is mismatch between user questions in reality versus in the synthetic data. Once you have synthetic data for fine-tuning retrieval models, it's hard to imagine a case where creating more data for your use case would make the model worse.</p>
+<p>What's more important is figuring out how to intelligently incorporate real-world examples from users into the few-shot examples for synthetic data generation, making it a more diverse process. You can check this by:</p>
+<ol>
+<li>Looking at the variance of embeddings against each other to see if they're too similar</li>
+<li>Checking general statistics like character count variance in questions</li>
+<li>Ensuring the synthetic data matches user data characteristics</li>
+</ol>
+<p>For example, if your customer questions typically have around 30 characters but your synthetic data averages 90 characters because the language model is too verbose, that's a simple distribution mismatch to fix.</p>
+<h2 id="can-you-share-the-intuition-for-the-difference-between-a-fine-tuned-embedding-model-and-a-fine-tuned-re-ranker">Can you share the intuition for the difference between a fine-tuned embedding model and a fine-tuned re-ranker?</h2>
+<p>The embedding model allows you to do search over a large number of documents - given an embedding model, you might retrieve the top 100 text chunks. The re-ranker model then takes these 100 chunks and finds the best 25.</p>
+<p>We generally want to use both, and the dataset to train these models is actually the same dataset. If you can only afford to fine-tune one, you might choose based on where your bottleneck is:</p>
+<ol>
+<li>Is recall at 100 already good (95%) but recall at 10 is poor (50%)? Then focus on the re-ranker.</li>
+<li>Are you missing relevant documents even in your top 100 results? Then focus on the embedding model.</li>
+</ol>
+<p>The key insight is that by having metrics on both stages, you can identify where to focus your improvement efforts.</p>
+<h2 id="do-we-need-more-data-to-fine-tune-re-rankers-than-bi-encoders">Do we need more data to fine-tune re-rankers than bi-encoders?</h2>
+<p>It depends on the model, but generally, Cohere has done a good job of being data-efficient for producing embedding models. The amount of data needed may vary by model and task.</p>
+<h2 id="for-collaborative-filtering-models-how-do-you-address-the-cold-start-problem-new-usersitems-the-model-hasnt-seen-without-retraining-the-model">For collaborative filtering models, how do you address the cold start problem (new users/items the model hasn't seen) without retraining the model?</h2>
+<p>There are multiple approaches to this. Instead of using classical collaborative filtering models, many systems now build models with user embeddings and item embeddings. The question becomes: can we use some other model to predict the embeddings we would have trained using interaction data?</p>
+<p>For example, in an e-commerce setting, if we trained our item embeddings using purchase data and a new item comes in, we could train a vision model to predict the embedding of the item based on its image and metadata. We can use that as an initial set of recommendations.</p>
+<p>The core idea is using other available data to predict the embeddings that would have come from interaction data (like checkout data). This approach helps bridge the gap for new items or users.</p>
+<h2 id="how-do-you-handle-rag-for-multimodal-content-like-powerpoint-presentations-that-have-complex-layouts">How do you handle RAG for multimodal content like PowerPoint presentations that have complex layouts?</h2>
+<p>For documents with complex layouts like PowerPoint presentations, the parsing and chunking processes are linked. You might want to evaluate them separately since parsing errors will be hard to detect in the full RAG pipeline.</p>
+<p>One approach is to use general-purpose parsing tools like Dockling, Claude Sonnet, or commercial tools like Reducto, Llama Parse, and Extend. For multilingual content, models like VDR2B-Multi v1 handle multiple languages well.</p>
+<p>Recent developments include using models like Gemini 2 (with its million-token context window) to convert documents to markdown and extract information, though specialized tools like Reducto still have higher accuracy (0.9 ± 0.1 vs. 0.84 ± 0.16 for Gemini). These gaps are narrowing as general models improve.</p>
+<h2 id="why-did-you-prefer-sql-databases-over-graph-databases-at-metafacebook">Why did you prefer SQL databases over graph databases at Meta/Facebook?</h2>
+<p>Graph databases are useful when you need complex traversals, but most use cases only require 2-3 left joins in SQL rather than complex graph operations. From a skills perspective, it's easier to hire people who know SQL well than to find graph database experts.</p>
+<p>At scale, graphs are also hard to manage. Around 2017-2018, only LinkedIn had a true graph database because they needed to compute 3rd-degree friendships very quickly. For most companies, SQL databases offer better performance, easier maintenance, and more familiar tooling.</p>
+<p>Over a 12-year career, we kept trying different technologies (Hadoop, Spark, etc.) but always ended up returning to SQL. Most cases don't require more than one or two traversals of your graph, making SQL a more practical choice.</p>
+<h2 id="what-have-you-learned-about-prompt-caching">What have you learned about prompt caching?</h2>
+<p>Prompt caching is a technique where language models can avoid reprocessing the beginning of prompts that are often identical:</p>
+<ul>
+<li>Anthropic caches prompts for 5 minutes; if you make the same request within that time, the entire message is cached</li>
+<li>OpenAI figures out the optimal prefix to cache automatically</li>
+</ul>
+<p>This is valuable because it can save significant processing time and costs, especially when you have many few-shot examples or large system prompts. If you have 50+ examples, caching can dramatically improve performance.</p>
+<p>For models like Claude on Bedrock, prompt caching wasn't available a few months ago but is likely coming soon. It's the kind of feature that rolls out gradually across providers.</p>
+<h2 id="whats-the-difference-between-bi-encoders-and-cross-encoders">What's the difference between bi-encoders and cross-encoders?</h2>
+<p>A bi-encoder converts all documents into numbers (embeddings) first, and then compares those numbers. Because we pre-compute everything, we can search very quickly.</p>
+<p>A cross-encoder doesn't compare numbers—it compares the actual sentences. This approach can't compare a million documents with a million other documents (too expensive), so instead it takes one question and 50 documents and compares each one individually.</p>
+<p>The advantage of cross-encoders is that they can understand semantic distinctions like the difference between "I love coffee" and "I hate coffee," whereas bi-encoders just have numeric representations that might miss this nuance.</p>
+<p>Bi-encoders are faster but less accurate, while cross-encoders are slower but better at understanding semantic distinctions.</p>
+<h2 id="whats-the-process-for-fine-tuning-embedding-models">What's the process for fine-tuning embedding models?</h2>
+<p>It's probably a bad idea to train your own language model, but it's a very good idea to train your own embedding model.</p>
+<p>Fine-tuning embedding models is much less resource-intensive—it typically costs around $1.50 and takes about 40 minutes on a laptop. With just 6,000 examples from your domain, you can train embedding models and cross-encoders that outperform general-purpose models on your specific tasks.</p>
+<p>This is especially useful when you need embeddings to understand domain-specific concepts or when you're trying to define what "similar" means in your particular context (e.g., product recommendations where price range matters).</p>
+<h2 id="what-non-intuitive-things-have-you-learned-about-recommendation-systems">What non-intuitive things have you learned about recommendation systems?</h2>
+<p>The big insight about recommendation systems is that inventory matters a lot more than the actual algorithm. While Tiktok's algorithm is good, what really allows it to produce great recommendations is the vast amount of content available. Without those videos, you can't do much - and the same applies to RAG.</p>
+<p>The metadata you have and the inventory you have are much more important than the algorithm itself. For example, if recommendations for "Greek restaurants near me" are bad, the solution might be to add more Greek restaurants to your database, not to tweak the algorithm.</p>
+<p>Similarly, if queries after 7 PM perform poorly, maybe you're missing information about whether restaurants are open. The solution is to collect that data rather than change your algorithms.</p>
+<p>The hard work in recommendation systems is often: Do we have enough rows in the database? How much content do we have? And for that content, do we have the right metadata?</p>
+<h2 id="when-working-with-documents-with-metadata-should-search-and-retrieval-methods-change-based-on-the-level-of-metadata-provided-within-the-queries">When working with documents with metadata, should search and retrieval methods change based on the level of metadata provided within the queries?</h2>
+<p>Yes, they should. For example, in a construction project, we found people really cared about who made the last edits on legal contracts or who sent particular information. The metadata was very important for queries like "which contracts did this person send us," which function more like SQL queries.</p>
+<p>Similarly, if you're building information that will be queried across time periods, you probably care about when documents were published and last crawled to determine relevance. A query like "what is the latest research in physics" might look at the past 6 months, while "what is new in AI" might only look at the past two weeks because it moves so quickly.</p>
+<p>It comes down to analyzing the queries people are asking and figuring out what creates economic value.</p>
+<h2 id="do-you-have-a-go-to-approach-for-visual-document-image-embeddings-like-quarterly-reports-with-tables-images-graphs">Do you have a go-to approach for visual document image embeddings (like quarterly reports with tables, images, graphs)?</h2>
+<p>For visual documents like quarterly reports full of tables and images:</p>
+<ol>
+<li>Dockling is a free library that works quite well, though it might take about 11 seconds per PDF</li>
+<li>Claude Sonnet also works well for extraction</li>
+<li>Commercial tools like Reducto, Llama Parse, and others can be worth the cost to save time</li>
+<li>For multilingual content, VDR2B-Multi v1 handles multiple languages well</li>
+</ol>
+<p>Recent testing shows Reducto still has higher accuracy (0.9 ± 0.1) compared to Gemini (0.84 ± 0.16), but the gap is narrowing. Reducto performs well because they have people manually labeling thousands of PDFs to train their models.</p>
+<h2 id="how-do-you-handle-multilingual-rag">How do you handle multilingual RAG?</h2>
+<p>Cohere has put the most effort into multilingual models, with both multilingual local LLMs and embedding models.</p>
+<p>I recommend figuring out which languages appear in your queries and ensuring your evaluation reflects that distribution. Check whether the models you're considering (Cohere, OpenAI) perform well on these languages.</p>
+<p>While translation might seem like an option, if it worked well, companies like OpenAI and Cohere would already be using synthetic translation data to improve their language models. To evaluate performance across languages, create synthetic questions in multiple languages and verify whether recall rates differ between languages.</p>
+<h2 id="how-do-you-approach-chunking-very-long-documents-1500-2000-pages">How do you approach chunking very long documents (1,500-2,000 pages)?</h2>
+<p>If you have extremely long documents, start with a page-level approach to determine if answers typically exist on a single page or span multiple pages.</p>
+<p>One compelling approach is from the RAPTOR paper. After chunking documents, they recluster the chunks by embedding every page, running a clustering model, and identifying concepts that span multiple pages. Then they summarize those clusters and use the summaries for retrieval—if a summary is retrieved, all related pages are included in the context.</p>
+<p>For metadata, look at your queries to determine what matters. If users frequently ask about publication dates or document authors, those should be included. The needs will become obvious as you analyze user queries.</p>
+<p>If you can reorganize text chunks by clustering and bringing related information together, that's very valuable. For example, with tax law documents where laws are on pages 1-30 and exemptions on page 50, you could process the document once to place exemptions directly below the relevant laws. This preprocessing step might cost $10 of LLM calls per document, but for legal documents that might not change for years, it's worth the investment.</p>
+<h2 id="how-do-you-understand-metrics-like-precision-and-recall-in-one-to-one-answer-scenarios">How do you understand metrics like precision and recall in one-to-one answer scenarios?</h2>
+<p>For questions with exactly one correct answer, these metrics behave somewhat differently. Recall will be either 0% or 100% depending on whether K is large enough to include the correct answer.</p>
+<p>For example, if we want to retrieve exactly one document and there's only one correct answer, precision could be either 0% or 100%, and the same for recall.</p>
+<p>The metrics become more meaningful when:</p>
+<ol>
+<li>There are multiple relevant documents</li>
+<li>We're analyzing trends across many queries</li>
+<li>We're comparing different retrieval methods</li>
+</ol>
+<p>Even with one-to-one mappings, MRR (Mean Reciprocal Rank) is still useful to see where the correct answer appears in your results.</p>
+<p>What really matters isn't the absolute number but whether we can move these metrics in a positive direction with our interventions.</p>
+<h2 id="how-does-a-long-context-window-affect-rag-systems">How does a long context window affect RAG systems?</h2>
+<p>While having longer context windows allows for more content to be included, there are always tradeoffs with latency and cost. Just because we can fit more in context doesn't mean we should always do so.</p>
+<p>Like how Amazon could theoretically score every product in their inventory for each user but chooses not to because each 100ms of latency costs them 1% in revenue, we still need to make choices about what to include in context.</p>
+<p>The battery analogy is apt: iPhone batteries get more powerful every year, but battery life stays the same because we build more power-hungry apps. Similarly, as context windows grow, we'll find ways to use that additional capacity rather than making everything faster or cheaper.</p>
+<p>There will always be cost, performance, and latency tradeoffs to consider. Having a longer context window doesn't eliminate the need for efficient retrieval - it just changes what problems we can solve.</p>
+<h2 id="what-tips-do-you-have-for-making-decisions-about-rag-system-architecture-without-prototyping-everything">What tips do you have for making decisions about RAG system architecture without prototyping everything?</h2>
+<p>Start by asking for examples of 40-50 questions that customers might ask. Reading these helps build an intuition about what query mechanics need to exist.</p>
+<p>For example, if questions include "what's the most recent news?", you'll need date filters. If queries ask "who do I talk to about fixing XYZ?", you need features for finding contacts.</p>
+<p>This helps identify what metadata you need and whether you can access it. From there, building a demo with tools like LangChain or Llama Index should be quick. You may need to rewrite things later, but if the demo can answer generic questions, that's when you start thinking about synthetic data.</p>
+<p>The key is getting the system in front of beta testers, collecting feedback, and analyzing what's working and what's not. This helps prioritize the next features to build. If 80% of questions are actually about image search, then that's clearly the next thing to build, regardless of what methodology is trending on Twitter.</p>
+<h2 id="how-do-you-optimally-blend-small-pools-of-real-data-with-large-synthetic-data-sets">How do you optimally blend small pools of real data with large synthetic data sets?</h2>
+<p>Focus on whether blending improves your evaluation suite. If you have 500 real examples, put 250 in your training set and leave 250 for evaluation. Then experiment with different blends of synthetic and real data to see how they perform on your evaluation suite.</p>
+<p>You might find that as you use more synthetic data, you perform worse on your real user data but better on synthetic data. You can weight these differently - perhaps real data success is worth 1.2 points while synthetic data success is worth 0.9 points - to create a single score for system health.</p>
+<p>A lot of machine learning is empirical - you can't predict these things ahead of time. You need to run experiments and see what works.</p>
+<h2 id="how-do-you-approach-function-calling-for-complex-workflows-that-require-multiple-function-calls">How do you approach function calling for complex workflows that require multiple function calls?</h2>
+<p>Instead of having the language model immediately execute functions one at a time, prompt it to show the entire plan to the user and potentially ask for confirmation. Have a separate function called "plan" where the model says "Based on this request, I think I'm going to use function 1, then 2, then 3. What do you think?"</p>
+<p>When the user clicks yes or no, you've allowed human confirmation of the correct order. Since the plan already exists in the context, it's easier for the model to execute correctly.</p>
+<p>The second benefit is that user requests, plans, and accept/reject decisions can be used as few-shot examples. You can embed these examples so that next time someone asks a similar question, you can say "Last time someone asked this, they approved calling functions 1, 2, 3 in this order."</p>
+<p>This helps build a dataset of few-shot examples over plans, making the system more reliable.</p>
+<h2 id="how-do-you-constrain-a-rag-system-that-pulls-from-multiple-data-sources">How do you constrain a RAG system that pulls from multiple data sources?</h2>
+<p>After conducting topic analysis of user questions, you can identify which types of questions you can answer well and which ones you struggle with. For low-percentage, low-performance questions, you might decide to simply decline those queries.</p>
+<p>For example, if your system doesn't handle contact information well, you could add to your prompt: "If someone is asking about contact information, say no and tell them to message support." This saves face and avoids attempting questions you can't answer well.</p>
+<p>Conversely, if there are questions you can answer very well (even if they're a small percentage), highlight these as sample questions in your UI to guide users toward queries you're confident in handling.</p>
+<p>Much of the progress in making systems better comes from improving UI, better educating users about capabilities, and enhancing the quality of your inventory rather than just tweaking algorithms.</p>
+<h2 id="do-you-sometimes-use-differently-tuned-embeddings-within-the-same-query">Do you sometimes use differently tuned embeddings within the same query?</h2>
+<p>Unless you're at massive scale, having multiple embedding models for different content types (like product descriptions vs. comments) probably won't yield enough performance improvement to justify the maintenance cost.</p>
+<p>There's evidence that having a single unified model trained on all your data performs better than specialized models. In machine translation, we used to train separate models for each language pair, but researchers found that a single model trained to translate all languages performed better than any individual model.</p>
+<p>The unified model learns something about the underlying system that allows it to handle even rare cases better than specialized models would. The same principle likely applies to embedding models.</p>
+<h2 id="how-do-you-reason-about-papers-and-new-research-in-rag-and-llms">How do you reason about papers and new research in RAG and LLMs?</h2>
+<p>Most papers published weekly aren't that important, and many are just reinventing ideas from decades ago. Instead of flooding yourself with information, focus on running experiments with your own data and solving specific problems.</p>
+<p>The popular stuff on Twitter is generally reasonable to follow, but even then, much research is a distraction if you're building something. For example, a recent popular paper on "reasoning powered RAG" was essentially just using an LLM to judge relevancy pairs in a for loop - something basic that's been around for a while.</p>
+<p>Rather than chasing the latest research, focus on building strong evaluation suites, analyzing your data, and solving specific problems in your implementation. These are the durable skills that will last throughout your career.</p>
+<h2 id="does-a-long-context-window-make-rag-obsolete">Does a long context window make RAG obsolete?</h2>
+<p>No. Just like Amazon could theoretically score every product in their inventory for each user but chooses not to because each 100ms of latency costs them 1% in revenue, we still need to make choices about what to include in context.</p>
+<p>The battery analogy is apt: iPhone batteries get more powerful every year, but battery life stays the same because we build more power-hungry apps. Similarly, as context windows grow, we'll find ways to use that additional capacity rather than making everything faster or cheaper.</p>
+<p>There will always be cost, performance, and latency tradeoffs to consider. Having a longer context window doesn't eliminate the need for efficient retrieval - it just changes what problems we can solve.</p>
+<h2 id="how-do-you-handle-the-upkeep-of-documents-that-go-in-and-out-of-scope-or-have-frequent-version-changes">How do you handle the upkeep of documents that go in and out of scope or have frequent version changes?</h2>
+<p>For "evergreen" vs. "Rhodian" (frequently changing) documents, include published dates and make sure they're in the context so the language model is aware of them. For example, with HR holiday calendars for different years, include the dates so the model can reason about which is current.</p>
+<p>Consider implementing both published dates and last modified dates, and be explicit in your function calling to filter on these attributes (e.g., only return documents published or updated in the past year).</p>
+<p>The key question is how sensitive your model is to low precision, and whether that low precision is mainly happening because of your inability to expire outdated documents.</p>
+<h2 id="how-do-you-approach-building-voice-ai-for-outbound-calls-or-structured-conversations">How do you approach building voice AI for outbound calls or structured conversations?</h2>
+<p>Graph-based models or finite state machines have been very successful in the agent world. In this approach, you're in different states (introduction, data collection, etc.) with different system messages for each state.</p>
+<p>For example, when collecting payment data to book a meeting, you have logical checks to ensure the date is correct and that you have necessary information like a phone number. The set of function calls available also changes based on the state.</p>
+<p>Once you have fully successful conversations, you can summarize them and put them back in the system prompt to ensure transitions are more accurate. You can prompt the model with these few-shot examples to improve transition states: "When I have 5 few shots, my transitions are more accurate. When I have 20 few shots it gets too confused. So now I've picked 15 for now."</p>
+<p>This finite state machine approach has been around for decades and is still very effective, with LLMs improving the transitions between states.</p>
+<h2 id="when-working-with-metadata-should-you-include-it-in-the-chunk-or-add-it-separately">When working with metadata, should you include it in the chunk or add it separately?</h2>
+<p>There are a few approaches:</p>
+<ol>
+<li>Embed the string without metadata but add metadata when sending to the LLM</li>
+<li>Embed the string with metadata included</li>
+</ol>
+<p>This is something to test empirically - does including metadata in the embedding hurt retrieval? Cohere's embedding models (like Compass) can embed JSON quite well.</p>
+<p>Including metadata in chunks is common practice as it allows answering questions like "who wrote this document" or "what's their contact information." This metadata can then be used for function calls, such as "Jason wrote the document 2 weeks ago, it has not been updated since. Here's Jason's email, click to write an email to Jason."</p>
+<h2 id="how-can-you-best-apply-synthetic-data-generation-to-agent-workflows-with-multiple-tools">How can you best apply synthetic data generation to agent workflows with multiple tools?</h2>
+<p>Instead of generating synthetic questions, you can generate synthetic queries that would trigger certain function calls. If you have 3-4 different functions, you can create synthetic queries that should call specific functions or combinations of functions.</p>
+<p>If each individual function call is accurate, then the combined sequence should also be accurate. You can also use planning to improve data generation - create questions that would result in specific functions being called in sequence, then verify that with certain requests, these functions are indeed called by the model.</p>
+<p>This approach helps ensure reliability across different types of function calling patterns.</p>
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ol>
+<li>
+<p><strong>Fine-tuning priorities</strong>: Fine-tune embedding models, not LLMs. With just 6,000 examples, you can create embedding models that outperform general models on your specific tasks at minimal cost.</p>
+</li>
+<li>
+<p><strong>Inventory matters more than algorithms</strong>: Having the right documents and metadata is more important than the algorithm itself. Missing information can't be retrieved no matter how good your algorithm is.</p>
+</li>
+<li>
+<p><strong>Evaluation is empirical</strong>: Many decisions about chunking, including metadata, and blending synthetic data should be driven by empirical testing rather than theoretical assumptions.</p>
+</li>
+<li>
+<p><strong>Parsing strategy</strong>: For complex documents, consider evaluating parsing/OCR separately from retrieval performance since parsing errors will be difficult to trace in the full pipeline.</p>
+</li>
+<li>
+<p><strong>Function calling with planning</strong>: For complex agent workflows, have the model create a plan first and get user confirmation rather than executing functions immediately. This creates training data for future interactions.</p>
+</li>
+<li>
+<p><strong>State machines still work</strong>: Graph-based/finite state machine approaches remain effective for structured conversations, with LLMs improving the transitions between states.</p>
+</li>
+<li>
+<p><strong>Metadata inclusion</strong>: Include relevant metadata in chunks to answer questions about document properties like authorship, modification dates, and contact information.</p>
+</li>
+<li>
+<p><strong>Long context doesn't eliminate RAG</strong>: Despite larger context windows, there will always be latency, cost, and performance tradeoffs that make efficient retrieval necessary.</p>
+</li>
+<li>
+<p><strong>Research pragmatism</strong>: Focus on solving specific problems with your data rather than chasing the latest research papers, which often reinvent existing techniques.</p>
+</li>
+<li>
+<p><strong>Cross-encoders vs. bi-encoders</strong>: Cross-encoders (re-rankers) understand semantic distinctions better but are slower; bi-encoders (embedding models) are faster but less nuanced. Use both for optimal performance.</p>
+</li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../week1-summary/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Week 1">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Week 1
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../week3-summary/" class="md-footer__link md-footer__link--next" aria-label="Next: Week 3">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Week 3
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jxnlco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+    
+  </body>
+</html>
