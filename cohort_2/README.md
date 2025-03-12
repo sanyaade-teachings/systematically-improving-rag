@@ -50,7 +50,7 @@ This should print out the value of `OPENAI_API_KEY` that you provided in the `.e
 
 ## Notebook Overview
 
-Here is an overview of the notebooks by week:
+Here is an overview of the notebooks by week. Special thanks to [Dmitry Labazkin](https://github.com/labdmitriy) for his frequent feedback and help to make the notebooks better!
 
 **Week 1: RAG Evaluation Foundations**
 
@@ -145,6 +145,7 @@ pre-commit install
 ```
 
 The pre-commit hooks will:
+
 - Run Black for code formatting
 - Run Ruff with the --fix option to automatically fix linting issues
 - Check for trailing whitespace and file endings
