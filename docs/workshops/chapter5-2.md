@@ -30,7 +30,8 @@ Different types of content demand different retrieval strategies. Let's explore 
 
 For document retrieval, the foundation remains chunking documents with appropriate metadata and applying both lexical and semantic search techniques. However, several refinements can dramatically improve performance:
 
-!!! info "Advanced Document Retrieval Techniques" - **Contextual Retrieval**: Rather than using fixed chunks, dynamically rewrite or expand chunks based on the query context. This creates "query-aware" text representations that better match user intent.
+!!! info "Advanced Document Retrieval Techniques" 
+    - **Contextual Retrieval**: Rather than using fixed chunks, dynamically rewrite or expand chunks based on the query context. This creates "query-aware" text representations that better match user intent.
 
     - **Hybrid Retrieval Signals**: Combine semantic similarity with other signals like recency, authority, and citation frequency to create a more nuanced ranking function.
 
@@ -55,74 +56,74 @@ This flexibility allows the system to balance precision, recall, and presentatio
 
 !!! example "Document Processor with Contextual Retrieval"
 
-```python
-from typing import List, Dict, Any
-import re
+    ```python
+    from typing import List, Dict, Any
+    import re
 
-def process_document_for_retrieval(document: str) -> Dict[str, Any]:
-    """
-    Process a document for enhanced retrieval capabilities.
+    def process_document_for_retrieval(document: str) -> Dict[str, Any]:
+        """
+        Process a document for enhanced retrieval capabilities.
 
-    Args:
-        document: The raw document text
+        Args:
+            document: The raw document text
 
-    Returns:
-        Dictionary with processed document components
-    """
-    # Extract structured metadata
-    metadata = extract_document_metadata(document)
+        Returns:
+            Dictionary with processed document components
+        """
+        # Extract structured metadata
+        metadata = extract_document_metadata(document)
 
-    # Create standard chunks with overlap
-    chunks = chunk_document(document, chunk_size=800, overlap=0.5)
+        # Create standard chunks with overlap
+        chunks = chunk_document(document, chunk_size=800, overlap=0.5)
 
-    # Generate summaries at different levels
-    document_summary = summarize_document(document)
-    section_summaries = [summarize_section(section) for section in extract_sections(document)]
+        # Generate summaries at different levels
+        document_summary = summarize_document(document)
+        section_summaries = [summarize_section(section) for section in extract_sections(document)]
 
-    # Extract any structured data tables
-    tables = extract_tables(document)
+        # Extract any structured data tables
+        tables = extract_tables(document)
 
-    return {
-        "metadata": metadata,
-        "chunks": chunks,
-        "document_summary": document_summary,
-        "section_summaries": section_summaries,
-        "tables": tables,
-        "full_document": document  # Keep original for potential long-context processing
-    }
+        return {
+            "metadata": metadata,
+            "chunks": chunks,
+            "document_summary": document_summary,
+            "section_summaries": section_summaries,
+            "tables": tables,
+            "full_document": document  # Keep original for potential long-context processing
+        }
 
-def contextual_retrieval(query: str, document_store: List[Dict[str, Any]]) -> List[str]:
-    """
-    Perform contextual retrieval that adapts based on query type.
+    def contextual_retrieval(query: str, document_store: List[Dict[str, Any]]) -> List[str]:
+        """
+        Perform contextual retrieval that adapts based on query type.
 
-    Args:
-        query: User query
-        document_store: Processed document store
+        Args:
+            query: User query
+            document_store: Processed document store
 
-    Returns:
-        List of most relevant text chunks for the query
-    """
-    # Analyze query to determine retrieval strategy
-    query_analysis = analyze_query(query)
+        Returns:
+            List of most relevant text chunks for the query
+        """
+        # Analyze query to determine retrieval strategy
+        query_analysis = analyze_query(query)
 
-    if query_analysis["requires_specific_detail"]:
-        # Use chunk-level retrieval for specific information
-        return retrieve_relevant_chunks(query, document_store)
+        if query_analysis["requires_specific_detail"]:
+            # Use chunk-level retrieval for specific information
+            return retrieve_relevant_chunks(query, document_store)
 
-    elif query_analysis["requires_overview"]:
-        # Use summary-level retrieval for broader questions
-        return retrieve_relevant_summaries(query, document_store)
+        elif query_analysis["requires_overview"]:
+            # Use summary-level retrieval for broader questions
+            return retrieve_relevant_summaries(query, document_store)
 
-    elif query_analysis["requires_structured_data"]:
-        # Use table retrieval for data-oriented questions
-        return retrieve_relevant_tables(query, document_store)
+        elif query_analysis["requires_structured_data"]:
+            # Use table retrieval for data-oriented questions
+            return retrieve_relevant_tables(query, document_store)
 
-    else:
-        # Fall back to hybrid approach
-        chunks = retrieve_relevant_chunks(query, document_store)
-        summaries = retrieve_relevant_summaries(query, document_store)
-        return rerank_combined_results(query, chunks + summaries)
-```
+        else:
+            # Fall back to hybrid approach
+            chunks = retrieve_relevant_chunks(query, document_store)
+            summaries = retrieve_relevant_summaries(query, document_store)
+            return rerank_combined_results(query, chunks + summaries)
+    ```
 
 ### Image Search: Bridging Visual and Textual Understanding
 
@@ -159,47 +160,47 @@ To bridge this gap, more sophisticated image summarization techniques are essent
     For a construction company's image database, users frequently needed to count specific items ("How many support beams are installed?") or locate defects ("Show me images of cracked foundations"). By implementing bounding box detection alongside rich descriptions, retrieval accuracy for these queries improved by 65% compared to using only semantic descriptions.
 
 !!! example "Rich Image Description Prompt"
-```python
-def generate_rich_image_description(image, ocr_text=None, surrounding_text=None):
-"""
-Generate a comprehensive description optimized for retrieval.
-
-    Args:
-        image: Image data or path
-        ocr_text: Optional text extracted from the image
-        surrounding_text: Optional text surrounding the image in its original context
-
-    Returns:
-        Detailed description of the image
+    ```python
+    def generate_rich_image_description(image, ocr_text=None, surrounding_text=None):
     """
-    prompt = f"""
-    # Image Analysis Task
+    Generate a comprehensive description optimized for retrieval.
 
-    ## Context Information
-    {"OCR Text from image: " + ocr_text if ocr_text else "No OCR text available."}
-    {"Surrounding context: " + surrounding_text if surrounding_text else "No surrounding context available."}
+        Args:
+            image: Image data or path
+            ocr_text: Optional text extracted from the image
+            surrounding_text: Optional text surrounding the image in its original context
 
-    ## Analysis Instructions
-    Analyze the following image in extreme detail:
+        Returns:
+            Detailed description of the image
+        """
+        prompt = f"""
+        # Image Analysis Task
 
-    1. First, describe the visual scene, setting, and overall composition
-    2. List all people visible, their approximate positions, actions, and expressions
-    3. Enumerate all objects visible in the image
-    4. Note any text visible in the image
-    5. Describe colors, lighting, and visual style
-    6. If applicable, identify the type of image (photograph, diagram, screenshot, etc.)
-    7. Use chain-of-thought reasoning: think about what is happening and why
-    8. Generate 5-7 potential questions someone might ask when searching for this image
-    9. Suggest 5-10 relevant tags for this image
+        ## Context Information
+        {"OCR Text from image: " + ocr_text if ocr_text else "No OCR text available."}
+        {"Surrounding context: " + surrounding_text if surrounding_text else "No surrounding context available."}
 
-    ## Final Description
-    Based on your analysis, provide a comprehensive 3-5 sentence description that would
-    help people find this image when searching with natural language queries.
-    """
+        ## Analysis Instructions
+        Analyze the following image in extreme detail:
 
-    # Use this prompt with your vision model implementation
-    # ...
-```
+        1. First, describe the visual scene, setting, and overall composition
+        2. List all people visible, their approximate positions, actions, and expressions
+        3. Enumerate all objects visible in the image
+        4. Note any text visible in the image
+        5. Describe colors, lighting, and visual style
+        6. If applicable, identify the type of image (photograph, diagram, screenshot, etc.)
+        7. Use chain-of-thought reasoning: think about what is happening and why
+        8. Generate 5-7 potential questions someone might ask when searching for this image
+        9. Suggest 5-10 relevant tags for this image
+
+        ## Final Description
+        Based on your analysis, provide a comprehensive 3-5 sentence description that would
+        help people find this image when searching with natural language queries.
+        """
+
+        # Use this prompt with your vision model implementation
+        # ...
+    ```
 
 The enhanced description dramatically improves retrieval capability when troubleshooting specific defects or components.
 
@@ -208,7 +209,7 @@ The enhanced description dramatically improves retrieval capability when trouble
 Tables present a dual challenge: they contain structured data but exist within unstructured contexts. Two main approaches prove effective:
 
 !!! info "Table Retrieval Approaches"
-**Approach 1: Table as Document**
+    **Approach 1: Table as Document**
 
     For finding specific rows or comparing data across tables, chunk the table (preserving headers) and apply semantic search techniques. Generate summaries that capture the table's purpose and key insights to improve retrieval.
 
@@ -221,84 +222,84 @@ Tables present a dual challenge: they contain structured data but exist within u
     Standardize schemas using CREATE TABLE statements or table descriptions, then build semantic search against these table representations. Include sample data when possible to help clarify the table's contents.
 
 !!! example "Table Processor Implementation"
-```python
-from typing import List, Dict, Any, Optional
-import pandas as pd
+    ```python
+    from typing import List, Dict, Any, Optional
+    import pandas as pd
 
-class TableProcessor:
-    """Process tables for enhanced retrievability and querying."""
+    class TableProcessor:
+        """Process tables for enhanced retrievability and querying."""
 
-    def process_table(self, table_data: pd.DataFrame, table_name: str,
-                    source_doc: Optional[str] = None) -> Dict[str, Any]:
-        """
-        Process a table for both document-like and database-like retrieval.
+        def process_table(self, table_data: pd.DataFrame, table_name: str,
+                        source_doc: Optional[str] = None) -> Dict[str, Any]:
+            """
+            Process a table for both document-like and database-like retrieval.
 
-        Args:
-            table_data: The table as a pandas DataFrame
-            table_name: Name of the table
-            source_doc: Optional source document information
+            Args:
+                table_data: The table as a pandas DataFrame
+                table_name: Name of the table
+                source_doc: Optional source document information
 
-        Returns:
-            Dictionary with processed table components
-        """
-        # Generate schema representation
-        schema = self._generate_schema_representation(table_data)
+            Returns:
+                Dictionary with processed table components
+            """
+            # Generate schema representation
+            schema = self._generate_schema_representation(table_data)
 
-        # Generate natural language summary
-        summary = self._generate_table_summary(table_data, table_name)
+            # Generate natural language summary
+            summary = self._generate_table_summary(table_data, table_name)
 
-        # Generate sample queries this table could answer
-        sample_queries = self._generate_sample_queries(table_data, table_name)
+            # Generate sample queries this table could answer
+            sample_queries = self._generate_sample_queries(table_data, table_name)
 
-        # Convert to text chunks for semantic search
-        text_chunks = self._table_to_text_chunks(table_data)
+            # Convert to text chunks for semantic search
+            text_chunks = self._table_to_text_chunks(table_data)
 
-        return {
-            "table_name": table_name,
-            "schema": schema,
-            "summary": summary,
-            "sample_queries": sample_queries,
-            "text_chunks": text_chunks,
-            "raw_data": table_data,
-            "source_document": source_doc
-        }
+            return {
+                "table_name": table_name,
+                "schema": schema,
+                "summary": summary,
+                "sample_queries": sample_queries,
+                "text_chunks": text_chunks,
+                "raw_data": table_data,
+                "source_document": source_doc
+            }
 
-    def _generate_schema_representation(self, df: pd.DataFrame) -> str:
-        """Generate a SQL-like schema representation."""
-        types = []
-        for col in df.columns:
-            dtype = df[col].dtype
-            if pd.api.types.is_numeric_dtype(dtype):
-                sql_type = "NUMERIC"
-            elif pd.api.types.is_datetime64_dtype(dtype):
-                sql_type = "TIMESTAMP"
-            else:
-                sql_type = "TEXT"
+        def _generate_schema_representation(self, df: pd.DataFrame) -> str:
+            """Generate a SQL-like schema representation."""
+            types = []
+            for col in df.columns:
+                dtype = df[col].dtype
+                if pd.api.types.is_numeric_dtype(dtype):
+                    sql_type = "NUMERIC"
+                elif pd.api.types.is_datetime64_dtype(dtype):
+                    sql_type = "TIMESTAMP"
+                else:
+                    sql_type = "TEXT"
 
-            # Add sample values for better understanding
-            sample_values = df[col].dropna().unique()[:3]
-            sample_str = f"Sample values: {', '.join(str(x) for x in sample_values)}"
+                # Add sample values for better understanding
+                sample_values = df[col].dropna().unique()[:3]
+                sample_str = f"Sample values: {', '.join(str(x) for x in sample_values)}"
 
-            types.append(f"{col} {sql_type} -- {sample_str}")
+                types.append(f"{col} {sql_type} -- {sample_str}")
 
-        return f"CREATE TABLE table (\n  " + ",\n  ".join(types) + "\n);"
+            return f"CREATE TABLE table (\n  " + ",\n  ".join(types) + "\n);"
 
-    def _generate_table_summary(self, df: pd.DataFrame, table_name: str) -> str:
-        """Generate a natural language summary of the table."""
-        # Use an LLM to summarize the table contents
-        # Implementation depends on your LLM framework
-        # ...
+        def _generate_table_summary(self, df: pd.DataFrame, table_name: str) -> str:
+            """Generate a natural language summary of the table."""
+            # Use an LLM to summarize the table contents
+            # Implementation depends on your LLM framework
+            # ...
 
-    def _generate_sample_queries(self, df: pd.DataFrame, table_name: str) -> List[str]:
-        """Generate sample natural language queries this table could answer."""
-        # Use an LLM to generate sample queries
-        # ...
+        def _generate_sample_queries(self, df: pd.DataFrame, table_name: str) -> List[str]:
+            """Generate sample natural language queries this table could answer."""
+            # Use an LLM to generate sample queries
+            # ...
 
-    def _table_to_text_chunks(self, df: pd.DataFrame) -> List[str]:
-        """Convert table to text chunks for semantic search."""
-        # Implementation for chunking table content
-        # ...
-```
+        def _table_to_text_chunks(self, df: pd.DataFrame) -> List[str]:
+            """Convert table to text chunks for semantic search."""
+            # Implementation for chunking table content
+            # ...
+    ```
 
 Once the right table is identified, either:
 

@@ -189,7 +189,6 @@ On the frontend, you'll need to handle Server-Sent Events (SSE) or WebSockets to
     ![Example of JavaScript frontend code that handles streaming responses](../assets/images/frontend-streaming-code.png)
 
     *This code shows how to handle streaming responses on the frontend, creating a reader for the response stream, decoding chunks as they arrive, and updating the UI in real-time to display incremental results.*
-```
 
 ### Showing Function Call Arguments
 
@@ -201,7 +200,6 @@ For example, you can stream the function calls and arguments that your RAG syste
     ![Example of JavaScript code for streaming function calls and thought process](../assets/images/function-call-streaming.png)
 
     *This code processes streaming chunks to separate thought processes from function calls, displaying each in their own UI components. This creates engagement by showing users the system's reasoning and operations in real-time.*
-```
 
 This approach gives users insight into how their query is being processed, creating engagement during what would otherwise be idle waiting time.
 
@@ -272,7 +270,6 @@ On the frontend, you'd handle this structured stream by updating different UI co
     ![Example of JavaScript code for handling structured data streaming](../assets/images/structured-streaming-handler.png)
 
     *This code processes a structured data stream, separating different components (answer chunks, citations, follow-up questions) and rendering each in their appropriate UI sections. This creates a dynamic, engaging experience where different parts of the response appear progressively.*
-```
 
 This approach creates a dynamic, engaging experience where different parts of the response appear progressively, keeping users engaged throughout the generation process.
 
@@ -307,7 +304,6 @@ For RAG applications, skeleton screens can be particularly effective when showin
     ![Example of React component and CSS for implementing skeleton screens](../assets/images/skeleton-loader-code.png)
 
     *This code shows how to implement animated skeleton loaders that mimic the structure of your content while it loads. The animation creates the impression of progress and helps users understand what content is coming.*
-```
 
 !!! example "Meaningful vs. Generic Interstitials"
 **Generic Interstitial:** "Loading..."
@@ -392,7 +388,6 @@ On the frontend, you'd display these interstitials in sequence during the waitin
     ![Example of JavaScript code for displaying meaningful interstitials in sequence](../assets/images/interstitials-code.png)
 
     *This code shows how to fetch and display domain-specific interstitial messages that rotate every few seconds. The animation and context-specific messages engage users during waiting time, making the system feel more responsive.*
-```
 
 ## Optimizing Actual Performance
 
@@ -465,7 +460,6 @@ Here's a simple but effective approach for Slack bots:
     ![Example of JavaScript code for implementing pseudo-streaming in a Slack bot](../assets/images/slack-bot-code.png)
 
     *This code shows how to implement pseudo-streaming in a Slack bot environment, using message updates, emoji reactions, and staged processing to create the illusion of progress and maintain user engagement.*
-```
 
 !!! tip "Slack Feedback Collection"
     By pre-filling emoji reactions (👍 👎 ⭐), you dramatically increase the likelihood of receiving user feedback. This approach places feedback options directly in the user's view, rather than requiring them to take additional steps. In testing, this approach increased feedback collection rates by up to 5x compared to text-based feedback prompts.
