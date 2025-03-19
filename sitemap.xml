@@ -2,86 +2,142 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://567-labs.github.io/rag/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/misc/introduction/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/misc/landingpage/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/misc/learning-goals/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/misc/what-i-want-you-to-takeaway/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/office-hours/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/office-hours/week1-summary/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/office-hours/week2-summary/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/office-hours/week3-summary/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/office-hours/week4-summary/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/office-hours/week5-summary/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter0/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter1/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter2/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter3-1/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter3-2/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter3-3/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/workshops/chapter4-1/</loc>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/workshops/chapter4-2/</loc>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter4/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/workshops/chapter5-1/</loc>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/workshops/chapter5-2/</loc>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter5/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/workshops/chapter6-1/</loc>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/workshops/chapter6-2/</loc>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/workshops/chapter6-3/</loc>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter6/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-19</lastmod>
+         <changefreq>daily</changefreq>
     </url>
 </urlset>

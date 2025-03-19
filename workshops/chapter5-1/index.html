@@ -1,0 +1,1459 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Learn the foundational concepts of creating specialized search indices for different content types">
+      
+      
+      
+        <link rel="canonical" href="https://567-labs.github.io/rag/workshops/chapter5-1/">
+      
+      
+        <link rel="prev" href="../chapter4-2/">
+      
+      
+        <link rel="next" href="../chapter5-2/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+    
+    
+      
+        <title>Understanding Specialized Retrieval - The RAG Flywheel</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config",""),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Understanding Specialized Retrieval - The RAG Flywheel" >
+      
+        <meta  property="og:description"  content="Learn the foundational concepts of creating specialized search indices for different content types" >
+      
+        <meta  property="og:image"  content="https://567-labs.github.io/rag/assets/images/social/workshops/chapter5-1.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://567-labs.github.io/rag/workshops/chapter5-1/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Understanding Specialized Retrieval - The RAG Flywheel" >
+      
+        <meta  name="twitter:description"  content="Learn the foundational concepts of creating specialized search indices for different content types" >
+      
+        <meta  name="twitter:image"  content="https://567-labs.github.io/rag/assets/images/social/workshops/chapter5-1.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#understanding-specialized-retrieval-beyond-basic-rag" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="The RAG Flywheel" class="md-header__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The RAG Flywheel
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Understanding Specialized Retrieval
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../office-hours/" class="md-tabs__link">
+          
+  
+    
+  
+  Office Hours
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../test-math.md" class="md-tabs__link">
+        
+  
+    
+  
+  Math Test
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="The RAG Flywheel" class="md-nav__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    The RAG Flywheel
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Workshops
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Workshops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 1: Starting the Flywheel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 2: From Evaluation to Enhancement
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Design Principles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Feedback Collection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Iterative Improvement
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter4-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4: Topic Modeling - Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter4-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4: Topic Modeling - Prioritization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Understanding
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Understanding
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-power-of-specialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Power of Specialization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Power of Specialization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beyond-the-monolithic-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beyond the Monolithic Approach
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-mathematics-of-specialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Mathematics of Specialization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-paths-to-better-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two Paths to Better Retrieval
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Two Paths to Better Retrieval">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strategy-1-extracting-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategy 1: Extracting Metadata
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strategy-2-building-synthetic-text-chunks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategy 2: Building Synthetic Text Chunks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#measuring-what-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Measuring What Matters
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter5-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Implementation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Improvement
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../office-hours/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Office Hours
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Office Hours
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week1-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week2-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week3-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week4-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week5-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../test-math.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Math Test
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-power-of-specialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Power of Specialization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Power of Specialization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beyond-the-monolithic-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beyond the Monolithic Approach
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-mathematics-of-specialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Mathematics of Specialization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-paths-to-better-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two Paths to Better Retrieval
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Two Paths to Better Retrieval">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strategy-1-extracting-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategy 1: Extracting Metadata
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strategy-2-building-synthetic-text-chunks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategy 2: Building Synthetic Text Chunks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#measuring-what-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Measuring What Matters
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="understanding-specialized-retrieval-beyond-basic-rag">Understanding Specialized Retrieval: Beyond Basic RAG</h1>
+<div class="admonition abstract">
+<p class="admonition-title">Chapter Overview</p>
+<p>This part explores the foundations of specialized retrieval and its importance:</p>
+<ul>
+<li>Understanding why specialized retrievers outperform general-purpose solutions</li>
+<li>Learning key strategies for enhancing retrievability</li>
+<li>Measuring performance at both router and retriever levels</li>
+<li>Implementing metadata extraction and synthetic summaries</li>
+</ul>
+</div>
+<h2 id="introduction">Introduction</h2>
+<p>In our journey through systematically improving RAG applications, we've reached a pivotal moment. The previous sessions have equipped us with the fundamental building blocks: the RAG playbook, synthetic data generation, fine-tuning approaches, user experience design for data collection, and segmentation techniques. Now, in Session 5, we turn our attention to a concept that often separates basic implementations from truly exceptional ones—multimodal RAG and specialized search indices.</p>
+<div class="admonition quote">
+<p class="admonition-title">Key Insight</p>
+<p>The fundamental insight that drives this session is deceptively simple yet profound: <em>not all queries are created equal</em>. Different types of information require different approaches to retrieval. Just as you wouldn't use a hammer for every home repair task, you shouldn't rely on a single retrieval mechanism for every type of query your users might have.</p>
+</div>
+<p>Today, we'll explore how to identify distinct capabilities through segmentation and address each with tailored approaches. We'll see why specialized models solving specific problems consistently outperform general-purpose solutions, and how this paradigm shift can transform your RAG implementation from adequate to exceptional.</p>
+<h2 id="the-power-of-specialization">The Power of Specialization</h2>
+<h3 id="beyond-the-monolithic-approach">Beyond the Monolithic Approach</h3>
+<p>Traditional RAG implementations often begin with a single, monolithic index—a one-size-fits-all approach that attempts to handle every query with the same retrieval mechanism. While this approach can work for simple use cases, it quickly reaches its limits when confronted with the rich diversity of real-world queries.</p>
+<div class="admonition example">
+<p class="admonition-title">Diverse Query Needs</p>
+<p>Consider a hardware store's knowledge base. A customer searching for a specific product by model number requires a fundamentally different search approach than someone asking about the durability of various power tools, or another customer trying to find items within a specific weight range. The first query is best served by lexical search matching exact strings, the second by semantic search understanding concepts and opinions, and the third by structured data queries.</p>
+</div>
+<p>This diversity of information needs is why major search engines like Google have developed specialized tools—Maps for location-based queries, Photos for visual search, YouTube for video content, and classic web search for text-based information. While these began as separate products, the true innovation came when Google learned to seamlessly route users to the appropriate tool based on the nature of their query.</p>
+<div class="admonition quote">
+<p class="admonition-title">From Previous Cohort</p>
+<p>"I've been building separate indices for years without realizing that's what I was doing. This framework just helps me do it more systematically."</p>
+</div>
+<h3 id="the-mathematics-of-specialization">The Mathematics of Specialization</h3>
+<p>The superiority of specialized approaches isn't just theoretical—it's mathematically demonstrable. When distinct segments exist within a population of queries, a collection of local decision models will consistently outperform a global model trying to handle all cases.</p>
+<p>This principle manifests in modern machine learning in multiple ways. We see it in the evolution from monolithic models to mixtures of experts, where specialized sub-models handle different types of inputs. We see it in the trend toward decomposing complex tasks into simpler subtasks that can be solved independently before being recombined.</p>
+<pre class="mermaid"><code>graph TD
+    A[Monolithic Approach] --&gt; B[One-size-fits-all]
+    C[Specialized Approach] --&gt; D[Domain-specific Models]
+
+    B --&gt;|Limited Performance| E[General Coverage]
+    D --&gt;|Optimized Performance| F[Targeted Coverage]
+
+    F --&gt; G[Better Overall Results]
+    E --&gt; G
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style C fill:#bbf,stroke:#333,stroke-width:2px</code></pre>
+<div class="admonition info">
+<p class="admonition-title">Organizational Benefits</p>
+</div>
+<p>Beyond the performance benefits, specialized indices offer practical organizational advantages:</p>
+<div class="highlight"><pre><span></span><code>1. **Division of labor**: Teams can work on isolated, well-defined problems rather than tangling with the entire system
+2. **Incremental improvement**: Adding a new specialized index is less disruptive than rebuilding an entire system
+3. **Targeted innovation**: Teams can innovate within their specific domain without risking the stability of the whole
+</code></pre></div>
+<div class="admonition quote">
+<p class="admonition-title">Industry Perspective</p>
+<p>"Building specialized indices isn't just about performance—it's about creating a sustainable path for continuous improvement."</p>
+</div>
+<h2 id="two-paths-to-better-retrieval">Two Paths to Better Retrieval</h2>
+<p>When improving retrieval capabilities for RAG applications, two complementary strategies emerge. Think of them as opposite sides of the same coin—one extracting structure from the unstructured, the other creating retrieval-optimized representations of structured data.</p>
+<div class="admonition quote">
+<p class="admonition-title">Key Insight</p>
+<p>If you remember nothing else from this chapter, remember this: These strategies essentially create materialized views of your existing data, processed by AI through either structuring or rewriting.</p>
+</div>
+<h3 id="strategy-1-extracting-metadata">Strategy 1: Extracting Metadata</h3>
+<p>The first approach involves defining and extracting more metadata from your text chunks. Instead of viewing your content as an undifferentiated mass of text, you identify valuable structured information that can be exposed to search engines.</p>
+<div class="admonition example">
+<p class="admonition-title">Metadata Extraction Examples</p>
+<ul>
+<li>In finance applications, distinguishing between fiscal years and calendar years</li>
+<li>For legal document systems, classifying contracts as signed or unsigned and extracting payment dates and terms</li>
+<li>When processing call transcripts, categorizing them by type (job interviews, stand-ups, design reviews)</li>
+<li>For product documentation, identifying specifications, compatibility information, and warranty details</li>
+</ul>
+</div>
+<p>This approach essentially asks: "What structured information is hiding within our unstructured content that would make it easier to search?" Once extracted, this metadata can be stored in traditional databases like PostgreSQL, enabling powerful filtering and structured queries beyond what's possible with pure vector search.</p>
+<div class="admonition tip">
+<p class="admonition-title">Practical Application</p>
+<p>When consulting with financial clients, we discovered that simply being able to distinguish between fiscal years and calendar years dramatically improved search accuracy for financial metrics. Similarly, for legal teams, identifying whether a contract was signed or unsigned allowed for immediate filtering that saved hours of manual review.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Financial Metadata Model</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="k">class</span> <span class="nc">FinancialStatement</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Structured representation of a financial statement document.&quot;&quot;&quot;</span>
+    <span class="n">company</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">period_ending</span><span class="p">:</span> <span class="n">date</span>
+    <span class="n">revenue</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">net_income</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">earnings_per_share</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">fiscal_year</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Is this fiscal year (vs calendar year)?</span>
+    <span class="c1"># Additional fields that might be valuable:</span>
+    <span class="n">sector</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">currency</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;USD&quot;</span>
+    <span class="n">restated</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Has this statement been restated?</span>
+
+<span class="k">def</span> <span class="nf">extract_financial_data</span><span class="p">(</span><span class="n">document_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FinancialStatement</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract structured financial data from document text using LLM.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        document_text: Raw text from financial document</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Structured FinancialStatement object with extracted data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Define a structured extraction prompt</span>
+    <span class="n">system_prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Extract the following financial information from the document:</span>
+<span class="s2">    - Company name</span>
+<span class="s2">    - Period end date</span>
+<span class="s2">    - Whether this is a fiscal year report (vs calendar year)</span>
+<span class="s2">    - Revenue amount (with currency)</span>
+<span class="s2">    - Net income amount</span>
+<span class="s2">    - Earnings per share</span>
+<span class="s2">    - Business sector</span>
+<span class="s2">    - Whether this statement has been restated</span>
+
+<span class="s2">    Format your response as a JSON object with these fields.</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Use LLM to extract the structured information</span>
+    <span class="c1"># Implementation depends on your LLM framework</span>
+    <span class="n">extracted_json</span> <span class="o">=</span> <span class="n">call_llm</span><span class="p">(</span><span class="n">system_prompt</span><span class="p">,</span> <span class="n">document_text</span><span class="p">)</span>
+
+    <span class="c1"># Parse the extracted JSON into our Pydantic model</span>
+    <span class="k">return</span> <span class="n">FinancialStatement</span><span class="o">.</span><span class="n">parse_raw</span><span class="p">(</span><span class="n">extracted_json</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p>By extracting these structured elements from quarterly reports, organizations can enable precise filtering and comparison that would have been impossible with text-only search. For instance, you can easily query "Show me all companies in the tech sector with revenue growth over 10% in fiscal year 2024" or "Find all restated financial statements from the last quarter."</p>
+<h3 id="strategy-2-building-synthetic-text-chunks">Strategy 2: Building Synthetic Text Chunks</h3>
+<p>The second approach reverses the flow: taking structured data (or even unstructured data) and producing synthetic text chunks optimized for retrieval. These chunks serve as semantic pointers to the original content, enabling more effective recall.</p>
+<div class="admonition quote">
+<p class="admonition-title">Practical Perspective</p>
+<p>"If the first approach is to extract structured data from text chunks for easier structured search, the second approach is to create synthetic text chunks optimized specifically for embedding and retrieval."</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Synthetic Text Applications</p>
+<ul>
+<li>For image collections: Generate detailed descriptions capturing searchable aspects</li>
+<li>For research interviews: Extract common questions and answers to form an easily searchable FAQ</li>
+<li>For numerical data: Create natural language descriptions of key trends and outliers</li>
+<li>For product documentation: Generate comprehensive feature summaries that anticipate user queries</li>
+<li>For customer service transcripts: Create problem-solution pairs that capture resolution patterns</li>
+</ul>
+</div>
+<p>These synthetic chunks become intermediaries—easier to search than the original content, but pointing back to that source material when needed for the final response. When implemented correctly, you gain the benefits of both worlds: optimized retrieval via the synthetic chunks, and full fidelity from the source content.</p>
+<h2 id="measuring-what-matters">Measuring What Matters</h2>
+<p>As we introduce specialized indices, our measurement framework expands to assess performance at two levels:</p>
+<div class="admonition info">
+<p class="admonition-title">Two-Level Measurement Framework</p>
+<ol>
+<li>Are we selecting the right retrieval method for each query? </li>
+<li>Is each retrieval method finding the right information?</li>
+</ol>
+</div>
+<p>The overall probability of finding the correct information becomes a product of these two probabilities:</p>
+<div class="admonition example">
+<p class="admonition-title">Performance Formula</p>
+<p>P(finding correct data) = P(selecting correct retriever) × P(finding correct data | correct retriever)</p>
+</div>
+<p>This formula provides a powerful diagnostic tool. When your system underperforms, it helps identify whether the issue lies with retriever selection or with the individual retrievers themselves.</p>
+<div class="admonition tip">
+<p class="admonition-title">Diagnostic Example</p>
+<p>If you find that your system correctly routes 95% of queries to the appropriate retriever, but those retrievers only find relevant information 60% of the time, your priority should be improving retrieval quality rather than router accuracy.</p>
+</div>
+<p>This two-level evaluation framework ensures you invest your improvement efforts where they'll have the greatest impact.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../chapter4-2/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 4: Topic Modeling - Prioritization">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Chapter 4: Topic Modeling - Prioritization
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../chapter5-2/" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 5: Multimodal - Implementation">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Chapter 5: Multimodal - Implementation
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jxnlco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a7c05c9e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+    
+  </body>
+</html>

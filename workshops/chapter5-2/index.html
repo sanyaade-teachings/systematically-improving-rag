@@ -1,0 +1,1660 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Learn practical implementation techniques for documents, images, tables, and SQL generation">
+      
+      
+      
+        <link rel="canonical" href="https://567-labs.github.io/rag/workshops/chapter5-2/">
+      
+      
+        <link rel="prev" href="../chapter5-1/">
+      
+      
+        <link rel="next" href="../chapter6-1/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+    
+    
+      
+        <title>Implementing Multimodal Search - The RAG Flywheel</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config",""),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Implementing Multimodal Search - The RAG Flywheel" >
+      
+        <meta  property="og:description"  content="Learn practical implementation techniques for documents, images, tables, and SQL generation" >
+      
+        <meta  property="og:image"  content="https://567-labs.github.io/rag/assets/images/social/workshops/chapter5-2.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://567-labs.github.io/rag/workshops/chapter5-2/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Implementing Multimodal Search - The RAG Flywheel" >
+      
+        <meta  name="twitter:description"  content="Learn practical implementation techniques for documents, images, tables, and SQL generation" >
+      
+        <meta  name="twitter:image"  content="https://567-labs.github.io/rag/assets/images/social/workshops/chapter5-2.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#implementing-multimodal-search-specialized-retrieval-techniques" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="The RAG Flywheel" class="md-header__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The RAG Flywheel
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Implementing Multimodal Search
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../office-hours/" class="md-tabs__link">
+          
+  
+    
+  
+  Office Hours
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../test-math.md" class="md-tabs__link">
+        
+  
+    
+  
+  Math Test
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="The RAG Flywheel" class="md-nav__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    The RAG Flywheel
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Workshops
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Workshops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 1: Starting the Flywheel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 2: From Evaluation to Enhancement
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Design Principles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Feedback Collection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Iterative Improvement
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter4-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4: Topic Modeling - Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter4-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4: Topic Modeling - Prioritization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter5-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Understanding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Implementation
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Implementation
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#specialized-approaches-for-different-modalities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specialized Approaches for Different Modalities
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Specialized Approaches for Different Modalities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-search-beyond-basic-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Search: Beyond Basic Chunking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-search-bridging-visual-and-textual-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Image Search: Bridging Visual and Textual Understanding
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-search-structured-data-in-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table Search: Structured Data in Context
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql-query-generation-a-case-study-in-capability-building" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL Query Generation: A Case Study in Capability Building
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bringing-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bringing It All Together
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Improvement
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../office-hours/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Office Hours
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Office Hours
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week1-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week2-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week3-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week4-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/week5-summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Week 5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../test-math.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Math Test
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#specialized-approaches-for-different-modalities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specialized Approaches for Different Modalities
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Specialized Approaches for Different Modalities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-search-beyond-basic-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Search: Beyond Basic Chunking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-search-bridging-visual-and-textual-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Image Search: Bridging Visual and Textual Understanding
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-search-structured-data-in-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table Search: Structured Data in Context
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql-query-generation-a-case-study-in-capability-building" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL Query Generation: A Case Study in Capability Building
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bringing-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bringing It All Together
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="implementing-multimodal-search-specialized-retrieval-techniques">Implementing Multimodal Search: Specialized Retrieval Techniques</h1>
+<div class="admonition abstract">
+<p class="admonition-title">Chapter Overview</p>
+<p>This part explores the practical implementation of specialized retrieval techniques:</p>
+<ul>
+<li>Implementing strategies for document, image, and table retrieval</li>
+<li>Building effective SQL generation capabilities</li>
+<li>Creating rich descriptions for non-text content</li>
+<li>Combining specialized retrievers into a cohesive system</li>
+</ul>
+</div>
+<h2 id="specialized-approaches-for-different-modalities">Specialized Approaches for Different Modalities</h2>
+<p>Different types of content demand different retrieval strategies. Let's explore approaches for three common modalities: documents, images, and tables.</p>
+<h3 id="document-search-beyond-basic-chunking">Document Search: Beyond Basic Chunking</h3>
+<p>For document retrieval, the foundation remains chunking documents with appropriate metadata and applying both lexical and semantic search techniques. However, several refinements can dramatically improve performance:</p>
+<div class="admonition info">
+<p class="admonition-title">Advanced Document Retrieval Techniques</p>
+<ul>
+<li>
+<p><strong>Contextual Retrieval</strong>: Rather than using fixed chunks, dynamically rewrite or expand chunks based on the query context. This creates "query-aware" text representations that better match user intent.</p>
+</li>
+<li>
+<p><strong>Hybrid Retrieval Signals</strong>: Combine semantic similarity with other signals like recency, authority, and citation frequency to create a more nuanced ranking function.</p>
+</li>
+<li>
+<p><strong>Multi-stage Retrieval</strong>: Implement a cascade of increasingly sophisticated (and computationally expensive) retrieval and ranking steps, filtering out irrelevant content at each stage.</p>
+</li>
+</ul>
+</div>
+<pre class="mermaid"><code>flowchart LR
+    A[Query] --&gt; B[Initial Retrieval]
+    B --&gt; C[Candidate Chunks]
+    C --&gt; D[Re-ranking]
+    D --&gt; E[Dynamic Expansion]
+    E --&gt; F[Final Context]</code></pre>
+<p>The result is a document retrieval system that might return different types of content depending on the query:</p>
+<ul>
+<li>For some queries, concise summaries of key information</li>
+<li>For others, entire documents leveraging long-context models</li>
+<li>For yet others, specific text chunks or structured data extracts</li>
+</ul>
+<p>This flexibility allows the system to balance precision, recall, and presentation based on what best serves each query.</p>
+<div class="admonition example">
+<p class="admonition-title">Document Processor with Contextual Retrieval</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">def</span> <span class="nf">process_document_for_retrieval</span><span class="p">(</span><span class="n">document</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Process a document for enhanced retrieval capabilities.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        document: The raw document text</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary with processed document components</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Extract structured metadata</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">extract_document_metadata</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+
+    <span class="c1"># Create standard chunks with overlap</span>
+    <span class="n">chunks</span> <span class="o">=</span> <span class="n">chunk_document</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+    <span class="c1"># Generate summaries at different levels</span>
+    <span class="n">document_summary</span> <span class="o">=</span> <span class="n">summarize_document</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+    <span class="n">section_summaries</span> <span class="o">=</span> <span class="p">[</span><span class="n">summarize_section</span><span class="p">(</span><span class="n">section</span><span class="p">)</span> <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">extract_sections</span><span class="p">(</span><span class="n">document</span><span class="p">)]</span>
+
+    <span class="c1"># Extract any structured data tables</span>
+    <span class="n">tables</span> <span class="o">=</span> <span class="n">extract_tables</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="n">metadata</span><span class="p">,</span>
+        <span class="s2">&quot;chunks&quot;</span><span class="p">:</span> <span class="n">chunks</span><span class="p">,</span>
+        <span class="s2">&quot;document_summary&quot;</span><span class="p">:</span> <span class="n">document_summary</span><span class="p">,</span>
+        <span class="s2">&quot;section_summaries&quot;</span><span class="p">:</span> <span class="n">section_summaries</span><span class="p">,</span>
+        <span class="s2">&quot;tables&quot;</span><span class="p">:</span> <span class="n">tables</span><span class="p">,</span>
+        <span class="s2">&quot;full_document&quot;</span><span class="p">:</span> <span class="n">document</span>  <span class="c1"># Keep original for potential long-context processing</span>
+    <span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">contextual_retrieval</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">document_store</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform contextual retrieval that adapts based on query type.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        query: User query</span>
+<span class="sd">        document_store: Processed document store</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List of most relevant text chunks for the query</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Analyze query to determine retrieval strategy</span>
+    <span class="n">query_analysis</span> <span class="o">=</span> <span class="n">analyze_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">query_analysis</span><span class="p">[</span><span class="s2">&quot;requires_specific_detail&quot;</span><span class="p">]:</span>
+        <span class="c1"># Use chunk-level retrieval for specific information</span>
+        <span class="k">return</span> <span class="n">retrieve_relevant_chunks</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">document_store</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">query_analysis</span><span class="p">[</span><span class="s2">&quot;requires_overview&quot;</span><span class="p">]:</span>
+        <span class="c1"># Use summary-level retrieval for broader questions</span>
+        <span class="k">return</span> <span class="n">retrieve_relevant_summaries</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">document_store</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">query_analysis</span><span class="p">[</span><span class="s2">&quot;requires_structured_data&quot;</span><span class="p">]:</span>
+        <span class="c1"># Use table retrieval for data-oriented questions</span>
+        <span class="k">return</span> <span class="n">retrieve_relevant_tables</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">document_store</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Fall back to hybrid approach</span>
+        <span class="n">chunks</span> <span class="o">=</span> <span class="n">retrieve_relevant_chunks</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">document_store</span><span class="p">)</span>
+        <span class="n">summaries</span> <span class="o">=</span> <span class="n">retrieve_relevant_summaries</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">document_store</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">rerank_combined_results</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">chunks</span> <span class="o">+</span> <span class="n">summaries</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<h3 id="image-search-bridging-visual-and-textual-understanding">Image Search: Bridging Visual and Textual Understanding</h3>
+<p>Image search presents unique challenges. Visual language models were trained primarily on captioning data, creating a potential mismatch between how queries are phrased and how images are represented.</p>
+<div class="admonition warning">
+<p class="admonition-title">Embedding Spaces Mismatch</p>
+<p>The naive approach—applying the same embedding strategy used for text—often fails because question embeddings and image caption embeddings exist in fundamentally different semantic spaces. Simply embedding captions like "two people" will not retrieve well when users search for "business meeting" or "team collaboration."</p>
+</div>
+<p>To bridge this gap, more sophisticated image summarization techniques are essential:</p>
+<div class="admonition example">
+<p class="admonition-title">Advanced Image Description Techniques</p>
+<p><strong>Rich Prompting</strong>: Move beyond simple "what's in this image?" prompts to detailed instructions that anticipate likely queries. Compare:</p>
+<p><em>Basic</em>: "Describe this image."
+→ Result: "Two people at a table."</p>
+<p><em>Better</em>: "Describe this image in detail, noting the number of people, their apparent relationship, the setting, lighting conditions, objects present, and any text visible in the image."
+→ Result: "Two people arguing across a dinner table in a dimly lit room. One person appears agitated while the other looks defensive. A knife is visible on the table."</p>
+<p><em>Optimal</em>: "Analyze this image comprehensively as if you were making it searchable in a database. Include details about the people, their emotions, the environment, lighting, objects, potential context, and any visible text. Consider how someone might search for this specific image."
+→ Result: "This dramatic image shows two business professionals in a tense negotiation across a polished conference table in a corporate boardroom with floor-to-ceiling windows overlooking a city skyline. The older man in a gray suit appears frustrated, gesturing emphatically with papers in hand, while the younger woman in a black blazer maintains a composed but firm expression. Multiple financial reports and what appears to be a contract are spread across the table. The scene is captured in natural lighting with dramatic shadows, suggesting a high-stakes discussion or disagreement over business terms."</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">From Industry Experience</p>
+<p>"We found that the difference between basic image descriptions and optimized ones led to a 40% increase in successful retrievals. The key was training our team to create prompts that anticipated the vocabulary users would actually employ in their searches."</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Additional Image Enhancement Approaches</p>
+<ul>
+<li>
+<p><strong>Contextual Enrichment</strong>: Incorporate surrounding text, OCR results from the image, and metadata about the image's source and purpose. For example, if an image appears in a product manual, include the product name and function in the description.</p>
+</li>
+<li>
+<p><strong>Visual Reasoning</strong>: Use chain-of-thought prompting to guide the model through a reasoning process about the image content, resulting in more comprehensive descriptions. For example: "First identify all objects in the image. Then consider how they relate to each other. Finally, determine what activity or process is being depicted."</p>
+</li>
+<li>
+<p><strong>Bounding Boxes and Visual Grounding</strong>: For applications where precise location or counting is important, supplement descriptions with information about the spatial arrangement of elements. This is particularly valuable in construction, manufacturing, and retail contexts where users often need to locate or count specific items.</p>
+</li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Construction Site Image Analysis</p>
+<p>For a construction company's image database, users frequently needed to count specific items ("How many support beams are installed?") or locate defects ("Show me images of cracked foundations"). By implementing bounding box detection alongside rich descriptions, retrieval accuracy for these queries improved by 65% compared to using only semantic descriptions.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Rich Image Description Prompt</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">generate_rich_image_description</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ocr_text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">surrounding_text</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Generate a comprehensive description optimized for retrieval.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        image: Image data or path</span>
+<span class="sd">        ocr_text: Optional text extracted from the image</span>
+<span class="sd">        surrounding_text: Optional text surrounding the image in its original context</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Detailed description of the image</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    # Image Analysis Task</span>
+
+<span class="s2">    ## Context Information</span>
+<span class="s2">    </span><span class="si">{</span><span class="s2">&quot;OCR Text from image: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ocr_text</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">ocr_text</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;No OCR text available.&quot;</span><span class="si">}</span>
+<span class="s2">    </span><span class="si">{</span><span class="s2">&quot;Surrounding context: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">surrounding_text</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">surrounding_text</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;No surrounding context available.&quot;</span><span class="si">}</span>
+
+<span class="s2">    ## Analysis Instructions</span>
+<span class="s2">    Analyze the following image in extreme detail:</span>
+
+<span class="s2">    1. First, describe the visual scene, setting, and overall composition</span>
+<span class="s2">    2. List all people visible, their approximate positions, actions, and expressions</span>
+<span class="s2">    3. Enumerate all objects visible in the image</span>
+<span class="s2">    4. Note any text visible in the image</span>
+<span class="s2">    5. Describe colors, lighting, and visual style</span>
+<span class="s2">    6. If applicable, identify the type of image (photograph, diagram, screenshot, etc.)</span>
+<span class="s2">    7. Use chain-of-thought reasoning: think about what is happening and why</span>
+<span class="s2">    8. Generate 5-7 potential questions someone might ask when searching for this image</span>
+<span class="s2">    9. Suggest 5-10 relevant tags for this image</span>
+
+<span class="s2">    ## Final Description</span>
+<span class="s2">    Based on your analysis, provide a comprehensive 3-5 sentence description that would</span>
+<span class="s2">    help people find this image when searching with natural language queries.</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Use this prompt with your vision model implementation</span>
+    <span class="c1"># ...</span>
+</code></pre></div>
+</div>
+<p>The enhanced description dramatically improves retrieval capability when troubleshooting specific defects or components.</p>
+<h3 id="table-search-structured-data-in-context">Table Search: Structured Data in Context</h3>
+<p>Tables present a dual challenge: they contain structured data but exist within unstructured contexts. Two main approaches prove effective:</p>
+<div class="admonition info">
+<p class="admonition-title">Table Retrieval Approaches</p>
+<p><strong>Approach 1: Table as Document</strong></p>
+<p>For finding specific rows or comparing data across tables, chunk the table (preserving headers) and apply semantic search techniques. Generate summaries that capture the table's purpose and key insights to improve retrieval.</p>
+<p>This works well for questions like "Which product had the highest Q3 sales?" or "Show me all tables with warranty information."</p>
+<p><strong>Approach 2: Table as Database</strong></p>
+<p>For detailed data analysis, treat tables as queryable databases. The key challenge becomes identifying which table(s) to query for a given question.</p>
+<p>Standardize schemas using CREATE TABLE statements or table descriptions, then build semantic search against these table representations. Include sample data when possible to help clarify the table's contents.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Table Processor Implementation</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="k">class</span> <span class="nc">TableProcessor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process tables for enhanced retrievability and querying.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">process_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                    <span class="n">source_doc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Process a table for both document-like and database-like retrieval.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            table_data: The table as a pandas DataFrame</span>
+<span class="sd">            table_name: Name of the table</span>
+<span class="sd">            source_doc: Optional source document information</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary with processed table components</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Generate schema representation</span>
+        <span class="n">schema</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_schema_representation</span><span class="p">(</span><span class="n">table_data</span><span class="p">)</span>
+
+        <span class="c1"># Generate natural language summary</span>
+        <span class="n">summary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_table_summary</span><span class="p">(</span><span class="n">table_data</span><span class="p">,</span> <span class="n">table_name</span><span class="p">)</span>
+
+        <span class="c1"># Generate sample queries this table could answer</span>
+        <span class="n">sample_queries</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_sample_queries</span><span class="p">(</span><span class="n">table_data</span><span class="p">,</span> <span class="n">table_name</span><span class="p">)</span>
+
+        <span class="c1"># Convert to text chunks for semantic search</span>
+        <span class="n">text_chunks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_table_to_text_chunks</span><span class="p">(</span><span class="n">table_data</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;table_name&quot;</span><span class="p">:</span> <span class="n">table_name</span><span class="p">,</span>
+            <span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="n">schema</span><span class="p">,</span>
+            <span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="n">summary</span><span class="p">,</span>
+            <span class="s2">&quot;sample_queries&quot;</span><span class="p">:</span> <span class="n">sample_queries</span><span class="p">,</span>
+            <span class="s2">&quot;text_chunks&quot;</span><span class="p">:</span> <span class="n">text_chunks</span><span class="p">,</span>
+            <span class="s2">&quot;raw_data&quot;</span><span class="p">:</span> <span class="n">table_data</span><span class="p">,</span>
+            <span class="s2">&quot;source_document&quot;</span><span class="p">:</span> <span class="n">source_doc</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">_generate_schema_representation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate a SQL-like schema representation.&quot;&quot;&quot;</span>
+        <span class="n">types</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span>
+            <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_numeric_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
+                <span class="n">sql_type</span> <span class="o">=</span> <span class="s2">&quot;NUMERIC&quot;</span>
+            <span class="k">elif</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_datetime64_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
+                <span class="n">sql_type</span> <span class="o">=</span> <span class="s2">&quot;TIMESTAMP&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sql_type</span> <span class="o">=</span> <span class="s2">&quot;TEXT&quot;</span>
+
+            <span class="c1"># Add sample values for better understanding</span>
+            <span class="n">sample_values</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">()[:</span><span class="mi">3</span><span class="p">]</span>
+            <span class="n">sample_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Sample values: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">sample_values</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+
+            <span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">sql_type</span><span class="si">}</span><span class="s2"> -- </span><span class="si">{</span><span class="n">sample_str</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;CREATE TABLE table (</span><span class="se">\n</span><span class="s2">  &quot;</span> <span class="o">+</span> <span class="s2">&quot;,</span><span class="se">\n</span><span class="s2">  &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">types</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">);&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_generate_table_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate a natural language summary of the table.&quot;&quot;&quot;</span>
+        <span class="c1"># Use an LLM to summarize the table contents</span>
+        <span class="c1"># Implementation depends on your LLM framework</span>
+        <span class="c1"># ...</span>
+
+    <span class="k">def</span> <span class="nf">_generate_sample_queries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate sample natural language queries this table could answer.&quot;&quot;&quot;</span>
+        <span class="c1"># Use an LLM to generate sample queries</span>
+        <span class="c1"># ...</span>
+
+    <span class="k">def</span> <span class="nf">_table_to_text_chunks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert table to text chunks for semantic search.&quot;&quot;&quot;</span>
+        <span class="c1"># Implementation for chunking table content</span>
+        <span class="c1"># ...</span>
+</code></pre></div>
+</div>
+<p>Once the right table is identified, either:</p>
+<ul>
+<li>Place the table directly into the context for simple analysis</li>
+<li>Generate SQL queries or pandas code for more complex analysis</li>
+</ul>
+<h2 id="sql-query-generation-a-case-study-in-capability-building">SQL Query Generation: A Case Study in Capability Building</h2>
+<p>SQL query generation exemplifies many of the principles we've discussed. It involves both an inventory challenge (finding the right tables) and a capability challenge (writing effective queries).</p>
+<div class="admonition warning">
+<p class="admonition-title">Limitations of Direct Translation</p>
+<p>The classical approach—training a model to translate natural language directly to SQL—often struggles with complex schemas and business-specific query patterns. The limitations become especially apparent with:</p>
+<ul>
+<li>Complex schemas with dozens or hundreds of tables</li>
+<li>Business-specific definitions of common terms like "active user" or "revenue"</li>
+<li>SQL patterns that require specific business rules like fiscal calendars</li>
+<li>Performance considerations that require specific optimization techniques</li>
+</ul>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Data Science Experience</p>
+<p>"We spent months trying to fine-tune models for SQL generation with limited success. Once we switched to retrieving exemplar queries from our analytics repository, accuracy jumped by 30% overnight."</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">RAG Playbook for SQL Generation</p>
+<p>A more effective strategy applies our RAG playbook:</p>
+<ol>
+<li><strong>Build an inventory of tables and their descriptions</strong> - Create detailed schema documentation including sample data</li>
+<li><strong>Create synthetic questions targeting this inventory</strong> - Generate diverse questions that test different joining patterns</li>
+<li><strong>Measure retrieval performance for table selection</strong> - Evaluate if the right tables are being identified</li>
+<li><strong>Collect exemplar SQL queries demonstrating important capabilities</strong> - Curate a library of well-written, optimized queries</li>
+<li><strong>Include these exemplars when generating new queries</strong> - Dynamically retrieve and include relevant examples</li>
+</ol>
+</div>
+<p>This approach addresses a fundamental challenge in SQL generation: the same question can be interpreted in multiple valid ways. Consider "Show me month-over-month revenue growth":</p>
+<ul>
+<li>Does "month" mean calendar month or a 28-day period?</li>
+<li>Should weekends be excluded for B2B applications?</li>
+<li>Is "growth" absolute or percentage?</li>
+<li>Should the calculation include or exclude certain revenue types?</li>
+<li>Should the comparison use the same day of month or the last day of each month?</li>
+<li>How should partial months be handled when the current month isn't complete?</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Subjective Query Interpretations</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Possible Interpretation 1</th>
+<th>Possible Interpretation 2</th>
+<th>Possible Interpretation 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Monthly active users"</td>
+<td>Users who logged in during calendar month</td>
+<td>Users who performed an action in last 30 days</td>
+<td>Users who made a purchase in billing cycle</td>
+</tr>
+<tr>
+<td>"Revenue by region"</td>
+<td>Geographic sales regions</td>
+<td>Product categories</td>
+<td>Customer segments</td>
+</tr>
+<tr>
+<td>"Top performing products"</td>
+<td>Highest revenue</td>
+<td>Highest profit margin</td>
+<td>Highest growth rate</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Without business context, even the most advanced models can only guess. By including relevant exemplars that demonstrate how your organization typically answers such questions, you guide the model toward your preferred interpretations.</p>
+<h2 id="bringing-it-all-together">Bringing It All Together</h2>
+<p>As we prepare for our final session on routing and unified systems, let's solidify the key insights from today's exploration of multimodal RAG:</p>
+<div class="admonition abstract">
+<p class="admonition-title">Key Takeaways</p>
+<ol>
+<li>
+<p><strong>The power of specialization</strong>: Building dedicated retrieval mechanisms for different content types and query patterns consistently outperforms monolithic approaches. Specialized models solving specific problems will outperform general-purpose solutions.</p>
+</li>
+<li>
+<p><strong>Two complementary strategies</strong>: Extract structured data from unstructured content, or create synthetic text chunks that point to source data—both serve as AI-powered materialized views that optimize retrievability.</p>
+</li>
+<li>
+<p><strong>Measurement drives improvement</strong>: Use precision and recall at both the router and retriever levels to identify your system's limiting factors using the formula: P(finding correct data) = P(selecting correct retriever) × P(finding correct data | correct retriever).</p>
+</li>
+<li>
+<p><strong>Modality-specific optimizations</strong>: Each content type requires tailored approaches, from contextual retrieval for documents to rich descriptions for images to exemplar-based generation for SQL.</p>
+</li>
+<li>
+<p><strong>Organizational benefits</strong>: Beyond performance, specialized indices enable division of labor, incremental improvement, and targeted innovation without disrupting the entire system.</p>
+</li>
+</ol>
+</div>
+<pre class="mermaid"><code>flowchart TD
+    A[User Query] --&gt; B[Query Analyzer]
+    B --&gt; C[Query Router]
+
+    C --&gt;|Document Query| D[Document Retriever]
+    C --&gt;|Image Query| E[Image Retriever]
+    C --&gt;|Table Query| F[Table Retriever]
+    C --&gt;|SQL Query| G[SQL Generator]
+
+    D --&gt; H[Result Combiner]
+    E --&gt; H
+    F --&gt; H
+    G --&gt; H
+
+    H --&gt; I[Response Generator]
+    I --&gt; J[User Response]</code></pre>
+<p>The beauty of this framework is its recursive nature. The same playbook—synthetic data generation, segmentation, capability identification—applies whether you're building your first retrieval system or your fifth specialized index.</p>
+<div class="admonition tip">
+<p class="admonition-title">Implementation Strategy</p>
+<ol>
+<li><strong>Start small</strong>: Begin with one or two specialized retrievers for your highest-impact query types </li>
+<li><strong>Measure relentlessly</strong>: Track performance metrics for each retriever and overall system </li>
+<li><strong>Expand incrementally</strong>: Add new retrievers as you identify segments that would benefit </li>
+<li><strong>Refine continuously</strong>: Use user feedback to improve both routing and retrieval quality</li>
+<li><strong>Optimize alignment</strong>: Ensure that your synthetic text and metadata extraction aligns with actual user query patterns</li>
+</ol>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Engineering Insight</p>
+<p>"No matter how much better AI gets, you'll always be responsible for retrieval. Understanding what to retrieve and how to retrieve it remains the core challenge even as models become more capable."</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Cross-Reference</p>
+</div>
+<p>In <a href="../chapter6/">Chapter 6</a>, we'll explore how to bring these specialized components together through effective routing strategies, creating a unified system that seamlessly directs users to the appropriate retrievers based on their queries.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../chapter5-1/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 5: Multimodal - Understanding">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Chapter 5: Multimodal - Understanding
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../chapter6-1/" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 6: Architecture - Routing">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Chapter 6: Architecture - Routing
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jxnlco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a7c05c9e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+    
+  </body>
+</html>

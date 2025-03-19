@@ -13,14 +13,10 @@
         <link rel="canonical" href="https://567-labs.github.io/rag/workshops/chapter4/">
       
       
-        <link rel="prev" href="../chapter3-3/">
-      
-      
-        <link rel="next" href="../chapter5/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
     
     
       
@@ -28,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -50,7 +46,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -59,7 +55,7 @@
   
   
 
-<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config",""),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
   
     <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
   
@@ -127,12 +123,12 @@
     <a href="../.." title="The RAG Flywheel" class="md-header__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -158,7 +154,7 @@
     
       <label class="md-header__button md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -167,20 +163,20 @@
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
           <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
             
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
           </a>
         
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
       
@@ -188,7 +184,7 @@
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+      <div class="md-search__scrollwrap" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
@@ -235,12 +231,10 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../" class="md-tabs__link">
           
   
@@ -316,7 +310,7 @@
     <a href="../.." title="The RAG Flywheel" class="md-nav__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
     The RAG Flywheel
@@ -336,7 +330,6 @@
   
   <span class="md-ellipsis">
     Home
-    
   </span>
   
 
@@ -349,8 +342,6 @@
       
   
   
-    
-  
   
   
     
@@ -378,22 +369,29 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
         
           
           
@@ -403,20 +401,19 @@
   
   <span class="md-ellipsis">
     Workshops
-    
   </span>
   
 
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Workshops
@@ -437,7 +434,6 @@
   
   <span class="md-ellipsis">
     Introduction
-    
   </span>
   
 
@@ -459,7 +455,6 @@
   
   <span class="md-ellipsis">
     Chapter 1: Starting the Flywheel
-    
   </span>
   
 
@@ -481,7 +476,6 @@
   
   <span class="md-ellipsis">
     Chapter 2: From Evaluation to Enhancement
-    
   </span>
   
 
@@ -503,7 +497,6 @@
   
   <span class="md-ellipsis">
     Chapter 3: UX - Design Principles
-    
   </span>
   
 
@@ -525,7 +518,6 @@
   
   <span class="md-ellipsis">
     Chapter 3: UX - Feedback Collection
-    
   </span>
   
 
@@ -547,323 +539,6 @@
   
   <span class="md-ellipsis">
     Chapter 3: UX - Iterative Improvement
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Chapter 4: Understanding Your Users
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Chapter 4: Understanding Your Users
-    
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#introduction-from-collecting-feedback-to-understanding-it" class="md-nav__link">
-    <span class="md-ellipsis">
-      Introduction: From Collecting Feedback to Understanding It
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#understanding-topics-and-capabilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      Understanding Topics and Capabilities
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Understanding Topics and Capabilities">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#topics-vs-capabilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      Topics vs. Capabilities
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#topic-modeling-techniques" class="md-nav__link">
-    <span class="md-ellipsis">
-      Topic Modeling Techniques
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Topic Modeling Techniques">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#automated-topic-modeling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Automated Topic Modeling
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Automated Topic Modeling">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#useful-clustering-libraries" class="md-nav__link">
-    <span class="md-ellipsis">
-      Useful Clustering Libraries
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-bertopic-implementation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example: BERTopic Implementation
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#llm-based-clustering-and-classification" class="md-nav__link">
-    <span class="md-ellipsis">
-      LLM-Based Clustering and Classification
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#manual-query-categorization" class="md-nav__link">
-    <span class="md-ellipsis">
-      Manual Query Categorization
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#combining-automated-and-manual-approaches" class="md-nav__link">
-    <span class="md-ellipsis">
-      Combining Automated and Manual Approaches
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#capability-analysis-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      Capability Analysis Framework
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Capability Analysis Framework">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#common-rag-capabilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common RAG Capabilities
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#analyzing-capability-gaps" class="md-nav__link">
-    <span class="md-ellipsis">
-      Analyzing Capability Gaps
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#prioritization-frameworks" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prioritization Frameworks
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Prioritization Frameworks">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#the-impacteffort-matrix" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Impact/Effort Matrix
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#the-value-driven-approach" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Value-Driven Approach
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-a-strategic-roadmap" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creating a Strategic Roadmap
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Creating a Strategic Roadmap">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#roadmap-components" class="md-nav__link">
-    <span class="md-ellipsis">
-      Roadmap Components
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-strategic-roadmap" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example Strategic Roadmap
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#advanced-analysis-techniques" class="md-nav__link">
-    <span class="md-ellipsis">
-      Advanced Analysis Techniques
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Advanced Analysis Techniques">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#embedding-visualization" class="md-nav__link">
-    <span class="md-ellipsis">
-      Embedding Visualization
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../chapter5/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Chapter 5: Building Specialized Capabilities
-    
   </span>
   
 
@@ -880,12 +555,137 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter6/" class="md-nav__link">
+      <a href="../chapter4-1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Chapter 6: Unified Search Architecture
-    
+    Chapter 4: Topic Modeling - Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter4-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4: Topic Modeling - Prioritization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter5-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Understanding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter5-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Implementation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Improvement
   </span>
   
 
@@ -949,7 +749,6 @@
   
   <span class="md-ellipsis">
     Office Hours
-    
   </span>
   
 
@@ -983,7 +782,6 @@
   
   <span class="md-ellipsis">
     Week 1
-    
   </span>
   
 
@@ -1005,7 +803,6 @@
   
   <span class="md-ellipsis">
     Week 2
-    
   </span>
   
 
@@ -1027,7 +824,6 @@
   
   <span class="md-ellipsis">
     Week 3
-    
   </span>
   
 
@@ -1049,7 +845,6 @@
   
   <span class="md-ellipsis">
     Week 4
-    
   </span>
   
 
@@ -1071,7 +866,6 @@
   
   <span class="md-ellipsis">
     Week 5
-    
   </span>
   
 
@@ -1100,7 +894,6 @@
   
   <span class="md-ellipsis">
     Math Test
-    
   </span>
   
 
@@ -1129,245 +922,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#introduction-from-collecting-feedback-to-understanding-it" class="md-nav__link">
-    <span class="md-ellipsis">
-      Introduction: From Collecting Feedback to Understanding It
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#understanding-topics-and-capabilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      Understanding Topics and Capabilities
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Understanding Topics and Capabilities">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#topics-vs-capabilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      Topics vs. Capabilities
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#topic-modeling-techniques" class="md-nav__link">
-    <span class="md-ellipsis">
-      Topic Modeling Techniques
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Topic Modeling Techniques">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#automated-topic-modeling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Automated Topic Modeling
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Automated Topic Modeling">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#useful-clustering-libraries" class="md-nav__link">
-    <span class="md-ellipsis">
-      Useful Clustering Libraries
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-bertopic-implementation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example: BERTopic Implementation
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#llm-based-clustering-and-classification" class="md-nav__link">
-    <span class="md-ellipsis">
-      LLM-Based Clustering and Classification
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#manual-query-categorization" class="md-nav__link">
-    <span class="md-ellipsis">
-      Manual Query Categorization
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#combining-automated-and-manual-approaches" class="md-nav__link">
-    <span class="md-ellipsis">
-      Combining Automated and Manual Approaches
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#capability-analysis-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      Capability Analysis Framework
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Capability Analysis Framework">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#common-rag-capabilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common RAG Capabilities
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#analyzing-capability-gaps" class="md-nav__link">
-    <span class="md-ellipsis">
-      Analyzing Capability Gaps
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#prioritization-frameworks" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prioritization Frameworks
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Prioritization Frameworks">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#the-impacteffort-matrix" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Impact/Effort Matrix
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#the-value-driven-approach" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Value-Driven Approach
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-a-strategic-roadmap" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creating a Strategic Roadmap
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Creating a Strategic Roadmap">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#roadmap-components" class="md-nav__link">
-    <span class="md-ellipsis">
-      Roadmap Components
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-strategic-roadmap" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example Strategic Roadmap
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#advanced-analysis-techniques" class="md-nav__link">
-    <span class="md-ellipsis">
-      Advanced Analysis Techniques
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Advanced Analysis Techniques">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#embedding-visualization" class="md-nav__link">
-    <span class="md-ellipsis">
-      Embedding Visualization
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1381,612 +935,16 @@
                   
 
 
-
 <h1 id="topic-modeling-and-clustering-finding-patterns-in-user-feedback">Topic Modeling and Clustering: Finding Patterns in User Feedback</h1>
-<div class="admonition abstract">
-<p class="admonition-title">Chapter Overview</p>
-</div>
-<p>This chapter explores how to identify patterns in user queries and feedback to prioritize improvements:</p>
-<div class="highlight"><pre><span></span><code>- Understanding the difference between topics and capabilities
-- Applying topic modeling techniques to user queries
-- Categorizing queries for targeted improvements
-- Identifying high-value, high-impact opportunities
-- Creating a strategic roadmap for RAG enhancement
-</code></pre></div>
-<h2 id="introduction-from-collecting-feedback-to-understanding-it">Introduction: From Collecting Feedback to Understanding It</h2>
-<p>In Chapter 3, we built a comprehensive system for deployment and feedback collection: we designed mechanisms to capture valuable user signals in Chapter 3.1, implemented streaming to create engaging experiences in Chapter 3.2, and added quality-of-life improvements to enhance trust and transparency in Chapter 3.3. Now we're faced with a new challenge—one that nearly every team encounters after successful deployment: making sense of all that feedback data.</p>
-<p>The first time I deployed a successful RAG system with robust feedback collection, I felt a mix of triumph and panic. Within weeks, we had thousands of queries, ratings, and interaction signals. But when my manager asked, "So what should we improve next?" I realized I had no systematic way to answer that question. We were drowning in data but struggling to extract actionable insights.</p>
-<p>This is where topic modeling and clustering become transformative. While it's tempting to dive into individual feedback instances or fixate on particularly negative comments, the real power comes from identifying patterns that reveal systematic opportunities for improvement. By grouping similar queries and analyzing performance patterns, you move from reacting to individual feedback to making strategic decisions about where to invest your limited resources.</p>
-<div class="admonition quote">
-<p class="admonition-title">Key Philosophy</p>
-</div>
-<p>"Not all improvements are created equal. The art of systematic RAG development is identifying which capabilities will deliver the most value to your users."</p>
-<p>Think of this process as similar to a product manager analyzing customer segments. Just as not all customers have the same needs or value, not all query types deserve the same attention. Some query categories might represent a small percentage of volume but be critical to your most valuable users. Others might be frequent but easily satisfied with simple improvements. The goal is to move beyond "making the AI better" to precisely targeting your efforts where they'll have the maximum impact.</p>
-<p>In this chapter, we'll explore practical techniques for segmenting and analyzing user queries, identifying patterns in performance, and creating a strategic roadmap for improvement. By the end, you'll have a data-driven framework for deciding exactly where to focus your efforts and which capabilities to develop next.</p>
-<h2 id="understanding-topics-and-capabilities">Understanding Topics and Capabilities</h2>
-<p>Before diving into techniques, let's clarify two key concepts: topics and capabilities.</p>
-<h3 id="topics-vs-capabilities">Topics vs. Capabilities</h3>
-<p>!!! info "Key Definitions" - <strong>Topics</strong>: Subject matter domains in your content (e.g., "account management," "pricing," "technical specifications") - <strong>Capabilities</strong>: Functional abilities your system should have (e.g., "summarization," "comparison," "step-by-step instructions")</p>
-<p>These concepts provide two complementary lenses for analyzing user needs. When I work with teams to improve their RAG systems, I often find they conflate these two dimensions, leading to unfocused efforts. A topic tells you what users are asking about, while a capability tells you what they want the system to do with that information.</p>
-<pre class="mermaid"><code>graph LR
-    A[User Queries] --&gt; B[Topic Analysis]
-    A --&gt; C[Capability Analysis]
-
-    B --&gt; D[What users ask about]
-    C --&gt; E[What users want the system to do]
-
-    D --&gt; F[Content Coverage Improvements]
-    E --&gt; G[Functional Improvements]
-
-    F --&gt; H[System Enhancements]
-    G --&gt; H</code></pre>
-<p>I remember working with a healthcare company whose initial analysis simply categorized queries by medical conditions. While helpful, this one-dimensional view missed critical patterns. When we added capability analysis, we discovered that queries about common conditions like diabetes primarily needed comparison capabilities ("How does medication A compare to B?"), while queries about rare conditions needed comprehensive summarization ("Give me an overview of treatment options for X"). This insight completely changed their improvement priorities.</p>
-<div class="admonition example">
-<p class="admonition-title">Topics vs. Capabilities Example</p>
-</div>
-<p>Consider these user queries in a product support RAG:</p>
-<div class="highlight"><pre><span></span><code>- &quot;How do I reset my password?&quot;
-  - **Topic**: Account security
-  - **Capability**: Step-by-step instructions
-
-- &quot;Compare the Pro and Basic plans&quot;
-  - **Topic**: Pricing/Plans
-  - **Capability**: Comparison
-
-- &quot;Summarize the latest product release notes&quot;
-  - **Topic**: Product updates
-  - **Capability**: Summarization
-</code></pre></div>
-<p>Understanding both dimensions lets you prioritize more effectively. For instance, you might discover that comparison capabilities underperform across multiple topics, revealing a systematic weakness rather than a content gap.</p>
-<h2 id="topic-modeling-techniques">Topic Modeling Techniques</h2>
-<p>Now let's explore approaches for identifying topics in your user queries.</p>
-<h3 id="automated-topic-modeling">Automated Topic Modeling</h3>
-<p>Several algorithms can help identify topics in your query dataset:</p>
-<ol>
-<li><strong>LDA (Latent Dirichlet Allocation)</strong>: Traditional statistical approach</li>
-<li><strong>BERTopic</strong>: Leverages transformer models for better semantic understanding</li>
-<li><strong>LLM-based clustering</strong>: Uses language models to group and label topics</li>
-</ol>
-<p>When I began applying topic modeling to RAG applications in 2022, I used traditional techniques like LDA. While these worked reasonably well for longer documents, they often struggled with the brevity and specificity of user queries. Modern approaches like BERTopic and LLM-based clustering have dramatically improved our ability to identify meaningful patterns in even short, ambiguous queries.</p>
-<h4 id="useful-clustering-libraries">Useful Clustering Libraries</h4>
-<p>!!! tip "Recommended Clustering Tools" - <strong><a href="https://github.com/MaartenGr/BERTopic">BERTopic</a></strong>: A powerful library that combines transformers with traditional clustering - <strong><a href="https://github.com/ddangelov/Top2Vec">Top2Vec</a></strong>: Generates topic vectors without predefined numbers of topics - <strong><a href="https://github.com/Thinkall/LLM-Clustering">LLMClustering</a></strong>: Uses large language models for clustering with zero-shot classification - <strong><a href="https://github.com/scikit-learn-contrib/hdbscan">HDBSCAN</a></strong>: Density-based clustering that works well for identifying natural groupings - <strong><a href="https://platform.openai.com/docs/guides/embeddings/use-cases">OpenAI Text Embedding Clustering</a></strong>: Using OpenAI embeddings with standard clustering algorithms</p>
-<p>Each of these approaches has different strengths. BERTopic excels at finding coherent topics in varied document collections, while LLM-based approaches can provide more intuitive topic labels. The key is that these tools are for <em>analysis</em> purposes—they help you understand patterns in your data that would be difficult to detect manually.</p>
-<div class="admonition tip">
-<p class="admonition-title">Cross-Reference</p>
-</div>
-<p>Remember the synthetic data approaches from <a href="../chapter1/">Chapter 1</a>? You can use similar techniques to generate additional examples for each discovered topic to improve your evaluation sets.</p>
-<h4 id="example-bertopic-implementation">Example: BERTopic Implementation</h4>
-<div class="admonition example">
-<p class="admonition-title">BERTopic Code Example</p>
-</div>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">bertopic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BERTopic</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.feature_extraction.text</span><span class="w"> </span><span class="kn">import</span> <span class="n">CountVectorizer</span>
-
-    <span class="c1"># Assuming &#39;queries&#39; is a list of user query strings</span>
-    <span class="c1"># Configure BERTopic with more options for better control</span>
-    <span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">,</span> <span class="n">min_df</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-
-    <span class="n">topic_model</span> <span class="o">=</span> <span class="n">BERTopic</span><span class="p">(</span>
-        <span class="n">language</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">,</span>
-        <span class="n">min_topic_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-        <span class="n">vectorizer_model</span><span class="o">=</span><span class="n">vectorizer</span><span class="p">,</span>
-        <span class="n">calculate_probabilities</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
-    <span class="p">)</span>
-
-    <span class="c1"># Fit the model and transform documents to topics</span>
-    <span class="n">topics</span><span class="p">,</span> <span class="n">probs</span> <span class="o">=</span> <span class="n">topic_model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">queries</span><span class="p">)</span>
-
-    <span class="c1"># View topic information</span>
-    <span class="n">topic_info</span> <span class="o">=</span> <span class="n">topic_model</span><span class="o">.</span><span class="n">get_topic_info</span><span class="p">()</span>
-
-    <span class="c1"># Extract the top 10 topics</span>
-    <span class="n">top_topics</span> <span class="o">=</span> <span class="n">topic_info</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-
-    <span class="c1"># For each top topic, get the representative documents</span>
-    <span class="k">for</span> <span class="n">topic_id</span> <span class="ow">in</span> <span class="n">top_topics</span><span class="p">[</span><span class="s1">&#39;Topic&#39;</span><span class="p">]:</span>
-        <span class="k">if</span> <span class="n">topic_id</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>  <span class="c1"># Skip the outlier topic</span>
-            <span class="k">continue</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topic </span><span class="si">{</span><span class="n">topic_id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">topic_model</span><span class="o">.</span><span class="n">get_topic</span><span class="p">(</span><span class="n">topic_id</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">topic_docs</span> <span class="o">=</span> <span class="p">[</span><span class="n">queries</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">topics</span><span class="p">)</span> <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="n">topic_id</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">topic_docs</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">doc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">()</span>
-
-    <span class="c1"># Visualize topics</span>
-    <span class="n">topic_model</span><span class="o">.</span><span class="n">visualize_topics</span><span class="p">()</span>
-
-    <span class="c1"># Save model for later use</span>
-    <span class="n">topic_model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;topic_model&quot;</span><span class="p">)</span>
-    <span class="err">```</span>
-
-<span class="n">In</span> <span class="n">one</span> <span class="n">e</span><span class="o">-</span><span class="n">commerce</span> <span class="n">project</span><span class="p">,</span> <span class="n">this</span> <span class="n">approach</span> <span class="n">revealed</span> <span class="n">that</span> <span class="n">over</span> <span class="mi">20</span><span class="o">%</span> <span class="n">of</span> <span class="n">user</span> <span class="n">queries</span> <span class="n">fell</span> <span class="n">into</span> <span class="n">a</span> <span class="s2">&quot;product comparison&quot;</span> <span class="n">topic</span> <span class="n">that</span> <span class="n">our</span> <span class="n">system</span> <span class="n">handled</span> <span class="n">poorly</span><span class="o">.</span> <span class="n">We</span> <span class="n">hadn</span><span class="s1">&#39;t prioritized comparison capabilities because individual comparison queries seemed infrequent, but topic modeling revealed they formed a substantial segment when viewed collectively.</span>
-
-<span class="c1">#### Visualizing BERTopic Results</span>
-
-<span class="n">BERTopic</span> <span class="n">provides</span> <span class="n">excellent</span> <span class="n">visualization</span> <span class="n">capabilities</span> <span class="n">that</span> <span class="n">can</span> <span class="n">help</span> <span class="n">communicate</span> <span class="n">findings</span> <span class="n">to</span> <span class="n">stakeholders</span><span class="p">:</span>
-
-<span class="err">```</span><span class="n">python</span>
-<span class="c1"># Create interactive intertopic distance map</span>
-<span class="n">topic_model</span><span class="o">.</span><span class="n">visualize_topics</span><span class="p">()</span>
-
-<span class="c1"># Show hierarchical clustering of topics</span>
-<span class="n">topic_model</span><span class="o">.</span><span class="n">visualize_hierarchy</span><span class="p">()</span>
-
-<span class="c1"># Visualize topic similarity</span>
-<span class="n">topic_model</span><span class="o">.</span><span class="n">visualize_heatmap</span><span class="p">()</span>
-
-<span class="c1"># Show topic distribution over time (if you have timestamp data)</span>
-<span class="n">topics_over_time</span> <span class="o">=</span> <span class="n">topic_model</span><span class="o">.</span><span class="n">topics_over_time</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">timestamps</span><span class="p">)</span>
-<span class="n">topic_model</span><span class="o">.</span><span class="n">visualize_topics_over_time</span><span class="p">(</span><span class="n">topics_over_time</span><span class="p">)</span>
-</code></pre></div>
-<p>These visualizations are invaluable for communicating your findings to stakeholders and building consensus around improvement priorities.</p>
-<h3 id="llm-based-clustering-and-classification">LLM-Based Clustering and Classification</h3>
-<p>While traditional clustering methods work well, I've found that LLM-based approaches can provide more intuitive and actionable results, especially for domain-specific applications.</p>
-<div class="admonition example">
-<p class="admonition-title">OpenAI Embeddings + HDBSCAN Clustering</p>
-</div>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics.pairwise</span><span class="w"> </span><span class="kn">import</span> <span class="n">cosine_similarity</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">hdbscan</span>
-
-    <span class="c1"># Get embeddings for queries</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_embeddings</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;text-embedding-3-large&quot;</span><span class="p">):</span>
-        <span class="n">embeddings</span> <span class="o">=</span> <span class="p">[]</span>
-
-        <span class="k">for</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">queries</span><span class="p">:</span>
-            <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Embedding</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-                <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
-                <span class="nb">input</span><span class="o">=</span><span class="n">query</span>
-            <span class="p">)</span>
-            <span class="n">embedding</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;embedding&#39;</span><span class="p">]</span>
-            <span class="n">embeddings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span>
-
-    <span class="c1"># Get embeddings</span>
-    <span class="n">query_embeddings</span> <span class="o">=</span> <span class="n">get_embeddings</span><span class="p">(</span><span class="n">queries</span><span class="p">)</span>
-
-    <span class="c1"># Cluster the embeddings</span>
-    <span class="n">clusterer</span> <span class="o">=</span> <span class="n">hdbscan</span><span class="o">.</span><span class="n">HDBSCAN</span><span class="p">(</span>
-        <span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-        <span class="n">min_samples</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-        <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span>
-        <span class="n">cluster_selection_method</span><span class="o">=</span><span class="s1">&#39;eom&#39;</span>
-    <span class="p">)</span>
-
-    <span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">clusterer</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">query_embeddings</span><span class="p">)</span>
-
-    <span class="c1"># Add cluster labels to original data</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-        <span class="s1">&#39;query&#39;</span><span class="p">:</span> <span class="n">queries</span><span class="p">,</span>
-        <span class="s1">&#39;cluster&#39;</span><span class="p">:</span> <span class="n">cluster_labels</span>
-    <span class="p">})</span>
-
-    <span class="c1"># For each cluster, get representative examples</span>
-    <span class="k">for</span> <span class="n">cluster_id</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">cluster_labels</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">cluster_id</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-            <span class="k">continue</span>  <span class="c1"># Skip noise points</span>
-
-        <span class="n">cluster_examples</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">cluster_id</span><span class="p">][</span><span class="s1">&#39;query&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cluster </span><span class="si">{</span><span class="n">cluster_id</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">cluster_examples</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">example</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">()</span>
-
-    <span class="c1"># Use LLM to label each cluster</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_cluster_label</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
-        <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Given these example queries that belong to the same topic:</span>
-<span class="s2">        </span><span class="si">{</span><span class="n">examples</span><span class="si">}</span>
-
-<span class="s2">        Provide a short, descriptive label (3-5 words) for this topic that captures what these queries have in common.</span>
-<span class="s2">        &quot;&quot;&quot;</span>
-
-        <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-            <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">,</span>
-            <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
-                <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;You are a helpful assistant that labels query clusters.&quot;</span><span class="p">},</span>
-                <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}</span>
-            <span class="p">]</span>
-        <span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-
-    <span class="c1"># Label each cluster</span>
-    <span class="k">for</span> <span class="n">cluster_id</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">cluster_labels</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">cluster_id</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-            <span class="k">continue</span>
-
-        <span class="n">examples</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">cluster_id</span><span class="p">][</span><span class="s1">&#39;query&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
-        <span class="n">examples_text</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">ex</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">ex</span> <span class="ow">in</span> <span class="n">examples</span><span class="p">])</span>
-        <span class="n">label</span> <span class="o">=</span> <span class="n">get_cluster_label</span><span class="p">(</span><span class="n">examples_text</span><span class="p">)</span>
-
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cluster </span><span class="si">{</span><span class="n">cluster_id</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="err">```</span>
-
-<span class="n">This</span> <span class="n">hybrid</span> <span class="n">approach</span> <span class="n">uses</span> <span class="n">state</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">the</span><span class="o">-</span><span class="n">art</span> <span class="n">embeddings</span> <span class="k">with</span> <span class="n">traditional</span> <span class="n">clustering</span> <span class="n">algorithms</span><span class="p">,</span> <span class="n">then</span> <span class="n">leverages</span> <span class="n">LLMs</span> <span class="n">to</span> <span class="n">provide</span> <span class="n">human</span><span class="o">-</span><span class="n">readable</span> <span class="n">labels</span><span class="err">—</span><span class="n">combining</span> <span class="n">the</span> <span class="n">best</span> <span class="n">of</span> <span class="n">both</span> <span class="n">worlds</span><span class="o">.</span>
-
-<span class="c1">### From Clustering to Classification</span>
-
-<span class="err">!!!</span> <span class="n">important</span> <span class="s2">&quot;Analysis vs. Production&quot;</span>
-<span class="n">It</span><span class="s1">&#39;s critical to understand that clustering is primarily an **analytical tool**, not a production monitoring solution. The clusters you discover during analysis should inform the development of robust classifiers that can categorize incoming queries in real-time.</span>
-
-<span class="n">In</span> <span class="n">my</span> <span class="n">experience</span><span class="p">,</span> <span class="n">the</span> <span class="n">journey</span> <span class="kn">from</span><span class="w"> </span><span class="nn">analysis</span> <span class="n">to</span> <span class="n">production</span> <span class="n">follows</span> <span class="n">a</span> <span class="n">clear</span> <span class="n">pattern</span><span class="p">:</span>
-
-<span class="mf">1.</span> <span class="o">**</span><span class="n">Exploratory</span> <span class="n">Phase</span><span class="o">**</span><span class="p">:</span> <span class="n">Use</span> <span class="n">clustering</span> <span class="n">to</span> <span class="n">discover</span> <span class="n">patterns</span> <span class="ow">and</span> <span class="n">identify</span> <span class="n">key</span> <span class="n">query</span> <span class="n">categories</span>
-<span class="mf">2.</span> <span class="o">**</span><span class="n">Taxonomy</span> <span class="n">Development</span><span class="o">**</span><span class="p">:</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">standardized</span> <span class="nb">set</span> <span class="n">of</span> <span class="n">topics</span> <span class="ow">and</span> <span class="n">capabilities</span>
-<span class="mf">3.</span> <span class="o">**</span><span class="n">Classifier</span> <span class="n">Development</span><span class="o">**</span><span class="p">:</span> <span class="n">Build</span> <span class="ow">and</span> <span class="n">train</span> <span class="n">classifiers</span> <span class="n">that</span> <span class="n">can</span> <span class="n">apply</span> <span class="n">this</span> <span class="n">taxonomy</span> <span class="n">to</span> <span class="n">new</span> <span class="n">queries</span>
-<span class="mf">4.</span> <span class="o">**</span><span class="n">Production</span> <span class="n">Implementation</span><span class="o">**</span><span class="p">:</span> <span class="n">Deploy</span> <span class="n">the</span> <span class="n">classifiers</span> <span class="k">as</span> <span class="n">part</span> <span class="n">of</span> <span class="n">your</span> <span class="n">monitoring</span> <span class="n">pipeline</span>
-
-<span class="n">I</span> <span class="n">once</span> <span class="n">worked</span> <span class="k">with</span> <span class="n">a</span> <span class="n">team</span> <span class="n">that</span> <span class="n">made</span> <span class="n">the</span> <span class="n">mistake</span> <span class="n">of</span> <span class="n">trying</span> <span class="n">to</span> <span class="n">use</span> <span class="n">their</span> <span class="n">clustering</span> <span class="n">solution</span> <span class="n">directly</span> <span class="ow">in</span> <span class="n">production</span><span class="o">.</span> <span class="n">The</span> <span class="n">clusters</span> <span class="n">would</span> <span class="n">shift</span> <span class="n">over</span> <span class="n">time</span> <span class="k">as</span> <span class="n">new</span> <span class="n">data</span> <span class="n">arrived</span><span class="p">,</span> <span class="n">making</span> <span class="n">it</span> <span class="n">impossible</span> <span class="n">to</span> <span class="n">track</span> <span class="n">consistent</span> <span class="n">metrics</span> <span class="ow">or</span> <span class="n">identify</span> <span class="n">clear</span> <span class="n">trends</span><span class="o">.</span> <span class="n">By</span> <span class="n">switching</span> <span class="n">to</span> <span class="n">a</span> <span class="n">classification</span> <span class="n">approach</span> <span class="n">based</span> <span class="n">on</span> <span class="n">their</span> <span class="n">initial</span> <span class="n">clustering</span> <span class="n">insights</span><span class="p">,</span> <span class="n">they</span> <span class="n">created</span> <span class="n">a</span> <span class="n">stable</span> <span class="n">monitoring</span> <span class="n">system</span> <span class="n">that</span> <span class="n">could</span> <span class="n">track</span> <span class="n">performance</span> <span class="n">over</span> <span class="n">time</span><span class="o">.</span>
-
-<span class="c1">#### Building Production-Ready Classifiers</span>
-
-<span class="n">Once</span> <span class="n">you</span><span class="s1">&#39;ve identified your key query categories through clustering, you can build classifiers using several approaches:</span>
-
-<span class="mf">1.</span> <span class="o">**</span><span class="n">LLM</span><span class="o">-</span><span class="n">based</span> <span class="n">Classification</span> <span class="k">with</span> <span class="n">Few</span><span class="o">-</span><span class="n">Shot</span> <span class="n">Examples</span><span class="o">**</span>
-
-   <span class="n">Large</span> <span class="n">language</span> <span class="n">models</span> <span class="n">excel</span> <span class="n">at</span> <span class="n">classification</span> <span class="n">tasks</span> <span class="n">when</span> <span class="n">provided</span> <span class="k">with</span> <span class="n">a</span> <span class="n">few</span> <span class="n">examples</span><span class="o">.</span> <span class="n">This</span> <span class="n">approach</span> <span class="n">leverages</span> <span class="n">the</span> <span class="n">model</span><span class="s1">&#39;s pre-trained knowledge and ability to understand context. By providing 2-3 examples per category in your prompt, you can achieve surprisingly accurate classification without any formal training.</span>
-
-   <span class="n">The</span> <span class="n">key</span> <span class="n">advantage</span> <span class="n">of</span> <span class="n">this</span> <span class="n">approach</span> <span class="ow">is</span> <span class="n">its</span> <span class="n">flexibility</span><span class="err">—</span><span class="n">you</span> <span class="n">can</span> <span class="n">add</span> <span class="n">new</span> <span class="n">categories</span> <span class="n">on</span> <span class="n">the</span> <span class="n">fly</span> <span class="n">without</span> <span class="n">retraining</span><span class="o">.</span> <span class="n">It</span><span class="s1">&#39;s particularly valuable in the early stages of your project when your taxonomy is still evolving. However, it does require API calls for each classification, which can increase latency and costs in high-volume applications.</span>
-
-<span class="mf">2.</span> <span class="o">**</span><span class="n">Embedding</span><span class="o">-</span><span class="n">based</span> <span class="n">Classification</span><span class="o">**</span>
-
-   <span class="n">This</span> <span class="n">approach</span> <span class="n">uses</span> <span class="n">vector</span> <span class="n">embeddings</span> <span class="n">to</span> <span class="n">represent</span> <span class="n">queries</span> <span class="ow">and</span> <span class="n">categories</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">shared</span> <span class="n">semantic</span> <span class="n">space</span><span class="o">.</span> <span class="n">By</span> <span class="n">calculating</span> <span class="n">the</span> <span class="n">average</span> <span class="n">embedding</span> <span class="k">for</span> <span class="n">example</span> <span class="n">queries</span> <span class="ow">in</span> <span class="n">each</span> <span class="n">category</span><span class="p">,</span> <span class="n">you</span> <span class="n">create</span> <span class="s2">&quot;centroid&quot;</span> <span class="n">vectors</span> <span class="n">that</span> <span class="n">represent</span> <span class="n">each</span> <span class="n">category</span><span class="o">.</span> <span class="n">New</span> <span class="n">queries</span> <span class="n">are</span> <span class="n">classified</span> <span class="n">by</span> <span class="n">finding</span> <span class="n">the</span> <span class="n">closest</span> <span class="n">category</span> <span class="n">centroid</span><span class="o">.</span>
-
-   <span class="n">Embedding</span><span class="o">-</span><span class="n">based</span> <span class="n">classification</span> <span class="ow">is</span> <span class="n">computationally</span> <span class="n">efficient</span> <span class="n">once</span> <span class="n">the</span> <span class="n">category</span> <span class="n">embeddings</span> <span class="n">are</span> <span class="n">created</span><span class="p">,</span> <span class="n">making</span> <span class="n">it</span> <span class="n">suitable</span> <span class="k">for</span> <span class="n">real</span><span class="o">-</span><span class="n">time</span> <span class="n">applications</span><span class="o">.</span> <span class="n">It</span> <span class="n">works</span> <span class="n">particularly</span> <span class="n">well</span> <span class="k">for</span> <span class="n">capturing</span> <span class="n">semantic</span> <span class="n">similarity</span> <span class="ow">and</span> <span class="n">can</span> <span class="n">handle</span> <span class="n">nuanced</span> <span class="n">relationships</span> <span class="n">between</span> <span class="n">concepts</span><span class="o">.</span> <span class="n">The</span> <span class="n">downside</span> <span class="ow">is</span> <span class="n">that</span> <span class="n">it</span> <span class="n">may</span> <span class="n">struggle</span> <span class="k">with</span> <span class="n">categories</span> <span class="n">that</span> <span class="n">are</span> <span class="n">distinguished</span> <span class="n">by</span> <span class="n">specific</span> <span class="n">keywords</span> <span class="n">rather</span> <span class="n">than</span> <span class="n">overall</span> <span class="n">semantic</span> <span class="n">meaning</span><span class="o">.</span>
-
-<span class="mf">3.</span> <span class="o">**</span><span class="n">BERT</span><span class="o">-</span><span class="n">based</span> <span class="n">Classification</span><span class="o">**</span>
-
-   <span class="n">Fine</span><span class="o">-</span><span class="n">tuning</span> <span class="n">a</span> <span class="n">BERT</span> <span class="n">model</span> <span class="p">(</span><span class="ow">or</span> <span class="n">similar</span> <span class="n">transformer</span> <span class="n">architecture</span><span class="p">)</span> <span class="n">creates</span> <span class="n">a</span> <span class="n">specialized</span> <span class="n">classifier</span> <span class="n">that</span> <span class="n">can</span> <span class="n">achieve</span> <span class="n">high</span> <span class="n">accuracy</span> <span class="k">with</span> <span class="n">sufficient</span> <span class="n">training</span> <span class="n">data</span><span class="o">.</span> <span class="n">BERT</span> <span class="n">models</span> <span class="n">understand</span> <span class="n">context</span> <span class="n">bidirectionally</span> <span class="ow">and</span> <span class="n">can</span> <span class="n">capture</span> <span class="n">subtle</span> <span class="n">linguistic</span> <span class="n">patterns</span> <span class="n">that</span> <span class="n">distinguish</span> <span class="n">different</span> <span class="n">query</span> <span class="n">types</span><span class="o">.</span>
-
-   <span class="n">The</span> <span class="n">BERT</span> <span class="n">approach</span> <span class="n">shines</span> <span class="n">when</span> <span class="n">you</span> <span class="n">have</span> <span class="n">a</span> <span class="n">stable</span> <span class="n">taxonomy</span> <span class="ow">and</span> <span class="n">sufficient</span> <span class="n">examples</span> <span class="k">for</span> <span class="n">each</span> <span class="n">category</span> <span class="p">(</span><span class="n">typically</span> <span class="mi">50</span><span class="o">+</span> <span class="n">per</span> <span class="n">category</span> <span class="k">for</span> <span class="n">good</span> <span class="n">results</span><span class="p">)</span><span class="o">.</span> <span class="n">Once</span> <span class="n">trained</span><span class="p">,</span> <span class="n">these</span> <span class="n">models</span> <span class="n">can</span> <span class="n">run</span> <span class="n">efficiently</span> <span class="n">on</span> <span class="n">GPU</span> <span class="n">hardware</span> <span class="ow">and</span> <span class="n">handle</span> <span class="n">high</span> <span class="n">query</span> <span class="n">volumes</span><span class="o">.</span> <span class="n">The</span> <span class="n">main</span> <span class="n">drawback</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">initial</span> <span class="n">training</span> <span class="n">requirement</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">need</span> <span class="n">to</span> <span class="n">retrain</span> <span class="n">when</span> <span class="n">adding</span> <span class="n">new</span> <span class="n">categories</span><span class="o">.</span>
-
-<span class="n">In</span> <span class="n">practice</span><span class="p">,</span> <span class="n">I</span><span class="s1">&#39;ve found that a hybrid approach works best for most RAG applications:</span>
-
-<span class="o">-</span> <span class="n">Start</span> <span class="k">with</span> <span class="n">LLM</span><span class="o">-</span><span class="n">based</span> <span class="n">classification</span> <span class="n">during</span> <span class="n">the</span> <span class="n">exploratory</span> <span class="n">phase</span> <span class="n">when</span> <span class="n">your</span> <span class="n">taxonomy</span> <span class="ow">is</span> <span class="n">still</span> <span class="n">evolving</span>
-<span class="o">-</span> <span class="n">Transition</span> <span class="n">to</span> <span class="n">embedding</span><span class="o">-</span><span class="n">based</span> <span class="n">methods</span> <span class="k">as</span> <span class="n">your</span> <span class="n">categories</span> <span class="n">stabilize</span> <span class="ow">and</span> <span class="n">query</span> <span class="n">volume</span> <span class="n">increases</span>
-<span class="o">-</span> <span class="n">Eventually</span> <span class="n">implement</span> <span class="n">a</span> <span class="n">fine</span><span class="o">-</span><span class="n">tuned</span> <span class="n">BERT</span> <span class="n">classifier</span> <span class="n">once</span> <span class="n">you</span><span class="s1">&#39;ve collected sufficient training examples</span>
-
-<span class="n">This</span> <span class="n">progression</span> <span class="n">allows</span> <span class="n">you</span> <span class="n">to</span> <span class="n">begin</span> <span class="n">categorizing</span> <span class="n">queries</span> <span class="n">immediately</span> <span class="k">while</span> <span class="n">building</span> <span class="n">toward</span> <span class="n">a</span> <span class="n">more</span> <span class="n">efficient</span> <span class="ow">and</span> <span class="n">accurate</span> <span class="n">system</span> <span class="n">over</span> <span class="n">time</span><span class="o">.</span> <span class="n">The</span> <span class="n">insights</span> <span class="n">gained</span> <span class="kn">from</span><span class="w"> </span><span class="nn">early</span> <span class="n">classification</span> <span class="n">efforts</span> <span class="n">directly</span> <span class="n">inform</span> <span class="n">your</span> <span class="n">training</span> <span class="n">data</span> <span class="n">collection</span> <span class="k">for</span> <span class="n">more</span> <span class="n">sophisticated</span> <span class="n">models</span><span class="o">.</span>
-
-<span class="c1">#### Setting Up Production Monitoring</span>
-
-<span class="n">With</span> <span class="n">your</span> <span class="n">classifiers</span> <span class="ow">in</span> <span class="n">place</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">now</span> <span class="n">implement</span> <span class="n">a</span> <span class="n">production</span> <span class="n">monitoring</span> <span class="n">system</span> <span class="n">that</span> <span class="n">tracks</span> <span class="n">performance</span> <span class="n">by</span> <span class="n">query</span> <span class="n">category</span><span class="p">:</span>
-
-<span class="err">```</span><span class="n">python</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">log_query_metrics</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">user_feedback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Log metrics for a user query, categorizing it and tracking performance.</span>
-
-<span class="sd">    Parameters:</span>
-<span class="sd">    - query: The user&#39;s query</span>
-<span class="sd">    - response: The system&#39;s response</span>
-<span class="sd">    - user_feedback: Optional user feedback (thumbs up/down, etc.)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Classify the query</span>
-    <span class="n">query_category</span> <span class="o">=</span> <span class="n">classify_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">category_examples</span><span class="p">)</span>
-    <span class="n">query_capability</span> <span class="o">=</span> <span class="n">identify_capability</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-
-    <span class="c1"># Calculate metrics (customize based on your evaluation framework)</span>
-    <span class="n">retrieval_quality</span> <span class="o">=</span> <span class="n">calculate_retrieval_quality</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
-    <span class="n">generation_quality</span> <span class="o">=</span> <span class="n">calculate_generation_quality</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-
-    <span class="c1"># Log to your monitoring system</span>
-    <span class="n">log_entry</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
-        <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
-        <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="n">query_category</span><span class="p">,</span>
-        <span class="s2">&quot;capability&quot;</span><span class="p">:</span> <span class="n">query_capability</span><span class="p">,</span>
-        <span class="s2">&quot;retrieval_quality&quot;</span><span class="p">:</span> <span class="n">retrieval_quality</span><span class="p">,</span>
-        <span class="s2">&quot;generation_quality&quot;</span><span class="p">:</span> <span class="n">generation_quality</span><span class="p">,</span>
-        <span class="s2">&quot;user_feedback&quot;</span><span class="p">:</span> <span class="n">user_feedback</span>
-    <span class="p">}</span>
-
-    <span class="c1"># Add to your logging/monitoring solution</span>
-    <span class="n">monitoring_db</span><span class="o">.</span><span class="n">insert_one</span><span class="p">(</span><span class="n">log_entry</span><span class="p">)</span>
-</code></pre></div>
-<p>This structured approach allows you to:</p>
-<ul>
-<li>Track performance trends by category over time</li>
-<li>Identify emerging query types that might need new categories</li>
-<li>Spot performance degradation in specific categories</li>
-<li>Prioritize improvements based on volume and success rates</li>
-</ul>
-<p>In one healthcare RAG application, this monitoring approach revealed that while overall satisfaction metrics remained stable, there was significant degradation in queries about medication interactions—an issue that wouldn't have been visible without category-specific monitoring.</p>
-<h3 id="manual-query-categorization">Manual Query Categorization</h3>
-<p>While automated methods are helpful, manual review offers valuable insights that algorithms might miss. In every RAG project I've worked on, a combination of automated and manual approaches yielded the best results.</p>
-<ol>
-<li><strong>User intent labeling</strong>: Classify queries by what users are trying to accomplish</li>
-<li><strong>Difficulty assessment</strong>: Rate queries by how challenging they are to answer</li>
-<li><strong>Success/failure tagging</strong>: Label queries based on system performance</li>
-</ol>
-<p>Manual review is particularly valuable for understanding the "why" behind query patterns. For example, in a legal research application, we initially categorized certain queries as "precedent searches" based on automated clustering. However, manual review revealed that users weren't primarily interested in precedents; they were looking for contradictions between cases to support arguments. This nuance completely changed how we approached retrieval for those queries.</p>
-<div class="admonition warning">
-<p class="admonition-title">Sample Size Considerations</p>
-</div>
-<p>You don't need to manually categorize every query. A representative sample of 100-200 queries can provide significant insights while keeping the task manageable.</p>
-<h3 id="combining-automated-and-manual-approaches">Combining Automated and Manual Approaches</h3>
-<p>The most effective approach combines automation with human judgment:</p>
-<ol>
-<li>Run automated clustering to identify potential topics</li>
-<li>Manually review and refine clusters</li>
-<li>Use human expertise to identify themes automation might miss</li>
-<li>Create a curated taxonomy of topics and capabilities</li>
-</ol>
-<p>This hybrid approach provides the efficiency of automation with the nuanced understanding that comes from human review. I've found that after just a few hours of manual review, domain experts can identify patterns that might have taken weeks to discover purely through automated means.</p>
-<h2 id="capability-analysis-framework">Capability Analysis Framework</h2>
-<p>Beyond topics, understanding the capabilities users need is crucial. This analysis reveals functional gaps in your system that span across multiple topics.</p>
-<h3 id="common-rag-capabilities">Common RAG Capabilities</h3>
-<p>!!! info "Core RAG Capabilities" - <strong>Factual retrieval</strong>: Finding and presenting specific facts - <strong>Summarization</strong>: Condensing information into concise overviews - <strong>Comparison</strong>: Highlighting similarities and differences - <strong>Step-by-step procedures</strong>: Breaking down complex tasks - <strong>Reasoning with context</strong>: Drawing conclusions from multiple pieces of information - <strong>Numerical analysis</strong>: Working with numbers, statistics, and calculations - <strong>Visual information processing</strong>: Handling charts, images, and diagrams</p>
-<p>These capabilities often require specialized approaches beyond basic retrieval and generation. For example, effective comparison capabilities might need parallel queries or specialized prompting techniques, while numerical analysis might require formula extraction and calculation capabilities.</p>
-<div class="admonition tip">
-<p class="admonition-title">Cross-Reference</p>
-</div>
-<p>These capabilities become the foundation for specialized indices we'll build in <a href="../chapter5/">Chapter 5</a>.</p>
-<h3 id="analyzing-capability-gaps">Analyzing Capability Gaps</h3>
-<p>Once you've identified the capabilities your users need, the next step is determining where your system succeeds and struggles:</p>
-<ol>
-<li>Group user queries by required capability</li>
-<li>Analyze performance metrics across each group</li>
-<li>Identify capabilities with poor performance</li>
-<li>Categorize failure modes for each capability</li>
-</ol>
-<p>In a financial services RAG application I worked with, this analysis revealed that queries requiring numerical analysis had satisfaction rates 40% lower than other capability types. The system could find relevant documents containing financial data, but struggled to perform calculations or interpret trends from that data. This clear capability gap became a priority for improvement.</p>
-<pre class="mermaid"><code>quadrantChart
-    title Capability Assessment Matrix
-    x-axis Low Demand --&gt; High Demand
-    y-axis Low Performance --&gt; High Performance
-    quadrant-1 "Low Priority"
-    quadrant-2 "Maintain"
-    quadrant-3 "Quick Wins"
-    quadrant-4 "Strategic Focus"
-    "Factual Retrieval": [0.8, 0.7]
-    "Summarization": [0.6, 0.3]
-    "Comparison": [0.7, 0.2]
-    "Step-by-step": [0.9, 0.5]
-    "Reasoning": [0.5, 0.3]
-    "Numerical Analysis": [0.4, 0.2]
-    "Visual Processing": [0.3, 0.1]</code></pre>
-<p>This visualization instantly reveals where to focus: comparison capabilities are in high demand but performing poorly, making them an ideal strategic focus area. Step-by-step procedures represent quick-win opportunities, while visual processing might be a lower priority despite its performance issues.</p>
-<h2 id="prioritization-frameworks">Prioritization Frameworks</h2>
-<p>With topics and capabilities identified, how do you prioritize improvements? Too often, teams make these decisions based on which user complained most loudly or which improvement seems easiest to implement. A systematic approach requires balancing multiple factors.</p>
-<h3 id="the-impacteffort-matrix">The Impact/Effort Matrix</h3>
-<p>The classic impact/effort matrix provides a simple but effective framework for prioritization. I've used this approach with numerous teams to transform vague improvement plans into clear roadmaps with stakeholder buy-in.</p>
-<div class="admonition example">
-<p class="admonition-title">Impact/Effort Prioritization</p>
-</div>
-<p>Plot potential improvements on two axes:</p>
-<div class="highlight"><pre><span></span><code>- **Impact**: Frequency × Value to users
-- **Effort**: Development complexity and resources required
-
-Prioritize high-impact, low-effort improvements first, followed by high-impact, high-effort strategic investments.
-</code></pre></div>
-<pre class="mermaid"><code>quadrantChart
-    title Impact vs. Effort Prioritization
-    x-axis Low Effort --&gt; High Effort
-    y-axis Low Impact --&gt; High Impact
-    quadrant-1 "Consider"
-    quadrant-2 "Defer"
-    quadrant-3 "Quick Wins"
-    quadrant-4 "Strategic Projects"
-    "Improve Password Reset": [0.2, 0.6]
-    "Add Product Comparison": [0.7, 0.8]
-    "Fix Citation Links": [0.3, 0.5]
-    "Add Table Support": [0.8, 0.7]
-    "Optimize Retrieval Speed": [0.4, 0.9]
-    "Support Image Analysis": [0.9, 0.4]
-    "Enhance Error Messages": [0.2, 0.5]</code></pre>
-<p>When applying this framework to a customer service RAG application, we identified that adding product comparison capabilities would require significant effort but would address a high-impact need. Meanwhile, fixing citation links offered a quick win that could be implemented immediately while the larger strategic project was underway.</p>
-<h3 id="the-value-driven-approach">The Value-Driven Approach</h3>
-<p>Beyond simple impact/effort, a more sophisticated approach considers multiple dimensions of value:</p>
-<ol>
-<li><strong>Business value</strong>: Revenue impact or cost savings</li>
-<li><strong>Strategic alignment</strong>: Support for key business initiatives</li>
-<li><strong>Technical foundation</strong>: Enabling future improvements</li>
-<li><strong>User satisfaction</strong>: Impact on overall experience</li>
-</ol>
-<p>I once worked with a team that initially deprioritized table extraction capabilities based purely on query frequency. However, when we considered business value, we discovered that table-based queries, while less common, primarily came from procurement teams making high-value purchasing decisions. The business impact of improving this capability far outweighed its relatively low frequency.</p>
-<div class="admonition tip">
-<p class="admonition-title">Value Calculation</p>
-</div>
-<p>Value = (Frequency × Importance × Success Gap) / Effort</p>
-<div class="highlight"><pre><span></span><code>Where:
-- Frequency = How often users ask about this topic/capability
-- Importance = How critical it is to their goals (1-5 scale)
-- Success Gap = Current success rate subtracted from 100%
-- Effort = Implementation complexity (1-5 scale)
-</code></pre></div>
-<p>This formula balances multiple factors to identify the highest-value improvements. It recognizes that the most valuable improvements aren't always the most requested features—they're the ones that address critical needs where your system currently underperforms.</p>
-<h2 id="creating-a-strategic-roadmap">Creating a Strategic Roadmap</h2>
-<p>Based on your analysis, the next step is developing a strategic roadmap for improvements. This roadmap should balance quick wins with strategic investments, creating momentum while building toward long-term capabilities.</p>
-<h3 id="roadmap-components">Roadmap Components</h3>
 <div class="admonition info">
-<p class="admonition-title">Strategic Roadmap Elements</p>
+<p class="admonition-title">This chapter has been split into two parts</p>
+<p>This content is now available in two more digestible parts:</p>
+<ul>
+<li><a href="../chapter4-1/">Part 1: Topic Modeling and Analysis</a></li>
+<li><a href="../chapter4-2/">Part 2: Prioritization and Roadmapping</a></li>
+</ul>
+<p>Please visit those pages for the updated content.</p>
 </div>
-<p>A complete RAG improvement roadmap includes:</p>
-<div class="highlight"><pre><span></span><code>- **Short-term wins**: Quick, high-impact improvements
-- **Medium-term projects**: Substantial capability enhancements
-- **Long-term investments**: Fundamental architectural improvements
-- **Continuous improvement**: Ongoing refinement processes
-- **Evaluation milestones**: Points to measure progress
-</code></pre></div>
-<p>I've found that successful roadmaps maintain a balance of 60% capability-focused improvements and 40% topic-focused improvements. The capability improvements tend to have broader impact across multiple query types, while topic improvements address specific content needs for high-value domains.</p>
-<div class="admonition tip">
-<p class="admonition-title">Cross-Reference</p>
-</div>
-<p>This roadmap should align with the specialized indices and multimodal RAG strategies we'll explore in <a href="../chapter5/">Chapter 5</a>.</p>
-<h3 id="example-strategic-roadmap">Example Strategic Roadmap</h3>
-<p>Consider this example roadmap based on analysis of a product support RAG:</p>
-<pre class="mermaid"><code>gantt
-    title RAG Improvement Roadmap
-    dateFormat  YYYY-MM-DD
-
-    section Quick Wins
-    Improve Password Reset Instructions     :2025-04-01, 7d
-    Fix Citation Formatting                 :2025-04-01, 5d
-    Enhance Error Messages                  :2025-04-08, 7d
-
-    section Medium-Term Projects
-    Add Product Comparison Capability       :2025-04-15, 14d
-    Implement Summarization                 :2025-04-22, 21d
-
-    section Strategic Investments
-    Table Extraction &amp; Querying             :2025-05-01, 30d
-    Image Analysis Integration              :2025-05-15, 45d
-
-    section Continuous Improvement
-    Weekly Metric Reviews                   :2025-04-01, 180d
-    Monthly Content Updates                 :2025-04-01, 180d</code></pre>
-<p>This roadmap balances immediate improvements with longer-term strategic investments. It begins with quick wins to build momentum and demonstrate value, followed by more substantial capability enhancements, and finally foundational investments in specialized capabilities that will differentiate the system.</p>
-<h2 id="advanced-analysis-techniques">Advanced Analysis Techniques</h2>
-<p>Beyond basic clustering, several advanced techniques can provide deeper insights into user needs and system performance.</p>
-<h3 id="embedding-visualization">Embedding Visualization</h3>
-<p>Use dimensionality reduction to visualize query clusters, revealing relationships that might not be apparent in simple categorization. I've found this approach particularly valuable for identifying edge cases and understanding the boundaries between different query categories.</p>
-<div class="admonition example">
-<p class="admonition-title">UMAP Visualization Code</p>
-</div>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">umap</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-
-    <span class="c1"># Assuming &#39;query_embeddings&#39; is an array of embedding vectors</span>
-    <span class="c1"># and &#39;topic_labels&#39; contains the topic for each query</span>
-
-    <span class="c1"># Reduce embeddings to 2D for visualization</span>
-    <span class="n">reducer</span> <span class="o">=</span> <span class="n">umap</span><span class="o">.</span><span class="n">UMAP</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-    <span class="n">embedding_2d</span> <span class="o">=</span> <span class="n">reducer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">query_embeddings</span><span class="p">))</span>
-
-    <span class="c1"># Create a scatter plot colored by topic</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
-        <span class="n">x</span><span class="o">=</span><span class="n">embedding_2d</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="n">y</span><span class="o">=</span><span class="n">embedding_2d</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
-        <span class="n">hue</span><span class="o">=</span><span class="n">topic_labels</span><span class="p">,</span>
-        <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;tab20&quot;</span><span class="p">,</span>
-        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span>
-    <span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Query Embeddings by Topic&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-    <span class="err">```</span>
-
-<span class="n">In</span> <span class="n">a</span> <span class="n">legal</span> <span class="n">research</span> <span class="n">application</span><span class="p">,</span> <span class="n">this</span> <span class="n">visualization</span> <span class="n">revealed</span> <span class="n">that</span> <span class="n">queries</span> <span class="n">about</span> <span class="n">international</span> <span class="n">law</span> <span class="n">formed</span> <span class="n">distinct</span> <span class="n">clusters</span> <span class="n">based</span> <span class="n">on</span> <span class="n">jurisdictions</span><span class="p">,</span> <span class="n">which</span> <span class="n">helped</span> <span class="n">us</span> <span class="n">refine</span> <span class="n">our</span> <span class="n">retrieval</span> <span class="n">strategies</span> <span class="k">for</span> <span class="n">cross</span><span class="o">-</span><span class="n">jurisdictional</span> <span class="n">questions</span><span class="o">.</span>
-
-<span class="c1">### Failure Mode Analysis</span>
-
-<span class="n">Beyond</span> <span class="n">identifying</span> <span class="n">what</span> <span class="n">fails</span><span class="p">,</span> <span class="n">understanding</span> <span class="n">why</span> <span class="n">certain</span> <span class="n">queries</span> <span class="n">fail</span> <span class="n">can</span> <span class="n">reveal</span> <span class="n">deeper</span> <span class="n">patterns</span> <span class="ow">in</span> <span class="n">your</span> <span class="n">system</span><span class="s1">&#39;s limitations:</span>
-
-<span class="mf">1.</span> <span class="n">Identify</span> <span class="n">common</span> <span class="n">patterns</span> <span class="ow">in</span> <span class="n">failed</span> <span class="n">queries</span>
-<span class="mf">2.</span> <span class="n">Analyze</span> <span class="n">retrieval</span> <span class="n">performance</span> <span class="k">for</span> <span class="n">each</span> <span class="n">failure</span> <span class="n">case</span>
-<span class="mf">3.</span> <span class="n">Review</span> <span class="n">generation</span> <span class="n">quality</span> <span class="k">for</span> <span class="n">retrieved</span> <span class="n">contexts</span>
-<span class="mf">4.</span> <span class="n">Identify</span> <span class="n">whether</span> <span class="n">failures</span> <span class="n">stem</span> <span class="kn">from</span><span class="w"> </span><span class="nn">content</span> <span class="n">gaps</span> <span class="ow">or</span> <span class="n">capability</span> <span class="n">limitations</span>
-
-<span class="n">In</span> <span class="n">one</span> <span class="n">project</span><span class="p">,</span> <span class="n">we</span> <span class="n">discovered</span> <span class="n">that</span> <span class="n">a</span> <span class="n">significant</span> <span class="n">portion</span> <span class="n">of</span> <span class="n">failures</span> <span class="n">weren</span><span class="s1">&#39;t due to missing content or poor retrieval, but rather the system&#39;</span><span class="n">s</span> <span class="n">inability</span> <span class="n">to</span> <span class="n">reconcile</span> <span class="n">conflicting</span> <span class="n">information</span> <span class="kn">from</span><span class="w"> </span><span class="nn">different</span> <span class="n">sources</span><span class="o">.</span> <span class="n">This</span> <span class="n">insight</span> <span class="n">led</span> <span class="n">us</span> <span class="n">to</span> <span class="n">develop</span> <span class="n">specific</span> <span class="n">prompting</span> <span class="n">techniques</span> <span class="k">for</span> <span class="n">handling</span> <span class="n">contradictory</span> <span class="n">information</span><span class="p">,</span> <span class="n">dramatically</span> <span class="n">improving</span> <span class="n">satisfaction</span> <span class="n">scores</span> <span class="k">for</span> <span class="n">those</span> <span class="n">query</span> <span class="n">types</span><span class="o">.</span>
-
-<span class="err">!!!</span> <span class="n">warning</span> <span class="s2">&quot;Common Failure Modes&quot;</span> <span class="o">-</span> <span class="o">**</span><span class="n">Retrieval</span> <span class="n">failures</span><span class="o">**</span><span class="p">:</span> <span class="n">System</span> <span class="n">can</span><span class="s1">&#39;t find relevant documents - **Context limitations**: Relevant documents exist but don&#39;</span><span class="n">t</span> <span class="n">contain</span> <span class="n">needed</span> <span class="n">information</span> <span class="o">-</span> <span class="o">**</span><span class="n">Generation</span> <span class="n">problems</span><span class="o">**</span><span class="p">:</span> <span class="n">The</span> <span class="n">retrieved</span> <span class="n">context</span> <span class="ow">is</span> <span class="n">good</span><span class="p">,</span> <span class="n">but</span> <span class="n">the</span> <span class="n">generation</span> <span class="ow">is</span> <span class="n">poor</span> <span class="o">-</span> <span class="o">**</span><span class="n">Hallucinations</span><span class="o">**</span><span class="p">:</span> <span class="n">The</span> <span class="n">system</span> <span class="n">fabricates</span> <span class="n">information</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">context</span> <span class="o">-</span> <span class="o">**</span><span class="n">Format</span> <span class="n">issues</span><span class="o">**</span><span class="p">:</span> <span class="n">The</span> <span class="n">information</span> <span class="ow">is</span> <span class="n">correct</span> <span class="n">but</span> <span class="n">poorly</span> <span class="n">presented</span>
-
-<span class="n">Understanding</span> <span class="n">these</span> <span class="n">failure</span> <span class="n">modes</span> <span class="ow">is</span> <span class="n">critical</span> <span class="n">because</span> <span class="n">each</span> <span class="n">requires</span> <span class="n">a</span> <span class="n">different</span> <span class="n">solution</span> <span class="n">approach</span><span class="o">.</span> <span class="n">Retrieval</span> <span class="n">failures</span> <span class="n">might</span> <span class="n">need</span> <span class="n">better</span> <span class="n">embedding</span> <span class="n">models</span> <span class="ow">or</span> <span class="n">query</span> <span class="n">processing</span><span class="p">,</span> <span class="k">while</span> <span class="n">hallucinations</span> <span class="n">often</span> <span class="n">require</span> <span class="n">improved</span> <span class="n">prompting</span> <span class="ow">or</span> <span class="n">validation</span> <span class="n">steps</span><span class="o">.</span>
-
-<span class="c1">## From Analysis to Action: Addressing Inventory vs. Capability Issues</span>
-
-<span class="n">Once</span> <span class="n">you</span><span class="s1">&#39;ve identified patterns in your user queries and system performance, the next step is determining what type of solution is needed. In my experience, most improvement opportunities fall into two categories: inventory issues and capability issues.</span>
-
-<span class="c1">### Inventory Issues: Expanding Your Knowledge Base</span>
-
-<span class="n">Inventory</span> <span class="n">issues</span> <span class="n">occur</span> <span class="n">when</span> <span class="n">your</span> <span class="n">system</span> <span class="n">lacks</span> <span class="n">the</span> <span class="n">content</span> <span class="n">needed</span> <span class="n">to</span> <span class="n">answer</span> <span class="n">certain</span> <span class="n">questions</span><span class="o">.</span> <span class="n">The</span> <span class="n">solution</span> <span class="n">typically</span> <span class="n">involves</span> <span class="n">expanding</span> <span class="n">your</span> <span class="n">knowledge</span> <span class="n">base</span> <span class="ow">or</span> <span class="n">improving</span> <span class="n">ingestion</span> <span class="n">processes</span><span class="o">.</span>
-
-<span class="n">Signs</span> <span class="n">of</span> <span class="n">inventory</span> <span class="n">issues</span> <span class="n">include</span><span class="p">:</span>
-
-<span class="o">-</span> <span class="n">Low</span> <span class="n">cosine</span> <span class="n">similarities</span> <span class="n">across</span> <span class="n">retrieved</span> <span class="n">documents</span>
-<span class="o">-</span> <span class="n">No</span> <span class="n">results</span> <span class="kn">from</span><span class="w"> </span><span class="nn">lexical</span> <span class="n">search</span>
-<span class="o">-</span> <span class="n">LLM</span> <span class="n">refusing</span> <span class="n">to</span> <span class="n">answer</span> <span class="n">due</span> <span class="n">to</span> <span class="n">missing</span> <span class="n">information</span>
-<span class="o">-</span> <span class="n">Retrieved</span> <span class="n">chunks</span> <span class="n">never</span> <span class="n">being</span> <span class="n">cited</span> <span class="ow">in</span> <span class="n">responses</span>
-
-<span class="n">I</span> <span class="n">worked</span> <span class="k">with</span> <span class="n">a</span> <span class="n">healthcare</span> <span class="n">company</span> <span class="n">whose</span> <span class="n">RAG</span> <span class="n">system</span> <span class="n">frequently</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">answer</span> <span class="n">questions</span> <span class="n">about</span> <span class="n">recent</span> <span class="n">treatment</span> <span class="n">guidelines</span><span class="o">.</span> <span class="n">Analysis</span> <span class="n">revealed</span> <span class="n">the</span> <span class="n">problem</span> <span class="n">wasn</span><span class="s1">&#39;t in the retrieval or generation components—they simply hadn&#39;</span><span class="n">t</span> <span class="n">updated</span> <span class="n">their</span> <span class="n">knowledge</span> <span class="n">base</span> <span class="k">with</span> <span class="n">the</span> <span class="n">latest</span> <span class="n">medical</span> <span class="n">literature</span><span class="o">.</span> <span class="n">By</span> <span class="n">implementing</span> <span class="n">an</span> <span class="n">automated</span> <span class="n">ingestion</span> <span class="n">pipeline</span> <span class="k">for</span> <span class="n">new</span> <span class="n">guidelines</span><span class="p">,</span> <span class="n">they</span> <span class="n">resolved</span> <span class="n">the</span> <span class="n">issue</span> <span class="n">without</span> <span class="nb">any</span> <span class="n">changes</span> <span class="n">to</span> <span class="n">the</span> <span class="n">core</span> <span class="n">RAG</span> <span class="n">system</span><span class="o">.</span>
-
-<span class="c1">### Capability Issues: Enhancing Functional Abilities</span>
-
-<span class="n">Capability</span> <span class="n">issues</span> <span class="n">arise</span> <span class="n">when</span> <span class="n">your</span> <span class="n">system</span> <span class="n">has</span> <span class="n">the</span> <span class="n">relevant</span> <span class="n">information</span> <span class="n">but</span> <span class="n">lacks</span> <span class="n">the</span> <span class="n">functionality</span> <span class="n">to</span> <span class="n">process</span> <span class="ow">or</span> <span class="n">present</span> <span class="n">it</span> <span class="n">effectively</span><span class="o">.</span> <span class="n">These</span> <span class="n">often</span> <span class="n">require</span> <span class="n">more</span> <span class="n">sophisticated</span> <span class="n">solutions</span><span class="p">,</span> <span class="n">such</span> <span class="k">as</span><span class="p">:</span>
-
-<span class="o">-</span> <span class="n">Building</span> <span class="n">specialized</span> <span class="n">retrievers</span> <span class="k">for</span> <span class="n">specific</span> <span class="n">query</span> <span class="n">types</span>
-<span class="o">-</span> <span class="n">Implementing</span> <span class="n">metadata</span> <span class="n">extraction</span> <span class="ow">and</span> <span class="n">filtering</span>
-<span class="o">-</span> <span class="n">Developing</span> <span class="n">new</span> <span class="n">prompting</span> <span class="n">strategies</span>
-<span class="o">-</span> <span class="n">Creating</span> <span class="n">custom</span> <span class="n">rendering</span> <span class="k">for</span> <span class="n">different</span> <span class="n">content</span> <span class="n">types</span>
-
-<span class="n">A</span> <span class="n">financial</span> <span class="n">services</span> <span class="n">RAG</span> <span class="n">system</span> <span class="n">I</span> <span class="n">consulted</span> <span class="n">on</span> <span class="n">had</span> <span class="n">complete</span> <span class="n">information</span> <span class="n">about</span> <span class="n">investment</span> <span class="n">products</span> <span class="n">but</span> <span class="n">performed</span> <span class="n">poorly</span> <span class="n">on</span> <span class="n">comparison</span> <span class="n">queries</span><span class="o">.</span> <span class="n">The</span> <span class="n">problem</span> <span class="n">wasn</span><span class="s1">&#39;t missing content—it was that the system couldn&#39;</span><span class="n">t</span> <span class="n">effectively</span> <span class="n">compare</span> <span class="n">features</span> <span class="n">across</span> <span class="n">multiple</span> <span class="n">products</span><span class="o">.</span> <span class="n">By</span> <span class="n">implementing</span> <span class="n">a</span> <span class="n">specialized</span> <span class="n">comparison</span> <span class="n">capability</span> <span class="n">that</span> <span class="n">ran</span> <span class="n">parallel</span> <span class="n">queries</span> <span class="ow">and</span> <span class="n">formatted</span> <span class="n">results</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">tabular</span> <span class="n">view</span><span class="p">,</span> <span class="n">satisfaction</span> <span class="k">for</span> <span class="n">these</span> <span class="n">queries</span> <span class="n">improved</span> <span class="n">by</span> <span class="n">over</span> <span class="mi">60</span><span class="o">%.</span>
-
-<span class="n">By</span> <span class="n">distinguishing</span> <span class="n">between</span> <span class="n">inventory</span> <span class="ow">and</span> <span class="n">capability</span> <span class="n">issues</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">target</span> <span class="n">your</span> <span class="n">solutions</span> <span class="n">more</span> <span class="n">effectively</span><span class="o">.</span> <span class="n">Inventory</span> <span class="n">issues</span> <span class="n">often</span> <span class="n">have</span> <span class="n">straightforward</span> <span class="n">fixes</span> <span class="n">through</span> <span class="n">content</span> <span class="n">expansion</span><span class="p">,</span> <span class="k">while</span> <span class="n">capability</span> <span class="n">issues</span> <span class="n">may</span> <span class="n">require</span> <span class="n">the</span> <span class="n">specialized</span> <span class="n">techniques</span> <span class="n">we</span><span class="s1">&#39;ll explore in Chapter 5.</span>
-
-<span class="c1">## Resources and Further Reading</span>
-
-<span class="n">To</span> <span class="n">help</span> <span class="n">you</span> <span class="n">implement</span> <span class="n">the</span> <span class="n">techniques</span> <span class="n">described</span> <span class="ow">in</span> <span class="n">this</span> <span class="n">chapter</span><span class="p">,</span> <span class="n">here</span><span class="s1">&#39;s a curated list of resources for topic modeling, clustering, and query classification in RAG applications:</span>
-
-<span class="c1">### Topic Modeling and Clustering Libraries</span>
-
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">BERTopic</span> <span class="n">Documentation</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">maartengr</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">BERTopic</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Comprehensive</span> <span class="n">documentation</span> <span class="k">for</span> <span class="n">BERTopic</span> <span class="k">with</span> <span class="n">tutorials</span> <span class="ow">and</span> <span class="n">examples</span>
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">UMAP</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">umap</span><span class="o">-</span><span class="n">learn</span><span class="o">.</span><span class="n">readthedocs</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">en</span><span class="o">/</span><span class="n">latest</span><span class="o">/</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Dimensionality</span> <span class="n">reduction</span> <span class="n">technique</span> <span class="n">used</span> <span class="ow">in</span> <span class="n">many</span> <span class="n">modern</span> <span class="n">clustering</span> <span class="n">approaches</span>
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">Sentence</span><span class="o">-</span><span class="n">Transformers</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">sbert</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Library</span> <span class="k">for</span> <span class="n">creating</span> <span class="n">embeddings</span> <span class="n">that</span> <span class="n">work</span> <span class="n">well</span> <span class="k">for</span> <span class="n">semantic</span> <span class="n">similarity</span> <span class="n">tasks</span>
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">LDAvis</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">cpsievert</span><span class="o">/</span><span class="n">LDAvis</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Interactive</span> <span class="n">visualization</span> <span class="n">of</span> <span class="n">topic</span> <span class="n">models</span>
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">Top2Vec</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ddangelov</span><span class="o">/</span><span class="n">Top2Vec</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Alternative</span> <span class="n">topic</span> <span class="n">modeling</span> <span class="n">approach</span> <span class="n">that</span> <span class="n">works</span> <span class="n">well</span> <span class="k">with</span> <span class="n">short</span> <span class="n">texts</span>
-
-<span class="c1">### Classification and Production Monitoring</span>
-
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">Hugging</span> <span class="n">Face</span> <span class="n">Text</span> <span class="n">Classification</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">huggingface</span><span class="o">.</span><span class="n">co</span><span class="o">/</span><span class="n">tasks</span><span class="o">/</span><span class="n">text</span><span class="o">-</span><span class="n">classification</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Resources</span> <span class="k">for</span> <span class="n">building</span> <span class="ow">and</span> <span class="n">deploying</span> <span class="n">text</span> <span class="n">classifiers</span>
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">Scikit</span><span class="o">-</span><span class="n">learn</span> <span class="n">Classification</span> <span class="n">Metrics</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">scikit</span><span class="o">-</span><span class="n">learn</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">stable</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">model_evaluation</span><span class="o">.</span><span class="n">html</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Tools</span> <span class="k">for</span> <span class="n">evaluating</span> <span class="n">classifier</span> <span class="n">performance</span>
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">FastAPI</span> <span class="n">Monitoring</span> <span class="k">with</span> <span class="n">Prometheus</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">fastapi</span><span class="o">.</span><span class="n">tiangolo</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">advanced</span><span class="o">/</span><span class="n">monitoring</span><span class="o">/</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Implementing</span> <span class="n">metrics</span> <span class="n">monitoring</span> <span class="k">for</span> <span class="n">your</span> <span class="n">API</span>
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">OpenAI</span> <span class="n">Classification</span> <span class="n">Examples</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">platform</span><span class="o">.</span><span class="n">openai</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">guides</span><span class="o">/</span><span class="n">classification</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Guidelines</span> <span class="k">for</span> <span class="n">implementing</span> <span class="n">classification</span> <span class="k">with</span> <span class="n">OpenAI</span> <span class="n">models</span>
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">MLflow</span> <span class="k">for</span> <span class="n">Model</span> <span class="n">Tracking</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">mlflow</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">latest</span><span class="o">/</span><span class="n">tracking</span><span class="o">.</span><span class="n">html</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Tools</span> <span class="k">for</span> <span class="n">tracking</span> <span class="n">classifier</span> <span class="n">performance</span> <span class="n">over</span> <span class="n">time</span>
-
-<span class="c1">### Academic Papers and Articles</span>
-
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">Pre</span><span class="o">-</span><span class="n">training</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">Hot</span> <span class="n">Topic</span><span class="p">:</span> <span class="n">Contextualized</span> <span class="n">Document</span> <span class="n">Embeddings</span> <span class="n">Improve</span> <span class="n">Topic</span> <span class="n">Coherence</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">aclanthology</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mf">2021.</span><span class="n">acl</span><span class="o">-</span><span class="n">short</span><span class="mf">.96</span><span class="o">.</span><span class="n">pdf</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Research</span> <span class="n">on</span> <span class="n">modern</span> <span class="n">topic</span> <span class="n">modeling</span> <span class="n">approaches</span>
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">BERTopic</span><span class="p">:</span> <span class="n">Neural</span> <span class="n">topic</span> <span class="n">modeling</span> <span class="k">with</span> <span class="n">a</span> <span class="n">class</span><span class="o">-</span><span class="n">based</span> <span class="n">TF</span><span class="o">-</span><span class="n">IDF</span> <span class="n">procedure</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">arxiv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="nb">abs</span><span class="o">/</span><span class="mf">2203.05794</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Academic</span> <span class="n">paper</span> <span class="n">describing</span> <span class="n">the</span> <span class="n">BERTopic</span> <span class="n">methodology</span>
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">Topic</span> <span class="n">Modeling</span> <span class="ow">in</span> <span class="n">Embedding</span> <span class="n">Spaces</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">arxiv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="nb">abs</span><span class="o">/</span><span class="mf">1907.04907</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Theoretical</span> <span class="n">foundations</span> <span class="k">for</span> <span class="n">embedding</span><span class="o">-</span><span class="n">based</span> <span class="n">topic</span> <span class="n">modeling</span>
-
-<span class="c1">### Tutorials and Guides</span>
-
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">Topic</span> <span class="n">Modeling</span> <span class="k">with</span> <span class="n">BERTopic</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">towardsdatascience</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">topic</span><span class="o">-</span><span class="n">modeling</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="n">bertopic</span><span class="o">-</span><span class="n">e4896fc3b961</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Step</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">step</span> <span class="n">tutorial</span> <span class="n">on</span> <span class="n">implementing</span> <span class="n">BERTopic</span>
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">From</span> <span class="n">Clustering</span> <span class="n">to</span> <span class="n">Classification</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">neptune</span><span class="o">.</span><span class="n">ai</span><span class="o">/</span><span class="n">blog</span><span class="o">/</span><span class="n">clustering</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">classification</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Guide</span> <span class="n">on</span> <span class="n">transitioning</span> <span class="kn">from</span><span class="w"> </span><span class="nn">unsupervised</span> <span class="n">to</span> <span class="n">supervised</span> <span class="n">approaches</span>
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">Building</span> <span class="n">a</span> <span class="n">Real</span><span class="o">-</span><span class="n">time</span> <span class="n">Classification</span> <span class="n">System</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">engineering</span><span class="o">.</span><span class="n">fb</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="mi">2021</span><span class="o">/</span><span class="mi">01</span><span class="o">/</span><span class="mi">26</span><span class="o">/</span><span class="n">ml</span><span class="o">-</span><span class="n">applications</span><span class="o">/</span><span class="n">real</span><span class="o">-</span><span class="n">time</span><span class="o">-</span><span class="n">classification</span><span class="o">/</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Facebook</span> <span class="n">Engineering</span><span class="s1">&#39;s approach to real-time text classification</span>
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">Query</span> <span class="n">Categorization</span> <span class="k">for</span> <span class="n">Analytics</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">netflixtechblog</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">supporting</span><span class="o">-</span><span class="n">content</span><span class="o">-</span><span class="n">decision</span><span class="o">-</span><span class="n">makers</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="n">machine</span><span class="o">-</span><span class="n">learning</span><span class="o">-</span><span class="mi">995</span><span class="n">b7b76006f</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Netflix</span><span class="s1">&#39;s approach to search query analysis</span>
-
-<span class="c1">### Visualization Tools</span>
-
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">Plotly</span> <span class="n">Dash</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">plotly</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">dash</span><span class="o">/</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Framework</span> <span class="k">for</span> <span class="n">building</span> <span class="n">interactive</span> <span class="n">dashboards</span> <span class="n">to</span> <span class="n">visualize</span> <span class="n">clustering</span> <span class="n">results</span>
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">Streamlit</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">streamlit</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Easy</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">use</span> <span class="n">framework</span> <span class="k">for</span> <span class="n">building</span> <span class="n">data</span> <span class="n">apps</span> <span class="n">to</span> <span class="n">explore</span> <span class="n">topic</span> <span class="n">models</span>
-<span class="o">-</span> <span class="o">**</span><span class="p">[</span><span class="n">Bokeh</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">bokeh</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Interactive</span> <span class="n">visualization</span> <span class="n">library</span> <span class="k">for</span> <span class="n">modern</span> <span class="n">web</span> <span class="n">browsers</span>
-
-<span class="n">These</span> <span class="n">resources</span> <span class="n">should</span> <span class="n">provide</span> <span class="n">a</span> <span class="n">solid</span> <span class="n">foundation</span> <span class="k">for</span> <span class="n">implementing</span> <span class="n">the</span> <span class="n">concepts</span> <span class="n">discussed</span> <span class="ow">in</span> <span class="n">this</span> <span class="n">chapter</span><span class="o">.</span> <span class="n">As</span> <span class="n">you</span> <span class="n">move</span> <span class="kn">from</span><span class="w"> </span><span class="nn">analysis</span> <span class="n">to</span> <span class="n">production</span><span class="p">,</span> <span class="n">remember</span> <span class="n">that</span> <span class="n">the</span> <span class="n">goal</span> <span class="ow">is</span> <span class="n">to</span> <span class="n">create</span> <span class="n">a</span> <span class="n">stable</span> <span class="n">classification</span> <span class="n">system</span> <span class="n">that</span> <span class="n">allows</span> <span class="n">you</span> <span class="n">to</span> <span class="n">track</span> <span class="n">performance</span> <span class="n">consistently</span> <span class="n">over</span> <span class="n">time</span><span class="p">,</span> <span class="ow">not</span> <span class="n">just</span> <span class="n">to</span> <span class="n">discover</span> <span class="n">interesting</span> <span class="n">patterns</span> <span class="ow">in</span> <span class="n">your</span> <span class="n">data</span><span class="o">.</span>
-
-<span class="c1">## Conclusion and Next Steps</span>
-
-<span class="n">In</span> <span class="n">this</span> <span class="n">chapter</span><span class="p">,</span> <span class="n">we</span><span class="s1">&#39;ve explored how to apply topic modeling and clustering to identify patterns in user queries and prioritize improvements:</span>
-
-<span class="mf">1.</span> <span class="n">Understanding</span> <span class="n">the</span> <span class="n">difference</span> <span class="n">between</span> <span class="n">topics</span> <span class="ow">and</span> <span class="n">capabilities</span>
-<span class="mf">2.</span> <span class="n">Applying</span> <span class="n">topic</span> <span class="n">modeling</span> <span class="n">techniques</span> <span class="n">to</span> <span class="n">user</span> <span class="n">queries</span>
-<span class="mf">3.</span> <span class="n">Categorizing</span> <span class="n">queries</span> <span class="k">for</span> <span class="n">targeted</span> <span class="n">improvements</span>
-<span class="mf">4.</span> <span class="n">Identifying</span> <span class="n">high</span><span class="o">-</span><span class="n">value</span><span class="p">,</span> <span class="n">high</span><span class="o">-</span><span class="n">impact</span> <span class="n">opportunities</span>
-<span class="mf">5.</span> <span class="n">Creating</span> <span class="n">a</span> <span class="n">strategic</span> <span class="n">roadmap</span> <span class="k">for</span> <span class="n">RAG</span> <span class="n">enhancement</span>
-
-<span class="n">This</span> <span class="n">analysis</span> <span class="n">transforms</span> <span class="n">vague</span> <span class="n">directives</span> <span class="n">like</span> <span class="s2">&quot;make the AI better&quot;</span> <span class="n">into</span> <span class="n">specific</span><span class="p">,</span> <span class="n">data</span><span class="o">-</span><span class="n">driven</span> <span class="n">improvement</span> <span class="n">plans</span><span class="o">.</span> <span class="n">By</span> <span class="n">understanding</span> <span class="n">what</span> <span class="n">your</span> <span class="n">users</span> <span class="n">are</span> <span class="n">asking</span> <span class="n">about</span> <span class="ow">and</span> <span class="n">what</span> <span class="n">capabilities</span> <span class="n">they</span> <span class="n">need</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">focus</span> <span class="n">your</span> <span class="n">efforts</span> <span class="n">where</span> <span class="n">they</span><span class="s1">&#39;ll have the greatest impact.</span>
-
-<span class="n">A</span> <span class="n">critical</span> <span class="n">insight</span> <span class="kn">from</span><span class="w"> </span><span class="nn">this</span> <span class="n">chapter</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">distinction</span> <span class="n">between</span> <span class="n">clustering</span> <span class="k">for</span> <span class="n">analysis</span> <span class="ow">and</span> <span class="n">classification</span> <span class="k">for</span> <span class="n">production</span><span class="o">.</span> <span class="n">While</span> <span class="n">exploratory</span> <span class="n">clustering</span> <span class="n">helps</span> <span class="n">you</span> <span class="n">discover</span> <span class="n">patterns</span> <span class="ow">and</span> <span class="n">identify</span> <span class="n">key</span> <span class="n">categories</span><span class="p">,</span> <span class="n">deploying</span> <span class="n">stable</span> <span class="n">classifiers</span> <span class="n">based</span> <span class="n">on</span> <span class="n">these</span> <span class="n">insights</span> <span class="ow">is</span> <span class="n">what</span> <span class="n">enables</span> <span class="n">effective</span> <span class="n">monitoring</span> <span class="n">over</span> <span class="n">time</span><span class="o">.</span> <span class="n">This</span> <span class="n">transition</span><span class="err">—</span><span class="kn">from</span><span class="w"> </span><span class="nn">unsupervised</span> <span class="n">discovery</span> <span class="n">to</span> <span class="n">supervised</span> <span class="n">classification</span><span class="err">—</span><span class="ow">is</span> <span class="n">essential</span> <span class="k">for</span> <span class="n">building</span> <span class="n">a</span> <span class="n">production</span> <span class="n">RAG</span> <span class="n">system</span> <span class="n">that</span> <span class="n">can</span> <span class="n">be</span> <span class="n">systematically</span> <span class="n">improved</span> <span class="n">based</span> <span class="n">on</span> <span class="n">consistent</span> <span class="n">metrics</span><span class="o">.</span>
-
-<span class="n">By</span> <span class="n">implementing</span> <span class="n">the</span> <span class="n">production</span> <span class="n">monitoring</span> <span class="n">approaches</span> <span class="n">outlined</span> <span class="ow">in</span> <span class="n">this</span> <span class="n">chapter</span><span class="p">,</span> <span class="n">you</span> <span class="n">create</span> <span class="n">a</span> <span class="n">data</span> <span class="n">pipeline</span> <span class="n">that</span> <span class="n">continuously</span> <span class="n">validates</span> <span class="n">your</span> <span class="n">improvement</span> <span class="n">efforts</span> <span class="n">against</span> <span class="n">real</span> <span class="n">user</span> <span class="n">needs</span><span class="o">.</span> <span class="n">This</span> <span class="n">establishes</span> <span class="n">a</span> <span class="n">feedback</span> <span class="n">loop</span> <span class="n">that</span> <span class="n">goes</span> <span class="n">beyond</span> <span class="n">simple</span> <span class="n">thumbs</span><span class="o">-</span><span class="n">up</span><span class="o">/</span><span class="n">down</span> <span class="n">ratings</span> <span class="n">to</span> <span class="n">provide</span> <span class="n">granular</span><span class="p">,</span> <span class="n">category</span><span class="o">-</span><span class="n">specific</span> <span class="n">insights</span> <span class="n">that</span> <span class="n">drive</span> <span class="n">targeted</span> <span class="n">enhancements</span><span class="o">.</span>
-
-<span class="n">The</span> <span class="n">segmentation</span> <span class="ow">and</span> <span class="n">prioritization</span> <span class="n">framework</span> <span class="n">we</span><span class="s1">&#39;ve developed here serves as the foundation for the specialized improvements we&#39;</span><span class="n">ll</span> <span class="n">explore</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">coming</span> <span class="n">chapters</span><span class="o">.</span> <span class="n">Rather</span> <span class="n">than</span> <span class="n">trying</span> <span class="n">to</span> <span class="n">enhance</span> <span class="n">every</span> <span class="n">aspect</span> <span class="n">of</span> <span class="n">your</span> <span class="n">system</span> <span class="n">simultaneously</span><span class="p">,</span> <span class="n">you</span> <span class="n">now</span> <span class="n">have</span> <span class="n">a</span> <span class="n">methodology</span> <span class="k">for</span> <span class="n">identifying</span> <span class="n">the</span> <span class="n">specific</span> <span class="n">enhancements</span> <span class="n">that</span> <span class="n">will</span> <span class="n">deliver</span> <span class="n">the</span> <span class="n">most</span> <span class="n">value</span><span class="o">.</span>
-
-<span class="n">As</span> <span class="n">we</span> <span class="n">move</span> <span class="n">into</span> <span class="p">[</span><span class="n">Chapter</span> <span class="mi">5</span><span class="p">](</span><span class="n">chapter5</span><span class="o">.</span><span class="n">md</span><span class="p">),</span> <span class="n">we</span><span class="s1">&#39;ll explore how to implement specialized indices and retrieval techniques for the high-priority capability gaps you&#39;</span><span class="n">ve</span> <span class="n">identified</span><span class="o">.</span> <span class="n">Each</span> <span class="n">of</span> <span class="n">these</span> <span class="n">techniques</span> <span class="n">addresses</span> <span class="n">specific</span> <span class="n">query</span> <span class="n">types</span> <span class="ow">and</span> <span class="n">user</span> <span class="n">needs</span><span class="p">,</span> <span class="n">creating</span> <span class="n">a</span> <span class="n">system</span> <span class="n">that</span> <span class="n">doesn</span><span class="s1">&#39;t just answer general questions but excels at the precise capabilities your users value most.</span>
-
-<span class="n">The</span> <span class="n">journey</span> <span class="kn">from</span><span class="w"> </span><span class="nn">collecting</span> <span class="n">feedback</span> <span class="n">to</span> <span class="n">understanding</span> <span class="n">patterns</span> <span class="n">to</span> <span class="n">implementing</span> <span class="n">targeted</span> <span class="n">improvements</span> <span class="n">forms</span> <span class="n">the</span> <span class="n">core</span> <span class="n">of</span> <span class="n">systematic</span> <span class="n">RAG</span> <span class="n">development</span><span class="err">—</span><span class="n">a</span> <span class="n">methodical</span> <span class="n">approach</span> <span class="n">that</span> <span class="n">replaces</span> <span class="n">guesswork</span> <span class="k">with</span> <span class="n">data</span><span class="o">-</span><span class="n">driven</span> <span class="n">decision</span> <span class="n">making</span><span class="o">.</span>
-
-<span class="err">!!!</span> <span class="n">tip</span> <span class="s2">&quot;What&#39;s Coming Next&quot;</span>
-<span class="n">In</span> <span class="p">[</span><span class="n">Chapter</span> <span class="mi">5</span><span class="p">](</span><span class="n">chapter5</span><span class="o">.</span><span class="n">md</span><span class="p">),</span> <span class="n">we</span><span class="s1">&#39;ll explore specialized improvements through multimodal search and contextual retrieval. We&#39;</span><span class="n">ll</span> <span class="n">build</span> <span class="n">on</span> <span class="n">the</span> <span class="n">priorities</span> <span class="n">identified</span> <span class="ow">in</span> <span class="n">this</span> <span class="n">chapter</span> <span class="n">to</span> <span class="n">create</span> <span class="n">targeted</span> <span class="n">solutions</span> <span class="k">for</span> <span class="n">specific</span> <span class="n">query</span> <span class="n">types</span><span class="o">.</span>
-</code></pre></div>
 
 
 
@@ -2014,7 +972,7 @@ Prioritize high-impact, low-effort improvements first, followed by high-impact, 
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
   Back to top
 </button>
         
@@ -2022,44 +980,6 @@ Prioritize high-impact, low-effort improvements first, followed by high-impact, 
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../chapter3-3/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 3: UX - Iterative Improvement">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Chapter 3: UX - Iterative Improvement
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../chapter5/" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 5: Building Specialized Capabilities">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                Chapter 5: Building Specialized Capabilities
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -2084,7 +1004,7 @@ Prioritize high-impact, low-effort improvements first, followed by high-impact, 
       
     
     <a href="https://twitter.com/jxnlco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
     </a>
   
 </div>
@@ -2099,10 +1019,10 @@ Prioritize high-impact, low-effort improvements first, followed by high-impact, 
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a7c05c9e.min.js"></script>
       
         <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
       

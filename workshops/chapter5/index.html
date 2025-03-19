@@ -13,14 +13,10 @@
         <link rel="canonical" href="https://567-labs.github.io/rag/workshops/chapter5/">
       
       
-        <link rel="prev" href="../chapter4/">
-      
-      
-        <link rel="next" href="../chapter6/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
     
     
       
@@ -28,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -50,7 +46,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -59,7 +55,7 @@
   
   
 
-<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config",""),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
   
     <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
   
@@ -127,12 +123,12 @@
     <a href="../.." title="The RAG Flywheel" class="md-header__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -158,7 +154,7 @@
     
       <label class="md-header__button md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -167,20 +163,20 @@
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
           <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
             
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
           </a>
         
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
       
@@ -188,7 +184,7 @@
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+      <div class="md-search__scrollwrap" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
@@ -235,12 +231,10 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../" class="md-tabs__link">
           
   
@@ -316,7 +310,7 @@
     <a href="../.." title="The RAG Flywheel" class="md-nav__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
     The RAG Flywheel
@@ -336,7 +330,6 @@
   
   <span class="md-ellipsis">
     Home
-    
   </span>
   
 
@@ -349,8 +342,6 @@
       
   
   
-    
-  
   
   
     
@@ -378,22 +369,29 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
         
           
           
@@ -403,20 +401,19 @@
   
   <span class="md-ellipsis">
     Workshops
-    
   </span>
   
 
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Workshops
@@ -437,7 +434,6 @@
   
   <span class="md-ellipsis">
     Introduction
-    
   </span>
   
 
@@ -459,7 +455,6 @@
   
   <span class="md-ellipsis">
     Chapter 1: Starting the Flywheel
-    
   </span>
   
 
@@ -481,7 +476,6 @@
   
   <span class="md-ellipsis">
     Chapter 2: From Evaluation to Enhancement
-    
   </span>
   
 
@@ -503,7 +497,6 @@
   
   <span class="md-ellipsis">
     Chapter 3: UX - Design Principles
-    
   </span>
   
 
@@ -525,7 +518,6 @@
   
   <span class="md-ellipsis">
     Chapter 3: UX - Feedback Collection
-    
   </span>
   
 
@@ -547,7 +539,6 @@
   
   <span class="md-ellipsis">
     Chapter 3: UX - Iterative Improvement
-    
   </span>
   
 
@@ -564,172 +555,15 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter4/" class="md-nav__link">
+      <a href="../chapter4-1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Chapter 4: Understanding Your Users
-    
+    Chapter 4: Topic Modeling - Analysis
   </span>
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Chapter 5: Building Specialized Capabilities
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Chapter 5: Building Specialized Capabilities
-    
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    <span class="md-ellipsis">
-      Introduction
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-power-of-specialization" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Power of Specialization
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="The Power of Specialization">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#beyond-the-monolithic-approach" class="md-nav__link">
-    <span class="md-ellipsis">
-      Beyond the Monolithic Approach
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#the-mathematics-of-specialization" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Mathematics of Specialization
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#two-paths-to-better-retrieval" class="md-nav__link">
-    <span class="md-ellipsis">
-      Two Paths to Better Retrieval
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Two Paths to Better Retrieval">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#strategy-1-extracting-metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      Strategy 1: Extracting Metadata
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#measuring-what-matters" class="md-nav__link">
-    <span class="md-ellipsis">
-      Measuring What Matters
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reflection-questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reflection Questions
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      Summary
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -742,12 +576,116 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter6/" class="md-nav__link">
+      <a href="../chapter4-2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Chapter 6: Unified Search Architecture
-    
+    Chapter 4: Topic Modeling - Prioritization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter5-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Understanding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter5-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Implementation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Improvement
   </span>
   
 
@@ -811,7 +749,6 @@
   
   <span class="md-ellipsis">
     Office Hours
-    
   </span>
   
 
@@ -845,7 +782,6 @@
   
   <span class="md-ellipsis">
     Week 1
-    
   </span>
   
 
@@ -867,7 +803,6 @@
   
   <span class="md-ellipsis">
     Week 2
-    
   </span>
   
 
@@ -889,7 +824,6 @@
   
   <span class="md-ellipsis">
     Week 3
-    
   </span>
   
 
@@ -911,7 +845,6 @@
   
   <span class="md-ellipsis">
     Week 4
-    
   </span>
   
 
@@ -933,7 +866,6 @@
   
   <span class="md-ellipsis">
     Week 5
-    
   </span>
   
 
@@ -962,7 +894,6 @@
   
   <span class="md-ellipsis">
     Math Test
-    
   </span>
   
 
@@ -991,107 +922,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    <span class="md-ellipsis">
-      Introduction
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-power-of-specialization" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Power of Specialization
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="The Power of Specialization">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#beyond-the-monolithic-approach" class="md-nav__link">
-    <span class="md-ellipsis">
-      Beyond the Monolithic Approach
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#the-mathematics-of-specialization" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Mathematics of Specialization
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#two-paths-to-better-retrieval" class="md-nav__link">
-    <span class="md-ellipsis">
-      Two Paths to Better Retrieval
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Two Paths to Better Retrieval">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#strategy-1-extracting-metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      Strategy 1: Extracting Metadata
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#measuring-what-matters" class="md-nav__link">
-    <span class="md-ellipsis">
-      Measuring What Matters
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reflection-questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reflection Questions
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      Summary
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1105,662 +935,16 @@
                   
 
 
-
 <h1 id="multimodal-rag-building-specialized-search-indices">Multimodal RAG: Building Specialized Search Indices</h1>
-<div class="admonition abstract">
-<p class="admonition-title">Chapter Overview</p>
-<p>This chapter explores how to move beyond basic retrieval to create specialized indices for different content types:</p>
-<ul>
-<li>Understanding why specialized retrievers outperform general-purpose solutions</li>
-<li>Implementing strategies for document, image, and table retrieval</li>
-<li>Measuring performance at both router and retriever levels</li>
-<li>Building a comprehensive multimodal RAG architecture</li>
-<li>Applying specialized techniques to enhance retrieval precision</li>
-</ul>
-</div>
-<h2 id="introduction">Introduction</h2>
-<p>In our journey through systematically improving RAG applications, we've reached a pivotal moment. The previous sessions have equipped us with the fundamental building blocks: the RAG playbook, synthetic data generation, fine-tuning approaches, user experience design for data collection, and segmentation techniques. Now, in Session 5, we turn our attention to a concept that often separates basic implementations from truly exceptional ones—multimodal RAG and specialized search indices.</p>
-<div class="admonition quote">
-<p class="admonition-title">Key Insight</p>
-</div>
-<p>The fundamental insight that drives this session is deceptively simple yet profound: <em>not all queries are created equal</em>. Different types of information require different approaches to retrieval. Just as you wouldn't use a hammer for every home repair task, you shouldn't rely on a single retrieval mechanism for every type of query your users might have.</p>
-<p>Today, we'll explore how to identify distinct capabilities through segmentation and address each with tailored approaches. We'll see why specialized models solving specific problems consistently outperform general-purpose solutions, and how this paradigm shift can transform your RAG implementation from adequate to exceptional.</p>
-<h2 id="the-power-of-specialization">The Power of Specialization</h2>
-<h3 id="beyond-the-monolithic-approach">Beyond the Monolithic Approach</h3>
-<p>Traditional RAG implementations often begin with a single, monolithic index—a one-size-fits-all approach that attempts to handle every query with the same retrieval mechanism. While this approach can work for simple use cases, it quickly reaches its limits when confronted with the rich diversity of real-world queries.</p>
-<div class="admonition example">
-<p class="admonition-title">Diverse Query Needs</p>
-</div>
-<p>Consider a hardware store's knowledge base. A customer searching for a specific product by model number requires a fundamentally different search approach than someone asking about the durability of various power tools, or another customer trying to find items within a specific weight range. The first query is best served by lexical search matching exact strings, the second by semantic search understanding concepts and opinions, and the third by structured data queries.</p>
-<p>This diversity of information needs is why major search engines like Google have developed specialized tools—Maps for location-based queries, Photos for visual search, YouTube for video content, and classic web search for text-based information. While these began as separate products, the true innovation came when Google learned to seamlessly route users to the appropriate tool based on the nature of their query.</p>
-<div class="admonition quote">
-<p class="admonition-title">From Previous Cohort</p>
-</div>
-<p>"I've been building separate indices for years without realizing that's what I was doing. This framework just helps me do it more systematically."</p>
-<h3 id="the-mathematics-of-specialization">The Mathematics of Specialization</h3>
-<p>The superiority of specialized approaches isn't just theoretical—it's mathematically demonstrable. When distinct segments exist within a population of queries, a collection of local decision models will consistently outperform a global model trying to handle all cases.</p>
-<p>This principle manifests in modern machine learning in multiple ways. We see it in the evolution from monolithic models to mixtures of experts, where specialized sub-models handle different types of inputs. We see it in the trend toward decomposing complex tasks into simpler subtasks that can be solved independently before being recombined.</p>
-<pre class="mermaid"><code>graph TD
-    A[Monolithic Approach] --&gt; B[One-size-fits-all]
-    C[Specialized Approach] --&gt; D[Domain-specific Models]
-
-    B --&gt;|Limited Performance| E[General Coverage]
-    D --&gt;|Optimized Performance| F[Targeted Coverage]
-
-    F --&gt; G[Better Overall Results]
-    E --&gt; G
-
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style C fill:#bbf,stroke:#333,stroke-width:2px</code></pre>
 <div class="admonition info">
-<p class="admonition-title">Organizational Benefits</p>
-</div>
-<p>Beyond the performance benefits, specialized indices offer practical organizational advantages:</p>
-<div class="highlight"><pre><span></span><code>1. **Division of labor**: Teams can work on isolated, well-defined problems rather than tangling with the entire system
-2. **Incremental improvement**: Adding a new specialized index is less disruptive than rebuilding an entire system
-3. **Targeted innovation**: Teams can innovate within their specific domain without risking the stability of the whole
-</code></pre></div>
-<div class="admonition quote">
-<p class="admonition-title">Industry Perspective</p>
-</div>
-<p>"Building specialized indices isn't just about performance—it's about creating a sustainable path for continuous improvement."</p>
-<h2 id="two-paths-to-better-retrieval">Two Paths to Better Retrieval</h2>
-<p>When improving retrieval capabilities for RAG applications, two complementary strategies emerge. Think of them as opposite sides of the same coin—one extracting structure from the unstructured, the other creating retrieval-optimized representations of structured data.</p>
-<h3 id="strategy-1-extracting-metadata">Strategy 1: Extracting Metadata</h3>
-<p>The first approach involves defining and extracting more metadata from your text chunks. Instead of viewing your content as an undifferentiated mass of text, you identify valuable structured information that can be exposed to search engines.</p>
-<p>!!! example "Metadata Extraction Examples" - In finance applications, distinguishing between fiscal years and calendar years - For legal document systems, classifying contracts as signed or unsigned - When processing call transcripts, categorizing them by type (job interviews, stand-ups, design reviews)</p>
-<p>This approach essentially asks: "What structured information is hiding within our unstructured content that would make it easier to search?"</p>
-<div class="admonition example">
-<p class="admonition-title">Financial Metadata Model</p>
-</div>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">date</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span>
-
-    <span class="k">class</span><span class="w"> </span><span class="nc">FinancialStatement</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Structured representation of a financial statement document.&quot;&quot;&quot;</span>
-        <span class="n">company</span><span class="p">:</span> <span class="nb">str</span>
-        <span class="n">period_ending</span><span class="p">:</span> <span class="n">date</span>
-        <span class="n">revenue</span><span class="p">:</span> <span class="nb">float</span>
-        <span class="n">net_income</span><span class="p">:</span> <span class="nb">float</span>
-        <span class="n">earnings_per_share</span><span class="p">:</span> <span class="nb">float</span>
-        <span class="n">fiscal_year</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Is this fiscal year (vs calendar year)?</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">extract_financial_data</span><span class="p">(</span><span class="n">document_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FinancialStatement</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Extract structured financial data from document text using LLM.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            document_text: Raw text from financial document</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Structured FinancialStatement object with extracted data</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Use LLM to extract the structured information</span>
-        <span class="c1"># Implementation depends on your LLM framework</span>
-        <span class="c1"># ...</span>
-    <span class="err">```</span>
-
-<span class="n">By</span> <span class="n">extracting</span> <span class="n">these</span> <span class="n">structured</span> <span class="n">elements</span> <span class="kn">from</span><span class="w"> </span><span class="nn">quarterly</span> <span class="n">reports</span><span class="p">,</span> <span class="n">organizations</span> <span class="n">can</span> <span class="n">enable</span> <span class="n">precise</span> <span class="n">filtering</span> <span class="ow">and</span> <span class="n">comparison</span> <span class="n">that</span> <span class="n">would</span> <span class="n">have</span> <span class="n">been</span> <span class="n">impossible</span> <span class="k">with</span> <span class="n">text</span><span class="o">-</span><span class="n">only</span> <span class="n">search</span><span class="o">.</span>
-
-<span class="c1">### Strategy 2: Building Synthetic Text Chunks</span>
-
-<span class="n">The</span> <span class="n">second</span> <span class="n">approach</span> <span class="n">reverses</span> <span class="n">the</span> <span class="n">flow</span><span class="p">:</span> <span class="n">taking</span> <span class="n">structured</span> <span class="n">data</span> <span class="p">(</span><span class="ow">or</span> <span class="n">even</span> <span class="n">unstructured</span> <span class="n">data</span><span class="p">)</span> <span class="ow">and</span> <span class="n">producing</span> <span class="n">synthetic</span> <span class="n">text</span> <span class="n">chunks</span> <span class="n">optimized</span> <span class="k">for</span> <span class="n">retrieval</span><span class="o">.</span> <span class="n">These</span> <span class="n">chunks</span> <span class="n">serve</span> <span class="k">as</span> <span class="n">semantic</span> <span class="n">pointers</span> <span class="n">to</span> <span class="n">the</span> <span class="n">original</span> <span class="n">content</span><span class="p">,</span> <span class="n">enabling</span> <span class="n">more</span> <span class="n">effective</span> <span class="n">recall</span><span class="o">.</span>
-
-<span class="err">!!!</span> <span class="n">tip</span> <span class="s2">&quot;Synthetic Text Applications&quot;</span> <span class="o">-</span> <span class="n">For</span> <span class="n">image</span> <span class="n">collections</span><span class="p">:</span> <span class="n">Generate</span> <span class="n">detailed</span> <span class="n">descriptions</span> <span class="n">capturing</span> <span class="n">searchable</span> <span class="n">aspects</span> <span class="o">-</span> <span class="n">For</span> <span class="n">research</span> <span class="n">interviews</span><span class="p">:</span> <span class="n">Extract</span> <span class="n">common</span> <span class="n">questions</span> <span class="ow">and</span> <span class="n">answers</span> <span class="n">to</span> <span class="n">form</span> <span class="n">an</span> <span class="n">easily</span> <span class="n">searchable</span> <span class="n">FAQ</span> <span class="o">-</span> <span class="n">For</span> <span class="n">numerical</span> <span class="n">data</span><span class="p">:</span> <span class="n">Create</span> <span class="n">natural</span> <span class="n">language</span> <span class="n">descriptions</span> <span class="n">of</span> <span class="n">key</span> <span class="n">trends</span> <span class="ow">and</span> <span class="n">outliers</span>
-
-<span class="n">These</span> <span class="n">synthetic</span> <span class="n">chunks</span> <span class="n">become</span> <span class="n">intermediaries</span><span class="err">—</span><span class="n">easier</span> <span class="n">to</span> <span class="n">search</span> <span class="n">than</span> <span class="n">the</span> <span class="n">original</span> <span class="n">content</span><span class="p">,</span> <span class="n">but</span> <span class="n">pointing</span> <span class="n">back</span> <span class="n">to</span> <span class="n">that</span> <span class="n">source</span> <span class="n">material</span> <span class="n">when</span> <span class="n">needed</span> <span class="k">for</span> <span class="n">the</span> <span class="n">final</span> <span class="n">response</span><span class="o">.</span>
-
-<span class="err">!!!</span> <span class="n">example</span> <span class="s2">&quot;Image Description Generator&quot;</span>
-<span class="err">```</span><span class="n">python</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">generate_enhanced_image_description</span><span class="p">(</span><span class="n">image_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Generate a detailed, searchable description of an image.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            image_path: Path to the image file</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Detailed description optimized for semantic search</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Prompt for rich image description</span>
-        <span class="n">system_prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        Analyze this image in detail, including:</span>
-<span class="s2">        1. All people, objects, and text visible</span>
-<span class="s2">        2. The setting and environment</span>
-<span class="s2">        3. Actions being performed</span>
-<span class="s2">        4. Visual qualities (colors, lighting, composition)</span>
-<span class="s2">        5. Emotional tone or mood</span>
-<span class="s2">        6. Any unique or distinctive elements</span>
-
-<span class="s2">        Format your response as a detailed paragraph that would help</span>
-<span class="s2">        someone find this image when searching with natural language.</span>
-<span class="s2">        &quot;&quot;&quot;</span>
-
-        <span class="c1"># Implementation using your preferred vision LLM</span>
-        <span class="c1"># ...</span>
-    <span class="err">```</span>
-
-<span class="n">Both</span> <span class="n">strategies</span> <span class="n">essentially</span> <span class="n">create</span> <span class="n">materialized</span> <span class="n">views</span> <span class="n">of</span> <span class="n">your</span> <span class="n">existing</span> <span class="n">data</span><span class="p">,</span> <span class="n">processed</span> <span class="n">by</span> <span class="n">AI</span> <span class="n">through</span> <span class="n">either</span> <span class="n">structuring</span> <span class="ow">or</span> <span class="n">rewriting</span><span class="o">.</span> <span class="n">The</span> <span class="n">appropriate</span> <span class="n">strategy</span> <span class="n">depends</span> <span class="n">on</span> <span class="n">your</span> <span class="n">data</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">types</span> <span class="n">of</span> <span class="n">queries</span> <span class="n">you</span> <span class="n">need</span> <span class="n">to</span> <span class="n">support</span><span class="err">—</span><span class="ow">and</span> <span class="n">many</span> <span class="n">systems</span> <span class="n">benefit</span> <span class="kn">from</span><span class="w"> </span><span class="nn">applying</span> <span class="n">both</span> <span class="n">approaches</span> <span class="n">to</span> <span class="n">different</span> <span class="n">parts</span> <span class="n">of</span> <span class="n">their</span> <span class="n">content</span><span class="o">.</span>
-
-<span class="err">```</span><span class="n">mermaid</span>
-<span class="n">graph</span> <span class="n">LR</span>
-    <span class="n">A</span><span class="p">[</span><span class="n">Strategy</span> <span class="mi">1</span><span class="p">:</span> <span class="n">Extraction</span><span class="p">]</span> <span class="o">--&gt;|</span><span class="s2">&quot;From Unstructured → Structured&quot;</span><span class="o">|</span> <span class="n">B</span><span class="p">[</span><span class="n">Metadata</span> <span class="o">&amp;</span> <span class="n">Filters</span><span class="p">]</span>
-    <span class="n">C</span><span class="p">[</span><span class="n">Strategy</span> <span class="mi">2</span><span class="p">:</span> <span class="n">Generation</span><span class="p">]</span> <span class="o">--&gt;|</span><span class="s2">&quot;From Structured → Searchable Text&quot;</span><span class="o">|</span> <span class="n">D</span><span class="p">[</span><span class="n">Synthetic</span> <span class="n">Descriptions</span><span class="p">]</span>
-
-    <span class="n">B</span> <span class="o">--&gt;</span> <span class="n">E</span><span class="p">[</span><span class="n">Enhanced</span> <span class="n">Retrievability</span><span class="p">]</span>
-    <span class="n">D</span> <span class="o">--&gt;</span> <span class="n">E</span>
-</code></pre></div>
-<h2 id="measuring-what-matters">Measuring What Matters</h2>
-<p>As we introduce specialized indices, our measurement framework expands to assess performance at two levels:</p>
-<p>!!! info "Two-Level Measurement Framework" 1. Are we selecting the right retrieval method for each query? 2. Is each retrieval method finding the right information?</p>
-<p>The overall probability of finding the correct information becomes a product of these two probabilities:</p>
-<div class="admonition example">
-<p class="admonition-title">Performance Formula</p>
-</div>
-<p><code>P(finding correct data) = P(selecting correct retriever) × P(finding correct data | correct retriever)</code></p>
-<p>This formula provides a powerful diagnostic tool. When your system underperforms, it helps identify whether the issue lies with retriever selection or with the individual retrievers themselves.</p>
-<div class="admonition tip">
-<p class="admonition-title">Diagnostic Example</p>
-</div>
-<p>If you find that your system correctly routes 95% of queries to the appropriate retriever, but those retrievers only find relevant information 60% of the time, your priority should be improving retrieval quality rather than router accuracy.</p>
-<p>This two-level evaluation framework ensures you invest your improvement efforts where they'll have the greatest impact.</p>
-<div class="admonition example">
-<p class="admonition-title">Performance Evaluation Code</p>
-</div>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_system_performance</span><span class="p">(</span><span class="n">test_queries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Evaluate the overall system performance across components.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            test_queries: List of test queries with ground truth</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Dictionary with performance metrics at each level</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;overall_success_rate&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-            <span class="s2">&quot;router_accuracy&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-            <span class="s2">&quot;retriever_performance&quot;</span><span class="p">:</span> <span class="p">{}</span>
-        <span class="p">}</span>
-
-        <span class="n">correct_router_selections</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">retriever_successes</span> <span class="o">=</span> <span class="p">{</span><span class="n">retriever_type</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">retriever_type</span> <span class="ow">in</span> <span class="n">RETRIEVER_TYPES</span><span class="p">}</span>
-        <span class="n">retriever_attempts</span> <span class="o">=</span> <span class="p">{</span><span class="n">retriever_type</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">retriever_type</span> <span class="ow">in</span> <span class="n">RETRIEVER_TYPES</span><span class="p">}</span>
-
-        <span class="k">for</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">test_queries</span><span class="p">:</span>
-            <span class="c1"># Check if router selected correct retriever</span>
-            <span class="n">selected_retriever</span> <span class="o">=</span> <span class="n">route_query</span><span class="p">(</span><span class="n">query</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
-            <span class="n">correct_retriever</span> <span class="o">=</span> <span class="n">query</span><span class="p">[</span><span class="s2">&quot;expected_retriever&quot;</span><span class="p">]</span>
-
-            <span class="k">if</span> <span class="n">selected_retriever</span> <span class="o">==</span> <span class="n">correct_retriever</span><span class="p">:</span>
-                <span class="n">correct_router_selections</span> <span class="o">+=</span> <span class="mi">1</span>
-
-            <span class="c1"># Check if selected retriever found relevant content</span>
-            <span class="n">retrieval_result</span> <span class="o">=</span> <span class="n">retrieve_with_method</span><span class="p">(</span><span class="n">query</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">],</span> <span class="n">selected_retriever</span><span class="p">)</span>
-            <span class="n">retriever_attempts</span><span class="p">[</span><span class="n">selected_retriever</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-
-            <span class="k">if</span> <span class="n">is_relevant</span><span class="p">(</span><span class="n">retrieval_result</span><span class="p">,</span> <span class="n">query</span><span class="p">[</span><span class="s2">&quot;expected_content&quot;</span><span class="p">]):</span>
-                <span class="n">retriever_successes</span><span class="p">[</span><span class="n">selected_retriever</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-
-                <span class="c1"># Only count as overall success if both router and retriever worked</span>
-                <span class="k">if</span> <span class="n">selected_retriever</span> <span class="o">==</span> <span class="n">correct_retriever</span><span class="p">:</span>
-                    <span class="n">results</span><span class="p">[</span><span class="s2">&quot;overall_success_rate&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-
-        <span class="c1"># Calculate final metrics</span>
-        <span class="n">total_queries</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_queries</span><span class="p">)</span>
-        <span class="n">results</span><span class="p">[</span><span class="s2">&quot;router_accuracy&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">correct_router_selections</span> <span class="o">/</span> <span class="n">total_queries</span>
-
-        <span class="k">for</span> <span class="n">retriever_type</span> <span class="ow">in</span> <span class="n">RETRIEVER_TYPES</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">retriever_attempts</span><span class="p">[</span><span class="n">retriever_type</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">results</span><span class="p">[</span><span class="s2">&quot;retriever_performance&quot;</span><span class="p">][</span><span class="n">retriever_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-                    <span class="s2">&quot;success_rate&quot;</span><span class="p">:</span> <span class="n">retriever_successes</span><span class="p">[</span><span class="n">retriever_type</span><span class="p">]</span> <span class="o">/</span> <span class="n">retriever_attempts</span><span class="p">[</span><span class="n">retriever_type</span><span class="p">],</span>
-                    <span class="s2">&quot;sample_size&quot;</span><span class="p">:</span> <span class="n">retriever_attempts</span><span class="p">[</span><span class="n">retriever_type</span><span class="p">]</span>
-                <span class="p">}</span>
-
-        <span class="n">results</span><span class="p">[</span><span class="s2">&quot;overall_success_rate&quot;</span><span class="p">]</span> <span class="o">/=</span> <span class="n">total_queries</span>
-
-        <span class="k">return</span> <span class="n">results</span>
-    <span class="err">```</span>
-
-<span class="c1">## Specialized Approaches for Different Modalities</span>
-
-<span class="n">Different</span> <span class="n">types</span> <span class="n">of</span> <span class="n">content</span> <span class="n">demand</span> <span class="n">different</span> <span class="n">retrieval</span> <span class="n">strategies</span><span class="o">.</span> <span class="n">Let</span><span class="s1">&#39;s explore approaches for three common modalities: documents, images, and tables.</span>
-
-<span class="c1">### Document Search: Beyond Basic Chunking</span>
-
-<span class="n">For</span> <span class="n">document</span> <span class="n">retrieval</span><span class="p">,</span> <span class="n">the</span> <span class="n">foundation</span> <span class="n">remains</span> <span class="n">chunking</span> <span class="n">documents</span> <span class="k">with</span> <span class="n">appropriate</span> <span class="n">metadata</span> <span class="ow">and</span> <span class="n">applying</span> <span class="n">both</span> <span class="n">lexical</span> <span class="ow">and</span> <span class="n">semantic</span> <span class="n">search</span> <span class="n">techniques</span><span class="o">.</span> <span class="n">However</span><span class="p">,</span> <span class="n">several</span> <span class="n">refinements</span> <span class="n">can</span> <span class="n">dramatically</span> <span class="n">improve</span> <span class="n">performance</span><span class="p">:</span>
-
-<span class="err">!!!</span> <span class="n">info</span> <span class="s2">&quot;Advanced Document Retrieval Techniques&quot;</span> <span class="o">-</span> <span class="o">**</span><span class="n">Contextual</span> <span class="n">Retrieval</span><span class="o">**</span><span class="p">:</span> <span class="n">Rather</span> <span class="n">than</span> <span class="n">using</span> <span class="n">fixed</span> <span class="n">chunks</span><span class="p">,</span> <span class="n">dynamically</span> <span class="n">rewrite</span> <span class="ow">or</span> <span class="n">expand</span> <span class="n">chunks</span> <span class="n">based</span> <span class="n">on</span> <span class="n">the</span> <span class="n">query</span> <span class="n">context</span><span class="o">.</span> <span class="n">This</span> <span class="n">creates</span> <span class="s2">&quot;query-aware&quot;</span> <span class="n">text</span> <span class="n">representations</span> <span class="n">that</span> <span class="n">better</span> <span class="n">match</span> <span class="n">user</span> <span class="n">intent</span><span class="o">.</span>
-
-    <span class="o">-</span> <span class="o">**</span><span class="n">Hybrid</span> <span class="n">Retrieval</span> <span class="n">Signals</span><span class="o">**</span><span class="p">:</span> <span class="n">Combine</span> <span class="n">semantic</span> <span class="n">similarity</span> <span class="k">with</span> <span class="n">other</span> <span class="n">signals</span> <span class="n">like</span> <span class="n">recency</span><span class="p">,</span> <span class="n">authority</span><span class="p">,</span> <span class="ow">and</span> <span class="n">citation</span> <span class="n">frequency</span> <span class="n">to</span> <span class="n">create</span> <span class="n">a</span> <span class="n">more</span> <span class="n">nuanced</span> <span class="n">ranking</span> <span class="n">function</span><span class="o">.</span>
-
-    <span class="o">-</span> <span class="o">**</span><span class="n">Multi</span><span class="o">-</span><span class="n">stage</span> <span class="n">Retrieval</span><span class="o">**</span><span class="p">:</span> <span class="n">Implement</span> <span class="n">a</span> <span class="n">cascade</span> <span class="n">of</span> <span class="n">increasingly</span> <span class="n">sophisticated</span> <span class="p">(</span><span class="ow">and</span> <span class="n">computationally</span> <span class="n">expensive</span><span class="p">)</span> <span class="n">retrieval</span> <span class="ow">and</span> <span class="n">ranking</span> <span class="n">steps</span><span class="p">,</span> <span class="n">filtering</span> <span class="n">out</span> <span class="n">irrelevant</span> <span class="n">content</span> <span class="n">at</span> <span class="n">each</span> <span class="n">stage</span><span class="o">.</span>
-
-<span class="err">```</span><span class="n">mermaid</span>
-<span class="n">flowchart</span> <span class="n">LR</span>
-    <span class="n">A</span><span class="p">[</span><span class="n">Query</span><span class="p">]</span> <span class="o">--&gt;</span> <span class="n">B</span><span class="p">[</span><span class="n">Initial</span> <span class="n">Retrieval</span><span class="p">]</span>
-    <span class="n">B</span> <span class="o">--&gt;</span> <span class="n">C</span><span class="p">[</span><span class="n">Candidate</span> <span class="n">Chunks</span><span class="p">]</span>
-    <span class="n">C</span> <span class="o">--&gt;</span> <span class="n">D</span><span class="p">[</span><span class="n">Re</span><span class="o">-</span><span class="n">ranking</span><span class="p">]</span>
-    <span class="n">D</span> <span class="o">--&gt;</span> <span class="n">E</span><span class="p">[</span><span class="n">Dynamic</span> <span class="n">Expansion</span><span class="p">]</span>
-    <span class="n">E</span> <span class="o">--&gt;</span> <span class="n">F</span><span class="p">[</span><span class="n">Final</span> <span class="n">Context</span><span class="p">]</span>
-</code></pre></div>
-<p>The result is a document retrieval system that might return different types of content depending on the query:</p>
+<p class="admonition-title">This chapter has been split into two parts</p>
+<p>This content is now available in two more digestible parts:</p>
 <ul>
-<li>For some queries, concise summaries of key information</li>
-<li>For others, entire documents leveraging long-context models</li>
-<li>For yet others, specific text chunks or structured data extracts</li>
+<li><a href="../chapter5-1/">Part 1: Understanding Specialized Retrieval</a></li>
+<li><a href="../chapter5-2/">Part 2: Implementing Multimodal Search</a></li>
 </ul>
-<p>This flexibility allows the system to balance precision, recall, and presentation based on what best serves each query.</p>
-<div class="admonition example">
-<p class="admonition-title">Document Processor with Contextual Retrieval</p>
+<p>Please visit those pages for the updated content.</p>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">process_document_for_retrieval</span><span class="p">(</span><span class="n">document</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Process a document for enhanced retrieval capabilities.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            document: The raw document text</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Dictionary with processed document components</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Extract structured metadata</span>
-        <span class="n">metadata</span> <span class="o">=</span> <span class="n">extract_document_metadata</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
-
-        <span class="c1"># Create standard chunks with overlap</span>
-        <span class="n">chunks</span> <span class="o">=</span> <span class="n">chunk_document</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-
-        <span class="c1"># Generate summaries at different levels</span>
-        <span class="n">document_summary</span> <span class="o">=</span> <span class="n">summarize_document</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
-        <span class="n">section_summaries</span> <span class="o">=</span> <span class="p">[</span><span class="n">summarize_section</span><span class="p">(</span><span class="n">section</span><span class="p">)</span> <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">extract_sections</span><span class="p">(</span><span class="n">document</span><span class="p">)]</span>
-
-        <span class="c1"># Extract any structured data tables</span>
-        <span class="n">tables</span> <span class="o">=</span> <span class="n">extract_tables</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="n">metadata</span><span class="p">,</span>
-            <span class="s2">&quot;chunks&quot;</span><span class="p">:</span> <span class="n">chunks</span><span class="p">,</span>
-            <span class="s2">&quot;document_summary&quot;</span><span class="p">:</span> <span class="n">document_summary</span><span class="p">,</span>
-            <span class="s2">&quot;section_summaries&quot;</span><span class="p">:</span> <span class="n">section_summaries</span><span class="p">,</span>
-            <span class="s2">&quot;tables&quot;</span><span class="p">:</span> <span class="n">tables</span><span class="p">,</span>
-            <span class="s2">&quot;full_document&quot;</span><span class="p">:</span> <span class="n">document</span>  <span class="c1"># Keep original for potential long-context processing</span>
-        <span class="p">}</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">contextual_retrieval</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">document_store</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Perform contextual retrieval that adapts based on query type.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            query: User query</span>
-<span class="sd">            document_store: Processed document store</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            List of most relevant text chunks for the query</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Analyze query to determine retrieval strategy</span>
-        <span class="n">query_analysis</span> <span class="o">=</span> <span class="n">analyze_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">query_analysis</span><span class="p">[</span><span class="s2">&quot;requires_specific_detail&quot;</span><span class="p">]:</span>
-            <span class="c1"># Use chunk-level retrieval for specific information</span>
-            <span class="k">return</span> <span class="n">retrieve_relevant_chunks</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">document_store</span><span class="p">)</span>
-
-        <span class="k">elif</span> <span class="n">query_analysis</span><span class="p">[</span><span class="s2">&quot;requires_overview&quot;</span><span class="p">]:</span>
-            <span class="c1"># Use summary-level retrieval for broader questions</span>
-            <span class="k">return</span> <span class="n">retrieve_relevant_summaries</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">document_store</span><span class="p">)</span>
-
-        <span class="k">elif</span> <span class="n">query_analysis</span><span class="p">[</span><span class="s2">&quot;requires_structured_data&quot;</span><span class="p">]:</span>
-            <span class="c1"># Use table retrieval for data-oriented questions</span>
-            <span class="k">return</span> <span class="n">retrieve_relevant_tables</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">document_store</span><span class="p">)</span>
-
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># Fall back to hybrid approach</span>
-            <span class="n">chunks</span> <span class="o">=</span> <span class="n">retrieve_relevant_chunks</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">document_store</span><span class="p">)</span>
-            <span class="n">summaries</span> <span class="o">=</span> <span class="n">retrieve_relevant_summaries</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">document_store</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">rerank_combined_results</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">chunks</span> <span class="o">+</span> <span class="n">summaries</span><span class="p">)</span>
-    <span class="err">```</span>
-
-<span class="c1">### Image Search: Bridging Visual and Textual Understanding</span>
-
-<span class="n">Image</span> <span class="n">search</span> <span class="n">presents</span> <span class="n">unique</span> <span class="n">challenges</span><span class="o">.</span> <span class="n">Visual</span> <span class="n">language</span> <span class="n">models</span> <span class="n">were</span> <span class="n">trained</span> <span class="n">primarily</span> <span class="n">on</span> <span class="n">captioning</span> <span class="n">data</span><span class="p">,</span> <span class="n">creating</span> <span class="n">a</span> <span class="n">potential</span> <span class="n">mismatch</span> <span class="n">between</span> <span class="n">how</span> <span class="n">queries</span> <span class="n">are</span> <span class="n">phrased</span> <span class="ow">and</span> <span class="n">how</span> <span class="n">images</span> <span class="n">are</span> <span class="n">represented</span><span class="o">.</span>
-
-<span class="err">!!!</span> <span class="n">warning</span> <span class="s2">&quot;Embedding Spaces Mismatch&quot;</span>
-<span class="n">The</span> <span class="n">naive</span> <span class="n">approach</span><span class="err">—</span><span class="n">applying</span> <span class="n">the</span> <span class="n">same</span> <span class="n">embedding</span> <span class="n">strategy</span> <span class="n">used</span> <span class="k">for</span> <span class="n">text</span><span class="err">—</span><span class="n">often</span> <span class="n">fails</span> <span class="n">because</span> <span class="n">question</span> <span class="n">embeddings</span> <span class="ow">and</span> <span class="n">image</span> <span class="n">caption</span> <span class="n">embeddings</span> <span class="n">exist</span> <span class="ow">in</span> <span class="n">fundamentally</span> <span class="n">different</span> <span class="n">semantic</span> <span class="n">spaces</span><span class="o">.</span>
-
-<span class="n">To</span> <span class="n">bridge</span> <span class="n">this</span> <span class="n">gap</span><span class="p">,</span> <span class="n">more</span> <span class="n">sophisticated</span> <span class="n">image</span> <span class="n">summarization</span> <span class="n">techniques</span> <span class="n">are</span> <span class="n">essential</span><span class="p">:</span>
-
-<span class="err">!!!</span> <span class="n">example</span> <span class="s2">&quot;Advanced Image Description Techniques&quot;</span>
-<span class="o">**</span><span class="n">Rich</span> <span class="n">Prompting</span><span class="o">**</span><span class="p">:</span> <span class="n">Move</span> <span class="n">beyond</span> <span class="n">simple</span> <span class="s2">&quot;what&#39;s in this image?&quot;</span> <span class="n">prompts</span> <span class="n">to</span> <span class="n">detailed</span> <span class="n">instructions</span> <span class="n">that</span> <span class="n">anticipate</span> <span class="n">likely</span> <span class="n">queries</span><span class="o">.</span> <span class="n">Compare</span><span class="p">:</span>
-
-    <span class="o">*</span><span class="n">Basic</span><span class="o">*</span><span class="p">:</span> <span class="s2">&quot;Describe this image.&quot;</span>
-
-    <span class="o">*</span><span class="n">Enhanced</span><span class="o">*</span><span class="p">:</span> <span class="s2">&quot;Describe this image in detail, noting the number of people, their apparent relationship, the setting, lighting conditions, objects present, and any text visible in the image.&quot;</span>
-
-<span class="err">!!!</span> <span class="n">info</span> <span class="s2">&quot;Additional Image Enhancement Approaches&quot;</span> <span class="o">-</span> <span class="o">**</span><span class="n">Contextual</span> <span class="n">Enrichment</span><span class="o">**</span><span class="p">:</span> <span class="n">Incorporate</span> <span class="n">surrounding</span> <span class="n">text</span><span class="p">,</span> <span class="n">OCR</span> <span class="n">results</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">image</span><span class="p">,</span> <span class="ow">and</span> <span class="n">metadata</span> <span class="n">about</span> <span class="n">the</span> <span class="n">image</span><span class="s1">&#39;s source and purpose.</span>
-
-    <span class="o">-</span> <span class="o">**</span><span class="n">Visual</span> <span class="n">Reasoning</span><span class="o">**</span><span class="p">:</span> <span class="n">Use</span> <span class="n">chain</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">thought</span> <span class="n">prompting</span> <span class="n">to</span> <span class="n">guide</span> <span class="n">the</span> <span class="n">model</span> <span class="n">through</span> <span class="n">a</span> <span class="n">reasoning</span> <span class="n">process</span> <span class="n">about</span> <span class="n">the</span> <span class="n">image</span> <span class="n">content</span><span class="p">,</span> <span class="n">resulting</span> <span class="ow">in</span> <span class="n">more</span> <span class="n">comprehensive</span> <span class="n">descriptions</span><span class="o">.</span>
-
-    <span class="o">-</span> <span class="o">**</span><span class="n">Bounding</span> <span class="n">Boxes</span> <span class="ow">and</span> <span class="n">Visual</span> <span class="n">Grounding</span><span class="o">**</span><span class="p">:</span> <span class="n">For</span> <span class="n">applications</span> <span class="n">where</span> <span class="n">precise</span> <span class="n">location</span> <span class="ow">or</span> <span class="n">counting</span> <span class="ow">is</span> <span class="n">important</span><span class="p">,</span> <span class="n">supplement</span> <span class="n">descriptions</span> <span class="k">with</span> <span class="n">information</span> <span class="n">about</span> <span class="n">the</span> <span class="n">spatial</span> <span class="n">arrangement</span> <span class="n">of</span> <span class="n">elements</span><span class="o">.</span>
-
-<span class="err">!!!</span> <span class="n">example</span> <span class="s2">&quot;Rich Image Description Prompt&quot;</span>
-<span class="err">```</span><span class="n">python</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">generate_rich_image_description</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ocr_text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">surrounding_text</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Generate a comprehensive description optimized for retrieval.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            image: Image data or path</span>
-<span class="sd">            ocr_text: Optional text extracted from the image</span>
-<span class="sd">            surrounding_text: Optional text surrounding the image in its original context</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Detailed description of the image</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        # Image Analysis Task</span>
-
-<span class="s2">        ## Context Information</span>
-<span class="s2">        </span><span class="si">{</span><span class="s2">&quot;OCR Text from image: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ocr_text</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">ocr_text</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;No OCR text available.&quot;</span><span class="si">}</span>
-<span class="s2">        </span><span class="si">{</span><span class="s2">&quot;Surrounding context: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">surrounding_text</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">surrounding_text</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;No surrounding context available.&quot;</span><span class="si">}</span>
-
-<span class="s2">        ## Analysis Instructions</span>
-<span class="s2">        Analyze the following image in extreme detail:</span>
-
-<span class="s2">        1. First, describe the visual scene, setting, and overall composition</span>
-<span class="s2">        2. List all people visible, their approximate positions, actions, and expressions</span>
-<span class="s2">        3. Enumerate all objects visible in the image</span>
-<span class="s2">        4. Note any text visible in the image</span>
-<span class="s2">        5. Describe colors, lighting, and visual style</span>
-<span class="s2">        6. If applicable, identify the type of image (photograph, diagram, screenshot, etc.)</span>
-<span class="s2">        7. Use chain-of-thought reasoning: think about what is happening and why</span>
-<span class="s2">        8. Generate 5-7 potential questions someone might ask when searching for this image</span>
-<span class="s2">        9. Suggest 5-10 relevant tags for this image</span>
-
-<span class="s2">        ## Final Description</span>
-<span class="s2">        Based on your analysis, provide a comprehensive 3-5 sentence description that would</span>
-<span class="s2">        help people find this image when searching with natural language queries.</span>
-<span class="s2">        &quot;&quot;&quot;</span>
-
-        <span class="c1"># Use this prompt with your vision model implementation</span>
-        <span class="c1"># ...</span>
-    <span class="err">```</span>
-
-<span class="n">The</span> <span class="n">enhanced</span> <span class="n">description</span> <span class="n">dramatically</span> <span class="n">improves</span> <span class="n">retrieval</span> <span class="n">capability</span> <span class="n">when</span> <span class="n">troubleshooting</span> <span class="n">specific</span> <span class="n">defects</span> <span class="ow">or</span> <span class="n">components</span><span class="o">.</span>
-
-<span class="c1">### Table Search: Structured Data in Context</span>
-
-<span class="n">Tables</span> <span class="n">present</span> <span class="n">a</span> <span class="n">dual</span> <span class="n">challenge</span><span class="p">:</span> <span class="n">they</span> <span class="n">contain</span> <span class="n">structured</span> <span class="n">data</span> <span class="n">but</span> <span class="n">exist</span> <span class="n">within</span> <span class="n">unstructured</span> <span class="n">contexts</span><span class="o">.</span> <span class="n">Two</span> <span class="n">main</span> <span class="n">approaches</span> <span class="n">prove</span> <span class="n">effective</span><span class="p">:</span>
-
-<span class="err">!!!</span> <span class="n">info</span> <span class="s2">&quot;Table Retrieval Approaches&quot;</span>
-<span class="o">**</span><span class="n">Approach</span> <span class="mi">1</span><span class="p">:</span> <span class="n">Table</span> <span class="k">as</span> <span class="n">Document</span><span class="o">**</span>
-
-    <span class="n">For</span> <span class="n">finding</span> <span class="n">specific</span> <span class="n">rows</span> <span class="ow">or</span> <span class="n">comparing</span> <span class="n">data</span> <span class="n">across</span> <span class="n">tables</span><span class="p">,</span> <span class="n">chunk</span> <span class="n">the</span> <span class="n">table</span> <span class="p">(</span><span class="n">preserving</span> <span class="n">headers</span><span class="p">)</span> <span class="ow">and</span> <span class="n">apply</span> <span class="n">semantic</span> <span class="n">search</span> <span class="n">techniques</span><span class="o">.</span> <span class="n">Generate</span> <span class="n">summaries</span> <span class="n">that</span> <span class="n">capture</span> <span class="n">the</span> <span class="n">table</span><span class="s1">&#39;s purpose and key insights to improve retrieval.</span>
-
-    <span class="n">This</span> <span class="n">works</span> <span class="n">well</span> <span class="k">for</span> <span class="n">questions</span> <span class="n">like</span> <span class="s2">&quot;Which product had the highest Q3 sales?&quot;</span> <span class="ow">or</span> <span class="s2">&quot;Show me all tables with warranty information.&quot;</span>
-
-    <span class="o">**</span><span class="n">Approach</span> <span class="mi">2</span><span class="p">:</span> <span class="n">Table</span> <span class="k">as</span> <span class="n">Database</span><span class="o">**</span>
-
-    <span class="n">For</span> <span class="n">detailed</span> <span class="n">data</span> <span class="n">analysis</span><span class="p">,</span> <span class="n">treat</span> <span class="n">tables</span> <span class="k">as</span> <span class="n">queryable</span> <span class="n">databases</span><span class="o">.</span> <span class="n">The</span> <span class="n">key</span> <span class="n">challenge</span> <span class="n">becomes</span> <span class="n">identifying</span> <span class="n">which</span> <span class="n">table</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">to</span> <span class="n">query</span> <span class="k">for</span> <span class="n">a</span> <span class="n">given</span> <span class="n">question</span><span class="o">.</span>
-
-    <span class="n">Standardize</span> <span class="n">schemas</span> <span class="n">using</span> <span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">statements</span> <span class="ow">or</span> <span class="n">table</span> <span class="n">descriptions</span><span class="p">,</span> <span class="n">then</span> <span class="n">build</span> <span class="n">semantic</span> <span class="n">search</span> <span class="n">against</span> <span class="n">these</span> <span class="n">table</span> <span class="n">representations</span><span class="o">.</span> <span class="n">Include</span> <span class="n">sample</span> <span class="n">data</span> <span class="n">when</span> <span class="n">possible</span> <span class="n">to</span> <span class="n">help</span> <span class="n">clarify</span> <span class="n">the</span> <span class="n">table</span><span class="s1">&#39;s contents.</span>
-
-<span class="err">!!!</span> <span class="n">example</span> <span class="s2">&quot;Table Processor Implementation&quot;</span>
-<span class="err">```</span><span class="n">python</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-
-    <span class="k">class</span><span class="w"> </span><span class="nc">TableProcessor</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process tables for enhanced retrievability and querying.&quot;&quot;&quot;</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">process_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                        <span class="n">source_doc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Process a table for both document-like and database-like retrieval.</span>
-
-<span class="sd">            Args:</span>
-<span class="sd">                table_data: The table as a pandas DataFrame</span>
-<span class="sd">                table_name: Name of the table</span>
-<span class="sd">                source_doc: Optional source document information</span>
-
-<span class="sd">            Returns:</span>
-<span class="sd">                Dictionary with processed table components</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="c1"># Generate schema representation</span>
-            <span class="n">schema</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_schema_representation</span><span class="p">(</span><span class="n">table_data</span><span class="p">)</span>
-
-            <span class="c1"># Generate natural language summary</span>
-            <span class="n">summary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_table_summary</span><span class="p">(</span><span class="n">table_data</span><span class="p">,</span> <span class="n">table_name</span><span class="p">)</span>
-
-            <span class="c1"># Generate sample queries this table could answer</span>
-            <span class="n">sample_queries</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_sample_queries</span><span class="p">(</span><span class="n">table_data</span><span class="p">,</span> <span class="n">table_name</span><span class="p">)</span>
-
-            <span class="c1"># Convert to text chunks for semantic search</span>
-            <span class="n">text_chunks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_table_to_text_chunks</span><span class="p">(</span><span class="n">table_data</span><span class="p">)</span>
-
-            <span class="k">return</span> <span class="p">{</span>
-                <span class="s2">&quot;table_name&quot;</span><span class="p">:</span> <span class="n">table_name</span><span class="p">,</span>
-                <span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="n">schema</span><span class="p">,</span>
-                <span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="n">summary</span><span class="p">,</span>
-                <span class="s2">&quot;sample_queries&quot;</span><span class="p">:</span> <span class="n">sample_queries</span><span class="p">,</span>
-                <span class="s2">&quot;text_chunks&quot;</span><span class="p">:</span> <span class="n">text_chunks</span><span class="p">,</span>
-                <span class="s2">&quot;raw_data&quot;</span><span class="p">:</span> <span class="n">table_data</span><span class="p">,</span>
-                <span class="s2">&quot;source_document&quot;</span><span class="p">:</span> <span class="n">source_doc</span>
-            <span class="p">}</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">_generate_schema_representation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;Generate a SQL-like schema representation.&quot;&quot;&quot;</span>
-            <span class="n">types</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-                <span class="n">dtype</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span>
-                <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_numeric_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
-                    <span class="n">sql_type</span> <span class="o">=</span> <span class="s2">&quot;NUMERIC&quot;</span>
-                <span class="k">elif</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_datetime64_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
-                    <span class="n">sql_type</span> <span class="o">=</span> <span class="s2">&quot;TIMESTAMP&quot;</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">sql_type</span> <span class="o">=</span> <span class="s2">&quot;TEXT&quot;</span>
-
-                <span class="c1"># Add sample values for better understanding</span>
-                <span class="n">sample_values</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">()[:</span><span class="mi">3</span><span class="p">]</span>
-                <span class="n">sample_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Sample values: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">sample_values</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-
-                <span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">sql_type</span><span class="si">}</span><span class="s2"> -- </span><span class="si">{</span><span class="n">sample_str</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;CREATE TABLE table (</span><span class="se">\n</span><span class="s2">  &quot;</span> <span class="o">+</span> <span class="s2">&quot;,</span><span class="se">\n</span><span class="s2">  &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">types</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">);&quot;</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">_generate_table_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;Generate a natural language summary of the table.&quot;&quot;&quot;</span>
-            <span class="c1"># Use an LLM to summarize the table contents</span>
-            <span class="c1"># Implementation depends on your LLM framework</span>
-            <span class="c1"># ...</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">_generate_sample_queries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;Generate sample natural language queries this table could answer.&quot;&quot;&quot;</span>
-            <span class="c1"># Use an LLM to generate sample queries</span>
-            <span class="c1"># ...</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">_table_to_text_chunks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;Convert table to text chunks for semantic search.&quot;&quot;&quot;</span>
-            <span class="c1"># Implementation for chunking table content</span>
-            <span class="c1"># ...</span>
-    <span class="err">```</span>
-
-<span class="n">Once</span> <span class="n">the</span> <span class="n">right</span> <span class="n">table</span> <span class="ow">is</span> <span class="n">identified</span><span class="p">,</span> <span class="n">either</span><span class="p">:</span>
-
-<span class="o">-</span> <span class="n">Place</span> <span class="n">the</span> <span class="n">table</span> <span class="n">directly</span> <span class="n">into</span> <span class="n">the</span> <span class="n">context</span> <span class="k">for</span> <span class="n">simple</span> <span class="n">analysis</span>
-<span class="o">-</span> <span class="n">Generate</span> <span class="n">SQL</span> <span class="n">queries</span> <span class="ow">or</span> <span class="n">pandas</span> <span class="n">code</span> <span class="k">for</span> <span class="n">more</span> <span class="nb">complex</span> <span class="n">analysis</span>
-
-<span class="c1">## SQL Query Generation: A Case Study in Capability Building</span>
-
-<span class="n">SQL</span> <span class="n">query</span> <span class="n">generation</span> <span class="n">exemplifies</span> <span class="n">many</span> <span class="n">of</span> <span class="n">the</span> <span class="n">principles</span> <span class="n">we</span><span class="s1">&#39;ve discussed. It involves both an inventory challenge (finding the right tables) and a capability challenge (writing effective queries).</span>
-
-<span class="err">!!!</span> <span class="n">warning</span> <span class="s2">&quot;Limitations of Direct Translation&quot;</span>
-<span class="n">The</span> <span class="n">classical</span> <span class="n">approach</span><span class="err">—</span><span class="n">training</span> <span class="n">a</span> <span class="n">model</span> <span class="n">to</span> <span class="n">translate</span> <span class="n">natural</span> <span class="n">language</span> <span class="n">directly</span> <span class="n">to</span> <span class="n">SQL</span><span class="err">—</span><span class="n">often</span> <span class="n">struggles</span> <span class="k">with</span> <span class="nb">complex</span> <span class="n">schemas</span> <span class="ow">and</span> <span class="n">business</span><span class="o">-</span><span class="n">specific</span> <span class="n">query</span> <span class="n">patterns</span><span class="o">.</span>
-
-<span class="err">!!!</span> <span class="n">tip</span> <span class="s2">&quot;RAG Playbook for SQL Generation&quot;</span>
-<span class="n">A</span> <span class="n">more</span> <span class="n">effective</span> <span class="n">strategy</span> <span class="n">applies</span> <span class="n">our</span> <span class="n">RAG</span> <span class="n">playbook</span><span class="p">:</span>
-
-    <span class="mf">1.</span> <span class="o">**</span><span class="n">Build</span> <span class="n">an</span> <span class="n">inventory</span> <span class="n">of</span> <span class="n">tables</span> <span class="ow">and</span> <span class="n">their</span> <span class="n">descriptions</span><span class="o">**</span>
-    <span class="mf">2.</span> <span class="o">**</span><span class="n">Create</span> <span class="n">synthetic</span> <span class="n">questions</span> <span class="n">targeting</span> <span class="n">this</span> <span class="n">inventory</span><span class="o">**</span>
-    <span class="mf">3.</span> <span class="o">**</span><span class="n">Measure</span> <span class="n">retrieval</span> <span class="n">performance</span> <span class="k">for</span> <span class="n">table</span> <span class="n">selection</span><span class="o">**</span>
-    <span class="mf">4.</span> <span class="o">**</span><span class="n">Collect</span> <span class="n">exemplar</span> <span class="n">SQL</span> <span class="n">queries</span> <span class="n">demonstrating</span> <span class="n">important</span> <span class="n">capabilities</span><span class="o">**</span>
-    <span class="mf">5.</span> <span class="o">**</span><span class="n">Include</span> <span class="n">these</span> <span class="n">exemplars</span> <span class="n">when</span> <span class="n">generating</span> <span class="n">new</span> <span class="n">queries</span><span class="o">**</span>
-
-<span class="n">This</span> <span class="n">approach</span> <span class="n">addresses</span> <span class="n">a</span> <span class="n">fundamental</span> <span class="n">challenge</span> <span class="ow">in</span> <span class="n">SQL</span> <span class="n">generation</span><span class="p">:</span> <span class="n">the</span> <span class="n">same</span> <span class="n">question</span> <span class="n">can</span> <span class="n">be</span> <span class="n">interpreted</span> <span class="ow">in</span> <span class="n">multiple</span> <span class="n">valid</span> <span class="n">ways</span><span class="o">.</span> <span class="n">Consider</span> <span class="s2">&quot;Show me month-over-month revenue growth&quot;</span><span class="p">:</span>
-
-<span class="o">-</span> <span class="n">Does</span> <span class="s2">&quot;month&quot;</span> <span class="n">mean</span> <span class="n">calendar</span> <span class="n">month</span> <span class="ow">or</span> <span class="n">a</span> <span class="mi">28</span><span class="o">-</span><span class="n">day</span> <span class="n">period</span><span class="err">?</span>
-<span class="o">-</span> <span class="n">Should</span> <span class="n">weekends</span> <span class="n">be</span> <span class="n">excluded</span> <span class="k">for</span> <span class="n">B2B</span> <span class="n">applications</span><span class="err">?</span>
-<span class="o">-</span> <span class="n">Is</span> <span class="s2">&quot;growth&quot;</span> <span class="n">absolute</span> <span class="ow">or</span> <span class="n">percentage</span><span class="err">?</span>
-<span class="o">-</span> <span class="n">Should</span> <span class="n">the</span> <span class="n">calculation</span> <span class="n">include</span> <span class="ow">or</span> <span class="n">exclude</span> <span class="n">certain</span> <span class="n">revenue</span> <span class="n">types</span><span class="err">?</span>
-
-<span class="n">Without</span> <span class="n">business</span> <span class="n">context</span><span class="p">,</span> <span class="n">even</span> <span class="n">the</span> <span class="n">most</span> <span class="n">advanced</span> <span class="n">models</span> <span class="n">can</span> <span class="n">only</span> <span class="n">guess</span><span class="o">.</span> <span class="n">By</span> <span class="n">including</span> <span class="n">relevant</span> <span class="n">exemplars</span> <span class="n">that</span> <span class="n">demonstrate</span> <span class="n">how</span> <span class="n">your</span> <span class="n">organization</span> <span class="n">typically</span> <span class="n">answers</span> <span class="n">such</span> <span class="n">questions</span><span class="p">,</span> <span class="n">you</span> <span class="n">guide</span> <span class="n">the</span> <span class="n">model</span> <span class="n">toward</span> <span class="n">your</span> <span class="n">preferred</span> <span class="n">interpretations</span><span class="o">.</span>
-
-<span class="err">!!!</span> <span class="n">example</span> <span class="s2">&quot;SQL Query Generator with Examples&quot;</span>
-<span class="err">```</span><span class="n">python</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
-
-    <span class="k">class</span><span class="w"> </span><span class="nc">SQLQueryGenerator</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate SQL queries based on natural language using RAG with examples.&quot;&quot;&quot;</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db_schema_store</span><span class="p">,</span> <span class="n">query_example_store</span><span class="p">):</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Initialize the SQL query generator.</span>
-
-<span class="sd">            Args:</span>
-<span class="sd">                db_schema_store: Repository of table schemas</span>
-<span class="sd">                query_example_store: Repository of example queries</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">db_schema_store</span> <span class="o">=</span> <span class="n">db_schema_store</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">query_example_store</span> <span class="o">=</span> <span class="n">query_example_store</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">generate_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_question</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Generate a SQL query based on a natural language question.</span>
-
-<span class="sd">            Args:</span>
-<span class="sd">                user_question: Natural language question</span>
-
-<span class="sd">            Returns:</span>
-<span class="sd">                SQL query string</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="c1"># Step 1: Identify relevant tables</span>
-            <span class="n">relevant_tables</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieve_relevant_tables</span><span class="p">(</span><span class="n">user_question</span><span class="p">)</span>
-
-            <span class="c1"># Step 2: Retrieve relevant query examples</span>
-            <span class="n">relevant_examples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieve_relevant_examples</span><span class="p">(</span><span class="n">user_question</span><span class="p">)</span>
-
-            <span class="c1"># Step 3: Generate SQL using context</span>
-            <span class="n">sql_query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_sql_with_context</span><span class="p">(</span>
-                <span class="n">user_question</span><span class="p">,</span>
-                <span class="n">relevant_tables</span><span class="p">,</span>
-                <span class="n">relevant_examples</span>
-            <span class="p">)</span>
-
-            <span class="k">return</span> <span class="n">sql_query</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">_retrieve_relevant_tables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">question</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;Find tables relevant to the question using semantic search.&quot;&quot;&quot;</span>
-            <span class="c1"># Implementation using db_schema_store</span>
-            <span class="c1"># ...</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">_retrieve_relevant_examples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">question</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;Find query examples relevant to the question.&quot;&quot;&quot;</span>
-            <span class="c1"># Implementation using query_example_store</span>
-            <span class="c1"># ...</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">_generate_sql_with_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">question</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                                      <span class="n">tables</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
-                                      <span class="n">examples</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Generate SQL using the question, tables, and examples as context.</span>
-
-<span class="sd">            This is where we&#39;d use an LLM with a carefully crafted prompt that:</span>
-<span class="sd">            1. Shows the table schemas</span>
-<span class="sd">            2. Provides relevant query examples</span>
-<span class="sd">            3. Asks for a query answering the user&#39;s question</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="c1"># LLM implementation</span>
-            <span class="c1"># ...</span>
-
-    <span class="c1"># Example usage</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">process_user_query</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process a natural language query to SQL and execute it.&quot;&quot;&quot;</span>
-        <span class="c1"># Step 1: Generate SQL</span>
-        <span class="n">sql_query</span> <span class="o">=</span> <span class="n">sql_generator</span><span class="o">.</span><span class="n">generate_query</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
-
-        <span class="c1"># Step 2: Execute query (with safety checks)</span>
-        <span class="k">if</span> <span class="n">is_safe_query</span><span class="p">(</span><span class="n">sql_query</span><span class="p">):</span>
-            <span class="n">results</span> <span class="o">=</span> <span class="n">execute_query</span><span class="p">(</span><span class="n">sql_query</span><span class="p">)</span>
-            <span class="k">return</span> <span class="p">{</span>
-                <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">question</span><span class="p">,</span>
-                <span class="s2">&quot;sql_query&quot;</span><span class="p">:</span> <span class="n">sql_query</span><span class="p">,</span>
-                <span class="s2">&quot;results&quot;</span><span class="p">:</span> <span class="n">results</span>
-            <span class="p">}</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Generated query failed safety checks&quot;</span><span class="p">}</span>
-    <span class="err">```</span>
-
-<span class="err">!!!</span> <span class="n">quote</span> <span class="s2">&quot;Data Science Success Story&quot;</span>
-<span class="s2">&quot;We spent months trying to fine-tune models for SQL generation with limited success. Once we switched to retrieving exemplar queries from our analytics repository, accuracy jumped by 30</span><span class="si">% o</span><span class="s2">vernight.&quot;</span>
-
-<span class="c1">## Bringing It All Together</span>
-
-<span class="n">As</span> <span class="n">we</span> <span class="n">prepare</span> <span class="k">for</span> <span class="n">our</span> <span class="n">final</span> <span class="n">session</span> <span class="n">on</span> <span class="n">routing</span> <span class="ow">and</span> <span class="n">unified</span> <span class="n">systems</span><span class="p">,</span> <span class="n">let</span><span class="s1">&#39;s solidify the key insights from today&#39;</span><span class="n">s</span> <span class="n">exploration</span> <span class="n">of</span> <span class="n">multimodal</span> <span class="n">RAG</span><span class="p">:</span>
-
-<span class="err">!!!</span> <span class="n">abstract</span> <span class="s2">&quot;Key Takeaways&quot;</span> <span class="mf">1.</span> <span class="o">**</span><span class="n">The</span> <span class="n">power</span> <span class="n">of</span> <span class="n">specialization</span><span class="o">**</span><span class="p">:</span> <span class="n">Building</span> <span class="n">dedicated</span> <span class="n">retrieval</span> <span class="n">mechanisms</span> <span class="k">for</span> <span class="n">different</span> <span class="n">content</span> <span class="n">types</span> <span class="ow">and</span> <span class="n">query</span> <span class="n">patterns</span> <span class="n">consistently</span> <span class="n">outperforms</span> <span class="n">monolithic</span> <span class="n">approaches</span><span class="o">.</span>
-
-    <span class="mf">2.</span> <span class="o">**</span><span class="n">Two</span> <span class="n">complementary</span> <span class="n">strategies</span><span class="o">**</span><span class="p">:</span> <span class="n">Extract</span> <span class="n">structured</span> <span class="n">data</span> <span class="kn">from</span><span class="w"> </span><span class="nn">unstructured</span> <span class="n">content</span><span class="p">,</span> <span class="ow">or</span> <span class="n">create</span> <span class="n">synthetic</span> <span class="n">text</span> <span class="n">chunks</span> <span class="n">that</span> <span class="n">point</span> <span class="n">to</span> <span class="n">source</span> <span class="n">data</span><span class="err">—</span><span class="n">both</span> <span class="n">serve</span> <span class="k">as</span> <span class="n">AI</span><span class="o">-</span><span class="n">powered</span> <span class="n">materialized</span> <span class="n">views</span><span class="o">.</span>
-
-    <span class="mf">3.</span> <span class="o">**</span><span class="n">Measurement</span> <span class="n">drives</span> <span class="n">improvement</span><span class="o">**</span><span class="p">:</span> <span class="n">Use</span> <span class="n">precision</span> <span class="ow">and</span> <span class="n">recall</span> <span class="n">at</span> <span class="n">both</span> <span class="n">the</span> <span class="n">router</span> <span class="ow">and</span> <span class="n">retriever</span> <span class="n">levels</span> <span class="n">to</span> <span class="n">identify</span> <span class="n">your</span> <span class="n">system</span><span class="s1">&#39;s limiting factors.</span>
-
-    <span class="mf">4.</span> <span class="o">**</span><span class="n">Modality</span><span class="o">-</span><span class="n">specific</span> <span class="n">optimizations</span><span class="o">**</span><span class="p">:</span> <span class="n">Each</span> <span class="n">content</span> <span class="nb">type</span> <span class="n">requires</span> <span class="n">tailored</span> <span class="n">approaches</span><span class="p">,</span> <span class="kn">from</span><span class="w"> </span><span class="nn">contextual</span> <span class="n">retrieval</span> <span class="k">for</span> <span class="n">documents</span> <span class="n">to</span> <span class="n">rich</span> <span class="n">descriptions</span> <span class="k">for</span> <span class="n">images</span> <span class="n">to</span> <span class="n">exemplar</span><span class="o">-</span><span class="n">based</span> <span class="n">generation</span> <span class="k">for</span> <span class="n">SQL</span><span class="o">.</span>
-
-<span class="err">```</span><span class="n">mermaid</span>
-<span class="n">flowchart</span> <span class="n">TD</span>
-    <span class="n">A</span><span class="p">[</span><span class="n">User</span> <span class="n">Query</span><span class="p">]</span> <span class="o">--&gt;</span> <span class="n">B</span><span class="p">[</span><span class="n">Query</span> <span class="n">Analyzer</span><span class="p">]</span>
-    <span class="n">B</span> <span class="o">--&gt;</span> <span class="n">C</span><span class="p">[</span><span class="n">Query</span> <span class="n">Router</span><span class="p">]</span>
-
-    <span class="n">C</span> <span class="o">--&gt;|</span><span class="n">Document</span> <span class="n">Query</span><span class="o">|</span> <span class="n">D</span><span class="p">[</span><span class="n">Document</span> <span class="n">Retriever</span><span class="p">]</span>
-    <span class="n">C</span> <span class="o">--&gt;|</span><span class="n">Image</span> <span class="n">Query</span><span class="o">|</span> <span class="n">E</span><span class="p">[</span><span class="n">Image</span> <span class="n">Retriever</span><span class="p">]</span>
-    <span class="n">C</span> <span class="o">--&gt;|</span><span class="n">Table</span> <span class="n">Query</span><span class="o">|</span> <span class="n">F</span><span class="p">[</span><span class="n">Table</span> <span class="n">Retriever</span><span class="p">]</span>
-    <span class="n">C</span> <span class="o">--&gt;|</span><span class="n">SQL</span> <span class="n">Query</span><span class="o">|</span> <span class="n">G</span><span class="p">[</span><span class="n">SQL</span> <span class="n">Generator</span><span class="p">]</span>
-
-    <span class="n">D</span> <span class="o">--&gt;</span> <span class="n">H</span><span class="p">[</span><span class="n">Result</span> <span class="n">Combiner</span><span class="p">]</span>
-    <span class="n">E</span> <span class="o">--&gt;</span> <span class="n">H</span>
-    <span class="n">F</span> <span class="o">--&gt;</span> <span class="n">H</span>
-    <span class="n">G</span> <span class="o">--&gt;</span> <span class="n">H</span>
-
-    <span class="n">H</span> <span class="o">--&gt;</span> <span class="n">I</span><span class="p">[</span><span class="n">Response</span> <span class="n">Generator</span><span class="p">]</span>
-    <span class="n">I</span> <span class="o">--&gt;</span> <span class="n">J</span><span class="p">[</span><span class="n">User</span> <span class="n">Response</span><span class="p">]</span>
-</code></pre></div>
-<p>The beauty of this framework is its recursive nature. The same playbook—synthetic data generation, segmentation, capability identification—applies whether you're building your first retrieval system or your fifth specialized index.</p>
-<p>!!! tip "Implementation Strategy" 1. <strong>Start small</strong>: Begin with one or two specialized retrievers for your highest-impact query types 2. <strong>Measure relentlessly</strong>: Track performance metrics for each retriever and overall system 3. <strong>Expand incrementally</strong>: Add new retrievers as you identify segments that would benefit 4. <strong>Refine continuously</strong>: Use user feedback to improve both routing and retrieval quality</p>
-<div class="admonition quote">
-<p class="admonition-title">Engineering Insight</p>
-</div>
-<p>"No matter how much better AI gets, you'll always be responsible for retrieval. Understanding what to retrieve and how to retrieve it remains the core challenge even as models become more capable."</p>
-<div class="admonition tip">
-<p class="admonition-title">Cross-Reference</p>
-</div>
-<p>In <a href="../chapter6/">Chapter 6</a>, we'll explore how to bring these specialized components together through effective routing strategies, creating a unified system that seamlessly directs users to the appropriate retrievers based on their queries.</p>
-<h2 id="reflection-questions">Reflection Questions</h2>
-<p>As you prepare for our final session, consider these questions about your own RAG implementation:</p>
-<p>!!! question "Self-Assessment" 1. Which query segments in your application might benefit from specialized retrieval approaches?</p>
-<div class="highlight"><pre><span></span><code>2. What structured metadata could you extract from your content to enable more precise filtering?
-
-3. For which content types might synthetic summaries improve retrieval performance?
-
-4. How would you measure whether your performance bottleneck is in retriever selection or in the retrievers themselves?
-
-5. What exemplars from your domain could help guide generation tasks like SQL queries or code snippets?
-</code></pre></div>
-<p>By systematically addressing these questions, you'll be well-positioned to transform your RAG system from adequate to exceptional—one specialized index at a time.</p>
-<h2 id="summary">Summary</h2>
-<p>This chapter has shown that the path to advanced RAG implementations involves moving from monolithic retrieval to specialized indices tailored to different content types and query patterns. We've explored strategies for document, image, and tabular data, and seen how the same fundamental principles of measurement and improvement apply across modalities.</p>
-<p>The specialized approach offers not just better performance but also organizational advantages: teams can work independently on different retrievers, new capabilities can be added incrementally, and the system becomes more maintainable and extensible over time.</p>
-<p>As we move toward our final chapter on unified retrieval systems, remember that this specialization pattern reflects the broader evolution of machine learning systems: from monolithic models to mixtures of experts and back again as capabilities advance. By building specialized retrievers today, you're not just improving current performance—you're creating a foundation that will continue to evolve with the field.</p>
 
 
 
@@ -1788,7 +972,7 @@
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
   Back to top
 </button>
         
@@ -1796,44 +980,6 @@
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../chapter4/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 4: Understanding Your Users">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Chapter 4: Understanding Your Users
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../chapter6/" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 6: Unified Search Architecture">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                Chapter 6: Unified Search Architecture
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -1858,7 +1004,7 @@
       
     
     <a href="https://twitter.com/jxnlco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
     </a>
   
 </div>
@@ -1873,10 +1019,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a7c05c9e.min.js"></script>
       
         <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
       
