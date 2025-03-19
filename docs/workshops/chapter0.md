@@ -23,6 +23,7 @@ tags:
     - The "improvement flywheel" that transforms user interactions into system enhancements
     - How to shift from ad-hoc tweaking to systematic, data-driven improvement
     - The mindset that separates successful AI products from those that stagnate after launch
+    - How to dismantle guesswork in AI development with structured, measurable approaches
 
 ## The Product Mindset: Why Most RAG Implementations Fail
 
@@ -32,7 +33,9 @@ This approach inevitably leads to disappointment. The system works well for demo
 
 The fundamental issue? They've built a technical implementation, not a product.
 
-Throughout my career building AI systems at Facebook, Stitch Fix, and for various clients, I've observed a consistent pattern: **the teams that succeed are those that treat their RAG implementations as products that continuously evolve rather than projects that eventually conclude.**
+Throughout my career building AI systems—from computer vision and computational mathematics at the University of Waterloo, to content policy and safety systems at Facebook, to recommendation systems at Stitch Fix that boosted revenue by $50 million—I've observed a consistent pattern: **the teams that succeed are those that treat their RAG implementations as products that continuously evolve rather than projects that eventually conclude.**
+
+My background spans diverse applications of AI: managing large-scale data curation budgets, designing multimodal retrieval models using variational autoencoders and GANs, and processing hundreds of millions of recommendations weekly. This experience has directly informed my consulting work with companies like HubSpot, Zapier, and many others on query understanding, prompt optimization, embedding search, and fine-tuning.
 
 Consider these contrasting approaches:
 
@@ -212,9 +215,19 @@ To illustrate the power of this approach, let's look at a real example from my c
 
 The result wasn't just better technical performance—it was significantly higher user adoption, reduced time spent on research, and ultimately, better legal outcomes for clients.
 
+## Who This Book Is For
+
+This book is designed for a diverse range of practitioners involved in building AI applications. Based on my experiences teaching these concepts, I've found that the audience typically includes:
+
+- **Technical Leaders (30%)**: CTOs, founders, and technical directors who need to make strategic decisions about AI implementation and improvement
+- **Senior Engineers (20%)**: Experienced developers responsible for designing and implementing RAG systems
+- **Cross-Functional Teams (50%)**: A mix of software engineers, data scientists, product managers, solution engineers, and consultants who collaborate on AI products
+
+Organizations of all sizes benefit from this approach—from startups to technology giants like Amazon, Google, Microsoft, OpenAI, and Anthropic. The systematic framework is particularly valuable when multiple stakeholders need to align on how to improve AI applications and allocate resources effectively.
+
 ## What You'll Learn in This Book
 
-Throughout this book, I'll guide you through implementing every aspect of the improvement flywheel, with practical examples and code you can adapt to your own projects.
+Throughout this book, I'll guide you through implementing every aspect of the improvement flywheel, with practical examples and code you can adapt to your own projects. The goal is to replace guesswork with structured, measurable approaches that free up mental energy for innovation.
 
 Here's what we'll cover in the upcoming chapters:
 
@@ -242,6 +255,18 @@ Develop purpose-built solutions for different user needs, spanning documents, im
 
 Create a cohesive product experience that intelligently routes to specialized components while maintaining a seamless user experience.
 
+## What Success Looks Like
+
+When you successfully adopt the systematic approach outlined in this book, you'll experience several tangible benefits:
+
+- **Reduced Anxiety in Team Discussions**: No more dread when stakeholders say "just make the AI better"—you'll have clear paths forward
+- **Data-Informed Decision Making**: Less guesswork and more confidence in prioritization decisions
+- **Resource Optimization**: Ability to identify high-impact tasks and make informed tradeoffs about time investment
+- **Metrics That Matter**: Selection of relevant measurements that correlate with business outcomes
+- **Demonstrated Business Value**: Improved user satisfaction, retention, and increased system usage
+
+The difference between teams with and without a systematic approach is stark. Those without systems often spend meetings debating subjective opinions about what might work, while teams with systems focus discussions on objective data and strategic improvements.
+
 ## Reflection Questions
 
 As you prepare for the next chapter, consider these questions about your current approach to RAG:
@@ -251,6 +276,8 @@ As you prepare for the next chapter, consider these questions about your current
 3. How do you currently measure the success of your RAG application?
 4. What processes do you have for prioritizing improvements?
 5. How would your approach change if you viewed RAG as a recommendation engine rather than a pipeline?
+6. How much time does your team currently spend debating what might work versus testing hypotheses?
+7. Do you have a framework for allocating resources to different improvement opportunities?
 
 By shifting from an implementation mindset to a product mindset, you'll move from building RAG systems that work once to creating AI products that continuously improve and deliver increasing value over time.
 
