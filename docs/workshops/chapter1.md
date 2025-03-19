@@ -77,7 +77,7 @@ The solution is clear: try to be world-class in just a few narrow domains and ea
 
 ## Leading versus Lagging Metrics
 
-Understanding the distinction between leading and lagging metrics can transform your approach to improvement. This concept was profound to me when I worked at Facebook, and it applies perfectly to RAG applications.
+Understanding the distinction between leading and lagging metrics can transform your approach to improvement. This concept was profound to me when I worked at Facebook, and it applies perfectly to RAG applications. Shifting your focus from outcomes to inputs is often the most significant mindset change for successful RAG development.
 
 ```mermaid
 flowchart TD
@@ -140,9 +140,21 @@ Examples of leading metrics include:
 - Retrieval precision and recall
 - User feedback collection rate
 
+### The Calories In, Calories Out Analogy
+
+Let me offer a simple but powerful analogy from physical fitness that perfectly illustrates the relationship between leading and lagging metrics:
+
+If your goal is weight management (a lagging metric), the most reliable path is focusing on calories consumed and calories burned (leading metrics). At any moment, you can count how many calories you've eaten and how many you've expended through activity. If you want to gain weight, ensure you've eaten enough; if you want to lose weight, ensure you've created a caloric deficit.
+
+While this is admittedly reductive, the principle is profound: focus on the inputs you can control (calories), and the outputs you care about (weight) will follow predictably. The obsessive tracking of weight (the lagging metric) provides little actionable information compared to tracking calories (the leading metric).
+
 In physical fitness, leading metrics would be calories consumed, workout frequency, and sleep quality. These factors are within your direct control and predictive of future outcomes.
 
+### The #1 Leading Metric: Experiment Velocity
+
 The most important leading metric for early-stage RAG applications is simply the number of experiments run. Just like counting calories is more effective for weight management than weighing yourself constantly, tracking experiment velocity is more useful than obsessing over end-user metrics that change slowly.
+
+My recommendation? Completely restructure how you think about team stand-ups. Instead of focusing primarily on outcomes, count and increase the number of experiments you can run. If your team feels lost or unsure what to do next, the answer is simple: run more experiments.
 
 During team meetings, shift focus from asking about the outcomes of experiments to increasing the number of experiments you can run. What infrastructure investments would improve that velocity? How can you brainstorm new ideas to design better experiments? This mindset shift makes all the difference.
 
@@ -153,6 +165,14 @@ Two cognitive biases frequently derail RAG improvement efforts: absence blindnes
 ### Absence Blindness
 
 Absence blindness is simple: you don't fix what you can't see. In RAG applications, I see this daily with almost every client. Teams focus obsessively on generation quality and latency—the visible parts of the system—while neglecting to check whether retrieval is even working correctly.
+
+I've seen teams spend weeks fine-tuning prompts to improve the quality of generated text, only to discover that their retrieval system wasn't functioning properly at all. No amount of prompt engineering can compensate for a system that retrieves irrelevant documents or misses critical information.
+
+Key questions almost no one asks until I prompt them:
+- Have you verified whether your retrieval is bringing back the right documents?
+- Are your text chunks properly segmented?
+- Is your data extraction pipeline working as expected?
+- Do you have metrics for retrieval separate from generation?
 
 ```mermaid
 graph LR
@@ -184,7 +204,17 @@ Have you verified whether your retrieval brings back the right documents? Are yo
 
 Intervention bias is our tendency to take action just to feel in control, regardless of whether that action is effective. In RAG applications, this manifests as constantly switching between models, adding prompt tweaks, or implementing new features without measuring their impact.
 
-Many teams make changes to feel like they're making progress rather than taking specific interventions against specific metrics and testing clear hypotheses. While it feels good to be taking action, randomized changes create technical debt and confuse attribution of improvements.
+In my consulting practice, I frequently get emails asking: "Should we use GPT-4 or Claude?" or "Will adding this prompt technique fix our issues?" The honest answer is always the same: it depends on your data, your evaluations, and your benchmarks. There are no universal answers.
+
+Many teams make changes to feel like they're making progress rather than taking specific interventions against specific metrics and testing clear hypotheses. I see this pattern repeatedly:
+
+1. Team faces RAG performance issues
+2. Someone suggests a new model, chunking approach, or prompt technique 
+3. Quick implementation without proper testing
+4. Subjective assessment: "It feels better"
+5. New problems emerge, cycle repeats
+
+While it feels good to be taking action, randomized changes create technical debt and confuse attribution of improvements. Each change should target a specific metric and test a clear hypothesis.
 
 The solution is to establish evaluations that enable methodical improvement—evaluations that reflect and correlate with business outcomes you care about.
 
@@ -553,4 +583,14 @@ In [Chapter 2](chapter2.md), we'll explore how to convert evaluations into train
 
 ## Summary
 
-Remember, the goal is not to chase the latest AI techniques blindly, but to establish a flywheel of continuous improvement driven by clear metrics aligned with user outcomes. Start with synthetic data, focus on retrieval before generation, and measure everything. These practices will serve as the foundation for all our subsequent improvements to your RAG application.
+Remember these key principles as you move forward:
+
+1. **Focus on leading metrics** - Particularly experiment velocity, which you can control directly
+2. **Do the obvious thing repeatedly** - Success often looks boring, like counting calories in and calories out
+3. **Combat absence blindness** - Pay attention to retrieval quality, not just the visible parts like generation
+4. **Avoid intervention bias** - Make targeted changes based on specific hypotheses, not random tweaks
+5. **Embrace empiricism** - There are no universal answers that work for all use cases—test everything
+
+The goal is not to chase the latest AI techniques blindly, but to establish a flywheel of continuous improvement driven by clear metrics aligned with user outcomes. Start with synthetic data, focus on retrieval before generation, and measure everything. These practices will serve as the foundation for all our subsequent improvements to your RAG application.
+
+As one of my clients discovered after implementing these principles: "We spent three months trying to make our system better through prompt engineering and model switching. In just two weeks with proper evaluations, we made more progress than in all that time."
