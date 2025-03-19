@@ -126,46 +126,10 @@ def create_citation_prompt(query: str, documents: list):
 
 On the frontend, you can transform these citations into interactive elements:
 
-```javascript
-function renderCitedResponse(response) {
-  // Parse the response to extract citations
-  const citationRegex = /\[(\d+)\]/g;
-  const citedResponse = response.answer.replace(
-    citationRegex,
-    (match, docNum) => {
-      // Create an interactive citation element
-      return `<span class="citation" 
-                   data-doc-id="${docNum}" 
-                   onclick="expandCitation(${docNum})">
-                ${match}
-              </span>`;
-    },
-  );
+!!! example "Interactive Citations Rendering"
+    ![Example of JavaScript code for rendering interactive citations in responses](../assets/images/interactive-citations-rendering.png)
 
-  // Render the response
-  document.getElementById("response").innerHTML = citedResponse;
-
-  // Render the sources section
-  const sourcesElement = document.getElementById("sources");
-  response.sources.forEach((source, index) => {
-    const sourceElement = document.createElement("div");
-    sourceElement.className = "source";
-    sourceElement.innerHTML = `
-      <div class="source-header">
-        <span class="source-number">[${index + 1}]</span>
-        <span class="source-title">${source.title}</span>
-        <div class="feedback-buttons">
-          <button onclick="markRelevant(${index})">✓ Relevant</button>
-          <button onclick="markIrrelevant(${index})">✗ Irrelevant</button>
-        </div>
-      </div>
-      <div class="source-content" id="source-content-${index}" style="display: none;">
-        ${source.content}
-      </div>
-    `;
-    sourcesElement.appendChild(sourceElement);
-  });
-}
+    *This code demonstrates how to transform a response with citation markers into an interactive UI where citations are clickable elements, and sources can be rated for relevance.*
 ```
 
 This creates an interactive experience where citations are visually distinct, clickable elements. When users engage with these elements, you can collect valuable feedback while enhancing their understanding of the response.
@@ -227,45 +191,10 @@ def chain_of_thought_prompt(query: str, documents: list):
 
 Taking this a step further, you can stream the thinking process as a separate UI component or interstitial. This serves two purposes: it makes the waiting time more engaging by showing users that complex reasoning is happening, and it allows users to intervene if they notice the reasoning going astray.
 
-```javascript
-let thinkingComplete = false;
-let currentSection = null;
-let thinking = "";
-let answer = "";
+!!! example "Chain of Thought Streaming Implementation"
+    ![Example of JavaScript code for processing and displaying streamed chain of thought](../assets/images/chain-of-thought-streaming.png)
 
-function processStreamedToken(token) {
-  // Check for section tags
-  if (token.includes("<thinking>")) {
-    currentSection = "thinking";
-    return;
-  } else if (token.includes("</thinking>")) {
-    thinkingComplete = true;
-    currentSection = null;
-    // Render the complete thinking section
-    document.getElementById("thinking-container").style.display = "block";
-    document.getElementById("thinking").innerHTML = thinking;
-    return;
-  } else if (token.includes("<answer>")) {
-    currentSection = "answer";
-    return;
-  } else if (token.includes("</answer>")) {
-    currentSection = null;
-    return;
-  }
-
-  // Process tokens based on current section
-  if (currentSection === "thinking") {
-    thinking += token;
-    // If thinking isn't complete yet, show it streaming
-    if (!thinkingComplete) {
-      document.getElementById("thinking-container").style.display = "block";
-      document.getElementById("thinking").innerHTML = thinking;
-    }
-  } else if (currentSection === "answer") {
-    answer += token;
-    document.getElementById("answer").innerHTML = answer;
-  }
-}
+    *This code processes streamed tokens containing XML-tagged thinking and answer sections, rendering them in separate UI components. This makes the reasoning process transparent and engaging for users.*
 ```
 
 I worked with a financial advisory firm that implemented this approach for their investment recommendation system. As the model reasoned through market conditions, client preferences, and portfolio considerations, this thinking was streamed to the advisor in a separate panel. If the advisor noticed a misunderstanding or faulty assumption in the reasoning, they could pause generation and refine their query before a final recommendation was produced.

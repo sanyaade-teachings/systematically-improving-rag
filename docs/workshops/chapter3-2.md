@@ -185,53 +185,10 @@ async def stream_query_response(request: Request):
 
 On the frontend, you'll need to handle Server-Sent Events (SSE) or WebSockets to receive and display the streamed content:
 
-```javascript
-function streamResponse(query) {
-  // Clear previous response
-  const responseElement = document.getElementById("response");
-  responseElement.innerHTML = "";
+!!! example "Frontend Streaming Implementation"
+    ![Example of JavaScript frontend code that handles streaming responses](../assets/images/frontend-streaming-code.png)
 
-  // Show that we're working on it
-  responseElement.innerHTML = '<div class="typing-indicator">Thinking...</div>';
-
-  // Make a request to the streaming endpoint
-  fetch("/query/stream", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query: query }),
-  })
-    .then((response) => {
-      // Create a reader for the response stream
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-
-      // Remove the typing indicator
-      responseElement.innerHTML = "";
-
-      // Function to process stream chunks
-      function readChunk() {
-        reader.read().then(({ done, value }) => {
-          if (done) return;
-
-          // Decode and display the chunk
-          const chunk = decoder.decode(value);
-          responseElement.innerHTML += chunk;
-
-          // Scroll to the bottom to show new content
-          responseElement.scrollTop = responseElement.scrollHeight;
-
-          // Read the next chunk
-          readChunk();
-        });
-      }
-
-      // Start reading chunks
-      readChunk();
-    })
-    .catch((error) => {
-      responseElement.innerHTML = `Error: ${error.message}`;
-    });
-}
+    *This code shows how to handle streaming responses on the frontend, creating a reader for the response stream, decoding chunks as they arrive, and updating the UI in real-time to display incremental results.*
 ```
 
 ### Showing Function Call Arguments
@@ -240,37 +197,10 @@ One unique advantage of streaming is the ability to show users not just the fina
 
 For example, you can stream the function calls and arguments that your RAG system is using:
 
-```javascript
-// Show thought process and function calls during streaming
-let currentThought = "";
-let lastUpdateTime = Date.now();
+!!! example "Function Call Streaming"
+    ![Example of JavaScript code for streaming function calls and thought process](../assets/images/function-call-streaming.png)
 
-function processStreamChunk(chunk) {
-  // Check if this is a thought or function call marker
-  if (chunk.startsWith("THINKING: ")) {
-    // Update the current thought
-    currentThought = chunk.replace("THINKING: ", "");
-
-    // Only update the display occasionally to avoid flickering
-    if (Date.now() - lastUpdateTime > 200) {
-      document.getElementById("thinking").innerText = currentThought;
-      lastUpdateTime = Date.now();
-    }
-  } else if (chunk.startsWith("FUNCTION: ")) {
-    // Extract and display function call information
-    const functionData = JSON.parse(chunk.replace("FUNCTION: ", ""));
-
-    document.getElementById("functions").innerHTML += `
-      <div class="function-call">
-        <div class="function-name">${functionData.name}</div>
-        <div class="function-args">${JSON.stringify(functionData.arguments, null, 2)}</div>
-      </div>
-    `;
-  } else {
-    // Regular content chunk for the response
-    document.getElementById("response").innerHTML += chunk;
-  }
-}
+    *This code processes streaming chunks to separate thought processes from function calls, displaying each in their own UI components. This creates engagement by showing users the system's reasoning and operations in real-time.*
 ```
 
 This approach gives users insight into how their query is being processed, creating engagement during what would otherwise be idle waiting time.
@@ -338,82 +268,10 @@ async def stream_structured_response(query: str):
 
 On the frontend, you'd handle this structured stream by updating different UI components based on the message type:
 
-```javascript
-function handleStructuredStream(stream) {
-  const reader = stream.getReader();
-  const decoder = new TextDecoder();
+!!! example "Structured Data Streaming Handler"
+    ![Example of JavaScript code for handling structured data streaming](../assets/images/structured-streaming-handler.png)
 
-  function processChunk() {
-    reader.read().then(({ done, value }) => {
-      if (done) return;
-
-      // Decode and parse the chunk
-      const chunk = decoder.decode(value);
-      const lines = chunk.split("\n").filter((line) => line.trim() !== "");
-
-      // Process each line as a separate JSON message
-      for (const line of lines) {
-        try {
-          const message = JSON.parse(line);
-
-          switch (message.type) {
-            case "start":
-              // Initialize UI components
-              document.getElementById("answer").innerHTML = "";
-              document.getElementById("citations").innerHTML = "";
-              document.getElementById("followup").innerHTML = "";
-              break;
-
-            case "answer":
-              // Append to the answer section
-              document.getElementById("answer").innerHTML += message.content;
-              break;
-
-            case "citation":
-              // Add a new citation
-              const citationEl = document.createElement("div");
-              citationEl.classList.add("citation");
-              citationEl.innerHTML = `
-                <h4>${message.title}</h4>
-                <p>${message.text}</p>
-                <div class="relevance-meter" style="width: ${message.relevance * 100}%"></div>
-              `;
-              document.getElementById("citations").appendChild(citationEl);
-              break;
-
-            case "followup":
-              // Add follow-up questions
-              const followupEl = document.getElementById("followup");
-              followupEl.innerHTML = "<h3>Follow-up Questions:</h3>";
-
-              for (const question of message.questions) {
-                const questionEl = document.createElement("button");
-                questionEl.classList.add("followup-question");
-                questionEl.innerText = question;
-                questionEl.onclick = () => submitQuery(question);
-                followupEl.appendChild(questionEl);
-              }
-              break;
-
-            case "end":
-              // Complete the response, perhaps with a final animation
-              document.querySelector(".loading-indicator").style.display =
-                "none";
-              break;
-          }
-        } catch (error) {
-          console.error("Error parsing stream message:", error);
-        }
-      }
-
-      // Continue reading
-      processChunk();
-    });
-  }
-
-  // Start processing chunks
-  processChunk();
-}
+    *This code processes a structured data stream, separating different components (answer chunks, citations, follow-up questions) and rendering each in their appropriate UI sections. This creates a dynamic, engaging experience where different parts of the response appear progressively.*
 ```
 
 This approach creates a dynamic, engaging experience where different parts of the response appear progressively, keeping users engaged throughout the generation process.
@@ -445,51 +303,10 @@ For RAG applications, skeleton screens can be particularly effective when showin
 - Follow-up question button outlines
 - Tool usage summaries that will appear
 
-```javascript
-// Example React component for a skeleton loader
-function AnswerSkeleton() {
-  return (
-    <div className="answer-skeleton">
-      <div className="skeleton-header"></div>
-      <div className="skeleton-paragraph">
-        <div className="skeleton-line"></div>
-        <div className="skeleton-line"></div>
-        <div className="skeleton-line"></div>
-        <div className="skeleton-line width-75"></div>
-      </div>
-      <div className="skeleton-citation-area">
-        <div className="skeleton-citation"></div>
-        <div className="skeleton-citation"></div>
-      </div>
-      <div className="skeleton-followup-area">
-        <div className="skeleton-button"></div>
-        <div className="skeleton-button"></div>
-      </div>
-    </div>
-  );
-}
+!!! example "Skeleton Loader Implementation"
+    ![Example of React component and CSS for implementing skeleton screens](../assets/images/skeleton-loader-code.png)
 
-// CSS for the skeleton with animation
-const skeletonStyles = `
-  .skeleton-line, .skeleton-header, .skeleton-citation, .skeleton-button {
-    background: linear-gradient(90deg, #f0f0f0, #e0e0e0, #f0f0f0);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-    border-radius: 4px;
-    margin-bottom: 8px;
-  }
-  
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
-  
-  .width-75 { width: 75%; }
-  .skeleton-header { height: 32px; margin-bottom: 24px; }
-  .skeleton-line { height: 16px; }
-  .skeleton-citation { height: 24px; margin-top: 16px; }
-  .skeleton-button { height: 36px; width: 120px; display: inline-block; margin-right: 8px; }
-`;
+    *This code shows how to implement animated skeleton loaders that mimic the structure of your content while it loads. The animation creates the impression of progress and helps users understand what content is coming.*
 ```
 
 !!! example "Meaningful vs. Generic Interstitials"
@@ -571,52 +388,10 @@ async def generate_interstitials(query: str):
 
 On the frontend, you'd display these interstitials in sequence during the waiting period:
 
-```javascript
-async function showInterstitials(query) {
-  // Request interstitial messages
-  const response = await fetch("/interstitials", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query }),
-  });
+!!! example "Meaningful Interstitials Implementation"
+    ![Example of JavaScript code for displaying meaningful interstitials in sequence](../assets/images/interstitials-code.png)
 
-  const interstitials = await response.json();
-  const interstitialElement = document.getElementById("interstitial");
-
-  // Display each interstitial in sequence
-  let index = 0;
-
-  function showNextInterstitial() {
-    if (index >= interstitials.length) index = 0;
-
-    // Fade out current message
-    interstitialElement.classList.add("fade-out");
-
-    // After fade out, update text and fade in
-    setTimeout(() => {
-      interstitialElement.textContent = interstitials[index];
-      interstitialElement.classList.remove("fade-out");
-      interstitialElement.classList.add("fade-in");
-
-      // Remove the fade-in class after animation completes
-      setTimeout(() => {
-        interstitialElement.classList.remove("fade-in");
-      }, 500);
-
-      index++;
-    }, 500);
-  }
-
-  // Show first interstitial immediately
-  interstitialElement.textContent = interstitials[0];
-  index++;
-
-  // Change interstitial every few seconds
-  const intervalId = setInterval(showNextInterstitial, 3000);
-
-  // Return a function to clear the interval when response arrives
-  return () => clearInterval(intervalId);
-}
+    *This code shows how to fetch and display domain-specific interstitial messages that rotate every few seconds. The animation and context-specific messages engage users during waiting time, making the system feel more responsive.*
 ```
 
 ## Optimizing Actual Performance
@@ -642,67 +417,10 @@ Caching dramatically improves performance for repeated or similar queries:
 
 Here's a simple implementation of semantic caching:
 
-```python
-from scipy.spatial.distance import cosine
+!!! example "Semantic Caching Implementation"
+    ![Example of Python code for implementing semantic caching based on embedding similarity](../assets/images/semantic-cache-code.png)
 
-class SemanticCache:
-    def __init__(self, embedding_function, similarity_threshold=0.92):
-        """
-        Initialize a semantic cache.
-
-        Parameters:
-        - embedding_function: Function to convert text to embeddings
-        - similarity_threshold: Threshold above which queries are considered similar
-        """
-        self.embedding_function = embedding_function
-        self.similarity_threshold = similarity_threshold
-        self.cache = []  # List of (query, embedding, result) tuples
-
-    def get(self, query):
-        """
-        Try to retrieve a result from cache based on semantic similarity.
-
-        Parameters:
-        - query: The current query
-
-        Returns:
-        - Cached result if a similar query exists, None otherwise
-        """
-        if not self.cache:
-            return None
-
-        # Compute embedding for the current query
-        query_embedding = self.embedding_function(query)
-
-        # Find the most similar cached query
-        best_similarity = 0
-        best_result = None
-
-        for cached_query, cached_embedding, cached_result in self.cache:
-            similarity = 1 - cosine(query_embedding, cached_embedding)
-
-            if similarity > best_similarity:
-                best_similarity = similarity
-                best_result = cached_result
-
-        # Return the result if similarity is above threshold
-        if best_similarity >= self.similarity_threshold:
-            return best_result
-
-        return None
-
-    def add(self, query, result):
-        """
-        Add a query-result pair to the cache.
-
-        Parameters:
-        - query: The query string
-        - result: The result to cache
-        """
-        query_embedding = self.embedding_function(query)
-        self.cache.append((query, query_embedding, result))
-
-        # Optionally implement cache eviction strategies here
+    *This code demonstrates a semantic caching system that stores and retrieves results based on query embedding similarity rather than exact string matching. This dramatically improves performance for similar queries without requiring exact matches.*
 ```
 
 ### 3. Implement Progressive Loading
@@ -743,74 +461,10 @@ Here's a simple but effective approach for Slack bots:
 
 4. **Feedback Collection**: Pre-fill emoji reactions (👍 👎 ⭐) to prompt users for feedback on the response quality.
 
-```javascript
-// Example Slack bot implementation with pseudo-streaming
-async function handleSlackQuery(query, channelId, messageTs) {
-  try {
-    // 1. Acknowledge receipt with eyes emoji
-    await slackClient.reactions.add({
-      channel: channelId,
-      name: 'eyes',
-      timestamp: messageTs
-    });
-    
-    // 2. Create an initial response
-    const initialResponse = await slackClient.chat.postMessage({
-      channel: channelId,
-      thread_ts: messageTs,
-      text: "Searching through knowledge base..."
-    });
-    
-    // 3. Update with progress (simulating streaming)
-    setTimeout(async () => {
-      await slackClient.chat.update({
-        channel: channelId,
-        ts: initialResponse.ts,
-        text: "Found relevant documents. Generating response..."
-      });
-      
-      // 4. Get the actual response
-      const documents = await retrieveDocuments(query);
-      const response = await generateResponse(query, documents);
-      
-      // 5. Post final response
-      const finalResponse = await slackClient.chat.update({
-        channel: channelId,
-        ts: initialResponse.ts,
-        text: response,
-        blocks: formatResponseBlocks(response, documents)
-      });
-      
-      // 6. Add feedback reactions
-      await slackClient.reactions.add({
-        channel: channelId,
-        name: 'thumbsup',
-        timestamp: finalResponse.ts
-      });
-      await slackClient.reactions.add({
-        channel: channelId,
-        name: 'thumbsdown',
-        timestamp: finalResponse.ts
-      });
-      await slackClient.reactions.add({
-        channel: channelId,
-        name: 'star',
-        timestamp: finalResponse.ts
-      });
-      
-      // 7. Mark as complete
-      await slackClient.reactions.add({
-        channel: channelId,
-        name: 'white_check_mark',
-        timestamp: finalResponse.ts
-      });
-      
-    }, 1500);
-    
-  } catch (error) {
-    console.error("Error handling Slack query:", error);
-  }
-}
+!!! example "Slack Bot Pseudo-Streaming Implementation"
+    ![Example of JavaScript code for implementing pseudo-streaming in a Slack bot](../assets/images/slack-bot-code.png)
+
+    *This code shows how to implement pseudo-streaming in a Slack bot environment, using message updates, emoji reactions, and staged processing to create the illusion of progress and maintain user engagement.*
 ```
 
 !!! tip "Slack Feedback Collection"
