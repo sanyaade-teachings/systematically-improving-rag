@@ -17,7 +17,7 @@ The true power of RAG isn't in its initial deployment—it's in how the system i
 In this chapter, we'll explore how to build effective feedback mechanisms that transform your RAG application from a static implementation into a continuously improving system that grows more valuable with every user interaction. This approach creates a "feedback flywheel"—a virtuous cycle where user interactions provide the data needed to make the system better, which in turn attracts more users and generates more feedback.
 
 !!! warning "The Invisible Feedback Problem"
-Many RAG implementations hide feedback mechanisms in obscure UI locations or use generic "thumbs up/down" buttons that provide minimal insight. Research suggests that users interact with these minimal feedback options less than 0.1% of the time, providing insufficient data for meaningful improvements.
+    Many RAG implementations hide feedback mechanisms in obscure UI locations or use generic "thumbs up/down" buttons that provide minimal insight. Research suggests that users interact with these minimal feedback options less than 0.1% of the time, providing insufficient data for meaningful improvements.
 
 In my consulting practice, I've seen that simply changing the copy from generic "How did we do?" to specific "Did we answer your question?" can increase feedback rates by **5x**. Well-designed feedback mechanisms don't just collect more data—they accelerate your entire improvement cycle, allowing you to fine-tune 5x faster and deploy with greater confidence.
 
@@ -34,7 +34,7 @@ This chapter focuses on the practical implementation of feedback mechanisms in R
 The first principle of effective feedback collection is visibility. Your feedback mechanisms should be prominent and engaging, not hidden in dropdown menus or settings pages. Users should encounter feedback options naturally as part of their interaction flow.
 
 !!! example "High-Visibility Feedback UI"
-Consider the difference between these two approaches:
+    Consider the difference between these two approaches:
 
     **Low Visibility:** A small thumbs up/down icon in the corner of the response
 
@@ -94,7 +94,7 @@ This approach creates transparency and builds trust by showing customers that th
 Generic feedback like thumbs up/down provides minimal insight for improvement. To make feedback truly actionable, segment it into specific aspects of your RAG pipeline.
 
 !!! warning "The Problem with Generic Feedback"
-A simple "thumbs down" could mean many things: - The retrieval system found irrelevant documents - The generation step produced inaccurate information - The answer was technically correct but poorly formatted - The answer was too brief or too verbose
+    A simple "thumbs down" could mean many things: - The retrieval system found irrelevant documents - The generation step produced inaccurate information - The answer was technically correct but poorly formatted - The answer was too brief or too verbose
 
     Without knowing which aspect failed, you can't target improvements effectively.
 
@@ -168,9 +168,8 @@ Consider these UI patterns specifically designed to help collect hard negative e
     ![Example of interactive citations UI with buttons to mark sources as relevant or irrelevant](../assets/images/interactive-citations-ui.png)
 
     *This UI allows users to mark specific citations as relevant or irrelevant and regenerate answers, creating valuable training data for improving retrieval quality.*
-```
 
-Remember: Hard negatives are the most valuable training examples for improving retrieval quality through embedding model fine-tuning. While standard negatives (completely unrelated documents) are easy to find, hard negatives (seemingly relevant but actually unhelpful documents) are rare and therefore extremely valuable for training.
+    Remember: Hard negatives are the most valuable training examples for improving retrieval quality through embedding model fine-tuning. While standard negatives (completely unrelated documents) are easy to find, hard negatives (seemingly relevant but actually unhelpful documents) are rare and therefore extremely valuable for training.
 
 Here's a simple algorithm for mining hard negatives from user interactions:
 
@@ -178,7 +177,6 @@ Here's a simple algorithm for mining hard negatives from user interactions:
     ![Example of Python code for identifying hard negative documents from user interactions](../assets/images/hard-negatives-algorithm.png)
 
     *This algorithm identifies potential hard negative documents based on user interactions, assigning confidence scores to each candidate based on behavior patterns like query refinements and explicit ratings.*
-```
 
 By collecting these potential hard negatives over time, you can build a dataset for fine-tuning embedding models or training re-rankers to avoid these problematic documents in future queries.
 
@@ -205,7 +203,6 @@ There are several approaches to implementing citations in your RAG interface:
     ![Example of JavaScript code for implementing markdown-based citations with feedback options](../assets/images/citations-implementation.png)
 
     *This code formats responses with clickable citations and builds a reference list that includes feedback options for each source, helping collect document-level relevance signals.*
-```
 
 ### Advanced Visualization with Bounding Boxes
 
@@ -235,7 +232,6 @@ This approach ensures that engineering efforts focus on changes that will have t
     ![Example of Python code for analyzing feedback data to prioritize improvements](../assets/images/roadmap-analysis.png)
 
     *This algorithm analyzes feedback data to identify high-priority improvement areas, considering factors like frequency, severity, number of affected users, and recency to calculate an impact score for each issue category.*
-```
 
 ## Conclusion: Feedback as Foundation
 

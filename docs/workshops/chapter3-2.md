@@ -310,7 +310,7 @@ For RAG applications, skeleton screens can be particularly effective when showin
 ```
 
 !!! example "Meaningful vs. Generic Interstitials"
-**Generic Interstitial:** "Loading..."
+    **Generic Interstitial:** "Loading..."
 
     **Meaningful Interstitial:**
     "Searching 382,549 documents in our knowledge base..."
@@ -392,7 +392,6 @@ On the frontend, you'd display these interstitials in sequence during the waitin
     ![Example of JavaScript code for displaying meaningful interstitials in sequence](../assets/images/interstitials-code.png)
 
     *This code shows how to fetch and display domain-specific interstitial messages that rotate every few seconds. The animation and context-specific messages engage users during waiting time, making the system feel more responsive.*
-```
 
 ## Optimizing Actual Performance
 
@@ -421,7 +420,6 @@ Here's a simple implementation of semantic caching:
     ![Example of Python code for implementing semantic caching based on embedding similarity](../assets/images/semantic-cache-code.png)
 
     *This code demonstrates a semantic caching system that stores and retrieves results based on query embedding similarity rather than exact string matching. This dramatically improves performance for similar queries without requiring exact matches.*
-```
 
 ### 3. Implement Progressive Loading
 
@@ -465,7 +463,6 @@ Here's a simple but effective approach for Slack bots:
     ![Example of JavaScript code for implementing pseudo-streaming in a Slack bot](../assets/images/slack-bot-code.png)
 
     *This code shows how to implement pseudo-streaming in a Slack bot environment, using message updates, emoji reactions, and staged processing to create the illusion of progress and maintain user engagement.*
-```
 
 !!! tip "Slack Feedback Collection"
     By pre-filling emoji reactions (👍 👎 ⭐), you dramatically increase the likelihood of receiving user feedback. This approach places feedback options directly in the user's view, rather than requiring them to take additional steps. In testing, this approach increased feedback collection rates by up to 5x compared to text-based feedback prompts.
