@@ -47,7 +47,6 @@ nav:
       - "Week 3": "office-hours/week3-summary.md"
       - "Week 4": "office-hours/week4-summary.md"
       - "Week 5": "office-hours/week5-summary.md"
-  - "Math Test": "test-math.md"
 markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences:

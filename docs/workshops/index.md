@@ -10,22 +10,22 @@ This series of workshops guides you through the complete process of building, ev
 ## Workshop Series
 
 - [Introduction: Beyond Implementation to Improvement](chapter0.md)
-- [Chapter 1: Starting the Flywheel with Data](chapter1.md)
-- [Chapter 2: From Evaluation to Product Enhancement](chapter2.md)
-- [Chapter 3 Part 1: Design Principles](chapter3-1.md)
-- [Chapter 3 Part 2: Feedback Collection](chapter3-2.md)
-- [Chapter 3 Part 3: Iterative Improvement](chapter3-3.md)
-- [Chapter 4 Part 1: Topic Modeling and Analysis](chapter4-1.md)
-- [Chapter 4 Part 2: Prioritization and Roadmapping](chapter4-2.md)
-- [Chapter 5 Part 1: Understanding Specialized Retrieval](chapter5-1.md)
-- [Chapter 5 Part 2: Implementing Multimodal Search](chapter5-2.md)
-- [Chapter 6 Part 1: Query Routing Foundations](chapter6-1.md)
-- [Chapter 6 Part 2: Tool Interfaces and Implementation](chapter6-2.md)
-- [Chapter 6 Part 3: Performance Measurement and Improvement](chapter6-3.md)
+- [Chapter 1: Starting the Flywheel](chapter1.md)
+- [Chapter 2: From Evaluation to Enhancement](chapter2.md)
+- [Chapter 3: UX - Design Principles](chapter3-1.md)
+- [Chapter 3: UX - Feedback Collection](chapter3-2.md)
+- [Chapter 3: UX - Iterative Improvement](chapter3-3.md)
+- [Chapter 4: Topic Modeling - Analysis](chapter4-1.md)
+- [Chapter 4: Topic Modeling - Prioritization](chapter4-2.md)
+- [Chapter 5: Multimodal - Understanding](chapter5-1.md)
+- [Chapter 5: Multimodal - Implementation](chapter5-2.md)
+- [Chapter 6: Architecture - Routing](chapter6-1.md)
+- [Chapter 6: Architecture - Tools](chapter6-2.md)
+- [Chapter 6: Architecture - Improvement](chapter6-3.md)
 
 ## Workshop Structure
 
 Each workshop combines theoretical concepts with practical exercises that you can apply directly to your own RAG implementations. Workshops are designed to be completed sequentially, as each one builds on concepts from previous sessions.
 
 !!! note "Prerequisites"
-These workshops assume basic familiarity with RAG implementations and foundational AI concepts. If you're new to RAG, we recommend reviewing the [Introduction](chapter0.md) before diving into the other chapters.
+    These workshops assume basic familiarity with RAG implementations and foundational AI concepts. If you're new to RAG, we recommend reviewing the [Introduction](chapter0.md) before diving into the other chapters.
