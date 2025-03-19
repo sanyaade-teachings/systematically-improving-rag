@@ -239,7 +239,7 @@ Learn how to overcome the cold-start problem through synthetic data generation, 
 
 Discover how to transform evaluation insights into concrete product improvements through fine-tuning, re-ranking, and targeted capability development.
 
-### [Chapter 3: The User Experience of AI](chapter3.md)
+### [Chapter 3: The User Experience of AI](chapter3-1.md)
 
 Explore how to design interfaces that both delight users and gather valuable feedback, creating the virtuous cycle at the heart of the improvement flywheel.
 
