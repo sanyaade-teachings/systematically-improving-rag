@@ -78,133 +78,15 @@ For enterprise applications, especially when working with large customers who ha
 
 This approach creates transparency and builds trust by showing customers that their feedback drives real improvements. In my experience, this method increases feedback by approximately 5x compared to traditional forms, while also improving customer retention through visible responsiveness.
 
-```javascript
-// Example Slack webhook integration
-async function postFeedbackToSlack(feedback) {
-  if (feedback.rating !== 'negative') return; // Only post negative feedback
-  
-  const message = {
-    blocks: [
-      {
-        type: "header",
-        text: {
-          type: "plain_text",
-          text: "📝 New Feedback Received"
-        }
-      },
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: `*Query:* ${feedback.query}\n*Rating:* ❌ Negative\n*User:* ${feedback.userName}\n*Time:* ${new Date().toLocaleString()}`
-        }
-      },
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: `*Issue:* ${feedback.issue}\n*Details:* ${feedback.details || 'No additional details provided'}`
-        }
-      },
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: `*System Response:*\n>>> ${feedback.response.substring(0, 250)}${feedback.response.length > 250 ? '...' : ''}`
-        }
-      },
-      {
-        type: "actions",
-        elements: [
-          {
-            type: "button",
-            text: {
-              type: "plain_text",
-              text: "View in Dashboard"
-            },
-            url: `https://your-app.com/feedback/${feedback.id}`
-          }
-        ]
-      }
-    ]
-  };
+!!! example "Slack Webhook Integration Code"
+    ![Example of Slack feedback integration showing code that posts negative feedback to a Slack channel](../assets/images/slack-feedback-code.png)
 
-  await fetch('https://hooks.slack.com/services/YOUR/WEBHOOK/URL', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(message)
-  });
-}
+    *This code demonstrates how to integrate feedback collection with Slack, automatically posting negative feedback to a shared channel for immediate visibility and follow-up.*
 
-```python
-def render_response_with_feedback(response: str, query_id: str):
-    """
-    Render a response with prominent feedback mechanisms.
+!!! example "Feedback UI Implementation"
+    ![Example of feedback UI implementation showing a Python function that generates HTML with feedback buttons](../assets/images/feedback-ui-code.png)
 
-    Parameters:
-    - response: The generated response text
-    - query_id: Unique identifier for the query
-
-    Returns:
-    - HTML content with embedded feedback UI
-    """
-    html = f"""
-    <div class="response-container">
-        <div class="response-content">
-            {response}
-        </div>
-
-        <div class="feedback-container">
-            <p class="feedback-prompt">Was this response helpful?</p>
-
-            <div class="feedback-options">
-                <button onclick="recordFeedback('{query_id}', 'helpful')">
-                    Very helpful
-                </button>
-
-                <button onclick="recordFeedback('{query_id}', 'somewhat')">
-                    Somewhat helpful
-                </button>
-
-                <button onclick="recordFeedback('{query_id}', 'not_helpful')">
-                    Not helpful
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-    function recordFeedback(id, rating) {
-        // Record the initial feedback
-        fetch('/api/feedback', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                query_id: id,
-                rating: rating
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            // If the rating wasn't "very helpful", show the detailed feedback form
-            if (rating !== 'helpful') {
-                showDetailedFeedbackForm(id, rating);
-            } else {
-                showThankYouMessage();
-            }
-        });
-    }
-
-    function showDetailedFeedbackForm(id, initialRating) {
-        // Display a more detailed feedback form based on the initial rating
-        // ...
-    }
-    </script>
-    """
-
-    return html
+    *This code renders a response with prominent feedback options, automatically showing a more detailed form if the user indicates the response wasn't fully helpful.*
 ```
 
 ## Segmented Feedback: Make It Actionable
@@ -236,94 +118,10 @@ Negative feedback is particularly valuable for improvement, but users often aban
 
 Here's how you might implement segmented negative feedback collection:
 
-```python
-def collect_negative_feedback(query_id: str, response_id: str):
-    """
-    Generate a detailed negative feedback form.
+!!! example "Detailed Negative Feedback Form"
+    ![Example of detailed negative feedback form showing checkboxes for specific issues](../assets/images/detailed-feedback-form.png)
 
-    Parameters:
-    - query_id: ID of the original query
-    - response_id: ID of the response being rated
-
-    Returns:
-    - HTML for a segmented feedback form
-    """
-    return f"""
-    <div class="detailed-feedback-form">
-        <p>Thanks for your feedback. Could you tell us more about what wasn't helpful?</p>
-
-        <form id="detailed-feedback-{response_id}">
-            <input type="hidden" name="query_id" value="{query_id}">
-            <input type="hidden" name="response_id" value="{response_id}">
-
-            <h4>What issues did you notice? (Select all that apply)</h4>
-
-            <div class="feedback-section">
-                <h5>Retrieval Issues:</h5>
-                <label>
-                    <input type="checkbox" name="retrieval_issue" value="irrelevant_sources">
-                    Sources weren't relevant to my question
-                </label>
-                <label>
-                    <input type="checkbox" name="retrieval_issue" value="missing_information">
-                    Important information seemed to be missing
-                </label>
-            </div>
-
-            <div class="feedback-section">
-                <h5>Generation Issues:</h5>
-                <label>
-                    <input type="checkbox" name="generation_issue" value="inaccurate">
-                    Information was factually incorrect
-                </label>
-                <label>
-                    <input type="checkbox" name="generation_issue" value="formatting">
-                    Response was poorly organized or formatted
-                </label>
-                <label>
-                    <input type="checkbox" name="generation_issue" value="incomplete">
-                    Answer was incomplete or too brief
-                </label>
-            </div>
-
-            <div class="feedback-section">
-                <h5>Additional Comments:</h5>
-                <textarea name="comments" placeholder="Any other feedback to help us improve?"></textarea>
-            </div>
-
-            <button type="submit">Submit Feedback</button>
-        </form>
-    </div>
-
-    <script>
-    document.getElementById("detailed-feedback-{response_id}").addEventListener("submit", function(e) {
-        e.preventDefault();
-
-        // Collect form data
-        const formData = new FormData(e.target);
-        const feedbackData = {
-            query_id: formData.get("query_id"),
-            response_id: formData.get("response_id"),
-            retrieval_issues: formData.getAll("retrieval_issue"),
-            generation_issues: formData.getAll("generation_issue"),
-            comments: formData.get("comments")
-        };
-
-        // Submit detailed feedback
-        fetch('/api/detailed-feedback', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(feedbackData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            showThankYouMessage();
-        });
-    });
-    </script>
-    """
+    *This code generates a segmented feedback form that collects specific information about where the response fell short, allowing for targeted improvements to the RAG pipeline.*
 ```
 
 ## Learning from User Behavior: The Implicit Feedback Gold Mine
@@ -342,70 +140,9 @@ Key implicit feedback signals include:
 By tracking these behaviors, you can identify patterns that indicate success or failure even when users don't provide explicit feedback.
 
 !!! example "Implicit Feedback Collection"
+    ![Example of JavaScript code for tracking implicit feedback signals](../assets/images/implicit-feedback-code.png)
 
-    ```javascript
-    // Track query refinements
-    function trackQueryRefinement(originalQueryId, newQuery) {
-      fetch('/api/track-refinement', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          original_query_id: originalQueryId,
-          new_query: newQuery,
-          time_difference_ms: Date.now() - lastQueryTimestamp
-        })
-      });
-    }
-
-    // Track citation clicks
-    function trackCitationClick(queryId, responseId, citationIndex, documentId) {
-      fetch('/api/track-citation-click', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          query_id: queryId,
-          response_id: responseId,
-          citation_index: citationIndex,
-          document_id: documentId,
-          timestamp: Date.now()
-        })
-      });
-    }
-
-    // Track user engagement time
-    let viewStartTime = Date.now();
-    let isVisible = true;
-
-    document.addEventListener('visibilitychange', function() {
-      if (document.visibilityState === 'hidden') {
-        isVisible = false;
-        trackEngagementTime();
-      } else {
-        isVisible = true;
-        viewStartTime = Date.now();
-      }
-    });
-
-    window.addEventListener('beforeunload', function() {
-      trackEngagementTime();
-    });
-
-    function trackEngagementTime() {
-      if (!isVisible) return;
-
-      const engagementTimeMs = Date.now() - viewStartTime;
-
-      fetch('/api/track-engagement', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          query_id: currentQueryId,
-          response_id: currentResponseId,
-          engagement_time_ms: engagementTimeMs
-        })
-      });
-    }
-    ```
+    *This code tracks key implicit feedback signals including query refinements, citation clicks, and engagement time, providing valuable data even when users don't explicitly rate responses.*
 
 ### Mining Hard Negatives from User Behavior
 
@@ -427,116 +164,20 @@ Consider these UI patterns specifically designed to help collect hard negative e
 
 4. **Regeneration After Removal**: Allow users to remove citation sources and then regenerate the answer. Documents removed before regeneration become strong hard negative candidates for that query.
 
-```html
-<!-- Example of interactive citations UI -->
-<div class="response-citations">
-  <h4>Sources Used (click any irrelevant sources)</h4>
-  <div class="citation" data-id="doc123">
-    <div class="citation-content">
-      <p>Security protocols require multi-factor authentication for all admin access.</p>
-    </div>
-    <div class="citation-actions">
-      <button class="relevant-btn active">Relevant</button>
-      <button class="irrelevant-btn">Irrelevant</button>
-    </div>
-  </div>
-  <div class="citation" data-id="doc456">
-    <div class="citation-content">
-      <p>The system will lock after three failed login attempts.</p>
-    </div>
-    <div class="citation-actions">
-      <button class="relevant-btn active">Relevant</button>
-      <button class="irrelevant-btn">Irrelevant</button>
-    </div>
-  </div>
-  <button class="regenerate-btn">Regenerate Answer with Selected Sources</button>
-</div>
+!!! example "Interactive Citations UI"
+    ![Example of interactive citations UI with buttons to mark sources as relevant or irrelevant](../assets/images/interactive-citations-ui.png)
+
+    *This UI allows users to mark specific citations as relevant or irrelevant and regenerate answers, creating valuable training data for improving retrieval quality.*
 ```
 
 Remember: Hard negatives are the most valuable training examples for improving retrieval quality through embedding model fine-tuning. While standard negatives (completely unrelated documents) are easy to find, hard negatives (seemingly relevant but actually unhelpful documents) are rare and therefore extremely valuable for training.
 
 Here's a simple algorithm for mining hard negatives from user interactions:
 
-```python
-def identify_potential_hard_negatives(
-    query_id: str,
-    retrieved_docs: List[str],
-    user_actions: List[Dict]
-) -> List[Dict]:
-    """
-    Identify potential hard negative documents based on user interactions.
+!!! example "Hard Negatives Mining Algorithm"
+    ![Example of Python code for identifying hard negative documents from user interactions](../assets/images/hard-negatives-algorithm.png)
 
-    Parameters:
-    - query_id: The ID of the original query
-    - retrieved_docs: List of document IDs retrieved for this query
-    - user_actions: Sequence of user actions following the response
-
-    Returns:
-    - List of potential hard negative documents with confidence scores
-    """
-    hard_negative_candidates = []
-
-    # Check for immediate query refinement (within 30 seconds)
-    refinement = next(
-        (
-            action for action in user_actions
-            if action["type"] == "query" and action["timestamp"] - query_timestamp < 30
-        ),
-        None
-    )
-
-    if refinement:
-        # All retrieved docs from the original query are potential hard negatives
-        # But we assign different confidence scores based on user actions
-        for doc_id in retrieved_docs:
-            confidence = 0.7  # Base confidence for refinement case
-
-            # Check if user viewed this document (reduces confidence it's a hard negative)
-            if any(a["type"] == "view_document" and a["document_id"] == doc_id for a in user_actions):
-                confidence -= 0.3
-
-            # Check if user explicitly marked this document as irrelevant
-            if any(a["type"] == "rate_document" and a["document_id"] == doc_id and a["rating"] == "irrelevant" for a in user_actions):
-                confidence = 0.9  # Very high confidence it's a hard negative
-
-            hard_negative_candidates.append({
-                "query_id": query_id,
-                "document_id": doc_id,
-                "confidence": confidence,
-                "reason": "query_refinement"
-            })
-
-    # Check for negative feedback on response
-    negative_feedback = next(
-        (
-            action for action in user_actions
-            if action["type"] == "rate_response" and action["rating"] in ["not_helpful", "inaccurate"]
-        ),
-        None
-    )
-
-    if negative_feedback:
-        # Documents that weren't explicitly marked as helpful may be hard negatives
-        for doc_id in retrieved_docs:
-            # Skip documents the user explicitly marked as helpful
-            if any(a["type"] == "rate_document" and a["document_id"] == doc_id and a["rating"] == "helpful" for a in user_actions):
-                continue
-
-            confidence = 0.5  # Base confidence for negative feedback case
-
-            # Adjust confidence based on document interactions
-            if any(a["type"] == "rate_document" and a["document_id"] == doc_id and a["rating"] == "irrelevant" for a in user_actions):
-                confidence = 0.9  # Very high confidence it's a hard negative
-
-            hard_negative_candidates.append({
-                "query_id": query_id,
-                "document_id": doc_id,
-                "confidence": confidence,
-                "reason": "negative_feedback"
-            })
-
-    # Filter out low-confidence candidates
-    return [candidate for candidate in hard_negative_candidates if candidate["confidence"] > 0.4]
+    *This algorithm identifies potential hard negative documents based on user interactions, assigning confidence scores to each candidate based on behavior patterns like query refinements and explicit ratings.*
 ```
 
 By collecting these potential hard negatives over time, you can build a dataset for fine-tuning embedding models or training re-rankers to avoid these problematic documents in future queries.
@@ -560,54 +201,10 @@ There are several approaches to implementing citations in your RAG interface:
 3. **Inline highlights**: Highlighting portions of text with the source documents they came from
 4. **Visual PDF overlays**: For document-based applications, highlighting the exact location in a PDF
 
-```javascript
-// Example of implementing markdown-based citations
-function formatResponseWithCitations(answer, citations) {
-  // Assume citations is an array of {id, text, title, location} objects
-  
-  let formattedAnswer = answer;
-  let citationsList = [];
-  
-  // Add citation references to the answer
-  citations.forEach((citation, index) => {
-    const citationMark = `[${index + 1}]`;
-    const citationLink = `<a href="#citation-${index}" class="citation-link" 
-                            data-citation-id="${citation.id}">${citationMark}</a>`;
-    
-    // Replace citation placeholders or add at relevant positions
-    formattedAnswer = formattedAnswer.replace(`{{cite:${citation.id}}}`, citationLink);
-    
-    // Build the citations list
-    citationsList.push(`
-      <div id="citation-${index}" class="citation-item" data-citation-id="${citation.id}">
-        <div class="citation-number">${citationMark}</div>
-        <div class="citation-content">
-          <h4>${citation.title}</h4>
-          <p>${citation.text}</p>
-          <div class="citation-feedback">
-            <button class="citation-helpful" onclick="rateCitation('${citation.id}', 'helpful')">
-              Helpful
-            </button>
-            <button class="citation-irrelevant" onclick="rateCitation('${citation.id}', 'irrelevant')">
-              Irrelevant
-            </button>
-          </div>
-        </div>
-      </div>
-    `);
-  });
-  
-  // Combine the answer and citations
-  return `
-    <div class="answer-container">
-      <div class="answer-text">${formattedAnswer}</div>
-      <div class="citations-container">
-        <h3>Sources</h3>
-        ${citationsList.join('')}
-      </div>
-    </div>
-  `;
-}
+!!! example "Markdown-based Citation Implementation"
+    ![Example of JavaScript code for implementing markdown-based citations with feedback options](../assets/images/citations-implementation.png)
+
+    *This code formats responses with clickable citations and builds a reference list that includes feedback options for each source, helping collect document-level relevance signals.*
 ```
 
 ### Advanced Visualization with Bounding Boxes
@@ -634,77 +231,10 @@ A feedback-driven roadmap:
 
 This approach ensures that engineering efforts focus on changes that will have the greatest impact on user satisfaction rather than on the most technically interesting problems.
 
-```python
-def analyze_feedback_for_roadmap(feedback_data: List[Dict], time_period_days: int = 30):
-    """
-    Analyze feedback data to identify high-priority improvement areas.
+!!! example "Feedback Analysis for Roadmap Prioritization"
+    ![Example of Python code for analyzing feedback data to prioritize improvements](../assets/images/roadmap-analysis.png)
 
-    Parameters:
-    - feedback_data: Collection of user feedback and interaction data
-    - time_period_days: Time window to analyze (default: 30 days)
-
-    Returns:
-    - Dictionary of issue categories with frequency and impact scores
-    """
-    recent_cutoff = datetime.now() - timedelta(days=time_period_days)
-    recent_feedback = [f for f in feedback_data if f["timestamp"] > recent_cutoff]
-
-    # Group feedback by issue category
-    issues_by_category = defaultdict(list)
-
-    for feedback in recent_feedback:
-        if "issues" in feedback:
-            for issue in feedback["issues"]:
-                category = issue["category"]
-                issues_by_category[category].append({
-                    "feedback_id": feedback["id"],
-                    "severity": issue.get("severity", "medium"),
-                    "user_id": feedback.get("user_id", "anonymous"),
-                    "timestamp": feedback["timestamp"]
-                })
-
-    # Calculate impact scores
-    impact_scores = {}
-
-    for category, issues in issues_by_category.items():
-        # Count unique users affected
-        unique_users = len(set(issue["user_id"] for issue in issues if issue["user_id"] != "anonymous"))
-
-        # Calculate frequency
-        frequency = len(issues) / len(recent_feedback)
-
-        # Calculate severity score (0-1)
-        severity_map = {"low": 0.3, "medium": 0.6, "high": 1.0}
-        avg_severity = sum(severity_map[issue["severity"]] for issue in issues) / len(issues)
-
-        # Calculate recency factor (more recent issues weighted higher)
-        most_recent = max(issue["timestamp"] for issue in issues)
-        recency_factor = 1.0 - ((datetime.now() - most_recent).days / time_period_days)
-
-        # Calculate overall impact score
-        impact = (frequency * 0.4) + (avg_severity * 0.3) + (unique_users / 100 * 0.2) + (recency_factor * 0.1)
-
-        impact_scores[category] = {
-            "frequency": frequency,
-            "unique_users": unique_users,
-            "avg_severity": avg_severity,
-            "recency_factor": recency_factor,
-            "overall_impact": impact,
-            "example_feedbacks": [issue["feedback_id"] for issue in issues[:5]]
-        }
-
-    # Sort by impact score
-    sorted_impact = sorted(
-        impact_scores.items(),
-        key=lambda x: x[1]["overall_impact"],
-        reverse=True
-    )
-
-    return {
-        "analyzed_period_days": time_period_days,
-        "total_feedback_count": len(recent_feedback),
-        "prioritized_issues": sorted_impact
-    }
+    *This algorithm analyzes feedback data to identify high-priority improvement areas, considering factors like frequency, severity, number of affected users, and recency to calculate an impact score for each issue category.*
 ```
 
 ## Conclusion: Feedback as Foundation

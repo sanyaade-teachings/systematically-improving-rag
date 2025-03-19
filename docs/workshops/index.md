@@ -15,9 +15,13 @@ This series of workshops guides you through the complete process of building, ev
 - [Chapter 3 Part 1: Design Principles](chapter3-1.md)
 - [Chapter 3 Part 2: Feedback Collection](chapter3-2.md)
 - [Chapter 3 Part 3: Iterative Improvement](chapter3-3.md)
-- [Chapter 4: Understanding Your Users](chapter4.md)
-- [Chapter 5: Building Specialized Capabilities](chapter5.md)
-- [Chapter 6: Unified Product Architecture](chapter6.md)
+- [Chapter 4 Part 1: Topic Modeling and Analysis](chapter4-1.md)
+- [Chapter 4 Part 2: Prioritization and Roadmapping](chapter4-2.md)
+- [Chapter 5 Part 1: Understanding Specialized Retrieval](chapter5-1.md)
+- [Chapter 5 Part 2: Implementing Multimodal Search](chapter5-2.md)
+- [Chapter 6 Part 1: Query Routing Foundations](chapter6-1.md)
+- [Chapter 6 Part 2: Tool Interfaces and Implementation](chapter6-2.md)
+- [Chapter 6 Part 3: Performance Measurement and Improvement](chapter6-3.md)
 
 ## Workshop Structure
 
