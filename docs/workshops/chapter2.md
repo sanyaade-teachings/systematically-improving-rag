@@ -23,6 +23,9 @@ tags:
     - Learning how contrastive learning improves embeddings
     - Testing approaches systematically
     - Building a roadmap for continuous improvement
+    
+!!! warning "Key Insight"
+    **If you're not fine-tuning, you're Blockbuster, not Netflix.** The goal isn't to fine-tune language models (which are expensive and complex), but to fine-tune embedding models that move toward your specific data distributions and improve retrieval, not generation.
 
 ## Introduction
 
@@ -52,11 +55,16 @@ Generic embedding models inherit assumptions about what "similarity" means—ass
 At the heart of embedding models is a deceptively simple concept: they convert text (or other data) into numerical vectors that capture semantic meaning. The assumption is that items with similar meanings will have vectors that are close to each other when measured by cosine similarity or other distance metrics.
 
 !!! example "Domain-Specific Similarity"
-In e-commerce, what does it mean for two products to be similar? Are they similar because they're substitutes (different brands of red shirts) or complements (a shirt and matching pants)?
 
-    For music recommendations, are songs similar because they share the same genre, appear in the same playlists, or appeal to the same listeners?
+    In e-commerce, what does it mean for two products to be similar? Are they similar because they're substitutes (different brands of red shirts) or complements (a shirt and matching pants)?
 
-    Perhaps the clearest example comes from dating apps. Should "I love coffee" and "I hate coffee" be considered similar or different? From a linguistic perspective, they're opposites. From a topic perspective, both profiles care enough about beverages to mention them prominently.
+    For music recommendations, are songs similar because they share the same genre, appear in the same playlists, or appeal to the same listeners? For a "add more songs to this playlist" feature, similarity might mean stylistic consistency, but for a discovery feature like Spotify's Discovery Weekly, it could mean something entirely different.
+
+    Perhaps the clearest example comes from dating apps. Should "I love coffee" and "I hate coffee" be considered similar or different? From a linguistic perspective, they're opposites. From a topic perspective, both profiles care enough about beverages to mention them prominently. 
+    
+    But there are many other interpretations: Maybe they're different because coffee lovers wouldn't date coffee haters. Maybe they're similar because both indicate people with strong food preferences (foodies). Maybe they're complementary because as long as one loves tea and one loves coffee, they'll actually get along well.
+    
+    The key insight: **What matters for a dating app isn't textual similarity at all—it's whether two profiles predict if users will like each other.** This relationship isn't captured in generic embedding models trained on web text.
 
 But here's the problem: "similarity" is poorly defined when we move beyond general language understanding. The correct answer isn't universal—it depends entirely on your application's objectives.
 
@@ -163,8 +171,15 @@ For other applications, the relevance signals will differ:
 
 The key is defining what "relevance" means in your specific context and systematically collecting data that captures this relationship.
 
-!!! warning "Missed Opportunity Story"
+!!! warning "Start Logging Yesterday!"
+I've seen numerous companies hire machine learning engineers to fine-tune embedding models, only to realize they hadn't started logging relevance data. These teams then have to wait 3-6 months to collect enough data before they can begin the work they intended to do immediately.
+
+**The most important action you can take today is to start logging relevance data**, even if you're not ready to hire ML specialists or begin fine-tuning. Save the top 20-40 chunks for each query and use an LLM to mark relevance if human annotation isn't feasible. This data will be invaluable when you're ready to improve your models.
+
 I worked with one team that built a beautiful RAG application for internal documents but failed to implement any feedback collection mechanisms. Six months later, when they wanted to fine-tune their embeddings, they had to start from scratch with synthetic data because they had no record of which retrieved documents had actually been helpful to users. Don't make this mistake—plan your data collection from day one.
+
+!!! success "Small Datasets Can Make Big Differences"
+The team at Sentence Transformers has demonstrated that even with just 6,000 examples, you can achieve 6-10% better performance. With 40 minutes of fine-tuning on a laptop, you can create significant lifetime value for your application. This makes fine-tuning embedding models accessible even to teams without massive datasets or specialized infrastructure.
 
 ## Understanding Contrastive Learning for Embeddings
 
@@ -349,11 +364,15 @@ In one project, we identified that implementing BM25 hybrid retrieval would be h
 
     ### Understanding Embedding Models
 
-    1. **Sentence Transformers Library** ([https://www.sbert.net/](https://www.sbert.net/)): This library provides easy-to-use implementations for state-of-the-art embedding models, supporting both pairwise datasets and triplets for fine-tuning.
+    1. **Sentence Transformers Library** ([https://www.sbert.net/](https://www.sbert.net/)): This library provides easy-to-use implementations for state-of-the-art embedding models, supporting both pairwise datasets and triplets for fine-tuning. It's my recommended starting point for most teams due to its balance of performance and ease of use.
 
-    2. **Modern BERT** ([https://huggingface.co/sentence-transformers](https://huggingface.co/sentence-transformers)): These newer models offer 8,000 token sequence lengths and generally outperform classic BERT-based models.
+    2. **Modern BERT** ([https://huggingface.co/sentence-transformers](https://huggingface.co/sentence-transformers)): These newer models offer 8,000 token sequence lengths and generally outperform classic BERT-based models. The BGE models in particular have shown excellent performance across many domains and are worth testing in your applications.
 
-    3. **Cohere Re-ranking Models** ([https://cohere.com/rerank](https://cohere.com/rerank)): Cohere offers state-of-the-art re-ranking capabilities with a fine-tuning API that makes it relatively easy to customize for your specific needs.
+    3. **Cohere Re-ranking Models** ([https://cohere.com/rerank](https://cohere.com/rerank)): Cohere offers state-of-the-art re-ranking capabilities with a fine-tuning API that makes it relatively easy to customize for your specific needs. In my experience, even their base re-ranker without fine-tuning often provides substantial improvements to retrieval quality.
+    
+    4. **Specialized Domains**: For specific domains like code, science, or legal documents, look for models pre-trained on related corpora. For example, CodeBERT for programming or SciBERT for scientific literature can provide better starting points than general models.
+    
+    5. **Comparison to Data Labeling**: Everything we're doing today with fine-tuning embedding models is what I used to pay data labeling teams hundreds of thousands of dollars to do annually. The ML playbook that was once only accessible to large companies with significant budgets is now available to teams of all sizes thanks to advances in transfer learning and fine-tuning techniques.
 
 !!! info "Key Concepts"
 
@@ -399,9 +418,21 @@ In this chapter, we've explored how to transform evaluation data into valuable t
 
 The key insight to take away is that data collection and repurposing form the foundation of systematic RAG improvement. Every question, every piece of feedback, and every evaluation can fuel your improvement flywheel if properly captured and utilized.
 
+As we've seen, fine-tuning embedding models can dramatically improve the performance of your RAG application. Unlike fine-tuning large language models (which requires significant expertise and resources), embedding model fine-tuning is accessible to teams of all sizes, with demonstrated benefits from as few as 6,000 examples.
+
 !!! tip "What's Coming Next"
 In [Chapter 3](chapter3-1.md), we'll dive into deployment strategies, user feedback collection methods, and how to use this feedback to further refine your RAG application. We'll explore practical techniques for gathering implicit and explicit feedback, designing effective user interfaces, and closing the loop between user interactions and system improvements.
 
 ## Summary
 
-The data flywheel approach transforms what begins as evaluation into training assets that continuously improve your RAG system. By understanding the limitations of generic models, implementing few-shot examples, and preparing for fine-tuning, you create a foundation for ongoing enhancement. This systematic approach ensures that every piece of data you collect contributes to a cycle of improvement that makes your application increasingly effective for your specific use case.
+The data flywheel approach transforms what begins as evaluation into training assets that continuously improve your RAG system. By understanding the limitations of generic models, implementing few-shot examples, and preparing for fine-tuning, you create a foundation for ongoing enhancement. 
+
+The most critical actions to take immediately are:
+
+1. **Start logging relevancy data today** - Even if you're not ready to fine-tune yet
+2. **Define similarity for your domain** - What makes two items "similar" in your specific context?
+3. **Implement feedback mechanisms** - Design your UX to collect the signals you'll need later
+4. **Build your few-shot library** - Begin transforming evaluation data into prompt examples
+5. **Test domain-specific models** - Explore fine-tuned models for your specific application area
+
+This systematic approach ensures that every piece of data you collect contributes to a cycle of improvement that makes your application increasingly effective for your specific use case. When done properly, this flywheel effect touches every part of your system—improving clustering, topic modeling, and all other aspects we'll explore in the coming weeks.
