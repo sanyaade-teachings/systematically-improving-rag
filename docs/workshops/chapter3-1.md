@@ -167,7 +167,7 @@ Consider these UI patterns specifically designed to help collect hard negative e
 
     *This UI allows users to mark specific citations as relevant or irrelevant and regenerate answers, creating valuable training data for improving retrieval quality.*
 
-Remember: Hard negatives are the most valuable training examples for improving retrieval quality through embedding model fine-tuning. While standard negatives (completely unrelated documents) are easy to find, hard negatives (seemingly relevant but actually unhelpful documents) are rare and therefore extremely valuable for training.
+    Remember: Hard negatives are the most valuable training examples for improving retrieval quality through embedding model fine-tuning. While standard negatives (completely unrelated documents) are easy to find, hard negatives (seemingly relevant but actually unhelpful documents) are rare and therefore extremely valuable for training.
 
 Here's a simple algorithm for mining hard negatives from user interactions:
 

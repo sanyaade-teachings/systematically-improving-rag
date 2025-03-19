@@ -306,7 +306,7 @@ For RAG applications, skeleton screens can be particularly effective when showin
     *This code shows how to implement animated skeleton loaders that mimic the structure of your content while it loads. The animation creates the impression of progress and helps users understand what content is coming.*
 
 !!! example "Meaningful vs. Generic Interstitials"
-**Generic Interstitial:** "Loading..."
+    **Generic Interstitial:** "Loading..."
 
     **Meaningful Interstitial:**
     "Searching 382,549 documents in our knowledge base..."
@@ -416,7 +416,6 @@ Here's a simple implementation of semantic caching:
     ![Example of Python code for implementing semantic caching based on embedding similarity](../assets/images/semantic-cache-code.png)
 
     *This code demonstrates a semantic caching system that stores and retrieves results based on query embedding similarity rather than exact string matching. This dramatically improves performance for similar queries without requiring exact matches.*
-```
 
 ### 3. Implement Progressive Loading
 
