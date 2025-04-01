@@ -14,6 +14,7 @@ This section contains summaries and key insights from our weekly office hours se
 - [Feb 18 Summary](week3-summary.md)
 - [Feb 25 Summary](week4-summary.md)
 - [Mar 4 Summary](week5-summary.md)
+- [Mar 11 Summary](week6-summary.md)
 
 Each summary captures the questions, answers, and discussions from our sessions, providing additional context and real-world examples to complement the workshop materials.
 
