@@ -35,7 +35,7 @@ This notebook introduces vector databases with LanceDB, a crucial component for 
 
 You'll gain hands-on experience with the retrieval foundations that power all RAG applications.
 
-# 3. Using Pydantic Evals.ipynb
+### 3. Using Pydantic Evals.ipynb
 
 This notebook introduces Pydantic Evals, a framework for systematically evaluating AI systems and tracking results.
 
