@@ -37,9 +37,10 @@ dependencies = [
     "streamlit>=1.40.1",
     "streamlit-shortcuts>=0.1.9",
     "tantivy>=0.22.0",
-    "transformers==4.45.2",
+    "transformers==4.42.2",
     "eval_type_backport==0.2.2",
     "docling==2.25.0",
+    "pydantic-evals[logfire]>=0.1.3"
 ]
 
 [build-system]
