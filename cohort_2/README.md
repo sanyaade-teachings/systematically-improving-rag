@@ -30,7 +30,18 @@ Before starting the course, please make sure that you've done the following
 > 2. Make sure that you've bumped yourself to higher tier on Braintrust so that you don't run into rate limit issues.
 > 3. Your HF_Token must have write access so that you can upload the models that you'll be training in week 2
 
-We've provided a `.env` file in the repository that shows the environment variables that you'll need for this course. You can either set it in your shell ( [Here is an article on how to do so](https://www3.ntu.edu.sg/home/ehchua/programming/howto/Environment_Variables.html) or run the following code snippet in your notebooks to load it from the `.env` file we've provided.
+We've provided a `.env.example` file in the repository that shows the environment variables that you'll need for this course. You should **copy the contents of the file to a `.env` file at the same path** and fill in the variable before starting to work through the notebooks.
+
+Here are some links on how to get your individual API keys
+
+- [Getting a Cohere API Keys](https://docs.cohere.com/v2/docs/rate-limits)
+- [Getting an OpenAI Key](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key)
+- [Getting your Hugging Face Token](https://huggingface.co/docs/hub/en/security-tokens)
+- [Getting your Logfire Token](https://logfire.pydantic.dev/docs/how-to-guides/create-write-tokens/)
+- [Getting your Logfire Read Token](https://logfire.pydantic.dev/docs/how-to-guides/query-api/)
+- [Getting your Braintrust API Key](https://www.braintrust.dev/docs/reference/api/ApiKeys)
+
+You can either set these environment variables in your shell ( [Here is an article on how to do so](https://www3.ntu.edu.sg/home/ehchua/programming/howto/Environment_Variables.html) or run the following code snippet in your notebooks to load it from the `.env` file we've provided.
 
 ```python
 from dotenv import find_dotenv, load_dotenv
@@ -88,6 +99,7 @@ In Week 5, we explore how to enhance RAG systems by intelligently handling struc
 - _Notebook 2:_ Demonstrates how combining semantic search with metadata filters significantly improves retrieval accuracy, particularly for queries with specific requirements like "Cotton Shirts under $50".
 - _Notebook 3:_ How can we integrate SQL queries with retrieval to answer complex questions about product availability, order history and inventory by implementing safe database access through LLMs.
 - _Notebook 4:_ : How we can use OCR and Vision Language Models to generate visual citations when building RAG applications dealing with PDFs
+- _Notebook 5:_ : How to get started with Cohere's new Embed V4 model to perform embedding search on PDF Document Images
 
 **Week 6: Tool Selection**
 
