@@ -5,8 +5,12 @@ from pathlib import Path
 MODEL_DIR = Path("/models")
 MODEL_NAME = "Qwen/Qwen2.5-7B-Instruct"
 MODEL_REVISION = "a09a35458c702b33eeacc393d103063234e8bc28"
+
+# If you'd like to use the AWQ version of the model, uncomment the following two lines
 # MODEL_NAME = "Qwen/Qwen2.5-7B-Instruct-AWQ"
 # MODEL_REVISION = "b25037543e9394b818fdfca67ab2a00ecc7dd641"
+
+
 GPU_TYPE = "A100"
 N_GPU = 1
 MINUTES = 60
@@ -85,7 +89,7 @@ def serve():
         "--tool-call-parser",
         "hermes",
         "--enable-auto-tool-choice",
-        "-O 0",
+        "-O 0",  # Remove this if you're looking to use the precompiled model weights that we did with precompile_model.remote()
     ]
 
     subprocess.Popen(" ".join(cmd), shell=True)
@@ -103,7 +107,6 @@ def serve():
 )
 def precompile_model():
     import subprocess
-    import time
     import os
 
     # Run a quick inference to trigger compilation
@@ -136,5 +139,6 @@ def precompile_model():
 ## Run modal run download.py to cache the download and compilation of the model first
 @app.local_entrypoint()
 def main():
-    # download_model.remote()
-    precompile_model.remote()
+    download_model.remote()
+    # Optionally you can precompile the model's weights. This yields a small speedup in production
+    # precompile_model.remote()
