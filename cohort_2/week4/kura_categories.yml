@@ -1,0 +1,285 @@
+Account & Eligibility:
+  signup_registration:
+    title: "Create an Account / Sign-Up"
+    description: "How customers start using the BNPL service, including app download, profile setup, and identity verification."
+    sample_questions:
+      - "How do I sign up for your Buy Now, Pay Later service?"
+      - "Is there a separate app I need to download to create an account?"
+      - "What information do I have to provide when registering?"
+      - "Do I need to link my debit card during sign-up?"
+      - "Can I open an account if I’m under 18 but have parental consent?"
+  eligibility_criteria:
+    title: "Eligibility Requirements"
+    description: "Clarifies age, residency, credit-check rules, and other factors that determine whether a customer can use BNPL."
+    sample_questions:
+      - "Am I eligible to use this service if I live outside the U.S.?"
+      - "Does my credit score matter for approval?"
+      - "What are the minimum requirements to qualify?"
+      - "I don’t own a credit card—can I still use BNPL?"
+      - "Why does the app need my social security number?"
+  purchase_declined:
+    title: "Declined Purchase or Transaction"
+    description: "Why a specific BNPL checkout attempt was rejected, even though the user already has an account."
+    sample_questions:
+      - "Why was my order declined even though I’ve used BNPL before?"
+      - "The checkout says 'not approved'—what happened?"
+      - "Can you tell me how to fix a declined BNPL payment?"
+      - "Does a high cart total cause a decline?"
+      - "If I retry with a smaller amount, will it go through?"
+  increase_spending_limit:
+    title: "Spending Limit Increases"
+    description: "How users can raise their BNPL purchasing power after successful repayment history."
+    sample_questions:
+      - "How do I increase my spending limit?"
+      - "When will my limit go up automatically?"
+      - "Does paying early boost my limit?"
+      - "Can I request a manual limit review?"
+      - "Why did my friend get a higher limit than me?"
+
+Payment Scheduling & Management:
+  view_schedule:
+    title: "View Payment Schedule"
+    description: "Finding installment due dates, amounts, and overall repayment timelines."
+    sample_questions:
+      - "When is my next installment due?"
+      - "Where do I find my full payment schedule?"
+      - "Can you text me reminders before each due date?"
+      - "How many payments are left on this purchase?"
+      - "What happens if a due date falls on a holiday?"
+  change_date_extension:
+    title: "Change or Extend a Payment Date"
+    description: "Requests to move, snooze, or extend an upcoming installment."
+    sample_questions:
+      - "Can I move my next payment to payday?"
+      - "How do I request a one-time extension?"
+      - "Is there a fee to postpone my payment?"
+      - "What’s the longest grace period you allow?"
+      - "I’m traveling—can I delay my payment by a week?"
+  early_payoff:
+    title: "Early Payoff"
+    description: "Settling the remaining balance ahead of schedule."
+    sample_questions:
+      - "Can I pay off my BNPL plan early?"
+      - "Will early payment save me any money?"
+      - "How do I make one lump-sum payment?"
+      - "Can I pay off one purchase but keep the others on schedule?"
+      - "Does paying early raise my limit faster?"
+  update_payment_method:
+    title: "Update Payment Method"
+    description: "Changing or adding the card or bank account used for future installments."
+    sample_questions:
+      - "How do I replace my expired card?"
+      - "Can I switch payments to my bank account instead of a credit card?"
+      - "What happens if my card is lost before the next payment?"
+      - "Will updating my card affect automatic payments?"
+      - "Can I split installments across two different cards?"
+
+Fees, Interest & Penalties:
+  cost_of_service:
+    title: "Interest and Service Fees"
+    description: "Clarifies whether standard BNPL plans are truly zero-interest or if any borrowing costs apply."
+    sample_questions:
+      - "Is this plan really interest-free?"
+      - "Do you charge any service fees at checkout?"
+      - "Are there fees hidden in the monthly payments?"
+      - "Does a longer payment plan come with interest?"
+      - "How do you make money if customers don’t pay interest?"
+  late_fees_penalties:
+    title: "Late Fees & Consequences"
+    description: "What happens if a payment is missed or fails to process."
+    sample_questions:
+      - "What’s the late fee if I miss an installment?"
+      - "Will I get charged immediately if the payment is one day late?"
+      - "Can the first late fee be waived?"
+      - "Do late fees keep stacking if I’m behind for months?"
+      - "Does a failed auto-debit count as missed?"
+  credit_score_impact:
+    title: "Impact on Credit Score"
+    description: "Whether BNPL usage, on-time or late, affects the user’s credit report."
+    sample_questions:
+      - "Will this purchase show up on my credit report?"
+      - "Do missed payments hurt my credit score?"
+      - "Does using BNPL help build credit?"
+      - "Is the credit check a hard inquiry?"
+      - "Which credit bureaus do you report to?"
+  hidden_charges:
+    title: "Hidden or Additional Charges"
+    description: "Ensuring transparency on any extra costs outside standard fees."
+    sample_questions:
+      - "Are there annual fees for having an account?"
+      - "Do you charge processing fees on refunds?"
+      - "Is there a penalty for paying off early?"
+      - "Do I pay anything just to keep my account open?"
+      - "Could currency conversion add hidden costs on international orders?"
+
+Order & Merchant Issues:
+  order_not_received:
+    title: "Item Not Received"
+    description: "Help tracking or resolving shipping delays when BNPL financed the purchase."
+    sample_questions:
+      - "My package is late—can you locate it for me?"
+      - "Who do I contact if my item never ships?"
+      - "Should I pause payments until my order arrives?"
+      - "Will you refund me if the seller never delivers?"
+      - "It’s past the estimated delivery—what happens next?"
+  return_refund_timing:
+    title: "Returns & Refund Processing"
+    description: "How returns affect current and future installments, plus refund timelines."
+    sample_questions:
+      - "I returned my shoes—when will my payments stop?"
+      - "Do I have to keep paying while the refund is pending?"
+      - "How long before refunded money hits my card?"
+      - "Will the first payment be reimbursed too?"
+      - "What if the merchant only issued a partial refund?"
+  merchant_canceled:
+    title: "Merchant Canceled Order"
+    description: "Whether installments remain after a seller voids or cancels an order."
+    sample_questions:
+      - "The store canceled my purchase—do I still owe you?"
+      - "Will my first payment be refunded automatically?"
+      - "How fast do you remove future installments?"
+      - "What if the cancellation email never reaches you?"
+      - "Can I reuse the canceled limit on another order?"
+
+Disputes & Fraud:
+  unauthorized_charge:
+    title: "Report Unauthorized Charge"
+    description: "Steps to dispute and reverse fraudulent BNPL transactions."
+    sample_questions:
+      - "I didn’t make this purchase—what do I do?"
+      - "How do I report fraud on my account?"
+      - "Will I be liable for unauthorized charges?"
+      - "Can you freeze my account while you investigate?"
+      - "How long does a fraud inquiry take?"
+  nondelivery_dispute:
+    title: "Dispute for Non-Delivery"
+    description: "Formal disputes when the merchant fails to deliver goods or services."
+    sample_questions:
+      - "The seller won’t respond—can you open a dispute?"
+      - "Do I need proof for a non-delivery claim?"
+      - "Will installments pause during investigation?"
+      - "How do I track the dispute status?"
+      - "What happens if the merchant never replies?"
+  account_compromised:
+    title: "Account Compromised or Hacked"
+    description: "Immediate steps to secure a user’s BNPL account after suspected breach."
+    sample_questions:
+      - "I think someone hacked my account—help!"
+      - "How do I change my password and lock payments?"
+      - "Should I delete my saved cards after a breach?"
+      - "Can you enable two-factor authentication for me?"
+      - "Will you notify me when the account is secure?"
+
+Technical Support:
+  login_issues:
+    title: "Login & Authentication Problems"
+    description: "Troubleshooting password resets, two-factor codes, and account lockouts."
+    sample_questions:
+      - "Why can’t I log in to the app?"
+      - "I never received my verification code."
+      - "The password reset link isn’t working—now what?"
+      - "Why does it say my account is locked?"
+      - "Can you send the OTP to my email instead?"
+  checkout_errors:
+    title: "Checkout or Virtual Card Errors"
+    description: "Resolving payment failures, declined virtual cards, and integration glitches."
+    sample_questions:
+      - "BNPL keeps failing at checkout—how can I fix it?"
+      - "The virtual card was declined in-store—why?"
+      - "I’m getting an error code 503—what does that mean?"
+      - "Does clearing my browser cache help?"
+      - "Can I try again without losing my cart?"
+  app_crashes:
+    title: "App or Website Malfunctions"
+    description: "Fixes for crashes, freezes, and outdated app versions."
+    sample_questions:
+      - "The app crashes every time I open it."
+      - "Why is the website stuck on the loading screen?"
+      - "Does reinstalling delete my payment info?"
+      - "Is there an outage right now?"
+      - "When is the next app update coming?"
+  verification_code_issues:
+    title: "Missing or Delayed Verification Code"
+    description: "Problems receiving SMS or email codes needed for login or checkout."
+    sample_questions:
+      - "Where’s my one-time passcode?"
+      - "The code expired before I could use it."
+      - "Can you send the OTP to a different number?"
+      - "Why do I never get BNPL texts, only emails?"
+      - "Does Wi-Fi calling block your SMS messages?"
+
+General Inquiries:
+  how_it_works:
+    title: "How BNPL Works"
+    description: "High-level overview for new or curious customers."
+    sample_questions:
+      - "Can you explain how Buy Now, Pay Later actually works?"
+      - "Is this like a credit card or something different?"
+      - "What is 'Pay in 4' exactly?"
+      - "Is there any catch I should know about?"
+      - "How fast is approval for a first-time user?"
+  where_to_use:
+    title: "Where the Service Is Accepted"
+    description: "Retailer network, in-store support, and geographic availability."
+    sample_questions:
+      - "Which stores let me use your BNPL option?"
+      - "Can I pay in-store or only online?"
+      - "Do you work with Amazon or eBay?"
+      - "Is BNPL available in my country?"
+      - "How do I know if a store accepts BNPL at checkout?"
+  revenue_model:
+    title: "How the Company Makes Money"
+    description: "Business model transparency—merchant fees vs. consumer interest."
+    sample_questions:
+      - "If there’s no interest, how do you profit?"
+      - "Do merchants pay you a fee for each purchase?"
+      - "Are late fees a big part of your revenue?"
+      - "What percentage do you charge retailers?"
+      - "Does your business model affect my prices?"
+  cannot_pay:
+    title: "Concerns About Future Ability to Pay"
+    description: "Proactive questions about options if financial circumstances change."
+    sample_questions:
+      - "What should I do if I can’t make a payment next month?"
+      - "Are there hardship programs available?"
+      - "Will you work with me on a payment plan?"
+      - "Do you report missed payments right away?"
+      - "Can I temporarily pause my account if money is tight?"
+
+Emotional/Urgent Cases:
+  job_loss_financial_hardship:
+    title: "Job Loss or Financial Hardship"
+    description: "Empathetic support for customers facing sudden inability to pay."
+    sample_questions:
+      - "I lost my job—can you postpone my payments?"
+      - "I’m struggling financially—what options do I have?"
+      - "Can I enroll in a hardship program today?"
+      - "Will late fees be waived if I’m unemployed?"
+      - "How long can you pause my repayments?"
+  late_fee_dispute:
+    title: "Disputing a Late Fee"
+    description: "Users upset about being charged a penalty they feel is unfair."
+    sample_questions:
+      - "Why was I hit with a late fee when I paid on time?"
+      - "Can you remove this late fee as a courtesy?"
+      - "I have proof my bank processed the payment—help!"
+      - "This fee is ridiculous—how do I appeal?"
+      - "Does your policy allow a one-time forgiveness?"
+  urgent_fraud_alert:
+    title: "Urgent Fraud or Security Alert"
+    description: "High-stress situation where a customer fears ongoing fraud."
+    sample_questions:
+      - "Help! Someone is making purchases on my account now!"
+      - "Please freeze everything—my account was hacked!"
+      - "I got a text about a purchase I didn’t make—what do I do?"
+      - "Can you call me immediately? This is urgent!"
+      - "Will I lose money if I can’t stop the fraud fast?"
+  severe_payment_distress:
+    title: "Severe Payment Distress"
+    description: "Emotional cases where users fear large debt or collections."
+    sample_questions:
+      - "I’m overwhelmed by my BNPL bills—can you consolidate them?"
+      - "Will collectors come after me if I default?"
+      - "I’m panicking—can someone talk me through my options?"
+      - "How do I stop new purchases and focus on paying off what I owe?"
+      - "Does missing multiple payments ruin my credit forever?"
