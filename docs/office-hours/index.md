@@ -19,10 +19,8 @@ This section contains summaries and key insights from our weekly office hours se
 
 ### Cohort 3
 
-#### Week 1
 - [Week 1 Session 1](cohort3/week-1-1.md)
 - [Week 2 Session 1](cohort3/week-2-1.md)
-
 
 Each summary captures the questions, answers, and discussions from our sessions, providing additional context and real-world examples to complement the workshop materials.
 
