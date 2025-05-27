@@ -42,11 +42,17 @@ nav:
       - "Chapter 6: Architecture - Improvement": "workshops/chapter6-3.md"
   - "Office Hours":
       - "office-hours/index.md"
-      - "Week 1": "office-hours/week1-summary.md"
-      - "Week 2": "office-hours/week2-summary.md"
-      - "Week 3": "office-hours/week3-summary.md"
-      - "Week 4": "office-hours/week4-summary.md"
-      - "Week 5": "office-hours/week5-summary.md"
+      - "Cohort 2":
+        - "Week 1": "office-hours/cohort2/week1-summary.md"
+        - "Week 2": "office-hours/cohort2/week2-summary.md"
+        - "Week 3": "office-hours/cohort2/week3-summary.md"
+        - "Week 4": "office-hours/cohort2/week4-summary.md"
+        - "Week 5": "office-hours/cohort2/week5-summary.md"
+      - "Cohort 3":
+        - "Week 1":
+          - "Session 1": "office-hours/cohort3/week-1-1.md"
+        - "Week 2":
+          - "Advanced RAG Strategies (C3W2S1)": "office-hours/cohort3/week-2-1.md"
 markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences:
