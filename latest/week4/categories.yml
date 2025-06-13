@@ -1,0 +1,30 @@
+question_type:
+  Payment Methods & Changes:
+    - title: Payment Method Changes
+      description: User needs to switch payment methods after making a purchase
+    - title: Payment Options
+      description: User is asking about available payment methods or how to set them up
+    - title: Early Payoff
+      description: User wants to pay their balance in full rather than continuing with installments
+
+  Account & Settings:
+    - title: Login Issues
+      description: User is having trouble logging into their account
+    - title: Account Management
+      description: User is asking how to update or manage their account details
+
+  Indices:
+    - title: Shipping Information
+      description: User is inquiring about shipping times, costs, or options
+    - title: Payment Methods
+      description: User has questions about accepted payment types or processing issues
+    - title: Product Availability
+      description: User is asking about stock levels or when an item will be restocked
+    - title: Warranty Information
+      description: User is asking about warranties on products
+    - title: Technical Support
+      description: User needs assistance with technical issues or troubleshooting
+
+  Others:
+    - title: Others
+      description: If the query doesn't fit into any of the other categories
