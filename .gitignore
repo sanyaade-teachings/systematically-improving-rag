@@ -16,3 +16,5 @@ participation.py
 **/visualization/*.png
 **/visualization/
 docs/.cache/
+# Converted markdown files
+/md/
