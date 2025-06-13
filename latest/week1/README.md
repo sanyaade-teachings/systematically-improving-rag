@@ -1,81 +1,172 @@
 # Week 1: Building Your RAG Evaluation Foundation
 
-## Notebooks Overview
+## Overview
+
+This week establishes the fundamental evaluation framework needed to systematically improve RAG applications. Rather than randomly trying different retrieval techniques and hoping for improvement, you'll build a rigorous testing framework that measures performance objectively. This approach ensures every change you make is backed by data, not intuition.
+
+The evaluation framework consists of three essential components: synthetic question generation for creating challenging test cases, benchmarking tools for measuring retrieval performance across different approaches, and statistical validation to ensure improvements are real rather than random variation. Together, these create a scientific approach to RAG improvement that will guide all future optimization efforts in this course.
+
+## Learning Objectives
+
+By the end of this week, you'll be able to:
+
+- Generate diverse, realistic synthetic questions that challenge your RAG system
+- Implement key retrieval metrics (recall@k, MRR@k) to measure performance objectively
+- Compare multiple retrieval strategies using controlled experiments
+- Apply statistical methods to verify that improvements are significant
+- Deploy open-source models for cost-effective evaluation at scale
+- Track and visualize experiment results using modern ML tools
+
+## Notebooks
 
 ### 1. synthetic_questions.ipynb
 
-This notebook focuses on creating diverse, realistic test questions to evaluate your RAG system.
+**Purpose**: Create diverse, realistic test questions to evaluate your RAG system comprehensively
 
-**What You'll Do:**
+**What You'll Learn**:
 
-- Load the Bird-Bench dataset of SQL queries as sample documents
-- Define Pydantic models (`Chunk`, `Question`, `ChunkEval`) for structured data
-- Generate diverse synthetic questions with varying complexity using GPT models
-- Implement asynchronous processing with rate limiting for efficient generation
-- Apply randomized constraints to ensure question diversity
-- Create a test dataset that challenges your retrieval system
+- How to structure evaluation data using Pydantic models
+- Techniques for generating diverse synthetic questions with GPT models
+- Asynchronous processing patterns with rate limiting
+- Methods to ensure question variety through randomized constraints
 
-You'll leave with a robust set of synthetic questions that serve as your evaluation benchmark.
+**What You'll Build**:
 
-### 1. synthetic_questions_modal.ipynb
+- A complete synthetic question generation pipeline
+- Structured evaluation dataset with questions of varying complexity
+- Reusable models for chunk and question evaluation
 
-This notebook introduces a practical approach to evaluating RAG systems through synthetic data generation.
+### 2. synthetic_questions_modal.ipynb
 
-**What You'll Do**:
+**Purpose**: Deploy open-source models for cost-effective synthetic data generation at scale
 
-- Learn why retrieval metrics are more efficient than content generation metrics
-- Set up an open-source model (Qwen-2.5-7B-Instruct) via Modal for cost-effective evaluation
-- Define Pydantic models for structured data output with instructor using vLLM
-- Load and analyze the Bird-Bench Text-2-SQL dataset for challenging examples
-- Create a comprehensive evaluation dataset using Pydantic-Evals
+**What You'll Learn**:
 
-You'll leave with both a set of synthetic questions for benchmarking and the knowledge to deploy and use open-source models for cost-effective RAG evaluation.
+- Why retrieval metrics provide more efficient evaluation than generation metrics
+- How to deploy open-source models (Qwen-2.5-7B-Instruct) using Modal
+- Structured output generation with instructor and vLLM
+- Working with challenging datasets like Bird-Bench Text-2-SQL
 
-### 2. benchmark_retrieval.ipynb
+**What You'll Build**:
 
-This notebook creates a systematic framework for comparing different retrieval strategies.
+- A Modal deployment for scalable question generation
+- Cost-effective evaluation pipeline using open-source models
+- Comprehensive evaluation dataset with Pydantic-Evals
 
-**What You'll Do:**
+### 3. benchmark_retrieval.ipynb
 
-- Set up LanceDB with multiple embedding models for comparison
-- Implement key retrieval metrics (recall@k, MRR@k)
-- Create a parameterized retrieval function supporting different strategies
-- Benchmark multiple approaches:
-  - Different embedding models
-  - Vector vs. hybrid search
-  - With and without reranking
-- Use Braintrust to track and compare experiment results
-- Run parallel evaluations with `concurrent.futures`
+**Purpose**: Create a systematic framework for comparing and measuring different retrieval strategies
 
-You'll establish an objective way to measure which retrieval approaches work best.
+**What You'll Learn**:
 
-### 3. visualise_results.ipynb
+- Implementation of key retrieval metrics (recall@k, MRR@k)
+- How to set up controlled experiments with multiple variables
+- Experiment tracking and comparison using Braintrust
+- Parallel evaluation techniques for faster benchmarking
 
-This notebook introduces statistical validation to verify that improvements are significant.
+**What You'll Build**:
 
-**What You'll Do:**
+- A parameterized retrieval system supporting multiple strategies
+- Comprehensive benchmarking framework with LanceDB
+- Experiment tracking pipeline for reproducible results
 
-- Implement bootstrapping to simulate multiple experimental runs
-- Calculate confidence intervals for different retrieval metrics
-- Visualize confidence intervals with error bars
-- Perform t-tests to determine statistical significance between approaches
-- Make data-driven decisions about which improvements to implement
+### 4. visualise_results.ipynb
 
-You'll gain the ability to distinguish real improvements from random variation.
+**Purpose**: Apply statistical validation to verify that retrieval improvements are significant
 
-## Technical Requirements
+**What You'll Learn**:
 
-- Required libraries: pandas, numpy, matplotlib, openai, instructor, lancedb, braintrust, scipy
-- Bird-Bench dataset from "567-labs/bird-rag"
-- OpenAI API access for question generation
-- Braintrust account for experiment tracking
+- Bootstrapping techniques for simulating experimental variation
+- Confidence interval calculation and interpretation
+- Statistical significance testing with t-tests
+- Data visualization for comparing approaches
 
-## Why These Notebooks Matter
+**What You'll Build**:
 
-Together, these notebooks provide a complete evaluation framework for RAG systems:
+- Statistical validation pipeline for experiments
+- Visualization tools for confidence intervals
+- Framework for making data-driven decisions
 
-1. Generate challenging test questions
-2. Measure retrieval performance objectively
-3. Verify that improvements are statistically significant
+## Key Concepts
 
-This approach ensures you invest in retrieval techniques that provide measurable value rather than randomly trying different approaches. The evaluation framework you build here will guide all future RAG improvements in this course.
+- **Synthetic Question Generation**: Creating realistic test questions that challenge retrieval systems without manual annotation
+- **Retrieval Metrics**: Quantitative measures like recall@k and MRR@k that objectively assess retrieval quality
+- **Statistical Validation**: Using bootstrapping and significance tests to ensure improvements aren't due to random chance
+- **Experiment Tracking**: Systematic recording and comparison of different approaches using tools like Braintrust
+- **Asynchronous Processing**: Efficient parallel execution for faster evaluation cycles
+
+## Prerequisites
+
+### Knowledge Requirements
+
+- Basic understanding of embeddings and vector search
+- Familiarity with Python async/await patterns
+- Elementary statistics concepts (mean, standard deviation, confidence intervals)
+
+### Technical Requirements
+
+- Python packages: `pandas`, `numpy`, `matplotlib`, `openai`, `instructor`, `lancedb`, `braintrust`, `scipy`, `modal`
+- API keys: OpenAI API access for question generation
+- Accounts: Braintrust account for experiment tracking, Modal account (optional)
+- Hardware: No GPU required
+
+## Project Structure
+
+```text
+week1/
+├── README.md
+├── synthetic_questions.ipynb
+├── synthetic_questions_modal.ipynb
+├── benchmark_retrieval.ipynb
+├── visualise_results.ipynb
+├── data/
+│   ├── bird-bench/          # SQL query dataset
+│   └── synthetic_questions/ # Generated questions
+└── results/                 # Experiment outputs
+```
+
+## Datasets
+
+- **Bird-Bench**: A challenging dataset of SQL queries and database schemas from "567-labs/bird-rag", used as source documents for generating synthetic questions
+- **Synthetic Questions**: Generated dataset of diverse questions targeting different retrieval challenges
+
+## Expected Outcomes
+
+After completing this week's materials, you'll have:
+
+1. A robust synthetic question generation pipeline producing hundreds of diverse test cases
+2. A comprehensive benchmarking framework comparing multiple retrieval strategies
+3. Statistical validation tools proving which improvements are significant
+4. Clear performance metrics showing baseline retrieval capabilities
+5. Experience with modern ML experiment tracking and visualization
+
+## Common Issues and Solutions
+
+### Issue 1: Rate limiting when generating synthetic questions
+
+**Solution**: Implement exponential backoff and use the provided async rate limiting patterns. Consider using Modal deployment for higher throughput.
+
+### Issue 2: Inconsistent results between benchmark runs
+
+**Solution**: Ensure you're using the same random seed for reproducibility. Check that your evaluation dataset hasn't changed between runs.
+
+### Issue 3: Statistical tests showing no significant differences
+
+**Solution**: Increase your sample size or ensure your test cases are sufficiently challenging to reveal performance differences.
+
+## Next Steps
+
+- Complete all notebooks in order (synthetic questions → benchmarking → visualization)
+- Review Week 2 on fine-tuning to understand how baseline metrics guide improvement efforts
+- Experiment with different question generation prompts to create even more challenging test cases
+
+## Additional Resources
+
+- [Information Retrieval Metrics](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval))
+- [Braintrust Documentation](https://www.braintrust.dev/docs)
+- [Modal Platform Guide](https://modal.com/docs/guide)
+- [Statistical Significance in ML](https://arxiv.org/abs/1904.10922)
+
+---
+
+**Note**: Ensure you've completed all prerequisites before starting these notebooks. Each notebook builds on previous concepts, and the evaluation framework created here is essential for all subsequent weeks.
