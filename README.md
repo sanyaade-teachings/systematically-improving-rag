@@ -24,36 +24,49 @@ RAG systems often fail to meet user needs because developers lack systematic app
 ## Course Structure
 
 ### Week 0: Foundation and Environment Setup
+
 Learn the fundamental tools for the course: Jupyter Notebooks, LanceDB for vector search, and Pydantic Evals for systematic evaluation.
 
 **Key Skills**: Vector databases, hybrid search, evaluation frameworks
 
 ### Week 1: RAG Evaluation Foundations
+
 Build a comprehensive evaluation framework using synthetic data generation, retrieval metrics, and statistical validation.
 
 **Key Skills**: Synthetic question generation, recall@k, MRR@k, bootstrapping, statistical significance testing
 
 ### Week 2: Embedding Fine-tuning
+
 Fine-tune embedding models using both managed services (Cohere) and open-source approaches (sentence-transformers) for significant performance gains.
 
 **Key Skills**: Hard negative mining, triplet loss training, model deployment
 
 ### Week 4: Query Understanding
+
 Apply topic modeling to discover user query patterns and build classification systems for ongoing monitoring.
 
 **Key Skills**: BERTopic, query classification, pattern discovery, satisfaction analysis
 
 ### Week 5: Structured Data & Metadata
+
 Enhance RAG with structured metadata filtering, SQL integration, and PDF parsing for handling complex queries.
 
 **Key Skills**: Metadata extraction, hybrid retrieval, Text-to-SQL, document parsing
 
 ### Week 6: Tool Selection
+
 Evaluate and improve tool selection in multi-tool RAG systems through systematic testing and prompting strategies.
 
 **Key Skills**: Tool orchestration, precision/recall for tools, few-shot prompting
 
 ## Getting Started
+
+### Important Guides
+
+Before starting, please read:
+
+- **[Notebook Versions Guide](latest/NOTEBOOK_VERSIONS_GUIDE.md)** - Explains the different notebook versions (standard, logfire, modal)
+- **[Setup Verification](latest/week0/00_setup_and_verification.ipynb)** - Run this first to verify your environment
 
 ### Prerequisites
 
@@ -64,11 +77,13 @@ Evaluate and improve tool selection in multi-tool RAG systems through systematic
 ### Installation with uv (Recommended)
 
 First, install uv if you haven't already:
+
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 Then create a virtual environment and install dependencies:
+
 ```bash
 # Create a virtual environment with Python 3.9
 uv venv --python 3.9
@@ -97,6 +112,7 @@ cp .env.example .env
 ```
 
 Required API keys:
+
 - **COHERE_API_KEY**: Production key (not trial) from [Cohere](https://docs.cohere.com/v2/docs/rate-limits)
 - **OPENAI_API_KEY**: From [OpenAI](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key)
 - **HF_TOKEN**: Write-enabled token from [Hugging Face](https://huggingface.co/docs/hub/en/security-tokens)
@@ -104,6 +120,7 @@ Required API keys:
 - **BRAINTRUST_API_KEY**: From [Braintrust](https://www.braintrust.dev/docs/reference/api/ApiKeys)
 
 Load environment variables in notebooks:
+
 ```python
 from dotenv import find_dotenv, load_dotenv
 load_dotenv(find_dotenv())
@@ -122,13 +139,16 @@ By completing this course, you'll be able to:
 ## Course Materials
 
 ### Notebooks
+
 Each week contains 2-4 Jupyter notebooks with hands-on exercises. Notebooks include:
+
 - Detailed explanations of concepts
 - Working code examples
 - Visualization of results
 - Best practices and tips
 
 ### Datasets
+
 - Bird-Bench Text-to-SQL dataset for evaluation
 - Synthetic transaction data for embedding fine-tuning
 - Klarna FAQ pages for query understanding
@@ -136,6 +156,7 @@ Each week contains 2-4 Jupyter notebooks with hands-on exercises. Notebooks incl
 - 70+ commands for tool selection evaluation
 
 ### Office Hours
+
 The `office_hours/` directory contains transcripts and summaries from live sessions, providing additional insights and Q&A content.
 
 ## Development Setup
@@ -143,12 +164,14 @@ The `office_hours/` directory contains transcripts and summaries from live sessi
 ### Pre-commit Hooks
 
 For contributors, install pre-commit hooks:
+
 ```bash
 pip install pre-commit
 pre-commit install
 ```
 
 These hooks ensure code quality through:
+
 - Black formatting
 - Ruff linting with auto-fixes
 - YAML validation
@@ -157,14 +180,27 @@ These hooks ensure code quality through:
 ## Troubleshooting
 
 ### Running Outside Jupyter
+
 When running code in Python files instead of notebooks, wrap async calls:
+
 ```python
 import asyncio
 asyncio.run(main())
 ```
 
 ### Visualization Issues
+
 Notebooks include built-in visualizations. If running outside Jupyter, you may need to explicitly call `plt.show()` for matplotlib plots.
+
+## Community and Support
+
+- Report issues at [GitHub Issues](https://github.com/anthropics/claude-code/issues)
+- Visit [improvingrag.com](https://improvingrag.com) for additional resources
+- Join the Maven course for live instruction and community access
+
+## Acknowledgments
+
+Special thanks to [Dmitry Labazkin](https://github.com/labdmitriy) for frequent feedback and contributions to improve the notebooks.
 
 ---
 
