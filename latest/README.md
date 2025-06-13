@@ -1,4 +1,6 @@
-# Systematically Improving RAG -- Cohort 2 Code
+# Systematically Improving RAG Applications
+
+This is course material to suppliment my [popular maven course](https://maven.com/applied-llms/rag-playbook). If you want more free materials hceck out [improvingrag.com](https://improvingrag.com)
 
 This project uses [uv](https://docs.astral.sh/uv/) for dependency management. Make sure that you're using the correct Python version - this course requires Python 3.9 because of our `BERTopic` dependency.
 
