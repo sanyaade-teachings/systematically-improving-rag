@@ -13,7 +13,7 @@ topics:
   - Unstructured Customer Feedback
   - Fast Classifier Development
   - Tool-based vs Semantic Search
-  - Cura Project Development
+  - Kura Project Development
   - Future Course Content
   - Report Generation Enhancement
 ---
