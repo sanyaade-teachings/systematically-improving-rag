@@ -1,22 +1,22 @@
 ---
-title: "Week 4 - Office Hour 1"
-date: "2024-06-10"
+title: Week 4 - Office Hour 1
+date: '2024-06-10'
 cohort: 3
 week: 4
 session: 1
-type: "Office Hour"
-transcript: "../GMT20250610-160018_Recording.transcript.vtt"
-description: "Practical RAG implementation, data management strategies, and AI business models and value capture"
+type: Office Hour
+transcript: ../GMT20250610-160018_Recording.transcript.vtt
+description: Practical RAG implementation, data management strategies, and AI business models and value capture
 topics:
-  - "Evaluation Data Collection"
-  - "Model Selection for RAG"
-  - "Visual Elements in Reports"
-  - "Managing AI Expectations"
-  - "Open-source AI Tools Vision"
-  - "Pricing and Value Capture"
-  - "AI Platform Integration"
-  - "Business Model Transformation"
-  - "Future AI Development Data"
+  - Evaluation Data Collection
+  - Model Selection for RAG
+  - Visual Elements in Reports
+  - Managing AI Expectations
+  - Open-source AI Tools Vision
+  - Pricing and Value Capture
+  - AI Platform Integration
+  - Business Model Transformation
+  - Future AI Development Data
 ---
 
 # Week 4, Office Hour 1 (June 10)
@@ -31,13 +31,13 @@ One participant was struggling with exporting conversation data from Langsmith f
 When Langsmith or similar tools create export difficulties, I recommend two alternative approaches:
 
 1. Direct database storage: Instead of relying on tracing software, consider saving queries directly to your database as the application runs.
-"This is something we do all the time - we just write the question, answer pairs, or chunks to Postgres. That way, we can build UI on top of that database rather than trying to export data out of tools like Langsmith."
-2. Create a simple, wide database table that includes:
-    - Session ID
-    - User ID
-    - Query text
-    - Retrieved chunks
-    - Generated answer
+   "This is something we do all the time - we just write the question, answer pairs, or chunks to Postgres. That way, we can build UI on top of that database rather than trying to export data out of tools like Langsmith."
+1. Create a simple, wide database table that includes:
+   - Session ID
+   - User ID
+   - Query text
+   - Retrieved chunks
+   - Generated answer
 
 This approach gives you direct access to your data without depending on third-party export functionality, which can be unreliable. It's like building your own analytics system rather than trying to export from something like Data Dog for analysis.
 
@@ -60,7 +60,7 @@ The decision often comes down to the stakes involved rather than technical bench
 One exciting development in RAG applications is the integration of visual elements into generated reports. I'm currently working with a company on two key improvements:
 
 1. Supporting mermaid diagrams in reports to visualize relationships and processes
-2. Intelligently adding relevant images to reports
+1. Intelligently adding relevant images to reports
 
 For example, in a construction permitting application, this could mean automatically including screenshots of potential errors in blueprints with accompanying explanations: "If in a report of predicted potential errors that you should pay attention to on your project, it would actually take a screenshot of the error in the PDF of the blueprint, and then have a narrative around it."
 
@@ -152,7 +152,7 @@ These unique datasets offer opportunities to create specialized tools that can e
 
 ***Key Takeaway:*** The most valuable data is shifting from general internet content to human-AI interactions and eventually AI-to-AI interactions. Companies with large proprietary datasets in specialized domains are particularly well-positioned to create value with AI systems tailored to their unique information.
 
----
+______________________________________________________________________
 
 FAQs
 
@@ -186,4 +186,4 @@ Consider moving beyond usage-based pricing (like per-token or per-user) toward o
 
 ## What's the relationship between data collection and future AI capabilities?
 
-Every AI application serves as a sensor that generates valuable data. The applications built today create the datasets that will enable more advanced AI capabilities tomorrow. Proprietary datasets from specialized industries (like investment decisions, supply chain operations, or construction projects) are particularly valuable for building domain-specific AI capabilities. The most interesting future developments will likely come from analyzing how humans interact with AI systems, creating a feedback loop of continuous improvement. 
+Every AI application serves as a sensor that generates valuable data. The applications built today create the datasets that will enable more advanced AI capabilities tomorrow. Proprietary datasets from specialized industries (like investment decisions, supply chain operations, or construction projects) are particularly valuable for building domain-specific AI capabilities. The most interesting future developments will likely come from analyzing how humans interact with AI systems, creating a feedback loop of continuous improvement.

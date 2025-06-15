@@ -15,17 +15,19 @@ tags:
 
 !!! abstract "Chapter Overview"
 
-    This chapter explores how to transform evaluation data into valuable training assets:
+```
+This chapter explores how to transform evaluation data into valuable training assets:
 
-    - Converting evaluation examples into few-shot prompts
-    - Understanding the limitations of generic embeddings
-    - Creating datasets for fine-tuning retrieval models
-    - Learning how contrastive learning improves embeddings
-    - Testing approaches systematically
-    - Building a roadmap for continuous improvement
-    
+- Converting evaluation examples into few-shot prompts
+- Understanding the limitations of generic embeddings
+- Creating datasets for fine-tuning retrieval models
+- Learning how contrastive learning improves embeddings
+- Testing approaches systematically
+- Building a roadmap for continuous improvement
+```
+
 !!! warning "Key Insight"
-    **If you're not fine-tuning, you're Blockbuster, not Netflix.** The goal isn't to fine-tune language models (which are expensive and complex), but to fine-tune embedding models that move toward your specific data distributions and improve retrieval, not generation.
+**If you're not fine-tuning, you're Blockbuster, not Netflix.** The goal isn't to fine-tune language models (which are expensive and complex), but to fine-tune embedding models that move toward your specific data distributions and improve retrieval, not generation.
 
 ## Introduction
 
@@ -45,10 +47,12 @@ Before we dive into the transformation process, we need to understand a fundamen
 !!! warning "Limitation of Generic Models"
 Generic embedding models inherit assumptions about what "similarity" means—assumptions that may not align with your specific needs. They don't know:
 
-    1. The specific datasets they were trained on
-    2. The objective function that defined success during training
-    3. The weighting given to different types of similarity
-    4. The trade-offs made to accommodate diverse use cases
+```
+1. The specific datasets they were trained on
+2. The objective function that defined success during training
+3. The weighting given to different types of similarity
+4. The trade-offs made to accommodate diverse use cases
+```
 
 ### The Elusive Nature of "Similarity"
 
@@ -56,15 +60,17 @@ At the heart of embedding models is a deceptively simple concept: they convert t
 
 !!! example "Domain-Specific Similarity"
 
-    In e-commerce, what does it mean for two products to be similar? Are they similar because they're substitutes (different brands of red shirts) or complements (a shirt and matching pants)?
+```
+In e-commerce, what does it mean for two products to be similar? Are they similar because they're substitutes (different brands of red shirts) or complements (a shirt and matching pants)?
 
-    For music recommendations, are songs similar because they share the same genre, appear in the same playlists, or appeal to the same listeners? For a "add more songs to this playlist" feature, similarity might mean stylistic consistency, but for a discovery feature like Spotify's Discovery Weekly, it could mean something entirely different.
+For music recommendations, are songs similar because they share the same genre, appear in the same playlists, or appeal to the same listeners? For a "add more songs to this playlist" feature, similarity might mean stylistic consistency, but for a discovery feature like Spotify's Discovery Weekly, it could mean something entirely different.
 
-    Perhaps the clearest example comes from dating apps. Should "I love coffee" and "I hate coffee" be considered similar or different? From a linguistic perspective, they're opposites. From a topic perspective, both profiles care enough about beverages to mention them prominently. 
-    
-    But there are many other interpretations: Maybe they're different because coffee lovers wouldn't date coffee haters. Maybe they're similar because both indicate people with strong food preferences (foodies). Maybe they're complementary because as long as one loves tea and one loves coffee, they'll actually get along well.
-    
-    The key insight: **What matters for a dating app isn't textual similarity at all—it's whether two profiles predict if users will like each other.** This relationship isn't captured in generic embedding models trained on web text.
+Perhaps the clearest example comes from dating apps. Should "I love coffee" and "I hate coffee" be considered similar or different? From a linguistic perspective, they're opposites. From a topic perspective, both profiles care enough about beverages to mention them prominently. 
+
+But there are many other interpretations: Maybe they're different because coffee lovers wouldn't date coffee haters. Maybe they're similar because both indicate people with strong food preferences (foodies). Maybe they're complementary because as long as one loves tea and one loves coffee, they'll actually get along well.
+
+The key insight: **What matters for a dating app isn't textual similarity at all—it's whether two profiles predict if users will like each other.** This relationship isn't captured in generic embedding models trained on web text.
+```
 
 But here's the problem: "similarity" is poorly defined when we move beyond general language understanding. The correct answer isn't universal—it depends entirely on your application's objectives.
 
@@ -97,10 +103,12 @@ Not all evaluation examples make good few-shot prompts. I've seen teams simply g
 !!! tip "Characteristics of Good Examples"
 The best examples for few-shot learning share several characteristics:
 
-    1. They represent common query patterns your users actually use
-    2. They demonstrate clear, step-by-step reasoning paths
-    3. They cover a diverse range of topics or question types
-    4. They avoid being too specific or unusual
+```
+1. They represent common query patterns your users actually use
+2. They demonstrate clear, step-by-step reasoning paths
+3. They cover a diverse range of topics or question types
+4. They avoid being too specific or unusual
+```
 
 Remember the synthetic data generation techniques we explored in Chapter 1? You can use those same methods to generate examples specifically for few-shot learning. The key difference is that for few-shot examples, you need not just questions and answers, but also the reasoning process that connects them.
 
@@ -109,11 +117,11 @@ Remember the synthetic data generation techniques we explored in Chapter 1? You 
 Creating a comprehensive few-shot example library is a strategic investment that pays dividends across your entire RAG application. I recommend organizing your examples into a structured library:
 
 1. Start by filtering your evaluation data for the highest-quality examples
-2. Group them by query type or intent (factual questions, how-to guides, comparisons, etc.)
-3. Select representative examples from each group
-4. Format them consistently for inclusion in prompts
-5. Test their effectiveness with your RAG pipeline
-6. Iterate and refine based on performance
+1. Group them by query type or intent (factual questions, how-to guides, comparisons, etc.)
+1. Select representative examples from each group
+1. Format them consistently for inclusion in prompts
+1. Test their effectiveness with your RAG pipeline
+1. Iterate and refine based on performance
 
 !!! example "Structured Few-Shot Prompt"
 
@@ -219,27 +227,29 @@ For RAG applications, there are several natural ways to create triplet datasets:
 !!! example "Healthcare RAG Triplet"
 Imagine a healthcare RAG application where a user asks:
 
-    ```
-    What are the side effects of medication X?
-    ```
+````
+```
+What are the side effects of medication X?
+```
 
-    Our retrieval system might return several documents, including:
+Our retrieval system might return several documents, including:
 
-    ```
-    Document A: "Medication X may cause drowsiness, nausea, and in rare cases, allergic reactions."
+```
+Document A: "Medication X may cause drowsiness, nausea, and in rare cases, allergic reactions."
 
-    Document B: "Medication X is used to treat high blood pressure and should be taken with food."
-    ```
+Document B: "Medication X is used to treat high blood pressure and should be taken with food."
+```
 
-    If Document A is cited in the response while Document B isn't, we can create a triplet:
+If Document A is cited in the response while Document B isn't, we can create a triplet:
 
-    ```json
-    {
-      "anchor": "What are the side effects of medication X?",
-      "positive": "Medication X may cause drowsiness, nausea, and in rare cases, allergic reactions.",
-      "negative": "Medication X is used to treat high blood pressure and should be taken with food."
-    }
-    ```
+```json
+{
+  "anchor": "What are the side effects of medication X?",
+  "positive": "Medication X may cause drowsiness, nausea, and in rare cases, allergic reactions.",
+  "negative": "Medication X is used to treat high blood pressure and should be taken with food."
+}
+```
+````
 
 Through many such examples, the model learns that queries about side effects should be closer to texts describing adverse reactions than to texts describing indications or administration instructions.
 
@@ -250,22 +260,26 @@ The triplet example above introduces an important subtlety in contrastive learni
 !!! info "Value of Hard Negatives"
 Hard negatives are much more valuable for training than "easy negatives." If instead our negative example had been about car maintenance—completely unrelated to medications—the model wouldn't learn much from this contrast because it's already obvious that car maintenance isn't relevant to medication side effects.
 
-    The truly challenging distinction—and the one that will improve our retrieval quality the most—is teaching the model to distinguish between different aspects of related topics.
+```
+The truly challenging distinction—and the one that will improve our retrieval quality the most—is teaching the model to distinguish between different aspects of related topics.
+```
 
 This is where hard negative mining becomes crucial. Hard negative mining is the process of finding negative examples that are challenging but instructive for the model.
 
 !!! tip "Designing UX for Better Training Data"
 If you're serious about improving your embeddings, consider explicitly designing your UX to capture these signals:
 
-    1. **Document-level feedback mechanisms**: Add simple thumbs up/down options next to each retrieved document, not just for the final answer
+```
+1. **Document-level feedback mechanisms**: Add simple thumbs up/down options next to each retrieved document, not just for the final answer
 
-    2. **Click tracking**: Record which documents users click on and which they ignore—those ignored despite ranking highly are excellent hard negative candidates
+2. **Click tracking**: Record which documents users click on and which they ignore—those ignored despite ranking highly are excellent hard negative candidates
 
-    3. **Dwell time analysis**: If a user quickly returns from a document without spending time reading it, that's a strong signal it wasn't relevant
+3. **Dwell time analysis**: If a user quickly returns from a document without spending time reading it, that's a strong signal it wasn't relevant
 
-    4. **Explicit comparison interfaces**: For critical applications, consider interfaces that ask users to compare documents and select the most relevant one
+4. **Explicit comparison interfaces**: For critical applications, consider interfaces that ask users to compare documents and select the most relevant one
 
-    5. **Query reformulation tracking**: When a user modifies their query slightly and gets better results, you can pair the original query with documents from the improved results to create training pairs
+5. **Query reformulation tracking**: When a user modifies their query slightly and gets better results, you can pair the original query with documents from the improved results to create training pairs
+```
 
 One particularly effective approach I've seen involved a "more like this" button next to helpful documents. This not only improved the immediate user experience but also created clear signals about which documents were semantically related in the users' mental models—relationships that might not be obvious from text content alone.
 
@@ -280,12 +294,14 @@ The fundamental trade-off between embedding models and re-rankers is between spe
 !!! info "Model Comparison"
 **Bi-encoders (embedding models)**: - Encode query and document independently - Allow pre-computation of document embeddings - Enable fast vector similarity operations - Work well for first-pass retrieval of candidates - Examples include OpenAI's text-embedding models, SBERT, MPNet
 
-    **Cross-encoders (re-rankers)**:
-    - Process query and document together as a pair
-    - Cannot pre-compute relevance scores
-    - Provide more accurate relevance judgments
-    - Work best for re-ranking a smaller set of candidates
-    - Examples include Cohere Rerank, monoT5
+```
+**Cross-encoders (re-rankers)**:
+- Process query and document together as a pair
+- Cannot pre-compute relevance scores
+- Provide more accurate relevance judgments
+- Work best for re-ranking a smaller set of candidates
+- Examples include Cohere Rerank, monoT5
+```
 
 This complementary relationship makes them perfect partners in a two-stage retrieval process: use embeddings to quickly find candidate documents, then use a re-ranker to sort them more accurately.
 
@@ -297,21 +313,11 @@ One team I worked with was debating whether to invest in fine-tuning their embed
 Re-rankers benefit from more nuanced training data than binary relevant/not-relevant labels. While you can start with the same data you use for embedding fine-tuning, consider enriching it with graded relevance scores:
 
 1. Create pairs of (query, document) with relevance scores on a scale (often 0-5)
-2. Include a range of scores to help the model learn gradations of relevance
-3. Train the model to predict these more nuanced relevance scores
+1. Include a range of scores to help the model learn gradations of relevance
+1. Train the model to predict these more nuanced relevance scores
 
 !!! example "Graded Relevance Example"
-`json
-    {
-      "query": "How do I reset my password?",
-      "documents": [
-        {"text": "Step-by-step password reset guide", "score": 5},
-        {"text": "General account management information", "score": 3},
-        {"text": "Creating a strong password", "score": 2},
-        {"text": "About our company", "score": 0}
-      ]
-    }
-    `
+`json     {       "query": "How do I reset my password?",       "documents": [         {"text": "Step-by-step password reset guide", "score": 5},         {"text": "General account management information", "score": 3},         {"text": "Creating a strong password", "score": 2},         {"text": "About our company", "score": 0}       ]     }     `
 
 This richer data helps the re-ranker understand not just what's relevant versus irrelevant, but also what's highly relevant versus somewhat relevant—a distinction that can significantly improve user experience.
 
@@ -322,19 +328,21 @@ With your evaluation framework from Chapter 1 and your growing dataset of exampl
 !!! tip "Good Experimentation Practices"
 Good experimentation requires discipline and structure. For each test:
 
-    1. Form a clear hypothesis: "Implementing a re-ranker will improve recall@10 by at least 15%"
-    2. Define success criteria before running the experiment
-    3. Isolate a single variable whenever possible
-    4. Measure impact on your established metrics
-    5. Document both successful and unsuccessful experiments
+```
+1. Form a clear hypothesis: "Implementing a re-ranker will improve recall@10 by at least 15%"
+2. Define success criteria before running the experiment
+3. Isolate a single variable whenever possible
+4. Measure impact on your established metrics
+5. Document both successful and unsuccessful experiments
+```
 
 Common experiments worth running include:
 
 1. **Embedding model comparisons**: Test different models (OpenAI, Cohere, open-source alternatives)
-2. **Chunking strategy variations**: Try different chunk sizes and overlap percentages
-3. **Retrieval method comparisons**: Compare lexical, semantic, and hybrid approaches
-4. **Re-ranking impact assessment**: Measure the effect of adding a re-ranker
-5. **Few-shot prompt variations**: Test different examples and formats
+1. **Chunking strategy variations**: Try different chunk sizes and overlap percentages
+1. **Retrieval method comparisons**: Compare lexical, semantic, and hybrid approaches
+1. **Re-ranking impact assessment**: Measure the effect of adding a re-ranker
+1. **Few-shot prompt variations**: Test different examples and formats
 
 !!! example "Debate Resolved Through Data"
 One team I worked with spent weeks debating which embedding model to use, with different team members advocating for their preferred option. Instead of continuing the debate, they implemented a simple experiment: they indexed their documents with three different embedding models and measured recall on their evaluation set. The results settled the debate in hours, not weeks, and the team moved forward with data-backed confidence.
@@ -348,10 +356,12 @@ Based on your experimental results, you can now build a roadmap for ongoing impr
 !!! tip "Prioritization Framework"
 When deciding what to improve next, consider multiple factors:
 
-    1. **Impact**: Which changes will most dramatically improve key metrics?
-    2. **Effort**: How much work is required to implement each change?
-    3. **Dependencies**: Which improvements depend on others being completed first?
-    4. **Risk**: What is the chance of negative side effects or regressions?
+```
+1. **Impact**: Which changes will most dramatically improve key metrics?
+2. **Effort**: How much work is required to implement each change?
+3. **Dependencies**: Which improvements depend on others being completed first?
+4. **Risk**: What is the chance of negative side effects or regressions?
+```
 
 I've found that impact/effort prioritization works particularly well for RAG improvements. Plot potential enhancements on a simple 2x2 grid with impact on one axis and effort on the other, then focus on high-impact, low-effort improvements first. These "quick wins" build momentum and demonstrate value while you prepare for more complex enhancements.
 
@@ -362,59 +372,65 @@ In one project, we identified that implementing BM25 hybrid retrieval would be h
 
 !!! info "Tools and Libraries"
 
-    ### Understanding Embedding Models
+```
+### Understanding Embedding Models
 
-    1. **Sentence Transformers Library** ([https://www.sbert.net/](https://www.sbert.net/)): This library provides easy-to-use implementations for state-of-the-art embedding models, supporting both pairwise datasets and triplets for fine-tuning. It's my recommended starting point for most teams due to its balance of performance and ease of use.
+1. **Sentence Transformers Library** ([https://www.sbert.net/](https://www.sbert.net/)): This library provides easy-to-use implementations for state-of-the-art embedding models, supporting both pairwise datasets and triplets for fine-tuning. It's my recommended starting point for most teams due to its balance of performance and ease of use.
 
-    2. **Modern BERT** ([https://huggingface.co/sentence-transformers](https://huggingface.co/sentence-transformers)): These newer models offer 8,000 token sequence lengths and generally outperform classic BERT-based models. The BGE models in particular have shown excellent performance across many domains and are worth testing in your applications.
+2. **Modern BERT** ([https://huggingface.co/sentence-transformers](https://huggingface.co/sentence-transformers)): These newer models offer 8,000 token sequence lengths and generally outperform classic BERT-based models. The BGE models in particular have shown excellent performance across many domains and are worth testing in your applications.
 
-    3. **Cohere Re-ranking Models** ([https://cohere.com/rerank](https://cohere.com/rerank)): Cohere offers state-of-the-art re-ranking capabilities with a fine-tuning API that makes it relatively easy to customize for your specific needs. In my experience, even their base re-ranker without fine-tuning often provides substantial improvements to retrieval quality.
-    
-    4. **Specialized Domains**: For specific domains like code, science, or legal documents, look for models pre-trained on related corpora. For example, CodeBERT for programming or SciBERT for scientific literature can provide better starting points than general models.
-    
-    5. **Comparison to Data Labeling**: Everything we're doing today with fine-tuning embedding models is what I used to pay data labeling teams hundreds of thousands of dollars to do annually. The ML playbook that was once only accessible to large companies with significant budgets is now available to teams of all sizes thanks to advances in transfer learning and fine-tuning techniques.
+3. **Cohere Re-ranking Models** ([https://cohere.com/rerank](https://cohere.com/rerank)): Cohere offers state-of-the-art re-ranking capabilities with a fine-tuning API that makes it relatively easy to customize for your specific needs. In my experience, even their base re-ranker without fine-tuning often provides substantial improvements to retrieval quality.
+
+4. **Specialized Domains**: For specific domains like code, science, or legal documents, look for models pre-trained on related corpora. For example, CodeBERT for programming or SciBERT for scientific literature can provide better starting points than general models.
+
+5. **Comparison to Data Labeling**: Everything we're doing today with fine-tuning embedding models is what I used to pay data labeling teams hundreds of thousands of dollars to do annually. The ML playbook that was once only accessible to large companies with significant budgets is now available to teams of all sizes thanks to advances in transfer learning and fine-tuning techniques.
+```
 
 !!! info "Key Concepts"
 
-    #### Contrastive Learning In-Depth
+```
+#### Contrastive Learning In-Depth
 
-    Contrastive learning trains models to recognize similarities and differences between items by pushing and pulling examples in the embedding space:
+Contrastive learning trains models to recognize similarities and differences between items by pushing and pulling examples in the embedding space:
 
-    - **Triplet Loss**: Optimizes the distance between anchor-positive pairs relative to anchor-negative pairs
-    - **InfoNCE Loss**: Contrasts a positive pair against multiple negative examples
-    - **Multiple Negatives Ranking Loss**: Handles batches of queries with multiple negatives per query
+- **Triplet Loss**: Optimizes the distance between anchor-positive pairs relative to anchor-negative pairs
+- **InfoNCE Loss**: Contrasts a positive pair against multiple negative examples
+- **Multiple Negatives Ranking Loss**: Handles batches of queries with multiple negatives per query
 
-    #### Scaling and Efficiency Considerations
+#### Scaling and Efficiency Considerations
 
-    For large datasets or production workloads:
+For large datasets or production workloads:
 
-    - Consider parallel processing frameworks (like Modal) to accelerate embedding and training
-    - Experiment with multi-GPU training for faster iterations
-    - Evaluate the trade-offs between API costs and self-hosting
-    - Test multiple model variations simultaneously to find optimal configurations
+- Consider parallel processing frameworks (like Modal) to accelerate embedding and training
+- Experiment with multi-GPU training for faster iterations
+- Evaluate the trade-offs between API costs and self-hosting
+- Test multiple model variations simultaneously to find optimal configurations
+```
 
 ## Reflection Questions
 
 !!! question "Self-Assessment" 1. What specific definition of "similarity" is most important for your application's domain?
 
-    2. How would you create effective few-shot examples from your existing evaluation data?
+```
+2. How would you create effective few-shot examples from your existing evaluation data?
 
-    3. What user interactions in your application could provide valuable training signals for fine-tuning?
+3. What user interactions in your application could provide valuable training signals for fine-tuning?
 
-    4. If you had to prioritize one retrieval improvement for your system, would it be embeddings, re-ranking, or something else? Why?
+4. If you had to prioritize one retrieval improvement for your system, would it be embeddings, re-ranking, or something else? Why?
 
-    5. What experiments could you run to test your hypotheses about improving retrieval quality?
+5. What experiments could you run to test your hypotheses about improving retrieval quality?
+```
 
 ## Conclusion and Next Steps
 
 In this chapter, we've explored how to transform evaluation data into valuable training assets:
 
 1. Converting evaluation examples into few-shot prompts
-2. Understanding the limitations of generic embeddings
-3. Creating datasets for fine-tuning retrieval models
-4. Learning how contrastive learning improves embeddings
-5. Testing approaches systematically
-6. Building a roadmap for continuous improvement
+1. Understanding the limitations of generic embeddings
+1. Creating datasets for fine-tuning retrieval models
+1. Learning how contrastive learning improves embeddings
+1. Testing approaches systematically
+1. Building a roadmap for continuous improvement
 
 The key insight to take away is that data collection and repurposing form the foundation of systematic RAG improvement. Every question, every piece of feedback, and every evaluation can fuel your improvement flywheel if properly captured and utilized.
 
@@ -425,14 +441,14 @@ In [Chapter 3](chapter3-1.md), we'll dive into deployment strategies, user feedb
 
 ## Summary
 
-The data flywheel approach transforms what begins as evaluation into training assets that continuously improve your RAG system. By understanding the limitations of generic models, implementing few-shot examples, and preparing for fine-tuning, you create a foundation for ongoing enhancement. 
+The data flywheel approach transforms what begins as evaluation into training assets that continuously improve your RAG system. By understanding the limitations of generic models, implementing few-shot examples, and preparing for fine-tuning, you create a foundation for ongoing enhancement.
 
 The most critical actions to take immediately are:
 
 1. **Start logging relevancy data today** - Even if you're not ready to fine-tune yet
-2. **Define similarity for your domain** - What makes two items "similar" in your specific context?
-3. **Implement feedback mechanisms** - Design your UX to collect the signals you'll need later
-4. **Build your few-shot library** - Begin transforming evaluation data into prompt examples
-5. **Test domain-specific models** - Explore fine-tuned models for your specific application area
+1. **Define similarity for your domain** - What makes two items "similar" in your specific context?
+1. **Implement feedback mechanisms** - Design your UX to collect the signals you'll need later
+1. **Build your few-shot library** - Begin transforming evaluation data into prompt examples
+1. **Test domain-specific models** - Explore fine-tuned models for your specific application area
 
 This systematic approach ensures that every piece of data you collect contributes to a cycle of improvement that makes your application increasingly effective for your specific use case. When done properly, this flywheel effect touches every part of your system—improving clustering, topic modeling, and all other aspects we'll explore in the coming weeks.

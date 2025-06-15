@@ -28,4 +28,4 @@ This series of workshops guides you through the complete process of building, ev
 Each workshop combines theoretical concepts with practical exercises that you can apply directly to your own RAG implementations. Workshops are designed to be completed sequentially, as each one builds on concepts from previous sessions.
 
 !!! note "Prerequisites"
-    These workshops assume basic familiarity with RAG implementations and foundational AI concepts. If you're new to RAG, we recommend reviewing the [Introduction](chapter0.md) before diving into the other chapters.
+These workshops assume basic familiarity with RAG implementations and foundational AI concepts. If you're new to RAG, we recommend reviewing the [Introduction](chapter0.md) before diving into the other chapters.

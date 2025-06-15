@@ -8,4 +8,16 @@ dependencies = [
     "mkdocs>=1.6.1",
     "mkdocs-material[imaging]>=9.6.14",
     "mkdocs-minify-plugin>=0.8.0",
+    "ruff>=0.11.13",
 ]
+
+[dependency-groups]
+dev = [
+    "mdformat>=0.7.22",
+    "mdformat-frontmatter>=2.0.8",
+    "mdformat-gfm>=0.4.1",
+]
+
+[tool.mdformat]
+wrap = 88
+end_of_line = "lf"

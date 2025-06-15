@@ -1,9 +1,9 @@
 ---
-title: "Online Evals and Production Monitoring"
-speakers: ["Ben Hylak", "Sidhant Bendre"]
+title: Online Evals and Production Monitoring
+speakers: [Ben Hylak, Sidhant Bendre]
 cohort: 3
-description: "AI monitoring, production testing, and data analysis frameworks for identifying issues in AI systems and implementing structured monitoring."
-tags: ["monitoring", "evaluation", "production", "AI systems", "debugging"]
+description: AI monitoring, production testing, and data analysis frameworks for identifying issues in AI systems and implementing structured monitoring.
+tags: [monitoring, evaluation, production, AI systems, debugging]
 date: 2025
 ---
 
@@ -65,9 +65,9 @@ The framework has three core axioms:
 
 1. Discretization - Converting the infinite plane of possible AI outputs into specific, mutually exclusive buckets (like "math homework help" or "history assignment assistance")
 
-2. Prioritization - Scoring mechanisms to rank which buckets matter most based on metrics like sentiment, conversion, retention, and strategic priorities
+1. Prioritization - Scoring mechanisms to rank which buckets matter most based on metrics like sentiment, conversion, retention, and strategic priorities
 
-3. Recursive refinement - Continuously organizing within buckets to find more structure within the chaos of outputs
+1. Recursive refinement - Continuously organizing within buckets to find more structure within the chaos of outputs
 
 "The idea in general with Trellis is to break down your infinite output space into mutually exclusive buckets, figure out what buckets matter to you, and keep recurring down until you've solved your entire space of what matters for your users," Sid explained.
 
@@ -75,15 +75,15 @@ The implementation follows six steps:
 
 1. Initialize your output space by launching a minimal but generally capable MVP
 
-2. Cluster user interactions by specific intents
+1. Cluster user interactions by specific intents
 
-3. Convert clusters into semi-deterministic workflows
+1. Convert clusters into semi-deterministic workflows
 
-4. Prioritize workflows based on company KPIs
+1. Prioritize workflows based on company KPIs
 
-5. Analyze workflows to discover sub-intents or misclassified intents
+1. Analyze workflows to discover sub-intents or misclassified intents
 
-6. Recursively apply the process to refine each workflow
+1. Recursively apply the process to refine each workflow
 
 For prioritization, Sid recommends going beyond simple volume metrics: "A very naive approach is pretty much volume only... This could generally be useful, but it can be misleading if you're getting a lot of traffic on something you're already good at."
 
@@ -97,11 +97,11 @@ Once you've identified and categorized issues, Ben outlined several approaches t
 
 1. Prompt changes - Often the first and simplest solution
 
-2. Offloading to tools - Routing problematic intents to specialized tools or more capable models
+1. Offloading to tools - Routing problematic intents to specialized tools or more capable models
 
-3. RAG pipeline adjustments - Modifying storage, memory descriptions, or retrieval methods
+1. RAG pipeline adjustments - Modifying storage, memory descriptions, or retrieval methods
 
-4. Fine-tuning - Using identified issues as training data for model improvements
+1. Fine-tuning - Using identified issues as training data for model improvements
 
 Sid shared a real example from Oleve's product Unstuck, where they noticed recurring alerts from Raindrop about summary quality issues. Because they had already organized their product around the Trellis framework, they knew exactly which workflow needed improvement.
 
@@ -168,7 +168,7 @@ Effective monitoring and analysis frameworks like those presented by Ben and Sid
 
 **Key Takeaway:** There's no one-size-fits-all solution for improving AI products. Success requires a diverse toolkit of approaches, from prompt engineering to fine-tuning, combined with monitoring systems that help you determine which tools will have the greatest impact on your specific challenges.
 
----
+______________________________________________________________________
 
 FAQs
 

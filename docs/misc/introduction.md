@@ -7,8 +7,8 @@ Retrieval-Augmented Generation (RAG) is a powerful approach that combines the st
 RAG is a technique that:
 
 1. **Retrieves** relevant information from a knowledge base in response to a query
-2. **Augments** a prompt with this retrieved information
-3. **Generates** a response using an LLM with the augmented context
+1. **Augments** a prompt with this retrieved information
+1. **Generates** a response using an LLM with the augmented context
 
 This approach helps overcome several limitations of traditional LLMs:
 
@@ -33,10 +33,10 @@ This documentation serves as a guide to systematically improving each component 
 A RAG system typically consists of:
 
 1. **Knowledge Base**: The corpus of documents or information sources
-2. **Embedding Model**: Transforms text into vector representations
-3. **Vector Database**: Stores and enables similarity search on embeddings
-4. **Retriever**: Finds relevant information from the knowledge base
-5. **Prompt Engineering**: Constructs effective prompts with retrieved information
-6. **LLM**: Generates the final response
+1. **Embedding Model**: Transforms text into vector representations
+1. **Vector Database**: Stores and enables similarity search on embeddings
+1. **Retriever**: Finds relevant information from the knowledge base
+1. **Prompt Engineering**: Constructs effective prompts with retrieved information
+1. **LLM**: Generates the final response
 
 In the following sections, we'll explore each component in detail and provide strategies for optimization.

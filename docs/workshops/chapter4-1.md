@@ -16,11 +16,13 @@ tags:
 !!! abstract "Chapter Overview"
 This chapter explores how to identify patterns in user queries and feedback using topic modeling techniques:
 
-    - Understanding the difference between topics and capabilities
-    - Applying topic modeling techniques to user queries
-    - Categorizing queries for targeted improvements
-    - Building production-ready classifiers
-    - Monitoring performance by segment
+```
+- Understanding the difference between topics and capabilities
+- Applying topic modeling techniques to user queries
+- Categorizing queries for targeted improvements
+- Building production-ready classifiers
+- Monitoring performance by segment
+```
 
 ## Introduction: From Collecting Feedback to Understanding It
 
@@ -31,7 +33,7 @@ The first time I deployed a successful RAG system with robust feedback collectio
 This is where topic modeling and clustering become transformative. While it's tempting to dive into individual feedback instances or fixate on particularly negative comments, the real power comes from identifying patterns that reveal systematic opportunities for improvement. By grouping similar queries and analyzing performance patterns, you move from reacting to individual feedback to making strategic decisions about where to invest your limited resources.
 
 !!! quote "Key Philosophy"
-    "Not all improvements are created equal. The art of systematic RAG development is identifying which capabilities will deliver the most value to your users."
+"Not all improvements are created equal. The art of systematic RAG development is identifying which capabilities will deliver the most value to your users."
 
 This chapter may be my favorite in the entire book, as it transforms the vague directive of "make the AI better" into a structured, data-driven approach for identifying exactly what to improve and where to allocate your limited resources.
 

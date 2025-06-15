@@ -1,19 +1,19 @@
 ---
-title: "Week 1 - Office Hour 2"
-date: "2024-05-22"
+title: Week 1 - Office Hour 2
+date: '2024-05-22'
 cohort: 3
 week: 1
 session: 2
-type: "Office Hour"
-transcript: "../GMT20250522-174339_Recording.transcript_(1).vtt"
-description: "RAG implementation challenges, precision-recall tradeoffs, and practical business applications of AI systems"
+type: Office Hour
+transcript: ../GMT20250522-174339_Recording.transcript_(1).vtt
+description: RAG implementation challenges, precision-recall tradeoffs, and practical business applications of AI systems
 topics:
-  - "Precision in LLMs and RAG"
-  - "Small Language Models in RAG Architecture"
-  - "Multi-turn Conversation Quality"
-  - "Business Value through Data Analysis"
-  - "Balancing Technical and Business Outcomes"
-  - "AI Development Best Practices"
+  - Precision in LLMs and RAG
+  - Small Language Models in RAG Architecture
+  - Multi-turn Conversation Quality
+  - Business Value through Data Analysis
+  - Balancing Technical and Business Outcomes
+  - AI Development Best Practices
 ---
 
 # Week 1 - Office Hour 2 (May 22)
@@ -70,7 +70,7 @@ When analyzing data from AI applications, I look for two main types of issues:
 
 1. Inventory issues: These occur when the system lacks the necessary data to fulfill user requests. For example, if users search for content that doesn't exist in your database, the solution isn't to improve the AI - it's to add the missing content. Many companies don't realize their inventory might be the problem rather than their AI.
 
-2. Capabilities issues: These involve functionality gaps where the system can't perform certain types of queries or filters. For instance, you might need to add metadata filters or specialized search capabilities to handle specific user needs.
+1. Capabilities issues: These involve functionality gaps where the system can't perform certain types of queries or filters. For instance, you might need to add metadata filters or specialized search capabilities to handle specific user needs.
 
 I've found tremendous business value by identifying these issues through data analysis. In one case with a restaurant voice AI system, we discovered that when the AI attempted upselling, it generated 20% more revenue 50% of the time - a 10% overall increase. However, the agent only tried upselling in 9% of calls.
 
@@ -140,7 +140,7 @@ As one participant noted, they've found at least one "golden nugget" from each s
 
 Remember that the AI field is moving incredibly quickly, and none of us can absorb everything. The goal isn't to become an expert on everything but to get really good at leveraging AI to stay ahead of everyone else.
 
----
+______________________________________________________________________
 
 FAQs
 
@@ -182,4 +182,4 @@ The instructor focuses on identifying business value through data analysis rathe
 
 **Will there be opportunities to continue learning after the course ends?**
 
-Yes, students will still have access to Slack after the 6-week course concludes, and the instructor encourages continued questions. Additionally, students can join future cohorts of the course if they need more time to absorb the material. Many students find they benefit from going through the content multiple times as the field evolves. 
+Yes, students will still have access to Slack after the 6-week course concludes, and the instructor encourages continued questions. Additionally, students can join future cohorts of the course if they need more time to absorb the material. Many students find they benefit from going through the content multiple times as the field evolves.

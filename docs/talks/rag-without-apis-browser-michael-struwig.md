@@ -1,14 +1,13 @@
 ---
-title: "RAG Without APIs: When Function Calling Talks to Your Browser"
-speaker: "Michael Struwig"
+title: 'RAG Without APIs: When Function Calling Talks to Your Browser'
+speaker: Michael Struwig
 cohort: 3
-description: "A novel approach to RAG systems that leverages the browser as a data layer, connecting agents to sensitive data without traditional APIs."
-tags: ["RAG", "browser", "function calling", "data security", "OpenBB"]
+description: A novel approach to RAG systems that leverages the browser as a data layer, connecting agents to sensitive data without traditional APIs.
+tags: [RAG, browser, function calling, data security, OpenBB]
 date: 2025
 ---
 
 # RAG Without APIs: When Function Calling Talks to Your Browser [Michael Struwig]
-
 
 I hosted a session with Michael Struwig, Head of AI at OpenBB, who shared a fascinating approach to RAG systems that leverages the browser as a data layer. This conversation explored how financial data platforms can connect agents to sensitive data without traditional APIs, creating more secure and flexible AI-powered analysis tools.
 
@@ -35,11 +34,11 @@ OpenBB developed a protocol that allows agents to request data through the brows
 
 1. The frontend application makes a query request to the agent, specifying available widgets containing data, their descriptions, and parameters
 
-2. If the agent needs specific information, it submits a function call back to the frontend
+1. If the agent needs specific information, it submits a function call back to the frontend
 
-3. A function calling handler running in the browser locally interprets this call, executes it, and fetches the data
+1. A function calling handler running in the browser locally interprets this call, executes it, and fetches the data
 
-4. The handler responds with a follow-up query containing both the original messages and the results
+1. The handler responds with a follow-up query containing both the original messages and the results
 
 This creates a powerful separation of concerns - you integrate data once, and your agent doesn't need to know anything about how to access it. The agent simply specifies which widget and input arguments it wants, using a unified interface.
 
@@ -82,7 +81,7 @@ One of the most interesting aspects of OpenBB's approach is how they handle func
 
 1. Locally executed functions - The traditional approach where functions run in the same environment where they're called
 
-2. Remotely executed functions - A novel approach where functions are executed in the browser through a mini-interpreter
+1. Remotely executed functions - A novel approach where functions are executed in the browser through a mini-interpreter
 
 This remote execution model allows the agent to request data from widgets in the browser without needing direct API access to the data sources. As Michael explained, "Nobody said anything about where the function call needs to be executed."
 
@@ -100,11 +99,11 @@ Rather than building complex systems to analyze errors, they:
 
 1. Ensure they have good error messages that help the model try again
 
-2. Keep detailed logs of what goes wrong
+1. Keep detailed logs of what goes wrong
 
-3. Look for patterns in those logs
+1. Look for patterns in those logs
 
-4. Fix the system to make errors less likely
+1. Fix the system to make errors less likely
 
 As Michael put it, "It's astounding how just looking at logs... we don't do any crazy, smart stuff. We're a small team. We want to move fast, and we want our systems to be reliable. No, we just go look."
 
@@ -120,7 +119,7 @@ For managing user expectations around latency, OpenBB employs two key strategies
 
 1. Providing continuous status updates - Similar to how ChatGPT shows "searching the web" indicators, OpenBB shows step-by-step reasoning as the agent works. This includes information about which widgets are being accessed, what queries are being made, and what the agent is thinking. As Michael noted, "One of the things you don't want is to have a user sit there wondering what's happening."
 
-2. Parallelizing independent tasks - When querying multiple data sources that don't need to interact, they split the work into parallel processes. For example, when summarizing 10 PDFs, they'll summarize them simultaneously and combine the results rather than processing them sequentially.
+1. Parallelizing independent tasks - When querying multiple data sources that don't need to interact, they split the work into parallel processes. For example, when summarizing 10 PDFs, they'll summarize them simultaneously and combine the results rather than processing them sequentially.
 
 These approaches keep users engaged and informed while minimizing perceived latency. As Michael observed, "Users don't seem to complain. You can only read so fast, anyway."
 
@@ -149,11 +148,11 @@ OpenBB takes a multi-faceted approach to evaluation:
 
 1. User feedback through thumbs up/down ratings (though only about 1% of users provide this)
 
-2. "Radical observability" - providing full citation traces for every answer
+1. "Radical observability" - providing full citation traces for every answer
 
-3. Direct observation of user interactions and "vibe checks"
+1. Direct observation of user interactions and "vibe checks"
 
-4. Detailed logging and pattern recognition
+1. Detailed logging and pattern recognition
 
 Michael emphasized that "vibe checks" provide surprisingly high-quality information. By examining what the agent saw and the answer it provided, they can identify and fix issues more effectively than through automated systems.
 
@@ -182,17 +181,17 @@ The browser-as-data-layer approach that OpenBB has developed offers a compelling
 
 1. Keeps data secure and compliant with licensing requirements
 
-2. Simplifies development by eliminating the need for separate API integration
+1. Simplifies development by eliminating the need for separate API integration
 
-3. Creates a unified interface for both humans and AI
+1. Creates a unified interface for both humans and AI
 
-4. Enables access to data that might otherwise be inaccessible to remote agents
+1. Enables access to data that might otherwise be inaccessible to remote agents
 
 This approach represents a pragmatic solution to real-world constraints around data access and security, demonstrating that sometimes the most elegant solutions come from rethinking fundamental assumptions rather than adding more complexity.
 
 As AI becomes more integrated into our daily tools, approaches like this that leverage existing infrastructure rather than building entirely new systems may prove to be the most sustainable path forward.
 
----
+______________________________________________________________________
 
 FAQs:
 
@@ -249,7 +248,7 @@ OpenBB manages user expectations around latency in two main ways:
 
 1. Providing continuous feedback through status updates that show what the model is doing (querying widgets, writing SQL, analyzing data)
 
-2. Parallelizing tasks when possible (e.g., summarizing multiple PDFs simultaneously rather than sequentially)
+1. Parallelizing tasks when possible (e.g., summarizing multiple PDFs simultaneously rather than sequentially)
 
 **How does OpenBB approach error handling and system improvement?**
 

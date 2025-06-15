@@ -1,14 +1,16 @@
 ---
-title: "Chapter 3.2: Overcoming Latency"
-description: "Techniques for enhancing both actual and perceived performance in RAG applications"
-author: "Jason Liu"
+title: 'Chapter 3.2: Overcoming Latency'
+description: Techniques for enhancing both actual and perceived performance in RAG applications
+author: Jason Liu
 ---
 
 # Overcoming Latency: Streaming and Interstitials
 
 !!! abstract "Chapter Overview"
 
-    This chapter explores how to overcome the critical challenge of latency in RAG applications. You'll learn strategies for streaming responses, designing meaningful interstitials, and employing various technical optimizations to enhance both actual and perceived performance. The chapter demonstrates how techniques like streaming structured data and dynamic content updates can transform waiting time from a frustrating experience into an engaging one, ultimately improving user satisfaction and feedback collection rates. By implementing these approaches, you'll create RAG applications that feel responsive even during complex processing operations.
+```
+This chapter explores how to overcome the critical challenge of latency in RAG applications. You'll learn strategies for streaming responses, designing meaningful interstitials, and employing various technical optimizations to enhance both actual and perceived performance. The chapter demonstrates how techniques like streaming structured data and dynamic content updates can transform waiting time from a frustrating experience into an engaging one, ultimately improving user satisfaction and feedback collection rates. By implementing these approaches, you'll create RAG applications that feel responsive even during complex processing operations.
+```
 
 ## Introduction: The Psychology of Waiting
 
@@ -19,27 +21,27 @@ The reality is that RAG processes—retrieval, generation, validation, citation 
 Perceived performance often matters more than actual performance. Research shows that users perceive responsive systems as faster even when the total completion time is identical. This psychological principle is at the heart of the strategies we'll explore in this chapter.
 
 !!! warning "The Perception Gap"
-    Studies show that perceived wait times can be up to 25% longer than actual wait times when users have no visibility into system progress. Conversely, showing meaningful progress can make perceived wait times up to 40% shorter than actual wait times.
+Studies show that perceived wait times can be up to 25% longer than actual wait times when users have no visibility into system progress. Conversely, showing meaningful progress can make perceived wait times up to 40% shorter than actual wait times.
 
 !!! quote "Industry Perspective"
-    "Streaming has become table stakes in modern LLM applications. Users expect responses instantly, and implementing streaming dramatically improves both actual and perceived performance. Only about 20% of companies I work with have a good understanding of how to implement streaming effectively to enhance user experience."
+"Streaming has become table stakes in modern LLM applications. Users expect responses instantly, and implementing streaming dramatically improves both actual and perceived performance. Only about 20% of companies I work with have a good understanding of how to implement streaming effectively to enhance user experience."
 
 We'll explore two complementary approaches to addressing latency:
 
 1. **Streaming responses** to show progress and deliver content incrementally
-2. **Designing meaningful interstitials** that engage users while processing occurs
+1. **Designing meaningful interstitials** that engage users while processing occurs
 
 These techniques not only improve user experience but also lead to higher engagement and more feedback collection, strengthening the improvement flywheel we established in the previous chapter.
 
 !!! tip "Implementation Timing Insight"
-    If you're on the fence about implementing streaming in your RAG application, do it early. Migrating from a non-streaming to a streaming application is significantly more complex than building with streaming from the start. It can add weeks to your development cycle if attempted later in the project lifecycle.
+If you're on the fence about implementing streaming in your RAG application, do it early. Migrating from a non-streaming to a streaming application is significantly more complex than building with streaming from the start. It can add weeks to your development cycle if attempted later in the project lifecycle.
 
 !!! example "Impact of Visual Feedback"
-    - Users perceive animated progress bars as 11% faster even when wait times are identical
-    - Users will tolerate up to 8 seconds of waiting when given visual feedback, reducing abandonment rates
-    - Applications with engaging loading screens report higher satisfaction scores
-    - Facebook discovered that skeleton screens significantly reduced perceived load times, resulting in better user retention and engagement
-    
+\- Users perceive animated progress bars as 11% faster even when wait times are identical
+\- Users will tolerate up to 8 seconds of waiting when given visual feedback, reducing abandonment rates
+\- Applications with engaging loading screens report higher satisfaction scores
+\- Facebook discovered that skeleton screens significantly reduced perceived load times, resulting in better user retention and engagement
+
 The strategies we'll cover in this chapter aren't just enhancements—they're becoming essential components of modern LLM applications. By the end of this chapter, you'll understand how to transform waiting time from a point of frustration to an opportunity for engagement and trust-building.
 
 ## The Power of Animation: Creating the Illusion of Speed
@@ -52,16 +54,16 @@ In a study by the Nielsen Norman Group, users reported a 15-20% faster perceived
 Animated indicators work by:
 
 1. Giving users confidence that the system is actively working
-2. Drawing attention away from the passage of time
-3. Setting expectations about progress and completion
+1. Drawing attention away from the passage of time
+1. Setting expectations about progress and completion
 
 The most effective indicators for RAG systems are those that convey meaningful information about what's happening behind the scenes, not just generic loading animations.
 
 Consider how differently users perceive these three waiting experiences:
 
 1. A static screen with no feedback
-2. A generic spinning wheel
-3. A step-by-step indicator showing "Searching relevant documents (2/5 complete)..."
+1. A generic spinning wheel
+1. A step-by-step indicator showing "Searching relevant documents (2/5 complete)..."
 
 The third approach not only feels faster but also builds trust by providing transparency into the process.
 
@@ -70,21 +72,23 @@ The third approach not only feels faster but also builds trust by providing tran
 Streaming takes the concept of progress indicators to its logical conclusion by delivering content to users as it's generated, rather than waiting for the entire response to complete. This creates a dramatically better user experience by:
 
 1. Showing immediate activity, reducing uncertainty
-2. Providing useful content while generation continues
-3. Allowing users to begin reading before the full response is ready
+1. Providing useful content while generation continues
+1. Allowing users to begin reading before the full response is ready
 
 In a traditional RAG implementation, users submit a query and wait in silence until the full response appears. With streaming, they see the response unfold in real-time—a far more engaging experience.
 
 !!! tip "When to Implement Streaming"
-    My recommendation is to stream everything when possible. You can:
-    
-    - Stream interstitials to explain latency and help users understand what's happening
-    - Stream different results and UI components so users don't have to wait for completion
-    - Stream tool calls and function arguments to show intermediate states
-    - Implement skeleton screens (like those used by Facebook, LinkedIn, and Slack) to improve perceived latency
+My recommendation is to stream everything when possible. You can:
+
+```
+- Stream interstitials to explain latency and help users understand what's happening
+- Stream different results and UI components so users don't have to wait for completion
+- Stream tool calls and function arguments to show intermediate states
+- Implement skeleton screens (like those used by Facebook, LinkedIn, and Slack) to improve perceived latency
+```
 
 !!! quote "Industry Experience"
-    "I've seen companies experience 30-40% higher feedback collection rates after implementing effective streaming compared to traditional 'wait and display' approaches. This creates a virtuous cycle where better performance leads to more feedback, which enables more targeted improvements, which in turn enhances performance."
+"I've seen companies experience 30-40% higher feedback collection rates after implementing effective streaming compared to traditional 'wait and display' approaches. This creates a virtuous cycle where better performance leads to more feedback, which enables more targeted improvements, which in turn enhances performance."
 
 ```mermaid
 sequenceDiagram
@@ -121,11 +125,11 @@ This sequence diagram illustrates how streaming transforms the user experience f
 Implementing streaming requires coordination across your entire stack:
 
 1. A generation endpoint that supports streaming
-2. Backend routes that maintain open connections
-3. Frontend components that render incremental updates
+1. Backend routes that maintain open connections
+1. Frontend components that render incremental updates
 
 !!! tip "Implementation Timing"
-    If you're on the fence about implementing streaming, do it early. Migrating from a non-streaming to a streaming application is significantly more complex than building it from the start. It can add weeks to your development cycle if attempted later in the project lifecycle.
+If you're on the fence about implementing streaming, do it early. Migrating from a non-streaming to a streaming application is significantly more complex than building it from the start. It can add weeks to your development cycle if attempted later in the project lifecycle.
 
 Most modern language models and APIs support streaming, though the specific implementation varies. The effort is well worth it - side-by-side comparisons show dramatically improved user experience, with streaming responses feeling much more responsive than waiting for complete responses:
 
@@ -186,9 +190,11 @@ async def stream_query_response(request: Request):
 On the frontend, you'll need to handle Server-Sent Events (SSE) or WebSockets to receive and display the streamed content:
 
 !!! example "Frontend Streaming Implementation"
-    ![Example of JavaScript frontend code that handles streaming responses](../assets/images/frontend-streaming-code.png)
+![Example of JavaScript frontend code that handles streaming responses](../assets/images/frontend-streaming-code.png)
 
-    *This code shows how to handle streaming responses on the frontend, creating a reader for the response stream, decoding chunks as they arrive, and updating the UI in real-time to display incremental results.*
+```
+*This code shows how to handle streaming responses on the frontend, creating a reader for the response stream, decoding chunks as they arrive, and updating the UI in real-time to display incremental results.*
+```
 
 ### Showing Function Call Arguments
 
@@ -197,9 +203,11 @@ One unique advantage of streaming is the ability to show users not just the fina
 For example, you can stream the function calls and arguments that your RAG system is using:
 
 !!! example "Function Call Streaming"
-    ![Example of JavaScript code for streaming function calls and thought process](../assets/images/function-call-streaming.png)
+![Example of JavaScript code for streaming function calls and thought process](../assets/images/function-call-streaming.png)
 
-    *This code processes streaming chunks to separate thought processes from function calls, displaying each in their own UI components. This creates engagement by showing users the system's reasoning and operations in real-time.*
+```
+*This code processes streaming chunks to separate thought processes from function calls, displaying each in their own UI components. This creates engagement by showing users the system's reasoning and operations in real-time.*
+```
 
 This approach gives users insight into how their query is being processed, creating engagement during what would otherwise be idle waiting time.
 
@@ -208,12 +216,14 @@ This approach gives users insight into how their query is being processed, creat
 Streaming isn't limited to plain text—you can stream structured data like citations, follow-up questions, or data visualizations. This technique is especially valuable for complex RAG applications where responses have multiple components.
 
 !!! example "Streaming in Modern Applications"
-    Libraries like Instruct and modern LLM frameworks now support streaming structured data. This allows applications to:
-    
-    - Stream citations with IDs and titles
-    - Stream different response components in parallel
-    - Stream function calls and their arguments 
-    - Build dynamic UI that renders each component as it becomes available
+Libraries like Instruct and modern LLM frameworks now support streaming structured data. This allows applications to:
+
+```
+- Stream citations with IDs and titles
+- Stream different response components in parallel
+- Stream function calls and their arguments 
+- Build dynamic UI that renders each component as it becomes available
+```
 
 Here's how you might implement structured streaming for a response that includes an answer, citations, and follow-up questions:
 
@@ -267,9 +277,11 @@ async def stream_structured_response(query: str):
 On the frontend, you'd handle this structured stream by updating different UI components based on the message type:
 
 !!! example "Structured Data Streaming Handler"
-    ![Example of JavaScript code for handling structured data streaming](../assets/images/structured-streaming-handler.png)
+![Example of JavaScript code for handling structured data streaming](../assets/images/structured-streaming-handler.png)
 
-    *This code processes a structured data stream, separating different components (answer chunks, citations, follow-up questions) and rendering each in their appropriate UI sections. This creates a dynamic, engaging experience where different parts of the response appear progressively.*
+```
+*This code processes a structured data stream, separating different components (answer chunks, citations, follow-up questions) and rendering each in their appropriate UI sections. This creates a dynamic, engaging experience where different parts of the response appear progressively.*
+```
 
 This approach creates a dynamic, engaging experience where different parts of the response appear progressively, keeping users engaged throughout the generation process.
 
@@ -284,14 +296,14 @@ The key principle is to make interstitials meaningful rather than generic. Inste
 Skeleton screens are placeholder UI elements that mimic the structure of content while it loads. Unlike traditional spinners or progress bars, they create the impression that content is almost ready by showing its outline.
 
 !!! example "Facebook's Discovery"
-    Facebook's user experience research discovered that skeleton screens significantly reduced perceived load times, resulting in better user retention and engagement. Users reported that the experience "felt faster" even when actual load times were identical to spinner-based approaches.
+Facebook's user experience research discovered that skeleton screens significantly reduced perceived load times, resulting in better user retention and engagement. Users reported that the experience "felt faster" even when actual load times were identical to spinner-based approaches.
 
 Skeleton screens work because they:
 
 1. Set clear expectations about what content is loading
-2. Provide a sense of progress without requiring actual progress data
-3. Create the impression that the system is actively working on the request
-4. Give users visual stimulation during the waiting period
+1. Provide a sense of progress without requiring actual progress data
+1. Create the impression that the system is actively working on the request
+1. Give users visual stimulation during the waiting period
 
 For RAG applications, skeleton screens can be particularly effective when showing:
 
@@ -301,24 +313,28 @@ For RAG applications, skeleton screens can be particularly effective when showin
 - Tool usage summaries that will appear
 
 !!! example "Skeleton Loader Implementation"
-    ![Example of React component and CSS for implementing skeleton screens](../assets/images/skeleton-loader-code.png)
+![Example of React component and CSS for implementing skeleton screens](../assets/images/skeleton-loader-code.png)
 
-    *This code shows how to implement animated skeleton loaders that mimic the structure of your content while it loads. The animation creates the impression of progress and helps users understand what content is coming.*
+```
+*This code shows how to implement animated skeleton loaders that mimic the structure of your content while it loads. The animation creates the impression of progress and helps users understand what content is coming.*
+```
 
 !!! example "Meaningful vs. Generic Interstitials"
-    **Generic Interstitial:** "Loading..."
+**Generic Interstitial:** "Loading..."
 
-    **Meaningful Interstitial:**
-    "Searching 382,549 documents in our knowledge base..."
-    "Finding relevant precedent cases from 2021-2022..."
-    "Analyzing 3 legal frameworks that might apply to your question..."
+```
+**Meaningful Interstitial:**
+"Searching 382,549 documents in our knowledge base..."
+"Finding relevant precedent cases from 2021-2022..."
+"Analyzing 3 legal frameworks that might apply to your question..."
+```
 
 Meaningful interstitials should:
 
 1. Be specific about what the system is doing
-2. Include actual metrics when possible (number of documents, etc.)
-3. Update dynamically to show progress
-4. Maintain a confident, authoritative tone
+1. Include actual metrics when possible (number of documents, etc.)
+1. Update dynamically to show progress
+1. Maintain a confident, authoritative tone
 
 Here's how you might implement meaningful interstitials:
 
@@ -385,9 +401,11 @@ async def generate_interstitials(query: str):
 On the frontend, you'd display these interstitials in sequence during the waiting period:
 
 !!! example "Meaningful Interstitials Implementation"
-    ![Example of JavaScript code for displaying meaningful interstitials in sequence](../assets/images/interstitials-code.png)
+![Example of JavaScript code for displaying meaningful interstitials in sequence](../assets/images/interstitials-code.png)
 
-    *This code shows how to fetch and display domain-specific interstitial messages that rotate every few seconds. The animation and context-specific messages engage users during waiting time, making the system feel more responsive.*
+```
+*This code shows how to fetch and display domain-specific interstitial messages that rotate every few seconds. The animation and context-specific messages engage users during waiting time, making the system feel more responsive.*
+```
 
 ## Optimizing Actual Performance
 
@@ -413,9 +431,11 @@ Caching dramatically improves performance for repeated or similar queries:
 Here's a simple implementation of semantic caching:
 
 !!! example "Semantic Caching Implementation"
-    ![Example of Python code for implementing semantic caching based on embedding similarity](../assets/images/semantic-cache-code.png)
+![Example of Python code for implementing semantic caching based on embedding similarity](../assets/images/semantic-cache-code.png)
 
-    *This code demonstrates a semantic caching system that stores and retrieves results based on query embedding similarity rather than exact string matching. This dramatically improves performance for similar queries without requiring exact matches.*
+```
+*This code demonstrates a semantic caching system that stores and retrieves results based on query embedding similarity rather than exact string matching. This dramatically improves performance for similar queries without requiring exact matches.*
+```
 
 ### 3. Implement Progressive Loading
 
@@ -444,24 +464,27 @@ Here's a simple but effective approach for Slack bots:
 
 1. **Initial Acknowledgment**: React with the 👀 emoji immediately when receiving a message to indicate that the bot has seen the request and is processing it.
 
-2. **Progress Updates**: Use message updates or threading to show progress, such as:
+1. **Progress Updates**: Use message updates or threading to show progress, such as:
+
    ```
    Searching through knowledge base...
    Found 5 relevant documents...
    Generating response...
    ```
 
-3. **Completion Indicator**: Mark the message with a ✅ emoji when the response is complete.
+1. **Completion Indicator**: Mark the message with a ✅ emoji when the response is complete.
 
-4. **Feedback Collection**: Pre-fill emoji reactions (👍 👎 ⭐) to prompt users for feedback on the response quality.
+1. **Feedback Collection**: Pre-fill emoji reactions (👍 👎 ⭐) to prompt users for feedback on the response quality.
 
 !!! example "Slack Bot Pseudo-Streaming Implementation"
-    ![Example of JavaScript code for implementing pseudo-streaming in a Slack bot](../assets/images/slack-bot-code.png)
+![Example of JavaScript code for implementing pseudo-streaming in a Slack bot](../assets/images/slack-bot-code.png)
 
-    *This code shows how to implement pseudo-streaming in a Slack bot environment, using message updates, emoji reactions, and staged processing to create the illusion of progress and maintain user engagement.*
+```
+*This code shows how to implement pseudo-streaming in a Slack bot environment, using message updates, emoji reactions, and staged processing to create the illusion of progress and maintain user engagement.*
+```
 
 !!! tip "Slack Feedback Collection"
-    By pre-filling emoji reactions (👍 👎 ⭐), you dramatically increase the likelihood of receiving user feedback. This approach places feedback options directly in the user's view, rather than requiring them to take additional steps. In testing, this approach increased feedback collection rates by up to 5x compared to text-based feedback prompts.
+By pre-filling emoji reactions (👍 👎 ⭐), you dramatically increase the likelihood of receiving user feedback. This approach places feedback options directly in the user's view, rather than requiring them to take additional steps. In testing, this approach increased feedback collection rates by up to 5x compared to text-based feedback prompts.
 
 ## The Connection Between Streaming, Performance, and Feedback
 
@@ -474,7 +497,7 @@ In our experience, implementations with effective streaming collect 30-40% more 
 The most successful RAG applications aren't just accurate—they're responsive, engaging, and transparent. By applying the techniques in this chapter, you create an experience that keeps users engaged throughout the interaction, building trust and encouraging the feedback that fuels continuous improvement.
 
 !!! quote "Real-world Impact"
-    "For a customer support RAG application, implementing streaming and feedback-optimized interstitials increased our feedback collection rate from 5.6% to over 25%. This allowed us to fine-tune five times faster and quickly identify the most problematic query types. Within six weeks, we improved customer satisfaction scores by 34% by addressing these specific failure modes."
+"For a customer support RAG application, implementing streaming and feedback-optimized interstitials increased our feedback collection rate from 5.6% to over 25%. This allowed us to fine-tune five times faster and quickly identify the most problematic query types. Within six weeks, we improved customer satisfaction scores by 34% by addressing these specific failure modes."
 
 ## Conclusion: Performance as Experience Design
 
@@ -485,7 +508,7 @@ By implementing streaming, you transform the user experience from a binary "wait
 These approaches work in concert to create a responsive, engaging RAG experience that keeps users invested and encourages feedback. The research is clear: users provide up to 5x more feedback when your application feels responsive and engaging. This creates a powerful feedback flywheel where better performance leads to more feedback, which enables more targeted improvements, which in turn enhances performance further.
 
 !!! tip "Implementation Priority"
-    If you're at the start of your RAG implementation journey, prioritize streaming first. It's much easier to integrate from the beginning than to retrofit later. Next, focus on meaningful interstitials and skeleton screens. Finally, implement platform-specific optimizations for your particular usage context (web, Slack, mobile, etc.).
+If you're at the start of your RAG implementation journey, prioritize streaming first. It's much easier to integrate from the beginning than to retrofit later. Next, focus on meaningful interstitials and skeleton screens. Finally, implement platform-specific optimizations for your particular usage context (web, Slack, mobile, etc.).
 
 In the next chapter, we'll build on these foundations by exploring quality-of-life improvements like interactive citations, chain-of-thought reasoning, and validation patterns. These elements further enhance the user experience while creating additional opportunities for feedback collection.
 
@@ -493,23 +516,23 @@ In the next chapter, we'll build on these foundations by exploring quality-of-li
 
 1. What aspects of your RAG application's user experience are most affected by latency?
 
-2. How could you modify your current interface to show meaningful progress during retrieval and generation?
+1. How could you modify your current interface to show meaningful progress during retrieval and generation?
 
-3. What information could you stream incrementally to improve perceived performance?
+1. What information could you stream incrementally to improve perceived performance?
 
-4. Which components of your RAG pipeline are the biggest contributors to actual latency? How might you optimize them?
+1. Which components of your RAG pipeline are the biggest contributors to actual latency? How might you optimize them?
 
-5. How would implementing streaming affect your feedback collection mechanisms?
+1. How would implementing streaming affect your feedback collection mechanisms?
 
-6. Is your feedback collection UI too subtle? How could you improve its visibility and clarity?
+1. Is your feedback collection UI too subtle? How could you improve its visibility and clarity?
 
-7. How might you implement skeleton screens in your particular application context?
+1. How might you implement skeleton screens in your particular application context?
 
-8. If your application runs on platforms like Slack or Teams, what platform-specific techniques could you use to improve perceived latency?
+1. If your application runs on platforms like Slack or Teams, what platform-specific techniques could you use to improve perceived latency?
 
-9. How could you use interstitials to educate users about your system's capabilities and build trust?
+1. How could you use interstitials to educate users about your system's capabilities and build trust?
 
-10. What metrics would you track to measure the impact of your latency improvements on user satisfaction and feedback collection?
+1. What metrics would you track to measure the impact of your latency improvements on user satisfaction and feedback collection?
 
 ## Summary
 
@@ -531,18 +554,18 @@ Remember: If you only implement one improvement from this chapter, make it strea
 
 1. Nielsen Norman Group, ["Progress Indicators Make a Slow System Less Insufferable"](https://www.nngroup.com/articles/progress-indicators/) - Research on how progress indicators affect perceived wait times
 
-2. Google Developers, ["Measuring Perceived Performance"](https://web.dev/articles/user-centric-performance-metrics) - Metrics and techniques for measuring how users perceive application performance
+1. Google Developers, ["Measuring Perceived Performance"](https://web.dev/articles/user-centric-performance-metrics) - Metrics and techniques for measuring how users perceive application performance
 
-3. OpenAI Documentation, ["Streaming API Best Practices"](https://platform.openai.com/docs/guides/chat/streaming) - Implementation details for streaming with OpenAI models
+1. OpenAI Documentation, ["Streaming API Best Practices"](https://platform.openai.com/docs/guides/chat/streaming) - Implementation details for streaming with OpenAI models
 
-4. GitHub Repository: [Streaming-RAG-Implementation](https://github.com/langchain-ai/langchain/blob/master/docs/docs/get_started/quickstart.ipynb) - Example implementation of a streaming RAG application
+1. GitHub Repository: [Streaming-RAG-Implementation](https://github.com/langchain-ai/langchain/blob/master/docs/docs/get_started/quickstart.ipynb) - Example implementation of a streaming RAG application
 
-5. Facebook Engineering, ["Building Skeleton Screens"](https://engineering.fb.com/2016/06/30/web/shimmer-an-open-source-library-for-loading-content/) - Facebook's approach to implementing skeleton screens for improved perceived performance
+1. Facebook Engineering, ["Building Skeleton Screens"](https://engineering.fb.com/2016/06/30/web/shimmer-an-open-source-library-for-loading-content/) - Facebook's approach to implementing skeleton screens for improved perceived performance
 
-6. [Anthropic Structured Outputs Guide](https://docs.anthropic.com/claude/docs/structured-outputs) - Guide for generating structured data with Claude that can be streamed incrementally
+1. [Anthropic Structured Outputs Guide](https://docs.anthropic.com/claude/docs/structured-outputs) - Guide for generating structured data with Claude that can be streamed incrementally
 
-7. Slack API Documentation, ["Adding Reactions to Messages"](https://api.slack.com/methods/reactions.add) - How to programmatically add emoji reactions to messages for feedback collection
+1. Slack API Documentation, ["Adding Reactions to Messages"](https://api.slack.com/methods/reactions.add) - How to programmatically add emoji reactions to messages for feedback collection
 
-8. Article: ["The Psychology of Waiting Lines"](https://www.nngroup.com/articles/progress-indicators/) - David Maister's research on the psychological aspects of waiting
+1. Article: ["The Psychology of Waiting Lines"](https://www.nngroup.com/articles/progress-indicators/) - David Maister's research on the psychological aspects of waiting
 
-9. GitHub Repository: [React Skeleton Screens](https://github.com/danilowoz/react-content-loader) - Open-source library for implementing skeleton screens in React applications
+1. GitHub Repository: [React Skeleton Screens](https://github.com/danilowoz/react-content-loader) - Open-source library for implementing skeleton screens in React applications

@@ -15,12 +15,14 @@ tags:
 
 !!! abstract "Chapter Overview"
 
-    This part explores how to implement the key components of a unified RAG system:
+```
+This part explores how to implement the key components of a unified RAG system:
 
-    - Implementing tool interfaces for different content types
-    - Building an effective query router using few-shot examples
-    - Creating a feedback loop that improves routing over time
-    - Measuring router performance separately from retriever performance
+- Implementing tool interfaces for different content types
+- Building an effective query router using few-shot examples
+- Creating a feedback loop that improves routing over time
+- Measuring router performance separately from retriever performance
+```
 
 ## Implementing Tool Interfaces for Retrieval
 
@@ -90,7 +92,7 @@ class SearchText(BaseModel):
 
 Notice the detailed docstrings and examples in these tool definitions. These aren't just for human developers—they're critical for language models to understand how and when to use each tool. The examples in particular help models recognize the patterns of queries that should trigger each tool.
 
-### Aside on MCP 
+### Aside on MCP
 
 The Model Context Protocol (MCP) is an open standard developed by Anthropic that standardizes how applications provide context to large language models. Conceptually similar to the tool interface pattern we've discussed, MCP creates a universal protocol for connecting AI systems to various data sources and tools.
 
@@ -99,31 +101,32 @@ Think of MCP like a "USB-C port for AI applications" – just as USB-C provides 
 Key benefits of MCP include:
 
 1. **Standardization**: Developers can build against a single protocol instead of maintaining separate connectors for each data source
-2. **Interoperability**: AI systems can maintain context as they move between different tools and datasets
-3. **Ecosystem**: Pre-built connectors for popular systems like GitHub, Slack, and databases can be shared and reused
-4. **Security**: The protocol is designed with security considerations for connecting AI to sensitive data sources
+1. **Interoperability**: AI systems can maintain context as they move between different tools and datasets
+1. **Ecosystem**: Pre-built connectors for popular systems like GitHub, Slack, and databases can be shared and reused
+1. **Security**: The protocol is designed with security considerations for connecting AI to sensitive data sources
 
 MCP represents an important step toward the unified architecture vision we've discussed in this chapter, offering a standardized way to implement the "tools as APIs" pattern across different AI systems and data sources.
 
 !!! warning "MCP is Still Emerging"
 
-    While MCP represents a promising approach to standardizing AI tool interfaces, it's important to note that it's still very new. As of now, there aren't many production-ready MCP implementations available, and the ecosystem of useful MCPs is still in its early stages of development. Organizations adopting MCP should be prepared for an evolving standard and limited availability of pre-built connectors. As with any emerging technology, early adopters will need to invest in building custom implementations and should expect the standard to evolve over time.
-
+```
+While MCP represents a promising approach to standardizing AI tool interfaces, it's important to note that it's still very new. As of now, there aren't many production-ready MCP implementations available, and the ecosystem of useful MCPs is still in its early stages of development. Organizations adopting MCP should be prepared for an evolving standard and limited availability of pre-built connectors. As with any emerging technology, early adopters will need to invest in building custom implementations and should expect the standard to evolve over time.
+```
 
 ## Building the Routing Layer
 
 Once we have defined our specialized retrieval tools, we need a system that can route queries to the appropriate tools. This routing layer is responsible for:
 
 1. Understanding the user's query
-2. Determining which tool(s) to call
-3. Extracting the necessary parameters from the query
-4. Calling the appropriate tools with those parameters
-5. Combining results when multiple tools are used
+1. Determining which tool(s) to call
+1. Extracting the necessary parameters from the query
+1. Calling the appropriate tools with those parameters
+1. Combining results when multiple tools are used
 
 Modern language models excel at this kind of task, especially when provided with clear tool definitions and examples.
 
 !!! warning "Router vs. Individual Retrievers"
-    It's critical to distinguish between the performance of your router (selecting the right tools) and the performance of each individual retriever (finding relevant information). A perfect router with mediocre retrievers will still yield mediocre results, while a mediocre router with perfect retrievers might miss capabilities entirely.
+It's critical to distinguish between the performance of your router (selecting the right tools) and the performance of each individual retriever (finding relevant information). A perfect router with mediocre retrievers will still yield mediocre results, while a mediocre router with perfect retrievers might miss capabilities entirely.
 
 ### Implementing a Simple Router
 
@@ -246,13 +249,15 @@ def process_user_query(query: str):
 The effectiveness of the router depends significantly on providing good examples of when to use each tool. These few-shot examples help the model understand the patterns that should trigger different tools.
 
 !!! tip "Effective Few-Shot Examples"
-    When creating few-shot examples for query routing:
-    
-    1. **Cover edge cases**: Include examples of ambiguous queries that could be interpreted multiple ways
-    2. **Include multi-tool examples**: Show when multiple tools should be used together
-    3. **Demonstrate hard decisions**: Show when similar-sounding queries should route to different tools
-    4. **Use real user queries**: Whenever possible, use actual queries from your users
-    5. **Maintain diversity**: Ensure examples cover all tools and important parameter combinations
+When creating few-shot examples for query routing:
+
+```
+1. **Cover edge cases**: Include examples of ambiguous queries that could be interpreted multiple ways
+2. **Include multi-tool examples**: Show when multiple tools should be used together
+3. **Demonstrate hard decisions**: Show when similar-sounding queries should route to different tools
+4. **Use real user queries**: Whenever possible, use actual queries from your users
+5. **Maintain diversity**: Ensure examples cover all tools and important parameter combinations
+```
 
 For instance, a system prompt for routing might include examples like:
 

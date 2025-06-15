@@ -1,14 +1,16 @@
 ---
-title: "Chapter 3.1: Feedback Collection"
-description: "Building feedback flywheels into your RAG applications"
-author: "Jason Liu"
+title: 'Chapter 3.1: Feedback Collection'
+description: Building feedback flywheels into your RAG applications
+author: Jason Liu
 ---
 
 # Feedback Collection: Building Your Improvement Flywheel
 
 !!! abstract "Chapter Overview"
 
-    This chapter explores the essential role of feedback collection in RAG systems, introducing the concept of a feedback flywheel for systematic improvement. You'll learn practical strategies for making feedback mechanisms visible and engaging to users, techniques for collecting segmented feedback that provides actionable insights, and methods for mining user behavior to generate training data. The chapter emphasizes how effective feedback collection transforms your RAG application from a static tool into a continuously improving system that grows more valuable with every interaction.
+```
+This chapter explores the essential role of feedback collection in RAG systems, introducing the concept of a feedback flywheel for systematic improvement. You'll learn practical strategies for making feedback mechanisms visible and engaging to users, techniques for collecting segmented feedback that provides actionable insights, and methods for mining user behavior to generate training data. The chapter emphasizes how effective feedback collection transforms your RAG application from a static tool into a continuously improving system that grows more valuable with every interaction.
+```
 
 ## Introduction
 
@@ -17,7 +19,7 @@ The true power of RAG isn't in its initial deployment—it's in how the system i
 In this chapter, we'll explore how to build effective feedback mechanisms that transform your RAG application from a static implementation into a continuously improving system that grows more valuable with every user interaction. This approach creates a "feedback flywheel"—a virtuous cycle where user interactions provide the data needed to make the system better, which in turn attracts more users and generates more feedback.
 
 !!! warning "The Invisible Feedback Problem"
-    Many RAG implementations hide feedback mechanisms in obscure UI locations or use generic "thumbs up/down" buttons that provide minimal insight. Research suggests that users interact with these minimal feedback options less than 0.1% of the time, providing insufficient data for meaningful improvements.
+Many RAG implementations hide feedback mechanisms in obscure UI locations or use generic "thumbs up/down" buttons that provide minimal insight. Research suggests that users interact with these minimal feedback options less than 0.1% of the time, providing insufficient data for meaningful improvements.
 
 In my consulting practice, I've seen that simply changing the copy from generic "How did we do?" to specific "Did we answer your question?" can increase feedback rates by **5x**. Well-designed feedback mechanisms don't just collect more data—they accelerate your entire improvement cycle, allowing you to fine-tune 5x faster and deploy with greater confidence.
 
@@ -34,24 +36,26 @@ This chapter focuses on the practical implementation of feedback mechanisms in R
 The first principle of effective feedback collection is visibility. Your feedback mechanisms should be prominent and engaging, not hidden in dropdown menus or settings pages. Users should encounter feedback options naturally as part of their interaction flow.
 
 !!! example "High-Visibility Feedback UI"
-    Consider the difference between these two approaches:
+Consider the difference between these two approaches:
 
-    **Low Visibility:** A small thumbs up/down icon in the corner of the response
+```
+**Low Visibility:** A small thumbs up/down icon in the corner of the response
 
-    **High Visibility:**
+**High Visibility:**
 
-    After receiving an answer, users see:
+After receiving an answer, users see:
 
-    "Was this answer helpful? [Yes] [Somewhat] [No]"
+"Was this answer helpful? [Yes] [Somewhat] [No]"
 
-    If they click "Somewhat" or "No":
+If they click "Somewhat" or "No":
 
-    "What could be improved?"
-    - [ ] More detailed explanation
-    - [ ] More relevant information
-    - [ ] Incorrect information
-    - [ ] Better formatting
-    - [ ] Other: ____________
+"What could be improved?"
+- [ ] More detailed explanation
+- [ ] More relevant information
+- [ ] Incorrect information
+- [ ] Better formatting
+- [ ] Other: ____________
+```
 
 The second approach not only makes feedback impossible to miss but also structures it in a way that provides more actionable insights. Research shows that visible, engaging feedback mechanisms can increase feedback rates from less than 1% to over 30%.
 
@@ -60,9 +64,9 @@ The second approach not only makes feedback impossible to miss but also structur
 Here are several patterns for implementing high-visibility feedback mechanisms:
 
 1. **Inline Feedback:** Place feedback options directly beneath each response
-2. **Modal Prompts:** Show a feedback modal after a certain number of interactions
-3. **Follow-up Questions:** Include feedback collection as part of conversational flow
-4. **Email Follow-ups:** Send follow-up emails asking for feedback on recent sessions
+1. **Modal Prompts:** Show a feedback modal after a certain number of interactions
+1. **Follow-up Questions:** Include feedback collection as part of conversational flow
+1. **Email Follow-ups:** Send follow-up emails asking for feedback on recent sessions
 
 Each approach has advantages for different use cases. The key is to make feedback collection a natural part of the user experience rather than an afterthought.
 
@@ -71,31 +75,37 @@ Each approach has advantages for different use cases. The key is to make feedbac
 For enterprise applications, especially when working with large customers who have dedicated customer success teams, consider implementing a Slack integration for feedback collection:
 
 1. Create a shared Slack channel with customer stakeholders
-2. Post negative feedback directly to the channel in real-time
-3. Allow your team to discuss issues and ask follow-up questions
-4. Document how feedback is addressed and integrated into your evaluation suite
-5. Report back on improvements during regular sync meetings
+1. Post negative feedback directly to the channel in real-time
+1. Allow your team to discuss issues and ask follow-up questions
+1. Document how feedback is addressed and integrated into your evaluation suite
+1. Report back on improvements during regular sync meetings
 
 This approach creates transparency and builds trust by showing customers that their feedback drives real improvements. In my experience, this method increases feedback by approximately 5x compared to traditional forms, while also improving customer retention through visible responsiveness.
 
 !!! example "Slack Webhook Integration Code"
-    ![Example of Slack feedback integration showing code that posts negative feedback to a Slack channel](../assets/images/slack-feedback-code.png)
+![Example of Slack feedback integration showing code that posts negative feedback to a Slack channel](../assets/images/slack-feedback-code.png)
 
-    *This code demonstrates how to integrate feedback collection with Slack, automatically posting negative feedback to a shared channel for immediate visibility and follow-up.*
+```
+*This code demonstrates how to integrate feedback collection with Slack, automatically posting negative feedback to a shared channel for immediate visibility and follow-up.*
+```
 
 !!! example "Feedback UI Implementation"
-    ![Example of feedback UI implementation showing a Python function that generates HTML with feedback buttons](../assets/images/feedback-ui-code.png)
+![Example of feedback UI implementation showing a Python function that generates HTML with feedback buttons](../assets/images/feedback-ui-code.png)
 
-    *This code renders a response with prominent feedback options, automatically showing a more detailed form if the user indicates the response wasn't fully helpful.*
+```
+*This code renders a response with prominent feedback options, automatically showing a more detailed form if the user indicates the response wasn't fully helpful.*
+```
 
 ## Segmented Feedback: Make It Actionable
 
 Generic feedback like thumbs up/down provides minimal insight for improvement. To make feedback truly actionable, segment it into specific aspects of your RAG pipeline.
 
 !!! warning "The Problem with Generic Feedback"
-    A simple "thumbs down" could mean many things: - The retrieval system found irrelevant documents - The generation step produced inaccurate information - The answer was technically correct but poorly formatted - The answer was too brief or too verbose
+A simple "thumbs down" could mean many things: - The retrieval system found irrelevant documents - The generation step produced inaccurate information - The answer was technically correct but poorly formatted - The answer was too brief or too verbose
 
-    Without knowing which aspect failed, you can't target improvements effectively.
+```
+Without knowing which aspect failed, you can't target improvements effectively.
+```
 
 Segmented feedback isolates specific parts of your RAG pipeline, helping you identify exactly where issues occur. Instead of asking "Was this helpful?" consider questions like:
 
@@ -111,16 +121,18 @@ Each question targets a different aspect of your system, allowing you to pinpoin
 Negative feedback is particularly valuable for improvement, but users often abandon interactions after having a bad experience. To maximize the collection of negative feedback:
 
 1. Make feedback collection immediate—don't wait until the end of a session
-2. Use progressive disclosure to collect more detailed feedback after an initial negative response
-3. Keep detailed feedback optional but make it easy to provide
-4. Explain how feedback will be used to improve the system
+1. Use progressive disclosure to collect more detailed feedback after an initial negative response
+1. Keep detailed feedback optional but make it easy to provide
+1. Explain how feedback will be used to improve the system
 
 Here's how you might implement segmented negative feedback collection:
 
 !!! example "Detailed Negative Feedback Form"
-    ![Example of detailed negative feedback form showing checkboxes for specific issues](../assets/images/detailed-feedback-form.png)
+![Example of detailed negative feedback form showing checkboxes for specific issues](../assets/images/detailed-feedback-form.png)
 
-    *This code generates a segmented feedback form that collects specific information about where the response fell short, allowing for targeted improvements to the RAG pipeline.*
+```
+*This code generates a segmented feedback form that collects specific information about where the response fell short, allowing for targeted improvements to the RAG pipeline.*
+```
 
 ## Learning from User Behavior: The Implicit Feedback Gold Mine
 
@@ -138,9 +150,11 @@ Key implicit feedback signals include:
 By tracking these behaviors, you can identify patterns that indicate success or failure even when users don't provide explicit feedback.
 
 !!! example "Implicit Feedback Collection"
-    ![Example of JavaScript code for tracking implicit feedback signals](../assets/images/implicit-feedback-code.png)
+![Example of JavaScript code for tracking implicit feedback signals](../assets/images/implicit-feedback-code.png)
 
-    *This code tracks key implicit feedback signals including query refinements, citation clicks, and engagement time, providing valuable data even when users don't explicitly rate responses.*
+```
+*This code tracks key implicit feedback signals including query refinements, citation clicks, and engagement time, providing valuable data even when users don't explicitly rate responses.*
+```
 
 ### Mining Hard Negatives from User Behavior
 
@@ -156,25 +170,29 @@ Consider these UI patterns specifically designed to help collect hard negative e
 
 1. **Interactive Citations**: Display the source documents used to generate the response and allow users to mark specific citations as irrelevant. This direct feedback creates perfect triplets for contrastive learning (query → relevant docs → irrelevant docs).
 
-2. **Document Filtering UI**: Similar to how social networks show "People You May Know," present a scrollable list of potentially relevant documents and let users remove irrelevant ones. Each removal creates a hard negative training example.
+1. **Document Filtering UI**: Similar to how social networks show "People You May Know," present a scrollable list of potentially relevant documents and let users remove irrelevant ones. Each removal creates a hard negative training example.
 
-3. **Limited Options with Refresh**: Show only the top 5 most relevant documents, with options to "add" (positive) or "delete" (negative) each one. When a user deletes a document to see another option, you've collected a hard negative.
+1. **Limited Options with Refresh**: Show only the top 5 most relevant documents, with options to "add" (positive) or "delete" (negative) each one. When a user deletes a document to see another option, you've collected a hard negative.
 
-4. **Regeneration After Removal**: Allow users to remove citation sources and then regenerate the answer. Documents removed before regeneration become strong hard negative candidates for that query.
+1. **Regeneration After Removal**: Allow users to remove citation sources and then regenerate the answer. Documents removed before regeneration become strong hard negative candidates for that query.
 
 !!! example "Interactive Citations UI"
-    ![Example of interactive citations UI with buttons to mark sources as relevant or irrelevant](../assets/images/interactive-citations-ui.png)
+![Example of interactive citations UI with buttons to mark sources as relevant or irrelevant](../assets/images/interactive-citations-ui.png)
 
-    *This UI allows users to mark specific citations as relevant or irrelevant and regenerate answers, creating valuable training data for improving retrieval quality.*
+```
+*This UI allows users to mark specific citations as relevant or irrelevant and regenerate answers, creating valuable training data for improving retrieval quality.*
 
-    Remember: Hard negatives are the most valuable training examples for improving retrieval quality through embedding model fine-tuning. While standard negatives (completely unrelated documents) are easy to find, hard negatives (seemingly relevant but actually unhelpful documents) are rare and therefore extremely valuable for training.
+Remember: Hard negatives are the most valuable training examples for improving retrieval quality through embedding model fine-tuning. While standard negatives (completely unrelated documents) are easy to find, hard negatives (seemingly relevant but actually unhelpful documents) are rare and therefore extremely valuable for training.
+```
 
 Here's a simple algorithm for mining hard negatives from user interactions:
 
 !!! example "Hard Negatives Mining Algorithm"
-    ![Example of Python code for identifying hard negative documents from user interactions](../assets/images/hard-negatives-algorithm.png)
+![Example of Python code for identifying hard negative documents from user interactions](../assets/images/hard-negatives-algorithm.png)
 
-    *This algorithm identifies potential hard negative documents based on user interactions, assigning confidence scores to each candidate based on behavior patterns like query refinements and explicit ratings.*
+```
+*This algorithm identifies potential hard negative documents based on user interactions, assigning confidence scores to each candidate based on behavior patterns like query refinements and explicit ratings.*
+```
 
 By collecting these potential hard negatives over time, you can build a dataset for fine-tuning embedding models or training re-rankers to avoid these problematic documents in future queries.
 
@@ -183,8 +201,8 @@ By collecting these potential hard negatives over time, you can build a dataset 
 Citations are a powerful tool that serves multiple purposes in a RAG system:
 
 1. **Building trust**: Users want to know where information comes from and how the AI found it
-2. **Providing transparency**: Citations show what data is being used to generate responses  
-3. **Collecting feedback**: Citations create opportunities to gather document-level relevance signals
+1. **Providing transparency**: Citations show what data is being used to generate responses
+1. **Collecting feedback**: Citations create opportunities to gather document-level relevance signals
 
 When users can see and interact with the source documents used in responses, they gain confidence in the system and are more likely to provide feedback on the quality and relevance of these sources.
 
@@ -193,23 +211,25 @@ When users can see and interact with the source documents used in responses, the
 There are several approaches to implementing citations in your RAG interface:
 
 1. **Markdown links**: A simple implementation using markdown formatting to link to source documents
-2. **Numbered citations**: Academic-style numbered references with hover previews 
-3. **Inline highlights**: Highlighting portions of text with the source documents they came from
-4. **Visual PDF overlays**: For document-based applications, highlighting the exact location in a PDF
+1. **Numbered citations**: Academic-style numbered references with hover previews
+1. **Inline highlights**: Highlighting portions of text with the source documents they came from
+1. **Visual PDF overlays**: For document-based applications, highlighting the exact location in a PDF
 
 !!! example "Markdown-based Citation Implementation"
-    ![Example of JavaScript code for implementing markdown-based citations with feedback options](../assets/images/citations-implementation.png)
+![Example of JavaScript code for implementing markdown-based citations with feedback options](../assets/images/citations-implementation.png)
 
-    *This code formats responses with clickable citations and builds a reference list that includes feedback options for each source, helping collect document-level relevance signals.*
+```
+*This code formats responses with clickable citations and builds a reference list that includes feedback options for each source, helping collect document-level relevance signals.*
+```
 
 ### Advanced Visualization with Bounding Boxes
 
 For document-centric applications, consider implementing bounding box citations that highlight the exact location in the source documents:
 
 1. Store coordinates of key information in your vector database
-2. When generating responses, include these coordinates in citation metadata
-3. Render the original document with visual overlays on the cited portions
-4. Allow users to click citations in the answer to jump to the exact location in the document
+1. When generating responses, include these coordinates in citation metadata
+1. Render the original document with visual overlays on the cited portions
+1. Allow users to click citations in the answer to jump to the exact location in the document
 
 This approach is particularly valuable for PDF-heavy domains like legal, medical, or technical documentation where source verification is critical.
 
@@ -220,16 +240,18 @@ The ultimate goal of feedback collection is to guide your improvement roadmap. R
 A feedback-driven roadmap:
 
 1. Identifies the most common issues reported by users
-2. Quantifies the impact of each issue on user satisfaction
-3. Ranks potential improvements by expected impact
-4. Establishes clear metrics to evaluate whether changes actually improve the user experience
+1. Quantifies the impact of each issue on user satisfaction
+1. Ranks potential improvements by expected impact
+1. Establishes clear metrics to evaluate whether changes actually improve the user experience
 
 This approach ensures that engineering efforts focus on changes that will have the greatest impact on user satisfaction rather than on the most technically interesting problems.
 
 !!! example "Feedback Analysis for Roadmap Prioritization"
-    ![Example of Python code for analyzing feedback data to prioritize improvements](../assets/images/roadmap-analysis.png)
+![Example of Python code for analyzing feedback data to prioritize improvements](../assets/images/roadmap-analysis.png)
 
-    *This algorithm analyzes feedback data to identify high-priority improvement areas, considering factors like frequency, severity, number of affected users, and recency to calculate an impact score for each issue category.*
+```
+*This algorithm analyzes feedback data to identify high-priority improvement areas, considering factors like frequency, severity, number of affected users, and recency to calculate an impact score for each issue category.*
+```
 
 ## Conclusion: Feedback as Foundation
 
@@ -240,10 +262,10 @@ By implementing the strategies outlined in this chapter—making feedback visibl
 The investment in well-designed feedback mechanisms pays extraordinary dividends:
 
 1. **Accelerated improvement cycles**: With 5x more feedback, you can fine-tune models 5x faster
-2. **Higher-quality training data**: Hard negatives mined from user interactions dramatically improve retrieval quality
-3. **Increased user trust**: Citations and transparency build confidence in your system's outputs
-4. **Better prioritization**: Clear signals about which issues matter most to users
-5. **Data-driven roadmap**: Engineering priorities driven by user needs, not technical curiosity
+1. **Higher-quality training data**: Hard negatives mined from user interactions dramatically improve retrieval quality
+1. **Increased user trust**: Citations and transparency build confidence in your system's outputs
+1. **Better prioritization**: Clear signals about which issues matter most to users
+1. **Data-driven roadmap**: Engineering priorities driven by user needs, not technical curiosity
 
 Remember that small UX changes can make enormous differences in feedback collection rates. The most successful RAG applications aren't always those with the most sophisticated technology—they're the ones that most effectively learn from their users.
 
@@ -253,13 +275,13 @@ In the next chapter, we'll explore how to reduce perceived latency through strea
 
 1. How visible are the feedback mechanisms in your current RAG implementation? What changes could make them more prominent and engaging?
 
-2. What implicit signals could you collect from user interactions with your system? How might these complement explicit feedback?
+1. What implicit signals could you collect from user interactions with your system? How might these complement explicit feedback?
 
-3. How could you segment feedback to better pinpoint issues in specific parts of your RAG pipeline?
+1. How could you segment feedback to better pinpoint issues in specific parts of your RAG pipeline?
 
-4. What processes would you need to implement to translate feedback into a prioritized improvement roadmap?
+1. What processes would you need to implement to translate feedback into a prioritized improvement roadmap?
 
-5. How might you incentivize users to provide more detailed feedback, especially after negative experiences?
+1. How might you incentivize users to provide more detailed feedback, especially after negative experiences?
 
 ## Summary
 
@@ -269,22 +291,22 @@ Effective feedback collection is essential for systematic improvement of RAG sys
 
 1. **Feedback Copy Matters**: Changing from generic "How did we do?" to specific "Did we answer your question?" can increase feedback rates by 5x.
 
-2. **Enterprise Patterns**: For B2B applications, Slack integrations that post feedback directly to shared channels create transparency and trust while dramatically increasing feedback rates.
+1. **Enterprise Patterns**: For B2B applications, Slack integrations that post feedback directly to shared channels create transparency and trust while dramatically increasing feedback rates.
 
-3. **Hard Negative Mining**: Design your UX to collect hard negatives—documents that appear relevant but are actually unhelpful—as they're the most valuable training examples for fine-tuning.
+1. **Hard Negative Mining**: Design your UX to collect hard negatives—documents that appear relevant but are actually unhelpful—as they're the most valuable training examples for fine-tuning.
 
-4. **Citation Benefits**: Interactive citations serve multiple purposes: building trust, providing transparency, and creating opportunities to collect document-level relevance signals.
+1. **Citation Benefits**: Interactive citations serve multiple purposes: building trust, providing transparency, and creating opportunities to collect document-level relevance signals.
 
-5. **Behavior Tracking**: Implicit signals from user behavior (query refinements, dwell time, citation clicks) can provide even more training data than explicit feedback.
+1. **Behavior Tracking**: Implicit signals from user behavior (query refinements, dwell time, citation clicks) can provide even more training data than explicit feedback.
 
-6. **Start Small**: Begin with simple, high-visibility feedback mechanisms and gradually add sophistication as you learn what works for your specific users and use cases.
+1. **Start Small**: Begin with simple, high-visibility feedback mechanisms and gradually add sophistication as you learn what works for your specific users and use cases.
 
 ## Additional Resources
 
 1. Nielsen Norman Group, ["User Feedback Mechanisms for Mobile and Web"](https://www.nngroup.com/articles/feedback-mechanisms/)
 
-2. Google Research, ["Beyond A/B Testing: Implicit Feedback for UI Improvement"](https://research.google/pubs/beyond-a-b-testing-implicit-feedback-for-ui-improvement/)
+1. Google Research, ["Beyond A/B Testing: Implicit Feedback for UI Improvement"](https://research.google/pubs/beyond-a-b-testing-implicit-feedback-for-ui-improvement/)
 
-3. Qualtrics, ["Designing Feedback Forms That Users Actually Complete"](https://www.qualtrics.com/experience-management/customer/feedback-form-design/)
+1. Qualtrics, ["Designing Feedback Forms That Users Actually Complete"](https://www.qualtrics.com/experience-management/customer/feedback-form-design/)
 
-4. GitHub Repository: [RAG-Feedback-Collection](https://github.com/microsoft/rag-feedback-collection) - Templates and examples for implementing feedback mechanisms in RAG applications
+1. GitHub Repository: [RAG-Feedback-Collection](https://github.com/microsoft/rag-feedback-collection) - Templates and examples for implementing feedback mechanisms in RAG applications

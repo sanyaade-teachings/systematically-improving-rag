@@ -1,9 +1,9 @@
 ---
-title: "RAG Anti-patterns in the Wild, and How to Fix Them"
-speaker: "Skylar Payne"
+title: RAG Anti-patterns in the Wild, and How to Fix Them
+speaker: Skylar Payne
 cohort: 3
-description: "Common RAG anti-patterns across different industries and practical advice for improving AI systems through better data handling, retrieval, and evaluation practices."
-tags: ["RAG", "antipatterns", "data quality", "evaluation", "best practices"]
+description: Common RAG anti-patterns across different industries and practical advice for improving AI systems through better data handling, retrieval, and evaluation practices.
+tags: [RAG, antipatterns, data quality, evaluation, best practices]
 date: 2025
 ---
 
@@ -19,11 +19,11 @@ The fundamental issue that keeps appearing is insufficient attention to data qua
 When breaking down the RAG pipeline into its component parts, problems can emerge at each stage:
 
 1. Data Collection and Curation
-2. Extraction and Enrichment
-3. Indexing and Storage
-4. Retrieval
-5. Re-ranking
-6. Generation
+1. Extraction and Enrichment
+1. Indexing and Storage
+1. Retrieval
+1. Re-ranking
+1. Generation
 
 Each of these stages presents unique challenges that can significantly impact the overall performance of your RAG system.
 
@@ -151,7 +151,7 @@ According to Skylar, about 40% of clients have indexes so small that metadata ta
 The value of metadata tagging increases with:
 
 1. The diversity of queries you're answering
-2. The scale of data you're working with
+1. The scale of data you're working with
 
 For specific use cases like legal documents, metadata about authorship, ownership, and modification history can be crucial. By embedding these tags into the text chunks themselves (rather than just using them as filter properties), you can answer questions about document history and changes.
 
@@ -161,15 +161,15 @@ For specific use cases like legal documents, metadata about authorship, ownershi
 The most critical principle is to continuously examine your data at every stage of the pipeline. This means:
 
 1. Starting with user needs and working backward
-2. Looking at your data inputs, intermediate results, and outputs
-3. Building robust evaluation systems before increasing complexity
-4. Creating fast feedback loops to iterate on improvements
+1. Looking at your data inputs, intermediate results, and outputs
+1. Building robust evaluation systems before increasing complexity
+1. Creating fast feedback loops to iterate on improvements
 
 As Skylar emphasized throughout the session, "The teams who can make that loop go as fast as possible are the ones who win, and that is pretty invariable."
 
 By focusing on data quality, implementing proper evaluation, and iterating quickly based on real insights rather than assumptions, you can avoid the common anti-patterns that plague RAG implementations and build systems that truly deliver value to users.
 
----
+______________________________________________________________________
 
 FAQs
 
@@ -186,17 +186,17 @@ Look at your data at every step of the process. Start from understanding what yo
 A typical RAG pipeline consists of five main stages:
 
 1. Data collection and curation - Gathering the right documents to answer queries
-2. Extraction and enrichment - Representing documents well with proper metadata
-3. Indexing and storage - Setting up documents for easy retrieval
-4. Retrieval and re-ranking - Finding relevant documents with high recall, then filtering for precision
-5. Generation - Using an LLM to create answers based on retrieved information
+1. Extraction and enrichment - Representing documents well with proper metadata
+1. Indexing and storage - Setting up documents for easy retrieval
+1. Retrieval and re-ranking - Finding relevant documents with high recall, then filtering for precision
+1. Generation - Using an LLM to create answers based on retrieved information
 
 ## What problems commonly occur during data collection and curation?
 
 Two major issues arise during this phase:
 
 1. Documents with varied encodings or formats often silently fail to process. In one medical chatbot implementation, 21% of documents were silently dropped due to encoding issues. Always monitor document counts at each stage and implement robust error handling.
-2. Irrelevant document sets create a "ticking time bomb" waiting to be retrieved for some query. Carefully curate your document index to include only content relevant to the types of queries you intend to serve. Consider using metadata tagging to filter documents for specific query types.
+1. Irrelevant document sets create a "ticking time bomb" waiting to be retrieved for some query. Carefully curate your document index to include only content relevant to the types of queries you intend to serve. Consider using metadata tagging to filter documents for specific query types.
 
 ## What extraction and enrichment issues should I watch for?
 
@@ -207,51 +207,51 @@ Information extraction failures are particularly common with PDFs and tables. Ma
 Two primary chunking issues to avoid:
 
 1. Chunking too small - Many implementations use tiny chunks (like 200 characters) because they follow outdated tutorials, but this dilutes context and meaning. In one e-commerce implementation, small chunks meant no single chunk contained complete information, leading to hallucinations in 13% of queries. Use longer context windows and chunk by semantic boundaries.
-2. Keeping bad chunks - Retaining low-value content like footers, copyright notices, and duplicative content creates noise in your system. Inspect your shortest chunks manually and implement deduplication through content hashing.
+1. Keeping bad chunks - Retaining low-value content like footers, copyright notices, and duplicative content creates noise in your system. Inspect your shortest chunks manually and implement deduplication through content hashing.
 
 ## What indexing and storage problems should I be aware of?
 
 Two critical issues in this phase:
 
 1. Naive embedding usage - Most embeddings are trained for semantic similarity but questions often differ in form from document chunks. Consider techniques like query expansion, late chunking, contextual retrieval, or fine-tuning embeddings to bridge this gap.
-2. Index staleness - Without monitoring index freshness, you risk providing outdated information. In one financial news system, the index hadn't been refreshed for two weeks, resulting in outdated earnings reports. Track staleness metrics and consider adding timestamp filters to exclude outdated content.
+1. Index staleness - Without monitoring index freshness, you risk providing outdated information. In one financial news system, the index hadn't been refreshed for two weeks, resulting in outdated earnings reports. Track staleness metrics and consider adding timestamp filters to exclude outdated content.
 
 ## What retrieval issues commonly impact RAG systems?
 
 Several retrieval problems can undermine your system:
 
 1. Accepting vague queries like "health tips" forces your system to retrieve anything remotely relevant. Detect low-information queries and prompt users for clarification.
-2. Accepting off-topic queries (like "write a poem about unicorns" in a product comparison tool) can produce inappropriate responses. Implement intent classification to detect and handle off-topic requests.
-3. Lack of task breakdown - Not recognizing patterns in user queries means missing opportunities to create more efficient workflows. For common, structured queries (like "What is my billing date?"), consider direct metadata lookups instead of using the full RAG pipeline.
+1. Accepting off-topic queries (like "write a poem about unicorns" in a product comparison tool) can produce inappropriate responses. Implement intent classification to detect and handle off-topic requests.
+1. Lack of task breakdown - Not recognizing patterns in user queries means missing opportunities to create more efficient workflows. For common, structured queries (like "What is my billing date?"), consider direct metadata lookups instead of using the full RAG pipeline.
 
 ## How should I approach evaluation in my RAG system?
 
 Many teams evaluate only the relevance of retrieved documents but miss two critical evaluation dimensions:
 
 1. False negatives - Examine documents that weren't retrieved but should have been. Look beyond your retrieval window to find relevant documents that were missed.
-2. Retrieval sufficiency - Evaluate whether the retrieved documents contain enough information to fully answer the query, not just whether they're relevant. This helps identify whether problems stem from retrieval or from your document corpus itself.
+1. Retrieval sufficiency - Evaluate whether the retrieved documents contain enough information to fully answer the query, not just whether they're relevant. This helps identify whether problems stem from retrieval or from your document corpus itself.
 
 ## What re-ranking problems should I watch for?
 
 Two common re-ranking issues:
 
 1. Overusing boosting - Adding too many manual boosting rules (like boosting recent content or specific keywords) makes systems complex and unpredictable. Minimize manual boosting and consider training a custom re-ranker for better performance.
-2. Allowing "facepalm results" - Obviously bad results that make users question your system's competence. Apply metadata filters to exclude irrelevant document types and monitor your system for these embarrassing failures.
+1. Allowing "facepalm results" - Obviously bad results that make users question your system's competence. Apply metadata filters to exclude irrelevant document types and monitor your system for these embarrassing failures.
 
 ## What generation phase issues should I address?
 
 Two key generation concerns:
 
 1. Using simple RAG for reasoning queries - Single-pass retrieval can't connect dots between concepts. For complex reasoning, consider agentic RAG workflows that interleave retrieval and reasoning, or pre-compute synthesis documents.
-2. Lack of output guardrails for hallucination - Especially critical in sensitive domains like healthcare. Force your LLM to provide inline citations, validate that each citation exists, and semantically validate that citations support the content.
+1. Lack of output guardrails for hallucination - Especially critical in sensitive domains like healthcare. Force your LLM to provide inline citations, validate that each citation exists, and semantically validate that citations support the content.
 
 ## How can I reduce hallucinations in my RAG system?
 
 The most effective technique is implementing a three-step verification process:
 
 1. Force your LLM to provide inline citations for claims
-2. Validate that each citation actually exists in your retrieved documents
-3. Semantically validate that each citation actually supports the content it's referencing
+1. Validate that each citation actually exists in your retrieved documents
+1. Semantically validate that each citation actually supports the content it's referencing
 
 This approach is particularly important for sensitive domains like healthcare where hallucinated information could have serious consequences.
 
@@ -264,6 +264,6 @@ While tool preferences vary by situation, Lily Pad (from Microscope) is highligh
 The value of metadata tagging depends on two factors:
 
 1. The scale of your data - About 40% of implementations have indexes so small that extensive tagging provides little benefit
-2. The diversity of queries you're answering
+1. The diversity of queries you're answering
 
 Metadata becomes more valuable when you have both high data volume and diverse query types. For B2B applications where customer data is segregated, the benefit may be limited since each customer's data volume is relatively small.

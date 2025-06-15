@@ -29,25 +29,26 @@ By the end of this book, you'll be able to:
    - Create measurement frameworks to track performance
    - Set up processes that turn user interactions into training data
 
-2. **Make data-driven decisions**
+1. **Make data-driven decisions**
 
    - Set up proper evaluation metrics before making changes
    - Generate synthetic data to test improvements
    - Analyze patterns in user behavior to identify opportunities
 
-3. **Prioritize efforts for maximum impact**
+1. **Prioritize efforts for maximum impact**
 
    - Identify which improvements will deliver the most value
    - Understand which user segments benefit most from specific features
    - Develop roadmaps based on data rather than hunches
 
-4. **Build specialized solutions for specific problems**
+1. **Build specialized solutions for specific problems**
 
    - Design purpose-built retrievers for different content types
    - Create query routers that direct questions to the right tools
    - Implement feedback mechanisms tailored to different use cases
 
-5. **Think beyond technical implementation**
+1. **Think beyond technical implementation**
+
    - Consider user experience in every design decision
    - Understand the business impact of your technical choices
    - Communicate effectively about AI capabilities and limitations

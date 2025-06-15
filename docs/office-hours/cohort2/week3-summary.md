@@ -29,10 +29,10 @@ The real goal isn't to get a number right - it's to figure out what to do next. 
 When you build a recommendation system, there are several steps:
 
 1. **Sourcing** - What inventory can I show my customer? In the friends case, this would be all users on the platform.
-2. **Query** - Either your user ID or a question embedding.
-3. **Scoring** - For simple RAG, this is cosine distance of embeddings and maybe re-ranker distance. For friends, it might include mutual connections, location, etc.
-4. **Filtering** - In RAG this might be top 10 results or embeddings greater than a threshold. For friends, filters might include having at least 3 mutual friends, same zip code, etc.
-5. **Rendering** the results
+1. **Query** - Either your user ID or a question embedding.
+1. **Scoring** - For simple RAG, this is cosine distance of embeddings and maybe re-ranker distance. For friends, it might include mutual connections, location, etc.
+1. **Filtering** - In RAG this might be top 10 results or embeddings greater than a threshold. For friends, filters might include having at least 3 mutual friends, same zip code, etc.
+1. **Rendering** the results
 
 When users take actions (adding/removing friends, opening files, deleting citations), you collect feedback to improve your system. When a language model sees 10 documents but only cites 3, those 3 are likely more relevant. You can use that signal to improve your re-ranker or embedding model.
 
@@ -69,7 +69,7 @@ Yes and no. Thumbs up/down is super useful, and it would be hard to convince me 
 With free text feedback, you'll face two issues:
 
 1. Probably less than 10% of users will give a text response. If only 1% of users leave feedback at all, and only 10% of those leave text, you get very little text data, and you don't know how biased that sample is.
-2. You likely won't be able to read all the free text, so you'll build clustering models to analyze the feedback - in which case, you might as well just have 5 buttons for the most common issues (too slow, answer too long, format incorrect, etc.).
+1. You likely won't be able to read all the free text, so you'll build clustering models to analyze the feedback - in which case, you might as well just have 5 buttons for the most common issues (too slow, answer too long, format incorrect, etc.).
 
 It's about maximizing data per label. Having buttons for common issues will get you more useful data than open text fields.
 
@@ -96,7 +96,7 @@ I prefer not to think about systems as "classical" versus "agent-based" RAG syst
 The goal is to provide the language model with two things:
 
 1. Good functions
-2. Good indices for each function to query that are well-defined
+1. Good indices for each function to query that are well-defined
 
 You want to ensure each index has good recall, each function is useful for the system, and you have good prompts to help the model choose the right function.
 
@@ -207,7 +207,7 @@ This is an interesting historical shift. Around 2018, data labeling was a huge f
 As we've moved to LLMs, two things have changed:
 
 1. The big winners (like Scale AI) have already established themselves and now focus on large contracts. Smaller players either grew or struggled to find viable business models on smaller contracts.
-2. LLMs are much more data-efficient.
+1. LLMs are much more data-efficient.
 
 The data efficiency of modern LLMs is remarkable. You're better off having 1,000 very high-quality labels to fine-tune a model than 10,000 mediocre labels. This means that instead of outsourcing labeling work, it often makes more sense to have subject matter experts do a one-month project to create the data you need.
 
@@ -232,7 +232,7 @@ For example:
 
 Even systems like Deep Research might evolve to pull from sources you tend to agree with, or deliberately include sources that challenge your viewpoint. These personalized relevancy signals could dramatically improve RAG systems beyond simple semantic matching.
 
----
+______________________________________________________________________
 
 ## Key Takeaways and Additional Resources
 

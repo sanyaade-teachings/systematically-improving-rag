@@ -1,7 +1,5 @@
 ---
-description:
-  Enhance your RAG applications with our expert-led course. Learn practical
-  strategies for retrieval-augmented generation from industry leaders.
+description: Enhance your RAG applications with our expert-led course. Learn practical strategies for retrieval-augmented generation from industry leaders.
 ---
 
 # Systematically Improve Your RAG Applications
@@ -94,21 +92,22 @@ In just 6 weeks, you'll learn a proven system to:
 
 This isn't theory - it's a practical system used by leading companies to:
 
-1. **Stop treating RAG as an AI problem**  
+1. **Stop treating RAG as an AI problem**\
    _"RAG is really just a recommendation system squeezed between two LLMs"_
 
-2. **Focus on what you can control**  
+1. **Focus on what you can control**\
    _Improve search quality first - generation quality follows automatically_
-3. **Build improvement flywheels**  
+
+1. **Build improvement flywheels**\
    _Create systems that get better with every user interaction_
 
 No more fumbling in the dark. This program shows you step-by-step how to:
 
 1. Set up meaningful evaluations
-2. Identify high-impact opportunities
-3. Continuously refine retrieval
-4. Integrate feedback loops
-5. Enhance product experiences
+1. Identify high-impact opportunities
+1. Continuously refine retrieval
+1. Integrate feedback loops
+1. Enhance product experiences
 
 [Enroll now on Maven (starts Feb 4)](https://maven.com/applied-llms/rag-playbook){ .md-button .md-button--primary }
 
@@ -192,24 +191,26 @@ The field of RAG is evolving quickly. Don't fall behind.
 
 !!! note "How to Get Reimbursed"
 
-    Hey {manager},
+```
+Hey {manager},
 
-    I've found a course called "Systematically Improving RAG Applications" that I believe would be incredibly valuable for our team. Here are the key points:
+I've found a course called "Systematically Improving RAG Applications" that I believe would be incredibly valuable for our team. Here are the key points:
 
-    - Expert Instruction: Learn from Jason Liu, who has 8 years of experience in recommendation systems and RAG applications.
-    - Comprehensive Curriculum: 6-week course covering everything from synthetic data generation to advanced query routing and embedding optimization.
-    - Practical Application: Hands-on sessions for implementing quick testing methods and live data streaming.
-    - Strategic Insights: Learn to improve search quality, implement effective feedback loops, and make data-driven decisions.
-    - Efficiency Gains: Techniques to increase work speed, user satisfaction, and retention rates.
-    - Future-Readiness: Focus on rapid testing and adoption of emerging technologies in the RAG space.
-    - Added Value: Over $1,500 in free credits for tools like Cohere, LanceDB, and Modal Labs.
-    - Risk-Free: Money-back guarantee if we don't see improvements within 5 weeks.
+- Expert Instruction: Learn from Jason Liu, who has 8 years of experience in recommendation systems and RAG applications.
+- Comprehensive Curriculum: 6-week course covering everything from synthetic data generation to advanced query routing and embedding optimization.
+- Practical Application: Hands-on sessions for implementing quick testing methods and live data streaming.
+- Strategic Insights: Learn to improve search quality, implement effective feedback loops, and make data-driven decisions.
+- Efficiency Gains: Techniques to increase work speed, user satisfaction, and retention rates.
+- Future-Readiness: Focus on rapid testing and adoption of emerging technologies in the RAG space.
+- Added Value: Over $1,500 in free credits for tools like Cohere, LanceDB, and Modal Labs.
+- Risk-Free: Money-back guarantee if we don't see improvements within 5 weeks.
 
-    The course costs $1,650. I plan to share the learnings with our entire team, multiplying the value of this investment. You can find more details here: https://maven.com/applied-llms/rag-playbook
+The course costs $1,650. I plan to share the learnings with our entire team, multiplying the value of this investment. You can find more details here: https://maven.com/applied-llms/rag-playbook
 
-    What are your thoughts on this opportunity?
+What are your thoughts on this opportunity?
 
-    Thanks,
-    {Your Name}
+Thanks,
+{Your Name}
 
-    P.S. I've heard that other teams are sending multiple team members to build shared context efficiently. Should we consider a similar approach?
+P.S. I've heard that other teams are sending multiple team members to build shared context efficiently. Should we consider a similar approach?
+```

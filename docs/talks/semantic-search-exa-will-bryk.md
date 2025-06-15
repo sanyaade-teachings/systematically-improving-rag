@@ -1,17 +1,17 @@
 ---
-title: "Semantic Search Over the Web with Exa"
-speaker: "Will Bryk"
-type: "Lightning Lesson"
+title: Semantic Search Over the Web with Exa
+speaker: Will Bryk
+type: Lightning Lesson
 cohort: 3
-description: "How AI is changing search requirements and the technical challenges of building a semantic search engine designed for AI applications rather than human users."
-tags: ["semantic search", "AI search", "embeddings", "web search", "Exa"]
+description: How AI is changing search requirements and the technical challenges of building a semantic search engine designed for AI applications rather than human users.
+tags: [semantic search, AI search, embeddings, web search, Exa]
 date: 2025
 ---
 
 # Semantic search over the web with Exa [Will Bryk]
 
 Cohort: 3
-Transcript: ../(Maven)__Semantic_search_over_the_web_with_Exa_Will_Bryk.txt
+Transcript: ../(Maven)\_\_Semantic_search_over_the_web_with_Exa_Will_Bryk.txt
 
 Study Notes:
 
@@ -35,9 +35,9 @@ AI systems have several distinct requirements that traditional search engines we
 
 1. Precise, controllable information: AIs need search engines that respect exactly what they ask for, rather than optimizing for what humans typically click on. If an AI is searching for "startups working on something huge," it needs a list of actual startups, not Reddit discussions about the topic.
 
-2. Context-rich queries: AIs often have extensive context from user interactions that should inform their searches. Traditional search engines have keyword limits and can't handle paragraph-length queries, forcing the AI to convert rich context into a few keywords, which loses tremendous information.
+1. Context-rich queries: AIs often have extensive context from user interactions that should inform their searches. Traditional search engines have keyword limits and can't handle paragraph-length queries, forcing the AI to convert rich context into a few keywords, which loses tremendous information.
 
-3. Comprehensiveness: Unlike humans who want a few links, AIs can process thousands of results. If an AI is asked to analyze "every YC-funded AI startup," it needs a search engine that can deliver comprehensive results rather than just the top 10 most popular pages.
+1. Comprehensiveness: Unlike humans who want a few links, AIs can process thousands of results. If an AI is asked to analyze "every YC-funded AI startup," it needs a search engine that can deliver comprehensive results rather than just the top 10 most popular pages.
 
 Will used a powerful visual metaphor, showing the space of possible search queries as a vast gray zone, with traditional search engines only covering a small blue bubble within it. As he explained: "Google has trained us to only think about this keyword bubble... But there's actually many different types of queries that people might want to make that go way beyond what Google can handle."
 
@@ -67,9 +67,9 @@ Building a web-scale semantic search engine involves numerous technical challeng
 
 1. Crawling and storage: The process begins with gathering URLs to crawl, building distributed crawling systems that can handle different formats (like PDFs), and storing petabytes of data in formats that enable efficient batch processing.
 
-2. Embedding generation: Documents are processed through embedding models that convert text into vector representations capturing their meaning. This is computationally intensive at web scale.
+1. Embedding generation: Documents are processed through embedding models that convert text into vector representations capturing their meaning. This is computationally intensive at web scale.
 
-3. Vector database optimization: The most significant challenge is efficiently searching billions of embedding vectors. A naive approach would be prohibitively expensive and slow.
+1. Vector database optimization: The most significant challenge is efficiently searching billions of embedding vectors. A naive approach would be prohibitively expensive and slow.
 
 To make this practical, Exa employs several optimization techniques:
 
@@ -142,11 +142,11 @@ Several trends are driving this transformation:
 
 1. The limitations of LLMs: Despite their capabilities, LLMs haven't memorized the entire web. Will explained: "The LLM simply cannot memorize the entire web... The web is gigantic. It's really, really big." This creates an inherent need for retrieval systems.
 
-2. The expansion of query types: As search tools improve, people will discover entirely new types of queries they never thought to try before. Will believes there are "many, many types of queries that go beyond the ones listed here that we haven't even thought of, because our tools can't handle it."
+1. The expansion of query types: As search tools improve, people will discover entirely new types of queries they never thought to try before. Will believes there are "many, many types of queries that go beyond the ones listed here that we haven't even thought of, because our tools can't handle it."
 
-3. Test-time compute: Complex queries fundamentally require more computation time. Future search engines will need to handle queries that take minutes, hours, or even days to complete for particularly complex analyses.
+1. Test-time compute: Complex queries fundamentally require more computation time. Future search engines will need to handle queries that take minutes, hours, or even days to complete for particularly complex analyses.
 
-4. Multimodal search: Future search will extend beyond text to include sophisticated image, audio, and video search capabilities.
+1. Multimodal search: Future search will extend beyond text to include sophisticated image, audio, and video search capabilities.
 
 Will sees the search market fragmenting rather than being dominated by a single player: "The space of possible searches is so broad that it's actually really hard for one company to be perfect at everything... It's bifurcating in all these ways. It's splintering."
 
@@ -154,7 +154,7 @@ This creates opportunities for specialized search providers focused on particula
 
 ***Key Takeaway:*** Search is undergoing a fundamental transformation driven by AI capabilities, with the market likely to fragment into specialized providers rather than being dominated by a single approach. Future search will handle query types and modalities that we can't even imagine today.
 
----
+______________________________________________________________________
 
 FAQs:
 

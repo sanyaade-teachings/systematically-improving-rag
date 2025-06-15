@@ -14,9 +14,11 @@ tags:
 # Multimodal RAG: Building Specialized Search Indices
 
 !!! info "This chapter has been split into two parts"
-    This content is now available in two more digestible parts:
-    
-    - [Part 1: Understanding Specialized Retrieval](chapter5-1.md)
-    - [Part 2: Implementing Multimodal Search](chapter5-2.md)
-    
-    Please visit those pages for the updated content.
+This content is now available in two more digestible parts:
+
+```
+- [Part 1: Understanding Specialized Retrieval](chapter5-1.md)
+- [Part 2: Implementing Multimodal Search](chapter5-2.md)
+
+Please visit those pages for the updated content.
+```

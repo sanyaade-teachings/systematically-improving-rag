@@ -1,22 +1,22 @@
 ---
-title: "Week 2 - Office Hour 2"
-date: "2024-05-29"
+title: Week 2 - Office Hour 2
+date: '2024-05-29'
 cohort: 3
 week: 2
 session: 2
-type: "Office Hour"
-transcript: "../GMT20250529-174726_Recording.transcript.vtt"
-description: "RAG implementation challenges, course community discussion, and practical technical issues"
+type: Office Hour
+transcript: ../GMT20250529-174726_Recording.transcript.vtt
+description: RAG implementation challenges, course community discussion, and practical technical issues
 topics:
-  - "Course Time Management"
-  - "Community Engagement"
-  - "Irrelevant Data in Vector Databases"
-  - "Retrieval Quality Metrics"
-  - "Complex Technical Documentation"
-  - "RAG vs Agents"
-  - "Office Hours Learning Value"
-  - "Course Pacing Strategies"
-  - "Claude System Prompts"
+  - Course Time Management
+  - Community Engagement
+  - Irrelevant Data in Vector Databases
+  - Retrieval Quality Metrics
+  - Complex Technical Documentation
+  - RAG vs Agents
+  - Office Hours Learning Value
+  - Course Pacing Strategies
+  - Claude System Prompts
 ---
 
 # Week 2, Office Hour 2 (May 29)
@@ -131,7 +131,7 @@ The existence of such extensive system prompts raises questions about where cert
 
 ***Key Takeaway:*** Large system prompts demonstrate how much functionality can be implemented through instructions rather than model training. This creates flexibility but also raises important questions about the boundary between prompt engineering and model architecture.
 
----
+______________________________________________________________________
 
 FAQs
 
@@ -161,13 +161,13 @@ When working with technical documentation, consider these approaches:
 
 1. Start by focusing on getting retrieval right before worrying about other aspects
 
-2. Use document structure (sections, chapters, titles) to improve chunking
+1. Use document structure (sections, chapters, titles) to improve chunking
 
-3. Consider a combination of semantic search, full-text search, and traversal approaches
+1. Consider a combination of semantic search, full-text search, and traversal approaches
 
-4. Monitor metrics like cosine distance to evaluate retrieval quality
+1. Monitor metrics like cosine distance to evaluate retrieval quality
 
-5. Begin with a simple implementation that works for most of your documents rather than trying to solve every edge case immediately
+1. Begin with a simple implementation that works for most of your documents rather than trying to solve every edge case immediately
 
 **How should I handle irrelevant data in my vector database?**
 
@@ -175,4 +175,4 @@ The impact of irrelevant data depends on your specific model and use case. Moder
 
 **Are vector databases providing built-in retrieval quality measurements?**
 
-While some vector databases may offer metrics, it's generally better to implement your own monitoring. Focus on tracking metrics like average cosine distance of your queries and monitor how these change over time or across different user segments. This approach allows you to detect shifts in data patterns or user behavior that might affect retrieval quality. Looking at changes in these metrics is often more valuable than the absolute values themselves. 
+While some vector databases may offer metrics, it's generally better to implement your own monitoring. Focus on tracking metrics like average cosine distance of your queries and monitor how these change over time or across different user segments. This approach allows you to detect shifts in data patterns or user behavior that might affect retrieval quality. Looking at changes in these metrics is often more valuable than the absolute values themselves.

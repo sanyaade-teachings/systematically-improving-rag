@@ -1,13 +1,14 @@
 ---
-title: "Understanding Embedding Performance through Generative Evals"
-speaker: "Kelly Hong"
+title: Understanding Embedding Performance through Generative Evals
+speaker: Kelly Hong
 cohort: 3
-description: "A deep dive into generative benchmarking - creating custom evaluation sets from your own data to better assess embedding model performance."
-tags: ["embeddings", "evaluation", "benchmarking", "generative evals", "Chroma"]
+description: A deep dive into generative benchmarking - creating custom evaluation sets from your own data to better assess embedding model performance.
+tags: [embeddings, evaluation, benchmarking, generative evals, Chroma]
 date: 2025
 ---
 
 # Understanding Embedding Performance through Generative Evals [Kelly Hong]
+
 I hosted a session with Kelly Hong from Chroma, who presented her research on generative benchmarking for retrieval systems. She explained how to create custom evaluation sets from your own data to better test embedding models and retrieval pipelines, addressing the limitations of standard benchmarks like MTEB.
 
 **Why public benchmarks like MTEB don't reflect real-world performance**
@@ -30,7 +31,7 @@ Generative benchmarking creates custom evaluation sets directly from your data t
 
 1. Chunk filtering: Using an LLM judge to identify document chunks that users would realistically query about
 
-2. Query generation: Creating realistic queries from those filtered chunks
+1. Query generation: Creating realistic queries from those filtered chunks
 
 This approach addresses the limitations of public benchmarks because:
 
@@ -52,7 +53,7 @@ To generate realistic queries, Kelly recommended providing:
 
 1. Context about your application (e.g., "This is a technical support bot for Weights & Biases")
 
-2. Example queries from real users (5-7 examples is usually sufficient)
+1. Example queries from real users (5-7 examples is usually sufficient)
 
 When I work with companies building vertical AI applications, I approach this by:
 
@@ -72,11 +73,11 @@ For the chunk filtering step, the Chroma team:
 
 1. Started with a small set of about 300 document chunks
 
-2. Manually labeled them as relevant or irrelevant
+1. Manually labeled them as relevant or irrelevant
 
-3. Iterated on their LLM judge criteria 4-5 times to align with human judgment
+1. Iterated on their LLM judge criteria 4-5 times to align with human judgment
 
-4. Only then scaled to the full document corpus
+1. Only then scaled to the full document corpus
 
 I've seen too many teams try to fully automate their evaluation process without ever looking at the actual data. I often tell clients, "You can't delegate all the thinking to these LLMs." The reluctance to actually look at examples is a common problem.
 
@@ -137,7 +138,7 @@ As Kelly put it: "I think the main takeaway from this entire talk is that if you
 
 For those interested in trying generative benchmarking, Kelly mentioned that Chroma has made their tools available, and I noted they're offering $1,000 in API credits for participants in the cohort.
 
----
+______________________________________________________________________
 
 FAQs
 

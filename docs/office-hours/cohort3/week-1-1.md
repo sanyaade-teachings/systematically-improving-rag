@@ -1,18 +1,18 @@
 ---
-title: "Week 1 - Office Hour 1"
-date: "2024-05-20"
+title: Week 1 - Office Hour 1
+date: '2024-05-20'
 cohort: 3
 week: 1
 session: 1
-type: "Office Hour"
-transcript: "../RAG_Cohort_3_-_Office_Hour_Week_1_Day_1.txt"
-description: "RAG implementation challenges, precision-recall tradeoffs, and practical business applications of AI systems"
+type: Office Hour
+transcript: ../RAG_Cohort_3_-_Office_Hour_Week_1_Day_1.txt
+description: RAG implementation challenges, precision-recall tradeoffs, and practical business applications of AI systems
 topics:
-  - "Precision vs Recall in LLMs"
-  - "Small Language Models in RAG"
-  - "Multi-turn Conversation Evaluation"
-  - "Business Value in AI Applications"
-  - "Technical vs Business Outcomes"
+  - Precision vs Recall in LLMs
+  - Small Language Models in RAG
+  - Multi-turn Conversation Evaluation
+  - Business Value in AI Applications
+  - Technical vs Business Outcomes
 ---
 
 # Week 1 - Office Hour 1 (May 20)
@@ -42,23 +42,22 @@ Key Takeaway: For evaluating multi-turn conversations, combine state machines to
 How do you approach data analysis to find business value in AI applications?
 My favorite content in the course is actually weeks 4 and 5, where I cover my process for data analysis and uncovering new capabilities needed in AI systems.
 When analyzing data from AI applications, I look for two main types of issues:
+
 1. Inventory issues: These occur when the system lacks the necessary data to fulfill user requests. For example, if users search for content that doesn't exist in your database, the solution isn't to improve the AI - it's to add the missing content. Many companies don't realize their inventory might be the problem rather than their AI.
-2. Capabilities issues: These involve functionality gaps where the system can't perform certain types of queries or filters. For instance, you might need to add metadata filters or specialized search capabilities to handle specific user needs.
-I've found tremendous business value by identifying these issues through data analysis. In one case with a restaurant voice AI system, we discovered that when the AI attempted upselling, it generated 20% more revenue 50% of the time - a 10% overall increase. However, the agent only tried upselling in 9% of calls.
-The solution wasn't to improve the AI's core capabilities but to add a simple check ensuring the agent always asks if the customer wants anything else before ending the call. This small change could generate an additional $2 million in revenue by increasing upselling attempts from 9% to 40%.
-For me, the most enjoyable work is identifying these business opportunities that don't necessarily require complex AI improvements. Software engineers often aren't trained to think this way, but my background in data science makes this approach natural.
-Key Takeaway: The biggest business value often comes from analyzing usage patterns to identify inventory gaps or missing capabilities, rather than improving core AI performance. Simple changes like adding missing data or implementing basic business rules can deliver millions in value.
-How do you balance technical implementation with business outcomes?
-I've worked with many companies where they think they want me to make their AI better, but my actual job is to make their business better. There's often substantial money to be captured by focusing on business outcomes rather than technical improvements.
-For example, with a construction project, I spoke with contractors to understand their actual pain points. While they initially thought they needed better document search, the real issue was tracking delays and identifying who was causing them. This led us to implement contact search with metadata filters - a solution that addressed a $100,000/month problem.
-Similarly, with Netflix, if users search for "Oscar-nominated" movies but get results about Oscar Wilde or actors named Oscar, the solution might not be more sophisticated AI. It could be as simple as paying IMDB for better awards metadata.
-I'm constantly looking for these opportunities where a relatively simple technical solution can unlock significant business value. This approach has been much more impactful than pursuing technical sophistication for its own sake.
-What are your thoughts on the latest AI developments like Claude 3?
-I'm currently reviewing the entire Instructor codebase to adapt it for Claude 3. The model is making about 15 pull requests for me, so we'll see how that goes.
-Regarding the guest speakers we've had, I found the Chroma presentation particularly valuable for its hands-on, practical approach. While the Exa presentation was more high-level and story-focused, both offered valuable perspectives.
-I try to balance technical depth with accessibility in these sessions. When Nils gave his talk, it quickly became very technical with neural network diagrams and mathematical equations, and I could see people leaving the call. It's challenging to find the right balance between technical content and storytelling.
-
-
+1. Capabilities issues: These involve functionality gaps where the system can't perform certain types of queries or filters. For instance, you might need to add metadata filters or specialized search capabilities to handle specific user needs.
+   I've found tremendous business value by identifying these issues through data analysis. In one case with a restaurant voice AI system, we discovered that when the AI attempted upselling, it generated 20% more revenue 50% of the time - a 10% overall increase. However, the agent only tried upselling in 9% of calls.
+   The solution wasn't to improve the AI's core capabilities but to add a simple check ensuring the agent always asks if the customer wants anything else before ending the call. This small change could generate an additional $2 million in revenue by increasing upselling attempts from 9% to 40%.
+   For me, the most enjoyable work is identifying these business opportunities that don't necessarily require complex AI improvements. Software engineers often aren't trained to think this way, but my background in data science makes this approach natural.
+   Key Takeaway: The biggest business value often comes from analyzing usage patterns to identify inventory gaps or missing capabilities, rather than improving core AI performance. Simple changes like adding missing data or implementing basic business rules can deliver millions in value.
+   How do you balance technical implementation with business outcomes?
+   I've worked with many companies where they think they want me to make their AI better, but my actual job is to make their business better. There's often substantial money to be captured by focusing on business outcomes rather than technical improvements.
+   For example, with a construction project, I spoke with contractors to understand their actual pain points. While they initially thought they needed better document search, the real issue was tracking delays and identifying who was causing them. This led us to implement contact search with metadata filters - a solution that addressed a $100,000/month problem.
+   Similarly, with Netflix, if users search for "Oscar-nominated" movies but get results about Oscar Wilde or actors named Oscar, the solution might not be more sophisticated AI. It could be as simple as paying IMDB for better awards metadata.
+   I'm constantly looking for these opportunities where a relatively simple technical solution can unlock significant business value. This approach has been much more impactful than pursuing technical sophistication for its own sake.
+   What are your thoughts on the latest AI developments like Claude 3?
+   I'm currently reviewing the entire Instructor codebase to adapt it for Claude 3. The model is making about 15 pull requests for me, so we'll see how that goes.
+   Regarding the guest speakers we've had, I found the Chroma presentation particularly valuable for its hands-on, practical approach. While the Exa presentation was more high-level and story-focused, both offered valuable perspectives.
+   I try to balance technical depth with accessibility in these sessions. When Nils gave his talk, it quickly became very technical with neural network diagrams and mathematical equations, and I could see people leaving the call. It's challenging to find the right balance between technical content and storytelling.
 
 11:17
 How should we approach building RAG applications for course materials?

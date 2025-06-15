@@ -1,21 +1,21 @@
 ---
-title: "Week 3 - Office Hour"
-date: "2024-06-05"
+title: Week 3 - Office Hour
+date: '2024-06-05'
 cohort: 3
 week: 3
 session: 1
-type: "Office Hour"
-transcript: "../GMT20250605-180115_Recording.transcript.vtt"
-description: "Re-ranking models, embedding fine-tuning, training datasets, and compute allocation strategies for RAG systems"
+type: Office Hour
+transcript: ../GMT20250605-180115_Recording.transcript.vtt
+description: Re-ranking models, embedding fine-tuning, training datasets, and compute allocation strategies for RAG systems
 topics:
-  - "Open-source Re-ranking Models"
-  - "Training Datasets for Embeddings vs Re-rankers"
-  - "Negative Examples for Training"
-  - "User Feedback Integration"
-  - "Compute Allocation in Retrieval"
-  - "Architecture Complexity Decisions"
-  - "Synthetic Data Generation"
-  - "Medical Application Considerations"
+  - Open-source Re-ranking Models
+  - Training Datasets for Embeddings vs Re-rankers
+  - Negative Examples for Training
+  - User Feedback Integration
+  - Compute Allocation in Retrieval
+  - Architecture Complexity Decisions
+  - Synthetic Data Generation
+  - Medical Application Considerations
 ---
 
 # Week 3, Office Hour (June 5)
@@ -53,9 +53,9 @@ In a financial context I worked with recently, we were distinguishing between "f
 
 1. Taking a transaction from one category
 
-2. Finding another transaction in the same category as a positive example
+1. Finding another transaction in the same category as a positive example
 
-3. Using embedding search to find the most similar transaction from a different category as the negative example
+1. Using embedding search to find the most similar transaction from a different category as the negative example
 
 This approach forces the model to learn the meaningful boundaries between similar but distinct concepts. For your medical data with abbreviations that have different meanings in different contexts, you could apply a similar strategy - finding examples where the same abbreviation appears in different contexts to create hard negatives.
 
@@ -133,11 +133,11 @@ Without real user feedback, you can still make significant progress through synt
 
 1. Identify known ambiguous abbreviations in medical contexts
 
-2. Use language models like GPT-4 to generate synthetic examples showing these abbreviations in different contexts
+1. Use language models like GPT-4 to generate synthetic examples showing these abbreviations in different contexts
 
-3. Have medical experts validate these examples or create additional ones
+1. Have medical experts validate these examples or create additional ones
 
-4. Build a curated dataset of hard negatives focusing on these ambiguities
+1. Build a curated dataset of hard negatives focusing on these ambiguities
 
 This approach lets you systematically address known challenges before deployment. Once you have real users, you can implement feedback mechanisms to capture when they reject or modify system outputs, creating a virtuous cycle of improvement.
 
@@ -145,7 +145,7 @@ Remember that as your system improves, you need to continuously create harder te
 
 ***Key Takeaway:*** Before having real users, leverage synthetic data generation and expert knowledge to create challenging test cases. Design your system to capture user feedback from the start, as this will become your most valuable source of training data once deployed.
 
----
+______________________________________________________________________
 
 FAQs
 
@@ -185,4 +185,4 @@ There are two main approaches: (1) Contextual retrieval, where you rewrite text 
 
 **What hosting considerations should I keep in mind for medical applications?**
 
-For medical applications, especially in European contexts like the Netherlands, you'll likely need to host models on your own hardware or on-premises at hospitals. This requires selecting models that can run efficiently on your available hardware while meeting your latency requirements. Consider models that can be fully self-hosted without external API dependencies, and ensure your architecture complies with relevant healthcare data regulations. 
+For medical applications, especially in European contexts like the Netherlands, you'll likely need to host models on your own hardware or on-premises at hospitals. This requires selecting models that can run efficiently on your available hardware while meeting your latency requirements. Consider models that can be fully self-hosted without external API dependencies, and ensure your architecture complies with relevant healthcare data regulations.

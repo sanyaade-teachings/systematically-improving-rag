@@ -125,10 +125,10 @@ This examination highlights the importance of thoughtful prompt engineering and 
 Automated evaluation reports can significantly enhance RAG system development by providing structured insights and clear next steps. A comprehensive approach involves building a pipeline that:
 
 1. Takes validation datasets and runs them through the RAG system
-2. Computes various metrics (correctness, citation accuracy, URL validity)
-3. Generates visualizations segmented by topic, question type, and other dimensions
-4. Uses LLMs to analyze metrics and provide insights
-5. Creates recommendations for system improvements
+1. Computes various metrics (correctness, citation accuracy, URL validity)
+1. Generates visualizations segmented by topic, question type, and other dimensions
+1. Uses LLMs to analyze metrics and provide insights
+1. Creates recommendations for system improvements
 
 The reports can include both detailed analyses (15+ pages) and condensed slides for easier consumption in meetings. Key components include:
 

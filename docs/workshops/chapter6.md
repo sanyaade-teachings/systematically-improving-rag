@@ -15,10 +15,12 @@ tags:
 # Unified Product Architecture: Building a Cohesive RAG System
 
 !!! info "This chapter has been split into three parts"
-    This content is now available in three more digestible parts:
-    
-    - [Part 1: Query Routing Foundations](chapter6-1.md)
-    - [Part 2: Tool Interfaces and Implementation](chapter6-2.md)
-    - [Part 3: Performance Measurement and Improvement](chapter6-3.md)
-    
-    Please visit those pages for the updated content.
+This content is now available in three more digestible parts:
+
+```
+- [Part 1: Query Routing Foundations](chapter6-1.md)
+- [Part 2: Tool Interfaces and Implementation](chapter6-2.md)
+- [Part 3: Performance Measurement and Improvement](chapter6-3.md)
+
+Please visit those pages for the updated content.
+```

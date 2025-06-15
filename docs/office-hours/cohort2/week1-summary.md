@@ -37,8 +37,8 @@ In my 10 years of doing data science and machine learning, I generally stay away
 There are several issues with graph databases:
 
 1. They're really hard to learn - it's much easier to hire talent that knows PostgreSQL than graph databases.
-2. Defining schemas in PostgreSQL and joins is well-defined, whereas in graph databases there's often too much debate and not enough best practices.
-3. Most cases don't require more than one or two traversals of your graph.
+1. Defining schemas in PostgreSQL and joins is well-defined, whereas in graph databases there's often too much debate and not enough best practices.
+1. Most cases don't require more than one or two traversals of your graph.
 
 When I was at Facebook, their graph was actually just a very large MySQL database. This makes me cautious about using graph databases unless you have expert users.
 
@@ -183,8 +183,8 @@ Another advantage is that LanceDB can be hosted on S3 and is easy to set up for 
 It's hard to say definitively, but generally:
 
 1. Tasks with complex images are difficult
-2. Highly regulated industries like legal and healthcare contexts present challenges
-3. Financial services, especially ratings agencies, face enormous regulatory hurdles
+1. Highly regulated industries like legal and healthcare contexts present challenges
+1. Financial services, especially ratings agencies, face enormous regulatory hurdles
 
 The fundamental challenge is that anything difficult for humans to collect data on will be hard for an LLM. It's about how much volume of data we have per industry and what kind of feedback loops exist.
 
@@ -221,7 +221,7 @@ For instructional manuals with images, I'd pass the images to a language model a
 The approach has two steps:
 
 1. Given an image, create a synthetic question that would retrieve it
-2. Create a summary that would be retrieved for that question
+1. Create a summary that would be retrieved for that question
 
 For product marketing scenarios, CLIP embeddings can work well, but you need to define what "similar" means in your context. Does a red shirt match other red shirts, or just shirts of the same color? Should expensive silk shirts match inexpensive polyester versions?
 
@@ -242,9 +242,9 @@ Generally, if you can reorganize text chunks by clustering and bringing related 
 For visual documents like quarterly reports full of tables and images:
 
 1. Dockling is a free library that works quite well, though it might take about 11 seconds per PDF
-2. Claude Sonnet also works well for extraction
-3. Reducto, Llama Parse, and other commercial tools can be worth the cost to save time
-4. For multilingual content, VDR2B-Multi v1 handles multiple languages well
+1. Claude Sonnet also works well for extraction
+1. Reducto, Llama Parse, and other commercial tools can be worth the cost to save time
+1. For multilingual content, VDR2B-Multi v1 handles multiple languages well
 
 There's an ongoing discussion about using Gemini 2 (with its million-token context window) to convert documents to markdown and extract all the information. This approach is becoming more viable as models improve, potentially reducing the engineering needed for preprocessing.
 
@@ -302,7 +302,7 @@ We'll cover this topic more deeply in Week 2, but the key takeaway is that bi-en
 In Week 2, we'll cover this topic extensively. The overall message is that:
 
 1. It's probably a bad idea to train your own language model
-2. It's a very good idea to train your own embedding model
+1. It's a very good idea to train your own embedding model
 
 Fine-tuning embedding models is much less resource-intensive—it typically costs around $1.50 and takes about 40 minutes on a laptop. With just 6,000 examples from your domain, you can train embedding models and cross-encoders that outperform general-purpose models on your specific tasks.
 
@@ -317,8 +317,8 @@ For example, if we want to retrieve exactly one document and there's only one co
 The metrics become more meaningful when:
 
 1. There are multiple relevant documents
-2. We're analyzing trends across many queries
-3. We're comparing different retrieval methods
+1. We're analyzing trends across many queries
+1. We're comparing different retrieval methods
 
 Even with one-to-one mappings, MRR (Mean Reciprocal Rank) is still useful to see where the correct answer appears in your results.
 

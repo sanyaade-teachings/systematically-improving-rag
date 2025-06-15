@@ -15,12 +15,14 @@ tags:
 
 !!! abstract "Chapter Overview"
 
-    This part explores how to measure, test, and continuously improve a unified RAG system:
+```
+This part explores how to measure, test, and continuously improve a unified RAG system:
 
-    - Testing and measuring performance of both retrieval and routing components
-    - Creating user interfaces that leverage both AI and direct tool access
-    - Building systems that scale across teams and complexity levels
-    - Creating continuous improvement cycles through user feedback
+- Testing and measuring performance of both retrieval and routing components
+- Creating user interfaces that leverage both AI and direct tool access
+- Building systems that scale across teams and complexity levels
+- Creating continuous improvement cycles through user feedback
+```
 
 ## Testing Query Routing Effectiveness
 
@@ -31,16 +33,16 @@ Just as we need metrics for retrieval quality, we need metrics for routing quali
 To evaluate tool selection, we need a test dataset with queries annotated with the correct tool(s) to use. From there, we can calculate:
 
 1. **Tool Precision**: When we select a tool, how often is it actually the right one?
-2. **Tool Recall**: How often do we select all the tools that should be selected?
-3. **Tool F1 Score**: The harmonic mean of precision and recall
-4. **Per-Tool Recall**: How often each specific tool is correctly selected when it should be
+1. **Tool Recall**: How often do we select all the tools that should be selected?
+1. **Tool F1 Score**: The harmonic mean of precision and recall
+1. **Per-Tool Recall**: How often each specific tool is correctly selected when it should be
 
 !!! warning "Data Leakage Risk"
-    When creating test datasets for router evaluation, be vigilant about data leakage. If your few-shot examples appear in your test set, you'll get artificially high performance that won't generalize to real queries. Always maintain separate development and test sets with distinct query patterns.
+When creating test datasets for router evaluation, be vigilant about data leakage. If your few-shot examples appear in your test set, you'll get artificially high performance that won't generalize to real queries. Always maintain separate development and test sets with distinct query patterns.
 
 Here's a sample evaluation for a construction information system's query router:
 
-| Query ID | Query Text                                                          | Expected Tools                                            | Realized Tools                               | Precision | Recall |
+| Query ID | Query Text                                                          | Expected Tools                                            | Realized Tools                              | Precision | Recall |
 | -------- | ------------------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------- | --------- | ------ |
 | 1        | Retrieve blueprints for the museum expansion                        | SearchBlueprint                                           | SearchBlueprint                             | 100%      | 1/1    |
 | 2        | Find schedule and documents for the library renovation              | SearchSchedule, SearchText                                | SearchSchedule                              | 100%      | 1/2    |
@@ -53,6 +55,7 @@ Here's a sample evaluation for a construction information system's query router:
 | 9        | Explain zoning regulations for the new industrial area              | SearchZoning                                              | SearchBlueprint, SearchText                 | 0%        | 0/1    |
 
 Looking at overall metrics, this system achieves:
+
 - Average Precision: 67%
 - Average Recall: 56%
 - Average F1 Score: 61%
@@ -60,7 +63,7 @@ Looking at overall metrics, this system achieves:
 These aggregate metrics are useful, but they don't tell the complete story. What's often more revealing is the per-tool recall:
 
 | Tool            | Times Expected | Times Selected Correctly | Per-Tool Recall |
-|-----------------|----------------|--------------------------|------------------|
+| --------------- | -------------- | ------------------------ | --------------- |
 | SearchBlueprint | 6              | 4                        | 67%             |
 | SearchText      | 5              | 3                        | 60%             |
 | SearchSchedule  | 4              | 2                        | 50%             |
@@ -157,90 +160,102 @@ For example, if we find that the `SearchBlueprint` tool is never being selected 
 
 !!! example "Confusion Matrix Analysis"
 
-    Imagine our evaluation produces this confusion matrix:
+```
+Imagine our evaluation produces this confusion matrix:
 
-    | Expected\Selected | SearchText | SearchBlueprint | SearchSchedule |
-    | ----------------- | ---------- | --------------- | -------------- |
-    | SearchText        | 85         | 5               | 10             |
-    | SearchBlueprint   | 40         | 50              | 10             |
-    | SearchSchedule    | 15         | 5               | 80             |
+| Expected\Selected | SearchText | SearchBlueprint | SearchSchedule |
+| ----------------- | ---------- | --------------- | -------------- |
+| SearchText        | 85         | 5               | 10             |
+| SearchBlueprint   | 40         | 50              | 10             |
+| SearchSchedule    | 15         | 5               | 80             |
 
-    This shows that SearchBlueprint is frequently mistaken for SearchText, indicating that we need to better differentiate these tools.
+This shows that SearchBlueprint is frequently mistaken for SearchText, indicating that we need to better differentiate these tools.
+```
 
 ### Targeted Improvement Strategy
 
 Once you've identified specific weaknesses in your router, you can implement targeted improvements:
 
 1. **For low-recall tools**:
+
    - Add more few-shot examples for these tools
    - Improve tool descriptions to more clearly differentiate them
    - Consider whether these tools are truly distinct or should be merged
 
-2. **For commonly confused tools**:
+1. **For commonly confused tools**:
+
    - Analyze failure cases to understand what's causing the confusion
    - Create "contrast examples" that explicitly show why similar queries go to different tools
    - Refine tool interfaces to have clearer boundaries
 
-3. **For overall improvement**:
+1. **For overall improvement**:
+
    - Balance your few-shot examples across all tools
    - Include edge cases that test the boundaries between tools
    - Add multi-tool examples that show when multiple tools should be used together
 
 !!! tip "Synthetic Data Generation for Router Testing"
-    You can use synthetic data techniques to create comprehensive test cases for your router:
-    
-    1. Start with clear definitions of each tool's purpose
-    2. Use an LLM to generate diverse queries that should trigger each tool
-    3. Include variants of each query with slightly different wording
-    4. Generate ambiguous queries that could reasonably go to multiple tools
-    5. Create a balanced dataset that covers all tools proportionally
-    
-    This approach ensures comprehensive coverage of your router's decision space without requiring extensive manual labeling.
+You can use synthetic data techniques to create comprehensive test cases for your router:
+
+```
+1. Start with clear definitions of each tool's purpose
+2. Use an LLM to generate diverse queries that should trigger each tool
+3. Include variants of each query with slightly different wording
+4. Generate ambiguous queries that could reasonably go to multiple tools
+5. Create a balanced dataset that covers all tools proportionally
+
+This approach ensures comprehensive coverage of your router's decision space without requiring extensive manual labeling.
+```
 
 ## User Interfaces: Direct Tool Access
 
 One powerful insight from the routing architecture is that tools designed for language models can often be exposed directly to users as well. Just as Google offers specialized interfaces like Google Maps, YouTube, and Google Images alongside its main search, your RAG application can offer both:
 
 1. A natural language interface using the router
-2. Direct access to specialized tools for specific needs
+1. Direct access to specialized tools for specific needs
 
 !!! quote "Expert User Perspective"
-    "When I know exactly what I need, a specialized tool is much faster than explaining it to a chatbot. But when I'm exploring new areas or have complex needs, the chat interface helps me discover what's possible."
+"When I know exactly what I need, a specialized tool is much faster than explaining it to a chatbot. But when I'm exploring new areas or have complex needs, the chat interface helps me discover what's possible."
 
 !!! example "Dual-Mode UI"
-    Imagine a construction information system that offers:
+Imagine a construction information system that offers:
 
-    - A chat interface for general questions
-    - A blueprint search interface with date filters
-    - A document search interface with type filters
-    - A schedule search with timeline visualization
-    - A permit lookup tool with status tracking
-    
-    These specialized interfaces map directly to the specialized retrievers we've built.
+```
+- A chat interface for general questions
+- A blueprint search interface with date filters
+- A document search interface with type filters
+- A schedule search with timeline visualization
+- A permit lookup tool with status tracking
+
+These specialized interfaces map directly to the specialized retrievers we've built.
+```
 
 This dual-mode interface has several advantages:
 
 1. **Expert users** can go directly to the tool they need
-2. **New users** can use natural language until they learn the system
-3. **User interactions** with direct tools provide training data for routing
-4. **Clear capabilities** help users understand what the system can do
-5. **Control and transparency** give users confidence in the results
-6. **Performance optimization** for common, well-defined tasks
+1. **New users** can use natural language until they learn the system
+1. **User interactions** with direct tools provide training data for routing
+1. **Clear capabilities** help users understand what the system can do
+1. **Control and transparency** give users confidence in the results
+1. **Performance optimization** for common, well-defined tasks
 
 !!! tip "UI Implementation Strategy"
-    When implementing a dual-mode interface:
-    
-    1. Design specialized interfaces that match your existing tools' parameters
-    2. Create a unified entry point that offers both chat and specialized tool options
-    3. Add suggestions in chat responses that link to relevant specialized tools
-    4. Maintain consistent terminology between chat responses and tool interfaces
-    5. Track which interface users prefer for different query types
+When implementing a dual-mode interface:
+
+```
+1. Design specialized interfaces that match your existing tools' parameters
+2. Create a unified entry point that offers both chat and specialized tool options
+3. Add suggestions in chat responses that link to relevant specialized tools
+4. Maintain consistent terminology between chat responses and tool interfaces
+5. Track which interface users prefer for different query types
+```
 
 ### Specialized Interface Examples
 
 Here's how specialized interfaces might look for our construction information system:
 
 #### Blueprint Search Interface
+
 ```html
 <form action="/search/blueprints" method="GET">
   <h2>Blueprint Search</h2>
@@ -266,6 +281,7 @@ Here's how specialized interfaces might look for our construction information sy
 ```
 
 #### Document Search Interface
+
 ```html
 <form action="/search/documents" method="GET">
   <h2>Document Search</h2>
@@ -295,26 +311,28 @@ These interfaces directly map to the tool interfaces we defined earlier, providi
 The key insight is that RAG isn't just about adding chat to your product—it's about building a comprehensive information discovery system where chat is just one interface option among many specialized tools that help users access information efficiently.
 
 !!! note "Beyond Simple Forms"
-    These specialized interfaces don't have to be simple forms. They can include rich visualizations, interactive elements, and specialized displays for different content types. For example, a blueprint search might display results on a timeline or a map, while a document search might offer faceted filters and previews. The key is that they map directly to your underlying retrieval tools.
+These specialized interfaces don't have to be simple forms. They can include rich visualizations, interactive elements, and specialized displays for different content types. For example, a blueprint search might display results on a timeline or a map, while a document search might offer faceted filters and previews. The key is that they map directly to your underlying retrieval tools.
 
 ## User Feedback as Training Data
 
 A particularly valuable aspect of direct tool access is that user interactions can provide high-quality training data for improving both retrieval and routing:
 
 1. When users select a specific tool, that's a signal about their intent
-2. When users click on search results, that's a signal about relevance
-3. When users refine their search, that's a signal about what was missing
-4. When users explicitly rate or save results, that's direct feedback on quality
+1. When users click on search results, that's a signal about relevance
+1. When users refine their search, that's a signal about what was missing
+1. When users explicitly rate or save results, that's direct feedback on quality
 
 !!! example "User Feedback Collection Mechanisms"
-    To maximize the value of user feedback, consider implementing:
-    
-    - **Tool Selection Tracking**: Record which specialized tool a user chooses for each query
-    - **Click Tracking**: Monitor which search results users engage with
-    - **Query Refinement Analysis**: Capture how users modify queries that didn't yield useful results
-    - **Explicit Feedback Buttons**: Add "Was this helpful?" buttons to results
-    - **Result Saving**: Allow users to save or bookmark useful results
-    - **Session Analysis**: Examine session patterns to identify successful vs. unsuccessful paths
+To maximize the value of user feedback, consider implementing:
+
+```
+- **Tool Selection Tracking**: Record which specialized tool a user chooses for each query
+- **Click Tracking**: Monitor which search results users engage with
+- **Query Refinement Analysis**: Capture how users modify queries that didn't yield useful results
+- **Explicit Feedback Buttons**: Add "Was this helpful?" buttons to results
+- **Result Saving**: Allow users to save or bookmark useful results
+- **Session Analysis**: Examine session patterns to identify successful vs. unsuccessful paths
+```
 
 These interactions can be logged and used to:
 
@@ -434,31 +452,33 @@ def update_few_shot_examples(router_examples, max_examples_per_tool=5):
 This creates another improvement flywheel: as users interact with the system, it collects data that makes both retrieval and routing better, which leads to higher user satisfaction and more interactions.
 
 !!! warning "Feedback Biases"
-    Be aware of potential biases in user feedback:
-    
-    1. **Position bias**: Users tend to click on top results regardless of relevance
-    2. **Interface bias**: Different interfaces encourage different interaction patterns
-    3. **User expertise bias**: Expert users interact differently than novices
-    4. **Success bias**: Successful interactions generate more feedback than failures
-    
-    To mitigate these biases:
-    - Occasionally randomize result ordering for evaluation
-    - Analyze feedback separately across user expertise levels
-    - Specifically seek feedback on unsuccessful interactions
-    - Complement implicit feedback with explicit ratings
+Be aware of potential biases in user feedback:
+
+```
+1. **Position bias**: Users tend to click on top results regardless of relevance
+2. **Interface bias**: Different interfaces encourage different interaction patterns
+3. **User expertise bias**: Expert users interact differently than novices
+4. **Success bias**: Successful interactions generate more feedback than failures
+
+To mitigate these biases:
+- Occasionally randomize result ordering for evaluation
+- Analyze feedback separately across user expertise levels
+- Specifically seek feedback on unsuccessful interactions
+- Complement implicit feedback with explicit ratings
+```
 
 ## The Combined Success Formula
 
 Throughout this book, we've focused on a data-driven approach to systematic improvement. In the context of unified architecture, we can express the overall success probability of our system with a simple formula:
 
 $$
-P(\text{success}) = P(\text{find right document} \mid \text{right tool}) \times P(\text{right tool})
+P(\\text{success}) = P(\\text{find right document} \\mid \\text{right tool}) \\times P(\\text{right tool})
 $$
 
 This formula highlights that our system's performance depends on both:
 
 1. How well each retriever works when used correctly
-2. How often we select the right retriever for the query
+1. How often we select the right retriever for the query
 
 ### A Diagnostic Framework for Improvement
 
@@ -502,7 +522,7 @@ Same 40% success rate, but completely different problems requiring different sol
 To apply this framework effectively, you need to measure both components independently:
 
 1. **Per-tool recall:** How often each retriever finds the right information when used
-2. **Tool selection accuracy:** How often the router selects the right tool(s) for each query
+1. **Tool selection accuracy:** How often the router selects the right tool(s) for each query
 
 A simple dashboard showing these metrics gives you immediate insight into where to focus your improvement efforts.
 
@@ -510,12 +530,12 @@ A simple dashboard showing these metrics gives you immediate insight into where 
 
 This formula provides a clear framework for planning both product and research efforts:
 
-| P(success \| right tool) | P(right tool \| query) | Strategy |
-|-------------------------|------------------------|----------|
-| **High** | **High** | These are strengths to highlight in your product |
-| **Low** | **High** | Research focus needed on specific retrievers |
-| **High** | **Low** | Focus on improving router or exposing tools directly |
-| **Low** | **Low** | Consider whether this query type is worth supporting |
+| P(success \| right tool) | P(right tool \| query) | Strategy                                             |
+| ------------------------ | ---------------------- | ---------------------------------------------------- |
+| **High**                 | **High**               | These are strengths to highlight in your product     |
+| **Low**                  | **High**               | Research focus needed on specific retrievers         |
+| **High**                 | **Low**                | Focus on improving router or exposing tools directly |
+| **Low**                  | **Low**                | Consider whether this query type is worth supporting |
 
 By systematically measuring and improving these components, you create a continuous improvement flywheel for your unified RAG architecture.
 
@@ -524,26 +544,26 @@ By systematically measuring and improving these components, you create a continu
 Throughout this book, we've explored how to systematically improve RAG applications by treating them as continuously evolving products rather than static implementations. We've covered:
 
 1. Starting the flywheel with synthetic data generation for evaluation
-2. Converting evaluations into training data for improvement
-3. Building feedback collection mechanisms through user experience design
-4. Understanding users through segmentation and capability analysis
-5. Creating specialized retrieval capabilities for different content types
-6. Unifying these capabilities into a cohesive architecture with intelligent routing
+1. Converting evaluations into training data for improvement
+1. Building feedback collection mechanisms through user experience design
+1. Understanding users through segmentation and capability analysis
+1. Creating specialized retrieval capabilities for different content types
+1. Unifying these capabilities into a cohesive architecture with intelligent routing
 
 This unified architecture approach represents the culmination of our improvement flywheel—a system that not only retrieves the right information but knows which specialized capability to use for each user need.
 
 !!! quote "Framework Development Perspective"
-    "The fundamental building blocks of creating good and successful machine learning products are synthetic data and customer feedback. This is the bedrock—everything else is implementation details that will change as technology evolves."
+"The fundamental building blocks of creating good and successful machine learning products are synthetic data and customer feedback. This is the bedrock—everything else is implementation details that will change as technology evolves."
 
 ### The Systematic Improvement Process
 
 The core insight that runs through every chapter of this book is that RAG improvement follows a repeatable pattern:
 
 1. **Measure current performance** with precise metrics that separate different system components
-2. **Identify limiting factors** by distinguishing between router accuracy and retriever quality
-3. **Generate synthetic data** to test hypotheses and establish baselines
-4. **Implement targeted improvements** to the specific components that need enhancement
-5. **Collect user feedback** that serves as training data for the next iteration
-6. **Repeat** with increasingly sophisticated capabilities
+1. **Identify limiting factors** by distinguishing between router accuracy and retriever quality
+1. **Generate synthetic data** to test hypotheses and establish baselines
+1. **Implement targeted improvements** to the specific components that need enhancement
+1. **Collect user feedback** that serves as training data for the next iteration
+1. **Repeat** with increasingly sophisticated capabilities
 
 This process applies equally well whether you're building your first RAG application or enhancing your tenth specialized retriever. The tools and models will change, but the systematic approach remains constant.

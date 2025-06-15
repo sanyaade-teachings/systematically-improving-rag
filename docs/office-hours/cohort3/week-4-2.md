@@ -1,21 +1,21 @@
 ---
-title: "Week 4 - Office Hour 2"
-date: "2024-06-12"
+title: Week 4 - Office Hour 2
+date: '2024-06-12'
 cohort: 3
 week: 4
 session: 2
-type: "Office Hour"
-transcript: "../GMT20250612-174842_Recording.transcript.vtt"
-description: "AI report generation, data visualization, and unstructured feedback data analysis systems"
+type: Office Hour
+transcript: ../GMT20250612-174842_Recording.transcript.vtt
+description: AI report generation, data visualization, and unstructured feedback data analysis systems
 topics:
-  - "Dynamic Data Visualization"
-  - "Professional Report Styling"
-  - "Unstructured Customer Feedback"
-  - "Fast Classifier Development"
-  - "Tool-based vs Semantic Search"
-  - "Cura Project Development"
-  - "Future Course Content"
-  - "Report Generation Enhancement"
+  - Dynamic Data Visualization
+  - Professional Report Styling
+  - Unstructured Customer Feedback
+  - Fast Classifier Development
+  - Tool-based vs Semantic Search
+  - Cura Project Development
+  - Future Course Content
+  - Report Generation Enhancement
 ---
 
 # Week 4, Office Hour 2 (June 12)
@@ -32,8 +32,8 @@ For deep research-style reports (like those from Gemini, Claude, or OpenAI), the
 For more structured reports with visualizations, I see three main approaches:
 
 1. Post-hoc image addition: You can have the LLM identify places where supplementary images would enhance the text, then add them afterward.
-2. Image citations during research: Treat images as another citation source that the LLM can reference while generating text. For example, with a client yesterday, the LLM decided to include an org chart in a leadership report because it had access to an org chart JPEG file during generation.
-3. Mermaid diagrams: These are particularly useful for creating dynamic visualizations directly in Markdown. The key challenge is validation - if Claude generates an incorrect Mermaid diagram, it simply fails to render. You need a validation loop or external server to check the diagram code, report errors, and iterate to fix them.
+1. Image citations during research: Treat images as another citation source that the LLM can reference while generating text. For example, with a client yesterday, the LLM decided to include an org chart in a leadership report because it had access to an org chart JPEG file during generation.
+1. Mermaid diagrams: These are particularly useful for creating dynamic visualizations directly in Markdown. The key challenge is validation - if Claude generates an incorrect Mermaid diagram, it simply fails to render. You need a validation loop or external server to check the diagram code, report errors, and iterate to fix them.
 
 For standard data visualizations, most companies use JavaScript libraries like Recharts, which allow you to pass data as props and generate visualizations.
 
@@ -115,7 +115,7 @@ Beyond the course, I'm organizing a speaker series with guests from OpenAI's mem
 
 ***Key Takeaway:*** The future of RAG systems, especially for structured data like code, may involve less semantic search and more tool-based approaches where agents navigate information using a portfolio of tools to build context incrementally.
 
----
+______________________________________________________________________
 
 FAQs
 
@@ -149,4 +149,4 @@ It depends on your document structure. If you're working with highly structured 
 
 **How can I quickly build classifiers for new categories in feedback data?**
 
-For rapid classifier development, you can use embedding-based approaches where you embed category descriptions and then match new items to the closest category embedding. Another approach is to use a small set of labeled examples to train a lightweight classifier. The key is having a system to validate the accuracy of these classifiers and being able to quickly deploy them to generate counts and insights from your data. 
+For rapid classifier development, you can use embedding-based approaches where you embed category descriptions and then match new items to the closest category embedding. Another approach is to use a small set of labeled examples to train a lightweight classifier. The key is having a system to validate the accuracy of these classifiers and being able to quickly deploy them to generate counts and insights from your data.

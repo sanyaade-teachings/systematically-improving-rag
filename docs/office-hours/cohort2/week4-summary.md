@@ -63,11 +63,11 @@ If you feel like you're not running enough experiments, focus on improving your 
 
 1. **Write parallelized code**: Many teams are still doing all their tests using for loops. Spending 1-2 hours learning to write parallelized code can dramatically reduce your experimentation time, going from days to hours. Using tools like multiprocessing to hit multiple endpoints simultaneously is much better than having code break on iteration 2,000.
 
-2. **Improve data access and understanding**: Document how to query your data effectively. It's a waste of time if you write a query to prepare data, and someone comes back a day later saying, "That's wrong, we actually need to include only last week's data."
+1. **Improve data access and understanding**: Document how to query your data effectively. It's a waste of time if you write a query to prepare data, and someone comes back a day later saying, "That's wrong, we actually need to include only last week's data."
 
-3. **Build modular pipelines**: If your entire RAG application is a giant Python file, it will be hard to test. But if each search index is a separate POST request, you can test them individually. This allows you to focus on one component (like an image retriever system) and improve it from 30% to 80% accuracy in one afternoon before integrating it back into your router.
+1. **Build modular pipelines**: If your entire RAG application is a giant Python file, it will be hard to test. But if each search index is a separate POST request, you can test them individually. This allows you to focus on one component (like an image retriever system) and improve it from 30% to 80% accuracy in one afternoon before integrating it back into your router.
 
-4. **Test locally when possible**: Create smaller synthetic datasets for quick iteration before running larger tests.
+1. **Test locally when possible**: Create smaller synthetic datasets for quick iteration before running larger tests.
 
 Being able to test components in isolation is crucial for rapid experimentation. A lot of this comes down to good software engineering practices and thoughtful system design.
 
@@ -77,7 +77,7 @@ For multilingual challenges like job titles across different languages, I recomm
 
 1. **Metadata extraction and filtering**: Build classifiers to add more metadata to your ontology. For example, "software engineering recruiter" and "software engineer" go into two different classes, allowing you to filter for one and not the other. This improves search precision.
 
-2. **Fine-tune embedding models with triplets**: Create a dataset with examples like "software engineer" (query), "python developer" (positive example), and "software engineering recruiter" (hard negative). This teaches your model to separate similar-looking job titles that have different meanings.
+1. **Fine-tune embedding models with triplets**: Create a dataset with examples like "software engineer" (query), "python developer" (positive example), and "software engineering recruiter" (hard negative). This teaches your model to separate similar-looking job titles that have different meanings.
 
 For handling multiple languages, run tests to see whether translation improves performance. For instance, does your classifier perform better if you translate everything to English first, or if you use the original languages? If translating provides only a 1-2% improvement but requires complex infrastructure to maintain, it might make sense to accept slightly lower performance.
 
@@ -119,9 +119,9 @@ There are many creative ways to generate synthetic data. For summarization, you 
 
 1. **Create reverse tasks**: For example, start with the outcomes you care about (like action items) and ask an LLM to generate a transcript that would produce those items. Then you can verify if your summarization system correctly extracts the original action items from this synthetic transcript.
 
-2. **Use data augmentation techniques**: Look at techniques from other domains like speech detection, where researchers combine clean audio samples to create more complex scenarios (like overlapping speakers). You can apply similar principles to text.
+1. **Use data augmentation techniques**: Look at techniques from other domains like speech detection, where researchers combine clean audio samples to create more complex scenarios (like overlapping speakers). You can apply similar principles to text.
 
-3. **Apply transformations similar to image processing**: In computer vision, we've long used techniques like converting color photos to black and white, then training models to predict the original colors. Similarly, we convert high-resolution images to low-resolution and train models to predict the original resolution. We can apply similar transformations to text data.
+1. **Apply transformations similar to image processing**: In computer vision, we've long used techniques like converting color photos to black and white, then training models to predict the original colors. Similarly, we convert high-resolution images to low-resolution and train models to predict the original resolution. We can apply similar transformations to text data.
 
 The key is to think about ways to go from your desired output backward to input data, or to systematically transform existing data in ways that preserve the information you care about while changing other aspects.
 
@@ -141,9 +141,9 @@ For transcripts without clear paragraph markers, a few approaches work well:
 
 1. **Use diarization models** to get speaker tags, which can serve as natural boundaries (each dialog line becomes a chunk)
 
-2. **Detect silences** in the audio and chunk on those silences
+1. **Detect silences** in the audio and chunk on those silences
 
-3. **Consider the structure of your content** - for instance, if it's an interview format, you might know it's always question-answer pairs, so you can embed those pairs together
+1. **Consider the structure of your content** - for instance, if it's an interview format, you might know it's always question-answer pairs, so you can embed those pairs together
 
 It ultimately depends on your specific use case. For a general conversation, chunking on silences or using diarization with a sliding window over dialog will work. For job interviews or expert interviews, understanding the structure (question followed by answer) lets you optimize your chunking strategy.
 
@@ -154,10 +154,10 @@ If you have mixed domains and raw transcripts without access to the original sou
 I've been using AI tools to build academic-style slides with LaTeX and Beamer. My process is:
 
 1. Load all relevant content into Cursor (in my case, all 6 hours of course transcripts)
-2. Create an outline for the presentation
-3. Use Claude to extract key case studies and insights from the transcripts
-4. Have the LLM generate slides using LaTeX Beamer format
-5. Use a simple auto-compiler (built with Watchdog) that recompiles the PDF whenever the file changes
+1. Create an outline for the presentation
+1. Use Claude to extract key case studies and insights from the transcripts
+1. Have the LLM generate slides using LaTeX Beamer format
+1. Use a simple auto-compiler (built with Watchdog) that recompiles the PDF whenever the file changes
 
 The advantages of this approach:
 
@@ -214,13 +214,13 @@ Handling long documents effectively is still evolving, with several promising ap
 
 1. **Hierarchical retrieval**: Create summary or header-level embeddings for entire documents/chapters, then more granular embeddings for sections/paragraphs. This allows multi-stage retrieval that narrows down from document to specific passages.
 
-2. **Graph-based approaches**: Build knowledge graphs connecting concepts across documents, enabling retrieval that follows conceptual relationships rather than just lexical similarity.
+1. **Graph-based approaches**: Build knowledge graphs connecting concepts across documents, enabling retrieval that follows conceptual relationships rather than just lexical similarity.
 
-3. **Hybrid sparse-dense retrieval**: Combine embedding-based retrieval with keyword/BM25 approaches to capture both semantic and lexical matches, which is particularly valuable for documents with specialized terminology.
+1. **Hybrid sparse-dense retrieval**: Combine embedding-based retrieval with keyword/BM25 approaches to capture both semantic and lexical matches, which is particularly valuable for documents with specialized terminology.
 
-4. **Learning to rewrite**: Train models to rewrite retrieved chunks into more coherent contexts that preserve the key information while eliminating redundancy.
+1. **Learning to rewrite**: Train models to rewrite retrieved chunks into more coherent contexts that preserve the key information while eliminating redundancy.
 
-5. **Recursive summarization**: For extremely long documents, apply recursive summarization techniques that gradually compress information while maintaining key details.
+1. **Recursive summarization**: For extremely long documents, apply recursive summarization techniques that gradually compress information while maintaining key details.
 
 Projects like LangChain's Document Transformer framework and repositories focusing on document processing show significant advances in these areas. The most effective systems often combine multiple approaches based on the specific characteristics of their document collections.
 
@@ -230,13 +230,13 @@ When dealing with messy knowledge bases that contain duplicate or near-duplicate
 
 1. **Pre-processing pipeline**: Implement de-duplication strategies during ingestion. This could involve computing similarity scores between documents and merging or filtering based on a threshold.
 
-2. **Metadata extraction and filtering**: Add more metadata to your ontology by building classifiers for different document types or topics. This allows you to filter for specific categories during retrieval.
+1. **Metadata extraction and filtering**: Add more metadata to your ontology by building classifiers for different document types or topics. This allows you to filter for specific categories during retrieval.
 
-3. **Query classification**: For ambiguous queries, implement both pre-retrieval and post-retrieval classification to identify query intent and determine when clarification is needed.
+1. **Query classification**: For ambiguous queries, implement both pre-retrieval and post-retrieval classification to identify query intent and determine when clarification is needed.
 
-4. **Progressive disclosure**: Consider displaying intermediate results with summarized information about potential topics before generating a complete answer. This helps users navigate ambiguity, especially for queries that could refer to multiple topics.
+1. **Progressive disclosure**: Consider displaying intermediate results with summarized information about potential topics before generating a complete answer. This helps users navigate ambiguity, especially for queries that could refer to multiple topics.
 
-5. **Dynamic presentation**: For high-latency requirements (e.g., responses needed in under 6 seconds), consider showing retrieved documents first while the full answer is being generated, allowing users to see some results immediately.
+1. **Dynamic presentation**: For high-latency requirements (e.g., responses needed in under 6 seconds), consider showing retrieved documents first while the full answer is being generated, allowing users to see some results immediately.
 
 Remember that the goal isn't perfect retrieval but helping users find the information they need. Sometimes showing multiple possible interpretations of a query is more helpful than trying to guess the single "right" answer.
 
@@ -251,7 +251,8 @@ For specific workflows with well-defined steps, DAGs (Directed Acyclic Graphs) o
    - You're implementing established protocols (like therapy approaches or compliance processes)
    - Predictability and consistency are critical
 
-2. **Use agentic approaches when**:
+1. **Use agentic approaches when**:
+
    - The problem space is exploratory
    - Tasks require adaptation to unpredictable user input
    - The workflow needs to evolve based on intermediate results
@@ -267,9 +268,9 @@ Creating effective negative examples for training retrieval models involves seve
 
 1. **Hard negative mining**: Find examples that are semantically similar but actually irrelevant. For job listings, "software engineer recruiter" is a hard negative for "software engineer" queries - they look similar textually but represent different job categories.
 
-2. **Top-K analysis**: Run retrieval with your current model, then have an LLM evaluate which results in the top K are actually irrelevant. These make excellent negative examples because they expose weaknesses in your current model.
+1. **Top-K analysis**: Run retrieval with your current model, then have an LLM evaluate which results in the top K are actually irrelevant. These make excellent negative examples because they expose weaknesses in your current model.
 
-3. **Controlled random sampling**: While pure random sampling provides some signal, it's often too easy for the model to distinguish. Instead, use controlled randomization that preserves some properties of the positive examples.
+1. **Controlled random sampling**: While pure random sampling provides some signal, it's often too easy for the model to distinguish. Instead, use controlled randomization that preserves some properties of the positive examples.
 
 When working with triplet learning (query, positive example, negative example), the quality of your negative examples often has more impact on model performance than adding more positive examples. Focus on finding negative examples that are difficult to distinguish from positive ones.
 
@@ -281,13 +282,13 @@ For applications requiring responses in just a few seconds:
 
 1. **Progressive rendering**: Show retrieved documents first (which can be returned in 150-400ms) while the LLM generates the complete answer in the background. This gives users immediate results while they wait for the full response.
 
-2. **Caching**: Implement aggressive caching for common queries. When a question-answer pair receives positive feedback (like being forwarded, shared, or rated highly), save it as a new document that can be quickly retrieved for similar questions.
+1. **Caching**: Implement aggressive caching for common queries. When a question-answer pair receives positive feedback (like being forwarded, shared, or rated highly), save it as a new document that can be quickly retrieved for similar questions.
 
-3. **Response type classification**: Use a lightweight classifier to determine if a query needs full retrieval and generation or if it can be answered with a simpler approach.
+1. **Response type classification**: Use a lightweight classifier to determine if a query needs full retrieval and generation or if it can be answered with a simpler approach.
 
-4. **Contextual snippet generation**: During retrieval, generate quick summaries of each chunk that can be displayed alongside search results before the complete answer is ready.
+1. **Contextual snippet generation**: During retrieval, generate quick summaries of each chunk that can be displayed alongside search results before the complete answer is ready.
 
-5. **Parallel processing**: Run multiple retrieval strategies in parallel and combine the results, rather than using sequential processing that adds to the total latency.
+1. **Parallel processing**: Run multiple retrieval strategies in parallel and combine the results, rather than using sequential processing that adds to the total latency.
 
 The key insight is to avoid an all-or-nothing approach to response generation. By decomposing the process into steps that can be displayed incrementally, you can significantly improve perceived latency even when the complete answer takes longer to generate.
 
@@ -301,14 +302,15 @@ MCP (Model Context Protocol) is becoming increasingly important as it allows dif
    - Reduces boilerplate code when connecting to different services
    - Allows models to access data and functionality they wouldn't normally have permission to use
 
-2. **Practical examples**:
+1. **Practical examples**:
 
    - Image generation servers in Cursor for creating assets while building applications
    - Servers that connect to network logs for debugging web applications
    - Connectors to production databases that help models understand schemas and write SQL
    - Automation tools that write conversation notes directly to Notion or other note-taking systems
 
-3. **Comparison to function calling**:
+1. **Comparison to function calling**:
+
    - When you own all the code, function calling may be simpler
    - MCP becomes valuable when connecting separate systems with different permission models
    - Provides a standardized way to expose capabilities across different AI platforms

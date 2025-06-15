@@ -63,8 +63,8 @@ The biggest issue is mismatch between user questions in reality versus in the sy
 What's more important is figuring out how to intelligently incorporate real-world examples from users into the few-shot examples for synthetic data generation, making it a more diverse process. You can check this by:
 
 1. Looking at the variance of embeddings against each other to see if they're too similar
-2. Checking general statistics like character count variance in questions
-3. Ensuring the synthetic data matches user data characteristics
+1. Checking general statistics like character count variance in questions
+1. Ensuring the synthetic data matches user data characteristics
 
 For example, if your customer questions typically have around 30 characters but your synthetic data averages 90 characters because the language model is too verbose, that's a simple distribution mismatch to fix.
 
@@ -75,7 +75,7 @@ The embedding model allows you to do search over a large number of documents - g
 We generally want to use both, and the dataset to train these models is actually the same dataset. If you can only afford to fine-tune one, you might choose based on where your bottleneck is:
 
 1. Is recall at 100 already good (95%) but recall at 10 is poor (50%)? Then focus on the re-ranker.
-2. Are you missing relevant documents even in your top 100 results? Then focus on the embedding model.
+1. Are you missing relevant documents even in your top 100 results? Then focus on the embedding model.
 
 The key insight is that by having metrics on both stages, you can identify where to focus your improvement efforts.
 
@@ -159,9 +159,9 @@ It comes down to analyzing the queries people are asking and figuring out what c
 For visual documents like quarterly reports full of tables and images:
 
 1. Dockling is a free library that works quite well, though it might take about 11 seconds per PDF
-2. Claude Sonnet also works well for extraction
-3. Commercial tools like Reducto, Llama Parse, and others can be worth the cost to save time
-4. For multilingual content, VDR2B-Multi v1 handles multiple languages well
+1. Claude Sonnet also works well for extraction
+1. Commercial tools like Reducto, Llama Parse, and others can be worth the cost to save time
+1. For multilingual content, VDR2B-Multi v1 handles multiple languages well
 
 Recent testing shows Reducto still has higher accuracy (0.9 ± 0.1) compared to Gemini (0.84 ± 0.16), but the gap is narrowing. Reducto performs well because they have people manually labeling thousands of PDFs to train their models.
 
@@ -192,8 +192,8 @@ For example, if we want to retrieve exactly one document and there's only one co
 The metrics become more meaningful when:
 
 1. There are multiple relevant documents
-2. We're analyzing trends across many queries
-3. We're comparing different retrieval methods
+1. We're analyzing trends across many queries
+1. We're comparing different retrieval methods
 
 Even with one-to-one mappings, MRR (Mean Reciprocal Rank) is still useful to see where the correct answer appears in your results.
 
@@ -294,7 +294,7 @@ This finite state machine approach has been around for decades and is still very
 There are a few approaches:
 
 1. Embed the string without metadata but add metadata when sending to the LLM
-2. Embed the string with metadata included
+1. Embed the string with metadata included
 
 This is something to test empirically - does including metadata in the embedding hurt retrieval? Cohere's embedding models (like Compass) can embed JSON quite well.
 
@@ -312,20 +312,20 @@ This approach helps ensure reliability across different types of function callin
 
 1. **Fine-tuning priorities**: Fine-tune embedding models, not LLMs. With just 6,000 examples, you can create embedding models that outperform general models on your specific tasks at minimal cost.
 
-2. **Inventory matters more than algorithms**: Having the right documents and metadata is more important than the algorithm itself. Missing information can't be retrieved no matter how good your algorithm is.
+1. **Inventory matters more than algorithms**: Having the right documents and metadata is more important than the algorithm itself. Missing information can't be retrieved no matter how good your algorithm is.
 
-3. **Evaluation is empirical**: Many decisions about chunking, including metadata, and blending synthetic data should be driven by empirical testing rather than theoretical assumptions.
+1. **Evaluation is empirical**: Many decisions about chunking, including metadata, and blending synthetic data should be driven by empirical testing rather than theoretical assumptions.
 
-4. **Parsing strategy**: For complex documents, consider evaluating parsing/OCR separately from retrieval performance since parsing errors will be difficult to trace in the full pipeline.
+1. **Parsing strategy**: For complex documents, consider evaluating parsing/OCR separately from retrieval performance since parsing errors will be difficult to trace in the full pipeline.
 
-5. **Function calling with planning**: For complex agent workflows, have the model create a plan first and get user confirmation rather than executing functions immediately. This creates training data for future interactions.
+1. **Function calling with planning**: For complex agent workflows, have the model create a plan first and get user confirmation rather than executing functions immediately. This creates training data for future interactions.
 
-6. **State machines still work**: Graph-based/finite state machine approaches remain effective for structured conversations, with LLMs improving the transitions between states.
+1. **State machines still work**: Graph-based/finite state machine approaches remain effective for structured conversations, with LLMs improving the transitions between states.
 
-7. **Metadata inclusion**: Include relevant metadata in chunks to answer questions about document properties like authorship, modification dates, and contact information.
+1. **Metadata inclusion**: Include relevant metadata in chunks to answer questions about document properties like authorship, modification dates, and contact information.
 
-8. **Long context doesn't eliminate RAG**: Despite larger context windows, there will always be latency, cost, and performance tradeoffs that make efficient retrieval necessary.
+1. **Long context doesn't eliminate RAG**: Despite larger context windows, there will always be latency, cost, and performance tradeoffs that make efficient retrieval necessary.
 
-9. **Research pragmatism**: Focus on solving specific problems with your data rather than chasing the latest research papers, which often reinvent existing techniques.
+1. **Research pragmatism**: Focus on solving specific problems with your data rather than chasing the latest research papers, which often reinvent existing techniques.
 
-10. **Cross-encoders vs. bi-encoders**: Cross-encoders (re-rankers) understand semantic distinctions better but are slower; bi-encoders (embedding models) are faster but less nuanced. Use both for optimal performance.
+1. **Cross-encoders vs. bi-encoders**: Cross-encoders (re-rankers) understand semantic distinctions better but are slower; bi-encoders (embedding models) are faster but less nuanced. Use both for optimal performance.

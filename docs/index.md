@@ -13,7 +13,7 @@ date: 2025-04-10
 _A systematic approach to building self-improving AI systems_
 
 !!! abstract "About This Book"
-    This book provides a structured approach to evolving Retrieval-Augmented Generation (RAG) from a technical implementation into a continuously improving product. You'll learn to combine product thinking with data science principles to create AI systems that deliver increasing value over time.
+This book provides a structured approach to evolving Retrieval-Augmented Generation (RAG) from a technical implementation into a continuously improving product. You'll learn to combine product thinking with data science principles to create AI systems that deliver increasing value over time.
 
 ## The RAG Improvement Flywheel
 
@@ -34,7 +34,7 @@ graph TD
 ```
 
 !!! tip "Beyond Technical Implementation"
-    This book goes beyond teaching you how to implement RAG. It shows you how to think about RAG as a product that continuously evolves to meet user needs and deliver business value.
+This book goes beyond teaching you how to implement RAG. It shows you how to think about RAG as a product that continuously evolves to meet user needs and deliver business value.
 
 ## Chapters
 
@@ -87,26 +87,28 @@ Explore insights from industry experts and practitioners through our collection 
 ## For Product Leaders, Engineers, and Data Scientists
 
 !!! info "What You'll Learn"
-    **For Product Leaders** - How to establish metrics that align with business outcomes - Frameworks for prioritizing AI product improvements - Approaches to building product roadmaps for RAG applications - Methods for communicating AI improvements to stakeholders
+**For Product Leaders** - How to establish metrics that align with business outcomes - Frameworks for prioritizing AI product improvements - Approaches to building product roadmaps for RAG applications - Methods for communicating AI improvements to stakeholders
 
-    **For Engineers**
-    - Implementation patterns that facilitate rapid iteration
-    - Architectural decisions that enable continuous improvement
-    - Techniques for building modular, specialized capabilities
-    - Approaches to technical debt management in AI systems
+```
+**For Engineers**
+- Implementation patterns that facilitate rapid iteration
+- Architectural decisions that enable continuous improvement
+- Techniques for building modular, specialized capabilities
+- Approaches to technical debt management in AI systems
 
-    **For Data Scientists**
-    - Methods for creating synthetic evaluation datasets
-    - Techniques for segmenting and analyzing user queries
-    - Frameworks for measuring retrieval effectiveness
-    - Approaches to continuous learning from user interactions
+**For Data Scientists**
+- Methods for creating synthetic evaluation datasets
+- Techniques for segmenting and analyzing user queries
+- Frameworks for measuring retrieval effectiveness
+- Approaches to continuous learning from user interactions
+```
 
 ## About the Author
 
 Jason Liu brings practical experience from his work at Facebook, Stitch Fix, and as a consultant for companies like HubSpot, Zapier, and many others. His background spans computer vision, recommendation systems, and RAG applications across diverse domains.
 
 !!! quote "Author's Philosophy"
-    "The most successful AI products aren't the ones with the most sophisticated models, but those built on disciplined processes for understanding users, measuring performance, and systematically improving. This book will show you how to create not just a RAG application, but a product that becomes more valuable with every interaction."
+"The most successful AI products aren't the ones with the most sophisticated models, but those built on disciplined processes for understanding users, measuring performance, and systematically improving. This book will show you how to create not just a RAG application, but a product that becomes more valuable with every interaction."
 
 ## Getting Started
 

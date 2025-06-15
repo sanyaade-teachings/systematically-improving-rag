@@ -15,14 +15,16 @@ tags:
 
 !!! abstract "Chapter Overview"
 
-    This chapter focuses on starting the improvement flywheel by establishing proper evaluation frameworks:
+```
+This chapter focuses on starting the improvement flywheel by establishing proper evaluation frameworks:
 
-    - Understanding common pitfalls in AI development
-    - Distinguishing between different types of metrics
-    - Creating synthetic data for evaluation
-    - Building frameworks to drive systematic improvements
-    - Measuring retrieval quality with precision and recall
-    - Implementing practical evaluation pipelines
+- Understanding common pitfalls in AI development
+- Distinguishing between different types of metrics
+- Creating synthetic data for evaluation
+- Building frameworks to drive systematic improvements
+- Measuring retrieval quality with precision and recall
+- Implementing practical evaluation pipelines
+```
 
 ## Introduction
 
@@ -44,9 +46,11 @@ How often do we hear statements like "we need more complex reasoning" or "the mo
 !!! warning "Common Mistake"
 When you hear statements like "we need more reasoning power," challenge yourself to answer:
 
-    - When was the last time we looked at data from customers?
-    - When did we last read user feedback?
-    - Are we actively asking for feedback?
+```
+- When was the last time we looked at data from customers?
+- When did we last read user feedback?
+- Are we actively asking for feedback?
+```
 
 The root issue is rarely that we need more complex reasoning—it's that we don't understand what our users actually want. This leads to building generic tools that don't solve specific problems well.
 
@@ -169,6 +173,7 @@ Absence blindness is simple: you don't fix what you can't see. In RAG applicatio
 I've seen teams spend weeks fine-tuning prompts to improve the quality of generated text, only to discover that their retrieval system wasn't functioning properly at all. No amount of prompt engineering can compensate for a system that retrieves irrelevant documents or misses critical information.
 
 Key questions almost no one asks until I prompt them:
+
 - Have you verified whether your retrieval is bringing back the right documents?
 - Are your text chunks properly segmented?
 - Is your data extraction pipeline working as expected?
@@ -209,10 +214,10 @@ In my consulting practice, I frequently get emails asking: "Should we use GPT-4 
 Many teams make changes to feel like they're making progress rather than taking specific interventions against specific metrics and testing clear hypotheses. I see this pattern repeatedly:
 
 1. Team faces RAG performance issues
-2. Someone suggests a new model, chunking approach, or prompt technique 
-3. Quick implementation without proper testing
-4. Subjective assessment: "It feels better"
-5. New problems emerge, cycle repeats
+1. Someone suggests a new model, chunking approach, or prompt technique
+1. Quick implementation without proper testing
+1. Subjective assessment: "It feels better"
+1. New problems emerge, cycle repeats
 
 While it feels good to be taking action, randomized changes create technical debt and confuse attribution of improvements. Each change should target a specific metric and test a clear hypothesis.
 
@@ -245,9 +250,9 @@ Many teams without machine learning backgrounds focus on subjective generation e
 Retrieval evaluations offer several advantages over generation evaluations:
 
 1. **Speed**: Retrieval tests take milliseconds versus seconds or minutes for generation tests
-2. **Cost**: They're significantly cheaper to run
-3. **Objectivity**: Results are clear and unambiguous
-4. **Scalability**: You can run thousands of tests quickly
+1. **Cost**: They're significantly cheaper to run
+1. **Objectivity**: Results are clear and unambiguous
+1. **Scalability**: You can run thousands of tests quickly
 
 When you focus on generation evaluations prematurely, factuality becomes subjective and confusing. As you adopt evaluation tools, you get flooded with information without clear actions. By contrast, improving precision and recall directly allows you to test whether lexical search, semantic search, or re-rankers improve your retrieval in a measurable way.
 
@@ -329,9 +334,9 @@ Another client needed to implement AI search for construction blueprints, allowi
 With synthetic data in hand, you can build a proper evaluation framework. This framework should:
 
 1. Run questions through your retrieval system
-2. Compare retrieved chunks to ground truth
-3. Calculate precision and recall metrics
-4. Track performance over time as you make changes
+1. Compare retrieved chunks to ground truth
+1. Calculate precision and recall metrics
+1. Track performance over time as you make changes
 
 This framework becomes the foundation of your improvement flywheel. Every change to your system—whether a new embedding model, chunking strategy, or ranking approach—should be evaluated against these metrics.
 
@@ -394,20 +399,20 @@ def evaluate_retrieval(evaluation_data, retriever_fn, k=10):
 Make evaluation a regular part of your development cycle:
 
 1. **Continuous testing**: Run evaluations with every significant change to your system
-2. **Weekly benchmarks**: Schedule comprehensive evaluations weekly
-3. **Version comparison**: Always compare new changes against previous versions
-4. **Failure analysis**: Regularly review cases with 0% recall to identify patterns
-5. **Difficulty progression**: As scores improve, add more challenging test cases
+1. **Weekly benchmarks**: Schedule comprehensive evaluations weekly
+1. **Version comparison**: Always compare new changes against previous versions
+1. **Failure analysis**: Regularly review cases with 0% recall to identify patterns
+1. **Difficulty progression**: As scores improve, add more challenging test cases
 
 ### Integrating with Development Workflow
 
 To maximize the value of your evaluation framework:
 
 1. **Build a dashboard**: Create a simple interface showing metrics over time
-2. **Implement automatic testing**: Run evaluations as part of your CI/CD pipeline
-3. **Set alert thresholds**: Get notified if metrics drop below critical levels
-4. **Document all experiments**: Keep track of changes and their impact on metrics
-5. **Tie to business metrics**: Connect retrieval metrics to business outcomes
+1. **Implement automatic testing**: Run evaluations as part of your CI/CD pipeline
+1. **Set alert thresholds**: Get notified if metrics drop below critical levels
+1. **Document all experiments**: Keep track of changes and their impact on metrics
+1. **Tie to business metrics**: Connect retrieval metrics to business outcomes
 
 Remember that your evaluation framework should evolve with your application. Start simple and add complexity as you gain more insights and collect more data.
 
@@ -447,8 +452,8 @@ flowchart TD
 The simplest approach is:
 
 1. Take a random text chunk from your corpus
-2. Ask a language model to generate a question that this text chunk would answer
-3. Verify that when you search with this question, the original text chunk is retrieved
+1. Ask a language model to generate a question that this text chunk would answer
+1. Verify that when you search with this question, the original text chunk is retrieved
 
 This creates a basic synthetic dataset to test how well your system can find the right information. Recall becomes a binary metric: either you find the source chunk or you don't.
 
@@ -540,19 +545,19 @@ For each question, explain why it's challenging and what makes it a good test ca
 Once you're generating diverse questions, structure your evaluation sets strategically:
 
 1. **Coverage mapping**: Ensure questions cover all document types and topics
-2. **Difficulty distribution**: Include easy (80-90% expected recall), medium (50-70%), and hard (30-50%) questions
-3. **Ground truth validation**: Have subject matter experts verify questions and relevant documents
-4. **Domain segmentation**: Create separate evaluation sets for different use cases or domains
-5. **Synthetic/real blending**: As you collect real data, gradually blend it with synthetic data
+1. **Difficulty distribution**: Include easy (80-90% expected recall), medium (50-70%), and hard (30-50%) questions
+1. **Ground truth validation**: Have subject matter experts verify questions and relevant documents
+1. **Domain segmentation**: Create separate evaluation sets for different use cases or domains
+1. **Synthetic/real blending**: As you collect real data, gradually blend it with synthetic data
 
 ### Using Synthetic Data Beyond Evaluation
 
 Your synthetic data can serve multiple purposes:
 
 1. **Retrieval benchmarking**: Measuring search quality
-2. **Few-shot examples**: Enhancing your LLM's understanding in prompts
-3. **Fine-tuning data**: Training specialized embeddings or rerankers
-4. **User experience testing**: Simulating realistic user sessions
+1. **Few-shot examples**: Enhancing your LLM's understanding in prompts
+1. **Fine-tuning data**: Training specialized embeddings or rerankers
+1. **User experience testing**: Simulating realistic user sessions
 
 By investing time in creating high-quality synthetic data upfront, you establish a foundation that accelerates every aspect of your RAG development process.
 
@@ -564,13 +569,15 @@ By investing time in creating high-quality synthetic data upfront, you establish
 
 !!! question "Self-Assessment" 1. What are your leading and lagging metrics for your RAG application? How do they relate to each other?
 
-    2. How might you generate more diverse and challenging synthetic questions for your specific domain?
+```
+2. How might you generate more diverse and challenging synthetic questions for your specific domain?
 
-    3. Where does your current evaluation framework fall short, and what additional metrics might be valuable?
+3. Where does your current evaluation framework fall short, and what additional metrics might be valuable?
 
-    4. What experiment could you run this week to test a hypothesis about improving retrieval quality?
+4. What experiment could you run this week to test a hypothesis about improving retrieval quality?
 
-    5. How will you incorporate real user feedback into your evaluation framework as it becomes available?
+5. How will you incorporate real user feedback into your evaluation framework as it becomes available?
+```
 
 ## Conclusion and Next Steps
 
@@ -586,10 +593,10 @@ In [Chapter 2](chapter2.md), we'll explore how to convert evaluations into train
 Remember these key principles as you move forward:
 
 1. **Focus on leading metrics** - Particularly experiment velocity, which you can control directly
-2. **Do the obvious thing repeatedly** - Success often looks boring, like counting calories in and calories out
-3. **Combat absence blindness** - Pay attention to retrieval quality, not just the visible parts like generation
-4. **Avoid intervention bias** - Make targeted changes based on specific hypotheses, not random tweaks
-5. **Embrace empiricism** - There are no universal answers that work for all use cases—test everything
+1. **Do the obvious thing repeatedly** - Success often looks boring, like counting calories in and calories out
+1. **Combat absence blindness** - Pay attention to retrieval quality, not just the visible parts like generation
+1. **Avoid intervention bias** - Make targeted changes based on specific hypotheses, not random tweaks
+1. **Embrace empiricism** - There are no universal answers that work for all use cases—test everything
 
 The goal is not to chase the latest AI techniques blindly, but to establish a flywheel of continuous improvement driven by clear metrics aligned with user outcomes. Start with synthetic data, focus on retrieval before generation, and measure everything. These practices will serve as the foundation for all our subsequent improvements to your RAG application.
 
