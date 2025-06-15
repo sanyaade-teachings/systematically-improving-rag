@@ -70,6 +70,20 @@ Create a cohesive product experience that intelligently routes to specialized co
 
 Core principles that will guide your approach to building AI products regardless of how the technology evolves.
 
+## Talks and Presentations
+
+Explore insights from industry experts and practitioners through our collection of talks, lightning lessons, and presentations:
+
+### [Featured Talks](talks/index.md)
+
+- **[RAG Anti-patterns in the Wild](talks/rag-antipatterns-skylar-payne.md)** - Common mistakes and how to fix them (Skylar Payne)
+- **[Semantic Search Over the Web with Exa](talks/semantic-search-exa-will-bryk.md)** - Building AI-first search engines (Will Bryk)
+- **[Understanding Embedding Performance through Generative Evals](talks/embedding-performance-generative-evals-kelly-hong.md)** - Custom evaluation methodologies (Kelly Hong)
+- **[Online Evals and Production Monitoring](talks/online-evals-production-monitoring-ben-sidhant.md)** - Monitoring AI systems at scale (Ben Hylak & Sidhant Bendre)
+- **[RAG Without APIs](talks/rag-without-apis-browser-michael-struwig.md)** - Browser-based data integration (Michael Struwig)
+
+[View all talks →](talks/index.md)
+
 ## For Product Leaders, Engineers, and Data Scientists
 
 !!! info "What You'll Learn"

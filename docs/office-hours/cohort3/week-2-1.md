@@ -1,3 +1,25 @@
+---
+title: "Week 2 - Office Hour 1"
+date: "2024-05-27"
+cohort: 3
+week: 2
+session: 1
+type: "Office Hour"
+transcript: "../GMT20250527-124233_Recording.transcript.vtt"
+description: "Advanced RAG strategies for specialized domains, complex data structures, and economically valuable AI solutions"
+topics:
+  - "Medical RAG Systems"
+  - "Citation Handling in RAG"
+  - "Graph-based vs Traditional RAG"
+  - "User Query Clustering"
+  - "Documentation Chunking Strategies"
+  - "Vector Database Trade-offs"
+  - "Economic Value in AI Systems"
+  - "Blueprint Analysis for Construction"
+---
+
+# Week 2 - Office Hour 1 (May 27)
+
 Study Notes:
 I hosted an office hours session focused on advanced retrieval-augmented generation (RAG) strategies and implementation challenges. Here are my insights on building effective RAG systems for specialized domains, handling complex data structures, and designing economically valuable AI solutions that go beyond simple question-answering.
 
