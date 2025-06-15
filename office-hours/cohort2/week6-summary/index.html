@@ -1,0 +1,2590 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://567-labs.github.io/rag/office-hours/cohort2/week6-summary/">
+      
+      
+        <link rel="prev" href="../week5-summary/">
+      
+      
+        <link rel="next" href="../../cohort3/week-1-1/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Week 6 - The RAG Flywheel</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rag-office-hours-qa-summary-week-6" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="The RAG Flywheel" class="md-header__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The RAG Flywheel
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Week 6
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../workshops/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Office Hours
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../talks/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Talks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../misc/learning-goals/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="The RAG Flywheel" class="md-nav__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    The RAG Flywheel
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../workshops/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Workshops
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Workshops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1: Starting the Flywheel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2: From Evaluation to Enhancement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Design Principles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter3-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Feedback Collection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter3-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Iterative Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter4-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4: Topic Modeling - Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter4-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4: Topic Modeling - Prioritization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter5-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Understanding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter5-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Implementation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter6-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Routing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter6-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter6-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Office Hours
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Office Hours
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cohort 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cohort 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week1-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week2-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week3-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week4-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week5-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Week 6
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 6
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-deep-research-and-how-does-it-relate-to-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Deep Research and how does it relate to RAG?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#should-we-use-long-context-windows-or-rag-for-complex-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Should we use long context windows or RAG for complex questions?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-important-is-human-labeled-data-for-rag-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      How important is human-labeled data for RAG systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-handle-model-evaluation-when-generating-reports-rather-than-simple-answers" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you handle model evaluation when generating reports rather than simple answers?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-broader-trends-are-emerging-in-ai-consulting" class="md-nav__link">
+    <span class="md-ellipsis">
+      What broader trends are emerging in AI consulting?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-will-ai-impact-the-consulting-industry-itself" class="md-nav__link">
+    <span class="md-ellipsis">
+      How will AI impact the consulting industry itself?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-we-handle-training-data-contamination-from-ai-generated-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should we handle training data contamination from AI-generated content?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-emerging-trends-in-ai-tool-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are emerging trends in AI tool development?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-will-data-collection-evolve-for-ai-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      How will data collection evolve for AI applications?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-we-think-about-distribution-and-economic-viability-in-ai-products" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should we think about distribution and economic viability in AI products?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-recommendations-do-you-have-for-structuring-the-course-and-its-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      What recommendations do you have for structuring the course and its content?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-we-use-slack-effectively-after-the-course-ends" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can we use Slack effectively after the course ends?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-future-trends-do-you-anticipate-in-ai-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      What future trends do you anticipate in AI development?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-balance-providing-generic-ai-solutions-versus-domain-specific-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you balance providing generic AI solutions versus domain-specific implementations?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways-and-additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Takeaways and Additional Resources
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Takeaways and Additional Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Takeaways:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Resources:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cohort 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Cohort 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_1" id="__nav_3_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Week 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort3/week-1-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort3/week-1-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_2" id="__nav_3_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Week 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort3/week-2-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort3/week-2-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_3" id="__nav_3_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Week 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort3/week-3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_4" id="__nav_3_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Week 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort3/week-4-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort3/week-4-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../talks/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Talks
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Talks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../talks/rag-antipatterns-skylar-payne/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Anti-patterns in the Wild
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../talks/semantic-search-exa-will-bryk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Search Over the Web with Exa
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../talks/embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Understanding Embedding Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../talks/online-evals-production-monitoring-ben-sidhant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Online Evals and Production Monitoring
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../talks/rag-without-apis-browser-michael-struwig/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Without APIs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/learning-goals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learning Goals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/what-i-want-you-to-takeaway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Key Takeaways
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/landingpage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Landing Page
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-deep-research-and-how-does-it-relate-to-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Deep Research and how does it relate to RAG?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#should-we-use-long-context-windows-or-rag-for-complex-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Should we use long context windows or RAG for complex questions?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-important-is-human-labeled-data-for-rag-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      How important is human-labeled data for RAG systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-handle-model-evaluation-when-generating-reports-rather-than-simple-answers" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you handle model evaluation when generating reports rather than simple answers?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-broader-trends-are-emerging-in-ai-consulting" class="md-nav__link">
+    <span class="md-ellipsis">
+      What broader trends are emerging in AI consulting?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-will-ai-impact-the-consulting-industry-itself" class="md-nav__link">
+    <span class="md-ellipsis">
+      How will AI impact the consulting industry itself?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-we-handle-training-data-contamination-from-ai-generated-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should we handle training data contamination from AI-generated content?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-emerging-trends-in-ai-tool-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are emerging trends in AI tool development?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-will-data-collection-evolve-for-ai-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      How will data collection evolve for AI applications?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-we-think-about-distribution-and-economic-viability-in-ai-products" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should we think about distribution and economic viability in AI products?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-recommendations-do-you-have-for-structuring-the-course-and-its-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      What recommendations do you have for structuring the course and its content?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-we-use-slack-effectively-after-the-course-ends" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can we use Slack effectively after the course ends?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-future-trends-do-you-anticipate-in-ai-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      What future trends do you anticipate in AI development?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-balance-providing-generic-ai-solutions-versus-domain-specific-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you balance providing generic AI solutions versus domain-specific implementations?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways-and-additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Takeaways and Additional Resources
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Takeaways and Additional Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Takeaways:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Resources:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="rag-office-hours-qa-summary-week-6">RAG Office Hours Q&amp;A Summary - Week 6</h1>
+<h2 id="what-is-deep-research-and-how-does-it-relate-to-rag">What is Deep Research and how does it relate to RAG?</h2>
+<p>Deep Research is essentially a model fine-tuned for tool use that leverages RAG and iteration in a loop to produce reports. It can be viewed as RAG with solid data sources and strong reasoning capabilities on top. Deep Research is distinct from standard RAG applications because it typically produces more comprehensive outputs like reports rather than just answering specific questions.</p>
+<p>While Deep Research generates reports that might differ in structure between runs, more advanced approaches like those used by Vantage aim to create standardized, deterministic reports. The ideal approach is to define a specific structure for reports, particularly when you know exactly what questions need to be answered for your domain.</p>
+<p>There's significant economic value in creating structured reports rather than just answering ad-hoc questions. For example, instead of building a system that allows recruiters to query interview transcripts individually, creating a standardized hiring report that distills key information from all interviews provides greater business value. This approach helps stakeholders make better decisions rather than just saving time on information retrieval.</p>
+<p>The techniques taught in the RAG course are directly applicable to building Deep Research-style systems, particularly when focused on specific domains rather than general-purpose research.</p>
+<h2 id="should-we-use-long-context-windows-or-rag-for-complex-questions">Should we use long context windows or RAG for complex questions?</h2>
+<p>Long context windows should be leveraged first when possible, as they generally produce better results than relying solely on chunk retrieval. The ideal approach is often to use document-level retrieval rather than chunk-level retrieval when working with long context models.</p>
+<p>When faced with specific tasks that require processing lengthy documents (like generating pricing emails based on policy documents), consider creating dedicated tools that use the full context window rather than breaking documents into chunks. This can be implemented as a function that uses a very long prompt containing all relevant policy documents.</p>
+<p>This approach simplifies the retrieval problem from needing good chunk retrieval to just needing good document retrieval, which can be accomplished with simpler techniques like full-text search. The decision becomes not about whether you have good chunk retrieval but rather if you have good document retrieval capabilities.</p>
+<p>As models' context windows continue to expand, this approach becomes increasingly viable for more use cases, potentially reducing the complexity of some RAG implementations.</p>
+<h2 id="how-important-is-human-labeled-data-for-rag-systems">How important is human-labeled data for RAG systems?</h2>
+<p>Human-labeled data remains essential for building high-quality RAG systems, though many teams underestimate its importance. Teams that are reluctant to invest in data labeling often struggle to achieve meaningful performance improvements.</p>
+<p>From a consulting perspective, one effective approach is to demonstrate the impact of data quality through experimentation. Show how model performance improves with synthetic data, then demonstrate how it plateaus. This creates a data-driven argument that once synthetic data reaches diminishing returns, real human-labeled data becomes necessary for further improvement.</p>
+<p>For high-value applications, the investment in human labeling is justified. Companies like Vantage, which produces due diligence reports for investment decisions, dedicate staff to labeling and evaluating the quality of question-answer pairs. This reflects the understanding that without at least one human producing high-quality data, systems will struggle to achieve meaningful differentiation in output quality.</p>
+<p>The economic argument is compelling: if a model is helping make decisions that involve millions or billions of dollars (as in investment due diligence or hiring), the cost of high-quality human labeling is minimal compared to the value it creates.</p>
+<h2 id="how-do-you-handle-model-evaluation-when-generating-reports-rather-than-simple-answers">How do you handle model evaluation when generating reports rather than simple answers?</h2>
+<p>Evaluating report generation presents different challenges than evaluating direct question answering. While individual components can be measured with standard metrics, evaluating complete reports often requires human judgment against a defined rubric.</p>
+<p>Language models can perform reasonably well as judges against a rubric, but they primarily assess whether all required elements are present rather than providing nuanced feedback on quality or analysis. Human evaluation remains important for assessing whether the analysis itself is valuable and meets business needs.</p>
+<p>This challenge mirrors broader evaluation difficulties in the generative AI space, where outputs become more complex and subjective. The solution often involves creating clear rubrics for what constitutes a good report in your specific domain, then combining automated checks with strategic human review.</p>
+<p>Teams should focus on defining what makes a report valuable to their specific users rather than pursuing generic quality metrics. This might involve understanding whether users need comprehensive information, specific recommendations, or particular formatting that helps with decision-making.</p>
+<h2 id="what-broader-trends-are-emerging-in-ai-consulting">What broader trends are emerging in AI consulting?</h2>
+<p>The AI consulting landscape is evolving rapidly, with several key trends emerging:</p>
+<ol>
+<li>
+<p><strong>Shift from implementation to experimentation</strong>: More consulting work now involves helping teams design and run effective experiments rather than just implementing specific techniques. This includes teaching scientific methods, hypothesis formation, and systematic testing.</p>
+</li>
+<li>
+<p><strong>Focus on data quality over algorithms</strong>: Successful consultants emphasize improving data quality and data collection processes rather than just applying newer algorithms. Many organizations still lack basic data infrastructure for effective AI work.</p>
+</li>
+<li>
+<p><strong>Organizational change management</strong>: A significant portion of AI consulting now involves helping teams adapt to new workflows and develop the right skills. This includes teaching software engineers to approach problems more like data scientists.</p>
+</li>
+<li>
+<p><strong>Economic value alignment</strong>: The most successful AI implementations focus on creating decision-making value rather than just time savings. Products that help customers make better decisions (like hiring recommendations or investment analysis) can command higher prices than those that merely save time.</p>
+</li>
+</ol>
+<p>The role of consultants remains valuable even as AI tools become more accessible because they bring expertise in experiment design, data quality improvement, and aligning AI capabilities with business value.</p>
+<h2 id="how-will-ai-impact-the-consulting-industry-itself">How will AI impact the consulting industry itself?</h2>
+<p>The consulting industry will continue to evolve alongside AI advancements, but consultants who adapt will remain valuable. The core value of consulting is increasingly about bringing expertise in scientific methods, data analysis, and business process transformation rather than simply implementing technology.</p>
+<p>Several shifts are occurring in the consulting space:</p>
+<ol>
+<li>
+<p><strong>Distribution becomes more important</strong>: Consultants who can effectively share their insights through content creation (blogs, videos, courses) will have advantages in attracting clients.</p>
+</li>
+<li>
+<p><strong>Process expertise over pure technical knowledge</strong>: As technical implementation becomes easier with AI tools, consultants who understand how to change organizational processes and workflows become more valuable.</p>
+</li>
+<li>
+<p><strong>Organization and workflow design</strong>: Consultants who can help structure workflows and processes that leverage AI effectively will remain in demand, even as some technical implementation work becomes automated.</p>
+</li>
+<li>
+<p><strong>Connection to economic value</strong>: Consultants who can clearly connect AI capabilities to business value and ROI will continue to thrive, focusing less on technology and more on business outcomes.</p>
+</li>
+</ol>
+<p>While AI will automate some aspects of consulting work, it simultaneously creates new opportunities for consultants who can help organizations navigate the complex landscape of AI implementation and business transformation.</p>
+<h2 id="how-should-we-handle-training-data-contamination-from-ai-generated-content">How should we handle training data contamination from AI-generated content?</h2>
+<p>As more content on the internet becomes AI-generated, concerns about training data contamination and potential "model collapse" are valid but may be overstated for several reasons:</p>
+<ol>
+<li>
+<p><strong>Unexplored modalities</strong>: Even if text data becomes saturated with AI-generated content, there are many other modalities (video, computer interaction data, etc.) that remain largely untapped for training.</p>
+</li>
+<li>
+<p><strong>Mode covering vs. mode collapse</strong>: Advanced research at organizations like OpenAI focuses on developing models that can identify multiple solution modes rather than collapsing to the lowest-resistance path. Models that are "mode covering" can maintain diversity in their outputs even when trained on some low-quality data.</p>
+</li>
+<li>
+<p><strong>Real-world data sources</strong>: For many specialized applications, the most valuable data isn't from the public internet but from proprietary sources or human interaction with systems. This data remains largely uncontaminated.</p>
+</li>
+<li>
+<p><strong>Post-training refinement</strong>: Much of the current improvement in AI models comes from post-training techniques like RLHF rather than pre-training alone. This allows models to improve based on high-quality human feedback even if pre-training data becomes noisier.</p>
+</li>
+</ol>
+<p>OpenAI researchers reportedly maintain confidence that there's still significant high-quality data available, suggesting that concerns about running out of training data may be premature.</p>
+<h2 id="what-are-emerging-trends-in-ai-tool-development">What are emerging trends in AI tool development?</h2>
+<p>Several noteworthy trends are emerging in AI tool development:</p>
+<ol>
+<li>
+<p><strong>Advanced agents like Manus</strong>: New tools like Manus are providing powerful capabilities by combining foundation models (like Claude Sonnet) with extensive tooling. While details are limited, these systems represent a new generation of AI assistants with enhanced capabilities.</p>
+</li>
+<li>
+<p><strong>Cloud Code improvements</strong>: Cloud Code has shown impressive performance for specific tasks, sometimes outperforming tools like Cursor for certain types of development work. However, success often depends on the user's expertise in the domain they're working in - users still need significant knowledge to effectively guide AI tools.</p>
+</li>
+<li>
+<p><strong>Context management evolution</strong>: Newer AI tools are improving how they manage context over time, creating better continuity between sessions and maintaining understanding of project requirements.</p>
+</li>
+<li>
+<p><strong>Focus on expert augmentation</strong>: The most successful AI tools are those that augment human expertise rather than trying to replace it entirely. Tools work best when users have clear goals and domain knowledge, with the AI handling implementation details.</p>
+</li>
+</ol>
+<p>Despite significant advances in AI capabilities, domain expertise remains crucial for effective use of these tools. The relationship between user expertise and AI capabilities creates a complex dynamic where both need to evolve together for optimal results.</p>
+<h2 id="how-will-data-collection-evolve-for-ai-applications">How will data collection evolve for AI applications?</h2>
+<p>Data collection for AI is shifting in several important ways:</p>
+<ol>
+<li>
+<p><strong>Purposeful logging</strong>: Companies are moving beyond debugging-focused logging to capturing data specifically designed for model training. This requires engineers to think about what signals might be useful for future models rather than just for troubleshooting.</p>
+</li>
+<li>
+<p><strong>Structured feedback collection</strong>: More companies are implementing systematic ways to collect user feedback and interactions, recognizing these signals as valuable training data rather than just product metrics.</p>
+</li>
+<li>
+<p><strong>Data quality over quantity</strong>: There's growing recognition that having smaller amounts of high-quality, well-labeled data is often more valuable than vast amounts of noisy data.</p>
+</li>
+<li>
+<p><strong>Economic value alignment</strong>: Organizations are increasingly evaluating what data to collect based on economic value rather than technical feasibility alone. This means focusing data collection efforts on areas where improved model performance translates directly to business outcomes.</p>
+</li>
+</ol>
+<p>Many companies still struggle with basic data collection infrastructure, often lacking the systems needed to capture useful signals from user interactions. Building these foundations remains a critical first step before more advanced AI applications can be developed.</p>
+<h2 id="how-should-we-think-about-distribution-and-economic-viability-in-ai-products">How should we think about distribution and economic viability in AI products?</h2>
+<p>The most successful AI applications focus on creating decision-making value rather than just time savings. This fundamental shift in value proposition affects pricing, distribution, and product design:</p>
+<ol>
+<li>
+<p><strong>Value-based pricing</strong>: Products that help customers make better decisions (like hiring recommendations or investment analysis) can command higher prices than those that merely save time. For example, recruiters charge 25% of a hire's salary not because they save time but because they help make better hiring decisions.</p>
+</li>
+<li>
+<p><strong>Structured outputs</strong>: There's increasing value in AI systems that produce standardized, structured outputs (like reports) rather than just answering ad-hoc questions. This creates more consistent value and makes the outputs more directly usable in business processes.</p>
+</li>
+<li>
+<p><strong>Domain specialization</strong>: Applications focused on specific domains with clear economic value (financial analysis, legal research, specialized technical fields) can support higher pricing than general-purpose AI tools.</p>
+</li>
+<li>
+<p><strong>Content as marketing</strong>: For many AI consultants and product builders, content creation (blog posts, courses, etc.) derived from their expertise serves as efficient marketing. This "sawdust" from their core work helps attract clients and build credibility.</p>
+</li>
+</ol>
+<p>The most economically viable AI products are those that align directly with high-value business decisions rather than just providing generalized capabilities or incremental efficiency improvements.</p>
+<h2 id="what-recommendations-do-you-have-for-structuring-the-course-and-its-content">What recommendations do you have for structuring the course and its content?</h2>
+<p>Several suggestions emerged for improving the course structure and content:</p>
+<ol>
+<li>
+<p><strong>Better content organization</strong>: Ensure core videos and tutorials are prominently featured in the main menu rather than buried under multiple links. This would improve discoverability and help students stay on track.</p>
+</li>
+<li>
+<p><strong>Standardized office hours format</strong>: Implement a consistent format for office hours, with the first 10-20 minutes dedicated to setting context about the week's material before moving to questions. This helps orient participants who may be joining different sessions.</p>
+</li>
+<li>
+<p><strong>Email reminders with direct links</strong>: Send regular emails with direct links to the week's core videos and tutorials to ensure students know exactly what to watch and when.</p>
+</li>
+<li>
+<p><strong>Calendar integration</strong>: Consider adding placeholder calendar events for self-study time to help students schedule time to watch asynchronous content.</p>
+</li>
+<li>
+<p><strong>Expanded coverage of enterprise tools</strong>: While OpenAI tools were featured prominently for practical reasons, more coverage of enterprise platforms (Azure, AWS, Google Vertex) would be valuable for many students working in corporate environments.</p>
+</li>
+<li>
+<p><strong>Open-source alternatives</strong>: Include more examples using open-source tools alongside commercial offerings, especially for cases where data residency requirements make cloud services challenging.</p>
+</li>
+</ol>
+<p>The feedback emphasized that while the course content was valuable, improvements to structure and discoverability would help students manage the significant amount of material more effectively.</p>
+<h2 id="how-can-we-use-slack-effectively-after-the-course-ends">How can we use Slack effectively after the course ends?</h2>
+<p>The Slack channel will remain available as an ongoing resource for students after the course concludes. Several recommendations for effective use include:</p>
+<ol>
+<li>
+<p><strong>Specific questions get better answers</strong>: When asking questions in Slack, provide specific details about your use case, what you've already tried, and exactly what you're trying to accomplish. This allows for more targeted and helpful responses.</p>
+</li>
+<li>
+<p><strong>Share real-world applications</strong>: Sharing how you're applying concepts from the course to real projects provides valuable context for others and creates learning opportunities for everyone.</p>
+</li>
+<li>
+<p><strong>Ongoing community learning</strong>: The Slack channel offers an opportunity to continue learning from peers who are implementing RAG systems across different industries and use cases.</p>
+</li>
+<li>
+<p><strong>Access to course materials</strong>: All course materials will remain accessible through Maven, and the Slack community provides a way to discuss those materials as you continue to review them.</p>
+</li>
+</ol>
+<p>The instructor emphasized that students will get as much value from the community as they put in through specific, thoughtful questions and sharing their own experiences.</p>
+<h2 id="what-future-trends-do-you-anticipate-in-ai-development">What future trends do you anticipate in AI development?</h2>
+<p>Several key trends are likely to shape AI development in the near future:</p>
+<ol>
+<li>
+<p><strong>Structured output generation</strong>: The ability to generate consistent, structured reports and analyses will become increasingly valuable, particularly for business applications where standardized formats are essential.</p>
+</li>
+<li>
+<p><strong>Report generation workflows</strong>: Building on the structured output trend, more sophisticated workflows for generating comprehensive reports from multiple data sources will become mainstream.</p>
+</li>
+<li>
+<p><strong>Scientific approach to AI development</strong>: Organizations that adopt rigorous experimentation, hypothesis testing, and data analysis will pull ahead of those that simply implement the latest techniques without careful evaluation.</p>
+</li>
+<li>
+<p><strong>Economic alignment</strong>: AI applications that directly support high-value decision making will see stronger adoption and commercial success compared to those that merely provide incremental efficiency improvements.</p>
+</li>
+<li>
+<p><strong>Integration of multiple modalities</strong>: While still evolving, the ability to reason across text, images, video, and interactive data will create new application possibilities, though many practical applications will still focus on extracting structured information from these inputs rather than general understanding.</p>
+</li>
+</ol>
+<p>The most successful organizations will be those that develop systematic processes for continuous improvement of their AI systems rather than chasing the latest models or techniques without a clear evaluation framework.</p>
+<h2 id="how-do-you-balance-providing-generic-ai-solutions-versus-domain-specific-implementations">How do you balance providing generic AI solutions versus domain-specific implementations?</h2>
+<p>The balance between generic AI solutions and domain-specific implementations depends on both economic factors and technical feasibility:</p>
+<ol>
+<li>
+<p><strong>Start with domain specificity</strong>: Focusing on specific domains allows for more valuable outputs, better evaluation, and clearer value propositions. This approach makes it easier to create systems that provide significant value.</p>
+</li>
+<li>
+<p><strong>Specialize by intent rather than content</strong>: Even within a domain, segmenting by user intent (what they're trying to accomplish) rather than just content type creates more focused and effective solutions.</p>
+</li>
+<li>
+<p><strong>Economic viability</strong>: Domain-specific solutions can often command higher prices because they solve specific high-value problems rather than providing general capabilities. This makes them more economically viable despite smaller potential market size.</p>
+</li>
+<li>
+<p><strong>Technical feasibility</strong>: Creating effective general-purpose AI systems remains technically challenging, while domain-specific implementations can achieve high performance by narrowing the scope of what they need to handle.</p>
+</li>
+</ol>
+<p>For most organizations building AI applications, starting with a specific domain and set of well-defined use cases is likely to produce better results than attempting to build general-purpose systems. This focus allows for better data collection, more effective evaluation, and clearer alignment with business value.</p>
+<h2 id="key-takeaways-and-additional-resources">Key Takeaways and Additional Resources</h2>
+<h3 id="key-takeaways">Key Takeaways:</h3>
+<ul>
+<li>Deep Research can be understood as RAG with high-quality data sources and strong reasoning capabilities</li>
+<li>Structured reports often provide more business value than ad-hoc question answering</li>
+<li>Long context windows should be leveraged first when possible before falling back to chunking</li>
+<li>Human-labeled data remains essential for high-quality RAG systems, especially as systems reach the limits of improvement from synthetic data</li>
+<li>Evaluating report generation often requires human judgment against defined rubrics</li>
+<li>AI consulting is shifting toward experimental design and process transformation rather than just implementation</li>
+<li>Data collection is evolving to focus more on purposeful logging and structured feedback collection</li>
+<li>The most economically viable AI products align with high-value business decisions rather than just providing efficiency improvements</li>
+<li>Content organization and standardized formats for course materials can significantly improve the learning experience</li>
+<li>Domain-specific AI implementations typically provide better economic and technical outcomes than general-purpose solutions</li>
+</ul>
+<h3 id="additional-resources">Additional Resources:</h3>
+<ul>
+<li><a href="https://jliu.net/blog/future-of-rag">The Future of RAG</a> - Jason Liu's blog post on where RAG is heading</li>
+<li><a href="https://openai.com/index/introducing-deep-research/">Deep Research</a> - OpenAI's introduction to Deep Research</li>
+<li><a href="https://www.vantage.co/">Vantage</a> - Company mentioned as an example of advanced report generation</li>
+<li><a href="https://www.anthropic.com/news/claude-3-7-sonnet">Claude 3.7 Sonnet</a> - Latest model referenced in discussions</li>
+<li><a href="https://cloud.google.com/code">Cloud Code</a> - AI coding tool discussed in the sessions</li>
+<li><a href="https://manus.ai/">Manus</a> - Emerging AI agent mentioned in the discussions</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../week5-summary/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Week 5">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Week 5
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../cohort3/week-1-1/" class="md-footer__link md-footer__link--next" aria-label="Next: Session 1">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Session 1
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jxnlco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+    
+  </body>
+</html>

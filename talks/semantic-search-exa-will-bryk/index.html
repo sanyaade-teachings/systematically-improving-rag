@@ -1,0 +1,2144 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="How AI is changing search requirements and the technical challenges of building a semantic search engine designed for AI applications rather than human users.">
+      
+      
+      
+        <link rel="canonical" href="https://567-labs.github.io/rag/talks/semantic-search-exa-will-bryk/">
+      
+      
+        <link rel="prev" href="../rag-antipatterns-skylar-payne/">
+      
+      
+        <link rel="next" href="../embedding-performance-generative-evals-kelly-hong/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Semantic Search Over the Web with Exa - The RAG Flywheel</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#semantic-search-over-the-web-with-exa-will-bryk" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="The RAG Flywheel" class="md-header__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The RAG Flywheel
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Semantic Search Over the Web with Exa
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../workshops/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../office-hours/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Office Hours
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Talks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../misc/learning-goals/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="The RAG Flywheel" class="md-nav__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    The RAG Flywheel
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../workshops/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Workshops
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Workshops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1: Starting the Flywheel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2: From Evaluation to Enhancement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Design Principles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter3-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Feedback Collection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter3-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Iterative Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter4-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4: Topic Modeling - Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter4-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4: Topic Modeling - Prioritization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter5-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Understanding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter5-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Implementation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter6-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Routing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter6-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter6-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../office-hours/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Office Hours
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Office Hours
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cohort 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cohort 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week1-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week2-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week3-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week4-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week5-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week6-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cohort 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Cohort 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_1" id="__nav_3_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Week 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-1-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-1-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_2" id="__nav_3_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Week 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-2-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-2-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_3" id="__nav_3_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Week 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_4" id="__nav_3_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Week 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-4-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-4-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Talks
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Talks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rag-antipatterns-skylar-payne/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Anti-patterns in the Wild
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Search Over the Web with Exa
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Understanding Embedding Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../online-evals-production-monitoring-ben-sidhant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Online Evals and Production Monitoring
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rag-without-apis-browser-michael-struwig/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Without APIs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/learning-goals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learning Goals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/what-i-want-you-to-takeaway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Key Takeaways
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/landingpage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Landing Page
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="semantic-search-over-the-web-with-exa-will-bryk">Semantic search over the web with Exa [Will Bryk]</h1>
+<p>I hosted a session with Will Bryk from Exa who shared insights about the evolution of search technology, how AI is changing search requirements, and the technical challenges of building a semantic search engine. This session explores how traditional search engines like Google differ from next-generation semantic search systems designed for AI applications rather than human users.</p>
+<p><strong>Why is traditional search inadequate for the AI era?</strong></p>
+<p>The fundamental problem with traditional search engines like Google is that they were built for humans, not AI systems. This creates a significant mismatch in capabilities and requirements.</p>
+<p>Humans and AI systems interact with search in fundamentally different ways. Humans typically use simple keyword queries because they're "lazy" and can't type full sentences. They generally want just a few high-quality links since they have limited capacity to process information. This is why Google optimized for keyword-based algorithms that return a handful of results.</p>
+<p>AI systems, by contrast, can instantly generate complex, precise queries that specify exactly what they want. They can consume and analyze massive amounts of information without getting overwhelmed. When an AI asks for "startups working on something huge like Bell Labs," it doesn't want Reddit discussions - it wants comprehensive, structured information about actual startups.</p>
+<p>As Will explained: "It would kind of be insane if the same search engine that was optimal for humans would also be optimal for this very different creature." This insight is still not widely understood in the industry, even as everyone recognizes that combining search with LLMs is powerful.</p>
+<p><strong><em>Key Takeaway:</em></strong> Traditional search engines were optimized for human behavior patterns (simple keywords, few results), while AI systems need search engines that can handle complex queries and return comprehensive, precisely targeted information.</p>
+<p><strong>How do AI search needs differ from human search needs?</strong></p>
+<p>AI systems have several distinct requirements that traditional search engines weren't designed to address:</p>
+<ol>
+<li>
+<p>Precise, controllable information: AIs need search engines that respect exactly what they ask for, rather than optimizing for what humans typically click on. If an AI is searching for "startups working on something huge," it needs a list of actual startups, not Reddit discussions about the topic.</p>
+</li>
+<li>
+<p>Context-rich queries: AIs often have extensive context from user interactions that should inform their searches. Traditional search engines have keyword limits and can't handle paragraph-length queries, forcing the AI to convert rich context into a few keywords, which loses tremendous information.</p>
+</li>
+<li>
+<p>Comprehensiveness: Unlike humans who want a few links, AIs can process thousands of results. If an AI is asked to analyze "every YC-funded AI startup," it needs a search engine that can deliver comprehensive results rather than just the top 10 most popular pages.</p>
+</li>
+</ol>
+<p>Will used a powerful visual metaphor, showing the space of possible search queries as a vast gray zone, with traditional search engines only covering a small blue bubble within it. As he explained: "Google has trained us to only think about this keyword bubble... But there's actually many different types of queries that people might want to make that go way beyond what Google can handle."</p>
+<p><strong><em>Key Takeaway:</em></strong> AI systems need search engines that can handle precise queries, incorporate rich context, and deliver comprehensive results - capabilities that fall outside the design parameters of traditional search engines built for humans.</p>
+<p><strong>How does Exa's approach to search differ from traditional search engines?</strong></p>
+<p>Exa takes a fundamentally different approach to search compared to traditional engines like Google. While Google's original PageRank algorithm from 1998 focused on analyzing the web's link structure and matching keywords, Exa uses an embedding-based neural approach that understands the semantic meaning of content.</p>
+<p>The core technical difference is that Exa processes documents into embedding vectors that capture their meaning, rather than just indexing keywords. When a query comes in, Exa embeds it in the same vector space and finds documents with similar meaning, regardless of whether they share the exact keywords.</p>
+<p>This approach allows Exa to handle queries that would be impossible with traditional search engines:</p>
+<ul>
+<li>Long, contextual queries (like pasting an entire research paper and asking for similar papers)</li>
+<li>Semantic queries ("people in SF who know assembly language")</li>
+<li>Complex analytical queries ("find every article that argues X and not Y from author Z")</li>
+</ul>
+<p>Will emphasized that Exa's philosophy is to give users complete control over their search experience: "The philosophy here is we want to give users full control. Give the AI system full control to get what information they want." This includes the ability to filter by date ranges, domains, and content categories, and even specify what sources they consider authoritative.</p>
+<p>This approach reflects a deeper philosophical stance: "If you give full control to the user to specify what they want, you are freeing them from whatever ideology that previous search engines had."</p>
+<p><strong><em>Key Takeaway:</em></strong> Exa uses neural embedding technology rather than keywords to understand query meaning, enabling it to handle complex, contextual searches that traditional engines can't process. Their philosophy emphasizes giving users complete control over their search parameters.</p>
+<p><strong>What technical challenges arise when building a semantic search engine?</strong></p>
+<p>Building a web-scale semantic search engine involves numerous technical challenges, particularly around efficiency and scale. Will walked through several key components of Exa's system:</p>
+<ol>
+<li>
+<p>Crawling and storage: The process begins with gathering URLs to crawl, building distributed crawling systems that can handle different formats (like PDFs), and storing petabytes of data in formats that enable efficient batch processing.</p>
+</li>
+<li>
+<p>Embedding generation: Documents are processed through embedding models that convert text into vector representations capturing their meaning. This is computationally intensive at web scale.</p>
+</li>
+<li>
+<p>Vector database optimization: The most significant challenge is efficiently searching billions of embedding vectors. A naive approach would be prohibitively expensive and slow.</p>
+</li>
+</ol>
+<p>To make this practical, Exa employs several optimization techniques:</p>
+<ul>
+<li>Matryoshka embeddings: Training models to create embeddings where smaller subsets of the vector still represent the full meaning, allowing for dimension reduction</li>
+<li>Clustering: Grouping similar embeddings so searches only need to examine the most relevant clusters</li>
+<li>Binary compression: Converting floating-point embeddings to boolean values for faster processing</li>
+<li>Assembly-level optimizations: Using SIMD operations and low-level CPU optimizations</li>
+</ul>
+<p>As Will explained: "When you're doing over billions of documents, billions of binary compressed embeddings using clustering, it's still too slow. A lot of the advances or speed-ups we got were from going into the actual assembly and the SIMD operations on the low-level stuff on the CPU."</p>
+<p>Even with these optimizations, some complex queries require what Will calls "test-time compute" - searches that might take minutes or hours rather than milliseconds: "Perfect search requires test-time compute... your search could sometimes take half a second, but sometimes it could take a minute or 10 minutes, or an hour or a day for super complex things."</p>
+<p><strong>Key Takeaway:</strong> Building semantic search at web scale requires sophisticated optimizations at every level, from embedding generation to vector database design. Some complex queries fundamentally require more computation time, creating a new paradigm of "test-time compute" search.</p>
+<p><strong>How does Exa position itself in the AI ecosystem?</strong></p>
+<p>Exa positions itself as search infrastructure rather than a consumer application. In the current AI ecosystem, there are search infrastructure providers (Google, Bing, Exa) that crawl and index the web, and AI applications that build on top of them (like Gemini using Google or Search GPT using Bing).</p>
+<p>Will explained: "Exa is trying to be the search infrastructure, and we want to be able to handle all these possible queries. That's our goal." When an AI application needs information from the web, it forms a query, sends it to Exa, and Exa returns the most relevant information, which the application can then use in its processing.</p>
+<p>This infrastructure approach differs from consumer-facing products like Perplexity. While those products use search under the hood, Exa aims to be the underlying search engine that powers all types of AI applications, with an API optimized for AI rather than human users.</p>
+<p>The business model also creates different incentives compared to traditional search engines. While Google makes money from ads, Exa charges per query: "Our incentive is to make people like the search as much as possible, get the highest quality information so that they use it more. Whereas Google's incentive is making them click on ads."</p>
+<p>This creates what Will calls "pristine incentives" where Exa's mission aligns with its financial interests: "Because we have these very pristine incentives, our mission is very aligned with our financial incentives. So it's a very beautiful thing."</p>
+<p><strong><em>Key Takeaway:</em></strong> Exa positions itself as search infrastructure optimized for AI applications rather than human users, with a business model based on query volume rather than advertising, creating incentives aligned with delivering high-quality search results.</p>
+<p><strong>What does "perfect search" look like?</strong></p>
+<p>Will's vision for "perfect search" extends far beyond current capabilities, enabling queries that most people don't even think to try because they know current tools can't handle them.</p>
+<p>Examples of perfect search capabilities include:</p>
+<ul>
+<li>Finding people with specific expertise: "I'm creating a Discord of best prompting practices. Find me anyone who's ever thought deeply about this on the web."</li>
+<li>Location-specific expertise: "Who in Berlin has written about new search algorithms?"</li>
+<li>Multimodal search: "Find images of shirts without stripes that have a cool mix of colors like a Jackson Pollock"</li>
+<li>Curated media: "Find me Hans Zimmer music with a fast beat similar to the song Supermarine"</li>
+<li>Complex analysis: "Show me analyses of this topic by liberal authors, then by conservative authors, then by conservative authors who used to be liberal"</li>
+</ul>
+<p>Will believes that perfect search would fundamentally transform our relationship with information: "People don't realize how much more the world's knowledge would actually be at your fingertips."</p>
+<p>However, he acknowledges that achieving this vision will take time: "I would say like 2028 search will be amazing, like magical. And we'll look back on 2025, and we'll be like, 'Oh my God! They didn't know anything about the world.'" Even then, he believes there will still be many types of searches that remain impossible.</p>
+<p>Like AI itself, search is a domain where there's always room for improvement: "No matter how good your LLM is, you could always do better. I think similarly, no matter how good your search is, you could always do better."</p>
+<p><strong><em>Key Takeaway:</em></strong> Perfect search would enable queries that most people don't even consider trying today, fundamentally transforming our access to information. While significant progress will be made in the coming years, search will remain an open-ended problem with continuous room for improvement.</p>
+<p><strong>How can developers build effective search systems for specific domains?</strong></p>
+<p>For developers building search systems over specific domains (like medical records or legal documents), Will offered several practical insights:</p>
+<p>The search problem becomes easier at smaller scales. When you're dealing with millions rather than billions of documents, you don't need the same sophisticated techniques required for web-scale search.</p>
+<p>For most domain-specific applications, a hybrid approach combining keyword methods and embedding space methods works well. The optimal approach depends on your query distribution - if users primarily make simple queries, simpler systems may suffice, but complex semantic queries require more sophisticated models.</p>
+<p>Query expansion (taking a query and expanding it into hundreds of related terms) can be effective for improving recall, though it won't match the capabilities of true semantic search for complex queries.</p>
+<p>When building these systems, developers should focus on understanding what their users actually need: "You have to think about their query distribution - are your queries simple ones like 'GPT-3 paper,' or complex ones like 'a paper where people have this experiment setup that feels like this other setup'?"</p>
+<p>For teams with limited resources (3-6 months to build something), Will suggested focusing on hybrid approaches that combine the strengths of keyword and embedding-based systems, as this provides a good balance of capabilities without requiring the development of custom models.</p>
+<p><strong><em>Key Takeaway:</em></strong> Domain-specific search systems can use simpler approaches than web-scale engines, with hybrid keyword and embedding methods working well for most applications. Understanding your users' query patterns should guide your technical approach.</p>
+<p><strong>How will search evolve in the coming years?</strong></p>
+<p>Will believes we're at the beginning of a fundamental transformation in search technology. He used the metaphor of San Francisco during an earthquake to describe the current state of the industry: "The whole software world is going through this tectonic shift. Because the way we get information seemed to be radically changing."</p>
+<p>Several trends are driving this transformation:</p>
+<ol>
+<li>
+<p>The limitations of LLMs: Despite their capabilities, LLMs haven't memorized the entire web. Will explained: "The LLM simply cannot memorize the entire web... The web is gigantic. It's really, really big." This creates an inherent need for retrieval systems.</p>
+</li>
+<li>
+<p>The expansion of query types: As search tools improve, people will discover entirely new types of queries they never thought to try before. Will believes there are "many, many types of queries that go beyond the ones listed here that we haven't even thought of, because our tools can't handle it."</p>
+</li>
+<li>
+<p>Test-time compute: Complex queries fundamentally require more computation time. Future search engines will need to handle queries that take minutes, hours, or even days to complete for particularly complex analyses.</p>
+</li>
+<li>
+<p>Multimodal search: Future search will extend beyond text to include sophisticated image, audio, and video search capabilities.</p>
+</li>
+</ol>
+<p>Will sees the search market fragmenting rather than being dominated by a single player: "The space of possible searches is so broad that it's actually really hard for one company to be perfect at everything... It's bifurcating in all these ways. It's splintering."</p>
+<p>This creates opportunities for specialized search providers focused on particular capabilities or domains: "I think the search space is big enough where there are lots of winners."</p>
+<p><strong><em>Key Takeaway:</em></strong> Search is undergoing a fundamental transformation driven by AI capabilities, with the market likely to fragment into specialized providers rather than being dominated by a single approach. Future search will handle query types and modalities that we can't even imagine today.</p>
+<hr />
+<p>FAQs:</p>
+<p><strong>What is Exa and how is it different from traditional search engines?</strong></p>
+<p>Exa is a semantic search engine built specifically for AI systems rather than humans. Unlike traditional search engines like Google that use keyword-based algorithms optimized for human users, Exa uses neural embedding-based algorithms that understand the meaning and context of queries. This allows Exa to handle complex, lengthy queries and return precisely relevant results rather than just matching keywords.</p>
+<p><strong>Why do AI systems need a different kind of search engine than humans?</strong></p>
+<p>AI systems interact with search engines very differently than humans do. While humans typically use simple keyword queries and only want a few results, AI systems can formulate complex, detailed queries instantly and can process thousands of results at once. Traditional search engines were designed around human limitations and preferences, making them suboptimal for AI applications that need comprehensive, precise information retrieval.</p>
+<p><strong>How does Exa's search technology work?</strong></p>
+<p>Exa processes web documents through embedding models that convert text into vectors (lists of numbers) that capture the meaning of the content. When a query comes in, it's also converted to an embedding, and Exa finds the most semantically similar documents. To make this process efficient at scale, Exa uses several techniques including Matryoshka embeddings (nested representations of different sizes), clustering (grouping similar documents), binary compression, and low-level optimizations to handle billions of documents quickly.</p>
+<p><strong>What kinds of queries can Exa handle that traditional search engines cannot?</strong></p>
+<p>Exa can handle several types of queries that traditional search engines struggle with:</p>
+<ul>
+<li>Long, contextual queries (entire paragraphs or code snippets)</li>
+<li>Semantic queries (e.g., "people in SF who know assembly language")</li>
+<li>Complex, multi-condition queries (e.g., "Find every article that argues X and not Y from author Z")</li>
+<li>Queries with very specific information needs that require precise understanding of language</li>
+</ul>
+<p><strong>How does Exa fit into the AI application ecosystem?</strong></p>
+<p>Exa positions itself as search infrastructure for AI applications. When an AI application needs information from the web, it sends a query to Exa, which returns the most relevant information. This is similar to how AI applications like Google's Gemini or OpenAI's ChatGPT use Google and Bing respectively as their search infrastructure. Exa aims to provide a more powerful and flexible API specifically designed for AI needs.</p>
+<p><strong>What is "test time compute" search and why is it important?</strong></p>
+<p>Test time compute search refers to search operations that may take longer than traditional search (from seconds to minutes or even hours) because they involve more complex processing. This approach is necessary for truly complex search queries that require deeper analysis. Similar to how complex AI tasks might require more powerful models, complex search queries require more computational resources. Exa's approach acknowledges that some valuable search capabilities simply can't be delivered in milliseconds.</p>
+<p><strong>What is "perfect search" and how is Exa working toward it?</strong></p>
+<p>Perfect search is Exa's vision of a search system that can handle any type of query across any type of content. This includes finding people with specific expertise, searching for multimodal content with precise attributes, curating content based on complex criteria, and performing sophisticated analyses across different perspectives. Exa is working toward this by building a search infrastructure that understands language deeply and can be customized to handle increasingly complex information needs.</p>
+<p><strong>What is Exa's business model?</strong></p>
+<p>Unlike traditional search engines that make money from advertising, Exa charges on a usage basis (per query). This creates an incentive structure where Exa benefits from providing the highest quality search results possible so that customers will use the service more, rather than optimizing for ad clicks.</p>
+<p><strong>Does Exa handle content behind paywalls?</strong></p>
+<p>No, Exa only searches content that is publicly accessible and not behind paywalls.</p>
+<p><strong>How does Exa handle SEO manipulation?</strong></p>
+<p>Exa's neural embedding-based approach makes it inherently more resistant to traditional SEO manipulation techniques that work on keyword-based algorithms. Additionally, since Exa is focused on providing high-quality information rather than generating ad revenue, it has stronger incentives to filter out low-quality SEO-optimized content.</p>
+<p><strong>How does Exa handle document size and chunking?</strong></p>
+<p>Exa works with web documents which naturally have a structure that makes them manageable for embedding. While there are limits to document size, Exa can handle most web content effectively. The company is exploring chunking strategies for longer documents but has found that the natural structure of web content often provides reasonable document boundaries.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../rag-antipatterns-skylar-payne/" class="md-footer__link md-footer__link--prev" aria-label="Previous: RAG Anti-patterns in the Wild">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                RAG Anti-patterns in the Wild
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../embedding-performance-generative-evals-kelly-hong/" class="md-footer__link md-footer__link--next" aria-label="Next: Understanding Embedding Performance">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Understanding Embedding Performance
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jxnlco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+    
+  </body>
+</html>

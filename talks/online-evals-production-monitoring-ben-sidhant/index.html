@@ -1,0 +1,2168 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="AI monitoring, production testing, and data analysis frameworks for identifying issues in AI systems and implementing structured monitoring.">
+      
+      
+      
+        <link rel="canonical" href="https://567-labs.github.io/rag/talks/online-evals-production-monitoring-ben-sidhant/">
+      
+      
+        <link rel="prev" href="../embedding-performance-generative-evals-kelly-hong/">
+      
+      
+        <link rel="next" href="../rag-without-apis-browser-michael-struwig/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Online Evals and Production Monitoring - The RAG Flywheel</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#online-evals-and-production-monitoring-ben-hylak-sidhant-bendre" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="The RAG Flywheel" class="md-header__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The RAG Flywheel
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Online Evals and Production Monitoring
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../workshops/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../office-hours/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Office Hours
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Talks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../misc/learning-goals/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="The RAG Flywheel" class="md-nav__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    The RAG Flywheel
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../workshops/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Workshops
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Workshops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1: Starting the Flywheel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2: From Evaluation to Enhancement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Design Principles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter3-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Feedback Collection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter3-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Iterative Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter4-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4: Topic Modeling - Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter4-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4: Topic Modeling - Prioritization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter5-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Understanding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter5-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Implementation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter6-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Routing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter6-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter6-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../office-hours/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Office Hours
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Office Hours
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cohort 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cohort 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week1-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week2-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week3-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week4-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week5-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week6-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cohort 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Cohort 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_1" id="__nav_3_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Week 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-1-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-1-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_2" id="__nav_3_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Week 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-2-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-2-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_3" id="__nav_3_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Week 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_4" id="__nav_3_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Week 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-4-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-4-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Talks
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Talks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rag-antipatterns-skylar-payne/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Anti-patterns in the Wild
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../semantic-search-exa-will-bryk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Search Over the Web with Exa
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Understanding Embedding Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Online Evals and Production Monitoring
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rag-without-apis-browser-michael-struwig/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Without APIs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/learning-goals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learning Goals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/what-i-want-you-to-takeaway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Key Takeaways
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/landingpage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Landing Page
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="online-evals-and-production-monitoring-ben-hylak-sidhant-bendre">Online Evals and Production Monitoring [Ben Hylak &amp; Sidhant Bendre]</h1>
+<p>I hosted a lightning lesson featuring Ben from Raindrop and Sid from Oleve to discuss AI monitoring, production testing, and data analysis frameworks. This session explored how to effectively identify issues in AI systems, implement structured monitoring, and develop frameworks for improving AI products based on real user data.</p>
+<p><strong>What are the fundamentals of AI monitoring and why are traditional approaches insufficient?</strong></p>
+<p>The foundation of AI monitoring begins with evals, which function similarly to unit tests in traditional software development. An eval consists of an input (either a single message or conversation) and an expected output from the model.</p>
+<p>While evals are useful for offline testing, they have significant limitations when applied to production environments:</p>
+<p>"The naive solution that people reach for is to run evals on some small percentage of production traffic," Ben explained. "But this can be extremely expensive, especially if you're using larger models as judges."</p>
+<p>Beyond cost concerns, there are deeper issues with relying solely on LLM judges for evaluation:</p>
+<ul>
+<li>They're difficult to set up accurately and require detailed definitions of what constitutes "good" or "bad" performance</li>
+<li>They only evaluate what you already know to look for, missing novel failure modes</li>
+<li>They struggle to identify emerging problem patterns</li>
+</ul>
+<p>I've seen this challenge firsthand with clients who implement sophisticated eval systems but still miss critical issues that only emerge in production. The fundamental problem is that in AI applications, unlike traditional software, there's often no exception being thrown when something goes wrong - the model simply produces an inadequate response.</p>
+<p><strong>Key Takeaway:</strong> Traditional error monitoring tools like Sentry don't work for AI products because there's no explicit error message when an AI system fails. Instead, we need specialized approaches that can identify problematic patterns in model outputs and user interactions.</p>
+<p><strong>How do we effectively identify issues in AI systems?</strong></p>
+<p>Ben introduced what he calls "the anatomy of an AI issue," which consists of two main components: signals and intents.</p>
+<p>Signals come in two varieties:</p>
+<ol>
+<li>
+<p>Implicit signals - Signs from the data itself that something is wrong:</p>
+</li>
+<li>
+<p>User frustration ("Wait, no, you should be able to do that")</p>
+</li>
+<li>Task failures (when the model says it can't do something)</li>
+<li>NSFW content (users trying to hack the system)</li>
+<li>Laziness (model not completing requested tasks)</li>
+<li>
+<p>Forgetting (model losing context of previous interactions)</p>
+</li>
+<li>
+<p>Explicit signals - Trackable user actions that indicate satisfaction or dissatisfaction:</p>
+</li>
+<li>
+<p>Thumbs up/down ratings</p>
+</li>
+<li>Regeneration requests (suggesting the first response was inadequate)</li>
+<li>Search abandonment</li>
+<li>Code errors (especially valuable for coding assistants)</li>
+<li>Content copying or sharing (positive signals)</li>
+</ol>
+<p>"You really need this sort of constant IV of your app's data," Ben emphasized. "There's nothing right now where you can just hit 'go' and the thing is going to constantly improve itself for your customers. That tool doesn't exist yet."</p>
+<p>For smaller applications with fewer than 500 daily events, Ben recommends piping every user interaction into a Slack channel where you can manually review them. This helps you discover not just where the model is wrong, but what's confusing about your product and what features users expect but don't yet exist.</p>
+<p><strong><em>Key Takeaway:</em></strong> Effective AI monitoring requires tracking both implicit signals (patterns in user and model language that suggest problems) and explicit signals (user actions that indicate satisfaction or dissatisfaction), then exploring these signals to identify recurring issues.</p>
+<p><strong>What framework can help organize and prioritize AI improvements?</strong></p>
+<p>Sid introduced the Trellis framework (Targeted Refinement of Emergent LLM Intelligence through Structured Segmentation), which his team at Oleve uses to manage AI products that reach millions of users within weeks of launch.</p>
+<p>The framework has three core axioms:</p>
+<ol>
+<li>
+<p>Discretization - Converting the infinite plane of possible AI outputs into specific, mutually exclusive buckets (like "math homework help" or "history assignment assistance")</p>
+</li>
+<li>
+<p>Prioritization - Scoring mechanisms to rank which buckets matter most based on metrics like sentiment, conversion, retention, and strategic priorities</p>
+</li>
+<li>
+<p>Recursive refinement - Continuously organizing within buckets to find more structure within the chaos of outputs</p>
+</li>
+</ol>
+<p>"The idea in general with Trellis is to break down your infinite output space into mutually exclusive buckets, figure out what buckets matter to you, and keep recurring down until you've solved your entire space of what matters for your users," Sid explained.</p>
+<p>The implementation follows six steps:</p>
+<ol>
+<li>
+<p>Initialize your output space by launching a minimal but generally capable MVP</p>
+</li>
+<li>
+<p>Cluster user interactions by specific intents</p>
+</li>
+<li>
+<p>Convert clusters into semi-deterministic workflows</p>
+</li>
+<li>
+<p>Prioritize workflows based on company KPIs</p>
+</li>
+<li>
+<p>Analyze workflows to discover sub-intents or misclassified intents</p>
+</li>
+<li>
+<p>Recursively apply the process to refine each workflow</p>
+</li>
+</ol>
+<p>For prioritization, Sid recommends going beyond simple volume metrics: "A very naive approach is pretty much volume only... This could generally be useful, but it can be misleading if you're getting a lot of traffic on something you're already good at."</p>
+<p>Instead, he suggests a formula: Volume × Negative Sentiment × Achievable Delta × Strategic Relevance. This helps identify areas where improvements will have the greatest impact with reasonable effort.</p>
+<p><strong><em>Key Takeaway:</em></strong> The Trellis framework provides a structured approach to taming the chaos of AI outputs by categorizing user intents, creating specialized workflows for each intent, and prioritizing improvements based on a combination of volume, sentiment, achievability, and strategic importance.</p>
+<p><strong>How can we fix issues once we've identified them?</strong></p>
+<p>Once you've identified and categorized issues, Ben outlined several approaches to fixing them:</p>
+<ol>
+<li>
+<p>Prompt changes - Often the first and simplest solution</p>
+</li>
+<li>
+<p>Offloading to tools - Routing problematic intents to specialized tools or more capable models</p>
+</li>
+<li>
+<p>RAG pipeline adjustments - Modifying storage, memory descriptions, or retrieval methods</p>
+</li>
+<li>
+<p>Fine-tuning - Using identified issues as training data for model improvements</p>
+</li>
+</ol>
+<p>Sid shared a real example from Oleve's product Unstuck, where they noticed recurring alerts from Raindrop about summary quality issues. Because they had already organized their product around the Trellis framework, they knew exactly which workflow needed improvement.</p>
+<p>"We decided to prioritize that. The good thing is, we had summaries already aligned to our summarize workflow, so we knew it was just one workflow to fix instead of a bunch of others," Sid explained.</p>
+<p>After implementing changes, they saw an immediate decrease in alerts and received direct user feedback confirming the improvement: "One of my co-founders got a text from one of our users who said that whatever I pushed the night before had suddenly helped him get better summaries for his Spanish class."</p>
+<p>This case study demonstrates the value of having "self-contained, blameable pieces of your infrastructure" that allow you to identify, isolate, and fix specific issues without affecting the entire system.</p>
+<p><strong><em>Key Takeaway:</em></strong> Fixing AI issues requires a portfolio of approaches from simple prompt changes to sophisticated fine-tuning. The key is having a structured system that allows you to attribute problems to specific workflows and measure the impact of your improvements.</p>
+<p><strong>What are some notable examples of AI failures in production?</strong></p>
+<p>Ben shared several examples of high-profile AI failures that traditional testing might have missed:</p>
+<ul>
+<li>Virgin Money's chatbot threatening users because they kept using the word "Virgin" (the company's name)</li>
+<li>Grok responding to unrelated questions with statements about "white genocide in South Africa"</li>
+<li>Google Gemini Cloud Console misinterpreting basic questions about account credits</li>
+<li>OpenAI's model encouraging harmful user behaviors after being optimized too heavily on user preferences</li>
+</ul>
+<p>What's particularly telling is OpenAI's admission that "our evals didn't catch it" and their statement that "evals won't catch everything. Real world use helps us spot problems and understand what matters most to users."</p>
+<p>These examples highlight why production monitoring is essential - the real world introduces edge cases and user behaviors that even the most comprehensive testing regimes will miss.</p>
+<p><strong><em>Key Takeaway:</em></strong> Even the largest AI companies with sophisticated testing infrastructure experience unexpected failures in production. This underscores the importance of robust monitoring systems that can detect novel issues as they emerge in real-world usage.</p>
+<p><strong>How long does it take to implement effective AI monitoring?</strong></p>
+<p>When I asked Sid about the timeline for implementing the Trellis framework, he described a gradual process that began before public launch:</p>
+<p>"We launched it to a private beta of people like a month and a half before our public launch. This was about 10 to 15 students out in NYU."</p>
+<p>They integrated Raindrop on day one of their public launch, which then tracked their growth from a few thousand users in the first week to 500,000 by the first month, and then a million the month after.</p>
+<p>The process of refining their workflows and monitoring was continuous: "For those first few months it was a lot of me just looking at the data, understanding what made sense, understanding if we're routing to the right workflows, understanding if we had the right clusters, and then tuning those workflows."</p>
+<p>Sid noted that they only reached stability about four months after launch: "We only really started hitting stability towards December. But it was a continuous loop in terms of looking at data, trying things out, looking at data, trying things out."</p>
+<p><strong><em>Key Takeaway:</em></strong> Implementing effective AI monitoring is not a one-time setup but an iterative process that begins before launch and continues throughout a product's lifecycle. Even with sophisticated tools, the human element of analyzing data and refining systems remains essential.</p>
+<p><strong>What unexpected insights can emerge from AI monitoring?</strong></p>
+<p>One of the most valuable aspects of comprehensive monitoring is discovering unexpected user behaviors that wouldn't be apparent otherwise.</p>
+<p>Sid shared an interesting example from Unstuck: "Even though we have a side pane with a transcript available to you when you upload a lecture, for some reason people still wanted the transcript in chat."</p>
+<p>This insight revealed that users wanted to engage with transcripts differently than the team had anticipated, despite having built what they thought was an intuitive interface for accessing this information.</p>
+<p>I've had similar experiences with clients whose products suddenly went viral in unexpected regions: "We'll launch a product and all of a sudden our evals start struggling, and then we come back and say, 'Oh, we just went viral in Turkey, and a lot of our prompts are in English.'"</p>
+<p>These types of insights are nearly impossible to anticipate through traditional testing but become immediately apparent with proper monitoring systems.</p>
+<p><strong><em>Key Takeaway:</em></strong> Comprehensive AI monitoring often reveals unexpected user behaviors and preferences that wouldn't be discovered through traditional testing. These insights can drive product improvements that better align with how users actually interact with your system.</p>
+<p><strong>How do we ultimately make AI products better?</strong></p>
+<p>When I asked what question we should have covered, Ben highlighted the fundamental challenge: "How do you actually make things better? Is it just changing a word in a prompt? Is it actually fine-tuning something? What is the actual tool that's going to make your product better?"</p>
+<p>The answer varies significantly depending on the specific product and issue. As I explained, it's about having a portfolio of tools at your disposal:</p>
+<p>"People are asking, 'Do we build agents? Should we use RAG?' But really it's about having a portfolio of tools at your disposal. Are there tools that are underutilized? Are there tools that are not performant? Are there tools that need to be expanded? Or are they just tools that don't exist that we need to invest in?"</p>
+<p>Effective monitoring and analysis frameworks like those presented by Ben and Sid allow teams to inspect this portfolio and make better decisions about resource allocation and technical investments.</p>
+<p><strong>Key Takeaway:</strong> There's no one-size-fits-all solution for improving AI products. Success requires a diverse toolkit of approaches, from prompt engineering to fine-tuning, combined with monitoring systems that help you determine which tools will have the greatest impact on your specific challenges.</p>
+<hr />
+<p>FAQs</p>
+<p><strong>What are evals in AI monitoring?</strong></p>
+<p>Evals are similar to unit tests in traditional software engineering. They consist of an input (either a single message or an entire conversation) and an expected output from the model. Evals can provide a binary pass/fail result or a score, and they're primarily used for offline testing to iterate on prompts and ensure your AI system performs as expected.</p>
+<p><strong>How do offline evals differ from production monitoring?</strong></p>
+<p>Offline evals are run locally or in CI/CD pipelines to test specific scenarios and prevent regressions. They're useful for iterating on prompts and ensuring changes don't break existing functionality. Production monitoring, however, involves analyzing real user interactions to identify issues that may not have been anticipated during development, providing insights into how your AI system performs in the real world.</p>
+<p><strong>What are LLM judges and why should I be cautious about them?</strong></p>
+<p>LLM judges are language models used to evaluate outputs from other models. While they can be useful for assessing subjective qualities (like whether a joke is funny), they can be misleading if not set up properly. The main concerns are that they're expensive to run at scale, difficult to configure accurately, and may not detect novel problems outside their evaluation criteria. It's best to use LLM judges sparingly and primarily for binary decisions with well-defined conditions.</p>
+<p><strong>What signals should I look for to identify AI issues in production?</strong></p>
+<p>There are two types of signals to monitor: implicit and explicit. Implicit signals come from the data itself, such as user frustration expressions, task failures, or NSFW content. Explicit signals are actions users take that indicate satisfaction or dissatisfaction, like thumbs up/down, regenerating responses, abandoning searches, or copying/sharing content. Both types of signals help identify patterns of issues in your AI system.</p>
+<p><strong>How can I effectively explore and categorize AI issues?</strong></p>
+<p>Start by breaking down issues by metadata (like browser type, model used, or user plan) to identify patterns. Analyze keywords associated with problematic interactions and examine the intersection of user intents and issue types. Use tools like semantic search to find similar issues and cluster them. This exploration helps you understand the scope and impact of different problems.</p>
+<p><strong>Why is it important to maintain a constant flow of production data?</strong></p>
+<p>Without continuous monitoring of production data, you'll miss emerging issues and user frustration patterns. For high-volume applications, use tools that summarize patterns and notify you of significant issues. For lower-volume applications (less than 500 events daily), consider reviewing every user interaction to understand what's confusing about your product and what features users expect but don't yet exist.</p>
+<p><strong>What is the Trellis framework?</strong></p>
+<p>Trellis (Targeted Refinement of Emergent LLM Intelligence through Structured Segmentation) is an operating framework for designing reliable AI experiences. It helps organize the "infinite chaos" of AI outputs into controllable, structured segments so you can prioritize engineering efforts on what matters most. The framework has three core axioms: discretization, prioritization, and recursive refinement.</p>
+<p><strong>How do I implement the Trellis framework?</strong></p>
+<p>Start by launching a minimal viable product to gather real user interactions. Cluster these interactions by intent, then convert the clusters into semi-deterministic workflows with an intent router that directs user requests to the appropriate workflow. Prioritize workflows based on metrics relevant to your business goals, then recursively analyze each workflow to identify sub-intents or misclassified intents that could become new workflows.</p>
+<p><strong>How should I prioritize which AI issues to fix first?</strong></p>
+<p>While volume (how many users experience an issue) is important, it shouldn't be your only consideration. A more effective approach is to multiply volume by negative sentiment score and then by an estimated achievable delta (how much you can realistically improve the experience). This helps you focus on issues that affect many users, cause significant frustration, and can be fixed relatively easily.</p>
+<p><strong>What are the main approaches to fixing issues in AI systems?</strong></p>
+<p>There are several approaches to improving AI performance: prompt changes (usually the first and simplest solution), offloading problematic intents to more capable models or specialized tools, improving your RAG (Retrieval-Augmented Generation) pipeline for memory-related issues, and fine-tuning models using supervised or reinforcement learning techniques based on the ground truth signals you've collected.</p>
+<p><strong>Why is it important to make AI improvements attributable and testable?</strong></p>
+<p>When building AI systems, you want your improvements to be engineered, repeatable, testable, and attributable—not accidental. By organizing your system into discrete workflows, you can identify exactly which component is causing an issue and fix it without affecting other parts of the system. This makes your improvements more reliable and your system easier to maintain.</p>
+<p><strong>How can I validate that my AI improvements are working?</strong></p>
+<p>Monitor your system before and after making changes to see if the frequency of related issues decreases. Look for positive user feedback that specifically mentions the improved experience. The most reliable validation comes from seeing a measurable reduction in the issues you were targeting, combined with positive user sentiment about the specific improvements you made.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../embedding-performance-generative-evals-kelly-hong/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Understanding Embedding Performance">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Understanding Embedding Performance
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../rag-without-apis-browser-michael-struwig/" class="md-footer__link md-footer__link--next" aria-label="Next: RAG Without APIs">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                RAG Without APIs
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jxnlco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+    
+  </body>
+</html>

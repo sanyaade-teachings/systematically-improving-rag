@@ -2,114 +2,170 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://567-labs.github.io/rag/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/misc/introduction/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/misc/landingpage/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/misc/learning-goals/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/misc/what-i-want-you-to-takeaway/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/office-hours/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
-         <loc>https://567-labs.github.io/rag/office-hours/week1-summary/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <loc>https://567-labs.github.io/rag/office-hours/cohort2/week1-summary/</loc>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
-         <loc>https://567-labs.github.io/rag/office-hours/week2-summary/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <loc>https://567-labs.github.io/rag/office-hours/cohort2/week2-summary/</loc>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
-         <loc>https://567-labs.github.io/rag/office-hours/week3-summary/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <loc>https://567-labs.github.io/rag/office-hours/cohort2/week3-summary/</loc>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
-         <loc>https://567-labs.github.io/rag/office-hours/week4-summary/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <loc>https://567-labs.github.io/rag/office-hours/cohort2/week4-summary/</loc>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
-         <loc>https://567-labs.github.io/rag/office-hours/week5-summary/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <loc>https://567-labs.github.io/rag/office-hours/cohort2/week5-summary/</loc>
+         <lastmod>2025-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/office-hours/cohort2/week6-summary/</loc>
+         <lastmod>2025-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/office-hours/cohort3/week-1-1/</loc>
+         <lastmod>2025-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/office-hours/cohort3/week-1-2/</loc>
+         <lastmod>2025-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/office-hours/cohort3/week-2-1/</loc>
+         <lastmod>2025-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/office-hours/cohort3/week-2-2/</loc>
+         <lastmod>2025-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/office-hours/cohort3/week-3-1/</loc>
+         <lastmod>2025-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/office-hours/cohort3/week-4-1/</loc>
+         <lastmod>2025-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/office-hours/cohort3/week-4-2/</loc>
+         <lastmod>2025-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/talks/</loc>
+         <lastmod>2025-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/talks/embedding-performance-generative-evals-kelly-hong/</loc>
+         <lastmod>2025-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/talks/online-evals-production-monitoring-ben-sidhant/</loc>
+         <lastmod>2025-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/talks/rag-antipatterns-skylar-payne/</loc>
+         <lastmod>2025-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/talks/rag-without-apis-browser-michael-struwig/</loc>
+         <lastmod>2025-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://567-labs.github.io/rag/talks/semantic-search-exa-will-bryk/</loc>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter0/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter1/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter2/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter3-1/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter3-2/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter3-3/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter4-1/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter4-2/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter4/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter5-1/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter5-2/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter5/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter6-1/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter6-2/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter6-3/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
     <url>
          <loc>https://567-labs.github.io/rag/workshops/chapter6/</loc>
-         <lastmod>2025-03-19</lastmod>
+         <lastmod>2025-06-15</lastmod>
     </url>
 </urlset>

@@ -1,0 +1,2501 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Common RAG anti-patterns across different industries and practical advice for improving AI systems through better data handling, retrieval, and evaluation practices.">
+      
+      
+      
+        <link rel="canonical" href="https://567-labs.github.io/rag/talks/rag-antipatterns-skylar-payne/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../semantic-search-exa-will-bryk/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>RAG Anti-patterns in the Wild, and How to Fix Them - The RAG Flywheel</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rag-anti-patterns-in-the-wild-and-how-to-fix-them-skylar-payne" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="The RAG Flywheel" class="md-header__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The RAG Flywheel
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              RAG Anti-patterns in the Wild, and How to Fix Them
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../workshops/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../office-hours/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Office Hours
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Talks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../misc/learning-goals/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="The RAG Flywheel" class="md-nav__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    The RAG Flywheel
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../workshops/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Workshops
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Workshops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1: Starting the Flywheel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2: From Evaluation to Enhancement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Design Principles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter3-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Feedback Collection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter3-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Iterative Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter4-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4: Topic Modeling - Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter4-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4: Topic Modeling - Prioritization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter5-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Understanding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter5-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Implementation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter6-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Routing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter6-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter6-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../office-hours/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Office Hours
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Office Hours
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cohort 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cohort 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week1-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week2-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week3-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week4-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week5-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week6-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cohort 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Cohort 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_1" id="__nav_3_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Week 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-1-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-1-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_2" id="__nav_3_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Week 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-2-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-2-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_3" id="__nav_3_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Week 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_4" id="__nav_3_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Week 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-4-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-4-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Talks
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Talks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    RAG Anti-patterns in the Wild
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Anti-patterns in the Wild
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-the-most-common-mistakes-in-rag-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the most common mistakes in RAG implementations?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-the-single-most-important-principle-for-successful-rag-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the single most important principle for successful RAG systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-the-key-stages-of-a-rag-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the key stages of a RAG pipeline?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-problems-commonly-occur-during-data-collection-and-curation" class="md-nav__link">
+    <span class="md-ellipsis">
+      What problems commonly occur during data collection and curation?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-extraction-and-enrichment-issues-should-i-watch-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      What extraction and enrichment issues should I watch for?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-the-common-chunking-mistakes-in-rag-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the common chunking mistakes in RAG systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-indexing-and-storage-problems-should-i-be-aware-of" class="md-nav__link">
+    <span class="md-ellipsis">
+      What indexing and storage problems should I be aware of?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-retrieval-issues-commonly-impact-rag-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      What retrieval issues commonly impact RAG systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-i-approach-evaluation-in-my-rag-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should I approach evaluation in my RAG system?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-re-ranking-problems-should-i-watch-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      What re-ranking problems should I watch for?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-generation-phase-issues-should-i-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      What generation phase issues should I address?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-i-reduce-hallucinations-in-my-rag-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can I reduce hallucinations in my RAG system?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-tools-are-recommended-for-rag-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      What tools are recommended for RAG evaluation?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-important-is-metadata-tagging-in-rag-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      How important is metadata tagging in RAG systems?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../semantic-search-exa-will-bryk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Search Over the Web with Exa
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Understanding Embedding Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../online-evals-production-monitoring-ben-sidhant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Online Evals and Production Monitoring
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rag-without-apis-browser-michael-struwig/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Without APIs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/learning-goals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learning Goals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/what-i-want-you-to-takeaway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Key Takeaways
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/landingpage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Landing Page
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-the-most-common-mistakes-in-rag-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the most common mistakes in RAG implementations?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-the-single-most-important-principle-for-successful-rag-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the single most important principle for successful RAG systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-the-key-stages-of-a-rag-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the key stages of a RAG pipeline?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-problems-commonly-occur-during-data-collection-and-curation" class="md-nav__link">
+    <span class="md-ellipsis">
+      What problems commonly occur during data collection and curation?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-extraction-and-enrichment-issues-should-i-watch-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      What extraction and enrichment issues should I watch for?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-the-common-chunking-mistakes-in-rag-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the common chunking mistakes in RAG systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-indexing-and-storage-problems-should-i-be-aware-of" class="md-nav__link">
+    <span class="md-ellipsis">
+      What indexing and storage problems should I be aware of?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-retrieval-issues-commonly-impact-rag-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      What retrieval issues commonly impact RAG systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-i-approach-evaluation-in-my-rag-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should I approach evaluation in my RAG system?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-re-ranking-problems-should-i-watch-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      What re-ranking problems should I watch for?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-generation-phase-issues-should-i-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      What generation phase issues should I address?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-i-reduce-hallucinations-in-my-rag-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can I reduce hallucinations in my RAG system?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-tools-are-recommended-for-rag-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      What tools are recommended for RAG evaluation?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-important-is-metadata-tagging-in-rag-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      How important is metadata tagging in RAG systems?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="rag-anti-patterns-in-the-wild-and-how-to-fix-them-skylar-payne">RAG Anti-patterns in the Wild, and How to Fix Them [Skylar Payne]</h1>
+<p>I hosted a Lightning Lesson with Skylar Payne, an experienced AI practitioner who's worked at companies like Google and LinkedIn over the past decade. Skylar shared valuable insights on common RAG (Retrieval-Augmented Generation) anti-patterns he's observed across multiple client engagements, providing practical advice for improving AI systems through better data handling, retrieval, and evaluation practices.</p>
+<p><strong>What are the most common RAG anti-patterns across different industries?</strong>
+Skylar has worked with various use cases including customer support knowledge bases, medical advice chatbots, financial news summarization, academic research assistants, and e-commerce product comparison tools. Across these diverse applications, he's consistently observed similar problems that prevent RAG systems from performing optimally.</p>
+<p>The fundamental issue that keeps appearing is insufficient attention to data quality and evaluation. As Skylar emphasized, "Look at your data. You really need to start from your user, understand what they want, work backwards. And then you need to look at your data at every step." This approach of continuous data inspection throughout the pipeline is critical for success.</p>
+<p>When breaking down the RAG pipeline into its component parts, problems can emerge at each stage:</p>
+<ol>
+<li>Data Collection and Curation</li>
+<li>Extraction and Enrichment</li>
+<li>Indexing and Storage</li>
+<li>Retrieval</li>
+<li>Re-ranking</li>
+<li>Generation</li>
+</ol>
+<p>Each of these stages presents unique challenges that can significantly impact the overall performance of your RAG system.</p>
+<p><strong><em>Key Takeaway:</em></strong> The teams who can iterate quickly through the cycle of examining data, getting ideas, and adapting their system are invariably the ones who succeed. This process of continuous improvement based on data insights is the foundation of effective RAG implementation.</p>
+<p><strong>What problems occur during data collection and curation?</strong>
+Two major issues frequently arise during the initial data collection phase:</p>
+<p>Documents with varied encodings or formats often cause silent failures. In one medical chatbot project, 21% of the document corpus was silently dropped because the system assumed all documents were UTF-8 when many were actually Latin-1 encoded. This kind of silent failure is particularly dangerous because your index shrinks without your knowledge, leading to degraded answers and lost user trust.</p>
+<p>Irrelevant document sets create "ticking time bombs" in your index. When documents that aren't relevant to any potential user query are included, they're just waiting to be incorrectly retrieved. In a financial news summarization project, including general macroeconomic trend articles when users only cared about specific industry updates led to strange, unhelpful summaries.</p>
+<p>To address these issues, Skylar recommends:</p>
+<ul>
+<li>Understanding what formats and encodings your documents use</li>
+<li>Using robust parsers and off-the-shelf libraries when possible</li>
+<li>Monitoring failures rather than silently dropping documents</li>
+<li>Tracking document counts at each pipeline stage</li>
+<li>Curating document sets to include only relevant content</li>
+<li>Using metadata tagging to filter documents for specific query types</li>
+<li>Analyzing query logs to refine filters over time</li>
+</ul>
+<p><strong><em>Key Takeaway:</em></strong> Silent failures in data processing can dramatically reduce the quality of your RAG system without any obvious errors. Implement robust monitoring and be intentional about which documents you include in your index.</p>
+<p><strong>What challenges exist in extraction and enrichment?</strong>
+Information extraction from complex documents presents significant challenges, particularly with PDFs and tables. For an academic research assistant project, extracting tables from research papers was critical but difficult with standard tools.</p>
+<p>Many off-the-shelf PDF extraction tools perform poorly on table extraction, leading to missing or malformed data. This affects the quality of information that can be retrieved and presented to users.</p>
+<p>The solution approach includes:</p>
+<ul>
+<li>Using specialized tools designed specifically for the artifacts you need to extract</li>
+<li>Validating extracted chunks to ensure they make sense and meet accuracy requirements</li>
+<li>Looking at your data throughout the process to catch extraction errors</li>
+</ul>
+<p>Another common issue is chunking documents into pieces that are too small. Many implementations default to tiny chunks (around 200 characters) because they're copying tutorials or using AI coding assistants that reference outdated approaches designed for models with limited context windows.</p>
+<p>In an e-commerce product comparison project, spec sheets were split into such small snippets that no single chunk contained complete information, causing the model to hallucinate answers for about 13% of queries. Modern models can often handle much larger chunks, sometimes eliminating the need for chunking entirely.</p>
+<p>Similarly, keeping low-value chunks like copyright footers or boilerplate text creates noise in your retrieval system. These chunks rarely contain useful information but can be retrieved if they happen to match a query, crowding out more relevant content.</p>
+<p><strong><em>Key Takeaway:</em></strong> Don't blindly follow chunking strategies from tutorials - examine your specific use case to determine the optimal chunk size, and be sure to filter out low-value content that adds noise to your retrieval system.</p>
+<p><strong>What issues arise in indexing and storage?</strong>
+Naive embedding usage is a common problem. Most embeddings are trained for semantic similarity (matching synonyms and similar meanings) but are often used to compare document chunks with questions, which typically have different forms and structures.</p>
+<p>Several techniques can help bridge this gap:</p>
+<ul>
+<li>Query expansion (modifying queries to look more like documents)</li>
+<li>Late chunking or contextual retrieval (modifying documents at indexing time)</li>
+<li>Fine-tuning embeddings for your specific use case</li>
+</ul>
+<p>Another critical issue is failing to check for index staleness. In the financial news summarization case, the index hadn't been refreshed for two weeks, causing the system to return outdated earnings data when users asked for the "latest" information. For time-sensitive applications, monitoring index freshness is essential, and you may want to filter out documents based on their age.</p>
+<p><strong><em>Key Takeaway:</em></strong> The mismatch between query form and document form is a fundamental challenge in RAG systems. Address this through query expansion, document modification techniques, or embedding fine-tuning, and always monitor index freshness for time-sensitive applications.</p>
+<p><strong>What problems occur during retrieval?</strong>
+Accepting vague queries like "health tips" forces RAG systems to retrieve broadly, making it difficult to provide focused, helpful answers. Similarly, accepting off-topic queries (like "write a poem about unicorns" in a product comparison tool) can lead to bizarre outputs that damage user trust.</p>
+<p>To address these issues:</p>
+<ul>
+<li>Detect low-information queries through heuristics or classifiers</li>
+<li>Prompt users for clarification when queries are too vague</li>
+<li>Route off-topic queries to fallback responses</li>
+<li>Use intent classification to detect and handle queries outside your domain</li>
+<li>Implement relevance thresholds to avoid returning poor matches</li>
+</ul>
+<p>Another common mistake is failing to break down complex tasks. For example, a customer support system was using the full RAG pipeline to answer "What is my billing date?" when a simple metadata lookup would be faster, cheaper, and more reliable. Identifying common query patterns and routing them to specialized handlers can significantly improve performance.</p>
+<p><strong><em>Key Takeaway:</em></strong> Not every query needs the full RAG treatment. Implement intent classification to route simple queries to specialized handlers and reject off-topic requests that your system isn't designed to handle.</p>
+<p><strong>How should we approach evaluation of RAG systems?</strong>
+Many teams evaluate only the documents they retrieve, missing critical insights about false negatives. This is like "looking for your keys under the lamppost because that's where the light is" - you're only examining a small portion of the potential solution space.</p>
+<p>For comprehensive evaluation:</p>
+<ul>
+<li>Look beyond your retrieval window when logging and evaluating</li>
+<li>Log or reproduce scores for your ranking/retrieval to analyze performance</li>
+<li>Evaluate both relevance (are retrieved documents relevant?) and sufficiency (do they contain enough information to answer the query?)</li>
+</ul>
+<p>Creating a quadrant analysis of correct/incorrect answers versus sufficient/insufficient retrieval provides powerful insights into where to focus improvement efforts. Each quadrant suggests different approaches to enhancing system performance.</p>
+<p>Another common mistake is increasing system complexity without proper evaluation. Skylar has seen many clients implement sophisticated retrieval and re-ranking systems without first establishing whether they actually improve performance. In over 90% of these cases, the new system performed worse when properly evaluated.</p>
+<p><strong><em>Key Takeaway:</em></strong> Always implement evaluations before increasing system complexity. It's easy to fool yourself into thinking you know what the problem is, but data-driven evaluation provides essential guardrails.</p>
+<p><strong>What re-ranking challenges do RAG systems face?</strong>
+Overusing boosting rules can make systems difficult to understand and maintain. While boosting (adjusting ranking scores based on specific criteria) can be a useful hack to improve relevance, adding too many rules creates complexity. In the financial news example, boosting semiconductor-related content, recent articles, and earnings-related terms created a system that was hard to debug and understand.</p>
+<p>Another issue is allowing "facepalm results" - outputs that are so obviously wrong that users lose trust in the system. These often occur because lower layers of retrieval optimize for high recall (getting anything potentially relevant), and the re-ranking layer fails to filter out inappropriate content.</p>
+<p>To prevent these issues:</p>
+<ul>
+<li>Minimize manual boosting rules</li>
+<li>Consider training a custom cross-encoder re-ranker for better performance</li>
+<li>Apply metadata filters to exclude known irrelevant document types</li>
+<li>Blacklist domains or content patterns that typically produce poor results</li>
+<li>Remove low-value chunks from your index</li>
+<li>Monitor your system with test queries that have previously produced bad results</li>
+</ul>
+<p><strong><em>Key Takeaway:</em></strong> Re-ranking is your last line of defense against irrelevant content. Invest in robust filtering and monitoring to prevent embarrassing outputs that damage user trust.</p>
+<p><strong>What generation-phase problems affect RAG systems?</strong>
+Simple RAG systems often struggle with reasoning-based queries that require connecting information from multiple sources. For example, an academic research assistant needed to understand relationships between papers, which required multiple retrieval steps to connect the dots.</p>
+<p>For these complex use cases, consider:</p>
+<ul>
+<li>Adopting agentic RAG workflows that interleave retrieval and reasoning</li>
+<li>Pre-computing synthesis documents that connect related information</li>
+<li>Constructing knowledge graphs to help traverse relationships between documents</li>
+</ul>
+<p>Finally, hallucination remains a significant challenge, particularly in sensitive domains like healthcare. In the medical advice chatbot, the system hallucinated a drug side effect that wasn't present in the source material.</p>
+<p>The most effective approach to reducing hallucination in RAG systems is:</p>
+<ul>
+<li>Force the LLM to provide inline citations</li>
+<li>Validate that each citation exists in the retrieved documents</li>
+<li>Semantically validate that each citation actually supports the claimed content</li>
+</ul>
+<p><strong><em>Key Takeaway:</em></strong> For complex reasoning tasks, simple RAG may not be sufficient. Consider more sophisticated approaches like agentic workflows or knowledge graphs, and always implement citation validation to prevent hallucination in sensitive domains.</p>
+<p><strong>How important is metadata tagging in practice?</strong>
+According to Skylar, about 40% of clients have indexes so small that metadata tagging doesn't provide significant benefits. Many B2B companies have segregated data by customer, further reducing the need for complex tagging within each customer's dataset.</p>
+<p>The value of metadata tagging increases with:</p>
+<ol>
+<li>The diversity of queries you're answering</li>
+<li>The scale of data you're working with</li>
+</ol>
+<p>For specific use cases like legal documents, metadata about authorship, ownership, and modification history can be crucial. By embedding these tags into the text chunks themselves (rather than just using them as filter properties), you can answer questions about document history and changes.</p>
+<p><strong><em>Key Takeaway:</em></strong> The value of metadata tagging depends on your data scale and query diversity. For smaller datasets or narrowly focused applications, extensive tagging may not be necessary, but for complex domains like legal documents, rich metadata can significantly enhance retrieval capabilities.</p>
+<p><strong>What's the most important thing to remember when implementing RAG?</strong>
+The most critical principle is to continuously examine your data at every stage of the pipeline. This means:</p>
+<ol>
+<li>Starting with user needs and working backward</li>
+<li>Looking at your data inputs, intermediate results, and outputs</li>
+<li>Building robust evaluation systems before increasing complexity</li>
+<li>Creating fast feedback loops to iterate on improvements</li>
+</ol>
+<p>As Skylar emphasized throughout the session, "The teams who can make that loop go as fast as possible are the ones who win, and that is pretty invariable."</p>
+<p>By focusing on data quality, implementing proper evaluation, and iterating quickly based on real insights rather than assumptions, you can avoid the common anti-patterns that plague RAG implementations and build systems that truly deliver value to users.</p>
+<hr />
+<p>FAQs</p>
+<h2 id="what-are-the-most-common-mistakes-in-rag-implementations">What are the most common mistakes in RAG implementations?</h2>
+<p>The most common mistake is increasing system complexity without proper evaluation. About 90% of the time, teams implement complex retrieval paths and re-ranking systems without evaluating if they actually improve performance. Always establish evaluation metrics before adding complexity to your RAG system to ensure you're making meaningful improvements rather than creating unnecessary maintenance burden.</p>
+<h2 id="whats-the-single-most-important-principle-for-successful-rag-systems">What's the single most important principle for successful RAG systems?</h2>
+<p>Look at your data at every step of the process. Start from understanding what your users want, work backwards, and examine your data throughout the entire pipeline. It's not enough to just check inputs and outputs when you have a complex system with multiple steps—problems might be occurring somewhere in the middle. Teams who can quickly iterate through the cycle of examining data, getting ideas, and adapting their systems are invariably the ones who succeed.</p>
+<h2 id="what-are-the-key-stages-of-a-rag-pipeline">What are the key stages of a RAG pipeline?</h2>
+<p>A typical RAG pipeline consists of five main stages:</p>
+<ol>
+<li>Data collection and curation - Gathering the right documents to answer queries</li>
+<li>Extraction and enrichment - Representing documents well with proper metadata</li>
+<li>Indexing and storage - Setting up documents for easy retrieval</li>
+<li>Retrieval and re-ranking - Finding relevant documents with high recall, then filtering for precision</li>
+<li>Generation - Using an LLM to create answers based on retrieved information</li>
+</ol>
+<h2 id="what-problems-commonly-occur-during-data-collection-and-curation">What problems commonly occur during data collection and curation?</h2>
+<p>Two major issues arise during this phase:</p>
+<ol>
+<li>Documents with varied encodings or formats often silently fail to process. In one medical chatbot implementation, 21% of documents were silently dropped due to encoding issues. Always monitor document counts at each stage and implement robust error handling.</li>
+<li>Irrelevant document sets create a "ticking time bomb" waiting to be retrieved for some query. Carefully curate your document index to include only content relevant to the types of queries you intend to serve. Consider using metadata tagging to filter documents for specific query types.</li>
+</ol>
+<h2 id="what-extraction-and-enrichment-issues-should-i-watch-for">What extraction and enrichment issues should I watch for?</h2>
+<p>Information extraction failures are particularly common with PDFs and tables. Many off-the-shelf PDF extraction tools struggle with complex layouts like tables, multi-column text, and specialized formats. Use tools specifically designed for the artifacts you need to extract and always validate the extracted content to ensure it meets your accuracy requirements.</p>
+<h2 id="what-are-the-common-chunking-mistakes-in-rag-systems">What are the common chunking mistakes in RAG systems?</h2>
+<p>Two primary chunking issues to avoid:</p>
+<ol>
+<li>Chunking too small - Many implementations use tiny chunks (like 200 characters) because they follow outdated tutorials, but this dilutes context and meaning. In one e-commerce implementation, small chunks meant no single chunk contained complete information, leading to hallucinations in 13% of queries. Use longer context windows and chunk by semantic boundaries.</li>
+<li>Keeping bad chunks - Retaining low-value content like footers, copyright notices, and duplicative content creates noise in your system. Inspect your shortest chunks manually and implement deduplication through content hashing.</li>
+</ol>
+<h2 id="what-indexing-and-storage-problems-should-i-be-aware-of">What indexing and storage problems should I be aware of?</h2>
+<p>Two critical issues in this phase:</p>
+<ol>
+<li>Naive embedding usage - Most embeddings are trained for semantic similarity but questions often differ in form from document chunks. Consider techniques like query expansion, late chunking, contextual retrieval, or fine-tuning embeddings to bridge this gap.</li>
+<li>Index staleness - Without monitoring index freshness, you risk providing outdated information. In one financial news system, the index hadn't been refreshed for two weeks, resulting in outdated earnings reports. Track staleness metrics and consider adding timestamp filters to exclude outdated content.</li>
+</ol>
+<h2 id="what-retrieval-issues-commonly-impact-rag-systems">What retrieval issues commonly impact RAG systems?</h2>
+<p>Several retrieval problems can undermine your system:</p>
+<ol>
+<li>Accepting vague queries like "health tips" forces your system to retrieve anything remotely relevant. Detect low-information queries and prompt users for clarification.</li>
+<li>Accepting off-topic queries (like "write a poem about unicorns" in a product comparison tool) can produce inappropriate responses. Implement intent classification to detect and handle off-topic requests.</li>
+<li>Lack of task breakdown - Not recognizing patterns in user queries means missing opportunities to create more efficient workflows. For common, structured queries (like "What is my billing date?"), consider direct metadata lookups instead of using the full RAG pipeline.</li>
+</ol>
+<h2 id="how-should-i-approach-evaluation-in-my-rag-system">How should I approach evaluation in my RAG system?</h2>
+<p>Many teams evaluate only the relevance of retrieved documents but miss two critical evaluation dimensions:</p>
+<ol>
+<li>False negatives - Examine documents that weren't retrieved but should have been. Look beyond your retrieval window to find relevant documents that were missed.</li>
+<li>Retrieval sufficiency - Evaluate whether the retrieved documents contain enough information to fully answer the query, not just whether they're relevant. This helps identify whether problems stem from retrieval or from your document corpus itself.</li>
+</ol>
+<h2 id="what-re-ranking-problems-should-i-watch-for">What re-ranking problems should I watch for?</h2>
+<p>Two common re-ranking issues:</p>
+<ol>
+<li>Overusing boosting - Adding too many manual boosting rules (like boosting recent content or specific keywords) makes systems complex and unpredictable. Minimize manual boosting and consider training a custom re-ranker for better performance.</li>
+<li>Allowing "facepalm results" - Obviously bad results that make users question your system's competence. Apply metadata filters to exclude irrelevant document types and monitor your system for these embarrassing failures.</li>
+</ol>
+<h2 id="what-generation-phase-issues-should-i-address">What generation phase issues should I address?</h2>
+<p>Two key generation concerns:</p>
+<ol>
+<li>Using simple RAG for reasoning queries - Single-pass retrieval can't connect dots between concepts. For complex reasoning, consider agentic RAG workflows that interleave retrieval and reasoning, or pre-compute synthesis documents.</li>
+<li>Lack of output guardrails for hallucination - Especially critical in sensitive domains like healthcare. Force your LLM to provide inline citations, validate that each citation exists, and semantically validate that citations support the content.</li>
+</ol>
+<h2 id="how-can-i-reduce-hallucinations-in-my-rag-system">How can I reduce hallucinations in my RAG system?</h2>
+<p>The most effective technique is implementing a three-step verification process:</p>
+<ol>
+<li>Force your LLM to provide inline citations for claims</li>
+<li>Validate that each citation actually exists in your retrieved documents</li>
+<li>Semantically validate that each citation actually supports the content it's referencing</li>
+</ol>
+<p>This approach is particularly important for sensitive domains like healthcare where hallucinated information could have serious consequences.</p>
+<h2 id="what-tools-are-recommended-for-rag-evaluation">What tools are recommended for RAG evaluation?</h2>
+<p>While tool preferences vary by situation, Lily Pad (from Microscope) is highlighted as particularly useful for teams without AI engineering backgrounds because it enforces best practices around versioning. However, the best approach is often to meet teams where they are and use their existing tools rather than introducing new ones that require vendor approval.</p>
+<h2 id="how-important-is-metadata-tagging-in-rag-systems">How important is metadata tagging in RAG systems?</h2>
+<p>The value of metadata tagging depends on two factors:</p>
+<ol>
+<li>The scale of your data - About 40% of implementations have indexes so small that extensive tagging provides little benefit</li>
+<li>The diversity of queries you're answering</li>
+</ol>
+<p>Metadata becomes more valuable when you have both high data volume and diverse query types. For B2B applications where customer data is segregated, the benefit may be limited since each customer's data volume is relatively small.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../semantic-search-exa-will-bryk/" class="md-footer__link md-footer__link--next" aria-label="Next: Semantic Search Over the Web with Exa">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Semantic Search Over the Web with Exa
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jxnlco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2509 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="RAG implementation challenges, precision-recall tradeoffs, and practical business applications of AI systems">
+      
+      
+      
+        <link rel="canonical" href="https://567-labs.github.io/rag/office-hours/cohort3/week-1-1/">
+      
+      
+        <link rel="prev" href="../../cohort2/week6-summary/">
+      
+      
+        <link rel="next" href="../week-1-2/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Week 1 - Office Hour 1 - The RAG Flywheel</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#week-1-office-hour-1-may-20" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="The RAG Flywheel" class="md-header__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The RAG Flywheel
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Week 1 - Office Hour 1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../workshops/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Office Hours
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../talks/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Talks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../misc/learning-goals/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="The RAG Flywheel" class="md-nav__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    The RAG Flywheel
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../workshops/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Workshops
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Workshops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1: Starting the Flywheel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2: From Evaluation to Enhancement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Design Principles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter3-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Feedback Collection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter3-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Iterative Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter4-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4: Topic Modeling - Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter4-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4: Topic Modeling - Prioritization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter5-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Understanding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter5-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Implementation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter6-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Routing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter6-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter6-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Office Hours
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Office Hours
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cohort 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cohort 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort2/week1-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort2/week2-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort2/week3-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort2/week4-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort2/week5-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort2/week6-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cohort 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Cohort 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_1" id="__nav_3_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Week 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-we-understand-precision-in-the-context-of-llms-and-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should we understand precision in the context of LLMs and RAG?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-role-can-small-language-models-play-in-a-rag-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      What role can small language models play in a RAG architecture?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-we-measure-quality-in-multi-turn-conversations" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can we measure quality in multi-turn conversations?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-approach-data-analysis-to-find-business-value-in-ai-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you approach data analysis to find business value in AI applications?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-balance-technical-implementation-with-business-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you balance technical implementation with business outcomes?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-your-thoughts-on-the-latest-ai-developments-like-claude-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are your thoughts on the latest AI developments like Claude 3?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-we-approach-building-rag-applications-for-course-materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should we approach building RAG applications for course materials?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-handle-uiux-development-for-ai-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you handle UI/UX development for AI applications?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-been-your-most-rewarding-project-in-the-ai-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's been your most rewarding project in the AI space?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-thoughts-on-balancing-course-workload" class="md-nav__link">
+    <span class="md-ellipsis">
+      Final thoughts on balancing course workload
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-i-balance-this-course-with-my-day-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can I balance this course with my day job?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-should-i-do-if-i-dont-have-a-specific-project-to-apply-the-course-material-to" class="md-nav__link">
+    <span class="md-ellipsis">
+      What should I do if I don't have a specific project to apply the course material to?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-are-the-course-materials-structured" class="md-nav__link">
+    <span class="md-ellipsis">
+      How are the course materials structured?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-can-i-find-the-summary-notes-and-faqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where can I find the summary notes and FAQs?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-the-instructors-approach-to-evaluating-rag-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the instructor's approach to evaluating RAG applications?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-small-language-models-be-used-in-a-rag-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can small language models be used in a RAG architecture?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-the-most-valuable-insights-from-the-course-so-far" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the most valuable insights from the course so far?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-the-instructors-perspective-on-building-uiux-for-llm-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the instructor's perspective on building UI/UX for LLM applications?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-does-the-instructor-approach-business-value-in-ai-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      How does the instructor approach business value in AI projects?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#will-there-be-opportunities-to-continue-learning-after-the-course-ends" class="md-nav__link">
+    <span class="md-ellipsis">
+      Will there be opportunities to continue learning after the course ends?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week-1-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_2" id="__nav_3_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Week 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week-2-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week-2-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_3" id="__nav_3_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Week 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week-3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_4" id="__nav_3_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Week 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week-4-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week-4-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../talks/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Talks
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Talks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../talks/rag-antipatterns-skylar-payne/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Anti-patterns in the Wild
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../talks/semantic-search-exa-will-bryk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Search Over the Web with Exa
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../talks/embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Understanding Embedding Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../talks/online-evals-production-monitoring-ben-sidhant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Online Evals and Production Monitoring
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../talks/rag-without-apis-browser-michael-struwig/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Without APIs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/learning-goals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learning Goals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/what-i-want-you-to-takeaway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Key Takeaways
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/landingpage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Landing Page
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-we-understand-precision-in-the-context-of-llms-and-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should we understand precision in the context of LLMs and RAG?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-role-can-small-language-models-play-in-a-rag-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      What role can small language models play in a RAG architecture?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-we-measure-quality-in-multi-turn-conversations" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can we measure quality in multi-turn conversations?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-approach-data-analysis-to-find-business-value-in-ai-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you approach data analysis to find business value in AI applications?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-balance-technical-implementation-with-business-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you balance technical implementation with business outcomes?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-your-thoughts-on-the-latest-ai-developments-like-claude-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are your thoughts on the latest AI developments like Claude 3?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-we-approach-building-rag-applications-for-course-materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should we approach building RAG applications for course materials?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-handle-uiux-development-for-ai-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you handle UI/UX development for AI applications?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-been-your-most-rewarding-project-in-the-ai-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's been your most rewarding project in the AI space?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-thoughts-on-balancing-course-workload" class="md-nav__link">
+    <span class="md-ellipsis">
+      Final thoughts on balancing course workload
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-i-balance-this-course-with-my-day-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can I balance this course with my day job?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-should-i-do-if-i-dont-have-a-specific-project-to-apply-the-course-material-to" class="md-nav__link">
+    <span class="md-ellipsis">
+      What should I do if I don't have a specific project to apply the course material to?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-are-the-course-materials-structured" class="md-nav__link">
+    <span class="md-ellipsis">
+      How are the course materials structured?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-can-i-find-the-summary-notes-and-faqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where can I find the summary notes and FAQs?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-the-instructors-approach-to-evaluating-rag-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the instructor's approach to evaluating RAG applications?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-small-language-models-be-used-in-a-rag-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can small language models be used in a RAG architecture?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-the-most-valuable-insights-from-the-course-so-far" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the most valuable insights from the course so far?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-the-instructors-perspective-on-building-uiux-for-llm-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the instructor's perspective on building UI/UX for LLM applications?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-does-the-instructor-approach-business-value-in-ai-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      How does the instructor approach business value in AI projects?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#will-there-be-opportunities-to-continue-learning-after-the-course-ends" class="md-nav__link">
+    <span class="md-ellipsis">
+      Will there be opportunities to continue learning after the course ends?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="week-1-office-hour-1-may-20">Week 1 - Office Hour 1 (May 20)</h1>
+<p>Study Notes:</p>
+<p>I hosted an office hours session focused on RAG implementation challenges, precision-recall tradeoffs, and practical business applications of AI systems. Here are my insights on evaluating RAG systems, understanding model sensitivity to context quality, and identifying high-value business opportunities through data analysis rather than just technical improvements.</p>
+<h2 id="how-should-we-understand-precision-in-the-context-of-llms-and-rag">How should we understand precision in the context of LLMs and RAG?</h2>
+<p>Precision has become increasingly important as most people are comfortable adding substantial information to the context window. The key question is how sensitive these models are to ambiguous or irrelevant information.</p>
+<p>Most current models are very good at recall because they're optimized for "needle in the haystack" tests. Due to the attention mechanism with sliding windows, they can typically catch important information even when it's buried among other content. However, the sensitivity to irrelevant information is less well-studied.</p>
+<p>As we increase the amount of data in the context, we need to understand what precision looks like and how it correlates with factuality or answer quality. Earlier models like GPT-3.5 were quite sensitive to long context with low precision - if you gave them too much information, they would "overthink" because of the volume of content to process.</p>
+<p>This is why it's valuable to experiment with different retrieval settings: "For the top 10 documents, this is my precision and recall; for my top 25 documents, this is my precision and recall. If my recall is not increasing as a function of K (the number of documents), that's where I decide to set a threshold."</p>
+<p>Some people set thresholds based on re-ranker scores, but that can be dangerous since these scores aren't true probabilities. You can't just set 0.5 as a universal threshold - you need to understand the precision-recall tradeoffs for your specific application.</p>
+<p><strong><em>Key Takeaway:</em></strong> Models can be sensitive to low-precision context, where irrelevant information causes them to incorporate red herrings into answers. Testing different document count thresholds is more reliable than using arbitrary re-ranker score cutoffs.</p>
+<h2 id="what-role-can-small-language-models-play-in-a-rag-architecture">What role can small language models play in a RAG architecture?</h2>
+<p>Small language models can serve several valuable functions within a RAG system:</p>
+<p>First, they can rewrite queries quickly and efficiently. For example, if a user asks "What is happening this week?", a small model could convert this into a structured query like a JSON object specifying "search all documents where the datetime is between today and today minus 7 days." This type of entity resolution and query parsing doesn't require the full knowledge of a large model but benefits from the lower latency of smaller models.</p>
+<p>Second, small models can build better embedding spaces. Most current embedding models are relatively simple, but a small language model fine-tuned on your specific task could significantly improve embedding quality or re-ranking performance.</p>
+<p>In this context, I think of "small" as meaning lower latency with less world knowledge - models that can perform specific tasks efficiently without needing to understand everything about the world.</p>
+<p><strong><em>Key Takeaway:</em></strong> Small language models can enhance RAG systems through query rewriting and improved embeddings, offering lower latency for specific tasks that don't require comprehensive world knowledge.</p>
+<h2 id="how-can-we-measure-quality-in-multi-turn-conversations">How can we measure quality in multi-turn conversations?</h2>
+<p>When evaluating multi-turn exchanges like simulated customer interactions or teacher training scenarios, there are several approaches to consider.</p>
+<p>One approach is to model the interaction as a state machine or "LangDraft" type model where there are defined states that can be traversed. For example, in a customer support scenario, you might have an intake state, followed by various question states, triage states, and resolution states.</p>
+<p>We've used this with "LLM therapists" where the system might say, "I can tell you're angry. Let me transition you to this sub-draft that deals with negative emotions." The user remains in that state until they've acknowledged something, then returns to the main flow.</p>
+<p>Another approach is to use rubrics and data mining. We extract examples from historical transactions that match specific rubric criteria, then have experts score these examples. These scored examples become few-shot examples for future evaluations.</p>
+<p>For instance, with venture capital funding requests, we might extract 200 examples of founders discussing how well they know each other, then have experts grade these as good, bad, or great. This creates a training set for evaluating future conversations.</p>
+<p>The model we build with these rubrics typically extracts scores for 30+ criteria, with LLMs giving scores from 0-4, which then feed into a logistic regression model. This makes the evaluation somewhat explainable - if a candidate gets prioritized unexpectedly, we can see which features drove that decision.</p>
+<p><strong><em>Key Takeaway:</em></strong> For evaluating multi-turn conversations, combine state machines to enforce guardrails with human-labeled examples to create scoring rubrics. Using a simple model like logistic regression on top of LLM-generated feature scores maintains interpretability.</p>
+<h2 id="how-do-you-approach-data-analysis-to-find-business-value-in-ai-applications">How do you approach data analysis to find business value in AI applications?</h2>
+<p>My favorite content in the course is actually weeks 4 and 5, where I cover my process for data analysis and uncovering new capabilities needed in AI systems.</p>
+<p>When analyzing data from AI applications, I look for two main types of issues:</p>
+<ol>
+<li>
+<p>Inventory issues: These occur when the system lacks the necessary data to fulfill user requests. For example, if users search for content that doesn't exist in your database, the solution isn't to improve the AI - it's to add the missing content. Many companies don't realize their inventory might be the problem rather than their AI.</p>
+</li>
+<li>
+<p>Capabilities issues: These involve functionality gaps where the system can't perform certain types of queries or filters. For instance, you might need to add metadata filters or specialized search capabilities to handle specific user needs.</p>
+</li>
+</ol>
+<p>I've found tremendous business value by identifying these issues through data analysis. In one case with a restaurant voice AI system, we discovered that when the AI attempted upselling, it generated 20% more revenue 50% of the time - a 10% overall increase. However, the agent only tried upselling in 9% of calls.</p>
+<p>The solution wasn't to improve the AI's core capabilities but to add a simple check ensuring the agent always asks if the customer wants anything else before ending the call. This small change could generate an additional $2 million in revenue by increasing upselling attempts from 9% to 40%.</p>
+<p>For me, the most enjoyable work is identifying these business opportunities that don't necessarily require complex AI improvements. Software engineers often aren't trained to think this way, but my background in data science makes this approach natural.</p>
+<p><strong><em>Key Takeaway:</em></strong> The biggest business value often comes from analyzing usage patterns to identify inventory gaps or missing capabilities, rather than improving core AI performance. Simple changes like adding missing data or implementing basic business rules can deliver millions in value.</p>
+<h2 id="how-do-you-balance-technical-implementation-with-business-outcomes">How do you balance technical implementation with business outcomes?</h2>
+<p>I've worked with many companies where they think they want me to make their AI better, but my actual job is to make their business better. There's often substantial money to be captured by focusing on business outcomes rather than technical improvements.</p>
+<p>For example, with a construction project, I spoke with contractors to understand their actual pain points. While they initially thought they needed better document search, the real issue was tracking delays and identifying who was causing them. This led us to implement contact search with metadata filters - a solution that addressed a $100,000/month problem.</p>
+<p>Similarly, with Netflix, if users search for "Oscar-nominated" movies but get results about Oscar Wilde or actors named Oscar, the solution might not be more sophisticated AI. It could be as simple as paying IMDB for better awards metadata.</p>
+<p>I'm constantly looking for these opportunities where a relatively simple technical solution can unlock significant business value. This approach has been much more impactful than pursuing technical sophistication for its own sake.</p>
+<p><strong><em>Key Takeaway:</em></strong> Focus on business outcomes over technical sophistication. Often the highest-value solutions involve simple changes that address real user needs rather than complex AI improvements.</p>
+<h2 id="what-are-your-thoughts-on-the-latest-ai-developments-like-claude-3">What are your thoughts on the latest AI developments like Claude 3?</h2>
+<p>I'm currently reviewing the entire Instructor codebase to adapt it for Claude 3. The model is making about 15 pull requests for me, so we'll see how that goes.</p>
+<p>Regarding the guest speakers we've had, I found the Chroma presentation particularly valuable for its hands-on, practical approach. While the Exa presentation was more high-level and story-focused, both offered valuable perspectives.</p>
+<p>I try to balance technical depth with accessibility in these sessions. When Nils gave his talk, it quickly became very technical with neural network diagrams and mathematical equations, and I could see people leaving the call. It's challenging to find the right balance between technical content and storytelling.</p>
+<p><strong><em>Key Takeaway:</em></strong> Balancing technical depth with accessibility is crucial when presenting AI concepts. Different audiences require different approaches to effectively communicate complex ideas.</p>
+<h2 id="how-should-we-approach-building-rag-applications-for-course-materials">How should we approach building RAG applications for course materials?</h2>
+<p>If someone wanted to build a RAG application over all the course transcripts and office hours, I'd love to see that. However, this would quickly reveal the limitations of simple chunking approaches.</p>
+<p>You'd discover that people have different capability requests - like wanting to know who asked specific questions or what was discussed in a particular week. This would require metadata filters for cohort numbers, transcript types (lectures vs. office hours vs. lightning lessons), and speaker identification.</p>
+<p>You might also need to handle requests for information about guest speakers, like their LinkedIn profiles. All of these are inventory issues that could be solved by ensuring you have the right metadata alongside your content.</p>
+<p>For a dataset as small as course transcripts, long-context models like Claude 3 might work well without complex RAG. It's really the enterprise use cases with massive document collections that need sophisticated RAG approaches.</p>
+<p><strong><em>Key Takeaway:</em></strong> Even simple datasets like course transcripts reveal the importance of metadata and structured information for effective retrieval. Many issues are inventory problems rather than AI problems.</p>
+<h2 id="how-do-you-handle-uiux-development-for-ai-applications">How do you handle UI/UX development for AI applications?</h2>
+<p>I try to write most things as command line tools - I'm a "filthy machine learning Python engineer" who finds any UI to be too much work. Even Streamlit feels excessive to me when a command line interface would suffice.</p>
+<p>That said, Claude has demonstrated how well you can do with thoughtful UX patterns. In Week 3, I'll talk about UX patterns that make applications feel responsive - like how Claude shows progress counters as it's uploading and downloading tokens, ensuring something on the page is always moving to indicate work is happening.</p>
+<p>For those who need to build UIs but lack JavaScript skills, LLMs are remarkably good at writing JavaScript. I've built many bespoke data labeling applications in just 5 hours by prompting models to convert JSON structures to PostgreSQL databases and build the corresponding UIs.</p>
+<p>The software can be ephemeral enough that I don't worry about long-term maintenance. For more polished applications, I recommend checking out Lovable.dev - I've built about 20 apps with them that work quite well.</p>
+<p><strong><em>Key Takeaway:</em></strong> Focus on learning the concepts rather than specific implementation details. Modern LLMs can generate high-quality UI code, making it easier than ever to build functional applications without deep frontend expertise.</p>
+<h2 id="whats-been-your-most-rewarding-project-in-the-ai-space">What's been your most rewarding project in the AI space?</h2>
+<p>My background is in physics - I initially thought the universe would generate the most interesting datasets. Then I went to Facebook because I believed people-to-people interactions would be the most fascinating data. Now I'm focused on people-to-AI interactions, and in the future, it will likely be AI-to-AI interactions. I'm essentially chasing the most interesting datasets I can analyze.</p>
+<p>The most rewarding projects have been those where data analysis revealed clear business opportunities. For instance, with the restaurant voice AI system, identifying the upselling opportunity was straightforward but incredibly valuable.</p>
+<p>I enjoy working with teams that have access to subject matter experts who can help interpret the data. For the construction project, I spoke with contractors wearing hard hats on Zoom to understand why certain questions were valuable and what problems they were trying to solve.</p>
+<p>This approach of combining data analysis with domain expertise has consistently led to high-impact solutions that address real business needs rather than just technical challenges.</p>
+<p><strong><em>Key Takeaway:</em></strong> The most rewarding AI projects combine data analysis with domain expertise to identify high-impact business opportunities rather than pursuing technical sophistication for its own sake.</p>
+<h2 id="final-thoughts-on-balancing-course-workload">Final thoughts on balancing course workload</h2>
+<p>I recognize that the course material can be overwhelming, especially for those balancing it with full-time jobs. We'll have no notebooks in Week 3, which should provide a buffer, and you'll always have access to the Slack channel even after the 6 weeks are over.</p>
+<p>For those feeling overwhelmed, remember that many people take multiple cohorts to fully absorb the material. The flexible structure is intentional - unlike more prescriptive courses, this approach allows you to focus on what's most relevant to your specific needs.</p>
+<p>As one participant noted, they've found at least one "golden nugget" from each session so far, including the introduction where I presented the "sandwich view" of RAG systems. These conceptual frameworks can provide clarity when you're deep in implementation details.</p>
+<p>Remember that the AI field is moving incredibly quickly, and none of us can absorb everything. The goal isn't to become an expert on everything but to get really good at leveraging AI to stay ahead of everyone else.</p>
+<p><strong><em>Key Takeaway:</em></strong> Learning complex technical skills requires finding the right balance between depth of content and time for absorption. Focus on what's most relevant to your needs and remember that continuous learning is more important than perfect comprehension.</p>
+<hr />
+<p>FAQs</p>
+<h2 id="how-can-i-balance-this-course-with-my-day-job">How can I balance this course with my day job?</h2>
+<p>Managing this course alongside your regular work can be challenging. Many students find success by aligning the course with existing work projects, allowing them to apply what they're learning directly to their professional tasks. If you don't have a relevant project, the course notebooks provide boilerplate code you can use as a starting point. Remember that Week 3 has no notebooks, which gives you a buffer to catch up if needed. The course is designed with some flexibility, so you can prioritize the most relevant content for your needs.</p>
+<h2 id="what-should-i-do-if-i-dont-have-a-specific-project-to-apply-the-course-material-to">What should I do if I don't have a specific project to apply the course material to?</h2>
+<p>You can start with the boilerplate code provided in the notebooks. These are designed to demonstrate key concepts even without a specific application in mind. Additionally, consider looking for datasets from colleagues or within your organization that might benefit from the techniques taught in the course. Many people have conversation data or other information they're not sure how to leverage effectively. The course materials are structured to help you experiment with these techniques regardless of whether you have a specific project.</p>
+<h2 id="how-are-the-course-materials-structured">How are the course materials structured?</h2>
+<p>The course includes lecture videos, notebooks with code examples, office hours, and summary notes. Each set of notebooks focuses on a specific theme or concept, such as synthetic data generation or evaluation metrics. The notebooks are designed to be practical and applicable to real-world scenarios. Week 3 has no notebooks, providing a buffer period. Weeks 4-5 focus on data analysis processes and building specific tools based on identified needs. The course also includes guest lectures from industry experts to provide different perspectives.</p>
+<h2 id="where-can-i-find-the-summary-notes-and-faqs">Where can I find the summary notes and FAQs?</h2>
+<p>Currently, summary notes are posted in Slack, but they will eventually be available in Notion or another website format. Many students find these notes helpful as they allow them to focus more on understanding the content rather than taking extensive notes during lectures.</p>
+<h2 id="whats-the-instructors-approach-to-evaluating-rag-applications">What's the instructor's approach to evaluating RAG applications?</h2>
+<p>The instructor emphasizes a data-driven approach to evaluations rather than relying on subjective assessments. This includes measuring precision and recall for different numbers of retrieved documents, understanding how models respond to ambiguous information, and using metrics to make informed decisions about system design. The instructor discourages using adjectives to describe performance and instead encourages teams to use numbers, plots, and quantifiable metrics to evaluate their systems.</p>
+<h2 id="how-can-small-language-models-be-used-in-a-rag-architecture">How can small language models be used in a RAG architecture?</h2>
+<p>Small language models can serve several purposes in a RAG architecture. They can be used to quickly rewrite queries, breaking them down into more structured formats. They can help build better embedding spaces or re-rankers that are fine-tuned for specific tasks. Small language models generally offer lower latency with less world knowledge, making them suitable for specific components of a RAG system where full context understanding isn't necessary.</p>
+<h2 id="what-are-the-most-valuable-insights-from-the-course-so-far">What are the most valuable insights from the course so far?</h2>
+<p>Many students highlight the "sandwich view" of RAG systems (where RAG is presented as a recommendation system between LLM layers) as particularly insightful. The course provides practical "golden nuggets" in each session, including frameworks for thinking about RAG applications, evaluation techniques, and implementation strategies. The balance between technical details and storytelling across different guest lectures has been valuable for understanding both theoretical concepts and practical applications.</p>
+<h2 id="whats-the-instructors-perspective-on-building-uiux-for-llm-applications">What's the instructor's perspective on building UI/UX for LLM applications?</h2>
+<p>The instructor suggests focusing on understanding concepts rather than specific UI technologies. Command-line tools can be highly effective for many applications, and modern LLMs are excellent at generating JavaScript and other frontend code when needed. Understanding server-sent events and streaming is particularly important for creating responsive LLM applications. The instructor emphasizes that streaming is essential for good user experience - applications without streaming capabilities are generally considered subpar in the current landscape.</p>
+<h2 id="how-does-the-instructor-approach-business-value-in-ai-projects">How does the instructor approach business value in AI projects?</h2>
+<p>The instructor focuses on identifying business value through data analysis rather than just improving AI capabilities. This involves analyzing user interactions, identifying patterns, and determining whether issues are related to inventory (missing data) or capabilities (features the system can't perform). Often, the most valuable insights come from discovering simple business improvements that don't require complex AI solutions. The instructor recommends working closely with subject matter experts to understand the real business needs behind technical requirements.</p>
+<h2 id="will-there-be-opportunities-to-continue-learning-after-the-course-ends">Will there be opportunities to continue learning after the course ends?</h2>
+<p>Yes, students will still have access to Slack after the 6-week course concludes, and the instructor encourages continued questions. Additionally, students can join future cohorts of the course if they need more time to absorb the material. Many students find they benefit from going through the content multiple times as the field evolves.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../cohort2/week6-summary/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Week 6">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Week 6
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../week-1-2/" class="md-footer__link md-footer__link--next" aria-label="Next: Session 2">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Session 2
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jxnlco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+    
+  </body>
+</html>

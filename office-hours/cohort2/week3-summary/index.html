@@ -1,0 +1,2611 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://567-labs.github.io/rag/office-hours/cohort2/week3-summary/">
+      
+      
+        <link rel="prev" href="../week2-summary/">
+      
+      
+        <link rel="next" href="../week4-summary/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Week 3 - The RAG Flywheel</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rag-office-hours-qa-summary" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="The RAG Flywheel" class="md-header__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The RAG Flywheel
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Week 3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../workshops/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Office Hours
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../talks/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Talks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../misc/learning-goals/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="The RAG Flywheel" class="md-nav__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    The RAG Flywheel
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../workshops/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Workshops
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Workshops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1: Starting the Flywheel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2: From Evaluation to Enhancement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Design Principles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter3-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Feedback Collection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter3-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Iterative Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter4-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4: Topic Modeling - Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter4-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4: Topic Modeling - Prioritization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter5-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Understanding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter5-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Implementation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter6-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Routing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter6-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/chapter6-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Office Hours
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Office Hours
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cohort 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cohort 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week1-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week2-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#when-gathering-negative-feedback-from-documents-not-being-found-how-do-we-use-and-validate-the-reliability-of-an-llm-labeler" class="md-nav__link">
+    <span class="md-ellipsis">
+      When gathering negative feedback from documents not being found, how do we use and validate the reliability of an LLM labeler?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-the-segmentation-topic-we-talked-about-inventories-and-capabilities-is-it-realistic-to-do-this-automatically-or-is-it-something-we-have-to-do-manually" class="md-nav__link">
+    <span class="md-ellipsis">
+      In the segmentation topic, we talked about inventories and capabilities. Is it realistic to do this automatically or is it something we have to do manually?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#can-you-elaborate-on-your-view-on-rag-versus-recommendations-how-would-you-approach-the-use-case-of-friend-suggestions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can you elaborate on your view on RAG versus recommendations? How would you approach the use case of friend suggestions?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-the-4th-lecture-you-mentioned-the-formula-expected-value-as-impact-times-the-number-of-queries-times-the-probability-of-success-can-you-explain-more-what-you-mean-by-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      In the 4th lecture you mentioned the formula expected value as impact times the number of queries, times the probability of success. Can you explain more what you mean by impact?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-the-lifecycle-of-feedback-if-we-improve-the-ui-old-labels-might-be-out-of-date-and-new-data-will-be-labeled-differently-what-is-good-to-keep-versus-letting-go" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is the lifecycle of feedback? If we improve the UI, old labels might be out of date and new data will be labeled differently. What is good to keep versus letting go?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-it-interesting-to-collect-feedback-not-only-as-thumbs-up-or-thumbs-down-but-let-users-explain-in-text-what-is-wrong-with-the-answer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Is it interesting to collect feedback not only as thumbs up or thumbs down, but let users explain in text what is wrong with the answer?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-handle-recall-when-dealing-with-large-knowledge-bases-with-a-messy-topology-near-identical-documents-overlapping-content-hub-pages-etc" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you handle recall when dealing with large knowledge bases with a messy topology (near-identical documents, overlapping content, hub pages, etc.)?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#have-you-compared-the-effectiveness-of-classical-and-agent-based-rag-systems-with-capabilities-offered-by-models-like-gemini-flashlight-for-real-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Have you compared the effectiveness of classical and agent-based RAG systems with capabilities offered by models like Gemini Flashlight for real projects?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-the-moat-for-companies-building-rag-systems-when-so-much-is-being-open-sourced" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the moat for companies building RAG systems when so much is being open-sourced?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-the-ux-lectures-you-mentioned-that-explicit-copy-instead-of-just-thumbs-updown-can-impact-whether-people-give-feedback-have-you-observed-an-impact-based-on-what-the-copy-actually-says" class="md-nav__link">
+    <span class="md-ellipsis">
+      In the UX lectures, you mentioned that explicit copy instead of just thumbs up/down can impact whether people give feedback. Have you observed an impact based on what the copy actually says?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-we-extract-value-from-templatepre-filled-questions-in-chatbots" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can we extract value from template/pre-filled questions in chatbots?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-handle-business-knowledge-translation-like-acronyms-in-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you handle business knowledge translation (like acronyms) in RAG?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-the-best-practices-for-chunking-in-rag-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the best practices for chunking in RAG systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#are-xml-tags-still-best-practice-for-prompting-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Are XML tags still best practice for prompting models?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-handle-tokenization-concerns-with-things-like-wallet-addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you handle tokenization concerns with things like wallet addresses?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#should-we-transform-content-from-narrative-format-to-qa-format-for-better-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      Should we transform content from narrative format to Q&amp;A format for better retrieval?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#can-you-recommend-any-open-source-libraries-or-tools-for-streaming-uis-and-interstitials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can you recommend any open source libraries or tools for streaming UIs and interstitials?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-arent-data-labeling-companies-a-bigger-focus-in-current-ai-discussions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why aren't data labeling companies a bigger focus in current AI discussions?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-see-re-rankers-evolving-beyond-just-measuring-relevancy" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you see re-rankers evolving beyond just measuring relevancy?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways-and-additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Takeaways and Additional Resources
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Takeaways and Additional Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Takeaways:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Resources:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week4-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week5-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week6-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cohort 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Cohort 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_1" id="__nav_3_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Week 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort3/week-1-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort3/week-1-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_2" id="__nav_3_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Week 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort3/week-2-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort3/week-2-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_3" id="__nav_3_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Week 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort3/week-3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_4" id="__nav_3_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Week 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort3/week-4-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cohort3/week-4-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../talks/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Talks
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Talks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../talks/rag-antipatterns-skylar-payne/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Anti-patterns in the Wild
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../talks/semantic-search-exa-will-bryk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Search Over the Web with Exa
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../talks/embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Understanding Embedding Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../talks/online-evals-production-monitoring-ben-sidhant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Online Evals and Production Monitoring
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../talks/rag-without-apis-browser-michael-struwig/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Without APIs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/learning-goals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learning Goals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/what-i-want-you-to-takeaway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Key Takeaways
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/landingpage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Landing Page
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#when-gathering-negative-feedback-from-documents-not-being-found-how-do-we-use-and-validate-the-reliability-of-an-llm-labeler" class="md-nav__link">
+    <span class="md-ellipsis">
+      When gathering negative feedback from documents not being found, how do we use and validate the reliability of an LLM labeler?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-the-segmentation-topic-we-talked-about-inventories-and-capabilities-is-it-realistic-to-do-this-automatically-or-is-it-something-we-have-to-do-manually" class="md-nav__link">
+    <span class="md-ellipsis">
+      In the segmentation topic, we talked about inventories and capabilities. Is it realistic to do this automatically or is it something we have to do manually?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#can-you-elaborate-on-your-view-on-rag-versus-recommendations-how-would-you-approach-the-use-case-of-friend-suggestions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can you elaborate on your view on RAG versus recommendations? How would you approach the use case of friend suggestions?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-the-4th-lecture-you-mentioned-the-formula-expected-value-as-impact-times-the-number-of-queries-times-the-probability-of-success-can-you-explain-more-what-you-mean-by-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      In the 4th lecture you mentioned the formula expected value as impact times the number of queries, times the probability of success. Can you explain more what you mean by impact?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-the-lifecycle-of-feedback-if-we-improve-the-ui-old-labels-might-be-out-of-date-and-new-data-will-be-labeled-differently-what-is-good-to-keep-versus-letting-go" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is the lifecycle of feedback? If we improve the UI, old labels might be out of date and new data will be labeled differently. What is good to keep versus letting go?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-it-interesting-to-collect-feedback-not-only-as-thumbs-up-or-thumbs-down-but-let-users-explain-in-text-what-is-wrong-with-the-answer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Is it interesting to collect feedback not only as thumbs up or thumbs down, but let users explain in text what is wrong with the answer?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-handle-recall-when-dealing-with-large-knowledge-bases-with-a-messy-topology-near-identical-documents-overlapping-content-hub-pages-etc" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you handle recall when dealing with large knowledge bases with a messy topology (near-identical documents, overlapping content, hub pages, etc.)?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#have-you-compared-the-effectiveness-of-classical-and-agent-based-rag-systems-with-capabilities-offered-by-models-like-gemini-flashlight-for-real-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Have you compared the effectiveness of classical and agent-based RAG systems with capabilities offered by models like Gemini Flashlight for real projects?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-the-moat-for-companies-building-rag-systems-when-so-much-is-being-open-sourced" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the moat for companies building RAG systems when so much is being open-sourced?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-the-ux-lectures-you-mentioned-that-explicit-copy-instead-of-just-thumbs-updown-can-impact-whether-people-give-feedback-have-you-observed-an-impact-based-on-what-the-copy-actually-says" class="md-nav__link">
+    <span class="md-ellipsis">
+      In the UX lectures, you mentioned that explicit copy instead of just thumbs up/down can impact whether people give feedback. Have you observed an impact based on what the copy actually says?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-we-extract-value-from-templatepre-filled-questions-in-chatbots" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can we extract value from template/pre-filled questions in chatbots?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-handle-business-knowledge-translation-like-acronyms-in-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you handle business knowledge translation (like acronyms) in RAG?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-the-best-practices-for-chunking-in-rag-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the best practices for chunking in RAG systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#are-xml-tags-still-best-practice-for-prompting-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Are XML tags still best practice for prompting models?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-handle-tokenization-concerns-with-things-like-wallet-addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you handle tokenization concerns with things like wallet addresses?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#should-we-transform-content-from-narrative-format-to-qa-format-for-better-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      Should we transform content from narrative format to Q&amp;A format for better retrieval?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#can-you-recommend-any-open-source-libraries-or-tools-for-streaming-uis-and-interstitials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can you recommend any open source libraries or tools for streaming UIs and interstitials?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-arent-data-labeling-companies-a-bigger-focus-in-current-ai-discussions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why aren't data labeling companies a bigger focus in current AI discussions?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-see-re-rankers-evolving-beyond-just-measuring-relevancy" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you see re-rankers evolving beyond just measuring relevancy?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways-and-additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Takeaways and Additional Resources
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Takeaways and Additional Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Takeaways:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Resources:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="rag-office-hours-qa-summary">RAG Office Hours Q&amp;A Summary</h1>
+<h2 id="when-gathering-negative-feedback-from-documents-not-being-found-how-do-we-use-and-validate-the-reliability-of-an-llm-labeler">When gathering negative feedback from documents not being found, how do we use and validate the reliability of an LLM labeler?</h2>
+<p>When it comes to getting negative feedback that documents were not found, I'd assume we're running into issues around low recall. This might manifest as low re-ranker scores or low cosine similarities with embedding models.</p>
+<p>What I would do is identify whether the language model itself can identify if documents are irrelevant. We'll need some manual labeling step. With our clients, we generally find questions that emit flags - maybe you tell a language model to always say "we couldn't find relevant documents" when it can't find anything.</p>
+<p>You can then label that as traffic is being processed. We might sample 1% of traffic, and some percentage of that might have that message. That's one level of detection.</p>
+<p>The second level would be building a streamlit UI where we can manually label whether we agree with the irrelevancy assessment. The hard task is determining if any of 10 text chunks are relevant to a question. The easier task is determining if a single text chunk is relevant to a question. That's easy for a human to do and also pretty easy to prompt for.</p>
+<p>This approach helps ensure the judgment we're using is aligned with human preferences. There's obviously a big difference between 60% alignment and 95% alignment, but this is a good start for figuring out whether low relevancy is causing the lack of documents.</p>
+<h2 id="in-the-segmentation-topic-we-talked-about-inventories-and-capabilities-is-it-realistic-to-do-this-automatically-or-is-it-something-we-have-to-do-manually">In the segmentation topic, we talked about inventories and capabilities. Is it realistic to do this automatically or is it something we have to do manually?</h2>
+<p>I would generally recommend doing this manually, because it's so important for what your business is trying to do that you need to actually think about these problems.</p>
+<p>We've delegated so much thinking to language models. If we just think a bit harder about our problem, we often find very specific issues.</p>
+<p>For example, with a client doing tax law resolution, the first 20 pages were massive articles, and then pages 30-40 were the exemptions to those articles. We spent maybe $20 of LLM calls to rewrite the documents so that the exemptions were close to the relevant articles. Now we have a single page/chunk covering an article and all its exemptions, with references to related articles.</p>
+<p>We run that job once a week when new tax laws come in. Since we only have about 45 documents we really care about, I'd rather spend the money upfront to get the process right rather than waste customer time requerying data.</p>
+<p>The real goal isn't to get a number right - it's to figure out what to do next. The AI can't tell us that. Your job isn't to automate this process; you're being paid to figure out what the next intervention should be.</p>
+<h2 id="can-you-elaborate-on-your-view-on-rag-versus-recommendations-how-would-you-approach-the-use-case-of-friend-suggestions">Can you elaborate on your view on RAG versus recommendations? How would you approach the use case of friend suggestions?</h2>
+<p>When you build a recommendation system, there are several steps:</p>
+<ol>
+<li><strong>Sourcing</strong> - What inventory can I show my customer? In the friends case, this would be all users on the platform.</li>
+<li><strong>Query</strong> - Either your user ID or a question embedding.</li>
+<li><strong>Scoring</strong> - For simple RAG, this is cosine distance of embeddings and maybe re-ranker distance. For friends, it might include mutual connections, location, etc.</li>
+<li><strong>Filtering</strong> - In RAG this might be top 10 results or embeddings greater than a threshold. For friends, filters might include having at least 3 mutual friends, same zip code, etc.</li>
+<li><strong>Rendering</strong> the results</li>
+</ol>
+<p>When users take actions (adding/removing friends, opening files, deleting citations), you collect feedback to improve your system. When a language model sees 10 documents but only cites 3, those 3 are likely more relevant. You can use that signal to improve your re-ranker or embedding model.</p>
+<p>If the user deletes one of those citations, you have a triplet: documents the model thinks are important, plus a negative example. When training, these need to be adjusted accordingly.</p>
+<p>It's like different levels of signals in e-commerce: liking a product is a weaker signal than adding it to cart, which is weaker than buying it, which is different from buying and returning it. That's your portfolio of data collected over time.</p>
+<h2 id="in-the-4th-lecture-you-mentioned-the-formula-expected-value-as-impact-times-the-number-of-queries-times-the-probability-of-success-can-you-explain-more-what-you-mean-by-impact">In the 4th lecture you mentioned the formula expected value as impact times the number of queries, times the probability of success. Can you explain more what you mean by impact?</h2>
+<p>Impact here is a general term that the Facebook folks like to use. I generally think of impact as economic value.</p>
+<p>In the construction example I often mention, about 70% of questions were simple things like "Where do I show up today?" or "How thick is the drywall?" These weren't individually valuable.</p>
+<p>But we also found a set of questions that were super valuable - around scheduling and figuring out if contracts were signed. These were only about 10% of queries but extremely important. When we asked our clients, they said that preventing one missed contract could save $60,000 in delays.</p>
+<p>This told us these queries had high economic value, even though they were less frequent. So we invested resources in making sure we could query contracts and schedules to answer that segment.</p>
+<p>Impact is about how valuable a problem is and how much it's worth, rather than just how frequently it occurs. Every metric you track should enable you to take follow-up action afterward - it's not just about knowing the number.</p>
+<h2 id="what-is-the-lifecycle-of-feedback-if-we-improve-the-ui-old-labels-might-be-out-of-date-and-new-data-will-be-labeled-differently-what-is-good-to-keep-versus-letting-go">What is the lifecycle of feedback? If we improve the UI, old labels might be out of date and new data will be labeled differently. What is good to keep versus letting go?</h2>
+<p>This depends on how much data we have and the blend of that data. If we had a million labels before changing the UI, I'd push hard to keep the new UI somewhat similar to ensure the data we collect remains comparable.</p>
+<p>If we're really changing things dramatically, there are modeling techniques to control for this. You might pre-train on the old data for your embedding model, then use that as a foundation for training a newer model. You can also control for the source of data in your modeling.</p>
+<p>You can have different evaluations to verify performance on the old data versus the new data, then choose how to weight those scores. Generally, I'd try to keep things as generic as possible - you don't want a dataset that's too specific and won't generalize.</p>
+<p>For embedding models specifically, I'd typically include everything, as more data is generally better.</p>
+<h2 id="is-it-interesting-to-collect-feedback-not-only-as-thumbs-up-or-thumbs-down-but-let-users-explain-in-text-what-is-wrong-with-the-answer">Is it interesting to collect feedback not only as thumbs up or thumbs down, but let users explain in text what is wrong with the answer?</h2>
+<p>Yes and no. Thumbs up/down is super useful, and it would be hard to convince me not to use these binary labels. Going to a 5-star scale creates issues where you don't know if users consider 3 or 4 stars to be "average."</p>
+<p>With free text feedback, you'll face two issues:</p>
+<ol>
+<li>Probably less than 10% of users will give a text response. If only 1% of users leave feedback at all, and only 10% of those leave text, you get very little text data, and you don't know how biased that sample is.</li>
+<li>You likely won't be able to read all the free text, so you'll build clustering models to analyze the feedback - in which case, you might as well just have 5 buttons for the most common issues (too slow, answer too long, format incorrect, etc.).</li>
+</ol>
+<p>It's about maximizing data per label. Having buttons for common issues will get you more useful data than open text fields.</p>
+<p>That said, free text can help you figure out what those buttons should be. For enterprise situations, we include the default buttons plus free text, and when users enter text, we post it to Slack where the team and customer can see it. This shows users their feedback is seen, making them more likely to provide it.</p>
+<p>But think about how often you've thumbs-downed a ChatGPT response, let alone written why. Most users simply won't take the time.</p>
+<h2 id="how-do-you-handle-recall-when-dealing-with-large-knowledge-bases-with-a-messy-topology-near-identical-documents-overlapping-content-hub-pages-etc">How do you handle recall when dealing with large knowledge bases with a messy topology (near-identical documents, overlapping content, hub pages, etc.)?</h2>
+<p>This is challenging, especially with something like a large software product knowledge base (44,000+ documents) where many people have been adding content, creating overlap and interstitial hub pages.</p>
+<p>One approach is to build a system where if you retrieve a subset of pages, you can reference the connections. Similar to how e-commerce sites show "people who viewed this also viewed" suggestions.</p>
+<p>As context windows get larger, you could implement a system where if you pull in a page that references other documents, you traverse one level and bring in those referenced documents too.</p>
+<p>You could also do clustering and summarization. If your repository is very valuable, maybe it costs 10 cents to process a page, but with a budget of 50 cents per query, you could chunk everything, cluster similar content, and then summarize the clusters. This essentially rewrites the knowledge base in a less duplicated way.</p>
+<p>The more fundamental question is about how you define relevance. Do you have a policy document on what makes a document relevant? Google has a detailed document on what makes a good search result. You need to establish and document your criteria so everyone has the same understanding.</p>
+<h2 id="have-you-compared-the-effectiveness-of-classical-and-agent-based-rag-systems-with-capabilities-offered-by-models-like-gemini-flashlight-for-real-projects">Have you compared the effectiveness of classical and agent-based RAG systems with capabilities offered by models like Gemini Flashlight for real projects?</h2>
+<p>I prefer not to think about systems as "classical" versus "agent-based" RAG systems. Most RAG systems are essentially function calling in a for-loop or while-loop.</p>
+<p>The goal is to provide the language model with two things:</p>
+<ol>
+<li>Good functions</li>
+<li>Good indices for each function to query that are well-defined</li>
+</ol>
+<p>You want to ensure each index has good recall, each function is useful for the system, and you have good prompts to help the model choose the right function.</p>
+<p>For real projects, it's not just about question answering but also about tool rendering. Some tool calls define UX elements - like a fitness company chatbot that renders modals for booking calendar events and following up with payment links. This becomes the economically valuable work - not just answering questions but helping the company make money.</p>
+<h2 id="whats-the-moat-for-companies-building-rag-systems-when-so-much-is-being-open-sourced">What's the moat for companies building RAG systems when so much is being open-sourced?</h2>
+<p>I generally think the moat is your labeled data. There probably isn't much difference between various newsfeed algorithms, but the moat is the inventory - the content that's already out there.</p>
+<p>If you have relationships in a specific sector like construction and can be the first to build connectors and bring in that data, that's an easy moat (though not as defensible).</p>
+<p>After that, it's about analyzing that data to understand what questions people are asking and building specialized tools for those needs. This is software that LLMs won't replace anytime soon.</p>
+<p>Then it's understanding what relevance actually means - fine-tuning re-ranking models, training custom embedding models. These are aspects that LLM companies won't compete against.</p>
+<p>The moat becomes your data - both relevancy data and access to the content itself - plus your understanding of customer needs and workflows. The more you understand what customers are truly trying to do (beyond just answering questions about PDFs), the better your product will be.</p>
+<h2 id="in-the-ux-lectures-you-mentioned-that-explicit-copy-instead-of-just-thumbs-updown-can-impact-whether-people-give-feedback-have-you-observed-an-impact-based-on-what-the-copy-actually-says">In the UX lectures, you mentioned that explicit copy instead of just thumbs up/down can impact whether people give feedback. Have you observed an impact based on what the copy actually says?</h2>
+<p>Absolutely. At Zapier, they asked "How did we do?" which was a very vague question that didn't get much feedback.</p>
+<p>When we A/B tested copy, the version that got 5x more feedback was "Did we answer your question?" This was much more specific and focused on the core value proposition, not about latency or formatting. If users said no, we'd follow up with "Do you have any other feedback? Was it too slow? Was the formatting wrong?" since we knew those were common failure modes.</p>
+<p>This not only got more feedback but also correlated better with customer satisfaction. The previous vague question made it hard to identify what was a good or bad answer - some might say we did poorly because we answered correctly but too slowly.</p>
+<p>At Raycast, our copy now is "Did we take the correct actions?" since we're showing function calls like "Set a 1-hour lunch on my calendar and update my Slack status." We show users the sequence of function calls and ask if we're taking the correct actions.</p>
+<p>The key is that every metric you track should lead to a follow-up action. It's not just about knowing the number.</p>
+<h2 id="how-can-we-extract-value-from-templatepre-filled-questions-in-chatbots">How can we extract value from template/pre-filled questions in chatbots?</h2>
+<p>For a situation like a lawn care subscription company's chatbot where 70% of conversations start with template questions, I'd be curious to understand what the follow-up questions look like. This helps determine if we could create complete guides for common paths.</p>
+<p>If people start with a certain template question, do their follow-ups cluster in a specific domain? This can help you understand if your example questions are actually helpful or if you should be writing better content to answer these questions more comprehensively.</p>
+<p>One approach is to use a language model to summarize conversations, identifying what topics come after the template questions. This gives you insight into actual user intents that might be hidden behind that initial templated interaction.</p>
+<p>You should analyze which topics are economically important by looking at metrics like thumbs up/down data. For instance, we found that many negative ratings come from users who want to talk to a real person but can't easily figure out how to do that.</p>
+<p>It's also valuable to analyze what products you should recommend based on question patterns. If you're seeing thumbs-down ratings, analyze whether it's because you don't have the right content in your knowledge base, or if there are capabilities you're missing. Often, the solution might be as simple as hiring someone to write targeted content for frequently asked questions.</p>
+<h2 id="how-do-you-handle-business-knowledge-translation-like-acronyms-in-rag">How do you handle business knowledge translation (like acronyms) in RAG?</h2>
+<p>When you have documents that spell everything out formally but users want to query using acronyms (like "What's the deal with ABC?"), I'd generally just put this translation knowledge in the prompt unless you have an enormous number of acronyms.</p>
+<p>If you have fewer than 80 acronyms or terms that need translation, putting them directly in the prompt is the simplest and most effective approach. You only need to explore more complex approaches when you have evidence that this simple solution isn't working.</p>
+<p>You can also create synthetic data to test how well your system handles these acronym queries, which is usually straightforward to generate.</p>
+<h2 id="what-are-the-best-practices-for-chunking-in-rag-systems">What are the best practices for chunking in RAG systems?</h2>
+<p>The general advice from companies like OpenAI and Anthropic is to start with around 800 tokens with 50% overlap using a sliding window approach. That should be enough to get you started.</p>
+<p>After that initial setup, the real improvements come from understanding what kinds of questions are being asked and what the answers look like. If most questions can be answered by a single document, focus on improving document search and relevancy rather than chunking. If answers typically come from small paragraphs across many documents, then experiment more with chunking.</p>
+<p>We've spent weeks doing chunking experiments and often haven't seen significant improvements. It's rarely the case that changing from 500 to 800 tokens suddenly makes everything work better - that would suggest most answers require just a few more sentences in the same document, which is usually not the issue.</p>
+<p>What's been more helpful is looking at the questions and working backward: What are people trying to do, and what design assumptions can I make to better serve that? For instance, if users are searching for blueprints, maybe summarizing blueprints first would help, or perhaps including text above and below the blueprint, or even applying OCR and building a bounding box model to count rooms.</p>
+<p>Solve specific problems where you can justify that "this is 20% of our questions" - if you make those 20% twice as good, you've improved overall performance by 8%, which is meaningful.</p>
+<h2 id="are-xml-tags-still-best-practice-for-prompting-models">Are XML tags still best practice for prompting models?</h2>
+<p>Yes, we've learned that even the GPT-4 models now perform better with XML formatting. We have internal evaluations from Zenbase showing that XML is good not just for Anthropic models but also for ChatGPT models.</p>
+<p>The second thing we've found is that you generally want to have all the long context information at the beginning of the prompt - first the goal, then all the documents, with the actual questions at the bottom.</p>
+<p>Claude's prompt rewriter has been very helpful for showing how to write better prompts. I almost always run my prompts through it first before setting up evaluation suites, as it's a free way to get useful feedback.</p>
+<h2 id="how-do-you-handle-tokenization-concerns-with-things-like-wallet-addresses">How do you handle tokenization concerns with things like wallet addresses?</h2>
+<p>When dealing with data that contains wallet addresses (which are 52 characters of what looks like nonsense), I'd worry less about the tokenization itself and focus more on validation.</p>
+<p>For example, in situations where we use UUIDs, we reference content with a UUID, and we tell the model to cite everything. We then have an allowlist of valid UUIDs from our data, and we check that any UUID the model outputs exists in that allowlist.</p>
+<p>So if you have a use case where users ask about wallet IDs, focus on making sure the model can only reference valid wallet IDs from your dataset rather than worrying about how they're tokenized.</p>
+<p>These days, models aren't typically off by a few characters - they'll either get it right or completely make up new identifiers. Having logical checks in your code is more important than the tokenization strategy.</p>
+<p>You can also generate synthetic test data where you know which wallet addresses should appear in the answers and ensure there are no hallucinations.</p>
+<h2 id="should-we-transform-content-from-narrative-format-to-qa-format-for-better-retrieval">Should we transform content from narrative format to Q&amp;A format for better retrieval?</h2>
+<p>Yes, massively. This can be very beneficial, especially for a question-answering chatbot.</p>
+<p>It's already an assumption to think that everything is going to be in the form of a question. For some assistants, it might be more about conversations or past memories. If you know your use case is primarily Q&amp;A, then extracting question-answer pairs from your documents is valuable.</p>
+<p>You can build a system where when you embed a question, you retrieve the embedding of similar questions, but pull in both the question and its answer. This makes sense if your use cases are mostly Q&amp;A-based rather than narrative requests like "tell me a story."</p>
+<p>One of the big assumptions in RAG is that the embedding of a question is similar to the embedding of a relevant document, which is actually a massive assumption that doesn't always hold true.</p>
+<p>To prevent retrieving too many similar question-answer pairs (which could be redundant when getting top-K results), consider doing clustering. You could extract 10 questions per document, then cluster similar questions together and rewrite them to create a more concise, focused knowledge base.</p>
+<h2 id="can-you-recommend-any-open-source-libraries-or-tools-for-streaming-uis-and-interstitials">Can you recommend any open source libraries or tools for streaming UIs and interstitials?</h2>
+<p>I can't necessarily recommend a specific library too strongly because most companies I've worked with have built these themselves. However, if you're in the Python world, using something like FastAPI and server-side events (SSE) API is probably the simplest approach. In the slides, we give an example of what this looks like - you're basically using the yield keyword from Python generators to emit events.</p>
+<p>If you're using JavaScript and part of the Vercel/React ecosystem, I think Vercel's AI library does a great job of handling structured streaming. Other libraries like LangChain, LlamaIndex, and Instructor also support partial streaming where you can send incomplete JSON to a frontend, which can then rerender it.</p>
+<p>For interstitials, I've been impressed with what Ankur from BrainTrust has done in their playground. I've reached out to him to ask about recommendations for this.</p>
+<p>With these tools, the implementation is fairly straightforward. The bigger challenge is often designing a UX that communicates progress effectively. Notion's approach is a good example - when you enter a search query, it shows "making a search request," rewrites the request, then renders documents one by one, and finally shows steps like "carefully reading documents," "thinking," and "formulating an answer." This is really just buying time while showing progress, but it dramatically improves the perceived responsiveness.</p>
+<h2 id="why-arent-data-labeling-companies-a-bigger-focus-in-current-ai-discussions">Why aren't data labeling companies a bigger focus in current AI discussions?</h2>
+<p>This is an interesting historical shift. Around 2018, data labeling was a huge focus because the biggest models were vision models that required massive amounts of labeled data. Vision models aren't very data-efficient - training ImageNet required labeling a million JPEGs. Companies like Scale AI won by excelling at tasks like self-driving car LiDAR labeling.</p>
+<p>As we've moved to LLMs, two things have changed:</p>
+<ol>
+<li>The big winners (like Scale AI) have already established themselves and now focus on large contracts. Smaller players either grew or struggled to find viable business models on smaller contracts.</li>
+<li>LLMs are much more data-efficient.</li>
+</ol>
+<p>The data efficiency of modern LLMs is remarkable. You're better off having 1,000 very high-quality labels to fine-tune a model than 10,000 mediocre labels. This means that instead of outsourcing labeling work, it often makes more sense to have subject matter experts do a one-month project to create the data you need.</p>
+<p>We're so sample-efficient now that offshore labeling doesn't make economic sense for many use cases, especially when LLMs have been shown to match or exceed the quality of offshore labeling for many tasks. If you have specific legal workflows, you're better off asking the lawyer on your team to do the labeling.</p>
+<p>The real challenge now is: how do you find people who are smarter than GPT-4 to label data to train the next generation of models? That hiring problem is different from the traditional labeling company approach.</p>
+<h2 id="how-do-you-see-re-rankers-evolving-beyond-just-measuring-relevancy">How do you see re-rankers evolving beyond just measuring relevancy?</h2>
+<p>Right now, most RAG systems only rank based on relevancy between a query and a document. But I think re-rankers will soon incorporate much more side information, similar to what we see in e-commerce recommendation systems.</p>
+<p>In e-commerce, we have additional rankers for things like price sensitivity, seasonality, and product age to determine if customers prefer trendy or timeless items. This hasn't really happened in the RAG world yet.</p>
+<p>As AI systems accumulate multiple years of memories about users, figuring out what information to put in context will become much more interesting. Re-rankers won't just measure string similarity between a question and document - they'll likely incorporate user features, environmental features, and contextual information to determine relevance.</p>
+<p>For example:</p>
+<ul>
+<li>Security constraints (only searching documents you have access to)</li>
+<li>Time/recency components for memories</li>
+<li>Domain authority when sources disagree</li>
+<li>User preferences based on past interactions</li>
+</ul>
+<p>Even systems like Deep Research might evolve to pull from sources you tend to agree with, or deliberately include sources that challenge your viewpoint. These personalized relevancy signals could dramatically improve RAG systems beyond simple semantic matching.</p>
+<hr />
+<h2 id="key-takeaways-and-additional-resources">Key Takeaways and Additional Resources</h2>
+<h3 id="key-takeaways">Key Takeaways:</h3>
+<ul>
+<li>Data quality is becoming more important than ever - good models make data quality the differentiator</li>
+<li>When collecting feedback, be specific with your questions to increase response rates</li>
+<li>Focus on economically valuable workflows, not just answering questions</li>
+<li>For messy knowledge bases, consider clustering and summarization approaches</li>
+<li>The moat for RAG companies is proprietary data and domain expertise, not algorithms</li>
+<li>Binary feedback (thumbs up/down) generally gets more responses than free text</li>
+<li>Always have a clear next action from any metric you collect</li>
+<li>Focus on impact (economic value) rather than just query volume</li>
+</ul>
+<h3 id="additional-resources">Additional Resources:</h3>
+<ul>
+<li>Google Search Relevancy document/policy is a good reference for defining relevance</li>
+<li>RAPTOR paper for document summarization approaches</li>
+<li>Week 3-4 content in the course covers more on these topics</li>
+<li>For prompt rewriting, Claude's prompt rewriter is highly recommended</li>
+<li>When dealing with streaming UIs and latencies, Notion's approach of showing steps visually is a good reference</li>
+<li>For friends example in recommendation systems, consider platforms like Facebook's friend recommendation system as reference implementations</li>
+</ul>
+<p><em>Note: I'll continue to add resources and notes from future office hours sessions</em></p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../week2-summary/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Week 2">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Week 2
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../week4-summary/" class="md-footer__link md-footer__link--next" aria-label="Next: Week 4">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Week 4
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jxnlco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+    
+  </body>
+</html>

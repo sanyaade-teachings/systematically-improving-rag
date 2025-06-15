@@ -1,0 +1,2228 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A novel approach to RAG systems that leverages the browser as a data layer, connecting agents to sensitive data without traditional APIs.">
+      
+      
+      
+        <link rel="canonical" href="https://567-labs.github.io/rag/talks/rag-without-apis-browser-michael-struwig/">
+      
+      
+        <link rel="prev" href="../online-evals-production-monitoring-ben-sidhant/">
+      
+      
+        <link rel="next" href="../../misc/learning-goals/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>RAG Without APIs: When Function Calling Talks to Your Browser - The RAG Flywheel</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rag-without-apis-when-function-calling-talks-to-your-browser-michael-struwig" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="The RAG Flywheel" class="md-header__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The RAG Flywheel
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              RAG Without APIs: When Function Calling Talks to Your Browser
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../workshops/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../office-hours/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Office Hours
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Talks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../misc/learning-goals/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="The RAG Flywheel" class="md-nav__button md-logo" aria-label="The RAG Flywheel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    The RAG Flywheel
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../workshops/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Workshops
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Workshops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1: Starting the Flywheel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2: From Evaluation to Enhancement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Design Principles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter3-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Feedback Collection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter3-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: UX - Iterative Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter4-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4: Topic Modeling - Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter4-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4: Topic Modeling - Prioritization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter5-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Understanding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter5-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5: Multimodal - Implementation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter6-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Routing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter6-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/chapter6-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Architecture - Improvement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../office-hours/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Office Hours
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Office Hours
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cohort 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cohort 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week1-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week2-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week3-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week4-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week5-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort2/week6-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cohort 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Cohort 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_1" id="__nav_3_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Week 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-1-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-1-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_2" id="__nav_3_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Week 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-2-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-2-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_3" id="__nav_3_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Week 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_4" id="__nav_3_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Week 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Week 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-4-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-4-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Talks
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Talks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rag-antipatterns-skylar-payne/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Anti-patterns in the Wild
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../semantic-search-exa-will-bryk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Search Over the Web with Exa
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Understanding Embedding Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../online-evals-production-monitoring-ben-sidhant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Online Evals and Production Monitoring
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Without APIs
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/learning-goals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learning Goals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/what-i-want-you-to-takeaway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Key Takeaways
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/landingpage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Landing Page
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="rag-without-apis-when-function-calling-talks-to-your-browser-michael-struwig">RAG Without APIs: When Function Calling Talks to Your Browser [Michael Struwig]</h1>
+<p>I hosted a session with Michael Struwig, Head of AI at OpenBB, who shared a fascinating approach to RAG systems that leverages the browser as a data layer. This conversation explored how financial data platforms can connect agents to sensitive data without traditional APIs, creating more secure and flexible AI-powered analysis tools.</p>
+<p><strong>Why is the browser the most natural system for connecting LLMs to data?</strong></p>
+<p>Michael's core thesis is that in the age of web apps, the browser serves as the most natural intermediary for shuffling data between systems, particularly for LLMs. While this might seem counterintuitive at first, it elegantly solves several critical problems in the financial industry.</p>
+<p>The traditional approach to RAG involves building APIs that allow agents to pull data from external services. OpenBB takes a different path - they use the browser itself as the data layer, allowing their workspace application to connect directly to data sources without requiring data to flow through backend servers.</p>
+<p>This browser-first approach provides significant advantages:</p>
+<ul>
+<li>You don't have to distribute sensitive financial data through your servers</li>
+<li>It creates excellent security since you must be on the same network as the data</li>
+<li>You can serve data directly from localhost, which is fantastic for development</li>
+<li>It eliminates legal concerns around data distribution licenses</li>
+</ul>
+<p>As Michael explained, "We don't want to distribute your data... there's a lot of legal fuzziness around what counts as distribution. If you've purchased a data license somewhere, are you allowed to distribute it in this way?"</p>
+<p><strong><em>Key Takeaway:</em></strong> Using the browser as a data layer creates a clean separation between data integration and agent functionality. Once data is integrated into the platform for human use, it's instantly available to AI agents without requiring separate API development or data redistribution.</p>
+<p><strong>How does OpenBB's agent protocol work?</strong></p>
+<p>OpenBB developed a protocol that allows agents to request data through the browser rather than directly accessing APIs. The workflow is elegantly simple:</p>
+<ol>
+<li>
+<p>The frontend application makes a query request to the agent, specifying available widgets containing data, their descriptions, and parameters</p>
+</li>
+<li>
+<p>If the agent needs specific information, it submits a function call back to the frontend</p>
+</li>
+<li>
+<p>A function calling handler running in the browser locally interprets this call, executes it, and fetches the data</p>
+</li>
+<li>
+<p>The handler responds with a follow-up query containing both the original messages and the results</p>
+</li>
+</ol>
+<p>This creates a powerful separation of concerns - you integrate data once, and your agent doesn't need to know anything about how to access it. The agent simply specifies which widget and input arguments it wants, using a unified interface.</p>
+<p>When designing this protocol, Michael emphasized several priorities:</p>
+<ul>
+<li>It must be easy to debug, test, and reason about</li>
+<li>It should use standards people are already familiar with</li>
+<li>It should avoid being overly clever or complex</li>
+</ul>
+<p>The resulting API is stateless (the agent doesn't handle state), uses REST (familiar to all web developers), and employs server-sent events (the standard for LLM communication). They've published the entire protocol on GitHub as the "OpenBB custom agent SDK."</p>
+<p>I found it particularly interesting how they've created a system with minimal primitives that handle all essential functions - yielding message chunks, reasoning steps, widget data requests, citations, and charts - all through simple yield statements in the execution loop.</p>
+<p><strong><em>Key Takeaway:</em></strong> By creating a simple, stateless protocol that runs in the browser, OpenBB allows agents to access data that might otherwise be inaccessible due to network constraints or security concerns, all while maintaining a clean separation between data integration and agent functionality.</p>
+<p><strong>What is OpenBB Workspace and how does it leverage this approach?</strong></p>
+<p>OpenBB Workspace is an AI-driven analysis tool primarily focused on financial data. It provides a dashboard interface where users can:</p>
+<ul>
+<li>View various data sources like news, watchlists, and company information</li>
+<li>Ask questions to an AI copilot that can access all visible data</li>
+<li>Create charts and visualizations based on analysis</li>
+<li>Bring in custom data backends and write custom widgets</li>
+</ul>
+<p>The platform treats the browser as a data layer, allowing users to connect to data sources running on localhost or available via their network. This creates a powerful environment where:</p>
+<ul>
+<li>Users can bring their own data without it flowing through OpenBB's servers</li>
+<li>The AI agent can access this data through the browser</li>
+<li>Everything the human can do, the agent can do as well</li>
+</ul>
+<p>Michael emphasized their philosophy that "anything the human can do, the AI must be able to do, and vice versa." This creates a unified interface where humans and AI can collaborate effectively, with the AI leveraging the same tools and data access that humans have.</p>
+<p>For enterprise customers, this approach is particularly valuable because they already have their data and don't want data provisioning - they just want a way to analyze it effectively with AI assistance.</p>
+<p><strong><em>Key Takeaway:</em></strong> OpenBB's approach creates a platform where data flows directly through the browser to both humans and AI agents, maintaining security while enabling powerful analysis capabilities without requiring data to be redistributed through third-party servers.</p>
+<p><strong>How does OpenBB handle state management and function execution?</strong></p>
+<p>One of the most interesting aspects of OpenBB's approach is how they handle function execution. Michael described two types of functions:</p>
+<ol>
+<li>
+<p>Locally executed functions - The traditional approach where functions run in the same environment where they're called</p>
+</li>
+<li>
+<p>Remotely executed functions - A novel approach where functions are executed in the browser through a mini-interpreter</p>
+</li>
+</ol>
+<p>This remote execution model allows the agent to request data from widgets in the browser without needing direct API access to the data sources. As Michael explained, "Nobody said anything about where the function call needs to be executed."</p>
+<p>For state management, OpenBB takes a stateless approach where the workspace handles all state, not the agent. This makes debugging easier, creates reproducible behavior, and simplifies testing since you can hit an endpoint with a payload and get a predictable response without managing complex state.</p>
+<p>Their architecture resembles a state machine model with a main execution loop that can drop into sub-modules for specific tasks. For example, when analyzing a PDF, the main agent might recognize it's a PDF and call a sub-agent with its own execution loop specifically designed for PDF analysis. These sub-agents can yield events back up to the main loop, which then yields them to the client.</p>
+<p><strong><em>Key Takeaway:</em></strong> By using remotely executed functions and a stateless architecture, OpenBB creates a system that's easy to reason about while enabling powerful capabilities like accessing data that would otherwise be inaccessible to remote agents.</p>
+<p><strong>How does OpenBB handle error management and system improvement?</strong></p>
+<p>When I asked about their approach to error management and system improvement, Michael's answer was refreshingly straightforward: they look at the logs.</p>
+<p>Rather than building complex systems to analyze errors, they:</p>
+<ol>
+<li>
+<p>Ensure they have good error messages that help the model try again</p>
+</li>
+<li>
+<p>Keep detailed logs of what goes wrong</p>
+</li>
+<li>
+<p>Look for patterns in those logs</p>
+</li>
+<li>
+<p>Fix the system to make errors less likely</p>
+</li>
+</ol>
+<p>As Michael put it, "It's astounding how just looking at logs... we don't do any crazy, smart stuff. We're a small team. We want to move fast, and we want our systems to be reliable. No, we just go look."</p>
+<p>He shared an example where they noticed their agent was consistently generating input arguments for a particular data source even when instructed not to. By identifying this pattern, they realized they needed to make certain input arguments optional, fixing the system rather than trying to improve the prompting.</p>
+<p>This approach reminded me of Toyota sending executives to Namibia to watch what breaks on their vehicles in harsh conditions. As Michael noted, "That is surprisingly effective. You don't need workflows. You don't need crazy tooling. Sometimes, just putting your boots on the ground and looking at what's going wrong - that's the highest information signal you can get."</p>
+<p><strong><em>Key Takeaway:</em></strong> Sometimes the simplest approaches are most effective. Rather than building complex systems to analyze errors, directly examining logs and identifying patterns can provide the highest-quality information for improving your AI systems.</p>
+<p><strong>How does OpenBB manage latency expectations?</strong></p>
+<p>For managing user expectations around latency, OpenBB employs two key strategies:</p>
+<ol>
+<li>
+<p>Providing continuous status updates - Similar to how ChatGPT shows "searching the web" indicators, OpenBB shows step-by-step reasoning as the agent works. This includes information about which widgets are being accessed, what queries are being made, and what the agent is thinking. As Michael noted, "One of the things you don't want is to have a user sit there wondering what's happening."</p>
+</li>
+<li>
+<p>Parallelizing independent tasks - When querying multiple data sources that don't need to interact, they split the work into parallel processes. For example, when summarizing 10 PDFs, they'll summarize them simultaneously and combine the results rather than processing them sequentially.</p>
+</li>
+</ol>
+<p>These approaches keep users engaged and informed while minimizing perceived latency. As Michael observed, "Users don't seem to complain. You can only read so fast, anyway."</p>
+<p>I found his comment about anthropomorphizing LLMs particularly insightful: "Sometimes I think anthropomorphizing LLMs more is a good thing, not a bad thing." Good error messages help both humans and LLMs understand what went wrong, as models are trained on human data and respond well to the same clear communication that helps people.</p>
+<p><strong>What's the future of browser-based AI?</strong></p>
+<p>Michael posed a fascinating question that he believes more people should be asking: "When will locally running language models be integrated into browsers, and when will a web standard be published that allows web apps and websites to interact with those language models in a native way?"</p>
+<p>He predicts that browsers will eventually have built-in LLMs, with standardized interfaces for web applications to leverage these models. This makes sense because:</p>
+<ul>
+<li>The browser is the most important application on most computers</li>
+<li>The web is effectively "the operating system of the world" now</li>
+<li>Most users won't install specialized AI software, but they already use browsers</li>
+<li>Edge computing for AI is becoming increasingly feasible</li>
+</ul>
+<p>When I asked whether this would happen first on desktop or mobile, Michael was confident: "Mobile, almost certainly mobile." The challenge remains monetization - how do big tech companies justify the investment in building these capabilities if they can't generate revenue from them?</p>
+<p><strong><em>Key Takeaway:</em></strong> The future may involve browsers with native LLM capabilities and standardized interfaces for web applications to leverage these models, creating a more accessible AI ecosystem that doesn't require users to install specialized software.</p>
+<p><strong>How does OpenBB approach testing and evaluation?</strong></p>
+<p>Evaluating AI systems in financial analysis presents unique challenges. Unlike code generation where you can run unit tests to verify correctness, financial analysis often involves subjective judgments without clear right or wrong answers.</p>
+<p>OpenBB takes a multi-faceted approach to evaluation:</p>
+<ol>
+<li>
+<p>User feedback through thumbs up/down ratings (though only about 1% of users provide this)</p>
+</li>
+<li>
+<p>"Radical observability" - providing full citation traces for every answer</p>
+</li>
+<li>
+<p>Direct observation of user interactions and "vibe checks"</p>
+</li>
+<li>
+<p>Detailed logging and pattern recognition</p>
+</li>
+</ol>
+<p>Michael emphasized that "vibe checks" provide surprisingly high-quality information. By examining what the agent saw and the answer it provided, they can identify and fix issues more effectively than through automated systems.</p>
+<p>For monitoring and tracing, they use two main tools:</p>
+<ul>
+<li>Magnetic (by Jack Collins) - A minimal LLM framework that provides the right abstraction level</li>
+<li>Logfire - For fast tracing with a good UI and OpenTelemetry compatibility</li>
+</ul>
+<p><strong><em>Key Takeaway:</em></strong> In domains where evaluation is subjective, combining user feedback with radical observability and direct examination of system behavior can be more effective than complex automated evaluation systems.</p>
+<p><strong>What are the limitations of frameworks like LangChain?</strong></p>
+<p>When I asked about his "God forbid" comment regarding LangChain, Michael clarified that while LangChain popularized the important concept of chaining LLM calls together, it has significant limitations:</p>
+<p>"It's heavily abstracted. It makes a lot of strong assumptions about how your business logic should work, and it ends up solving the average of a lot of problems. And the issue with solving the average of a lot of problems is... you solve no one's problem."</p>
+<p>He explained that LangChain works well for "Hello World" examples, but as soon as you need custom functionality, you find yourself fighting the framework. This has been his experience and that of many others who have tried to build production systems with it.</p>
+<p>Instead, OpenBB prefers more minimal abstractions that give them greater control over execution flow. They've found that a state machine model with execution loops works better for their needs, allowing them to drop into specialized sub-modules for specific tasks while maintaining a clean overall architecture.</p>
+<p><strong><em>Key Takeaway:</em></strong> While frameworks like LangChain can help with initial development, they often become limiting when building production systems that require custom functionality. More minimal abstractions that give you direct control over execution flow can be more effective for complex applications.</p>
+<p><strong>Final thoughts on browser-based RAG</strong></p>
+<p>The browser-as-data-layer approach that OpenBB has developed offers a compelling alternative to traditional API-based RAG systems, particularly for sensitive data in regulated industries. By leveraging the browser's existing capabilities and security model, they've created a system that:</p>
+<ol>
+<li>
+<p>Keeps data secure and compliant with licensing requirements</p>
+</li>
+<li>
+<p>Simplifies development by eliminating the need for separate API integration</p>
+</li>
+<li>
+<p>Creates a unified interface for both humans and AI</p>
+</li>
+<li>
+<p>Enables access to data that might otherwise be inaccessible to remote agents</p>
+</li>
+</ol>
+<p>This approach represents a pragmatic solution to real-world constraints around data access and security, demonstrating that sometimes the most elegant solutions come from rethinking fundamental assumptions rather than adding more complexity.</p>
+<p>As AI becomes more integrated into our daily tools, approaches like this that leverage existing infrastructure rather than building entirely new systems may prove to be the most sustainable path forward.</p>
+<hr />
+<p>FAQs:</p>
+<p><strong>What is the main concept behind OpenBB's approach to data integration?</strong></p>
+<p>The browser is the most natural system for shuffling data between different systems, particularly when working with Large Language Models (LLMs). Rather than using traditional APIs where an agent hits an endpoint to pull data from external services, OpenBB leverages the browser itself as a data layer. This approach allows you to connect data running on localhost or your local network to an agent running elsewhere, creating a more seamless integration experience.</p>
+<p><strong>What is OpenBB Workspace?</strong></p>
+<p>OpenBB Workspace is an AI-driven analysis tool primarily focused on financial data. It features a series of dashboards with various data sources including news, watchlists, company information, and price targets. The platform includes OpenBB Copilot (an AI assistant) on the right side of the application that can answer questions, produce charts, and provide full citations for its responses. Users can create custom widgets, bring in their own data backends, and perform comprehensive analysis.</p>
+<p><strong>Why did OpenBB choose a browser-based approach instead of traditional APIs?</strong></p>
+<p>There are several key reasons:</p>
+<ul>
+<li>It eliminates the need to distribute user data through OpenBB's systems, which is resource-intensive and costly</li>
+<li>It avoids legal complications around data distribution, especially with licensed financial data</li>
+<li>It removes the requirement for data to be reachable over a public network</li>
+<li>It provides excellent security since you must be on the same network as the data</li>
+<li>It allows users to serve data directly from localhost, which is ideal for development</li>
+</ul>
+<p><strong>How does the browser-based data integration work technically?</strong></p>
+<p>The system uses what OpenBB calls the "agent protocol." When a user makes a query, the front-end application sends a request to the agent with messages and information about available widgets containing data. If the agent needs specific information to answer the query, it submits a function call back to the front-end with parameters specifying which widget to access and which input arguments to use. A function-calling handler running in the browser locally interprets this call, executes it, fetches the data, and responds with the results back to the agent.</p>
+<p><strong>What are the benefits of this approach for developers?</strong></p>
+<p>This approach offers several advantages:</p>
+<ul>
+<li>You only need to integrate your data once into OpenBB Workspace</li>
+<li>The agent doesn't need to know how to access the data directly</li>
+<li>There's a clear separation of concerns between data integration and agent functionality</li>
+<li>The system works with any AI system (OpenAI, Anthropic, Google, etc.)</li>
+<li>The protocol is stateless, making it easy to debug, test, and reason about</li>
+<li>It uses familiar REST APIs and server-sent events, which are standard for web development</li>
+</ul>
+<p><strong>Is the agent protocol publicly available?</strong></p>
+<p>Yes, OpenBB has published the entire protocol on GitHub. It's called the "OpenBB Custom Agent SDK" and is pip-installable. This is the same protocol used for OpenBB's own copilot, and they encourage users to build their own agents with it.</p>
+<p><strong>What primitives does the agent protocol provide?</strong></p>
+<p>The protocol includes several simple primitives:</p>
+<ul>
+<li>Yielding message chunks to stream text back to the front-end</li>
+<li>Yielding reasoning steps to provide status updates about what the agent is doing</li>
+<li>Fetching widget data from OpenBB Workspace</li>
+<li>Producing citations for information sources</li>
+<li>Returning tables and various chart types (pie, line, bar, scatter)</li>
+</ul>
+<p><strong>How do you handle latency in complex workflows?</strong></p>
+<p>OpenBB manages user expectations around latency in two main ways:</p>
+<ol>
+<li>
+<p>Providing continuous feedback through status updates that show what the model is doing (querying widgets, writing SQL, analyzing data)</p>
+</li>
+<li>
+<p>Parallelizing tasks when possible (e.g., summarizing multiple PDFs simultaneously rather than sequentially)</p>
+</li>
+</ol>
+<p><strong>How does OpenBB approach error handling and system improvement?</strong></p>
+<p>Rather than building complex self-improving systems, OpenBB focuses on:</p>
+<ul>
+<li>Creating clear, informative error messages that help the model try again</li>
+<li>Maintaining detailed logs of errors and identifying common patterns</li>
+<li>Having team members regularly review these logs to spot trends</li>
+<li>Modifying the system to make errors less likely, rather than just changing prompts</li>
+</ul>
+<p><strong>What does OpenBB believe about the future of AI integration?</strong></p>
+<p>OpenBB believes that human plus AI will be better than either human or AI alone. Their vision focuses on collaboration rather than replacement, with AI making humans better or offloading certain tasks. They maintain that anything the human can do, the AI must be able to do, and vice versa, creating a unified interface for both. Looking further ahead, they predict that locally-running language models will eventually be integrated directly into browsers as a web standard, particularly on mobile devices.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../online-evals-production-monitoring-ben-sidhant/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Online Evals and Production Monitoring">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Online Evals and Production Monitoring
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../misc/learning-goals/" class="md-footer__link md-footer__link--next" aria-label="Next: Learning Goals">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Learning Goals
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jxnlco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+    
+  </body>
+</html>
