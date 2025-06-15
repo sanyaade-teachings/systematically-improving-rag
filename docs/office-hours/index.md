@@ -16,11 +16,19 @@ This section contains summaries and key insights from our weekly office hours se
 - [Week 3 Summary](cohort2/week3-summary.md)
 - [Week 4 Summary](cohort2/week4-summary.md)
 - [Week 5 Summary](cohort2/week5-summary.md)
+- [Week 6 Summary](cohort2/week6-summary.md)
 
 ### Cohort 3
 
 - [Week 1 Session 1](cohort3/week-1-1.md)
+- [Week 1 Session 2](cohort3/week-1-2.md)
 - [Week 2 Session 1](cohort3/week-2-1.md)
+- [Week 2 Session 2](cohort3/week-2-2.md)
+- [Week 3 Session 1](cohort3/week-3-1.md)
+- [Week 4 Session 1](cohort3/week-4-1.md)
+- [Week 4 Session 2](cohort3/week-4-2.md)
+
+### Additional Sessions
 
 Each summary captures the questions, answers, and discussions from our sessions, providing additional context and real-world examples to complement the workshop materials.
 
@@ -36,4 +44,4 @@ Office hours cover a wide range of topics including:
 - Product development approaches
 
 !!! tip "Get the Most from Office Hours"
-Review the workshop materials before office hours sessions to come prepared with specific questions and challenges from your own RAG implementations.
+    Review the workshop materials before office hours sessions to come prepared with specific questions and challenges from your own RAG implementations.

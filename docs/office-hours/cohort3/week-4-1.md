@@ -25,7 +25,7 @@ Study Notes:
 
 I hosted an office hours session focused on practical RAG implementation challenges, data management strategies, and the business aspects of AI consulting. Here are my insights on handling evaluation data, choosing the right tools, and thinking strategically about AI business models and value capture.
 
-**How should we approach evaluation data collection for RAG systems?**
+## How should we approach evaluation data collection for RAG systems?
 One participant was struggling with exporting conversation data from Langsmith for evaluation purposes. This highlights a common challenge with many tracing tools - they're often better at collecting data than exporting it in useful formats.
 
 When Langsmith or similar tools create export difficulties, I recommend two alternative approaches:
@@ -43,7 +43,7 @@ This approach gives you direct access to your data without depending on third-pa
 
 ***Key Takeaway:*** While tracing tools like Langsmith and Log Fire are valuable for telemetry, consider implementing your own database storage for evaluation data to avoid export headaches and gain more control over your analysis process.
 
-**Which models should we use for different RAG applications?**
+## Which models should we use for different RAG applications?
 When choosing between models like GPT-4, GPT-4 Turbo, or GPT-3.5, I've observed different selection patterns based on the task's importance and time constraints:
 
 For high-value applications where accuracy is critical (like financial due diligence with 44 data rooms generating reports for clients paying $200,000 annually), companies often default to GPT-4 because "if it is just 2% better, it'll be worth it."
@@ -56,7 +56,7 @@ The decision often comes down to the stakes involved rather than technical bench
 
 ***Key Takeaway:*** Model selection should be driven by business value rather than technical specifications alone. For high-stakes applications where even small improvements matter, use the most capable model available. For less critical applications, prioritize speed and cost-efficiency.
 
-**How can we enhance report generation with visual elements?**
+## How can we enhance report generation with visual elements?
 One exciting development in RAG applications is the integration of visual elements into generated reports. I'm currently working with a company on two key improvements:
 
 1. Supporting mermaid diagrams in reports to visualize relationships and processes
@@ -68,7 +68,7 @@ This approach dramatically increases the value of generated reports by combining
 
 ***Key Takeaway:*** The next frontier in RAG applications involves intelligently incorporating visual elements like diagrams and contextual images to enhance understanding and provide more comprehensive analysis.
 
-**How should we manage expectations around AI capabilities?**
+## How should we manage expectations around AI capabilities?
 Managing expectations is one of the biggest challenges when implementing AI systems, especially with clients who have either unrealistic expectations or excessive skepticism.
 
 For construction applications, one participant described their approach: "We try to explain to people that ultimately in our field, you're an architect or a structural engineer. It's your stamp on the docs. You're making the call. We're just here to provide suggestions and things to look out for."
@@ -79,7 +79,7 @@ The most effective approach is focusing on how AI can augment human decision-mak
 
 ***Key Takeaway:*** Set clear boundaries around AI capabilities by positioning your system as a decision support tool rather than an autonomous decision-maker. Be explicit about where human judgment remains essential, especially in high-stakes domains like construction or finance.
 
-**What's your vision for building open-source AI tools?**
+## What's your vision for building open-source AI tools?
 When asked about my vision for building AI tools, I explained that my approach differs from the typical venture-backed startup model:
 
 "Before it was okay, consulting can drive revenue that allows us to do open source work. The open source projects don't need to raise venture capital or figure out how to monetize, which changes the nature of the code."
@@ -92,7 +92,7 @@ This broader exposure helps me identify patterns across industries, like the com
 
 ***Key Takeaway:*** By funding open-source development through consulting and courses rather than venture capital, I can focus on building genuinely useful tools without the pressure to monetize every component, leading to more sustainable and practical solutions.
 
-**How should we think about pricing and value capture for AI systems?**
+## How should we think about pricing and value capture for AI systems?
 One of the most exciting developments I see in AI is the evolution of pricing models away from usage-based metrics toward outcome-based pricing:
 
 "I'm personally curious about pricing the work that LLMs do. A lot of systems right now are being priced on usage. I'm really excited about what it would mean to have a system that has so much accountability that you can price on the outcome it delivers."
@@ -105,7 +105,7 @@ This shift changes the fundamental question from "How much am I willing to pay t
 
 ***Key Takeaway:*** The future of AI pricing will likely move from usage-based models (tokens, API calls) to outcome-based models where vendors are compensated based on the business value they create. This will drive investment in higher-quality systems that optimize for results rather than minimizing usage.
 
-**Will AI capabilities eventually be built into platforms or remain in applications?**
+## Will AI capabilities eventually be built into platforms or remain in applications?
 When asked whether AI capabilities will eventually be absorbed into platforms rather than remaining in applications, I suggested it depends on the time horizon:
 
 "On any reasonable time horizon, it will probably just be the applications. The limiting factor is that for any specific application, we don't actually have the training data to bake this back into the model."
@@ -120,7 +120,7 @@ This is similar to how speech recognition evolved from complex phoneme-based sys
 
 ***Key Takeaway:*** While AI capabilities will eventually be absorbed into platforms, we first need to build applications that generate the necessary training data. This creates a cycle where applications serve as data collection mechanisms that eventually enable more general-purpose AI systems.
 
-**How might AI transform business models and value chains?**
+## How might AI transform business models and value chains?
 I believe AI will fundamentally change how businesses capture value, potentially shifting from software-as-a-service models to more integrated approaches:
 
 "Everything stops becoming SaaS budget and it's all headcount budget. If you absorb this entire 'dealership calls car owner to get them in the mechanic' thing, at some point you're just a sales guy."
@@ -135,7 +135,7 @@ While this approach means taking on additional complexity (like owning car mecha
 
 ***Key Takeaway:*** AI may drive a shift from software companies selling tools to companies that own entire value chains and are compensated based on business outcomes. This will require building systems that connect previously separate data streams to create end-to-end accountability.
 
-**What's the most valuable data for future AI development?**
+## What's the most valuable data for future AI development?
 The most valuable data for AI development has evolved over time:
 
 "When I started, it was physics. And then it's like, 'Well, we're running out of sensors, but the next sensor is going to cost us 10 billion dollars.' So I went to Facebook - what's every post and comment and Facebook group and the social graph?"

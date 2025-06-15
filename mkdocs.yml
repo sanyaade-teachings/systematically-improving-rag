@@ -6,6 +6,7 @@ theme:
     primary: indigo
     accent: indigo
   features:
+    - announce.dismiss
     - navigation.instant
     - navigation.tracking
     - navigation.expand
@@ -48,11 +49,32 @@ nav:
         - "Week 3": "office-hours/cohort2/week3-summary.md"
         - "Week 4": "office-hours/cohort2/week4-summary.md"
         - "Week 5": "office-hours/cohort2/week5-summary.md"
+        - "Week 6": "office-hours/cohort2/week6-summary.md"
       - "Cohort 3":
         - "Week 1":
           - "Session 1": "office-hours/cohort3/week-1-1.md"
+          - "Session 2": "office-hours/cohort3/week-1-2.md"
         - "Week 2":
-          - "Advanced RAG Strategies (C3W2S1)": "office-hours/cohort3/week-2-1.md"
+          - "Session 1": "office-hours/cohort3/week-2-1.md"
+          - "Session 2": "office-hours/cohort3/week-2-2.md"
+        - "Week 3":
+          - "Session 1": "office-hours/cohort3/week-3-1.md"
+        - "Week 4":
+          - "Session 1": "office-hours/cohort3/week-4-1.md"
+          - "Session 2": "office-hours/cohort3/week-4-2.md"
+  - "Talks":
+      - "Overview": "talks/index.md"
+      - "RAG Anti-patterns in the Wild": "talks/rag-antipatterns-skylar-payne.md"
+      - "Semantic Search Over the Web with Exa": "talks/semantic-search-exa-will-bryk.md"
+      - "Understanding Embedding Performance": "talks/embedding-performance-generative-evals-kelly-hong.md"
+      - "Online Evals and Production Monitoring": "talks/online-evals-production-monitoring-ben-sidhant.md"
+      - "RAG Without APIs": "talks/rag-without-apis-browser-michael-struwig.md"
+  - "Resources":
+      - "Learning Goals": "misc/learning-goals.md"
+      - "Key Takeaways": "misc/what-i-want-you-to-takeaway.md"
+      - "Introduction": "misc/introduction.md"
+      - "Landing Page": "misc/landingpage.md"
+
 markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences:
@@ -75,7 +97,6 @@ markdown_extensions:
 
 plugins:
   - search
-  - social
 
 extra_javascript:
   - https://unpkg.com/mermaid/dist/mermaid.min.js
@@ -90,3 +111,5 @@ extra:
   analytics:
     provider: google
     property: !ENV GOOGLE_ANALYTICS_KEY
+  announcement:
+    text: "📧 Get the complete RAG playbook! Subscribe to <strong><a href='https://improvingrag.com' target='_blank'>improvingrag.com</a></strong> for a free 6-day email sequence that summarizes everything you need to know about building production RAG systems."

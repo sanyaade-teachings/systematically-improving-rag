@@ -25,7 +25,7 @@ Study Notes:
 
 I hosted an office hours session focused on retrieval-augmented generation (RAG) implementation challenges and strategies. Participants shared their experiences with the course materials and discussed specific technical issues they're facing in their RAG projects, from processing technical documentation to handling irrelevant data in vector databases.
 
-**How can I apply course concepts to my actual project while balancing time constraints?**
+## How can I apply course concepts to my actual project while balancing time constraints?
 
 Several participants expressed the challenge of finding time to apply course concepts to their real-world projects while managing full-time jobs. One participant noted, "I have a day job with a packed schedule. I already have to make room for lectures and these conversations, which leaves very little time to apply this to my project."
 
@@ -35,7 +35,7 @@ For those who need more immediate application, consider reaching out about a con
 
 ***Key Takeaway:*** Learning and implementation often need to be sequenced rather than parallel when you have limited time. Focus on absorbing the knowledge first, then plan dedicated time for application afterward.
 
-**What happens to the community after the course ends?**
+## What happens to the community after the course ends?
 
 While we won't have structured bi-weekly meetings after the course concludes, the Slack channel will remain active, and I'll check it regularly to share resources and interesting developments. All course materials, including videos and the Maven pages, will remain accessible.
 
@@ -45,7 +45,7 @@ Many valuable interactions happen through direct messages rather than in public 
 
 ***Key Takeaway:*** The community will continue beyond the formal course structure, but its value will depend on your active participation and willingness to engage with others.
 
-**How should I handle irrelevant data being pushed into my vector database?**
+## How should I handle irrelevant data being pushed into my vector database?
 
 One participant working on an application with high-performance RAG requirements asked about the impact of irrelevant data in their vector database: "How much do I need to worry if there's irrelevant data being pushed into our vector database? Is it not that big of a deal because we have metadata filtering and good retrieval, or is it a big deal?"
 
@@ -57,7 +57,7 @@ For example, in construction documentation, you might have an email saying a wal
 
 ***Key Takeaway:*** The impact of irrelevant data depends on whether it's merely unnecessary or actively conflicting. Modern models are optimized for high recall but can be sensitive to precision issues, so conflicting information can be particularly problematic.
 
-**What metrics should I monitor for retrieval quality in production?**
+## What metrics should I monitor for retrieval quality in production?
 
 When asked about vector databases providing retrieval quality measurements, I recommended focusing on metrics you can monitor yourself rather than trusting vendor-provided metrics.
 
@@ -67,7 +67,7 @@ You might also monitor average re-ranker scores and look for changes over time o
 
 ***Key Takeaway:*** Focus on monitoring changes in metrics like average cosine distance rather than absolute values, and segment your analysis by relevant variables to identify the root causes of any shifts.
 
-**What's the best approach for processing complex technical documentation?**
+## What's the best approach for processing complex technical documentation?
 
 A participant working on processing technical manuals for question answering described their current approach: "We're leveraging the internal structure of the document, taking sections, splitting them, but including the hierarchy of titles - section, chapter, and manual title. But it feels naive to me."
 
@@ -79,7 +79,7 @@ The key insight is that traversal is still a form of retrieval. As you collect t
 
 ***Key Takeaway:*** For complex technical documentation, consider combining semantic search with structural traversal. Use the document's inherent organization to guide your retrieval process, and collect this data to improve your embedding models over time.
 
-**Should I build complex hierarchical structures for document retrieval?**
+## Should I build complex hierarchical structures for document retrieval?
 
 When discussing whether to build sophisticated graph structures for document retrieval, I emphasized the importance of getting to usable data quickly: "My metric is: whatever I build should be the thing that gets me to 10,000 rows in a CSV file."
 
@@ -89,7 +89,7 @@ The better lesson in AI development is that segmenting and solving individual pr
 
 **Key Takeaway:** Focus on collecting data and building working solutions rather than perfect architectures. The insights gained from real usage will guide your more sophisticated implementations later.
 
-**How should we think about the relationship between RAG and agents?**
+## How should we think about the relationship between RAG and agents?
 
 An interesting perspective emerged during our discussion: "RAG is like the superpower for AI right now." We explored how the boundaries between RAG and other AI capabilities are blurring, with one participant noting "grep is RAG" - highlighting that any method of retrieving context for an AI system shares fundamental similarities with RAG.
 
@@ -99,7 +99,7 @@ The core principle remains the same: "It has to be put into the context at the r
 
 Key Takeaway: The distinction between RAG and other AI augmentation approaches is increasingly blurred. The fundamental goal is getting the right information into the context at the right time, regardless of the specific retrieval mechanism.
 
-**What's the value of the office hours format for learning?**
+## What's the value of the office hours format for learning?
 
 Several participants expressed surprise at how valuable they found the office hours sessions. One noted, "I thought they wouldn't be useful, but I'm surprised with the quality of the questions being asked."
 
@@ -109,7 +109,7 @@ The conversations also help connect theoretical concepts to real-world applicati
 
 ***Key Takeaway:*** Interactive learning formats like office hours provide valuable perspectives that complement structured course content, particularly for understanding how concepts apply to diverse real-world scenarios.
 
-**How should we pace the course to maximize learning?**
+## How should we pace the course to maximize learning?
 
 When asked about the pacing of the course, I acknowledged that many participants are finding it challenging to keep up with all the material. One suggestion was to include a week in the middle with no new material to allow people to catch up, which received positive feedback.
 
@@ -119,7 +119,7 @@ The six-week format provides more depth than a one-week intensive course would a
 
 ***Key Takeaway:*** Learning complex technical skills requires finding the right balance between depth of content and time for absorption and practice. Building explicit catch-up periods into courses can help participants manage their learning journey more effectively.
 
-**What can we learn from leaked system prompts like Anthropic's Claude?**
+## What can we learn from leaked system prompts like Anthropic's Claude?
 
 One participant asked about the recently leaked Anthropic Claude prompt, which was reportedly around 30,000 tokens: "Where does it leave room for actual content to be processed? Is it even realistic or just hype?"
 
@@ -135,27 +135,27 @@ ______________________________________________________________________
 
 FAQs
 
-**How can I balance the course with my regular work schedule?**
+## How can I balance the course with my regular work schedule?
 
 Many participants find balancing the course with their day job challenging. The course requires time for watching lectures, completing exercises, and participating in discussions. Consider setting aside specific time slots in your schedule for course activities and prioritize what aspects are most valuable to you. Remember that you can always revisit materials after the course ends if you're unable to complete everything during the active weeks.
 
-**Will course materials remain available after the course ends?**
+## Will course materials remain available after the course ends?
 
 Yes, all course materials including videos, notebooks, and exercises will remain accessible after the course concludes. The Slack channel will also stay active, allowing you to continue asking questions and collaborating with other participants. While structured bi-weekly meetings won't continue, you'll still have access to all resources and can work through them at your own pace.
 
-**How active will the community be after the course ends?**
+## How active will the community be after the course ends?
 
 The community's activity level will largely depend on participant engagement. While there won't be formal scheduled sessions after the course, the instructors will check the Slack channel regularly and share relevant resources. The value you get from the community will correlate with how much you contribute to it. Many valuable connections happen through direct messages rather than in public channels.
 
-**Is there a recommended approach to catching up if I'm behind?**
+## Is there a recommended approach to catching up if I'm behind?
 
 Week 3 is intentionally lighter with only an hour-long video and no notebooks, providing an opportunity to catch up on previous materials. The course team is considering adding a "break week" in future cohorts to give participants more time to process information and complete exercises. Don't worry if you can't complete everything during the course timeframe—the materials will remain available afterward.
 
-**How can I apply what I'm learning to my actual projects?**
+## How can I apply what I'm learning to my actual projects?
 
 The most effective way to apply course concepts to your work is to start with the exercises to build foundational understanding, then gradually incorporate techniques into your projects. Some participants find it helpful to wait until after the course to fully implement what they've learned, as this allows them to focus on understanding the concepts first. For more personalized guidance, reaching out about consulting engagements after the course can be beneficial.
 
-**What's the best approach to RAG (Retrieval-Augmented Generation) for technical documentation?**
+## What's the best approach to RAG (Retrieval-Augmented Generation) for technical documentation?
 
 When working with technical documentation, consider these approaches:
 
@@ -169,10 +169,10 @@ When working with technical documentation, consider these approaches:
 
 1. Begin with a simple implementation that works for most of your documents rather than trying to solve every edge case immediately
 
-**How should I handle irrelevant data in my vector database?**
+## How should I handle irrelevant data in my vector database?
 
 The impact of irrelevant data depends on your specific model and use case. Modern language models are optimized for high recall, which can make them sensitive to low precision issues. Consider whether irrelevant data is merely noise or actually conflicting/adversarial. For conflicting information, you may need to implement authority rules (like prioritizing certain document types) or time-based weighting. Rather than trying to perfect your data filtering upfront, start with a basic implementation, collect examples, and iterate based on actual performance.
 
-**Are vector databases providing built-in retrieval quality measurements?**
+## Are vector databases providing built-in retrieval quality measurements?
 
 While some vector databases may offer metrics, it's generally better to implement your own monitoring. Focus on tracking metrics like average cosine distance of your queries and monitor how these change over time or across different user segments. This approach allows you to detect shifts in data patterns or user behavior that might affect retrieval quality. Looking at changes in these metrics is often more valuable than the absolute values themselves.

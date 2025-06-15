@@ -10,11 +10,6 @@ date: 2025
 
 # Semantic search over the web with Exa [Will Bryk]
 
-Cohort: 3
-Transcript: ../(Maven)\_\_Semantic_search_over_the_web_with_Exa_Will_Bryk.txt
-
-Study Notes:
-
 I hosted a session with Will Bryk from Exa who shared insights about the evolution of search technology, how AI is changing search requirements, and the technical challenges of building a semantic search engine. This session explores how traditional search engines like Google differ from next-generation semantic search systems designed for AI applications rather than human users.
 
 **Why is traditional search inadequate for the AI era?**
