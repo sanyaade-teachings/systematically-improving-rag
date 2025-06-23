@@ -229,9 +229,9 @@ Example output files:
 - `prepare-email-sync.ts` - CLI tool for analyzing CSV and creating sync groups
 - `stagehand.ts` - Browser automation for processing emails
 - `export-talks.ts` - Export signups grouped by talk to CSV files
-- `lib/database.ts` - Shared database module
+- `lib/database.ts` - Shared database module and types
+- `lib/utils.ts` - Common utility functions (slugify, logger, etc.)
 - `email_processing.db` - SQLite database (created automatically)
-- `email_scripts.ipynb` - Original Jupyter notebook for reference
 - `/data/` - Directory containing exported CSV files (git-ignored)
 
 ---
