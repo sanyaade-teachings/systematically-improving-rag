@@ -2,7 +2,6 @@
 // Generated at 2025-06-23T22:19:31.477Z
 
 import { Stagehand, type ConstructorParams } from "@browserbasehq/stagehand";
-import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { EmailDatabase } from './lib/database.js';
