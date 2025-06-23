@@ -4,22 +4,12 @@ import { EmailDatabase } from './lib/database.js';
 import { stringify } from 'csv-stringify/sync';
 import * as fs from 'fs';
 import * as path from 'path';
-import chalk from 'chalk';
 import { fileURLToPath } from 'url';
+import { slugify, logger } from './lib/utils.js';
 
 // Get __dirname equivalent for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-// Function to slugify talk titles
-function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, '') // Remove special characters
-    .replace(/\s+/g, '-')      // Replace spaces with hyphens
-    .replace(/-+/g, '-')       // Replace multiple hyphens with single hyphen
-    .trim();
-}
 
 class TalkExporter {
   private database: EmailDatabase;
@@ -32,27 +22,27 @@ class TalkExporter {
 
   async run() {
     try {
-      console.log(chalk.blue.bold('\n📊 Talk Export Tool\n'));
+      logger.section('📊 Talk Export Tool');
 
       // Create data directory if it doesn't exist
       if (!fs.existsSync(this.dataDir)) {
         fs.mkdirSync(this.dataDir, { recursive: true });
-        console.log(chalk.green(`✓ Created data directory: ${this.dataDir}`));
+        logger.done(`Created data directory: ${this.dataDir}`);
       }
 
       // Get all talks
       const talks = this.database.getAllTalks();
-      console.log(chalk.gray(`Found ${talks.length} talks to export\n`));
+      logger.debug(`Found ${talks.length} talks to export\n`);
 
       // Export each talk
       for (const talk of talks) {
         await this.exportTalk(talk);
       }
 
-      console.log(chalk.green.bold(`\n✅ Export complete! Files saved to: ${this.dataDir}`));
+      logger.success(`\n✅ Export complete! Files saved to: ${this.dataDir}`);
 
     } catch (error) {
-      console.error(chalk.red('Error:'), error);
+      logger.error(`Error: ${error}`);
       process.exit(1);
     } finally {
       this.database.close();
@@ -64,14 +54,14 @@ class TalkExporter {
     const filename = `${slug}.csv`;
     const filepath = path.join(this.dataDir, filename);
 
-    console.log(chalk.blue(`Exporting: ${talk.talk_title}`));
-    console.log(chalk.gray(`  → ${filename} (${talk.signup_count} signups)`));
+    logger.info(`Exporting: ${talk.talk_title}`);
+    logger.debug(`  → ${filename} (${talk.signup_count} signups)`);
 
     // Get all signups for this talk
     const signups = this.database.getSignupsForTalk(talk.talk_title);
 
     // Prepare CSV data
-    const csvData = signups.map(signup => ({
+    const csvData = signups.map((signup: any) => ({
       email: signup.email,
       talk_title: signup.talk_title,
       talk_url: signup.talk_url,
@@ -88,7 +78,7 @@ class TalkExporter {
 
     // Write to file
     fs.writeFileSync(filepath, csv);
-    console.log(chalk.green(`  ✓ Exported ${signups.length} emails`));
+    logger.done(`Exported ${signups.length} emails`);
   }
 }
 

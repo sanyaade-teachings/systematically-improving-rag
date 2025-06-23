@@ -2,7 +2,6 @@
 // Generated at 2025-06-23T22:19:31.477Z
 
 import { Stagehand, type ConstructorParams } from "@browserbasehq/stagehand";
-import { z } from 'zod';
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
@@ -22,7 +21,7 @@ const CONFIG = {
   LIMIT: process.env.LIMIT ? parseInt(process.env.LIMIT) : (process.argv.includes('--test') ? 3 : 0),
   
   // Delay between requests in milliseconds
-  DELAY_MS: process.env.DELAY_MS ? parseInt(process.env.DELAY_MS) : 2000,
+  DELAY_MS: process.env.DELAY_MS ? parseInt(process.env.DELAY_MS) : 500,
   
   // Database file path (same as prepare-email-sync uses)
   DB_PATH: path.join(__dirname, 'email_processing.db'),
@@ -149,6 +148,12 @@ async function runWorkflow() {
     
     if (emailRecords.length === 0) {
       console.log("No unprocessed email records found.");
+      
+      // Check if there are emails in signups table that haven't been processed
+      const signupsStats = database.getTalkSignupStats();
+      console.log(`\nSignups table stats: ${signupsStats.total_signups} total signups for ${signupsStats.unique_talks} talks`);
+      console.log(`Note: To process emails from the signups table, create a sync group first using 'npm run prepare-sync'`);
+      
       return { success: true, message: "All emails have been processed" };
     }
     

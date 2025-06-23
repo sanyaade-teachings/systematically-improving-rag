@@ -463,11 +463,13 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
+    if (!arg) continue;
+    
     if (arg === '--dry-run') {
       options.dryRun = true;
     } else if (arg === '--show-sample') {
-      const nextArg = args[++i];
-      options.showSample = parseInt(nextArg || '10');
+      const nextArg = args[++i] || '10';
+      options.showSample = parseInt(nextArg);
     } else if (!arg.startsWith('--')) {
       csvPath = arg;
     }

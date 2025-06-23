@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "stagehand": "tsx scripts/stagehand.ts",
-    "prepare-sync": "tsx scripts/prepare-email-sync.ts",
+    "sync": "tsx scripts/prepare-email-sync.ts",
     "export-talks": "tsx scripts/export-talks.ts"
   },
   "devDependencies": {
