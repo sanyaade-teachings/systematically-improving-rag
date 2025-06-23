@@ -9,6 +9,7 @@ dependencies = [
     "mkdocs-material[imaging]>=9.6.14",
     "mkdocs-minify-plugin>=0.8.0",
     "ruff>=0.11.13",
+    "playwright>=1.40.0",
 ]
 
 [dependency-groups]

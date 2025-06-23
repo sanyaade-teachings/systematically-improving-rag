@@ -1,0 +1,25 @@
+{
+  "name": "rag",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "stagehand": "tsx scripts/stagehand.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.1",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@browserbasehq/stagehand": "^2.3.1",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/inquirer": "^9.0.8",
+    "better-sqlite3": "^12.0.0",
+    "chalk": "^5.4.1",
+    "cli-table3": "^0.6.5",
+    "csv-parse": "^5.6.0",
+    "inquirer": "^12.6.3",
+    "playwright": "^1.53.1",
+    "zod": "^3.25.67"
+  }
+}
