@@ -36,6 +36,17 @@ export interface ProcessedEmail {
   sync_group_id?: number;
 }
 
+export interface TalkSignup {
+  id?: number;
+  email: string;
+  talk_title: string;
+  talk_url: string;
+  source: string;
+  created_at: string;
+  imported_at?: string;
+  csv_filename?: string;
+}
+
 export class EmailDatabase {
   private db: any;
   private dbPath: string;
@@ -80,15 +91,50 @@ export class EmailDatabase {
       )
     `);
 
-    // Create an index for better performance
+    // Create the signups table to track all signups from CSV imports
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS signups (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        email TEXT NOT NULL,
+        talk_title TEXT NOT NULL,
+        talk_url TEXT NOT NULL,
+        source TEXT NOT NULL,
+        created_at TEXT NOT NULL,
+        imported_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        csv_filename TEXT,
+        UNIQUE(email, talk_url)
+      )
+    `);
+
+    // Create indexes for better performance
     this.db.exec(`
       CREATE INDEX IF NOT EXISTS idx_processed_emails_sync_group 
-      ON processed_emails(sync_group_id)
+      ON processed_emails(sync_group_id);
+      
+      CREATE INDEX IF NOT EXISTS idx_signups_email 
+      ON signups(email);
+      
+      CREATE INDEX IF NOT EXISTS idx_signups_talk 
+      ON signups(talk_title);
     `);
   }
 
   // Sync group methods
   createSyncGroup(syncGroup: SyncGroup): number {
+    // Check if a sync group already exists for these talks (in either order)
+    const existing = this.db.prepare(`
+      SELECT id FROM sync_groups 
+      WHERE (talk1_title = ? AND talk2_title = ?) 
+         OR (talk1_title = ? AND talk2_title = ?)
+    `).get(
+      syncGroup.talk1_title, syncGroup.talk2_title,
+      syncGroup.talk2_title, syncGroup.talk1_title
+    );
+    
+    if (existing) {
+      throw new Error(`Sync group already exists for these talks (ID: ${existing.id})`);
+    }
+    
     const stmt = this.db.prepare(`
       INSERT INTO sync_groups 
       (talk1_title, talk1_url, talk2_title, talk2_url, overlap_count, missing_from_talk1, missing_from_talk2)
@@ -208,6 +254,120 @@ export class EmailDatabase {
     this.db.exec('DELETE FROM processed_emails');
     this.db.exec('DELETE FROM sync_groups');
     console.log('Database reset - all records cleared');
+  }
+
+  // Talk signup methods
+  importTalkSignups(signups: TalkSignup[]) {
+    const stmt = this.db.prepare(`
+      INSERT OR REPLACE INTO signups 
+      (email, talk_title, talk_url, source, created_at, csv_filename)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `);
+
+    const importMany = this.db.transaction((signups: TalkSignup[]) => {
+      let imported = 0;
+      for (const signup of signups) {
+        try {
+          stmt.run(
+            signup.email,
+            signup.talk_title,
+            signup.talk_url,
+            signup.source,
+            signup.created_at,
+            signup.csv_filename
+          );
+          imported++;
+        } catch (error: any) {
+          // Skip duplicates silently
+          if (!error.message.includes('UNIQUE constraint failed')) {
+            console.warn(`Failed to import signup: ${error}`);
+          }
+        }
+      }
+      return imported;
+    });
+
+    return importMany(signups);
+  }
+
+  getTalkSignupStats() {
+    const stats = this.db.prepare(`
+      SELECT 
+        COUNT(DISTINCT email) as unique_emails,
+        COUNT(DISTINCT talk_title) as unique_talks,
+        COUNT(*) as total_signups,
+        COUNT(DISTINCT csv_filename) as csv_files_imported
+      FROM signups
+    `).get();
+
+    const talkStats = this.db.prepare(`
+      SELECT 
+        talk_title,
+        talk_url,
+        COUNT(DISTINCT email) as signup_count
+      FROM signups
+      GROUP BY talk_title, talk_url
+      ORDER BY signup_count DESC
+    `).all();
+
+    return { ...stats, talks: talkStats };
+  }
+
+  getLatestCSVFiles(limit: number = 5) {
+    return this.db.prepare(`
+      SELECT DISTINCT csv_filename, MAX(imported_at) as last_imported
+      FROM signups
+      WHERE csv_filename IS NOT NULL
+      GROUP BY csv_filename
+      ORDER BY last_imported DESC
+      LIMIT ?
+    `).all(limit);
+  }
+
+  // Get signups for calculating sync groups from the signups table
+  getSignupsForTalks(talk1Title: string, talk2Title: string) {
+    const talk1Signups = this.db.prepare(`
+      SELECT DISTINCT email 
+      FROM signups 
+      WHERE talk_title = ?
+    `).all(talk1Title).map((row: any) => row.email);
+
+    const talk2Signups = this.db.prepare(`
+      SELECT DISTINCT email 
+      FROM signups 
+      WHERE talk_title = ?
+    `).all(talk2Title).map((row: any) => row.email);
+
+    return { talk1Signups, talk2Signups };
+  }
+
+  // Get all signups for a specific talk
+  getSignupsForTalk(talkTitle: string) {
+    return this.db.prepare(`
+      SELECT 
+        email,
+        talk_title,
+        talk_url,
+        source,
+        created_at,
+        imported_at
+      FROM signups 
+      WHERE talk_title = ?
+      ORDER BY created_at DESC
+    `).all(talkTitle);
+  }
+
+  // Get all unique talks
+  getAllTalks() {
+    return this.db.prepare(`
+      SELECT DISTINCT 
+        talk_title,
+        talk_url,
+        COUNT(DISTINCT email) as signup_count
+      FROM signups
+      GROUP BY talk_title, talk_url
+      ORDER BY signup_count DESC
+    `).all();
   }
 
   close() {

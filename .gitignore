@@ -10,3 +10,6 @@ Transcripts - Systematically Improving RAG Applica 1ff38b66e91580498be1c88b8cb4e
 .env
 node_modules/
 scripts/email_processing.db
+scripts/*.db.backup
+scripts/email_processing_playwright.db
+data/

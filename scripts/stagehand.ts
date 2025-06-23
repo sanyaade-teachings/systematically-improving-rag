@@ -6,7 +6,8 @@ import { z } from 'zod';
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
-import Database from 'better-sqlite3';
+import { EmailDatabase } from './lib/database.js';
+import type { EmailRecord } from './lib/database.js';
 
 // Get __dirname equivalent for ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -23,84 +24,16 @@ const CONFIG = {
   // Delay between requests in milliseconds
   DELAY_MS: process.env.DELAY_MS ? parseInt(process.env.DELAY_MS) : 2000,
   
-  // Database file path
+  // Database file path (same as prepare-email-sync uses)
   DB_PATH: path.join(__dirname, 'email_processing.db'),
+  
+  // Sync group to process (if specified)
+  SYNC_GROUP_ID: process.argv.find(arg => arg.startsWith('--sync-group='))?.split('=')[1],
   
   // Reset database (clear all processed records)
   RESET_DB: process.argv.includes('--reset-db'),
 };
 
-// Define the structure of each email record
-interface EmailRecord {
-  email: string;
-  maven_url: string;
-  talk_title: string;
-}
-
-// Database functions
-class EmailDatabase {
-  private db: any;
-
-  constructor(dbPath: string) {
-    this.db = new Database(dbPath);
-    this.initDatabase();
-  }
-
-  private initDatabase() {
-    // Create the processed_emails table if it doesn't exist
-    this.db.exec(`
-      CREATE TABLE IF NOT EXISTS processed_emails (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        email TEXT NOT NULL,
-        maven_url TEXT NOT NULL,
-        talk_title TEXT NOT NULL,
-        processed_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        success BOOLEAN NOT NULL,
-        error_message TEXT,
-        dry_run BOOLEAN DEFAULT FALSE,
-        UNIQUE(email, maven_url)
-      )
-    `);
-  }
-
-  isProcessed(email: string, mavenUrl: string): boolean {
-    const result = this.db.prepare(`
-      SELECT id FROM processed_emails 
-      WHERE email = ? AND maven_url = ? AND success = 1
-    `).get(email, mavenUrl);
-    return !!result;
-  }
-
-  markAsProcessed(email: string, mavenUrl: string, talkTitle: string, success: boolean, errorMessage?: string, dryRun: boolean = false) {
-    try {
-      this.db.prepare(`
-        INSERT OR REPLACE INTO processed_emails 
-        (email, maven_url, talk_title, success, error_message, dry_run)
-        VALUES (?, ?, ?, ?, ?, ?)
-      `).run(email, mavenUrl, talkTitle, success ? 1 : 0, errorMessage || null, dryRun ? 1 : 0);
-    } catch (error) {
-      console.warn(`Failed to mark email as processed: ${error}`);
-    }
-  }
-
-  getStats() {
-    const total = this.db.prepare('SELECT COUNT(*) as count FROM processed_emails').get().count;
-    const successful = this.db.prepare('SELECT COUNT(*) as count FROM processed_emails WHERE success = 1').get().count;
-    const failed = this.db.prepare('SELECT COUNT(*) as count FROM processed_emails WHERE success = 0').get().count;
-    const dryRun = this.db.prepare('SELECT COUNT(*) as count FROM processed_emails WHERE dry_run = 1').get().count;
-    
-    return { total, successful, failed, dryRun };
-  }
-
-  reset() {
-    this.db.exec('DELETE FROM processed_emails');
-    console.log('Database reset - all processed email records cleared');
-  }
-
-  close() {
-    this.db.close();
-  }
-}
 
 // Stagehand configuration
 const stagehandConfig = (): ConstructorParams => {
@@ -114,30 +47,6 @@ const stagehandConfig = (): ConstructorParams => {
   };
 };
 
-// Function to read and parse the JSONL file
-function readEmailRecords(filePath: string): EmailRecord[] {
-  try {
-    const fileContent = fs.readFileSync(filePath, 'utf8');
-    const lines = fileContent.trim().split('\n');
-    const records: EmailRecord[] = [];
-    
-    for (const line of lines) {
-      if (line.trim()) {
-        try {
-          const record = JSON.parse(line) as EmailRecord;
-          records.push(record);
-        } catch (parseError) {
-          console.warn(`Failed to parse line: ${line}`, parseError);
-        }
-      }
-    }
-    
-    return records;
-  } catch (error) {
-    console.error(`Failed to read file ${filePath}:`, error);
-    return [];
-  }
-}
 
 async function processEmailRecord(stagehand: Stagehand | null, record: EmailRecord, database: EmailDatabase): Promise<boolean> {
   try {
@@ -222,16 +131,25 @@ async function runWorkflow() {
     
     // Show current database stats
     const initialStats = database.getStats();
-    console.log(`Database stats: ${initialStats.total} total, ${initialStats.successful} successful, ${initialStats.failed} failed, ${initialStats.dryRun} dry-run`);
+    console.log(`Database stats: ${initialStats.total} total, ${initialStats.successful} successful, ${initialStats.failed} failed, ${initialStats.dryRun} dry-run, ${initialStats.pending} pending`);
     
-    // Read email records from JSONL file
-    const jsonlPath = path.join(__dirname, 'missing_emails.jsonl');
-    console.log(`Reading email records from: ${jsonlPath}`);
-    const emailRecords = readEmailRecords(jsonlPath);
+    // Get unprocessed emails from database
+    let emailRecords: EmailRecord[];
+    if (CONFIG.SYNC_GROUP_ID) {
+      const syncGroupId = parseInt(CONFIG.SYNC_GROUP_ID);
+      console.log(`Processing emails for sync group #${syncGroupId}`);
+      emailRecords = database.getUnprocessedEmails(syncGroupId);
+      
+      const groupStats = database.getSyncGroupStats(syncGroupId);
+      console.log(`Sync group stats: ${groupStats.total} total, ${groupStats.successful} successful, ${groupStats.pending} pending`);
+    } else {
+      console.log(`Processing all unprocessed emails`);
+      emailRecords = database.getUnprocessedEmails();
+    }
     
     if (emailRecords.length === 0) {
-      console.log("No email records found or file could not be read.");
-      return { success: false, error: "No email records to process" };
+      console.log("No unprocessed email records found.");
+      return { success: true, message: "All emails have been processed" };
     }
     
     // Apply limit if specified

@@ -61,27 +61,50 @@ The documentation uses MkDocs with Material theme, featuring:
 ### Automation Scripts (`/scripts/`)
 The scripts directory contains tools for processing Maven talk signup data:
 
-1. **Email Analysis Notebook** (`email_scripts.ipynb`): Jupyter notebook for analyzing email signups
-   - Reads CSV export from Maven (talk signups)
-   - Identifies email overlap between different talks
-   - Generates `missing_emails.jsonl` with emails that should be signed up for related talks
+1. **Email Sync Preparation Tool** (`prepare-email-sync.ts`): Interactive CLI for analyzing Maven CSV exports
+   - **Auto-detects CSV files** in Downloads folder (sorted by most recent)
+   - Imports all signups to a tracking table (deduplicates automatically)
+   - Interactive selection of talk pairs for syncing
+   - Shows email overlap analysis between talks
+   - Creates sync groups in SQLite database
+   - Features:
+     - CSV auto-detection (no need to specify path)
+     - Dry-run mode for testing
+     - Sample email preview
+     - Duplicate talk pair prevention
+     - Complete signup history tracking
+   - Commands:
+     ```bash
+     npm run prepare-sync                        # Auto-detect CSV from Downloads
+     npm run prepare-sync -- --dry-run           # Dry run with auto-detection
+     npm run prepare-sync -- --show-sample 20    # Preview 20 sample emails
+     npm run prepare-sync -- path/to/export.csv  # Specify CSV manually
+     ```
 
 2. **Stagehand Script** (`stagehand.ts`): Browser automation for email signups
    - Uses Playwright-based automation via @browserbasehq/stagehand
-   - SQLite database (`email_processing.db`) for tracking processed emails
-   - Processes emails from `missing_emails.jsonl`
+   - SQLite database (`email_processing.db`) for tracking all data
+   - Processes emails from sync groups created by prepare-sync
    - Features:
      - Dry-run mode for testing without submissions
      - Resume capability (skips already processed emails)
+     - Sync group filtering
      - Configurable limits and delays
      - Database tracking with success/failure status
    - Commands:
      ```bash
      npm run stagehand -- --dry-run --test  # Test with 3 emails
      npm run stagehand -- --limit 10        # Process 10 emails
-     npm run stagehand                      # Process all emails
+     npm run stagehand -- --sync-group=1    # Process specific sync group
+     npm run stagehand                      # Process all pending emails
      npm run stagehand -- --reset-db        # Clear database
      ```
+
+3. **Database Schema** (`email_processing.db`):
+   - `signups` table: Tracks all signups from CSV imports (unique email-URL pairs)
+   - `sync_groups` table: Stores talk pairs selected for syncing
+   - `processed_emails` table: Tracks email processing status
+   - Automatic deduplication at every level
 
 ## Project Structure
 
