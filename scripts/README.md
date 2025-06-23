@@ -197,6 +197,26 @@ CREATE TABLE processed_emails (
    npm run stagehand
    ```
 
+## Export Talks Tool
+
+Export all signups grouped by talk into individual CSV files.
+
+### Usage
+
+```bash
+# Export all talks to /data/ directory
+npm run export-talks
+```
+
+This will:
+- Create a `/data/` directory in the project root
+- Export one CSV file per talk with slugified filenames
+- Each CSV contains: email, talk_title, talk_url, source, created_at, imported_at
+
+Example output files:
+- `data/rag-in-the-age-of-agents-swe-bench-as-a-case-study.csv`
+- `data/lessons-on-retrieval-for-autonomous-coding-agents.csv`
+
 ## Troubleshooting
 
 - **Resume after failure**: Just run the command again - processed emails are tracked
@@ -208,9 +228,11 @@ CREATE TABLE processed_emails (
 
 - `prepare-email-sync.ts` - CLI tool for analyzing CSV and creating sync groups
 - `stagehand.ts` - Browser automation for processing emails
+- `export-talks.ts` - Export signups grouped by talk to CSV files
 - `lib/database.ts` - Shared database module
 - `email_processing.db` - SQLite database (created automatically)
 - `email_scripts.ipynb` - Original Jupyter notebook for reference
+- `/data/` - Directory containing exported CSV files (git-ignored)
 
 ---
 

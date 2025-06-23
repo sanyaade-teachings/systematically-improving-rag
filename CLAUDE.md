@@ -100,7 +100,15 @@ The scripts directory contains tools for processing Maven talk signup data:
      npm run stagehand -- --reset-db        # Clear database
      ```
 
-3. **Database Schema** (`email_processing.db`):
+3. **Export Talks Tool** (`export-talks.ts`): Export signups grouped by talk
+   - Exports all signups to individual CSV files in `/data/` directory
+   - One CSV per talk with slugified filename
+   - Commands:
+     ```bash
+     npm run export-talks  # Export all talks to CSV files
+     ```
+
+4. **Database Schema** (`email_processing.db`):
    - `signups` table: Tracks all signups from CSV imports (unique email-URL pairs)
    - `sync_groups` table: Stores talk pairs selected for syncing
    - `processed_emails` table: Tracks email processing status
