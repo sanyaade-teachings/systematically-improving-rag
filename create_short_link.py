@@ -24,6 +24,7 @@ def create_feedback_short_link(api_key=None):
         # Upsert short link (create or update if exists)
         res = d.links.upsert(request={
             "url": feedback_url,
+            "key": "rag-cohort3-feedback",
             "external_id": "rag-cohort-3-feedback"
         })
         

@@ -1,33 +1,9 @@
----
-# You can also start simply with 'default'
-theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
-# some information about your slides (markdown enabled)
-title: RAG Playbook - Conclusion
-info: |
-  ## RAG Playbook Conclusion
-  Wrapping up the cohort and looking ahead.
-# apply unocss classes to the current slide
-class: text-center
-# https://sli.dev/features/drawing
-drawings:
-  persist: false
-# slide transition: https://sli.dev/guide/animations.html#slide-transitions
-transition: slide-left
-# enable MDC Syntax: https://sli.dev/features/mdc
-mdc: true
-# open graph
-# seoMeta:
-#  ogImage: https://cover.sli.dev
----
+# Agenda
 
-# RAG Playbook
-
-## Conclusion
-
-Wrapping up our cohort journey
+- **Feedback & Review** - Share your thoughts
+- **Cohort 4 Plans** - The through-line project
+- **Between Cohorts** - What's next
+- **Office Hours** - Q&A and discussion
 
 ---
 
@@ -35,10 +11,10 @@ Wrapping up our cohort journey
 
 - **Hear some feedback** from you
 - **Leave time for a review**
-- Fill out the feedback form: [dub.sh/K69fZSt](https://dub.sh/K69fZSt)
+- Fill out the feedback form: [dub.sh/rag-cohort3-feedback](https://dub.sh/rag-cohort3-feedback)
 
 <div class="flex items-center justify-center mt-8">
-  <img src="https://api.dub.co/qr?url=https://dub.sh/K69fZSt?qr=1" alt="Feedback Form QR Code" width="200" height="200" />
+  <img src="https://api.dub.co/qr?url=https://dub.sh/rag-cohort3-feedback?qr=1" alt="Feedback Form QR Code" width="200" height="200" />
 </div>
 
 ---
@@ -51,11 +27,21 @@ For the next cohort, I'm building out a **single project** that serves as a thro
 
 # The Through-Line Project
 
+
+## Week 1-3: Evals and Synthetic Queries and Finetuning
+
 1. **Search over wildchat-1m**
 2. **Create synthetic queries** to do evals
 3. **Test BM25 vs semantic search**
 4. **Finetuning query/conversation pairs**
    - Using an LLM as a judge to find hard negatives
+  
+---
+
+# The Through-Line Project
+
+## Week 4-6: Segmentation and Tools
+
 5. **Generating summaries** to cluster and explore chat histories
    - Searching summaries becomes another tool to explore the data
 6. **Proposing a few more tools**
@@ -86,7 +72,6 @@ class: text-center
 ## Office Hours
 
 Time for questions and discussion
-
 ---
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
