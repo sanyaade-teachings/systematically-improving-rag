@@ -219,7 +219,7 @@ class EmailSyncCLI {
     console.log(chalk.green(`✓ Found ${this.talks.size} unique talks`));
   }
 
-  private importSignups(csvPath: string) {
+  private importSignups(_csvPath: string) {
     console.log(chalk.gray('\nImporting signups to tracking table...'));
     
     const signups: TalkSignup[] = this.records.map(record => ({
@@ -315,6 +315,10 @@ class EmailSyncCLI {
     const talk1Emails = talk1.emails;
     const talk2Emails = talk2.emails;
 
+    // Get already successfully processed emails
+    const processedEmails = this.database.getSuccessfullyProcessedEmails();
+    console.log(chalk.gray(`Found ${processedEmails.size} already successfully processed email-URL pairs`));
+
     // Calculate overlap
     const overlapEmails = new Set<string>();
     for (const email of talk1Emails) {
@@ -330,6 +334,12 @@ class EmailSyncCLI {
     // Emails in talk2 but not in talk1 (should get talk1 URL)
     for (const email of talk2Emails) {
       if (!talk1Emails.has(email)) {
+        const emailUrlPair = `${email}|${syncGroup.talk1_url}`;
+        // Skip if already successfully processed
+        if (processedEmails.has(emailUrlPair)) {
+          console.log(chalk.gray(`  Skipping already processed: ${email} for ${syncGroup.talk1_title}`));
+          continue;
+        }
         missingFromTalk1.push({
           email,
           maven_url: syncGroup.talk1_url,
@@ -341,6 +351,12 @@ class EmailSyncCLI {
     // Emails in talk1 but not in talk2 (should get talk2 URL)
     for (const email of talk1Emails) {
       if (!talk2Emails.has(email)) {
+        const emailUrlPair = `${email}|${syncGroup.talk2_url}`;
+        // Skip if already successfully processed
+        if (processedEmails.has(emailUrlPair)) {
+          console.log(chalk.gray(`  Skipping already processed: ${email} for ${syncGroup.talk2_title}`));
+          continue;
+        }
         missingFromTalk2.push({
           email,
           maven_url: syncGroup.talk2_url,
@@ -427,7 +443,7 @@ class EmailSyncCLI {
     return confirm;
   }
 
-  private saveSyncGroup(syncGroup: SyncGroup, missingEmails: EmailRecord[], overlap: any) {
+  private saveSyncGroup(syncGroup: SyncGroup, missingEmails: EmailRecord[], _overlap: any) {
     console.log(chalk.gray('\nSaving to database...'));
 
     try {

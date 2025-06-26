@@ -73,6 +73,7 @@ The scripts directory contains tools for processing Maven talk signup data:
      - Sample email preview
      - Duplicate talk pair prevention
      - Complete signup history tracking
+     - **Filters out already successfully processed emails** from sync groups
    - Commands:
      ```bash
      npm run prepare-sync                        # Auto-detect CSV from Downloads
@@ -91,6 +92,21 @@ The scripts directory contains tools for processing Maven talk signup data:
      - Sync group filtering
      - Configurable limits and delays
      - Database tracking with success/failure status
+     - **Multiple safety mechanisms to prevent duplicate emails**:
+       - Automatic deduplication on startup (removes duplicate records)
+       - Random shuffling of processing order
+       - Cross-table statistics showing parsed/unparsed counts
+       - Warning when many emails are pending (possible failures)
+       - Shows sample of emails before processing
+     - **Enhanced logging** with color-coded status updates:
+       - ✅ Green for successful submissions (marked as SUCCESS)
+       - ❌ Red for failed submissions (marked as FAILED)
+       - ⏭️ Yellow for skipped emails (already processed)
+     - **Comprehensive statistics** at startup:
+       - Signups table: total, processed, unprocessed
+       - Processed emails: successful, failed, pending
+       - Cross-reference between tables
+     - Final summary shows counts for each status
    - Commands:
      ```bash
      npm run stagehand -- --dry-run --test  # Test with 3 emails

@@ -4,6 +4,7 @@
 import { Stagehand, type ConstructorParams } from "@browserbasehq/stagehand";
 import * as path from 'path';
 import { fileURLToPath } from 'url';
+import chalk from 'chalk';
 import { EmailDatabase } from './lib/database.js';
 import type { EmailRecord } from './lib/database.js';
 
@@ -17,7 +18,11 @@ const CONFIG = {
   DRY_RUN: process.env.DRY_RUN === 'true' || process.argv.includes('--dry-run'),
   
   // Limit number of emails to process (set to 0 for no limit)
-  LIMIT: process.env.LIMIT ? parseInt(process.env.LIMIT) : (process.argv.includes('--test') ? 3 : 0),
+  LIMIT: process.argv.find(arg => arg.startsWith('--limit='))?.split('=')[1] 
+    ? parseInt(process.argv.find(arg => arg.startsWith('--limit='))!.split('=')[1])
+    : process.env.LIMIT 
+    ? parseInt(process.env.LIMIT) 
+    : (process.argv.includes('--test') ? 3 : 0),
   
   // Delay between requests in milliseconds
   DELAY_MS: process.env.DELAY_MS ? parseInt(process.env.DELAY_MS) : 500,
@@ -30,6 +35,9 @@ const CONFIG = {
   
   // Reset database (clear all processed records)
   RESET_DB: process.argv.includes('--reset-db'),
+  
+  // Deduplicate database before running
+  DEDUPE: process.argv.includes('--dedupe') || true, // Default to true for safety
 };
 
 
@@ -52,7 +60,7 @@ async function processEmailRecord(stagehand: Stagehand | null, record: EmailReco
     
     // Check if already processed
     if (database.isProcessed(record.email, record.maven_url)) {
-      console.log(`  ✓ Already processed: ${record.email} - skipping`);
+      console.log(chalk.yellow(`  ⏭️  ALREADY PROCESSED (skipping): ${record.email} for ${record.talk_title}`));
       return true;
     }
 
@@ -104,11 +112,13 @@ async function processEmailRecord(stagehand: Stagehand | null, record: EmailReco
     
     console.log(`  ✓ Successfully processed: ${record.email}`);
     database.markAsProcessed(record.email, record.maven_url, record.talk_title, true);
+    console.log(chalk.green(`  ✅ MARKED AS SUCCESS in database: ${record.email} → ${record.talk_title}`));
     return true;
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
-    console.error(`  ✗ Failed to process email ${record.email}:`, errorMessage);
+    console.error(chalk.red(`  ✗ Failed to process email ${record.email}:`), errorMessage);
     database.markAsProcessed(record.email, record.maven_url, record.talk_title, false, errorMessage, CONFIG.DRY_RUN);
+    console.log(chalk.red(`  ❌ MARKED AS FAILED in database: ${record.email} → ${record.talk_title}`));
     return false;
   }
 }
@@ -127,21 +137,57 @@ async function runWorkflow() {
       database.reset();
     }
     
-    // Show current database stats
-    const initialStats = database.getStats();
-    console.log(`Database stats: ${initialStats.total} total, ${initialStats.successful} successful, ${initialStats.failed} failed, ${initialStats.dryRun} dry-run, ${initialStats.pending} pending`);
+    // Deduplicate processed_emails table
+    if (CONFIG.DEDUPE) {
+      console.log(chalk.gray('\n🧹 Checking for duplicates in processed_emails table...'));
+      const dedupeResult = database.deduplicateProcessedEmails();
+      if (dedupeResult.removed > 0) {
+        console.log(chalk.yellow(`  Removed ${dedupeResult.removed} duplicate records from ${dedupeResult.duplicatesFound} duplicate sets`));
+      } else {
+        console.log(chalk.green('  ✓ No duplicates found'));
+      }
+    }
+    
+    // Show comprehensive database stats
+    const crossStats = database.getCrossTableStats();
+    console.log(chalk.bold('\n📊 Database Statistics:'));
+    console.log(chalk.blue('\nSignups Table:'));
+    console.log(`  Total signups tracked: ${crossStats.signups.total}`);
+    console.log(chalk.green(`  ✓ Successfully processed: ${crossStats.signups.processed}`));
+    console.log(chalk.yellow(`  ⏳ Not yet processed: ${crossStats.signups.unprocessed}`));
+    
+    console.log(chalk.blue('\nProcessed Emails Table:'));
+    console.log(`  Total records: ${crossStats.processed_emails.total}`);
+    console.log(chalk.green(`  ✅ Successful: ${crossStats.processed_emails.successful}`));
+    console.log(chalk.red(`  ❌ Failed: ${crossStats.processed_emails.failed}`));
+    console.log(chalk.yellow(`  ⏳ Pending: ${crossStats.processed_emails.pending}`));
+    
+    if (crossStats.processed_emails.orphaned > 0) {
+      console.log(chalk.red(`  ⚠️  Orphaned records (not in signups): ${crossStats.processed_emails.orphaned}`));
+    }
+    
+    // Safety check for high pending count
+    if (crossStats.processed_emails.pending > 100 && !CONFIG.DRY_RUN) {
+      console.log(chalk.red(`\n⚠️  WARNING: ${crossStats.processed_emails.pending} emails are still pending!`));
+      console.log(chalk.yellow('This might indicate many failed attempts that could result in duplicates.'));
+      console.log(chalk.yellow('Consider running with --dry-run first or investigating the failures.'));
+      
+      // Don't block, just warn
+      console.log(chalk.gray('\nContinuing in 3 seconds... (Ctrl+C to cancel)'));
+      await new Promise(resolve => setTimeout(resolve, 3000));
+    }
     
     // Get unprocessed emails from database
     let emailRecords: EmailRecord[];
     if (CONFIG.SYNC_GROUP_ID) {
       const syncGroupId = parseInt(CONFIG.SYNC_GROUP_ID);
-      console.log(`Processing emails for sync group #${syncGroupId}`);
+      console.log(`\nProcessing emails for sync group #${syncGroupId}`);
       emailRecords = database.getUnprocessedEmails(syncGroupId);
       
       const groupStats = database.getSyncGroupStats(syncGroupId);
       console.log(`Sync group stats: ${groupStats.total} total, ${groupStats.successful} successful, ${groupStats.pending} pending`);
     } else {
-      console.log(`Processing all unprocessed emails`);
+      console.log(`\nProcessing all unprocessed emails`);
       emailRecords = database.getUnprocessedEmails();
     }
     
@@ -156,10 +202,28 @@ async function runWorkflow() {
       return { success: true, message: "All emails have been processed" };
     }
     
+    // Shuffle the email records to reduce probability of duplicate submissions
+    const shuffledRecords = [...emailRecords].sort(() => Math.random() - 0.5);
+    
     // Apply limit if specified
-    const recordsToProcess = CONFIG.LIMIT > 0 ? emailRecords.slice(0, CONFIG.LIMIT) : emailRecords;
+    const recordsToProcess = CONFIG.LIMIT > 0 ? shuffledRecords.slice(0, CONFIG.LIMIT) : shuffledRecords;
     console.log(`Found ${emailRecords.length} email records total`);
-    console.log(`Will process ${recordsToProcess.length} records${CONFIG.LIMIT > 0 ? ` (limited to ${CONFIG.LIMIT})` : ''}`);
+    console.log(`Will process ${recordsToProcess.length} records${CONFIG.LIMIT > 0 ? ` (limited to ${CONFIG.LIMIT})` : ''} (shuffled)`);
+    
+    // Show sample of emails to be processed
+    if (recordsToProcess.length > 0) {
+      console.log(chalk.blue('\n📧 Sample of emails to process:'));
+      const sampleSize = Math.min(5, recordsToProcess.length);
+      for (let i = 0; i < sampleSize; i++) {
+        const record = recordsToProcess[i];
+        if (record) {
+          console.log(`  ${i + 1}. ${record.email} → ${record.talk_title}`);
+        }
+      }
+      if (recordsToProcess.length > sampleSize) {
+        console.log(`  ... and ${recordsToProcess.length - sampleSize} more`);
+      }
+    }
     
     // Show configuration
     console.log(`\nConfiguration:`);
@@ -210,10 +274,14 @@ async function runWorkflow() {
     // Final stats
     const finalStats = database.getStats();
     console.log(`\n${'='.repeat(50)}`);
-    console.log(`Workflow completed!`);
+    console.log(chalk.bold(`Workflow completed!`));
     console.log(`${'='.repeat(50)}`);
-    console.log(`This run: ${successCount} successful, ${failureCount} failed, ${skippedCount} skipped`);
-    console.log(`Database totals: ${finalStats.successful} successful, ${finalStats.failed} failed, ${finalStats.dryRun} dry-run`);
+    console.log(chalk.bold(`This run:`));
+    console.log(chalk.green(`  ✅ ${successCount} emails marked as SUCCESS`));
+    console.log(chalk.red(`  ❌ ${failureCount} emails marked as FAILED`));
+    console.log(chalk.yellow(`  ⏭️  ${skippedCount} emails SKIPPED (already processed)`));
+    console.log(`\n${chalk.bold('Database totals:')}`);
+    console.log(`  📊 ${finalStats.successful} successful, ${finalStats.failed} failed, ${finalStats.dryRun} dry-run`);
     
     return { 
       success: true, 

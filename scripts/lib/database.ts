@@ -370,6 +370,105 @@ export class EmailDatabase {
     `).all();
   }
 
+  // Get successfully processed emails to exclude from sync preparation
+  getSuccessfullyProcessedEmails(): Set<string> {
+    const results = this.db.prepare(`
+      SELECT DISTINCT email || '|' || maven_url as email_url_pair
+      FROM processed_emails
+      WHERE success = 1
+    `).all();
+    
+    return new Set(results.map((r: any) => r.email_url_pair));
+  }
+
+  // Get comprehensive cross-table statistics
+  getCrossTableStats() {
+    // Basic counts
+    const signupsCount = this.db.prepare('SELECT COUNT(*) as count FROM signups').get().count;
+    const processedCount = this.db.prepare('SELECT COUNT(*) as count FROM processed_emails').get().count;
+    const successCount = this.db.prepare('SELECT COUNT(*) as count FROM processed_emails WHERE success = 1').get().count;
+    const failedCount = this.db.prepare('SELECT COUNT(*) as count FROM processed_emails WHERE success = 0 AND dry_run = 0').get().count;
+    const pendingCount = this.db.prepare('SELECT COUNT(*) as count FROM processed_emails WHERE success = 0 AND dry_run = 0').get().count;
+
+    // Cross-reference: signups that have been processed
+    const processedSignups = this.db.prepare(`
+      SELECT COUNT(DISTINCT s.email || '|' || s.talk_url) as count
+      FROM signups s
+      INNER JOIN processed_emails p ON s.email = p.email AND s.talk_url = p.maven_url
+      WHERE p.success = 1
+    `).get().count;
+
+    // Signups not yet in processed_emails at all
+    const unprocessedSignups = this.db.prepare(`
+      SELECT COUNT(DISTINCT s.email || '|' || s.talk_url) as count
+      FROM signups s
+      LEFT JOIN processed_emails p ON s.email = p.email AND s.talk_url = p.maven_url
+      WHERE p.email IS NULL
+    `).get().count;
+
+    // Emails in processed_emails but not in signups (shouldn't happen in normal flow)
+    const orphanedProcessed = this.db.prepare(`
+      SELECT COUNT(DISTINCT p.email || '|' || p.maven_url) as count
+      FROM processed_emails p
+      LEFT JOIN signups s ON p.email = s.email AND p.maven_url = s.talk_url
+      WHERE s.email IS NULL
+    `).get().count;
+
+    return {
+      signups: {
+        total: signupsCount,
+        processed: processedSignups,
+        unprocessed: unprocessedSignups
+      },
+      processed_emails: {
+        total: processedCount,
+        successful: successCount,
+        failed: failedCount,
+        pending: pendingCount,
+        orphaned: orphanedProcessed
+      }
+    };
+  }
+
+  // Deduplicate processed_emails table (remove duplicates keeping the most recent successful one)
+  deduplicateProcessedEmails() {
+    // First, get duplicates
+    const duplicates = this.db.prepare(`
+      SELECT email, maven_url, COUNT(*) as count
+      FROM processed_emails
+      GROUP BY email, maven_url
+      HAVING COUNT(*) > 1
+    `).all();
+
+    if (duplicates.length === 0) {
+      return { duplicatesFound: 0, removed: 0 };
+    }
+
+    let removed = 0;
+    const deleteStmt = this.db.prepare(`
+      DELETE FROM processed_emails 
+      WHERE id IN (
+        SELECT id FROM processed_emails 
+        WHERE email = ? AND maven_url = ?
+        ORDER BY 
+          CASE WHEN success = 1 THEN 0 ELSE 1 END,  -- Keep successful ones
+          processed_at DESC  -- Keep most recent
+        LIMIT -1 OFFSET 1  -- Delete all but the first one
+      )
+    `);
+
+    const transaction = this.db.transaction(() => {
+      for (const dup of duplicates) {
+        const result = deleteStmt.run(dup.email, dup.maven_url);
+        removed += result.changes;
+      }
+    });
+
+    transaction();
+
+    return { duplicatesFound: duplicates.length, removed };
+  }
+
   close() {
     this.db.close();
   }
