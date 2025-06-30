@@ -1,73 +1,5 @@
-from typing import List, Dict, Any, Callable
+from typing import List, Dict, Any
 from pydantic import BaseModel, Field
-import instructor
-from openai import AsyncOpenAI
-import diskcache as dc
-import hashlib
-import json
-import functools
-import asyncio
-from pathlib import Path
-
-
-# Initialize disk cache
-cache_dir = Path(__file__).parent / "cache"
-cache = dc.Cache(str(cache_dir))
-
-
-def cache_with_ttl(ttl_seconds: int = 86400 * 7):
-    """
-    Decorator for caching function results with TTL.
-    
-    Args:
-        ttl_seconds: Time to live in seconds (default: 7 days)
-    """
-    def decorator(func: Callable):
-        @functools.wraps(func)
-        async def wrapper(*args, **kwargs):
-            # Extract conversation_hash from kwargs or args
-            conversation_hash = kwargs.get('conversation_hash')
-            if not conversation_hash and len(args) >= 3:
-                # Try to get from positional args (client, conversation_id, conversation, conversation_hash)
-                conversation_hash = args[3] if len(args) > 3 else None
-            
-            if not conversation_hash:
-                raise ValueError("conversation_hash is required for caching")
-            
-            # Create simple cache key with function name, version, and conversation_hash
-            cache_key = f"{func.__name__}_v1_{conversation_hash}"
-            
-            # Check cache first
-            cached_result = cache.get(cache_key)
-            if cached_result is not None:
-                # Return cached result as the appropriate Pydantic model
-                if hasattr(func, '_return_type'):
-                    return func._return_type(**cached_result)
-                return cached_result
-            
-            try:
-                # Call the function
-                result = await func(*args, **kwargs)
-                
-                # Cache the result
-                if hasattr(result, 'model_dump'):
-                    cache.set(cache_key, result.model_dump(), expire=ttl_seconds)
-                else:
-                    cache.set(cache_key, result, expire=ttl_seconds)
-                
-                return result
-                
-            except Exception as e:
-                # Cache fallback results for shorter time
-                fallback_result = getattr(func, '_fallback_result', None)
-                if fallback_result:
-                    cache.set(cache_key, fallback_result.model_dump(), expire=3600)
-                    return fallback_result
-                raise e
-                
-        return wrapper
-    return decorator
-
 
 class SearchQueries(BaseModel):
     """Generated search queries that could lead to discovering a conversation."""
@@ -75,18 +7,15 @@ class SearchQueries(BaseModel):
         description="Chain of thought process for generating the search queries"
     )
     queries: List[str] = Field(
-        description="4-5 diverse search queries that users might type to find this conversation",
-        min_items=4,
-        max_items=5
+        description="4-7 diverse search queries that users might type to find this conversation",
+        min_items=3,
+        max_items=8
     )
 
 
-@cache_with_ttl(ttl_seconds=86400 * 7)  # Cache for 7 days
 async def synthetic_question_generation_v1(
     client,  # instructor-patched client
-    conversation_id: str,
-    conversation: Dict[str, Any],
-    conversation_hash: str,
+    messages: List[Dict[str, Any]],
 ) -> SearchQueries:
     """
     Generate diverse synthetic search queries from a chat conversation.
@@ -97,17 +26,11 @@ async def synthetic_question_generation_v1(
     
     Args:
         client: instructor-patched client
-        conversation_id: ID of the conversation to generate search queries for
         conversation: Dictionary containing conversation data with 'messages' or 'conversation' key
-        conversation_hash: Unique hash of the conversation for caching
         
     Returns:
         SearchQueries object with 4-5 diverse search queries and reasoning
     """
-    # Extract conversation content
-    messages = conversation.get('conversation', conversation.get('messages', []))
-    if not messages:
-        raise ValueError("No messages found in conversation")
     
     prompt = """
     You are a product manager analyzing ChatGPT usage patterns. Your goal is to understand 
@@ -134,7 +57,6 @@ async def synthetic_question_generation_v1(
     """
     
     response = await client.chat.completions.create(
-        model="gpt-4o-mini",
         response_model=SearchQueries,
         messages=[
             {
@@ -150,12 +72,9 @@ async def synthetic_question_generation_v1(
     return response
 
 
-@cache_with_ttl(ttl_seconds=86400 * 7)  # Cache for 7 days
 async def synthetic_question_generation_v2(
     client,  # instructor-patched client
-    conversation_id: str,
-    conversation: Dict[str, Any],
-    conversation_hash: str,
+    messages: List[Dict[str, Any]],
 ) -> SearchQueries:
     """
     Generate search queries for finding conversations with similar patterns and characteristics.
@@ -172,10 +91,6 @@ async def synthetic_question_generation_v2(
     Returns:
         SearchQueries object with pattern-focused search queries
     """
-    # Extract conversation content
-    messages = conversation.get('conversation', conversation.get('messages', []))
-    if not messages:
-        raise ValueError("No messages found in conversation")
     
     prompt = """
     You are a research analyst studying patterns in human-AI conversations from the WildChat dataset.
@@ -232,57 +147,3 @@ async def synthetic_question_generation_v2(
     )
     
     return response
-
-def get_cache_stats() -> Dict[str, Any]:
-    """
-    Get cache statistics for monitoring.
-    
-    Returns:
-        Dictionary with cache statistics
-    """
-    try:
-        stats = {
-            'size': cache.volume(),
-            'count': len(cache),
-            'cache_dir': str(cache_dir),
-            'exists': cache_dir.exists()
-        }
-        return stats
-    except Exception as e:
-        return {
-            'error': str(e),
-            'cache_dir': str(cache_dir),
-            'exists': cache_dir.exists() if cache_dir else False
-        }
-
-
-def clear_cache() -> bool:
-    """
-    Clear all cached results.
-    
-    Returns:
-        True if successful, False otherwise
-    """
-    try:
-        cache.clear()
-        return True
-    except Exception:
-        return False
-
-
-def is_cached(conversation_hash: str, function_name: str = "synthetic_question_generation_v1") -> bool:
-    """
-    Check if a conversation's results are cached.
-    
-    Args:
-        conversation_hash: Unique hash of the conversation
-        function_name: Name of the function to check cache for
-        
-    Returns:
-        True if cached, False otherwise
-    """
-    try:
-        cache_key = f"{function_name}_v1_{conversation_hash}"
-        return cache_key in cache
-    except Exception:
-        return False
