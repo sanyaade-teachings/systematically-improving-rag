@@ -10,11 +10,22 @@ from datetime import datetime
 import pandas as pd
 from datasets import load_dataset
 import logging
+import jinja2
 
 # Set up logging (suppress for cleaner output)
 logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.CRITICAL)
+
+conversation_template = jinja2.Template("""
+<conversation>
+    {% for message in conversation %}
+        <message role="{{ message.role }}">
+            {{ message.content }}
+        </message>
+    {% endfor %}
+</conversation>
+""")
 
 
 def format_conversation_history(conversation: List[dict]) -> str:
@@ -27,61 +38,7 @@ def format_conversation_history(conversation: List[dict]) -> str:
     Returns:
         Formatted conversation string
     """
-    if not conversation or len(conversation) == 0:
-        return ""
-    
-    formatted_messages = []
-    
-    for i, message in enumerate(conversation):
-        # Extract content
-        content = message.get('content', '').strip()
-        if not content:
-            continue
-            
-        # Try to determine role (user vs assistant)
-        role = message.get('role', '')
-        
-        # If no role provided, alternate between user and assistant
-        # Assume first message is from user
-        if not role:
-            role = 'user' if i % 2 == 0 else 'assistant'
-        
-        # Format the message
-        role_label = "User" if role.lower() in ['user', 'human'] else "Assistant"
-        formatted_messages.append(f"{role_label}: {content}")
-    
-    return "\n\n".join(formatted_messages)
-
-
-def create_conversation_summary(conversation: List[dict]) -> str:
-    """
-    Create a brief summary of the conversation for better searchability
-    
-    Args:
-        conversation: List of message dictionaries
-        
-    Returns:
-        Summary string combining first user message and key topics
-    """
-    if not conversation or len(conversation) == 0:
-        return ""
-    
-    # Get first message (user query)
-    first_message = conversation[0].get('content', '').strip()
-    
-    # For longer conversations, add context about the interaction
-    if len(conversation) > 2:
-        summary = f"User Query: {first_message}\n\nThis was a {len(conversation)}-turn conversation"
-        
-        # Add assistant's response if available
-        if len(conversation) > 1:
-            assistant_response = conversation[1].get('content', '').strip()
-            if assistant_response:
-                summary += f" where the assistant responded: {assistant_response}"
-        
-        return summary
-    else:
-        return f"User Query: {first_message}"
+    return conversation_template.render(conversation=conversation)
 
 
 class WildChatDataLoader:
@@ -178,7 +135,6 @@ class WildChatDataLoader:
                 # Format conversation history and create summary
                 original_conversation = record.get('conversation', [])
                 formatted_history = format_conversation_history(original_conversation)
-                conversation_summary = create_conversation_summary(original_conversation)
                 
                 # Create conversation object
                 conversation_data = {
@@ -186,8 +142,7 @@ class WildChatDataLoader:
                     'model': record['model'],
                     'timestamp': record['timestamp'],
                     'conversation': record['conversation'],
-                    'conversation_history': formatted_history,
-                    'conversation_summary': conversation_summary,
+                    'conversation_string': formatted_history,
                     'turn': record.get('turn', 1),
                     'language': record.get('language', 'Unknown'),
                     'country': record.get('country'),

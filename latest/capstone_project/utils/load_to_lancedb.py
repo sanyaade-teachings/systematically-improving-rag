@@ -39,6 +39,7 @@ class WildChatConversation(LanceModel):
     language: str
     model_name: str
     conversation_length: int
+    conversation_string: str
     country: str
     toxic: bool
     redacted: bool
@@ -170,7 +171,8 @@ def load_to_lancedb(
                     'country': conversation.get('country', 'Unknown'),
                     'toxic': conversation['toxic'],
                     'redacted': conversation['redacted'],
-                    'turn': conversation['turn']
+                    'turn': conversation['turn'],
+                    'conversation_string': conversation['conversation_string']
                 }
                 
                 # Add to batch
@@ -182,6 +184,8 @@ def load_to_lancedb(
                         if table is None:
                             # Create table with schema and first batch
                             table = db.create_table(table_name, schema=WildChatConversation)
+                            table.create_fts_index("text") # Create full-text search index on text field
+                            table.create_fts_index("conversation_string") # Create full-text search index on conversation_string field
                             console.print(f"Created table: {table_name} with embedding schema", style="green")
                         
                         # Add batch data - embeddings will be computed automatically
@@ -208,6 +212,7 @@ def load_to_lancedb(
                     # Create table with schema and final batch if no batches were processed
                     table = db.create_table(table_name, schema=WildChatConversation)
                     table.create_fts_index("text") # Create full-text search index on text field
+                    table.create_fts_index("conversation_string") # Create full-text search index on conversation_string field
                     console.print(f"Created table: {table_name} with embedding schema", style="green")
                 
                 # Add final batch data

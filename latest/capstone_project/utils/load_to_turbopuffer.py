@@ -184,8 +184,7 @@ def load_to_turbopuffer(
             'id': [],
             'vector': [],
             'text': [],
-            'conversation_history': [],
-            'conversation_summary': [],
+            'conversation_string': [],
             'hash': [],
             'timestamp': [],
             'language': [],
@@ -234,7 +233,6 @@ def load_to_turbopuffer(
                 
                 # Format conversation history and create summary
                 formatted_history = format_conversation_history(original_conversation)
-                conversation_summary = create_conversation_summary(original_conversation)
                 
                 # Use first message as main text (for embeddings)
                 message_text = conversation['first_message'] # we dont truncate the message, only truncate for embeddings
@@ -242,8 +240,7 @@ def load_to_turbopuffer(
                 # Add to batch
                 batch_data['id'].append(doc_id)
                 batch_data['text'].append(message_text)
-                batch_data['conversation_history'].append(formatted_history)
-                batch_data['conversation_summary'].append(conversation_summary)
+                batch_data['conversation_string'].append(formatted_history)
                 batch_data['hash'].append(conversation['conversation_hash'])
                 batch_data['timestamp'].append(str(conversation['timestamp']))
                 batch_data['language'].append(conversation['language'])
@@ -275,11 +272,7 @@ def load_to_turbopuffer(
                                     "type": "string",
                                     "full_text_search": True,
                                 },
-                                "conversation_history": {
-                                    "type": "string",
-                                    "full_text_search": True,
-                                },
-                                "conversation_summary": {
+                                "conversation_string": {
                                     "type": "string",
                                     "full_text_search": True,
                                 },
