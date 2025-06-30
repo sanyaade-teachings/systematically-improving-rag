@@ -208,12 +208,6 @@ class WildChatDAOTurbopuffer(WildChatDAOBase):
             filters.append(("timestamp", "Gte", start_date.isoformat()))
             filters.append(("timestamp", "Lte", end_date.isoformat()))
 
-        # Conversation length range
-        if request.conversation_length_range:
-            min_len, max_len = request.conversation_length_range
-            filters.append(("conversation_length", "Gte", min_len))
-            filters.append(("conversation_length", "Lte", max_len))
-
         # Languages filter
         if request.languages:
             if len(request.languages) == 1:

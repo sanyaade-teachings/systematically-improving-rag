@@ -36,6 +36,7 @@ class SearchRequest(SearchArgs):
     query: str
     top_k: int = 10
     search_type: SearchType = SearchType.VECTOR
+    conversation_length_range: Optional[tuple[int, int]] = Field(default=None)
 
 
 class SearchResult(BaseModel):

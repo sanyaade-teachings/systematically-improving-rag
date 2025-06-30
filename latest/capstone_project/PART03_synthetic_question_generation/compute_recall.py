@@ -101,6 +101,8 @@ async def verify_single_query(
     conversation_hash: str,
     query: str,
     cache: GenericCache,
+    *,
+    search_type: SearchType = SearchType.VECTOR,
     top_k: int = 30,  # Increased to 30 to capture all recall levels
 ) -> Dict[str, Any]:
     """Verify if search results contain the original conversation hash
@@ -121,10 +123,7 @@ async def verify_single_query(
 
     try:
         # Create search request
-        request = SearchRequest(query=query, top_k=top_k, search_type=SearchType.VECTOR)
-        # Add TurboPuffer-specific attributes if needed
-        if not hasattr(request, "conversation_length_range"):
-            request.conversation_length_range = None
+        request = SearchRequest(query=query, top_k=top_k, search_type=search_type)
 
         # Perform search
         results = await dao.search(request)
