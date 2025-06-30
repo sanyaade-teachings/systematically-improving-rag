@@ -17,7 +17,7 @@ from dataclasses import dataclass
 from collections import defaultdict
 import json
 from datetime import datetime
-import argparse
+import typer
 
 from dotenv import load_dotenv
 from rich.console import Console
@@ -27,7 +27,7 @@ from rich.live import Live
 from rich.layout import Layout
 from rich.panel import Panel
 from rich.text import Text
-from diskcache import Cache
+from src.cache import setup_cache, GenericCache
 
 # Add parent directory to path for imports
 sys.path.append(str(Path(__file__).parent.parent))
@@ -123,7 +123,7 @@ async def verify_single_query(
     dao: WildChatDAOChromaDB,
     conversation_hash: str,
     query: str,
-    cache: Cache,
+    cache: GenericCache,
     top_k: int = 30  # Increased to 30 to capture all recall levels
 ) -> Dict[str, Any]:
     """Verify if search results contain the original conversation hash
@@ -132,7 +132,7 @@ async def verify_single_query(
         Dict with search results and position of matching hash (if found)
     """
     # Create cache key
-    cache_key = f"recall_{conversation_hash}_{query[:50]}"  # Truncate query for key
+    cache_key = GenericCache.make_recall_key(conversation_hash, query)
     
     # Check cache first
     cached_result = cache.get(cache_key)
@@ -189,7 +189,7 @@ async def process_query_with_metrics(
     prompt_version: str,
     query: str,
     metrics: RecallMetrics,
-    cache: Cache,
+    cache: GenericCache,
     semaphore: asyncio.Semaphore
 ) -> None:
     """Process a single query and update metrics"""
@@ -231,7 +231,7 @@ async def process_query_with_metrics(
 async def process_queries_with_live_updates(
     dao: WildChatDAOChromaDB,
     queries: List[Tuple[str, str, str]],
-    cache: Cache,
+    cache: GenericCache,
     update_interval: int = 50
 ) -> Dict[str, RecallMetrics]:
     """Process queries with live rolling metrics updates"""
@@ -321,14 +321,12 @@ def print_results_table(metrics_by_version: Dict[str, RecallMetrics]):
     console.print(table)
 
 
-async def main():
-    """Main execution function"""
-    # Parse command line arguments
-    parser = argparse.ArgumentParser(description="Verify recall of synthetic queries")
-    parser.add_argument("--limit", type=int, default=None, help="Limit number of queries to process")
-    parser.add_argument("--update-interval", type=int, default=50, help="Update metrics every N queries (default: 50)")
-    parser.add_argument("--use-local", action="store_true", help="Use local ChromaDB instead of cloud")
-    args = parser.parse_args()
+async def main(
+    limit: int = typer.Option(None, help="Limit number of queries to process"),
+    update_interval: int = typer.Option(50, help="Update metrics every N queries"),
+    use_local: bool = typer.Option(False, help="Use local ChromaDB instead of cloud")
+):
+    """Verify recall of synthetic queries"""
     
     console.print("[bold green]Recall Verification Script[/bold green]")
     console.print("="*50)
@@ -340,15 +338,12 @@ async def main():
         return
     
     # Set up disk cache
-    cache = Cache(str(CACHE_DIR))
     console.print(f"\n[cyan]Using disk cache at: {CACHE_DIR}[/cyan]")
-    cache_size = len(cache)
-    if cache_size > 0:
-        console.print(f"[yellow]Found {cache_size} cached results[/yellow]")
+    cache = setup_cache(CACHE_DIR)
     
     # Load queries
     console.print("\n[cyan]Loading queries from database...[/cyan]")
-    queries = load_queries_from_db(limit=args.limit)
+    queries = load_queries_from_db(limit=limit)
     
     if not queries:
         console.print("[red]No queries found in database[/red]")
@@ -367,7 +362,7 @@ async def main():
     
     # Initialize ChromaDB DAO
     console.print("\n[cyan]Connecting to ChromaDB...[/cyan]")
-    dao = WildChatDAOChromaDB(use_cloud=not args.use_local)
+    dao = WildChatDAOChromaDB(use_cloud=not use_local)
     
     try:
         await dao.connect()
@@ -386,10 +381,10 @@ async def main():
     
     # Process queries with live updates
     console.print("\n[cyan]Verifying recall with live metrics...[/cyan]")
-    console.print(f"[dim]Metrics will update every {args.update_interval} queries[/dim]\n")
+    console.print(f"[dim]Metrics will update every {update_interval} queries[/dim]\n")
     
     # Process all queries with live updates
-    metrics_by_version = await process_queries_with_live_updates(dao, queries, cache, update_interval=args.update_interval)
+    metrics_by_version = await process_queries_with_live_updates(dao, queries, cache, update_interval=update_interval)
     
     # Print results
     console.print("\n")
@@ -416,5 +411,16 @@ async def main():
     console.print("\n[cyan]Done![/cyan]")
 
 
+app = typer.Typer()
+
+@app.command()
+def run(
+    limit: int = typer.Option(None, help="Limit number of queries to process"),
+    update_interval: int = typer.Option(50, help="Update metrics every N queries"),
+    use_local: bool = typer.Option(False, help="Use local ChromaDB instead of cloud")
+):
+    """Verify recall of synthetic queries"""
+    asyncio.run(main(limit, update_interval, use_local))
+
 if __name__ == "__main__":
-    asyncio.run(main())
+    app()
