@@ -24,12 +24,20 @@ Well, if you're someone building an application that's a search conversation his
 
 The recall metrics tell a compelling story:
 
-| Metric | V1 | V2 |
-|--------|----|----|
-| Recall@1 | 35.39% | 2.46% |
-| Recall@5 | 54.00% | 7.01% |
-| Recall@10 | 60.42% | 9.24% |
-| Recall@30 | 71.16% | 14.10% |
+
+                              Recall Metrics per Backend and Version                               
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
+┃ Backend / Version           ┃ Queries ┃ Recall@1 ┃ Recall@5 ┃ Recall@10 ┃ Recall@20 ┃ Recall@30 ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━┩
+│ ChromaDB (v1)               │      67 │   28.36% │   49.25% │    53.73% │    62.69% │    64.18% │
+│ ChromaDB (v2)               │      83 │    1.20% │    2.41% │     6.02% │    14.46% │    14.46% │
+│ TurboPuffer ‑ Vector (v1)   │      67 │   26.87% │   49.25% │    61.19% │    62.69% │    67.16% │
+│ TurboPuffer ‑ Vector (v2)   │      83 │    1.20% │    2.41% │     8.43% │    15.66% │    15.66% │
+│ TurboPuffer ‑ FullText (v1) │      67 │   34.33% │   40.30% │    46.27% │    52.24% │    53.73% │
+│ TurboPuffer ‑ FullText (v2) │      83 │    3.61% │    4.82% │     7.23% │     8.43% │     8.43% │
+│ TurboPuffer ‑ Hybrid (v1)   │      67 │    0.00% │    0.00% │     0.00% │     0.00% │     0.00% │
+│ TurboPuffer ‑ Hybrid (v2)   │      83 │    0.00% │    0.00% │     0.00% │     0.00% │     0.00% │
+└─────────────────────────────┴─────────┴──────────┴──────────┴───────────┴───────────┴───────────┘
 
 ## Why Such Different Results?
 
