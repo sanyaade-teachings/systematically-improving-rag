@@ -18,3 +18,4 @@ participation.py
 docs/.cache/
 # Converted markdown files
 /md/
+*.egg-info/
