@@ -84,6 +84,7 @@ class SearchQueries(BaseModel):
 @cache_with_ttl(ttl_seconds=86400 * 7)  # Cache for 7 days
 async def synthetic_question_generation_v1(
     client,  # instructor-patched client
+    conversation_id: str,
     conversation: Dict[str, Any],
     conversation_hash: str,
 ) -> SearchQueries:
@@ -95,9 +96,9 @@ async def synthetic_question_generation_v1(
     The queries should be diverse and cover different aspects of the conversation.
     
     Args:
+        client: instructor-patched client
         conversation_id: ID of the conversation to generate search queries for
         conversation: Dictionary containing conversation data with 'messages' or 'conversation' key
-        client: instructor-patched client
         conversation_hash: Unique hash of the conversation for caching
         
     Returns:
@@ -155,7 +156,7 @@ async def synthetic_question_generation_v2(
     conversation_id: str,
     conversation: Dict[str, Any],
     conversation_hash: str,
-) -> ConversationPatternQueries:
+) -> SearchQueries:
     """
     Generate search queries for finding conversations with similar patterns and characteristics.
     
@@ -163,13 +164,13 @@ async def synthetic_question_generation_v2(
     useful for researchers, content moderators, or analysts studying human-AI interactions.
     
     Args:
+        client: instructor-patched client
         conversation_id: ID of the conversation to analyze
         conversation: Dictionary containing conversation data with 'messages' or 'conversation' key
-        client: instructor-patched client
         conversation_hash: Unique hash of the conversation for caching
         
     Returns:
-        ConversationPatternQueries object with pattern-focused search queries
+        SearchQueries object with pattern-focused search queries
     """
     # Extract conversation content
     messages = conversation.get('conversation', conversation.get('messages', []))
