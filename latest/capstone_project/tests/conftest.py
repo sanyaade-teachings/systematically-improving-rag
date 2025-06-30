@@ -9,7 +9,7 @@ import os
 import sys
 
 # Add project root to Python path
-project_root = os.path.join(os.path.dirname(__file__), '..')
+project_root = os.path.join(os.path.dirname(__file__), "..")
 sys.path.insert(0, project_root)
 
 
@@ -32,7 +32,7 @@ def sample_text_documents():
         "What is machine learning and how does it work?",
         "Can you explain the difference between supervised and unsupervised learning?",
         "What are the best practices for writing clean code?",
-        "How do I set up a development environment for web development?"
+        "How do I set up a development environment for web development?",
     ]
 
 
@@ -42,12 +42,12 @@ def sample_conversations():
     return [
         {
             "user": "How do I learn Python programming?",
-            "assistant": "I recommend starting with the basics: variables, data types, and control structures. Then move on to functions and object-oriented programming."
+            "assistant": "I recommend starting with the basics: variables, data types, and control structures. Then move on to functions and object-oriented programming.",
         },
         {
             "user": "What is machine learning?",
-            "assistant": "Machine learning is a subset of AI that enables computers to learn and make decisions from data without being explicitly programmed for every task."
-        }
+            "assistant": "Machine learning is a subset of AI that enables computers to learn and make decisions from data without being explicitly programmed for every task.",
+        },
     ]
 
 
@@ -58,7 +58,7 @@ def performance_threshold():
     return {
         "search_time_ms": 5000,  # 5 seconds max for search
         "add_documents_time_ms": 10000,  # 10 seconds max for adding documents
-        "connection_time_ms": 3000  # 3 seconds max for connection
+        "connection_time_ms": 3000,  # 3 seconds max for connection
     }
 
 

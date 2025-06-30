@@ -30,9 +30,10 @@ from src.db import load_queries_from_db
 # Add parent directory to path for imports
 sys.path.append(str(Path(__file__).parent.parent))
 
-# Import ChromaDB DAO
+# Import DAOs
 from utils.dao.wildchat_dao_chromadb import WildChatDAOChromaDB
-from utils.dao.wildchat_dao import SearchRequest, SearchType
+from utils.dao.wildchat_dao_turbopuffer import WildChatDAOTurbopuffer
+from utils.dao.wildchat_dao import SearchRequest, SearchType, WildChatDAOBase
 
 # Load environment variables
 load_dotenv()
@@ -41,8 +42,8 @@ load_dotenv()
 console = Console()
 
 # Database and cache paths
-DB_PATH = Path(__file__).parent / "synthetic_queries.db"
-CACHE_DIR = Path(__file__).parent / ".cache"
+DB_PATH = Path(__file__).parent / "data" / "synthetic_queries.db"
+CACHE_DIR = Path(__file__).parent / "data" / ".cache"
 
 
 @dataclass
@@ -96,9 +97,8 @@ class RecallMetrics:
 
 
 async def verify_single_query(
-    dao: WildChatDAOChromaDB,
+    dao: WildChatDAOBase,
     conversation_hash: str,
-    version: str,
     query: str,
     cache: GenericCache,
     top_k: int = 30,  # Increased to 30 to capture all recall levels
@@ -108,8 +108,11 @@ async def verify_single_query(
     Returns:
         Dict with search results and position of matching hash (if found)
     """
-    # Create cache key
-    cache_key = GenericCache.make_recall_key(conversation_hash, query)
+    # Create cache key with DAO type
+    dao_type = dao.__class__.__name__
+    cache_key = GenericCache.make_generic_key(
+        "recall", dao_type, conversation_hash, query[:50]
+    )
 
     # Check cache first
     cached_result = cache.get(cache_key)
@@ -119,6 +122,9 @@ async def verify_single_query(
     try:
         # Create search request
         request = SearchRequest(query=query, top_k=top_k, search_type=SearchType.VECTOR)
+        # Add TurboPuffer-specific attributes if needed
+        if not hasattr(request, "conversation_length_range"):
+            request.conversation_length_range = None
 
         # Perform search
         results = await dao.search(request)
@@ -146,6 +152,7 @@ async def verify_single_query(
         return result
 
     except Exception as e:
+        console.print(f"[red]Search error for query '{query[:50]}...': {e}[/red]")
         error_result = {"success": False, "error": str(e), "position": -1}
         # Also cache errors to avoid retrying
         cache.set(cache_key, error_result)
@@ -153,7 +160,7 @@ async def verify_single_query(
 
 
 async def process_query_with_metrics(
-    dao: WildChatDAOChromaDB,
+    dao: WildChatDAOBase,
     conversation_hash: str,
     prompt_version: str,
     query: str,
@@ -198,7 +205,7 @@ async def process_query_with_metrics(
 
 
 async def process_queries_with_live_updates(
-    dao: WildChatDAOChromaDB,
+    dao: WildChatDAOBase,
     queries: List[Tuple[str, str, str]],
     cache: GenericCache,
     update_interval: int = 50,
@@ -323,6 +330,9 @@ async def main(
     limit: int = typer.Option(None, help="Limit number of queries to process"),
     update_interval: int = typer.Option(50, help="Update metrics every N queries"),
     use_local: bool = typer.Option(False, help="Use local ChromaDB instead of cloud"),
+    use_turbopuffer: bool = typer.Option(
+        False, help="Use TurboPuffer instead of ChromaDB"
+    ),
 ):
     """Verify recall of synthetic queries"""
 
@@ -358,13 +368,19 @@ async def main(
     for version, count in queries_by_version.items():
         console.print(f"  {version}: {count} queries")
 
-    # Initialize ChromaDB DAO
-    console.print("\n[cyan]Connecting to ChromaDB...[/cyan]")
-    dao = WildChatDAOChromaDB(use_cloud=not use_local)
+    # Initialize DAO based on flag
+    if use_turbopuffer:
+        console.print("\n[cyan]Connecting to TurboPuffer...[/cyan]")
+        dao = WildChatDAOTurbopuffer()
+        dao_name = "TurboPuffer"
+    else:
+        console.print("\n[cyan]Connecting to ChromaDB...[/cyan]")
+        dao = WildChatDAOChromaDB(use_cloud=not use_local)
+        dao_name = f"ChromaDB ({'local' if use_local else 'cloud'})"
 
     try:
         await dao.connect()
-        console.print("[green]Connected to ChromaDB[/green]")
+        console.print(f"[green]Connected to {dao_name}[/green]")
 
         # Get stats
         stats = await dao.get_stats()
@@ -373,14 +389,16 @@ async def main(
         console.print(f"  Collection name: {stats.get('collection_name', 'N/A')}")
 
     except Exception as e:
-        console.print(f"[red]Failed to connect to ChromaDB: {e}[/red]")
+        console.print(f"[red]Failed to connect to {dao_name}: {e}[/red]")
         console.print(
-            "[yellow]Make sure ChromaDB environment variables are set[/yellow]"
+            "[yellow]Make sure the required environment variables are set[/yellow]"
         )
         return
 
     # Process queries with live updates
-    console.print("\n[cyan]Verifying recall with live metrics...[/cyan]")
+    console.print(
+        f"\n[cyan]Verifying recall with live metrics using {dao_name}...[/cyan]"
+    )
     console.print(f"[dim]Metrics will update every {update_interval} queries[/dim]\n")
 
     # Process all queries with live updates
@@ -397,6 +415,11 @@ async def main(
     results_data = {
         "timestamp": datetime.now().isoformat(),
         "total_queries": len(queries),
+        "dao_type": dao.__class__.__name__,
+        "dao_config": {
+            "use_turbopuffer": use_turbopuffer,
+            "use_local": use_local if not use_turbopuffer else None,
+        },
         "metrics": {
             version: metrics.get_summary()
             for version, metrics in metrics_by_version.items()
@@ -421,9 +444,12 @@ def run(
     limit: int = typer.Option(None, help="Limit number of queries to process"),
     update_interval: int = typer.Option(50, help="Update metrics every N queries"),
     use_local: bool = typer.Option(False, help="Use local ChromaDB instead of cloud"),
+    use_turbopuffer: bool = typer.Option(
+        False, help="Use TurboPuffer instead of ChromaDB"
+    ),
 ):
     """Verify recall of synthetic queries"""
-    asyncio.run(main(limit, update_interval, use_local))
+    asyncio.run(main(limit, update_interval, use_local, use_turbopuffer))
 
 
 if __name__ == "__main__":
