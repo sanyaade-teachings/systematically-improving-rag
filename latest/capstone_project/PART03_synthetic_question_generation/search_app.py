@@ -42,7 +42,7 @@ def parse_conversation(conversation_string: str) -> list:
     
     # Check if it's XML format
     if '<message role=' in conversation_string:
-        # XML parsing - look for message tags
+        # XML parsing
         import re
         pattern = r'<message role="(user|assistant)">(.*?)</message>'
         matches = re.findall(pattern, conversation_string, re.DOTALL)
@@ -54,15 +54,13 @@ def parse_conversation(conversation_string: str) -> list:
             })
     else:
         # Plain text format with "User:" and "A:" prefixes
-        lines = conversation_string.split('\n\n')
+        lines = conversation_string.split('\n')
         current_role = None
         current_content = []
         
         for line in lines:
             line = line.strip()
-            if not line:
-                continue
-                
+            
             if line.startswith("User:"):
                 # Save previous message if exists
                 if current_role and current_content:
@@ -72,7 +70,7 @@ def parse_conversation(conversation_string: str) -> list:
                     })
                 current_role = "user"
                 current_content = [line[5:].strip()]  # Remove "User:" prefix
-            elif line.startswith("A:"):
+            elif line.startswith("Assistant:"):
                 # Save previous message if exists
                 if current_role and current_content:
                     messages.append({
@@ -80,11 +78,10 @@ def parse_conversation(conversation_string: str) -> list:
                         "content": '\n'.join(current_content).strip()
                     })
                 current_role = "assistant"
-                current_content = [line[2:].strip()]  # Remove "A:" prefix
-            else:
+                current_content = [line[10:].strip()]  # Remove "Assistant:" prefix
+            elif line and current_content is not None:
                 # Continuation of previous message
-                if current_content:
-                    current_content.append(line)
+                current_content.append(line)
         
         # Don't forget the last message
         if current_role and current_content:
@@ -266,13 +263,23 @@ def main():
             
             # Parse and display conversation
             st.markdown("**Full Conversation:**")
+            
+            # Debug: show raw conversation string in an expander
+            with st.expander("Debug: Raw Conversation Data"):
+                st.code(result.conversation_string[:1000] + "..." if len(result.conversation_string) > 1000 else result.conversation_string)
+            
             messages = parse_conversation(result.conversation_string)
             
-            for msg in messages:
-                if msg["role"] == "user":
-                    st.chat_message("user").write(msg["content"])
-                else:
-                    st.chat_message("assistant").write(msg["content"])
+            if not messages:
+                st.warning("No messages could be parsed from the conversation")
+                st.text("Raw conversation preview:")
+                st.text(result.conversation_string[:500])
+            else:
+                for msg in messages:
+                    if msg["role"] == "user":
+                        st.chat_message("user").write(msg["content"])
+                    else:
+                        st.chat_message("assistant").write(msg["content"])
         else:
             st.info("Select a conversation from the search results to view it here")
 
