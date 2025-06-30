@@ -1,45 +1,186 @@
 # Synthetic Query Generation
 
-This directory contains scripts for generating synthetic search queries from WildChat conversations.
+A modular system for generating and evaluating synthetic search queries from WildChat conversations. This project demonstrates how different prompting strategies dramatically affect RAG system performance.
 
-## Files
+## Overview
 
-- `generate_synthetic_queries.py` - Main script to generate synthetic queries
-- `synthetic_queries.db` - SQLite database containing generated queries (created after running script)
+This system provides:
+- **Two query generation strategies**: V1 (search-focused) and V2 (pattern-focused)
+- **Recall verification**: Test how well generated queries retrieve their source conversations
+- **Modular architecture**: Easy to extend with new generation strategies
+- **CLI interface**: Simple commands for generation, verification, and analysis
 
-## Usage
+## Key Insights
 
-1. Ensure you have an OpenAI API key set in your environment:
+Our experiments show that prompt design is critical:
+- **V1 (Search-focused)**: 35.4% recall@1, 60.4% recall@10
+- **V2 (Pattern-focused)**: 2.5% recall@1, 9.2% recall@10
+
+The dramatic difference occurs because we embed only the first user message, and V1 generates queries that match natural search behavior while V2 generates abstract categorizations.
+
+See [COMMENTARY.md](COMMENTARY.md) for detailed analysis.
+
+## Installation
+
+1. Install dependencies:
+   ```bash
+   pip install instructor rich diskcache pydantic asyncio
+   ```
+
+2. Set up environment:
    ```bash
    export OPENAI_API_KEY="your-api-key-here"
    ```
 
-2. Run the script:
-   ```bash
-   python generate_synthetic_queries.py
-   ```
+## Quick Start
+
+```bash
+# Generate synthetic queries (both v1 and v2)
+./main.py generate --limit 100
+
+# Generate only v1 queries with dry run
+./main.py generate --limit 50 --version v1 --dry-run
+
+# Generate sample queries for testing
+./main.py generate --limit 10 --sample
+
+# Verify recall for all queries
+./main.py verify
+
+# Verify recall for v1 queries and export results
+./main.py verify --version v1 --export results.json
+
+# Show database statistics
+./main.py stats
+```
+
+## Architecture
+
+```
+PART03_synthetic_question_generation/
+├── src/
+│   ├── processors/          # Query generation strategies
+│   │   ├── base.py         # Abstract base class
+│   │   ├── v1_search.py    # Search-focused generation
+│   │   └── v2_pattern.py   # Pattern-focused generation
+│   ├── storage/            # Data persistence
+│   │   ├── database.py     # SQLite operations
+│   │   └── cache.py        # Disk cache management
+│   ├── cli/                # Command implementations
+│   │   ├── generate.py     # Generate queries command
+│   │   └── verify.py       # Verify recall command
+│   └── config.py           # Configuration management
+├── data/                   # Git-ignored data directory
+│   ├── cache/              # Query generation cache
+│   ├── cache_recall/       # Recall verification cache
+│   └── databases/          # SQLite databases
+├── notebooks/              # Jupyter notebooks
+├── tests/                  # Unit tests
+└── main.py                # CLI entry point
+```
+
+## Command Reference
+
+### Generate Command
+
+Generate synthetic queries from conversations:
+
+```bash
+./main.py generate [options]
+```
+
+Options:
+- `--limit N`: Number of conversations to process (default: 500)
+- `--version {v1,v2,all}`: Which processor to use (default: all)
+- `--batch-size N`: Database batch size (default: 100)
+- `--max-concurrent N`: Max concurrent API requests (default: 10)
+- `--model MODEL`: Model to use (default: openai/gpt-4o-mini)
+- `--clear-cache`: Clear cache before starting
+- `--dry-run`: Run without saving to database
+- `--sample`: Generate samples (ignores already processed)
+- `--data-dir PATH`: Override data directory location
+
+### Verify Command
+
+Verify recall of generated queries:
+
+```bash
+./main.py verify [options]
+```
+
+Options:
+- `--limit N`: Limit queries to verify
+- `--version {v1,v2,all}`: Which version to verify (default: all)
+- `--update-interval N`: Update metrics every N queries (default: 50)
+- `--use-local`: Use local ChromaDB instead of cloud
+- `--export PATH`: Export results to JSON file
+- `--data-dir PATH`: Override data directory location
+
+### Stats Command
+
+Show database statistics:
+
+```bash
+./main.py stats [options]
+```
 
 ## Database Schema
 
-The SQLite database contains a single table `synthetic_queries` with the following columns:
+### synthetic_queries table
+- `id`: Primary key (auto-increment)
+- `conversation_hash`: Hash of source conversation
+- `prompt_version`: Version used (v1 or v2)
+- `query`: Generated search query
+- `chain_of_thought`: Generation reasoning
+- `created_at`: Timestamp
+- `metadata`: Additional metadata (JSON)
 
-- `id` - Primary key (auto-increment)
-- `conversation_hash` - Hash of the source conversation
-- `prompt_version` - Version of prompt used (v1 or v2)
-- `query` - Generated search query
-- `created_at` - Timestamp when record was created
+### processed_conversations table
+- `conversation_hash`: Primary key
+- `processed_at`: Timestamp
+- `versions_processed`: Comma-separated versions
 
-## Expected Output
+## Configuration
 
-- Processes 1000 conversations from WildChat dataset
-- Generates 4-7 queries per conversation per version (v1 and v2)
-- Expected total: ~8,000-14,000 queries
-- Processing time: ~10-20 minutes depending on API rate limits
+Configuration via environment variables:
+- `SQ_BATCH_SIZE`: Database batch size (default: 100)
+- `SQ_MAX_CONCURRENT`: Max concurrent requests (default: 10)
+- `SQ_UPDATE_INTERVAL`: Metric update interval (default: 50)
+- `SQ_MODEL_NAME`: Model to use (default: openai/gpt-4o-mini)
+- `SQ_USE_CLOUD_CHROMADB`: Use cloud ChromaDB (default: true)
 
-## Features
+## Extending the System
 
-- **Concurrent Processing**: Uses asyncio with rate limiting (10 concurrent requests)
-- **Error Handling**: Gracefully handles API errors and continues processing
-- **Progress Tracking**: Shows progress every 50 completed conversations
-- **Batch Saving**: Saves results to database in batches of 100
-- **Deduplication**: Uses conversation hashes to avoid duplicate processing
+To add a new query generation strategy:
+
+1. Create a new processor in `src/processors/`
+2. Inherit from `BaseProcessor`
+3. Implement `process()`, `version`, and `description` properties
+4. Import in `src/processors/__init__.py`
+5. Add to CLI in `src/cli/generate.py`
+
+Example:
+```python
+from .base import BaseProcessor, SearchQueries
+
+class MyProcessor(BaseProcessor):
+    @property
+    def version(self) -> str:
+        return "v3"
+    
+    @property
+    def description(self) -> str:
+        return "My custom query generation approach"
+    
+    async def process(self, messages: List[Dict[str, Any]]) -> SearchQueries:
+        # Your implementation here
+        pass
+```
+
+## Performance
+
+- Concurrent processing with configurable limits
+- Disk caching to avoid redundant API calls
+- Batch database operations
+- Progress tracking with live updates
+- Typical processing: ~100-200 conversations/minute
