@@ -24,15 +24,7 @@ class SearchType(Enum):
 class SearchArgs(BaseModel):
     """Search arguments"""
     date_range: Optional[tuple[datetime, datetime]] = Field(default=None)
-    conversation_length_range: Optional[tuple[int, int]] = Field(default=None)
-    model_names: Optional[List[str]] = Field(default=None)
     languages: Optional[List[str]] = Field(default=None)
-    countries: Optional[List[str]] = Field(default=None)
-    exclude_toxic: Optional[bool] = Field(default=False)
-    exclude_redacted: Optional[bool] = Field(default=False)
-    turn_range: Optional[tuple[int, int]] = Field(default=None)
-    vector_weight: float = Field(default=0.5, description="Weight for vector search in hybrid mode")
-    text_weight: float = Field(default=0.5, description="Weight for text search in hybrid mode")
 
 
 class SearchRequest(SearchArgs):
@@ -172,77 +164,3 @@ class WildChatDAOBase(ABC):
             Dict with statistics like document count, size, etc.
         """
         pass
-
-
-
-async def decompose_query(natural_language_query: str, *, model: str = "openai/gpt-4o-mini", top_k: int = 10) -> SearchRequest:
-    """
-    Convert natural language query to structured SearchRequest
-    
-    Args:
-        natural_language_query: Natural language search query
-        
-    Returns:
-        SearchRequest object with decomposed components
-    """
-    prompt = f"""
-    Analyze the following natural language query and decompose it into a structured search request.
-    
-    
-    Extract:
-    1. The main search query
-    2. Search type (semantic, keyword, or hybrid)
-    3. Any filters (language, toxic, country, etc.)
-    4. Number of results needed
-    
-    Available search types:
-    - semantic: For meaning-based search
-    - keyword: For exact text matching
-    - hybrid: For combined semantic and keyword search
-    
-    Available filters:
-    - language: Language filter (e.g., "English", "Spanish")
-    - toxic: Boolean filter for toxic content
-    - country: Country filter
-    - min_length: Minimum message length
-    - model_name: ('gpt-3.5-turbo', 'gpt-4') only
-    
-    Return a structured response with the decomposed components.
-    <query>
-    {natural_language_query}
-    </query>
-    """
-
-    class SearchRequestDecomposition(BaseModel):
-        """Structured output for query decomposition"""
-        query: str = Field(description="The main search query extracted from user input")
-        search_type: SearchType = Field(description="Type of search to perform")
-        filters: Dict[str, Any] = Field(description="Any filters extracted from the query")
-        explanation: str = Field(description="Explanation of how the query was decomposed")
-        
-    client = instructor.from_provider(model)
-    
-    try:
-        decomposition = await client.chat.completions.create(
-            response_model=SearchRequestDecomposition,
-            messages=[{"role": "user", "content": prompt}],
-            context={
-                "query": natural_language_query
-            }
-        )
-        
-        return SearchRequest(
-            query=decomposition.query,
-            search_type=decomposition.search_type,
-            filters=decomposition.filters,
-            top_k=top_k,
-        )
-        
-    except Exception:
-        # Fallback to simple keyword search if decomposition fails
-        return SearchRequest(
-            query=natural_language_query,
-            top_k=10,
-            search_type=SearchType.KEYWORD,
-            filters={}
-        )

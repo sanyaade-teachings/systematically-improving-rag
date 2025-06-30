@@ -187,54 +187,21 @@ class WildChatDAOChromaDB(WildChatDAOBase):
         # Date range filter
         if request.date_range:
             start_date, end_date = request.date_range
-            where_conditions.append({
-                "$and": [
-                    {"timestamp": {"$gte": start_date.isoformat()}},
-                    {"timestamp": {"$lte": end_date.isoformat()}}
-                ]
-            })
+            date_conditions = []
+            
+            if start_date:
+                date_conditions.append({"timestamp": {"$gte": start_date.isoformat()}})
+            
+            if end_date:
+                date_conditions.append({"timestamp": {"$lte": end_date.isoformat()}})
+            
+            if date_conditions:
+                if len(date_conditions) == 1:
+                    where_conditions.append(date_conditions[0])
+                else:
+                    where_conditions.append({"$and": date_conditions})
         
-        # Conversation length range
-        if request.conversation_length_range:
-            min_len, max_len = request.conversation_length_range
-            where_conditions.append({
-                "$and": [
-                    {"conversation_length": {"$gte": min_len}},
-                    {"conversation_length": {"$lte": max_len}}
-                ]
-            })
-        
-        # Model names filter
-        if request.model_names:
-            where_conditions.append({"model_name": {"$in": request.model_names}})
-        
-        # Languages filter
-        if request.languages:
-            where_conditions.append({"language": {"$in": request.languages}})
-        
-        # Countries filter
-        if request.countries:
-            where_conditions.append({"country": {"$in": request.countries}})
-        
-        # Toxic filter
-        if request.exclude_toxic:
-            where_conditions.append({"toxic": {"$eq": False}})
-        
-        # Redacted filter
-        if request.exclude_redacted:
-            where_conditions.append({"redacted": {"$eq": False}})
-        
-        # Turn range filter
-        if request.turn_range:
-            min_turn, max_turn = request.turn_range
-            where_conditions.append({
-                "$and": [
-                    {"turn": {"$gte": min_turn}},
-                    {"turn": {"$lte": max_turn}}
-                ]
-            })
-        
-        # Combine all conditions with AND
+        # Return the filter if we have any conditions
         if where_conditions:
             if len(where_conditions) == 1:
                 return where_conditions[0]

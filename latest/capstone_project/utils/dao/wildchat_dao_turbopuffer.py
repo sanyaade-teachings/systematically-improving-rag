@@ -221,41 +221,12 @@ class WildChatDAOTurbopuffer(WildChatDAOBase):
             filters.append(('conversation_length', 'Gte', min_len))
             filters.append(('conversation_length', 'Lte', max_len))
         
-        # Model names filter
-        if request.model_names:
-            if len(request.model_names) == 1:
-                filters.append(('model_name', 'Eq', request.model_names[0]))
-            else:
-                # For multiple values, we'll need to use multiple queries or 'In' if supported
-                filters.append(('model_name', 'In', request.model_names))
-        
         # Languages filter
         if request.languages:
             if len(request.languages) == 1:
                 filters.append(('language', 'Eq', request.languages[0]))
             else:
                 filters.append(('language', 'In', request.languages))
-        
-        # Countries filter
-        if request.countries:
-            if len(request.countries) == 1:
-                filters.append(('country', 'Eq', request.countries[0]))
-            else:
-                filters.append(('country', 'In', request.countries))
-        
-        # Toxic filter
-        if request.exclude_toxic:
-            filters.append(('toxic', 'Eq', False))
-        
-        # Redacted filter
-        if request.exclude_redacted:
-            filters.append(('redacted', 'Eq', False))
-        
-        # Turn range filter
-        if request.turn_range:
-            min_turn, max_turn = request.turn_range
-            filters.append(('turn', 'Gte', min_turn))
-            filters.append(('turn', 'Lte', max_turn))
         
         # Combine filters with AND logic
         if len(filters) == 0:
