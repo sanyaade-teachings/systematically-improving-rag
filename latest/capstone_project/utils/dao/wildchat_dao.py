@@ -8,10 +8,11 @@ with support for various search types and filtering options.
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import List, Dict, Any, Optional, Union
+from typing import List, Dict, Any, Optional
 from datetime import datetime
 from enum import Enum
-
+from pydantic import BaseModel, Field
+import instructor
 
 class SearchType(Enum):
     """Types of search supported"""
@@ -20,30 +21,26 @@ class SearchType(Enum):
     HYBRID = "hybrid"
 
 
-@dataclass
-class SearchRequest:
+class SearchArgs(BaseModel):
+    """Search arguments"""
+    date_range: Optional[tuple[datetime, datetime]] = Field(default=None)
+    conversation_length_range: Optional[tuple[int, int]] = Field(default=None)
+    model_names: Optional[List[str]] = Field(default=None)
+    languages: Optional[List[str]] = Field(default=None)
+    countries: Optional[List[str]] = Field(default=None)
+    exclude_toxic: bool = Field(default=True)
+    exclude_redacted: bool = Field(default=True)
+    turn_range: Optional[tuple[int, int]] = Field(default=None)
+
+
+class SearchRequest(SearchArgs):
     """Search request with query, parameters, and filters"""
     query: str
     top_k: int = 10
     search_type: SearchType = SearchType.VECTOR
-    
-    # Filters
-    date_range: Optional[tuple[datetime, datetime]] = None  # (start_date, end_date)
-    conversation_length_range: Optional[tuple[int, int]] = None  # (min_length, max_length)
-    model_names: Optional[List[str]] = None  # List of model names to include
-    languages: Optional[List[str]] = None  # List of languages to include
-    countries: Optional[List[str]] = None  # List of countries to include
-    exclude_toxic: bool = True  # Whether to exclude toxic conversations
-    exclude_redacted: bool = True  # Whether to exclude redacted conversations
-    turn_range: Optional[tuple[int, int]] = None  # (min_turn, max_turn)
-    
-    # Hybrid search weights
-    vector_weight: float = 0.7
-    text_weight: float = 0.3
 
 
-@dataclass
-class SearchResult:
+class SearchResult(BaseModel):
     """Single search result"""
     id: str
     text: str
@@ -52,8 +49,7 @@ class SearchResult:
     metadata: Dict[str, Any]  # Additional metadata (timestamp, model, etc.)
 
 
-@dataclass
-class SearchResults:
+class SearchResults(BaseModel):
     """Search results container"""
     results: List[SearchResult]
     total_count: int
@@ -174,3 +170,77 @@ class WildChatDAOBase(ABC):
             Dict with statistics like document count, size, etc.
         """
         pass
+
+
+
+async def decompose_query(natural_language_query: str, *, model: str = "openai/gpt-4o-mini", top_k: int = 10) -> SearchRequest:
+    """
+    Convert natural language query to structured SearchRequest
+    
+    Args:
+        natural_language_query: Natural language search query
+        
+    Returns:
+        SearchRequest object with decomposed components
+    """
+    prompt = f"""
+    Analyze the following natural language query and decompose it into a structured search request.
+    
+    
+    Extract:
+    1. The main search query
+    2. Search type (semantic, keyword, or hybrid)
+    3. Any filters (language, toxic, country, etc.)
+    4. Number of results needed
+    
+    Available search types:
+    - semantic: For meaning-based search
+    - keyword: For exact text matching
+    - hybrid: For combined semantic and keyword search
+    
+    Available filters:
+    - language: Language filter (e.g., "English", "Spanish")
+    - toxic: Boolean filter for toxic content
+    - country: Country filter
+    - min_length: Minimum message length
+    - model_name: ('gpt-3.5-turbo', 'gpt-4') only
+    
+    Return a structured response with the decomposed components.
+    <query>
+    {natural_language_query}
+    </query>
+    """
+
+    class SearchRequestDecomposition(BaseModel):
+        """Structured output for query decomposition"""
+        query: str = Field(description="The main search query extracted from user input")
+        search_type: SearchType = Field(description="Type of search to perform")
+        filters: Dict[str, Any] = Field(description="Any filters extracted from the query")
+        explanation: str = Field(description="Explanation of how the query was decomposed")
+        
+    client = instructor.from_provider(model)
+    
+    try:
+        decomposition = await client.chat.completions.create(
+            response_model=SearchRequestDecomposition,
+            messages=[{"role": "user", "content": prompt}],
+            context={
+                "query": natural_language_query
+            }
+        )
+        
+        return SearchRequest(
+            query=decomposition.query,
+            search_type=decomposition.search_type,
+            filters=decomposition.filters,
+            top_k=top_k,
+        )
+        
+    except Exception as e:
+        # Fallback to simple keyword search if decomposition fails
+        return SearchRequest(
+            query=natural_language_query,
+            top_k=10,
+            search_type=SearchType.KEYWORD,
+            filters={}
+        )
