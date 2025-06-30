@@ -54,6 +54,7 @@ dependencies = [
     "chromadb>=1.0.13",
     "turbopuffer>=0.5.8",
     "pylance>=0.30.0",
+    "ruff>=0.12.1",
 ]
 
 [build-system]

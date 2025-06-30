@@ -91,7 +91,7 @@ def find_notebooks(root_dir: str) -> List[Path]:
     """
     notebooks = []
     for path in Path(root_dir).rglob("*.ipynb"):
-        if not ".ipynb_checkpoints" in str(path):
+        if ".ipynb_checkpoints" not in str(path):
             notebooks.append(path)
     return notebooks
 

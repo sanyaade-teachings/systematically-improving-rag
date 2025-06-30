@@ -5,9 +5,7 @@ This module provides efficient loading and streaming of the WildChat-1M dataset
 with Pydantic models for type safety and data validation.
 """
 
-from typing import Generator, List, Dict, Any, Optional
-from datetime import datetime
-import pandas as pd
+from typing import Generator, List, Optional
 from datasets import load_dataset
 import logging
 import jinja2
@@ -163,6 +161,6 @@ class WildChatDataLoader:
                     
                 # Silent processing - no progress logs
                     
-            except Exception as e:
+            except Exception:
                 # Silent error handling
                 continue
