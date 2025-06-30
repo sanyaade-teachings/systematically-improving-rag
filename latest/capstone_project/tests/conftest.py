@@ -4,7 +4,6 @@ Pytest configuration and shared fixtures
 """
 
 import pytest
-import pytest_asyncio
 import asyncio
 import os
 import sys

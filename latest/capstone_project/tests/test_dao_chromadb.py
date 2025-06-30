@@ -5,7 +5,6 @@ Integration tests for ChromaDB DAO implementation using real database connection
 
 import pytest
 import pytest_asyncio
-import asyncio
 import os
 from datetime import datetime
 from dotenv import load_dotenv

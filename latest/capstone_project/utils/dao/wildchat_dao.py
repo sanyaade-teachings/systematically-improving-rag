@@ -236,7 +236,7 @@ async def decompose_query(natural_language_query: str, *, model: str = "openai/g
             top_k=top_k,
         )
         
-    except Exception as e:
+    except Exception:
         # Fallback to simple keyword search if decomposition fails
         return SearchRequest(
             query=natural_language_query,

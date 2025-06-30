@@ -6,7 +6,6 @@ ChromaDB implementation of WildChat DAO
 import os
 import time
 from typing import List, Dict, Any, Optional
-from datetime import datetime
 import chromadb
 from chromadb.utils import embedding_functions
 from dotenv import load_dotenv
@@ -112,7 +111,7 @@ class WildChatDAOChromaDB(WildChatDAOBase):
                 metadatas.append(metadata)
                 ids.append(doc.id)
                 
-            except Exception as e:
+            except Exception:
                 skipped_count += 1
                 continue
         
@@ -346,7 +345,7 @@ class WildChatDAOChromaDB(WildChatDAOBase):
                 request=request
             )
             
-        except Exception as e:
+        except Exception:
             end_time = time.time()
             query_time_ms = (end_time - start_time) * 1000
             

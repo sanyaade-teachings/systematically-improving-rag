@@ -19,8 +19,6 @@ from rich.console import Console
 from rich.progress import Progress
 
 # Import from parent utils directory
-import sys
-import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'utils'))
 
 from dataloader import WildChatDataLoader

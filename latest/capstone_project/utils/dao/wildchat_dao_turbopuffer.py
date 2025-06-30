@@ -6,7 +6,6 @@ Turbopuffer implementation of WildChat DAO
 import os
 import time
 from typing import List, Dict, Any, Optional
-from datetime import datetime
 import turbopuffer
 from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
@@ -116,7 +115,7 @@ class WildChatDAOTurbopuffer(WildChatDAOBase):
                 text_for_embedding = doc.text[:2000] if doc.text else ""
                 batch_texts.append(text_for_embedding)
                 
-            except Exception as e:
+            except Exception:
                 skipped_count += 1
                 continue
         
@@ -448,7 +447,7 @@ class WildChatDAOTurbopuffer(WildChatDAOBase):
                 request=request
             )
             
-        except Exception as e:
+        except Exception:
             end_time = time.time()
             query_time_ms = (end_time - start_time) * 1000
             

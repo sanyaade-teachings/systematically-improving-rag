@@ -5,7 +5,6 @@ Integration tests for Turbopuffer DAO implementation using real database connect
 
 import pytest
 import pytest_asyncio
-import asyncio
 import os
 from datetime import datetime
 from dotenv import load_dotenv

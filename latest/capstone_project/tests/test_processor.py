@@ -177,7 +177,7 @@ async def test_processor_with_sample_conversations():
         keyword_matches = sum(1 for keyword in relevant_keywords if keyword in queries_text)
         assert keyword_matches > 0, f"Expected some queries to contain relevant keywords: {relevant_keywords}"
         
-        print(f"  ✅ Generated diverse queries:")
+        print("  ✅ Generated diverse queries:")
         for j, query in enumerate(result.queries):
             print(f"    {j+1}. {query}")
         print(f"  💭 Reasoning: {result.chain_of_thought[:100]}...")
