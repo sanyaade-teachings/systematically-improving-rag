@@ -42,7 +42,7 @@ def format_conversation_history(conversation: List[dict]) -> str:
 class WildChatDataLoader:
     """Efficient data loader for WildChat-1M dataset"""
     
-    def __init__(self, dataset_name: str = "allenai/WildChat-1M"):
+    def __init__(self, dataset_name: str = "allenai/WildChat-1M", limit: Optional[int] = None):
         """
         Initialize the data loader
         
@@ -50,9 +50,10 @@ class WildChatDataLoader:
             dataset_name: HuggingFace dataset identifier
         """
         self.dataset_name = dataset_name
+        self.limit = limit
         self.dataset = None
         
-    def load_dataset(self, split: str = "train", limit: Optional[int] = None) -> None:
+    def load_dataset(self, split: str = "train") -> None:
         """
         Load the dataset with optional limit
         
@@ -60,8 +61,8 @@ class WildChatDataLoader:
             split: Dataset split to load
             limit: Maximum number of records to load (None for all)
         """
-        if limit is not None:
-            split_str = f"{split}[:{limit}]"
+        if self.limit is not None:
+            split_str = f"{split}[:{self.limit}]"
         else:
             split_str = split
             
@@ -91,9 +92,8 @@ class WildChatDataLoader:
         """
         # Don't limit initial dataset loading - we need to process until we get enough filtered results
         if self.dataset is None:
-            # Start with a reasonable chunk size, expand if needed
-            initial_chunk = dataset_chunk_size if limit and limit < dataset_chunk_size else dataset_chunk_size
-            self.load_dataset(limit=initial_chunk)
+            # Load the dataset (limit is already handled in constructor)
+            self.load_dataset()
         
         count = 0
         processed = 0

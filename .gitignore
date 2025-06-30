@@ -19,3 +19,4 @@ docs/.cache/
 # Converted markdown files
 /md/
 *.egg-info/
+latest/capstone_project/03_synthetic_question_generation/cache/
