@@ -13,8 +13,8 @@ parent_dir = current_dir.parent
 utils_dir = parent_dir / "utils"
 sys.path.append(str(utils_dir))
 
-from dataloader import WildChatDataLoader
-from processor import synthetic_question_generation_v1, SearchQueries, get_cache_stats, clear_cache, is_cached
+from ..utils.dataloader import WildChatDataLoader
+from processor import synthetic_question_generation_v1, synthetic_question_generation_v2, synthetic_question_generation_combined, get_cache_stats, clear_cache, is_cached
 
 # Configure Streamlit page
 st.set_page_config(
