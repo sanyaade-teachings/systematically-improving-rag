@@ -17,6 +17,7 @@ from dotenv import load_dotenv
 from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn, TimeRemainingColumn
 from diskcache import Cache
+import argparse
 
 # Import from our package - handles both direct execution and module import
 try:
@@ -181,6 +182,13 @@ async def process_conversation(
 
 async def main():
     """Main execution function"""
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description="Generate synthetic queries from WildChat conversations")
+    parser.add_argument("--limit", type=int, default=500, help="Number of conversations to process (default: 1000)")
+    parser.add_argument("--clear-cache", action="store_true", help="Clear the cache before starting")
+    parser.add_argument("--concurrency", type=int, default=50, help="Max concurrent API requests (default: 50)")
+    args = parser.parse_args()
+    
     console.print("[bold green]Synthetic Query Generation[/bold green]")
     console.print("="*50)
     
@@ -190,6 +198,14 @@ async def main():
     # Set up disk cache
     cache = Cache(str(CACHE_DIR))
     console.print(f"[cyan]Using disk cache at: {CACHE_DIR}[/cyan]")
+    
+    if args.clear_cache:
+        console.print("[yellow]Clearing cache...[/yellow]")
+        cache.clear()
+    else:
+        cache_size = len(cache)
+        if cache_size > 0:
+            console.print(f"[yellow]Found {cache_size} cached query generation results[/yellow]")
     
     # Check for already processed conversations
     processed = get_processed_conversations()
@@ -208,10 +224,10 @@ async def main():
         TextColumn("{task.completed}/{task.total}"),
         console=console
     ) as progress:
-        load_task = progress.add_task("Loading conversations", total=1000)
+        load_task = progress.add_task("Loading conversations", total=args.limit)
         
         for conversation in loader.stream_conversations(
-            limit=1500,  # Load extra in case some are already processed
+            limit=int(args.limit * 1.5),  # Load extra in case some are already processed
             min_message_length=50,
             filter_language="English",
             filter_toxic=True
@@ -221,7 +237,7 @@ async def main():
                 conversations.append(conversation)
                 progress.update(load_task, advance=1)
                 
-            if len(conversations) >= 1000:
+            if len(conversations) >= args.limit:
                 break
     
     console.print(f"[green]Loaded {len(conversations)} new conversations to process[/green]")
@@ -234,7 +250,7 @@ async def main():
     client = instructor.from_provider(model="openai/gpt-4.1-nano", async_client=True)
     
     # Control concurrency to avoid rate limits
-    semaphore = asyncio.Semaphore(10)  # Max 10 concurrent requests
+    semaphore = asyncio.Semaphore(args.concurrency)
     
     console.print("\n[cyan]Processing conversations...[/cyan]")
     

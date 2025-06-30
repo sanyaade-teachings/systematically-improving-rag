@@ -20,3 +20,5 @@ docs/.cache/
 /md/
 *.egg-info/
 latest/capstone_project/03_synthetic_question_generation/cache/
+latest/capstone_project/PART03_synthetic_question_generation/.cache_recall/cache.db
+*.db
