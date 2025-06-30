@@ -129,7 +129,6 @@ async def synthetic_question_generation_v2(
     """
     
     response = await client.chat.completions.create(
-        model="gpt-4o-mini",
         response_model=SearchQueries,
         messages=[
             {
