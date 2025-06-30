@@ -257,7 +257,6 @@ def load_to_turbopuffer(
                 if len(batch_data['id']) >= batch_size:
                     try:
                         # Generate embeddings for the batch
-                        console.print(f"Generating embeddings for batch of {len(batch_texts)} documents...", style="blue")
                         embeddings = create_embeddings([
                             text[:2000] for text in batch_texts # truncate the text to 2000 characters for embeddings
                         ])
@@ -289,7 +288,6 @@ def load_to_turbopuffer(
                         )
                         
                         total_added += len(batch_data['id'])
-                        console.print(f"Batch written: {total_added} documents added so far (with embeddings)", style="green")
                         
                     except Exception as e:
                         if "duplicate" in str(e).lower() or "already exists" in str(e).lower():
@@ -306,7 +304,6 @@ def load_to_turbopuffer(
         # Write final batch
         if batch_data['id']:
             try:
-                console.print(f"Generating embeddings for final batch of {len(batch_texts)} documents...", style="blue")
                 embeddings = create_embeddings(batch_texts)
                 batch_data['vector'] = embeddings
                 

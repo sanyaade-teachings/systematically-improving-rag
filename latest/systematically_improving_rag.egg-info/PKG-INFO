@@ -52,6 +52,7 @@ Requires-Dist: nbconvert>=7.16.6
 Requires-Dist: typer>=0.15.4
 Requires-Dist: chromadb>=1.0.13
 Requires-Dist: turbopuffer>=0.5.8
+Requires-Dist: pylance>=0.30.0
 
 # Systematically Improving RAG Applications
 

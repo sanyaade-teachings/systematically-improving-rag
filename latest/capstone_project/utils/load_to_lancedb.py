@@ -192,7 +192,6 @@ def load_to_lancedb(
                         table.add(batch_data)
                         
                         total_added += len(batch_data)
-                        console.print(f"Batch written: {total_added} documents added so far (with embeddings)", style="green")
                         
                     except Exception as e:
                         if "already exists" in str(e).lower() or "duplicate" in str(e).lower():

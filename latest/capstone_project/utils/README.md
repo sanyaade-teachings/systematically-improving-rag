@@ -141,3 +141,38 @@ All loaders store the following fields:
 Turbopuffer additionally stores:
 - `conversation_history` - Formatted full conversation
 - `conversation_summary` - Brief summary for better search
+
+
+## ChromaDB
+
+### Create full-text search index
+
+```bash
+python utils/load_to_chromadb.py --cloud --reset
+```
+
+```
+WildChat to ChromaDB Loader
+==================================================
+Connecting to ChromaDB Cloud...
+Connected to cloud database: wild-chat-1m
+Starting data load to collection: wildchat_2k
+Config: limit=2000, batch_size=25, language=English
+Using embedding model: sentence-transformers/all-MiniLM-L6-v2
+Embedding model loaded successfully
+Loading conversations...
+Processing conversations... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+
+Load completed!
+Statistics:
+   - Total processed: 2000
+   - Total added: 2000
+   - Duplicates skipped: 0
+   - Collection size: 2000
+   - Load time: 33.08 seconds
+
+Testing collection with sample query...
+Success: Query found 3 similar conversations
+   - Search time: 801.5 ms
+   Most similar: 'Please list steps for me to begin training machine learning in rust...'
+```
