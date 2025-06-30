@@ -49,7 +49,64 @@ The key insight: **we're only embedding the first user message** from each conve
 
 The solution here might be that we might want to do rag over the entire conversation. But this means a couple of things: How do we chunk conversations? Should we embed the whole thing? Or should we run a summarization of the conversation? 
 
-If we summarize things, you can also imagine that this would require us to not only experiment on the query generation, but also the conversation summarization test. 
+If we summarize things, you can also imagine that this would require us to not only experiment on the query generation, but also the conversation summarization test.
+
+## Deep Analysis: Full-Text vs Vector Search Behavior
+
+### 1. Full-Text Search v1: High Initial Recall, Plateaus Quickly
+
+**TurboPuffer Full-Text v1**: 34.33% → 40.30% → 46.27% → 52.24% → 53.73%
+
+The full-text search achieves the **highest recall@1 (34.33%)** among all methods but shows minimal improvement as k increases. This happens because:
+
+- **Exact term matching**: V1 queries contain specific terms that directly match the first user message (e.g., "Python import error")
+- **Limited semantic understanding**: Full-text search can't identify conceptually related but differently-worded content
+- **Front-loaded results**: The best matches are found immediately through keyword overlap, with diminishing returns for additional results
+
+### 2. Vector Embeddings: Steady Improvement with k
+
+**ChromaDB v1**: 28.36% → 49.25% → 53.73% → 62.69% → 64.18%
+**TurboPuffer Vector v1**: 26.87% → 49.25% → 61.19% → 62.69% → 67.16%
+
+Vector embeddings show consistent improvement as k increases because:
+
+- **Semantic similarity**: Embeddings capture meaning beyond exact terms
+- **Gradient of relevance**: Related conversations may use different terminology but similar concepts
+- **Broader recall potential**: As k increases, the search can find conversations that are semantically related even if they don't share exact keywords
+
+### 3. V2's Dramatic Difference: Vector vs Full-Text
+
+**TurboPuffer Vector v2**: 1.20% → 2.41% → 8.43% → 15.66% → 15.66%
+**TurboPuffer Full-Text v2**: 3.61% → 4.82% → 7.23% → 8.43% → 8.43%
+
+The v2 results reveal a critical insight:
+
+- **V2 queries are abstract patterns** like "conversations where AI refuses medical advice"
+- **Vector search can partially recover** because embeddings capture thematic similarity even when exact terms don't match
+- **Full-text search fails catastrophically** because abstract pattern queries rarely match the specific terms in first messages
+
+The improvement in v2 vector search (1.20% → 15.66%) shows that while the initial recall is poor, semantic search can eventually find some thematically related conversations. Full-text search plateaus at 8.43% because it relies on literal term matching.
+
+### The Fundamental Mismatch
+
+The core issue is that **only the first user message is embedded**, but v2 generates queries about entire conversation patterns. This creates a fundamental retrieval mismatch:
+
+- **V1 Success**: Queries match how users actually start conversations
+- **V2 Failure**: Queries require understanding the full conversation arc
+
+### Why This Matters for RAG Systems
+
+1. **Embedding Strategy Must Match Query Patterns**
+   - If users search for specific problems → embed initial messages
+   - If users search for conversation patterns → embed full conversations or summaries
+
+2. **Full-Text vs Vector Trade-offs**
+   - Full-text excels at exact matches but has limited semantic reach
+   - Vector search provides broader semantic coverage but may miss exact matches
+
+3. **The k-parameter Reveals Search Method Characteristics**
+   - Full-text: Best results are immediate, minimal benefit from larger k
+   - Vector: Gradual improvement as k increases, capturing semantic neighbors 
 
 ## The Value of Rapid Prototyping with LLMs
 
