@@ -113,7 +113,7 @@ async def verify_single_query(
     # Create cache key with DAO type
     dao_type = dao.__class__.__name__
     cache_key = GenericCache.make_generic_key(
-        "recall", dao_type, conversation_hash, query[:50]
+        "recall", dao_type, search_type.name, conversation_hash, query[:50]
     )
 
     # Check cache first
@@ -166,10 +166,14 @@ async def process_query_with_metrics(
     metrics: RecallMetrics,
     cache: GenericCache,
     semaphore: asyncio.Semaphore,
+    *,
+    search_type: SearchType = SearchType.VECTOR,
 ) -> None:
     """Process a single query and update metrics"""
     async with semaphore:
-        result = await verify_single_query(dao, conversation_hash, query, cache)
+        result = await verify_single_query(
+            dao, conversation_hash, query, cache, search_type=search_type
+        )
 
         metrics.total_queries += 1
 
@@ -208,6 +212,8 @@ async def process_queries_with_live_updates(
     queries: List[Tuple[str, str, str]],
     cache: GenericCache,
     update_interval: int = 50,
+    *,
+    search_type: SearchType = SearchType.VECTOR,
 ) -> Dict[str, RecallMetrics]:
     """Process queries with live rolling metrics updates"""
 
@@ -237,6 +243,7 @@ async def process_queries_with_live_updates(
                     metrics_by_version[prompt_version],
                     cache,
                     semaphore,
+                    search_type=search_type,
                 )
             )
             tasks.append(task)
@@ -325,13 +332,78 @@ def print_results_table(metrics_by_version: Dict[str, RecallMetrics]):
     console.print(table)
 
 
+def merge_version_metrics(metrics_by_version: Dict[str, RecallMetrics]) -> RecallMetrics:
+    """Merge v1/v2 RecallMetrics into an aggregate RecallMetrics instance."""
+    agg = RecallMetrics()
+    for metrics in metrics_by_version.values():
+        agg.total_queries += metrics.total_queries
+        agg.successful_searches += metrics.successful_searches
+        agg.found_in_top_1 += metrics.found_in_top_1
+        agg.found_in_top_5 += metrics.found_in_top_5
+        agg.found_in_top_10 += metrics.found_in_top_10
+        agg.found_in_top_20 += metrics.found_in_top_20
+        agg.found_in_top_30 += metrics.found_in_top_30
+        agg.not_found += metrics.not_found
+        agg.search_errors += metrics.search_errors
+    return agg
+
+
+def create_multi_dao_table(metrics_by_dao: Dict[str, RecallMetrics]) -> Table:
+    """Create a rich Table comparing multiple DAO recall metrics."""
+    table = Table(title="Recall Metrics Across Backends")
+    table.add_column("Backend", style="cyan", no_wrap=True)
+    table.add_column("Queries", style="magenta", justify="right")
+    table.add_column("Recall@1", style="green", justify="right")
+    table.add_column("Recall@5", style="green", justify="right")
+    table.add_column("Recall@10", style="green", justify="right")
+    table.add_column("Recall@20", style="green", justify="right")
+    table.add_column("Recall@30", style="green", justify="right")
+
+    for backend, metrics in metrics_by_dao.items():
+        table.add_row(
+            backend,
+            f"{metrics.total_queries:,}",
+            f"{metrics.get_recall_at_k(1):.2%}",
+            f"{metrics.get_recall_at_k(5):.2%}",
+            f"{metrics.get_recall_at_k(10):.2%}",
+            f"{metrics.get_recall_at_k(20):.2%}",
+            f"{metrics.get_recall_at_k(30):.2%}",
+        )
+    return table
+
+
+def create_multi_dao_table_split(metrics_by_dao_version: Dict[str, Dict[str, RecallMetrics]]) -> Table:
+    """Create table with separate rows for v1 and v2 per backend."""
+    table = Table(title="Recall Metrics per Backend and Version")
+    table.add_column("Backend / Version", style="cyan", no_wrap=True)
+    table.add_column("Queries", style="magenta", justify="right")
+    table.add_column("Recall@1", style="green", justify="right")
+    table.add_column("Recall@5", style="green", justify="right")
+    table.add_column("Recall@10", style="green", justify="right")
+    table.add_column("Recall@20", style="green", justify="right")
+    table.add_column("Recall@30", style="green", justify="right")
+
+    for backend, metrics_map in metrics_by_dao_version.items():
+        for version in ("v1", "v2"):
+            if version not in metrics_map:
+                continue
+            m = metrics_map[version]
+            row_label = f"{backend} ({version})"
+            table.add_row(
+                row_label,
+                f"{m.total_queries:,}",
+                f"{m.get_recall_at_k(1):.2%}",
+                f"{m.get_recall_at_k(5):.2%}",
+                f"{m.get_recall_at_k(10):.2%}",
+                f"{m.get_recall_at_k(20):.2%}",
+                f"{m.get_recall_at_k(30):.2%}",
+            )
+    return table
+
+
 async def main(
     limit: int = typer.Option(None, help="Limit number of queries to process"),
     update_interval: int = typer.Option(50, help="Update metrics every N queries"),
-    use_local: bool = typer.Option(False, help="Use local ChromaDB instead of cloud"),
-    use_turbopuffer: bool = typer.Option(
-        False, help="Use TurboPuffer instead of ChromaDB"
-    ),
 ):
     """Verify recall of synthetic queries"""
 
@@ -367,61 +439,91 @@ async def main(
     for version, count in queries_by_version.items():
         console.print(f"  {version}: {count} queries")
 
-    # Initialize DAO based on flag
-    if use_turbopuffer:
-        console.print("\n[cyan]Connecting to TurboPuffer...[/cyan]")
-        dao = WildChatDAOTurbopuffer()
-        dao_name = "TurboPuffer"
-    else:
-        console.print("\n[cyan]Connecting to ChromaDB...[/cyan]")
-        dao = WildChatDAOChromaDB(use_cloud=not use_local)
-        dao_name = f"ChromaDB ({'local' if use_local else 'cloud'})"
+    # --------------------------------------------------
+    # Build DAO configurations to evaluate
+    # --------------------------------------------------
 
-    try:
-        await dao.connect()
-        console.print(f"[green]Connected to {dao_name}[/green]")
+    dao_configs = []
 
-        # Get stats
-        stats = await dao.get_stats()
-        console.print("[cyan]Collection stats:[/cyan]")
-        console.print(f"  Total documents: {stats.get('total_documents', 0):,}")
-        console.print(f"  Collection name: {stats.get('collection_name', 'N/A')}")
+    # ChromaDB (cloud/local)
+    chroma_name = f"ChromaDB"
+    chroma_dao = WildChatDAOChromaDB()
+    dao_configs.append({"name": chroma_name, "dao": chroma_dao, "search_type": SearchType.VECTOR})
 
-    except Exception as e:
-        console.print(f"[red]Failed to connect to {dao_name}: {e}[/red]")
+    # TurboPuffer variants (vector and full-text). Hybrid omitted for current evaluation.
+    turbo_variants = [
+        ("TurboPuffer ‑ Vector", SearchType.VECTOR),
+        ("TurboPuffer ‑ FullText", SearchType.FULL_TEXT),
+    ]
+
+    for variant_name, stype in turbo_variants:
+        dao_configs.append({
+            "name": variant_name,
+            "dao": WildChatDAOTurbopuffer(),
+            "search_type": stype,
+        })
+
+    metrics_by_dao: Dict[str, RecallMetrics] = {}
+    metrics_by_dao_version: Dict[str, Dict[str, RecallMetrics]] = {}
+
+    for cfg in dao_configs:
+        dao = cfg["dao"]
+        dao_name = cfg["name"]
+        stype = cfg["search_type"]
+
+        console.print(f"\n[cyan]Connecting to {dao_name}...[/cyan]")
+        try:
+            await dao.connect()
+            console.print(f"[green]Connected to {dao_name}[/green]")
+
+            # Optional stats
+            try:
+                stats = await dao.get_stats()
+                if stats:
+                    console.print("[cyan]Collection stats:[/cyan]")
+                    if "total_documents" in stats:
+                        console.print(f"  Total documents: {stats.get('total_documents', 0):,}")
+            except Exception:
+                pass
+
+        except Exception as e:
+            console.print(f"[red]Failed to connect to {dao_name}: {e}[/red]")
+            metrics_by_dao[dao_name] = RecallMetrics(total_queries=len(queries), search_errors=len(queries))
+            continue
+
         console.print(
-            "[yellow]Make sure the required environment variables are set[/yellow]"
+            f"\n[cyan]Verifying recall with live metrics using {dao_name} (search={stype.name})...[/cyan]"
         )
-        return
+        console.print(f"[dim]Metrics will update every {update_interval} queries[/dim]\n")
 
-    # Process queries with live updates
-    console.print(
-        f"\n[cyan]Verifying recall with live metrics using {dao_name}...[/cyan]"
-    )
-    console.print(f"[dim]Metrics will update every {update_interval} queries[/dim]\n")
+        metrics_by_version = await process_queries_with_live_updates(
+            dao,
+            queries,
+            cache,
+            update_interval=update_interval,
+            search_type=stype,
+        )
 
-    # Process all queries with live updates
-    metrics_by_version = await process_queries_with_live_updates(
-        dao, queries, cache, update_interval=update_interval
-    )
+        # Store per-version metrics
+        metrics_by_dao_version[dao_name] = metrics_by_version
 
-    # Print results
+        # Merge v1/v2 into one aggregate for this DAO config
+        metrics_by_dao[dao_name] = merge_version_metrics(metrics_by_version)
+
+        await dao.disconnect()
+
+    # Print combined results
     console.print("\n")
-    print_results_table(metrics_by_version)
+    all_dao_table   = create_multi_dao_table_split(metrics_by_dao_version)
+    console.print(all_dao_table)
 
-    # Save detailed results to file
+    # Save detailed results per DAO
     results_file = Path(__file__).parent / "recall_results.json"
     results_data = {
         "timestamp": datetime.now().isoformat(),
         "total_queries": len(queries),
-        "dao_type": dao.__class__.__name__,
-        "dao_config": {
-            "use_turbopuffer": use_turbopuffer,
-            "use_local": use_local if not use_turbopuffer else None,
-        },
-        "metrics": {
-            version: metrics.get_summary()
-            for version, metrics in metrics_by_version.items()
+        "dao_metrics": {
+            name: metrics.get_summary() for name, metrics in metrics_by_dao.items()
         },
     }
 
@@ -430,8 +532,6 @@ async def main(
 
     console.print(f"\n[green]Detailed results saved to:[/green] {results_file}")
 
-    # Disconnect
-    await dao.disconnect()
     console.print("\n[cyan]Done![/cyan]")
 
 
@@ -442,14 +542,12 @@ app = typer.Typer()
 def run(
     limit: int = typer.Option(None, help="Limit number of queries to process"),
     update_interval: int = typer.Option(50, help="Update metrics every N queries"),
-    use_local: bool = typer.Option(False, help="Use local ChromaDB instead of cloud"),
-    use_turbopuffer: bool = typer.Option(
-        False, help="Use TurboPuffer instead of ChromaDB"
-    ),
 ):
     """Verify recall of synthetic queries"""
-    asyncio.run(main(limit, update_interval, use_local, use_turbopuffer))
+    asyncio.run(main(limit, update_interval))
 
 
 if __name__ == "__main__":
     app()
+
+# helper functions relocated above

@@ -38,6 +38,10 @@ class SearchRequest(SearchArgs):
     search_type: SearchType = SearchType.VECTOR
     conversation_length_range: Optional[tuple[int, int]] = Field(default=None)
 
+    # Weights for hybrid search (ignored for pure vector or text search)
+    vector_weight: float = Field(default=0.5, ge=0.0, le=1.0)
+    text_weight: float = Field(default=0.5, ge=0.0, le=1.0)
+
 
 class SearchResult(BaseModel):
     """Single search result"""
