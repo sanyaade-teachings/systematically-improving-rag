@@ -176,7 +176,7 @@ class WildChatDAOTurbopuffer(WildChatDAOBase):
                 try:
                     self.namespace.delete(filters=('id', 'Eq', doc_id))
                     deleted_count += 1
-                except:
+                except Exception:
                     pass  # Document might not exist
             
             return {
@@ -485,7 +485,7 @@ class WildChatDAOTurbopuffer(WildChatDAOBase):
                 )
                 if hasattr(lang_result, 'aggregations') and 'languages' in lang_result.aggregations:
                     stats['languages'] = lang_result.aggregations['languages']
-            except:
+            except Exception:
                 pass
             
             # Get model distribution
@@ -496,7 +496,7 @@ class WildChatDAOTurbopuffer(WildChatDAOBase):
                 )
                 if hasattr(model_result, 'aggregations') and 'models' in model_result.aggregations:
                     stats['models'] = model_result.aggregations['models']
-            except:
+            except Exception:
                 pass
             
             return stats

@@ -8,7 +8,7 @@ with support for various search types and filtering options.
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Literal
 from datetime import datetime
 from enum import Enum
 from pydantic import BaseModel, Field
@@ -28,9 +28,11 @@ class SearchArgs(BaseModel):
     model_names: Optional[List[str]] = Field(default=None)
     languages: Optional[List[str]] = Field(default=None)
     countries: Optional[List[str]] = Field(default=None)
-    exclude_toxic: bool = Field(default=True)
-    exclude_redacted: bool = Field(default=True)
+    exclude_toxic: Optional[bool] = Field(default=False)
+    exclude_redacted: Optional[bool] = Field(default=False)
     turn_range: Optional[tuple[int, int]] = Field(default=None)
+    vector_weight: float = Field(default=0.5, description="Weight for vector search in hybrid mode")
+    text_weight: float = Field(default=0.5, description="Weight for text search in hybrid mode")
 
 
 class SearchRequest(SearchArgs):

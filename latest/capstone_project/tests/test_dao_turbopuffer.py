@@ -73,7 +73,7 @@ class TestWildChatDAOTurbopuffer:
             # Cleanup: delete test namespace if it exists
             try:
                 await dao_instance.delete_table()
-            except:
+            except Exception:
                 pass
             await dao_instance.disconnect()
     

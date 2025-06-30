@@ -135,7 +135,7 @@ class WildChatDAOChromaDB(WildChatDAOBase):
                             ids=[doc_id]
                         )
                         added_count += 1
-                    except:
+                    except Exception:
                         skipped_count += 1
             else:
                 raise

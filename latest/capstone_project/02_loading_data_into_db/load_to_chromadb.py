@@ -203,7 +203,7 @@ async def load_to_chromadb(
         # Cleanup
         try:
             await dao.disconnect()
-        except:
+        except Exception:
             pass
 
 

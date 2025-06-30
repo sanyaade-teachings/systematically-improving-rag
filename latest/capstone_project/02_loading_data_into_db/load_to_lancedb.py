@@ -199,7 +199,7 @@ async def load_to_lancedb(
         # Cleanup
         try:
             await dao.disconnect()
-        except:
+        except Exception:
             pass
 
 

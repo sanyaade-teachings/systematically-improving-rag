@@ -76,7 +76,7 @@ class TestWildChatDAOChromaDB:
             # Cleanup: delete test collection if it exists
             try:
                 await dao_instance.delete_table()
-            except:
+            except Exception:
                 pass
             await dao_instance.disconnect()
     

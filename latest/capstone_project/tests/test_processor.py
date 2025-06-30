@@ -2,16 +2,17 @@
 Integration tests for the synthetic question generation processor
 """
 import asyncio
-import pytest
+import importlib.util
+import instructor
 import os
+import pytest
 import sys
+from openai import AsyncOpenAI
 
 # Add the parent directory to the path so we can import our modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from utils.dataloader import WildChatDataLoader
-# Import processor using importlib since the directory name starts with a number
-import importlib.util
 
 # Load the processor module
 processor_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
@@ -22,9 +23,6 @@ spec.loader.exec_module(processor_module)
 
 generate_search_queries_v1 = processor_module.generate_search_queries_v1
 SearchQueries = processor_module.SearchQueries
-
-import instructor
-from openai import AsyncOpenAI
 
 
 def load_data_from_wildchat(limit=3):
