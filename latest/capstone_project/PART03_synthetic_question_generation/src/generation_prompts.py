@@ -1,15 +1,17 @@
 from typing import List, Dict, Any
 from pydantic import BaseModel, Field
 
+
 class SearchQueries(BaseModel):
     """Generated search queries that could lead to discovering a conversation."""
+
     chain_of_thought: str = Field(
         description="Chain of thought process for generating the search queries"
     )
     queries: List[str] = Field(
         description="4-7 diverse search queries that users might type to find this conversation",
         min_items=3,
-        max_items=8
+        max_items=8,
     )
 
 
@@ -19,19 +21,19 @@ async def synthetic_question_generation_v1(
 ) -> SearchQueries:
     """
     Generate diverse synthetic search queries from a chat conversation.
-    
+
     As a product manager analyzing ChatGPT usage patterns, this function creates
     search queries that users might have typed to discover similar conversations.
     The queries should be diverse and cover different aspects of the conversation.
-    
+
     Args:
         client: instructor-patched client
         conversation: Dictionary containing conversation data with 'messages' or 'conversation' key
-        
+
     Returns:
         SearchQueries object with 4-5 diverse search queries and reasoning
     """
-    
+
     prompt = """
     You are a product manager analyzing ChatGPT usage patterns. Your goal is to understand 
     how users might search to find conversations like this one.
@@ -55,20 +57,13 @@ async def synthetic_question_generation_v1(
     
     Generate queries that would realistically lead someone to discover this conversation.
     """
-    
+
     response = await client.chat.completions.create(
         response_model=SearchQueries,
-        messages=[
-            {
-                "role": "user", 
-                "content": prompt
-            }
-        ],
-        context={
-            "messages": messages
-        }
+        messages=[{"role": "user", "content": prompt}],
+        context={"messages": messages},
     )
-    
+
     return response
 
 
@@ -78,20 +73,20 @@ async def synthetic_question_generation_v2(
 ) -> SearchQueries:
     """
     Generate search queries for finding conversations with similar patterns and characteristics.
-    
+
     This version focuses on identifying conversation types, themes, and patterns that would be
     useful for researchers, content moderators, or analysts studying human-AI interactions.
-    
+
     Args:
         client: instructor-patched client
         conversation_id: ID of the conversation to analyze
         conversation: Dictionary containing conversation data with 'messages' or 'conversation' key
         conversation_hash: Unique hash of the conversation for caching
-        
+
     Returns:
         SearchQueries object with pattern-focused search queries
     """
-    
+
     prompt = """
     You are a research analyst studying patterns in human-AI conversations from the WildChat dataset.
     Your goal is to identify the key characteristics and patterns in this conversation that would help
@@ -127,22 +122,17 @@ async def synthetic_question_generation_v2(
     rather than specific content details. Think about what makes this conversation type distinct
     and how researchers would categorize it.
     """
-    
+
     response = await client.chat.completions.create(
         response_model=SearchQueries,
         messages=[
             {
                 "role": "system",
-                "content": "You are an expert conversation analyst specializing in categorizing and understanding patterns in human-AI interactions. Focus on identifying conversation types, themes, and structural patterns rather than specific content details."
+                "content": "You are an expert conversation analyst specializing in categorizing and understanding patterns in human-AI interactions. Focus on identifying conversation types, themes, and structural patterns rather than specific content details.",
             },
-            {
-                "role": "user", 
-                "content": prompt
-            }
+            {"role": "user", "content": prompt},
         ],
-        context={
-            "messages": messages
-        }
+        context={"messages": messages},
     )
-    
+
     return response
