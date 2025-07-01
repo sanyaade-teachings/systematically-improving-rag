@@ -1,5 +1,5 @@
 site_name:  Systematically Improving RAG Applications : Study Notes
-site_url: https://567-labs.github.io/rag/
+site_url: https://567-labs.github.io/systematically-improving-rag/
 theme:
   name: material
   palette:
@@ -62,6 +62,9 @@ nav:
         - "Week 4":
           - "Session 1": "office-hours/cohort3/week-4-1.md"
           - "Session 2": "office-hours/cohort3/week-4-2.md"
+        - "Week 5":
+          - "Session 1": "office-hours/cohort3/week-5-1.md"
+          - "Session 2": "office-hours/cohort3/week-5-2.md"
   - "Talks":
       - "Overview": "talks/index.md"
       - "RAG Anti-patterns in the Wild": "talks/rag-antipatterns-skylar-payne.md"
@@ -69,6 +72,8 @@ nav:
       - "Understanding Embedding Performance": "talks/embedding-performance-generative-evals-kelly-hong.md"
       - "Online Evals and Production Monitoring": "talks/online-evals-production-monitoring-ben-sidhant.md"
       - "RAG Without APIs": "talks/rag-without-apis-browser-michael-struwig.md"
+      - "Agentic RAG with Colin Flaherty": "talks/colin-rag-agents.md"
+      - "Document Ingestion and Parsing with Reducto CEO and Adit": "talks/reducto-docs-adit.md"
   - "Resources":
       - "Learning Goals": "misc/learning-goals.md"
       - "Key Takeaways": "misc/what-i-want-you-to-takeaway.md"
