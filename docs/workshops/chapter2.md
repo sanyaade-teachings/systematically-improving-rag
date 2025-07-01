@@ -27,11 +27,33 @@ This chapter explores how to transform evaluation data into valuable training as
 ```
 
 !!! warning "Key Insight"
-**If you're not fine-tuning, you're Blockbuster, not Netflix.** The goal isn't to fine-tune language models (which are expensive and complex), but to fine-tune embedding models that move toward your specific data distributions and improve retrieval, not generation.
+
+    **If you're not fine-tuning, you're Blockbuster, not Netflix.** The goal isn't to fine-tune language models (which are expensive and complex), but to fine-tune embedding models that move toward your specific data distributions and improve retrieval, not generation.
+
+!!! success "Fine-Tuning Cost Reality Check"
+    **Embedding Model Fine-Tuning:**
+    - Cost: ~$1.50 for 6,000 examples
+    - Time: 40 minutes on a laptop
+    - Infrastructure: Consumer GPU or cloud notebook
+    - Improvement: 6-10% better performance
+    
+    **Language Model Fine-Tuning:**
+    - Cost: $100-1000s depending on model size
+    - Time: Hours to days
+    - Infrastructure: Multiple GPUs or specialized services
+    - Complexity: Requires ML expertise
+    
+    This dramatic difference explains why embedding fine-tuning should be your first focus.
 
 ## Introduction
 
 In the previous chapter, we established our evaluation framework and generated synthetic data to benchmark our RAG system. Now we take the crucial next step in our improvement journey: transforming these evaluations into practical training assets that can significantly boost performance.
+
+!!! note "Prerequisites from Previous Chapters"
+    - **[Chapter 0](chapter0.md)**: Understanding the improvement flywheel concept
+    - **[Chapter 1](chapter1.md)**: Creating evaluation datasets with synthetic data
+    
+    The evaluation examples from Chapter 1 become your training data in this chapter.
 
 This chapter bridges the gap between evaluation and production improvement, showing how the same datasets serve both purposes. The fundamental philosophy here is simple but powerful: **the data you collect for evaluation should never go to waste**. Every question, every relevance judgment, and every performance insight can—and should—be repurposed to train your system.
 
@@ -257,6 +279,25 @@ Through many such examples, the model learns that queries about side effects sho
 
 The triplet example above introduces an important subtlety in contrastive learning. Notice that our negative example, "Medication X is used to treat high blood pressure," is still about the same medication—it's just not about side effects. This makes it what we call a "hard negative"—it's similar to what we're looking for in some ways (same medication) but different in crucial aspects (not about side effects).
 
+!!! example "Hard Negative Mining Strategies"
+    **Effective Approaches:**
+    
+    1. **Semantic Similarity with Different Intent:**
+       - "Software engineer" vs "Software engineering recruiter"
+       - Both about software roles, but serving different user needs
+    
+    2. **User Deletion Signals:**
+       - Track which documents users actively remove from results
+       - These are perfect hard negatives - retrieved but explicitly rejected
+    
+    3. **Category Boundaries:**
+       - Items from adjacent but different categories
+       - Example: "Red running shoes" vs "Red dress shoes"
+    
+    4. **Temporal Relevance:**
+       - Outdated versions of correct information
+       - Example: "2023 tax rates" when user needs "2024 tax rates"
+
 !!! info "Value of Hard Negatives"
 Hard negatives are much more valuable for training than "easy negatives." If instead our negative example had been about car maintenance—completely unrelated to medications—the model wouldn't learn much from this contrast because it's already obvious that car maintenance isn't relevant to medication side effects.
 
@@ -368,6 +409,37 @@ I've found that impact/effort prioritization works particularly well for RAG imp
 !!! example "Prioritization in Action"
 In one project, we identified that implementing BM25 hybrid retrieval would be high-impact and medium-effort, while fine-tuning custom embeddings would be high-impact but high-effort. We prioritized the hybrid retrieval first, which gave us immediate gains while we collected data for the eventual embedding fine-tuning.
 
+## Linear Adapters: A Cost-Effective Alternative
+
+Before diving into full fine-tuning, consider linear adapters - a technique that can deliver significant improvements at a fraction of the cost.
+
+!!! info "What Are Linear Adapters?"
+    Linear adapters add a small trainable layer on top of frozen embeddings:
+    - Train only a linear transformation matrix
+    - Keep the base embedding model unchanged
+    - Combine benefits of domain specificity with pre-trained knowledge
+    
+    **Cost Comparison:**
+    - Full fine-tuning: $50-100 for meaningful datasets
+    - Linear adapters: ~$12 for the same improvement
+    - Training time: Minutes vs hours
+
+!!! example "When to Use Linear Adapters"
+    **Perfect for:**
+    - Domain-specific terminology mapping
+    - Multi-domain applications (train separate adapters)
+    - Rapid experimentation
+    - Limited computational resources
+    
+    **Implementation:**
+    ```python
+    # Simplified example
+    base_embeddings = model.encode(texts)
+    adapted_embeddings = linear_adapter(base_embeddings)
+    ```
+    
+    You can train different adapters for different query types or domains, switching between them based on query classification.
+
 ## Additional Resources
 
 !!! info "Tools and Libraries"
@@ -439,6 +511,11 @@ As we've seen, fine-tuning embedding models can dramatically improve the perform
 !!! tip "What's Coming Next"
 In [Chapter 3](chapter3-1.md), we'll dive into deployment strategies, user feedback collection methods, and how to use this feedback to further refine your RAG application. We'll explore practical techniques for gathering implicit and explicit feedback, designing effective user interfaces, and closing the loop between user interactions and system improvements.
 
+!!! info "Related Concepts in Other Chapters"
+    - **Query Segmentation** ([Chapter 4](chapter4-2.md)): Learn how to identify which queries benefit most from fine-tuning
+    - **Specialized Models** ([Chapter 5](chapter5-1.md)): See how fine-tuned embeddings power specialized retrievers
+    - **Router Optimization** ([Chapter 6](chapter6-2.md)): Understand how fine-tuning improves query routing
+
 ## Summary
 
 The data flywheel approach transforms what begins as evaluation into training assets that continuously improve your RAG system. By understanding the limitations of generic models, implementing few-shot examples, and preparing for fine-tuning, you create a foundation for ongoing enhancement.
@@ -452,3 +529,9 @@ The most critical actions to take immediately are:
 1. **Test domain-specific models** - Explore fine-tuned models for your specific application area
 
 This systematic approach ensures that every piece of data you collect contributes to a cycle of improvement that makes your application increasingly effective for your specific use case. When done properly, this flywheel effect touches every part of your system—improving clustering, topic modeling, and all other aspects we'll explore in the coming weeks.
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

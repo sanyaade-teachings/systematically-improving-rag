@@ -260,6 +260,19 @@ When you focus on generation evaluations prematurely, factuality becomes subject
 
 Before diving into implementation, let's clarify what precision and recall actually mean in the context of RAG:
 
+!!! tip "Practical Guidance from Production Systems"
+    **Testing Different K Values:**
+    - Start with K=10 for initial testing
+    - Test K=3, 5, 10, 20 to understand your precision/recall tradeoffs
+    - Higher K improves recall but may hurt precision with simpler models
+    - Advanced models (GPT-4, Claude) handle irrelevant docs better, so favor higher K
+    
+    **Why Re-ranker Score Thresholds Are Dangerous:**
+    - Score distributions vary dramatically by query type
+    - A threshold that works for one category fails for others
+    - Better approach: Always return top K results, let the LLM filter
+    - If you must filter, use percentile-based thresholds, not absolute scores
+
 ```mermaid
 graph TD
     subgraph "Document Universe"
@@ -328,6 +341,30 @@ Another client needed to implement AI search for construction blueprints, allowi
 **Result**: In just four days of experimentation, recall improved from 27% to 85%. This allowed us to launch the feature and collect real user data, which revealed that 20% of queries involved counting objects in blueprints. This insight justified investing in bounding box models to count rooms and features automatically.
 
 **Key Takeaway**: Testing specific subsystems independently enables rapid baseline improvements. Synthetic data generation for specific use cases can dramatically improve retrieval.
+
+!!! info "Chunk Size Best Practices"
+    Based on extensive testing across multiple domains:
+    
+    **Starting Point:** 800 tokens with 50% overlap
+    - This configuration works well for most use cases
+    - Provides good context while maintaining relevance
+    - Overlap ensures important information isn't split
+    
+    **Why Chunk Optimization Rarely Provides Big Wins:**
+    - Changing chunk size typically yields <10% improvements
+    - Time is better spent on:
+        - Query understanding and expansion
+        - Metadata filtering
+        - Contextual retrieval (adding document context to chunks)
+        - Better embedding models
+    
+    **When to Adjust Chunks:**
+    - Legal/regulatory: Larger chunks (1500-2000 tokens) to preserve full clauses
+    - Technical docs: Smaller chunks (400-600 tokens) for precise retrieval
+    - Conversational: Page-level chunks to maintain context
+    
+    !!! tip "Learn More: Common Chunking Mistakes"
+        Skylar Payne found that many teams chunk too small (200 characters) because they follow outdated tutorials. In one e-commerce case, this led to 13% hallucination rate because no single chunk contained complete information. See [RAG Anti-patterns in the Wild](../talks/rag-antipatterns-skylar-payne.md) for more pitfalls to avoid.
 
 ## Practical Implementation: Building Your Evaluation Framework
 
@@ -403,6 +440,19 @@ Make evaluation a regular part of your development cycle:
 1. **Version comparison**: Always compare new changes against previous versions
 1. **Failure analysis**: Regularly review cases with 0% recall to identify patterns
 1. **Difficulty progression**: As scores improve, add more challenging test cases
+
+!!! example "Production Monitoring Insights"
+    **Track These Metrics Over Time:**
+    - Average cosine distance between queries and retrieved documents
+    - Percentage of queries with no results above threshold
+    - Distribution of retrieval scores (watch for bimodal distributions)
+    
+    **Segment Analysis by User Variables:**
+    - New vs returning users often have different query patterns
+    - Technical vs non-technical users may need different retrieval strategies
+    - Time-based patterns (e.g., queries during product launches)
+    
+    **Real Example:** A company noticed cosine distances spiked during their Super Bowl ad campaign. New users asked different questions than existing users, revealing gaps in their content coverage. This led to creating onboarding-specific content that improved new user retention by 25%.
 
 ### Integrating with Development Workflow
 
@@ -561,6 +611,23 @@ Your synthetic data can serve multiple purposes:
 
 By investing time in creating high-quality synthetic data upfront, you establish a foundation that accelerates every aspect of your RAG development process.
 
+!!! warning "Model Sensitivity Considerations"
+    **Key Discovery:** Models are often more sensitive to irrelevant information than we expect.
+    
+    **Practical Implications:**
+    - Even GPT-4 and Claude can be distracted by marginally relevant content
+    - Precision matters more than you might think, especially for:
+        - Multi-step reasoning tasks
+        - Numerical calculations
+        - Tasks requiring specific facts from specific documents
+    
+    **Testing Approach:**
+    1. Create test cases with varying amounts of irrelevant information
+    2. Measure how performance degrades as noise increases
+    3. Use this to set your precision/recall tradeoffs
+    
+    **Example:** One team found that including 5 irrelevant documents (even when marked as "potentially less relevant") reduced their financial calculation accuracy by 30%. They adjusted their retrieval to favor precision for numerical queries.
+
 ## Additional Resources
 
 !!! info "Tools and Libraries for RAG Evaluation" - **[RAGAS](https://github.com/explodinggradients/ragas)**: Open-source framework for evaluating RAG applications - **[LangChain Evaluation](https://python.langchain.com/docs/guides/evaluation/)**: Tools for evaluating retrieval and generation - **[Prompttools](https://github.com/promptslab/prompttools)**: Toolkit for testing and evaluating LLM applications - **[MLflow for Experiment Tracking](https://mlflow.org/)**: Open-source platform for managing ML lifecycle
@@ -601,3 +668,9 @@ Remember these key principles as you move forward:
 The goal is not to chase the latest AI techniques blindly, but to establish a flywheel of continuous improvement driven by clear metrics aligned with user outcomes. Start with synthetic data, focus on retrieval before generation, and measure everything. These practices will serve as the foundation for all our subsequent improvements to your RAG application.
 
 As one of my clients discovered after implementing these principles: "We spent three months trying to make our system better through prompt engineering and model switching. In just two weeks with proper evaluations, we made more progress than in all that time."
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
