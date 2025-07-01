@@ -13,3 +13,45 @@ scripts/email_processing.db
 scripts/*.db.backup
 scripts/email_processing_playwright.db
 data/
+systematically_improving_rag.egg-info/
+
+# General Python ignores
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+.tox/
+.nox/
+
+# Packaging
+build/
+dist/
+downloads/
+eggs/
+.eggs/
+sdist/
+var/
+*.egg
+*.egg-info/
+pip-wheel-metadata/
+share/python-wheels/
+wheelhouse/
+
+# Logs and coverage
+pip-log.txt
+pip-delete-this-directory.txt
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.mypy_cache/
+.dmypy.json

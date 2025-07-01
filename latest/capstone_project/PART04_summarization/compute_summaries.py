@@ -60,7 +60,9 @@ async def process_conversation_version(
     async with semaphore:
         conversation_hash = conversation["conversation_hash"]
         messages = conversation["conversation"]
-        cache_key = GenericCache.make_conversation_key(conversation_hash, f"summary_{version}")
+        cache_key = GenericCache.make_conversation_key(
+            conversation_hash, f"summary_{version}"
+        )
 
         # Check cache first
         cached_result = cache.get(cache_key)
@@ -111,11 +113,15 @@ async def process_conversation(
         v1_summary, v2_summary = await asyncio.gather(v1_task, v2_task)
 
         # Save v1 summary immediately
-        if v1_summary and save_summary_to_db(DB_PATH, conversation_hash, "v1", v1_summary):
+        if v1_summary and save_summary_to_db(
+            DB_PATH, conversation_hash, "v1", v1_summary
+        ):
             saved_count += 1
 
         # Save v2 summary immediately
-        if v2_summary and save_summary_to_db(DB_PATH, conversation_hash, "v2", v2_summary):
+        if v2_summary and save_summary_to_db(
+            DB_PATH, conversation_hash, "v2", v2_summary
+        ):
             saved_count += 1
 
         progress.update(task_id, advance=1)

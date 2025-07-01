@@ -25,7 +25,9 @@ from rich.panel import Panel
 
 # Add parent directories to path
 sys.path.append(str(Path(__file__).parent.parent))
-sys.path.append(str(Path(__file__).parent.parent / "PART03_synthetic_question_generation"))
+sys.path.append(
+    str(Path(__file__).parent.parent / "PART03_synthetic_question_generation")
+)
 
 # Import DAOs
 from utils.dao.wildchat_dao_chromadb import WildChatDAOChromaDB
@@ -36,8 +38,11 @@ from utils.dao.wildchat_dao import SearchRequest, SearchType, WildChatDAOBase
 from src.cache import setup_cache, GenericCache
 
 # Import load_queries_from_db from PART03
-sys.path.insert(0, str(Path(__file__).parent.parent / "PART03_synthetic_question_generation"))
+sys.path.insert(
+    0, str(Path(__file__).parent.parent / "PART03_synthetic_question_generation")
+)
 from src.db import load_queries_from_db
+
 sys.path.pop(0)  # Remove after import to avoid conflicts
 
 # Load environment variables
@@ -47,7 +52,12 @@ load_dotenv()
 console = Console()
 
 # Database and cache paths
-QUERIES_DB_PATH = Path(__file__).parent.parent / "PART03_synthetic_question_generation" / "data" / "synthetic_queries.db"
+QUERIES_DB_PATH = (
+    Path(__file__).parent.parent
+    / "PART03_synthetic_question_generation"
+    / "data"
+    / "synthetic_queries.db"
+)
 CACHE_DIR = Path(__file__).parent / "data" / ".cache_recall"
 
 
@@ -111,7 +121,7 @@ async def verify_single_query(
     top_k: int = 30,
 ) -> Dict[str, Any]:
     """Verify if search results contain the original conversation hash"""
-    
+
     # Create cache key with DAO type and summary indicator
     dao_type = dao.__class__.__name__
     cache_key = GenericCache.make_generic_key(
@@ -216,38 +226,46 @@ def create_comparison_table(
 ) -> Table:
     """Create a comparison table for recall@k"""
     table = Table(title=f"Recall@{k} Comparison")
-    
+
     table.add_column("Embedding Strategy", style="cyan")
     table.add_column("Recall", style="magenta", justify="right")
     table.add_column("Improvement", style="green", justify="right")
-    
-    table.add_row(
-        "Original (First Message Only)",
-        f"{original_recall:.2%}",
-        "-"
+
+    table.add_row("Original (First Message Only)", f"{original_recall:.2%}", "-")
+
+    v1_improvement = (
+        ((summary_v1_recall - original_recall) / original_recall * 100)
+        if original_recall > 0
+        else float("inf")
     )
-    
-    v1_improvement = ((summary_v1_recall - original_recall) / original_recall * 100) if original_recall > 0 else float('inf')
     table.add_row(
         "Summary V1 (Concise)",
         f"{summary_v1_recall:.2%}",
-        f"+{v1_improvement:.1f}%" if v1_improvement != float('inf') else "∞"
+        f"+{v1_improvement:.1f}%" if v1_improvement != float("inf") else "∞",
     )
-    
-    v2_improvement = ((summary_v2_recall - original_recall) / original_recall * 100) if original_recall > 0 else float('inf')
+
+    v2_improvement = (
+        ((summary_v2_recall - original_recall) / original_recall * 100)
+        if original_recall > 0
+        else float("inf")
+    )
     table.add_row(
         "Summary V2 (Comprehensive)",
         f"{summary_v2_recall:.2%}",
-        f"+{v2_improvement:.1f}%" if v2_improvement != float('inf') else "∞"
+        f"+{v2_improvement:.1f}%" if v2_improvement != float("inf") else "∞",
     )
-    
+
     return table
 
 
 async def main(
     limit: int = typer.Option(None, help="Limit number of V2 queries to test"),
-    summary_version: str = typer.Option("v2", help="Which summary version to test (v1 or v2)"),
-    db_backend: str = typer.Option("chromadb", help="Vector DB backend (chromadb or turbopuffer)"),
+    summary_version: str = typer.Option(
+        "v2", help="Which summary version to test (v1 or v2)"
+    ),
+    db_backend: str = typer.Option(
+        "chromadb", help="Vector DB backend (chromadb or turbopuffer)"
+    ),
 ):
     """Test V2 queries against summary-based embeddings"""
 
@@ -257,7 +275,9 @@ async def main(
     # Check if queries database exists
     if not QUERIES_DB_PATH.exists():
         console.print(f"[red]Queries database not found at {QUERIES_DB_PATH}[/red]")
-        console.print("[yellow]Please run PART03/compute_synth_questions.py first[/yellow]")
+        console.print(
+            "[yellow]Please run PART03/compute_synth_questions.py first[/yellow]"
+        )
         return
 
     # Set up disk cache
@@ -267,10 +287,10 @@ async def main(
     # Load V2 queries only
     console.print("\n[cyan]Loading V2 queries from database...[/cyan]")
     all_queries = load_queries_from_db(QUERIES_DB_PATH, limit=limit)
-    
+
     # Filter for V2 queries only
     v2_queries = [(h, v, q) for h, v, q in all_queries if v == "v2"]
-    
+
     if not v2_queries:
         console.print("[red]No V2 queries found in database[/red]")
         return
@@ -281,8 +301,7 @@ async def main(
     if db_backend == "chromadb":
         collection_name = f"wildchat_summaries_{summary_version}"
         dao = WildChatDAOChromaDB(
-            db_path=".chroma_summaries",
-            collection_name=collection_name
+            db_path=".chroma_summaries", collection_name=collection_name
         )
         dao_name = f"ChromaDB (summaries {summary_version})"
     else:  # turbopuffer
@@ -299,7 +318,9 @@ async def main(
         try:
             stats = await dao.get_stats()
             if stats and "total_documents" in stats:
-                console.print(f"[cyan]Total documents: {stats['total_documents']:,}[/cyan]")
+                console.print(
+                    f"[cyan]Total documents: {stats['total_documents']:,}[/cyan]"
+                )
         except Exception:
             pass
 
@@ -308,11 +329,13 @@ async def main(
         return
 
     # Process queries
-    console.print(f"\n[cyan]Testing V2 queries against {summary_version} summaries...[/cyan]")
-    
+    console.print(
+        f"\n[cyan]Testing V2 queries against {summary_version} summaries...[/cyan]"
+    )
+
     metrics = RecallMetrics()
     semaphore = asyncio.Semaphore(5)
-    
+
     # Create tasks
     tasks = []
     for conversation_hash, _, query in v2_queries:
@@ -329,7 +352,7 @@ async def main(
             )
         )
         tasks.append(task)
-    
+
     # Process with progress indicator
     completed = 0
     with console.status("[cyan]Processing queries...[/cyan]") as status:
@@ -337,19 +360,21 @@ async def main(
             await coro
             completed += 1
             if completed % 10 == 0:
-                status.update(f"[cyan]Processing queries... {completed}/{len(tasks)}[/cyan]")
-    
+                status.update(
+                    f"[cyan]Processing queries... {completed}/{len(tasks)}[/cyan]"
+                )
+
     await dao.disconnect()
 
     # Display results
     console.print("\n[bold]Results Summary:[/bold]")
-    
+
     summary = metrics.get_summary()
-    
+
     results_table = Table(title="V2 Queries vs Summary-based Embeddings")
     results_table.add_column("Metric", style="cyan")
     results_table.add_column("Value", style="magenta", justify="right")
-    
+
     results_table.add_row("Total V2 Queries", str(summary["total_queries"]))
     results_table.add_row("Successful Searches", str(summary["successful_searches"]))
     results_table.add_row("Recall@1", f"{summary['recall@1']:.2%}")
@@ -359,33 +384,31 @@ async def main(
     results_table.add_row("Recall@30", f"{summary['recall@30']:.2%}")
     results_table.add_row("Not Found", str(summary["not_found"]))
     results_table.add_row("Search Errors", str(summary["search_errors"]))
-    
+
     console.print(results_table)
-    
+
     # Compare with original results (hardcoded from PART03 typical results)
-    console.print("\n[bold]Comparison with Original First-Message-Only Approach:[/bold]")
-    
+    console.print(
+        "\n[bold]Comparison with Original First-Message-Only Approach:[/bold]"
+    )
+
     # Typical V2 recall with first-message-only embeddings
-    original_v2_recall = {
-        1: 0.00,
-        5: 0.02,
-        10: 0.05,
-        20: 0.08,
-        30: 0.10
-    }
-    
+    original_v2_recall = {1: 0.00, 5: 0.02, 10: 0.05, 20: 0.08, 30: 0.10}
+
     for k in [1, 5, 10, 20, 30]:
         comparison_table = create_comparison_table(
             original_v2_recall[k],
             summary["recall@" + str(k)],  # Using current summary version
             summary["recall@" + str(k)],  # Same for now, but could compare v1 vs v2
-            k
+            k,
         )
         console.print(comparison_table)
         console.print()
-    
+
     # Save results
-    results_file = Path(__file__).parent / f"recall_results_summaries_{summary_version}.json"
+    results_file = (
+        Path(__file__).parent / f"recall_results_summaries_{summary_version}.json"
+    )
     results_data = {
         "timestamp": datetime.now().isoformat(),
         "summary_version": summary_version,
@@ -400,17 +423,19 @@ async def main(
                 10: summary["recall@10"],
                 20: summary["recall@20"],
                 30: summary["recall@30"],
-            }
-        }
+            },
+        },
     }
-    
+
     with open(results_file, "w") as f:
         json.dump(results_data, f, indent=2)
-    
+
     console.print(f"\n[green]Results saved to:[/green] {results_file}")
     console.print("\n[cyan]Key Insight:[/cyan]")
     console.print("V2 queries now achieve much better recall because the summaries")
-    console.print("capture the full conversation context that V2 queries are looking for!")
+    console.print(
+        "capture the full conversation context that V2 queries are looking for!"
+    )
 
 
 app = typer.Typer()
@@ -419,8 +444,12 @@ app = typer.Typer()
 @app.command()
 def run(
     limit: int = typer.Option(None, help="Limit number of V2 queries to test"),
-    summary_version: str = typer.Option("v2", help="Which summary version to test (v1 or v2)"),
-    db_backend: str = typer.Option("chromadb", help="Vector DB backend (chromadb or turbopuffer)"),
+    summary_version: str = typer.Option(
+        "v2", help="Which summary version to test (v1 or v2)"
+    ),
+    db_backend: str = typer.Option(
+        "chromadb", help="Vector DB backend (chromadb or turbopuffer)"
+    ),
 ):
     """Test V2 queries against summary-based embeddings"""
     asyncio.run(main(limit, summary_version, db_backend))

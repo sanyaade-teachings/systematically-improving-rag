@@ -332,7 +332,9 @@ def print_results_table(metrics_by_version: Dict[str, RecallMetrics]):
     console.print(table)
 
 
-def merge_version_metrics(metrics_by_version: Dict[str, RecallMetrics]) -> RecallMetrics:
+def merge_version_metrics(
+    metrics_by_version: Dict[str, RecallMetrics],
+) -> RecallMetrics:
     """Merge v1/v2 RecallMetrics into an aggregate RecallMetrics instance."""
     agg = RecallMetrics()
     for metrics in metrics_by_version.values():
@@ -372,7 +374,9 @@ def create_multi_dao_table(metrics_by_dao: Dict[str, RecallMetrics]) -> Table:
     return table
 
 
-def create_multi_dao_table_split(metrics_by_dao_version: Dict[str, Dict[str, RecallMetrics]]) -> Table:
+def create_multi_dao_table_split(
+    metrics_by_dao_version: Dict[str, Dict[str, RecallMetrics]],
+) -> Table:
     """Create table with separate rows for v1 and v2 per backend."""
     table = Table(title="Recall Metrics per Backend and Version")
     table.add_column("Backend / Version", style="cyan", no_wrap=True)
@@ -448,7 +452,9 @@ async def main(
     # ChromaDB (cloud/local)
     chroma_name = f"ChromaDB"
     chroma_dao = WildChatDAOChromaDB()
-    dao_configs.append({"name": chroma_name, "dao": chroma_dao, "search_type": SearchType.VECTOR})
+    dao_configs.append(
+        {"name": chroma_name, "dao": chroma_dao, "search_type": SearchType.VECTOR}
+    )
 
     # TurboPuffer variants (vector and full-text). Hybrid omitted for current evaluation.
     turbo_variants = [
@@ -457,11 +463,13 @@ async def main(
     ]
 
     for variant_name, stype in turbo_variants:
-        dao_configs.append({
-            "name": variant_name,
-            "dao": WildChatDAOTurbopuffer(),
-            "search_type": stype,
-        })
+        dao_configs.append(
+            {
+                "name": variant_name,
+                "dao": WildChatDAOTurbopuffer(),
+                "search_type": stype,
+            }
+        )
 
     metrics_by_dao: Dict[str, RecallMetrics] = {}
     metrics_by_dao_version: Dict[str, Dict[str, RecallMetrics]] = {}
@@ -482,19 +490,25 @@ async def main(
                 if stats:
                     console.print("[cyan]Collection stats:[/cyan]")
                     if "total_documents" in stats:
-                        console.print(f"  Total documents: {stats.get('total_documents', 0):,}")
+                        console.print(
+                            f"  Total documents: {stats.get('total_documents', 0):,}"
+                        )
             except Exception:
                 pass
 
         except Exception as e:
             console.print(f"[red]Failed to connect to {dao_name}: {e}[/red]")
-            metrics_by_dao[dao_name] = RecallMetrics(total_queries=len(queries), search_errors=len(queries))
+            metrics_by_dao[dao_name] = RecallMetrics(
+                total_queries=len(queries), search_errors=len(queries)
+            )
             continue
 
         console.print(
             f"\n[cyan]Verifying recall with live metrics using {dao_name} (search={stype.name})...[/cyan]"
         )
-        console.print(f"[dim]Metrics will update every {update_interval} queries[/dim]\n")
+        console.print(
+            f"[dim]Metrics will update every {update_interval} queries[/dim]\n"
+        )
 
         metrics_by_version = await process_queries_with_live_updates(
             dao,
@@ -514,7 +528,7 @@ async def main(
 
     # Print combined results
     console.print("\n")
-    all_dao_table   = create_multi_dao_table_split(metrics_by_dao_version)
+    all_dao_table = create_multi_dao_table_split(metrics_by_dao_version)
     console.print(all_dao_table)
 
     # Save detailed results per DAO

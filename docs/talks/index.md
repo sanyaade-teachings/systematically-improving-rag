@@ -3,56 +3,58 @@ title: Talks and Presentations
 description: Collection of talks, lightning lessons, and presentations from the Systematically Improving RAG Applications series
 ---
 
-# Talks and Presentations
-
 This section contains talks and presentations from the Systematically Improving RAG Applications series, featuring insights from industry experts and practitioners.
 
 ## Featured Talks
 
-### [RAG Anti-patterns in the Wild, and How to Fix Them](rag-antipatterns-skylar-payne.md)
+### Core RAG Concepts
 
-**Speaker:** Skylar Payne
+#### [RAG Anti-patterns in the Wild, and How to Fix Them](rag-antipatterns-skylar-payne.md)
 
-Common RAG anti-patterns across different industries and practical advice for improving AI systems through better data handling, retrieval, and evaluation practices. Learn about the most frequent mistakes in RAG implementations and how to avoid them.
+We welcomed Skylar Payne to share their extensive experience identifying common RAG anti-patterns across different industries. This talk provides practical advice for improving AI systems through better data handling, retrieval, and evaluation practices, highlighting the most frequent mistakes teams make in RAG implementations and concrete strategies to avoid them.
 
-### [Semantic Search Over the Web with Exa](semantic-search-exa-will-bryk.md)
+#### [Agentic RAG](colin-rag-agents.md)
 
-**Speaker:** Will Bryk
+We hosted Colin Flaherty (previously a founding engineer at Augment and co-author of Meta's Cicero AI) for an eye-opening discussion on autonomous coding agents and retrieval systems. This session explores how agentic approaches are transforming traditional RAG systems, revealing surprising findings about when simple tools like grep outperform sophisticated embedding models, and how agent persistence can overcome retrieval limitations.
 
-How AI is changing search requirements and the technical challenges of building a semantic search engine designed for AI applications rather than human users. Includes insights into the evolution of search technology and the future of AI-powered search.
+### Search and Retrieval
 
-### [Understanding Embedding Performance through Generative Evals](embedding-performance-generative-evals-kelly-hong.md)
+#### [Semantic Search Over the Web with Exa](semantic-search-exa-will-bryk.md)
 
-**Speaker:** Kelly Hong
+We had an illuminating conversation with Will Bryk from Exa about how AI is fundamentally changing search requirements. Will shared the technical challenges of building a semantic search engine designed specifically for AI applications rather than human users, offering unique insights into the evolution of search technology and what the future holds for AI-powered search.
 
-A deep dive into generative benchmarking - creating custom evaluation sets from your own data to better assess embedding model performance. Learn how to move beyond generic benchmarks to create evaluations that match your specific use case.
+#### [Understanding Embedding Performance through Generative Evals](embedding-performance-generative-evals-kelly-hong.md)
 
-### [Online Evals and Production Monitoring](online-evals-production-monitoring-ben-sidhant.md)
+Kelly Hong joined us for a deep dive into generative benchmarking - a novel approach to creating custom evaluation sets from your own data. This talk teaches you how to move beyond generic benchmarks to create evaluations that actually match your specific use case, dramatically improving your ability to assess and select embedding models.
 
-**Speakers:** Ben Hylak & Sidhant Bendre
+### Document Processing and Ingestion
 
-AI monitoring, production testing, and data analysis frameworks for identifying issues in AI systems and implementing structured monitoring. Includes the Trellis framework for managing AI products at scale.
+#### [Better RAG Through Better Data](reducto-docs-adit.md)
 
-### [RAG Without APIs: When Function Calling Talks to Your Browser](rag-without-apis-browser-michael-struwig.md)
+We then had a great talk by Adit Abraham (Co-founder & CEO of Reducto) called Better RAG Through Better Data, where he shared practical insights on document ingestion pipelines that work in production environments, not just in demos. This conversation covered parsing complex documents, handling tables and forms, optimizing data representation for language models, and addressing the long tail of edge cases that make production-ready AI systems difficult to build.
 
-**Speaker:** Michael Struwig\
-**Type:** Lightning Lesson
+### Production Systems
 
-A novel approach to RAG systems that leverages the browser as a data layer, connecting agents to sensitive data without traditional APIs. Learn how to build secure, flexible AI-powered analysis tools using the browser as an intermediary.
+#### [Online Evals and Production Monitoring](online-evals-production-monitoring-ben-sidhant.md)
 
-## Additional Resources
+Ben Hylak and Sidhant Bendre delivered a comprehensive session on AI monitoring and production testing. They shared their framework for identifying issues in AI systems before users notice them, including the Trellis framework they've developed for managing AI products at scale. This talk is essential for anyone moving from prototype to production.
 
-### [Semantic Search Over the Web with Exa (Full Transcript)](semantic-search-exa-will-bryk-transcript.md)
+### Innovative Approaches
 
-**Speaker:** Will Bryk\
-**Type:** Maven Session Transcript
+#### [RAG Without APIs: When Function Calling Talks to Your Browser](rag-without-apis-browser-michael-struwig.md)
 
-Complete transcript of the technical deep dive into Exa's semantic search engine, covering the evolution of search technology and AI-first search requirements.
-
-______________________________________________________________________
+In this lightning lesson, Michael Struwig presented a novel approach to RAG systems that completely rethinks how we connect AI to sensitive data. By leveraging the browser as a data layer instead of traditional APIs, this technique enables secure, flexible AI-powered analysis tools that can access data without exposing it through conventional endpoints.
 
 ## About the Series
 
 These talks are part of the "Systematically Improving RAG Applications" educational series, which focuses on practical approaches to building, monitoring, and improving RAG systems in production environments.
 
+Each talk provides deep insights from industry experts who have built and scaled RAG systems in production. Topics range from fundamental concepts and common pitfalls to advanced techniques for document processing, evaluation, and production monitoring.
+
 For more information about the broader curriculum, see the [main index](../index.md).
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

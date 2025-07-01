@@ -22,7 +22,9 @@ conn_queries = sqlite3.connect(queries_db)
 cursor_queries = conn_queries.cursor()
 
 # Count total V2 queries
-cursor_queries.execute("SELECT COUNT(*) FROM synthetic_queries WHERE prompt_version='v2'")
+cursor_queries.execute(
+    "SELECT COUNT(*) FROM synthetic_queries WHERE prompt_version='v2'"
+)
 total_v2 = cursor_queries.fetchone()[0]
 print(f"Total V2 queries: {total_v2}")
 
@@ -43,7 +45,7 @@ for hash, query in cursor_queries.fetchall():
 conn_queries.close()
 
 print(f"V2 queries for conversations with summaries: {overlap_count}")
-print(f"That's {overlap_count/total_v2*100:.1f}% of all V2 queries")
+print(f"That's {overlap_count / total_v2 * 100:.1f}% of all V2 queries")
 
 # Show a few examples
 print("\nExample overlapping queries:")

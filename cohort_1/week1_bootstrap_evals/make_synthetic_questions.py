@@ -41,7 +41,6 @@ class ChunkProcessingError(Exception):
 async def generate_evals(
     chunk: TextChunk, n_questions: int, example_questions: List[str]
 ) -> List[ChunkEval]:
-
     prompt = f"""
         Generate `{n_questions}` question-answer pairs about the Sawzall PX-1000. The answers should be derived from information in this product review:
 
@@ -50,7 +49,7 @@ async def generate_evals(
         </content>
 
         Example questions:
-        {chr(10).join(f'- {q}' for q in example_questions)}
+        {chr(10).join(f"- {q}" for q in example_questions)}
 
         Provide a concise and specific answer for each question.
         Do not use the exact example questions. Use them only as inspiration for the types of more specific questions to generate.
