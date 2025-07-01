@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A deep dive into generative benchmarking - creating custom evaluation sets from your own data to better assess embedding model performance.">
+        <meta name="description" content="A conversation with Adit, CEO of Reducto, covering challenges of document ingestion, parsing tables and forms, hybrid CV + VLM pipelines, and optimizing representations for reliable AI systems.">
       
       
       
-        <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/talks/embedding-performance-generative-evals-kelly-hong/">
+        <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/talks/reducto-docs-adit/">
       
       
-        <link rel="prev" href="../semantic-search-exa-will-bryk/">
+        <link rel="prev" href="../colin-rag-agents/">
       
       
-        <link rel="next" href="../online-evals-production-monitoring-ben-sidhant/">
+        <link rel="next" href="../../misc/learning-goals/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Understanding Embedding Performance through Generative Evals - Systematically Improving RAG Applications</title>
+        <title>Document Ingestion and Parsing (Reducto) - Systematically Improving RAG Applications</title>
       
     
     
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#understanding-embedding-performance-through-generative-evals-kelly-hong" class="md-skip">
+        <a href="#document-ingestion-and-parsing-reducto" class="md-skip">
           Skip to content
         </a>
       
@@ -140,7 +140,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Understanding Embedding Performance through Generative Evals
+              Document Ingestion and Parsing (Reducto)
             
           </span>
         </div>
@@ -1738,19 +1738,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
         
   
   
@@ -1761,7 +1752,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -1840,10 +1830,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../reducto-docs-adit/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Document Ingestion and Parsing with Reducto CEO and Adit
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1854,6 +1866,35 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#agentic-rag-involves-adding-reasoning-capabilities-to-determine-what-information-to-pass-to-the-final-inference-step-this-approach-is-particularly-valuable-when-answers-need-to-be-composed-from-multiple-different-sources-rather-than-relying-solely-on-similarity-based-retrieval-an-agent-can-identify-which-specific-snippets-are-most-relevant-to-answering-a-particular-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agentic RAG involves adding reasoning capabilities to determine what information to pass to the final inference step. This approach is particularly valuable when answers need to be composed from multiple different sources. Rather than relying solely on similarity-based retrieval, an agent can identify which specific snippets are most relevant to answering a particular question.
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2040,6 +2081,23 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#agentic-rag-involves-adding-reasoning-capabilities-to-determine-what-information-to-pass-to-the-final-inference-step-this-approach-is-particularly-valuable-when-answers-need-to-be-composed-from-multiple-different-sources-rather-than-relying-solely-on-similarity-based-retrieval-an-agent-can-identify-which-specific-snippets-are-most-relevant-to-answering-a-particular-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agentic RAG involves adding reasoning capabilities to determine what information to pass to the final inference step. This approach is particularly valuable when answers need to be composed from multiple different sources. Rather than relying solely on similarity-based retrieval, an agent can identify which specific snippets are most relevant to answering a particular question.
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2054,127 +2112,252 @@
 
 
 
-<h1 id="understanding-embedding-performance-through-generative-evals-kelly-hong">Understanding Embedding Performance through Generative Evals [Kelly Hong]</h1>
-<p>I hosted a session with Kelly Hong from Chroma, who presented her research on generative benchmarking for retrieval systems. She explained how to create custom evaluation sets from your own data to better test embedding models and retrieval pipelines, addressing the limitations of standard benchmarks like MTEB.</p>
-<p><strong>Why public benchmarks like MTEB don't reflect real-world performance</strong></p>
-<p>When evaluating embedding models for retrieval applications, many teams rely on public benchmarks like MTEB (Massive Text Embedding Benchmark). While convenient for comparing models, these benchmarks have significant limitations:</p>
-<p>The data is too generic and doesn't match specific domain needs. Even domain-specific MTEB datasets like legal documents aren't as specific as your actual production data.</p>
-<p>The query-document pairs are artificially clean - questions are perfectly formulated and documents are perfect matches. In real applications, user queries are ambiguous, incomplete, and often phrased as statements rather than questions.</p>
-<p>There's significant risk of data contamination since embedding models may have seen these public datasets during training, making it unclear if you're testing retrieval capability or just memorization.</p>
-<p>As Kelly put it: "If you have really good performance on a public benchmark for a given embedding model, that doesn't necessarily guarantee that you'll also get that good performance for your specific production pipeline."</p>
-<p><strong><em>Key Takeaway:</em></strong> Good performance on public benchmarks doesn't translate to good performance in your specific application. You need to evaluate embedding models on your own data to get meaningful results.</p>
-<p><strong>The generative benchmarking approach</strong></p>
-<p>Generative benchmarking creates custom evaluation sets directly from your data through a two-step process:</p>
-<ol>
-<li>
-<p>Chunk filtering: Using an LLM judge to identify document chunks that users would realistically query about</p>
-</li>
-<li>
-<p>Query generation: Creating realistic queries from those filtered chunks</p>
-</li>
-</ol>
-<p>This approach addresses the limitations of public benchmarks because:</p>
+<h1 id="document-ingestion-and-parsing-reducto">Document Ingestion and Parsing (Reducto)</h1>
+<p>Study Notes:</p>
+<p>I hosted a session with Adit, CEO of Reducto, to explore the challenges and solutions in document ingestion for AI systems. This conversation covered parsing complex documents, handling tables and forms, optimizing data representation for language models, and addressing the long tail of edge cases that make production-ready AI systems difficult to build.</p>
+<p><strong>Why is accurate document parsing so critical for AI applications?</strong>
+The fundamental challenge with document parsing isn't just extracting text - it's about providing high-quality inputs that enable language models to reason effectively. As Adit explained, "Models today, especially reasoning models, are incredible with reasoning on good data. What really ends up causing accuracy drifts is the long tail of cases."</p>
+<p>When you pass documents directly to vision language models like GPT-4, they can fail in surprising ways - misreading tables, hallucinating content, or dropping information. These aren't necessarily model problems but input quality issues. The same models that struggle with raw documents can perform exceptionally well when given properly structured representations.</p>
+<p>I've seen this pattern repeatedly in my consulting work - clients focus heavily on model selection and prompt engineering but underinvest in the quality of their document processing pipeline. This creates a ceiling on performance that no amount of prompt tuning can overcome.</p>
+<p><strong><em>Key Takeaway:</em></strong> Even the most advanced language models will produce unreliable outputs when given poor-quality inputs. Investing in robust document parsing is essential for production AI systems, especially in domains where accuracy is critical.</p>
+<p><strong>What are the most challenging document elements to parse correctly?</strong>
+Through their work with financial, legal, healthcare, and enterprise clients, Reducto has identified several consistently problematic document elements:</p>
+<p>Hard tables - Especially those with merged cells, complex layouts, or that span multiple pages
+Layout interpretation - Understanding indentation, list hierarchies, and associating related blocks of content
+Form regions - Pairing key-value relationships (like knowing "Jason Liu" maps to "Name")
+Reading order - Determining the correct sequence in multi-column layouts, slide decks, or documents with non-standard flows</p>
+<p>Tables are particularly challenging because they represent two-dimensional associations of data that can be formatted in countless ways. The failures are often subtle - a model might extract what appears to be a valid table but silently drop rows, columns, or individual values.</p>
+<p>What's particularly concerning is how these errors can be difficult to detect in production. Adit showed examples where vendor solutions using Gemini, Claude, and other models produced outputs that looked structurally correct but contained hallucinated values or missing data.</p>
+<p><strong><em>Key Takeaway:</em></strong> The most challenging parsing problems involve understanding document structure rather than just text extraction. Tables, forms, and complex layouts require specialized approaches beyond what general-purpose vision models can reliably handle.</p>
+<p><strong>When should you use vision language models versus traditional computer vision?</strong>
+I found Adit's perspective on this particularly interesting because it challenges the "just throw it all into a VLM" approach I've seen many teams adopt. Reducto has found that a hybrid approach works best:</p>
+<p>Traditional CV excels at:</p>
 <ul>
-<li>It's specific to your data</li>
-<li>It generates more realistic queries that reflect actual user behavior</li>
-<li>It tests retrieval on private data that embedding models haven't seen during training</li>
+<li>Clean, structured information</li>
+<li>Providing precise bounding boxes</li>
+<li>Generating confidence scores</li>
+<li>Token-efficient processing</li>
 </ul>
-<p>Kelly shared a case study with Weights &amp; Biases where they started with 13,000 document chunks and about 2,000 real user queries from production. After filtering, they generated queries that matched the style and content of real user questions.</p>
-<p>The results were revealing - the embedding model Weights &amp; Biases had been using (text-embedding-3-small) actually performed worse than alternatives they tested. Even more interesting, the rankings of embedding models on their custom benchmark contradicted the MTEB rankings.</p>
-<p><strong>Creating realistic queries that match user behavior</strong></p>
-<p>One of the most important aspects of generative benchmarking is generating queries that actually reflect how users search. Kelly demonstrated that naively generated queries (without context or examples) tend to be perfectly formed questions that make retrieval too easy.</p>
-<p>For example, a naive query generation might produce "What is the purpose of artifact versioning in Weights &amp; Biases?" But real users are more likely to search with something like "artifact versioning not working."</p>
-<p>To generate realistic queries, Kelly recommended providing:</p>
-<ol>
-<li>
-<p>Context about your application (e.g., "This is a technical support bot for Weights &amp; Biases")</p>
-</li>
-<li>
-<p>Example queries from real users (5-7 examples is usually sufficient)</p>
-</li>
-</ol>
-<p>When I work with companies building vertical AI applications, I approach this by:</p>
+<p>Vision language models excel at:</p>
 <ul>
-<li>Interviewing subject matter experts about what they actually search for</li>
-<li>Having LLMs generate candidate queries through role-playing exercises</li>
-<li>Getting experts to review and validate the generated queries</li>
+<li>Handwriting recognition</li>
+<li>Chart extraction</li>
+<li>Understanding figures and diagrams</li>
+<li>Handling visually complex layouts</li>
 </ul>
-<p>I've recently been experimenting with using OpenAI's Deep Research for this - I'll have it research a domain like "search systems for lawyers dealing with employment claims" and use that research as part of my prompt. This approach has been surprisingly effective for generating realistic queries.</p>
-<p><strong>The importance of human involvement in the evaluation process</strong></p>
-<p>Kelly emphasized that generative benchmarking isn't a fully automated "press one button and everything's done" approach. Human involvement remains critical:</p>
-<p>"Human involvement is very critical. If you want really good evals, I think it applies to basically any case where you're working with AI as well. I think it's very rare that your system is going to work well with absolutely no human in the loop."</p>
-<p>For the chunk filtering step, the Chroma team:</p>
-<ol>
-<li>
-<p>Started with a small set of about 300 document chunks</p>
-</li>
-<li>
-<p>Manually labeled them as relevant or irrelevant</p>
-</li>
-<li>
-<p>Iterated on their LLM judge criteria 4-5 times to align with human judgment</p>
-</li>
-<li>
-<p>Only then scaled to the full document corpus</p>
-</li>
-</ol>
-<p>I've seen too many teams try to fully automate their evaluation process without ever looking at the actual data. I often tell clients, "You can't delegate all the thinking to these LLMs." The reluctance to actually look at examples is a common problem.</p>
-<p>I find that many teams lean on LLM evals which give you this feeling of control because you're always twiddling with the generation prompt. But if your recall is very low - if you just can't find the document because of some phrasing in the text - then everything downstream is really bad. People feel empowered to adjust prompts but don't focus enough on making search better.</p>
-<p><strong>Practical applications of generative benchmarking</strong></p>
-<p>Kelly outlined several practical applications of generative benchmarking beyond just selecting the best embedding model:</p>
+<p>"What we do see as a really effective place to use VLMs is things that traditional OCR has always been horrible at," Adit explained. For example, when Reducto first approached chart extraction, they tried using traditional CV to measure pixel values relative to axis labels. This approach failed because charts can be represented in so many different ways that VLMs simply perform better.</p>
+<p>Their most effective approach uses a multi-pass system: traditional CV for the initial extraction, followed by VLMs that grade the outputs and make corrections. This allows them to triage simple pages to lightweight models while deploying more powerful VLMs only for complex cases.</p>
+<p><strong><em>Key Takeaway:</em></strong> Rather than choosing between traditional CV and VLMs, build a pipeline that leverages the strengths of each approach. Use traditional CV for structured content and VLMs for visually complex elements, with a multi-pass system to catch and correct errors.</p>
+<p><strong>How should you evaluate document parsing performance?</strong>
+Evaluation emerged as a critical but often overlooked aspect of building document processing systems. Adit emphasized that the biggest mistake teams make is conducting "back of the napkin" tests with just a few hard documents before moving to production.</p>
+<p>This approach is dangerous because ingestion errors get magnified downstream in retrieval and inference steps. Without thorough evaluation of each component, it becomes impossible to isolate where problems originate.</p>
+<p>Reducto's approach includes:</p>
 <ul>
-<li>Identifying irrelevant content in your document corpus</li>
-<li>Iterating on specific components of your retrieval pipeline (reranking, chunk rewriting)</li>
-<li>Aligning your evaluation set with production query distributions</li>
-<li>Identifying knowledge gaps in your document corpus</li>
+<li>Creating benchmarks with diverse, hand-labeled examples (they've open-sourced RD Table Bench with 1,000 diverse cases)</li>
+<li>Developing scoring frameworks that evaluate both text accuracy and structural correctness</li>
+<li>Recommending that teams compile 100-200 hard cases from their specific document distribution</li>
 </ul>
-<p>"I think it becomes even more powerful once you actually have production traffic to work with," Kelly noted. "You can cluster your production queries by topic, and you can see the distribution of topics that your users are asking about, and then you can use that distribution and align your eval set to that."</p>
-<p><strong>Balancing cost and performance in retrieval optimizations</strong></p>
-<p>When discussing contextual chunk rewriting (where you provide document context for each chunk), Kelly acknowledged its benefits but cautioned about the costs:</p>
-<p>"Contextual rewriting is useful, but also very expensive. So I would be more intentional about how you use it."</p>
-<p>She suggested being selective about which chunks need context rather than rewriting everything, potentially using the chunk filtering process to identify which documents would benefit most from context.</p>
-<p>I emphasized the value of having quantifiable metrics for these decisions: "This is the benefit of having an actual eval harness. The real conversation isn't 'should we use retrieval, or should we use contextual retrieval,' it is 'if we use contextual retrieval, our metrics go up 2%. Is that worth it? Probably not. But if you did contextual retrieval, and it went up 20%, then the question is, okay, well, is spending 20 cents per document worth the 20% improvement in retrieval?' That is a quantified decision that you can make."</p>
-<p>I've seen similar patterns with hybrid search. In one case, I worked with companies processing transcripts where lexical search performed nearly as well as semantic search but was 10 times faster. I told them, "If I want to find meeting notes, I want that to be as fast as possible."</p>
-<p><strong>Setting up efficient evaluation infrastructure</strong></p>
-<p>When asked about hyperparameter tuning and experimentation time, Kelly shared that their process was relatively quick because they worked with small data samples first:</p>
-<p>"We did around 4 or 5 iterations, but we did it across a small subset of data. So we were only working with about 300 labeled document chunks. So it was very quick iteration. We weren't doing it over our entire document corpus. So I think that probably took less than a day for me to do."</p>
-<p>I emphasized that how much time you spend on evaluation really depends on what kind of existing infrastructure you have: "I've joined companies where their embedding model is like sequential call to OpenAI. And I was like, 'well, this is why it's taking you 6 days to do these experiments.'"</p>
-<p>I recommend time-boxing experimentation: "I mostly try to time box how much research we're going to do, and then figure out how many experiments we can run. And usually what's going to happen is as you iterate on your prompts and on your models, the marginal improvement in performance will slowly decrease."</p>
-<p>The goal isn't perfection - it's making the most of your experimental time. I personally use Modal for this - I can reembed all of Wikipedia with any arbitrary model in about 10 minutes, which makes hyperparameter sweeping much more feasible.</p>
-<p><strong>Handling metadata in retrieval evaluations</strong></p>
-<p>When asked about incorporating metadata into the evaluation process, Kelly suggested several approaches:</p>
-<p>"I think maybe metadata could be useful when you're performing the retrieval task... if you have metadata like, let's say you have a query and retrieve a category of documents that have a certain metadata tag, maybe that can count as a partial retrieval success."</p>
-<p>She also noted that metadata can be valuable for pre-filtering documents before applying an LLM judge: "If all this data was just scraped from the website, maybe there was a metadata tag that says 'this is from our news section.' We'd want to filter those out, because that's not really relevant to our users."</p>
-<p>I added that metadata filters can be evaluated separately from retrieval quality: "If you have really simple ones like 'show me all the news articles from last week,' we can individually test our ability to select date ranges." This allows you to verify both retrieval accuracy and structured extraction tasks independently.</p>
-<p><strong>Final thoughts</strong></p>
-<p>Kelly concluded by emphasizing that generative benchmarking requires human involvement to be effective: "When we talk about generative benchmarking, that also doesn't mean that this entire process is 100% automated. You do need some human in the loop if you really want a good eval."</p>
-<p>The main takeaway from the session was that good performance on public benchmarks doesn't guarantee good performance for your specific use case.</p>
-<p>As Kelly put it: "I think the main takeaway from this entire talk is that if you have good performance on public benchmarks like MTEP, that doesn't necessarily guarantee that same performance for your specific use case, and generative benchmarking is a pretty good solution to that."</p>
-<p>For those interested in trying generative benchmarking, Kelly mentioned that Chroma has made their tools available, and I noted they're offering $1,000 in API credits for participants in the cohort.</p>
+<p>What struck me is how this evaluation process isn't just about measuring performance - it's about understanding failure modes. The examples Adit showed revealed how models can fail in ways that look correct at first glance but contain subtle errors that would be catastrophic in sensitive domains.</p>
+<p><strong><em>Key Takeaway:</em></strong> Invest in rigorous evaluation of your document processing pipeline using representative examples from your domain. Test each component separately to isolate errors, and focus on understanding failure modes rather than just overall accuracy.</p>
+<p><strong>What's the best way to represent document data for language models?</strong>
+The ideal output structure depends heavily on the type of document you're processing. For simple content, Markdown provides a clean, token-efficient representation. But for complex structures like tables with merged cells, HTML often works better despite being more verbose.</p>
+<p>Reducto has developed specific heuristics based on document complexity:</p>
+<ul>
+<li>For tables with 3+ merged cells, they use HTML</li>
+<li>For simpler tables, they use Markdown for token efficiency</li>
+<li>For figures and visual elements, they sometimes preserve the original image region</li>
+</ul>
+<p>This approach recognizes that different document elements have different optimal representations. As Adit explained, "If you have a table like this, if you try to encode this in Markdown, you're going to end up with something really cumbersome."</p>
+<p>I've seen similar issues in my consulting work - teams often standardize on a single representation format without considering how it handles different document types. This one-size-fits-all approach creates unnecessary challenges for the language model.</p>
+<p><strong><em>Key Takeaway:</em></strong> Choose representation formats based on document complexity rather than standardizing on a single approach. Consider token efficiency, structural fidelity, and how well the format preserves the information needed for reasoning.</p>
+<p><strong>How should you approach chunking documents for retrieval?</strong>
+While chunking has become less critical as context windows have expanded, it remains important for efficient retrieval across large document collections. Adit shared several principles that have proven effective:</p>
+<ol>
+<li>Never split individual blocks of information (keep paragraphs, tables, and other logical units intact)</li>
+<li>Consider both semantic information and structural signals like section headers and position</li>
+<li>Dynamically adjust chunk sizes rather than enforcing rigid token limits</li>
+</ol>
+<p>What I found particularly interesting was Adit's observation about position as a signal: "Position is a surprisingly high value signal for chunking because humans inherently, when we create documents, encode things like grouping similar text together."</p>
+<p>This insight aligns with my experience - document authors naturally organize related information spatially, making position a strong proxy for semantic relatedness that's computationally cheap to extract.</p>
+<p><strong><em>Key Takeaway:</em></strong> Develop a chunking strategy that preserves logical document units and leverages both semantic and structural signals. Position within the document often provides valuable information about content relationships.</p>
+<p><strong>How do you optimize document data for retrieval?</strong>
+One of the most valuable insights from our conversation was recognizing that embedding models and LLMs have different limitations that your ingestion pipeline should account for.</p>
+<p>While LLMs can reason effectively with dense HTML structures, embedding models often struggle with them. As Adit explained, "If you had a table that contains revenue over time, your end user is probably going to say something like, 'How did revenue change over time?' They're probably not going to phrase the question as 'In fiscal year 14, how did the number change from 210 to something else?'"</p>
+<p>This creates a mismatch between user queries and document representations that naive cosine similarity can't bridge. Reducto addresses this by creating embedding-optimized representations for each chunk:</p>
+<ul>
+<li>Generating natural language summaries of table contents</li>
+<li>Adding context about document sections</li>
+<li>Creating modified representations specifically optimized for embedding similarity</li>
+</ul>
+<p>I've seen similar approaches work well in my consulting projects - creating "retrieval-friendly" versions of complex document elements that maintain the semantic meaning while being more aligned with how users phrase queries.</p>
+<p><strong><em>Key Takeaway:</em></strong> Create separate representations optimized for embedding models and LLMs. For complex elements like tables, generate natural language summaries that describe the content in ways that align with likely user queries.</p>
+<p><strong>What are the unique challenges of processing Excel files?</strong>
+While much of the discussion focused on PDFs, Adit shared fascinating insights about Excel processing that I hadn't considered before. The challenges are quite different from PDFs:</p>
+<ol>
+<li>Scale issues - Spreadsheets can contain hundreds of thousands of rows, easily exceeding model context windows</li>
+<li>Information clustering - A single spreadsheet might contain multiple unrelated tables with arbitrary spacing between them</li>
+<li>Header preservation - When chunking large tables, headers need to be repeated with each section</li>
+</ol>
+<p>Reducto's approach includes breaking large tables into smaller chunks with headers preserved, and using a combination of data density analysis and visual information to identify separate clusters of information within a sheet.</p>
+<p>What I found most interesting was their experimental work on using vision models specifically for spreadsheet clustering: "We are training a vision model specifically for spreadsheet clustering. And we've just found that that works better."</p>
+<p>This highlights how specialized the solutions need to be for different document types - the techniques that work for PDFs often don't transfer directly to spreadsheets.</p>
+<p><strong><em>Key Takeaway:</em></strong> Excel processing requires specialized approaches that address scale challenges and information clustering. Consider using visual representations to identify logical groupings within spreadsheets rather than relying solely on cell-based analysis.</p>
+<p><strong>What surprising edge cases have emerged in document processing?</strong>
+Some of the most interesting insights came from discussing unexpected challenges that only became apparent through extensive production experience:</p>
+<ul>
+<li>Minor skews (1-2 degrees) can dramatically impact extraction quality, even with VLMs</li>
+<li>Reading order determination is far more complex than anticipated, especially with multi-column layouts</li>
+<li>Watermarks can confuse models and corrupt extracted text</li>
+<li>Model refusals occur when content appears to violate safety guidelines (like medical prescriptions)</li>
+<li>Checkboxes are surprisingly difficult for VLMs to interpret consistently</li>
+</ul>
+<p>The checkbox issue is particularly problematic in healthcare: "Checkboxes are one of the things that I see vision language models out of the box struggle with the most... They'll sort of arbitrarily decide whether or not the checkbox is filled or not. Those are like complete bipolar meanings - you can't say, was the patient vaccinated yes or no, and choose arbitrarily with 50-50 probability."</p>
+<p>These edge cases highlight the gap between demo-quality and production-quality systems. While models might handle 95% of cases well, the remaining 5% often require specialized solutions.</p>
+<p><strong><em>Key Takeaway:</em></strong> Production document processing systems need to address a long tail of edge cases that aren't apparent in initial testing. Invest in preprocessing, confidence scoring, and fallback mechanisms to handle these challenging scenarios.</p>
+<p><strong>How is document processing evolving with newer AI capabilities?</strong>
+Throughout our conversation, Adit shared perspectives on how document processing is likely to evolve:</p>
+<ul>
+<li>VLMs will continue improving but aren't yet reliable enough for sensitive use cases without additional safeguards</li>
+<li>Agentic approaches are emerging that can reason about what information to extract and how to structure it</li>
+<li>Multi-pass systems that combine traditional methods with AI verification show promise for high-accuracy applications</li>
+<li>Evaluation remains critical and will likely become more sophisticated as applications mature</li>
+</ul>
+<p>I was particularly interested in Adit's thoughts on agentic RAG, where models reason about what information to retrieve rather than relying solely on embedding similarity: "The cases where it is really helpful is when a given answer needs to be composed of information from a lot of different sources."</p>
+<p>This aligns with my experience - as we move beyond simple question-answering to more complex reasoning tasks, the limitations of traditional retrieval become more apparent.</p>
+<p><strong>Key Takeaway:</strong> Document processing is evolving toward more intelligent, multi-stage pipelines that combine traditional methods with AI reasoning. While VLMs will continue improving, hybrid approaches that leverage the strengths of different techniques will likely remain dominant for production systems.</p>
+<p><strong>How should teams approach building document processing systems?</strong>
+Based on our conversation, I'd recommend several principles for teams building document processing systems:</p>
+<ol>
+<li>Use a hybrid approach combining traditional CV and VLMs based on document characteristics</li>
+<li>Invest heavily in evaluation using representative examples from your domain</li>
+<li>Choose representation formats based on document complexity rather than standardizing on one approach</li>
+<li>Create separate representations optimized for embedding models versus LLMs</li>
+<li>Build multi-pass systems that can verify and correct initial extraction results</li>
+<li>Develop specialized approaches for different document types (PDFs, Excel, forms, etc.)</li>
+<li>Focus on understanding and addressing the long tail of edge cases</li>
+</ol>
+<p>The most successful teams I've worked with treat document processing as a critical foundation rather than just a preprocessing step. They recognize that the quality of their document understanding directly impacts everything downstream.</p>
+<p>As Adit summarized: "Accurate parsing is really critical. You should try to use the best tools that are available for you... The best way to do that is to use a combination of both traditional CV for the things that traditional CV is good at, and also VLMs and document metadata."</p>
+<p><strong><em>Key Takeaway:</em></strong> Document processing requires a thoughtful, multi-faceted approach that combines different techniques based on document characteristics. Invest in this foundation to enable reliable, accurate AI applications, especially in domains where precision matters.</p>
 <hr />
 <p>FAQs</p>
-<p><strong>What is generative benchmarking?</strong></p>
-<p>Generative benchmarking is a method to create custom evaluation sets from your own data to test AI retrieval systems. It involves generating realistic queries from your document corpus and using these query-document pairs to evaluate how well different embedding models and retrieval systems perform with your specific data. Unlike public benchmarks, this approach gives you insights directly relevant to your use case.</p>
-<p><strong>Why are custom benchmarks better than public benchmarks like MTEB?</strong></p>
-<p>Custom benchmarks address several limitations of public benchmarks like MTEB (Massive Text Embedding Benchmark). While MTEB is widely used for comparing embedding models, it uses generic data that may not reflect your specific domain, contains artificially clean query-document pairs, and may have been seen by models during training. Good performance on MTEB doesn't guarantee good performance on your specific data and use case.</p>
-<p><strong>How does the generative benchmarking process work?</strong></p>
-<p>The process involves two main steps. First, chunk filtering identifies document chunks that users would realistically query about, filtering out irrelevant content. Second, query generation creates realistic user queries from these filtered chunks. The resulting query-document pairs form your evaluation set, which you can use to test different embedding models and retrieval components.</p>
-<p><strong>What's involved in the chunk filtering step?</strong></p>
-<p>Chunk filtering uses an aligned LLM judge to identify document chunks that contain information users would actually query. This involves creating criteria for relevance, providing a small set of human-labeled examples, and iterating on the LLM judge to improve alignment with human judgment. This step helps filter out irrelevant content like news articles or marketing material that wouldn't be useful in a support context.</p>
-<p><strong>How do you generate realistic queries?</strong></p>
-<p>Query generation uses an LLM with specific context about your application and example queries. Providing this context helps the LLM focus on topics users would ask about, while example queries guide the style of generated queries. This approach creates more realistic, sometimes ambiguous queries that better reflect how users actually search, rather than perfectly formed questions that match document content exactly.</p>
-<p><strong>How do you evaluate retrieval performance with the generated benchmark?</strong></p>
-<p>Once you have your evaluation set with query-document pairs, you can test different embedding models by embedding each document chunk, storing them in a vector database, and then embedding each query to retrieve the top K document chunks. If the matching document is in the top K results, that counts as a success. This gives you metrics like recall@K and NDCG that you can compare across different models and configurations.</p>
-<p><strong>What insights can generative benchmarking provide?</strong></p>
-<p>Generative benchmarking can help you select the best embedding model for your specific data, identify irrelevant content in your document corpus, and evaluate changes to your retrieval pipeline like adding re-ranking or chunk rewriting. It can also reveal when public benchmark rankings don't align with performance on your data, as demonstrated in a case study where model rankings differed from MTEB rankings.</p>
-<p><strong>Do I need production data to use generative benchmarking?</strong></p>
-<p>No, you can use generative benchmarking even if you don't have production data yet. All you need is a document corpus to generate an evaluation set. However, if you do have production queries, you can use them to further align your generated queries to real user behavior, identify knowledge gaps in your document corpus, and make your evaluation set even more representative.</p>
-<p><strong>Is generative benchmarking fully automated?</strong></p>
-<p>No, generative benchmarking isn't 100% automated. It requires human involvement to get good results. You'll need to align your LLM judge, provide context and example queries to steer query generation, and manually review data throughout the process. The human-in-the-loop aspect is critical for creating evaluation sets that truly reflect your use case.</p>
-<p><strong>How can I try generative benchmarking on my own data?</strong></p>
-<p>You can try generative benchmarking on your own data by using Chroma's open-source tools. The full technical report is available at research.trychroma.com, and you can run the process with just a few lines of code. Chroma Cloud is also available if you want to use their hosted vector database solution.</p>
-<p><strong>How does contextual chunk rewriting fit into retrieval evaluation?</strong></p>
-<p>Contextual chunk rewriting involves adding context to document chunks to improve retrieval. While it can be effective, especially for content like tables or technical information that lacks context, it's also expensive since it requires running an LLM on every chunk. A more efficient approach might be to only rewrite chunks that need additional context, which you can identify during the filtering process. The value of this approach can be quantified through your evaluation metrics.</p>
+<p><strong>What is document ingestion in the context of AI applications?</strong></p>
+<p>Document ingestion refers to the process of extracting, processing, and structuring data from various document formats (like PDFs, Excel files, images) so they can be effectively used by AI models. This includes parsing text, understanding document structure, recognizing tables, and preparing the data in a format that language models can reason with accurately.</p>
+<p><strong>Why is accurate document parsing so important for AI applications?</strong></p>
+<p>Accurate parsing is critical because even the most advanced AI reasoning models can only provide quality outputs when given quality inputs. Inaccurate parsing leads to hallucinations, missing information, or incorrect interpretations. In sensitive industries like healthcare, finance, and legal, even minor errors in document parsing can have significant consequences, potentially impacting decisions worth millions of dollars.</p>
+<p><strong>What are the main challenges in document parsing?</strong></p>
+<p>The most common challenges include:</p>
+<ul>
+<li>Extracting complex tables with merged cells</li>
+<li>Interpreting document layout correctly (indentation, list hierarchies)</li>
+<li>Pairing form fields with their values</li>
+<li>Determining the correct reading order, especially in multi-column layouts</li>
+<li>Processing handwritten text</li>
+<li>Handling charts and figures</li>
+<li>Managing document skew and rotation</li>
+<li>Working with multilingual documents that have different reading directions</li>
+</ul>
+<p><strong>How do Vision Language Models (VLMs) compare to traditional OCR for document parsing?</strong></p>
+<p>VLMs excel at tasks that traditional OCR struggles with, such as handwriting recognition and chart extraction. However, they can sometimes hallucinate content or drop information in structured formats like tables. The most effective approach is often a hybrid one, using traditional computer vision models for clean structured content and VLMs for more complex visual elements like figures, handwriting, and charts.</p>
+<p><strong>What's the best approach for handling tables in documents?</strong></p>
+<p>Tables require special attention because they associate data in two dimensions. The most effective approach involves:</p>
+<ol>
+<li>
+<p>Properly detecting the table structure including merged cells</p>
+</li>
+<li>
+<p>Preserving the relationships between headers and data</p>
+</li>
+<li>
+<p>Using HTML format for complex tables with multiple merged cells</p>
+</li>
+<li>
+<p>Using Markdown for simpler tables to maintain token efficiency</p>
+</li>
+<li>
+<p>Creating natural language summaries of tables to improve retrieval</p>
+</li>
+</ol>
+<p><strong>How should document data be represented for language models?</strong></p>
+<p>The ideal representation depends on the content:</p>
+<ul>
+<li>Simple text works well in Markdown format</li>
+<li>Complex tables with merged cells are better represented in HTML</li>
+<li>Large tables may need to be broken down with headers repeated for each section</li>
+<li>Images and figures are sometimes best left as cropped images passed directly to the model</li>
+<li>For forms, it's important to pair keys with their values</li>
+</ul>
+<p><strong>What are best practices for chunking documents?</strong></p>
+<p>Effective chunking strategies include:</p>
+<ul>
+<li>Never splitting individual blocks of information (keeping paragraphs and tables intact)</li>
+<li>Considering section information and position when creating chunks</li>
+<li>Using embedding similarity to group related content</li>
+<li>Dynamically adjusting chunk size based on content type rather than using fixed sizes</li>
+<li>Preserving document structure and hierarchy</li>
+</ul>
+<p><strong>How can document ingestion be optimized for retrieval?</strong></p>
+<p>To improve retrieval performance:</p>
+<ul>
+<li>Create embedding-optimized representations for each chunk</li>
+<li>For tables, generate natural language summaries describing the content</li>
+<li>Add context about document sections</li>
+<li>Include metadata that helps tie document data to potential user queries</li>
+<li>Consider how users actually phrase their questions rather than just the literal content</li>
+</ul>
+<p><strong>Why do embedding models and language models need different optimizations?</strong></p>
+<p>Embedding models and language models have different limitations. While language models can reason through complex HTML structures, embedding models may struggle with matching user queries to content that contains mostly HTML tags and numbers. Creating natural language descriptions of structured content helps bridge this gap and improves retrieval performance.</p>
+<p><strong>How should document parsing quality be evaluated?</strong></p>
+<p>Evaluation should be thorough and context-dependent:</p>
+<ul>
+<li>Test on your own data rather than generic benchmarks</li>
+<li>Develop a comprehensive evaluation framework with at least 100-200 hard cases</li>
+<li>Evaluate both text accuracy and structural preservation</li>
+<li>Test each component of your pipeline separately to isolate issues</li>
+<li>Consider edge cases specific to your document types</li>
+</ul>
+<p><strong>What are common failure modes in document parsing?</strong></p>
+<p>Common failures include:</p>
+<ul>
+<li>Hallucinating content in tables</li>
+<li>Dropping rows or columns</li>
+<li>Misinterpreting checkboxes and form elements</li>
+<li>Struggling with document skew or rotation</li>
+<li>Incorrectly determining reading order in complex layouts</li>
+<li>Model refusals when content appears to violate safety guidelines</li>
+<li>Watermarks interfering with text extraction</li>
+</ul>
+<p><strong>How should Excel files be handled differently from PDFs?</strong></p>
+<p>Excel files present unique challenges:</p>
+<ul>
+<li>They can contain massive amounts of data exceeding model context windows</li>
+<li>A single spreadsheet may contain multiple unrelated tables or data clusters</li>
+<li>Data representation isn't always in a clean grid format</li>
+<li>Effective approaches include:</li>
+<li>Breaking large tables into smaller chunks with headers repeated</li>
+<li>Using visual information to detect natural clusters of data</li>
+<li>Analyzing data density to identify separate information regions</li>
+</ul>
+<p><strong>How can handwritten documents be processed effectively?</strong></p>
+<p>Handwritten documents are best processed using VLMs, which perform much better than traditional OCR for this task. For particularly difficult cases, a multi-pass approach works well:</p>
+<ol>
+<li>
+<p>Make an initial prediction</p>
+</li>
+<li>
+<p>Use a VLM specifically fine-tuned to grade those outputs</p>
+</li>
+<li>
+<p>Use another VLM to make corrections based on the reasoning trace</p>
+</li>
+</ol>
+<p>This approach significantly improves accuracy for handwritten content.</p>
+<p><strong>How much data is needed to fine-tune models for document extraction?</strong></p>
+<p>Fine-tuning VLMs for document extraction tasks can be effective with hundreds to perhaps a thousand examples. However, the quality of the training data is far more important than quantity. Even minor issues in labels can be amplified during fine-tuning, so it's critical to have genuinely perfect inputs rather than a large volume of imperfect data.</p>
+<p><strong>What's the role of "agentic RAG" in document processing?</strong></p>
+<h2 id="agentic-rag-involves-adding-reasoning-capabilities-to-determine-what-information-to-pass-to-the-final-inference-step-this-approach-is-particularly-valuable-when-answers-need-to-be-composed-from-multiple-different-sources-rather-than-relying-solely-on-similarity-based-retrieval-an-agent-can-identify-which-specific-snippets-are-most-relevant-to-answering-a-particular-question">Agentic RAG involves adding reasoning capabilities to determine what information to pass to the final inference step. This approach is particularly valuable when answers need to be composed from multiple different sources. Rather than relying solely on similarity-based retrieval, an agent can identify which specific snippets are most relevant to answering a particular question.</h2>
+<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 
 
@@ -2215,7 +2398,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../semantic-search-exa-will-bryk/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Semantic Search Over the Web with Exa">
+          <a href="../colin-rag-agents/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Agentic RAG with Colin Flaherty">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2225,20 +2408,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Semantic Search Over the Web with Exa
+                Agentic RAG with Colin Flaherty
               </div>
             </div>
           </a>
         
         
           
-          <a href="../online-evals-production-monitoring-ben-sidhant/" class="md-footer__link md-footer__link--next" aria-label="Next: Online Evals and Production Monitoring">
+          <a href="../../misc/learning-goals/" class="md-footer__link md-footer__link--next" aria-label="Next: Learning Goals">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Online Evals and Production Monitoring
+                Learning Goals
               </div>
             </div>
             <div class="md-footer__button md-icon">
