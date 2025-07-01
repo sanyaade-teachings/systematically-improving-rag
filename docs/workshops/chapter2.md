@@ -298,6 +298,9 @@ The triplet example above introduces an important subtlety in contrastive learni
        - Outdated versions of correct information
        - Example: "2023 tax rates" when user needs "2024 tax rates"
 
+!!! quote "Agentic Retrieval Perspective"
+    Colin Flaherty's work on agentic coding systems reveals a surprising insight: "We found that for SweeBench tasks, embedding-based retrieval was not the bottleneck - grep and find were sufficient." The agent's persistence effectively compensated for less sophisticated tools. This suggests that while fine-tuning embeddings is valuable, the agent layer can sometimes overcome retrieval limitations through persistence. [Learn more about agentic approaches →](../talks/colin-rag-agents.md)
+
 !!! info "Value of Hard Negatives"
 Hard negatives are much more valuable for training than "easy negatives." If instead our negative example had been about car maintenance—completely unrelated to medications—the model wouldn't learn much from this contrast because it's already obvious that car maintenance isn't relevant to medication side effects.
 

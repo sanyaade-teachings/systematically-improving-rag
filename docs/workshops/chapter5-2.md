@@ -481,6 +481,14 @@ The classical approach—training a model to translate natural language directly
     
     This approach handles the "information spread" problem where relevant content is distributed across multiple non-contiguous sections.
 
+!!! info "When Simple Tools Beat Embeddings"
+    Colin Flaherty's experience building top-performing coding agents reveals that sometimes simple tools like grep and find can outperform embedding-based retrieval: "The agent's persistence compensated for less sophisticated tools." However, he notes this works best for:
+    - Highly structured content like code
+    - Small to medium-sized repositories
+    - When distinctive keywords exist
+    
+    For larger codebases or unstructured content, embeddings become essential. [Explore agentic retrieval patterns →](../talks/colin-rag-agents.md)
+
 !!! tip "RAG Playbook for SQL Generation"
 A more effective strategy applies our RAG playbook:
 
