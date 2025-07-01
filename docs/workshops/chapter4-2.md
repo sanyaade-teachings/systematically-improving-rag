@@ -28,6 +28,12 @@ This chapter explores how to turn query pattern insights into strategic action p
 
 Before diving into prioritization techniques, let's clarify two key concepts: topics and capabilities.
 
+!!! note "Foundations from Earlier Chapters"
+    - **[Chapter 1](../chapter1.md)**: The evaluation metrics help identify performance by topic
+    - **[Chapter 3](../chapter3-1.md)**: Feedback collection provides the raw data for analysis
+    
+    This chapter shows you how to turn that data into actionable insights.
+
 ### Topics vs. Capabilities
 
 !!! info "Key Definitions"
@@ -69,5 +75,8 @@ Consider these user queries in a product support RAG:
   - **Topic**: Product updates
   - **Capability**: Summarization
 ```
+---
 
-Understanding both dimensions lets you prioritize more effectively. For instance, you might discover that comparison capabilities underperform across multiple topics, revealing a systematic weakness rather than a content gap.
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

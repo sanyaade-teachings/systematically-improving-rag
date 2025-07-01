@@ -32,14 +32,74 @@ Different types of content demand different retrieval strategies. Let's explore 
 
 For document retrieval, the foundation remains chunking documents with appropriate metadata and applying both lexical and semantic search techniques. However, several refinements can dramatically improve performance:
 
+!!! tip "Page-Level Chunking for Documentation"
+    **When to Use Page-Level Chunks:**
+    - Documentation websites (respect page boundaries)
+    - User manuals (preserve context)
+    - Legal documents (maintain clause integrity)
+    - Academic papers (keep sections together)
+    
+    **Why It Works:**
+    - Documentation is carefully organized by authors
+    - Semantic boundaries align with page/section breaks
+    - Users expect complete answers from single pages
+    - Reduces context fragmentation
+    
+    **Implementation:**
+    ```python
+    # Instead of arbitrary chunking:
+    chunks = chunk_by_tokens(doc, size=800)
+    
+    # Use page-aware chunking:
+    chunks = chunk_by_pages(doc, 
+                          respect_sections=True,
+                          min_size=200,
+                          max_size=2000)
+    ```
+
 !!! info "Advanced Document Retrieval Techniques"
 \- **Contextual Retrieval**: Rather than using fixed chunks, dynamically rewrite or expand chunks based on the query context. This creates "query-aware" text representations that better match user intent.
 
-```
-- **Hybrid Retrieval Signals**: Combine semantic similarity with other signals like recency, authority, and citation frequency to create a more nuanced ranking function.
+\- **Hybrid Retrieval Signals**: Combine semantic similarity with other signals like recency, authority, and citation frequency to create a more nuanced ranking function.
 
-- **Multi-stage Retrieval**: Implement a cascade of increasingly sophisticated (and computationally expensive) retrieval and ranking steps, filtering out irrelevant content at each stage.
-```
+\- **Multi-stage Retrieval**: Implement a cascade of increasingly sophisticated (and computationally expensive) retrieval and ranking steps, filtering out irrelevant content at each stage.
+
+!!! example "Contextual Retrieval Implementation"
+    **The Power of Context-Aware Chunks:**
+    
+    Original chunk: "Jason the doctor is unhappy with Patient X"
+    
+    Without context, this is ambiguous:
+    - Is Jason a medical doctor unhappy with a patient?
+    - Is a doctor named Jason unhappy?
+    - Is someone consulting Dr. Jason about Patient X?
+    
+    **Solution: Rewrite chunks with full document context:**
+    
+    ```python
+    def create_contextual_chunk(chunk, document):
+        """Rewrite chunk with document context."""
+        prompt = f"""
+        Document context: {document.title}
+        Section: {chunk.section}
+        
+        Original chunk: {chunk.text}
+        
+        Rewrite this chunk to include necessary context 
+        so it can be understood in isolation.
+        """
+        
+        return llm.complete(prompt)
+    ```
+    
+    Result: "In this employee feedback document, Jason (the medical doctor 
+    on our staff) expressed dissatisfaction with the Patient X project 
+    management software due to frequent crashes."
+    
+    **Key Decision: Compute at write-time vs read-time**
+    - Write-time: Higher storage cost, faster retrieval
+    - Read-time: Lower storage cost, slower retrieval
+    - Most teams should compute at write-time for production
 
 ```mermaid
 flowchart LR
@@ -138,6 +198,9 @@ Image search presents unique challenges. Visual language models were trained pri
 !!! warning "Embedding Spaces Mismatch"
 The naive approach—applying the same embedding strategy used for text—often fails because question embeddings and image caption embeddings exist in fundamentally different semantic spaces. Simply embedding captions like "two people" will not retrieve well when users search for "business meeting" or "team collaboration."
 
+!!! tip "When to Use Vision Language Models"
+    According to Adit from Reducto, VLMs excel at "things that traditional OCR has always been horrible at" - handwriting, charts, figures, and diagrams. However, for clean structured information, traditional CV provides better precision and token efficiency. [Learn about their hybrid approach →](../talks/reducto-docs-adit.md)
+
 To bridge this gap, more sophisticated image summarization techniques are essential:
 
 !!! example "Advanced Image Description Techniques"
@@ -219,6 +282,45 @@ The enhanced description dramatically improves retrieval capability when trouble
 ### Table Search: Structured Data in Context
 
 Tables present a dual challenge: they contain structured data but exist within unstructured contexts. Two main approaches prove effective:
+
+!!! quote "Expert Insight: Document Parsing Challenges"
+    Adit from Reducto emphasizes that tables are particularly challenging: "Tables are particularly challenging because they represent two-dimensional associations of data that can be formatted in countless ways. The failures are often subtle - a model might extract what appears to be a valid table but silently drop rows, columns, or individual values."
+    
+    For production-ready table extraction, consider specialized tools. [Learn more about document ingestion best practices →](../talks/reducto-docs-adit.md)
+
+!!! success "Markdown Tables: The Surprising Winner"
+    **Performance Comparison for Table Lookups:**
+    - Markdown tables: 85% accuracy
+    - CSV format: 73% accuracy
+    - JSON format: 71% accuracy  
+    - YAML format: 69% accuracy
+    
+    **Why Markdown Tables Win:**
+    - Visual structure helps LLMs understand relationships
+    - Column alignment provides natural grouping
+    - Headers are clearly distinguished
+    - Less token overhead than JSON/YAML
+    
+    **Best Practices:**
+    ```markdown
+    | Product ID | Name           | Price  | Stock |
+    |------------|----------------|--------|-------|
+    | SKU-001    | Widget Pro     | $29.99 | 150   |
+    | SKU-002    | Widget Basic   | $19.99 | 0     |
+    | SKU-003    | Widget Premium | $49.99 | 75    |
+    ```
+    
+    **Pro Tip:** For financial data, beware of spacing in numbers!
+    - Bad: `1 234 567` (tokenizes as three separate numbers)
+    - Good: `1234567` or `1,234,567`
+    
+    !!! info "Production Table Extraction"
+        Reducto's approach to complex tables includes:
+        - Using HTML for tables with 3+ merged cells
+        - Traditional CV for initial extraction, VLMs for correction
+        - Creating natural language summaries for better retrieval
+        
+        See their [complete document parsing methodology](../talks/reducto-docs-adit.md) for handling PDFs, Excel files, and complex layouts.
 
 !!! info "Table Retrieval Approaches"
 **Approach 1: Table as Document**
@@ -339,6 +441,46 @@ The classical approach—training a model to translate natural language directly
 !!! quote "Data Science Experience"
 "We spent months trying to fine-tune models for SQL generation with limited success. Once we switched to retrieving exemplar queries from our analytics repository, accuracy jumped by 30% overnight."
 
+!!! example "RAPTOR: Recursive Summarization for Long Documents"
+    **The RAPTOR Approach:**
+    
+    When dealing with concepts that span multiple pages or sections:
+    
+    1. **Cluster Related Chunks:**
+       ```python
+       # Embed all chunks
+       embeddings = [embed(chunk) for chunk in chunks]
+       
+       # Cluster similar chunks
+       clusters = cluster_embeddings(embeddings, 
+                                   method='hierarchical',
+                                   threshold=0.8)
+       ```
+    
+    2. **Summarize Each Cluster:**
+       ```python
+       for cluster in clusters:
+           summary = summarize_chunks(cluster.chunks)
+           cluster.summary = summary
+       ```
+    
+    3. **Build Hierarchical Index:**
+       - Leaf nodes: Original chunks
+       - Internal nodes: Cluster summaries
+       - Root node: Document summary
+    
+    4. **Multi-Level Retrieval:**
+       - Start with high-level summaries
+       - Drill down to specific chunks as needed
+    
+    **Use Cases:**
+    - Academic papers (methodology across sections)
+    - Legal documents (related clauses)
+    - Technical documentation (feature descriptions)
+    - Books and long-form content
+    
+    This approach handles the "information spread" problem where relevant content is distributed across multiple non-contiguous sections.
+
 !!! tip "RAG Playbook for SQL Generation"
 A more effective strategy applies our RAG playbook:
 
@@ -375,15 +517,44 @@ As we prepare for our final session on routing and unified systems, let's solidi
 !!! abstract "Key Takeaways"
 1\. **The power of specialization**: Building dedicated retrieval mechanisms for different content types and query patterns consistently outperforms monolithic approaches. Specialized models solving specific problems will outperform general-purpose solutions.
 
-```
-2. **Two complementary strategies**: Extract structured data from unstructured content, or create synthetic text chunks that point to source data—both serve as AI-powered materialized views that optimize retrievability.
+2\. **Two complementary strategies**: Extract structured data from unstructured content, or create synthetic text chunks that point to source data—both serve as AI-powered materialized views that optimize retrievability.
 
-3. **Measurement drives improvement**: Use precision and recall at both the router and retriever levels to identify your system's limiting factors using the formula: P(finding correct data) = P(selecting correct retriever) × P(finding correct data | correct retriever).
+3\. **Measurement drives improvement**: Use precision and recall at both the router and retriever levels to identify your system's limiting factors using the formula: P(finding correct data) = P(selecting correct retriever) × P(finding correct data | correct retriever).
 
-4. **Modality-specific optimizations**: Each content type requires tailored approaches, from contextual retrieval for documents to rich descriptions for images to exemplar-based generation for SQL.
+4\. **Modality-specific optimizations**: Each content type requires tailored approaches, from contextual retrieval for documents to rich descriptions for images to exemplar-based generation for SQL.
 
-5. **Organizational benefits**: Beyond performance, specialized indices enable division of labor, incremental improvement, and targeted innovation without disrupting the entire system.
-```
+5\. **Organizational benefits**: Beyond performance, specialized indices enable division of labor, incremental improvement, and targeted innovation without disrupting the entire system.
+
+!!! tip "Combining Lexical and Semantic Search"
+    **The Power of Hybrid Search:**
+    
+    Don't abandon lexical search! It excels at:
+    - Exact matches (product codes, names)
+    - Technical terms and abbreviations
+    - Queries with specific keywords
+    
+    **Implementation Strategy:**
+    ```python
+    def hybrid_search(query, k=10):
+        # Get results from both systems
+        semantic_results = semantic_search(query, k=k*2)
+        lexical_results = bm25_search(query, k=k*2)
+        
+        # Combine with weighted scores
+        combined = merge_results(
+            semantic_results, 
+            lexical_results,
+            semantic_weight=0.7,
+            lexical_weight=0.3
+        )
+        
+        return combined[:k]
+    ```
+    
+    **Pro Tip:** Adjust weights based on query type:
+    - Technical queries: Increase lexical weight
+    - Conceptual queries: Increase semantic weight
+    - Let user behavior guide the optimization
 
 ```mermaid
 flowchart TD
@@ -418,3 +589,9 @@ The beauty of this framework is its recursive nature. The same playbook—synthe
 
 !!! tip "Cross-Reference"
 In [Chapter 6](chapter6.md), we'll explore how to bring these specialized components together through effective routing strategies, creating a unified system that seamlessly directs users to the appropriate retrievers based on their queries.
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
