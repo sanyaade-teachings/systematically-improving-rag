@@ -2,6 +2,7 @@ site_name: Systematically Improving RAG Applications
 site_url: https://567-labs.github.io/systematically-improving-rag/
 theme:
   name: material
+  custom_dir: docs/overrides
   palette:
     primary: indigo
     accent: indigo
@@ -105,6 +106,9 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - javascripts/mathjax.js
 
+extra_css:
+  - stylesheets/extra.css
+
 extra:
   social:
     - icon: fontawesome/brands/twitter
@@ -112,5 +116,3 @@ extra:
   analytics:
     provider: google
     property: !ENV GOOGLE_ANALYTICS_KEY
-  announcement:
-    text: "📧 Get the complete RAG playbook! Subscribe to <strong><a href='https://improvingrag.com' target='_blank'>improvingrag.com</a></strong> for a free 6-day email sequence that summarizes everything you need to know about building production RAG systems."

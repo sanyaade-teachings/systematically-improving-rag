@@ -1,5 +1,7 @@
 # Systematically Improving RAG -- Cohort 2 Code
 
+All of this material is supported by the **Systematically Improving RAG Course**. [**Click here to get 20% off →**](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK)
+
 To install the requirements, run `pip install -r requirements.txt`. Make sure that you're using the correct Python version - this course requires Python 3.9 because of our `BERTopic` dependency.
 
 If you are using `uv` to install the requirements, you can run the following command to create a virtual environment with Python 3.9:
@@ -165,6 +167,12 @@ The pre-commit hooks will:
 - Check for large files being added
 
 These hooks run automatically when you commit changes, helping maintain consistent code quality across the project.
+
+## 📧 Free Email Course
+
+Want to learn more about RAG? Take our free email course and get the latest news and information about RAG techniques and best practices.
+
+[**Sign up for the free RAG Crash Course →**](https://fivesixseven.ck.page/rag-crash-course)
 
 ---
 

@@ -2,6 +2,8 @@
 
 A project focused on systematically improving Retrieval-Augmented Generation (RAG) systems using the WildChat dataset.
 
+All of this material is supported by the **Systematically Improving RAG Course**. [**Click here to get 20% off →**](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK)
+
 ## Getting Started
 
 ### Prerequisites
@@ -148,6 +150,13 @@ Copy `.env.example` to `.env` and update with your specific values.
 ## License
 
 MIT
+
+## 📧 Free Email Course
+
+Want to learn more about RAG? Take our free email course and get the latest news and information about RAG techniques and best practices.
+
+[**Sign up for the free RAG Crash Course →**](https://fivesixseven.ck.page/rag-crash-course)
+
 ---
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to

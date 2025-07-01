@@ -2,6 +2,8 @@
 
 This is course material to suppliment my [popular maven course](https://maven.com/applied-llms/rag-playbook). If you want more free materials hceck out [improvingrag.com](https://improvingrag.com)
 
+All of this material is supported by the **Systematically Improving RAG Course**. [**Click here to get 20% off →**](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK)
+
 This project uses [uv](https://docs.astral.sh/uv/) for dependency management. Make sure that you're using the correct Python version - this course requires Python 3.9 because of our `BERTopic` dependency.
 
 ## Installing with uv (Recommended)
@@ -182,6 +184,12 @@ The pre-commit hooks will:
 - Check for large files being added
 
 These hooks run automatically when you commit changes, helping maintain consistent code quality across the project.
+
+## 📧 Free Email Course
+
+Want to learn more about RAG? Take our free email course and get the latest news and information about RAG techniques and best practices.
+
+[**Sign up for the free RAG Crash Course →**](https://fivesixseven.ck.page/rag-crash-course)
 
 ---
 

@@ -2,6 +2,12 @@
 
 A comprehensive course teaching data-driven approaches to building and improving Retrieval-Augmented Generation (RAG) systems. This repository contains course materials, code examples, and a companion book.
 
+## 🎓 Take the Course
+
+All of this material is supported by the **Systematically Improving RAG Course**. 
+
+[**Click here to get 20% off →**](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK)
+
 ## Course Overview
 
 This course teaches you how to systematically improve RAG applications through:
@@ -181,6 +187,14 @@ This course emphasizes:
 ## License
 
 This is educational material for the "Systematically Improving RAG Applications" course.
+
+---
+
+## 📧 Free Email Course
+
+Want to learn more about RAG? Take our free email course and get the latest news and information about RAG techniques and best practices.
+
+[**Sign up for the free RAG Crash Course →**](https://fivesixseven.ck.page/rag-crash-course)
 
 ---
 
