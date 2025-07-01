@@ -632,6 +632,9 @@ By investing time in creating high-quality synthetic data upfront, you establish
 
 !!! info "Tools and Libraries for RAG Evaluation" - **[RAGAS](https://github.com/explodinggradients/ragas)**: Open-source framework for evaluating RAG applications - **[LangChain Evaluation](https://python.langchain.com/docs/guides/evaluation/)**: Tools for evaluating retrieval and generation - **[Prompttools](https://github.com/promptslab/prompttools)**: Toolkit for testing and evaluating LLM applications - **[MLflow for Experiment Tracking](https://mlflow.org/)**: Open-source platform for managing ML lifecycle
 
+!!! quote "Beyond MTEB: Domain-Specific Evaluation"
+    Kelly Hong from Chroma emphasizes a critical limitation of public benchmarks: "If you have really good performance on a public benchmark for a given embedding model, that doesn't necessarily guarantee that you'll also get that good performance for your specific production pipeline." Her generative benchmarking approach creates custom evaluation sets from your actual data, revealing that model rankings on domain-specific data often contradict MTEB rankings. [Learn about generative benchmarking →](../talks/embedding-performance-generative-evals-kelly-hong.md)
+
 ## Reflection Questions
 
 !!! question "Self-Assessment" 1. What are your leading and lagging metrics for your RAG application? How do they relate to each other?

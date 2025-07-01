@@ -337,6 +337,9 @@ This approach is particularly valuable for PDF-heavy domains like legal, medical
 
 The ultimate goal of feedback collection is to guide your improvement roadmap. Rather than making enhancement decisions based on intuition or technical interest, you can prioritize based on user needs revealed through feedback.
 
+!!! info "Production Monitoring: Beyond Basic Feedback"
+    Ben Hylak and Sidhant Bendre highlight a critical insight: "There's no exception being thrown when something goes wrong - the model simply produces an inadequate response." Their approach combines implicit signals (user frustration, task failures) with explicit signals (ratings, regenerations) to identify issues that traditional monitoring misses. The Trellis framework they present helps organize the "infinite chaos" of AI outputs into controllable segments. [Learn about production monitoring strategies →](../talks/online-evals-production-monitoring-ben-sidhant.md)
+
 A feedback-driven roadmap:
 
 1. Identifies the most common issues reported by users
