@@ -132,11 +132,25 @@ The beauty of this approach is that each phase feeds into the next, creating mom
 
 The effectiveness of your improvement flywheel depends heavily on how you collect feedback. During our office hours, we discovered that simply changing feedback prompt copy from "How did we do?" to "Did we answer your question?" increased feedback rates by 5x. This more specific framing focused users on the core value proposition rather than secondary concerns like latency or formatting.
 
-When implementing feedback mechanisms, remember that:
+!!! tip "Proven Feedback Patterns"
+    When implementing feedback mechanisms, remember that every metric you track should lead to a specific follow-up action—it's not just about knowing the number.
 
-- Binary feedback (thumbs up/down) generally yields higher response rates than free text fields
-- For enterprise applications, combining button options with free text and posting responses to Slack creates transparency that encourages more feedback
-- Every metric you track should lead to a specific follow-up action—it's not just about knowing the number
+    Based on real-world implementations:
+    
+    **Copy that Works:**
+    - ✅ "Did we answer your question?" (5x higher response rate)
+    - ✅ "Did we take the correct actions?" (for action-oriented systems)
+    - ✅ "Was this information helpful?" (for knowledge bases)
+    - ❌ "How did we do?" (too vague)
+    - ❌ "Rate your experience" (focuses on UI, not content)
+    
+    **Implementation Tips:**
+    - Binary feedback (thumbs up/down) gets 3x more responses than 5-star ratings
+    - For enterprise: Post feedback to Slack channels for transparency
+    - Add optional text field only after binary feedback is given
+    - Track feedback rates by query type to identify problem areas
+
+When implementing feedback mechanisms, remember that every metric you track should lead to a specific follow-up action—it's not just about knowing the number.
 
 ## The System vs. Ad Hoc Approaches
 
@@ -198,6 +212,13 @@ To fully embrace the product mindset for RAG, you need to expand your thinking b
 
 This shift doesn't mean abandoning technical rigor—quite the opposite. It means applying that rigor to problems that actually matter to your users, guided by data rather than assumptions.
 
+!!! example "Real-World Case: The Restaurant Voice AI Revolution"
+    A restaurant chain implemented voice AI for taking orders, initially focusing on speech recognition accuracy. But when they shifted to a product mindset, they discovered something surprising:
+    
+    Instead of perfecting order-taking, they analyzed actual conversations and found that 30% of callers asked "What's good here?" By implementing a simple upselling feature that recommended popular items, they generated 9% more revenue—without improving the core AI technology at all.
+    
+    The lesson? Sometimes the biggest wins come from understanding what users actually need, not from technical improvements.
+
 ### Case Study: The Improvement Flywheel in Action
 
 To illustrate the power of this approach, let's look at a real example from my consulting work with a legal technology company:
@@ -217,6 +238,23 @@ To illustrate the power of this approach, let's look at a real example from my c
 1. **Monitoring and Refinement**: Continuous tracking showed which query types were growing in popularity and which still needed improvement, guiding ongoing development.
 
 The result wasn't just better technical performance—it was significantly higher user adoption, reduced time spent on research, and ultimately, better legal outcomes for clients.
+
+!!! info "Key Insight: Inventory vs Capabilities"
+    When diagnosing RAG performance issues, always ask: "Is this an inventory problem or a capabilities problem?"
+    
+    **Inventory Problems:**
+    - Missing documents or data
+    - Incomplete knowledge base
+    - Outdated information
+    - Solution: Add more/better content
+    
+    **Capabilities Problems:**
+    - Poor retrieval for existing content
+    - Inability to understand query intent
+    - Wrong type of search for the task
+    - Solution: Improve retrieval/processing
+    
+    This framework helps you avoid wasting time improving retrieval when you simply don't have the right content, or adding more content when your retrieval is the bottleneck.
 
 ## Who This Book Is For
 
@@ -289,3 +327,9 @@ In the next chapter, we'll take the first concrete step in the improvement flywh
 ______________________________________________________________________
 
 _Author Note: This approach has been refined through work with organizations ranging from startups to Fortune 500 companies across diverse domains including legal, financial, healthcare, and e-commerce. While the technical details vary by domain, the fundamental principles of the improvement flywheel remain consistent—focus on users, measure what matters, and systematically enhance based on data rather than assumptions._
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
