@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "capstone_project"
+version = "0.1.0"
+description = "A systematically improving RAG project with utilities"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Jason", email = "jason@jxnl.co"},
+]
+dependencies = [
+    "pandas",
+    "numpy",
+    "python-dotenv",
+    "requests",
+    "instructor>=1.9.0",
+    "rich",
+    "diskcache",
+    "turbopuffer>=0.5.8",
+    "typer[all]>=0.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+    "black",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["capstone_project*", "utils*"]
+exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.json", "*.yaml", "*.yml"]

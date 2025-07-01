@@ -1,0 +1,272 @@
+# yaml-language-server: $schema=queries_schema.json
+cases:
+- name: null
+  inputs: create a grocery list note with Milk, eggs, bread, and cheese, and pin it
+    so that i can find it later.
+  expected_output:
+  - apple-notes.new
+  - apple-notes.add-text
+  - apple-notes.menu-bar
+- name: null
+  inputs: 'Let''s create a new release post about our latest deployment, also make
+    sure to link the specific issues that were fixed in the latest sprint and send
+    a message the #engineering channel to let them know about it'
+  expected_output:
+  - confluence-search.new-blog
+  - jira.active-sprints
+  - microsoft-teams.findChat
+  - microsoft-teams.sendMessage
+- name: null
+  inputs: find weather taiwan december and generate a shopping list for it
+  expected_output:
+  - google-search.index
+  - apple-notes.new
+  - apple-notes.add-text
+- name: null
+  inputs: Set my status to 'Working from home today, catching up on some emails' with
+    a 'Do not disturb' prezence, and inform the team that im available via messege
+    for questions related to the migration
+  expected_output:
+  - microsoft-teams.setStatus
+- name: null
+  inputs: 'any security alerts raised since we upgraded our nextjs dependencies over
+    to 14.2.0? '
+  expected_output:
+  - github.unread-notifications
+- name: null
+  inputs: Tell mum i'll be back for dinner around 7pm
+  expected_output:
+  - imessage.findChat
+  - imessage.sendMessage
+- name: null
+  inputs: just booked the latest accomodations for tokyo, let's start tracking the
+    spending for that day with the 1500 price for the dates nov 12-20
+  expected_output:
+  - notion.create-database-page
+- name: null
+  inputs: search messages Gregory modal, need to find the code snippet for handling
+    websocket connections
+  expected_output:
+  - microsoft-teams.searchMessages
+- name: null
+  inputs: add a reminder to my todos to buy some groceries for dinner tonight
+  expected_output:
+  - apple-notes.add-text
+- name: null
+  inputs: pull up munich plans, send mike the airbnb link to the accoms on the 22nd
+  expected_output:
+  - notion.search-page
+  - imessage.findChat
+  - imessage.sendMessage
+- name: null
+  inputs: check with tim when we're supposed to do the onboarding for the new hires?
+  expected_output:
+  - microsoft-teams.findChat
+  - microsoft-teams.sendMessage
+- name: null
+  inputs: check with james that we've shipped the new feature?
+  expected_output:
+  - microsoft-teams.findChat
+  - microsoft-teams.sendMessage
+- name: null
+  inputs: 'let''s go crack open that new raid, set status to dnd and ping #bois'
+  expected_output:
+  - discord.setStatus
+  - discord.findChat
+  - discord.sendMessage
+- name: null
+  inputs: what did the team achieve in the last few days
+  expected_output:
+  - jira.recently-updated-issues
+- name: null
+  inputs: 'Create a PR in the apollo frontend repo from branch jira-3214 titled ''Fix:
+    Resolve slow loading times on homepage'' and fill in the related info from the
+    jira ticket.'
+  expected_output:
+  - github.create-pull-request
+  - jira.open-issues
+- name: null
+  inputs: Add a reminder to book a dentist appointment next week
+  expected_output:
+  - apple-notes.add-text
+- name: null
+  inputs: add a reminder to pick up dry cleaning on Friday
+  expected_output:
+  - apple-notes.add-text
+- name: null
+  inputs: remind me to check on passport renewal next month
+  expected_output:
+  - apple-notes.add-text
+- name: null
+  inputs: remind me to buy more printer paper
+  expected_output:
+  - apple-notes.add-text
+- name: null
+  inputs: pull up my recently accessed pages related to our backend api
+  expected_output:
+  - confluence-search.search
+- name: null
+  inputs: open release notes for the latest release
+  expected_output:
+  - confluence-search.go
+- name: null
+  inputs: What did we discuss last week in the meeting with Nike?
+  expected_output:
+  - confluence-search.search
+- name: null
+  inputs: any more prs or security alerts to worry about?
+  expected_output:
+  - github.unread-notifications
+- name: null
+  inputs: Just got approval for the Nike summer campaign we did, can u update the
+    project status to approved on our project page?
+  expected_output:
+  - confluence-search.add-text
+- name: null
+  inputs: can you help me find the diagrams I did to show how docker containerisation
+    works in my personal notes?
+  expected_output:
+  - obsidian.searchMedia
+- name: null
+  inputs: can you help me find that sketch I made that explained the docker containerisation
+    process, i need it to explain to the team
+  expected_output:
+  - obsidian.searchMedia
+- name: null
+  inputs: search for my aws architecture drawings
+  expected_output:
+  - obsidian.searchMedia
+- name: null
+  inputs: Message David to ask if he's still up for basketball this weekend
+  expected_output:
+  - imessage.findChat
+  - imessage.sendMessage
+- name: null
+  inputs: Send Kevin a message asking if he still has my charger
+  expected_output:
+  - imessage.findChat
+  - imessage.sendMessage
+- name: null
+  inputs: Tell Alex I'm running 15 minutes late for brunch
+  expected_output:
+  - imessage.findChat
+  - imessage.sendMessage
+- name: null
+  inputs: 'Set my status to OOO and message #team-general that I''ll be taking PTO
+    next week to handle some family matters'
+  expected_output:
+  - microsoft-teams.setStatus
+  - microsoft-teams.findChat
+  - microsoft-teams.sendMessage
+- name: null
+  inputs: Set status to focusing, check unread messages, and let the team know I'm
+    working on JIRA-1234
+  expected_output:
+  - microsoft-teams.setStatus
+  - microsoft-teams.unreadMessages
+  - microsoft-teams.findChat
+  - microsoft-teams.sendMessage
+- name: null
+  inputs: Check active sprint tasks and update the team channel about today's blockers
+  expected_output:
+  - jira.active-sprints
+  - microsoft-teams.findChat
+  - microsoft-teams.sendMessage
+- name: null
+  inputs: 'Check workflow runs status and update #devops about the failed builds'
+  expected_output:
+  - github.workflow-runs
+  - microsoft-teams.findChat
+  - microsoft-teams.sendMessage
+- name: null
+  inputs: 'Pull up the latest release notes and notify #engineering about the deployment'
+  expected_output:
+  - confluence-search.search
+  - microsoft-teams.findChat
+  - microsoft-teams.sendMessage
+- name: null
+  inputs: 'search notes with #debugging, swear i had a fix for memory leaks in zig
+    somewhere'
+  expected_output:
+  - obsidian.searchNoteCommand
+- name: null
+  inputs: 'Send a message to #project-alpha: Update on the recent production incident?
+    Check Jira ticket 1024 for details, Github PRs are linked there.'
+  expected_output:
+  - microsoft-teams.findChat
+  - microsoft-teams.sendMessage
+  - jira.search-issues
+- name: null
+  inputs: Create a Jira bug for high CPU usage on login screen, affecting iOS and
+    Android and assign it to kenny. ping him the link once done.
+  expected_output:
+  - jira.create-issue
+  - microsoft-teams.findChat
+  - microsoft-teams.sendMessage
+- name: null
+  inputs: 'Any updates on the memory leak bug i reported? '
+  expected_output:
+  - jira.reported-issues
+- name: null
+  inputs: 'What''s happening with the accessibility tickets I submitted? '
+  expected_output:
+  - jira.reported-issues
+- name: null
+  inputs: write up the feature launch announcement, include the beta testing feedback
+    that we put in the issue and notify the product team
+  expected_output:
+  - confluence-search.new-blog
+  - jira.search-issues
+  - microsoft-teams.findChat
+  - microsoft-teams.sendMessage
+- name: null
+  inputs: 'create onboarding guide for new devs, get the tickets which we tagged as
+    good-first-time and share with #new-hires'
+  expected_output:
+  - confluence-search.new-page
+  - jira.search-issues
+  - microsoft-teams.findChat
+  - microsoft-teams.sendMessage
+- name: null
+  inputs: check if anyone's approved my kubernetes config changes
+  expected_output:
+  - github.my-pull-requests
+- name: null
+  inputs: any failing builds in the main branch?
+  expected_output:
+  - github.workflow-runs
+- name: null
+  inputs: 'tell #team-alpha I''ll be late for tonight''s dungeon run'
+  expected_output:
+  - discord.findChat
+  - discord.sendMessage
+- name: null
+  inputs: 'drop a message in #guild chat that I''m taking a break and set status to
+    idle for now'
+  expected_output:
+  - discord.setStatus
+  - discord.findChat
+  - discord.sendMessage
+- name: null
+  inputs: 'Did anyone respond to my message in #gaming about playing it takes two
+    later'
+  expected_output:
+  - discord.searchMessages
+- name: null
+  inputs: did anyone review my frontend PR from yesterday?
+  expected_output:
+  - github.my-pull-requests
+- name: null
+  inputs: check if there are any dependency vulnerabilities raised recently
+  expected_output:
+  - github.unread-notifications
+- name: null
+  inputs: did anyone comment on the pr for the performance fix?
+  expected_output:
+  - github.unread-notifications
+- name: null
+  inputs: pull up those security alerts and ping the security team
+  expected_output:
+  - github.unread-notifications
+  - microsoft-teams.findChat
+  - microsoft-teams.sendMessage
