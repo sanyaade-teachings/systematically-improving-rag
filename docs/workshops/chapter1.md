@@ -267,9 +267,9 @@ Before diving into implementation, let's clarify what precision and recall actua
     - Higher K improves recall but may hurt precision with simpler models
     - Advanced models (GPT-4, Claude) handle irrelevant docs better, so favor higher K
     
-    **Why Re-ranker Score Thresholds Are Dangerous:**
+    **Why Embedding or Re-ranker Score Thresholds Are Dangerous:**
     - Score distributions vary dramatically by query type
-    - A threshold that works for one category fails for others
+    - A threshold that works for one category fails for others, for example average ada-002 score is .7 and .5 for ada-003
     - Better approach: Always return top K results, let the LLM filter
     - If you must filter, use percentile-based thresholds, not absolute scores
 
@@ -343,7 +343,7 @@ Another client needed to implement AI search for construction blueprints, allowi
 **Key Takeaway**: Testing specific subsystems independently enables rapid baseline improvements. Synthetic data generation for specific use cases can dramatically improve retrieval.
 
 !!! info "Chunk Size Best Practices"
-    Based on extensive testing across multiple domains:
+    Based on extensive testing across multiple domains and recommendations from Anthropic and OpenAI:
     
     **Starting Point:** 800 tokens with 50% overlap
     - This configuration works well for most use cases
@@ -362,9 +362,6 @@ Another client needed to implement AI search for construction blueprints, allowi
     - Legal/regulatory: Larger chunks (1500-2000 tokens) to preserve full clauses
     - Technical docs: Smaller chunks (400-600 tokens) for precise retrieval
     - Conversational: Page-level chunks to maintain context
-    
-    !!! tip "Learn More: Common Chunking Mistakes"
-        Skylar Payne found that many teams chunk too small (200 characters) because they follow outdated tutorials. In one e-commerce case, this led to 13% hallucination rate because no single chunk contained complete information. See [RAG Anti-patterns in the Wild](../talks/rag-antipatterns-skylar-payne.md) for more pitfalls to avoid.
 
 ## Practical Implementation: Building Your Evaluation Framework
 
@@ -631,9 +628,6 @@ By investing time in creating high-quality synthetic data upfront, you establish
 ## Additional Resources
 
 !!! info "Tools and Libraries for RAG Evaluation" - **[RAGAS](https://github.com/explodinggradients/ragas)**: Open-source framework for evaluating RAG applications - **[LangChain Evaluation](https://python.langchain.com/docs/guides/evaluation/)**: Tools for evaluating retrieval and generation - **[Prompttools](https://github.com/promptslab/prompttools)**: Toolkit for testing and evaluating LLM applications - **[MLflow for Experiment Tracking](https://mlflow.org/)**: Open-source platform for managing ML lifecycle
-
-!!! quote "Beyond MTEB: Domain-Specific Evaluation"
-    Kelly Hong from Chroma emphasizes a critical limitation of public benchmarks: "If you have really good performance on a public benchmark for a given embedding model, that doesn't necessarily guarantee that you'll also get that good performance for your specific production pipeline." Her generative benchmarking approach creates custom evaluation sets from your actual data, revealing that model rankings on domain-specific data often contradict MTEB rankings. [Learn about generative benchmarking →](../talks/embedding-performance-generative-evals-kelly-hong.md)
 
 ## Reflection Questions
 
