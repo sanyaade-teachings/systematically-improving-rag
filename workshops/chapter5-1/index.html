@@ -1767,6 +1767,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -1965,6 +1975,121 @@
   
   <span class="md-ellipsis">
     Document Ingestion and Parsing with Reducto CEO and Adit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/glean-manav/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Enterprise Search and Fine-tuning Embedding Models with Glean
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/john-lexical-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lexical Search in RAG Applications
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/query-routing-anton/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Organization and Query Routing for RAG Systems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/chromadb-anton-chunking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Text Chunking Strategies for RAG Applications
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/superlinked-encoder-stacking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Encoder Stacking and Multi-Modal Retrieval Systems
     
   </span>
   
@@ -2275,6 +2400,15 @@
 </code></pre></div>
 <h2 id="introduction">Introduction</h2>
 <p>In our journey through systematically improving RAG applications, we've reached a pivotal moment. The previous sessions have equipped us with the fundamental building blocks: the RAG playbook, synthetic data generation, fine-tuning approaches, user experience design for data collection, and segmentation techniques. Now, in Session 5, we turn our attention to a concept that often separates basic implementations from truly exceptional ones—multimodal RAG and specialized search indices.</p>
+<div class="admonition note">
+<p class="admonition-title">Building on the Foundation</p>
+<ul>
+<li><strong><a href="../chapter1.md">Chapter 1</a></strong>: Evaluation metrics for each specialized retriever</li>
+<li><strong><a href="../chapter2.md">Chapter 2</a></strong>: Fine-tuning embeddings for specific domains</li>
+<li><strong><a href="../chapter3-1.md">Chapter 3</a></strong>: Collecting feedback on retrieval quality</li>
+<li><strong><a href="../chapter4-2.md">Chapter 4</a></strong>: Identifying which capabilities need specialization</li>
+</ul>
+</div>
 <div class="admonition quote">
 <p class="admonition-title">Key Insight</p>
 </div>
@@ -2428,6 +2562,13 @@ def extract_financial_data(document_text: str) -&gt; FinancialStatement:
 </div>
 <p>If you find that your system correctly routes 95% of queries to the appropriate retriever, but those retrievers only find relevant information 60% of the time, your priority should be improving retrieval quality rather than router accuracy.</p>
 <p>This two-level evaluation framework ensures you invest your improvement efforts where they'll have the greatest impact.</p>
+<div class="admonition tip">
+<p class="admonition-title">Next Steps</p>
+<p>In <a href="../chapter6-1.md">Chapter 6</a>, we'll explore how to bring these specialized components together through intelligent routing, creating a unified system that seamlessly directs queries to the appropriate retrievers.</p>
+</div>
+<hr />
+<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 
 

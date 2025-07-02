@@ -1776,6 +1776,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -1974,6 +1984,121 @@
   
   <span class="md-ellipsis">
     Document Ingestion and Parsing with Reducto CEO and Adit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/glean-manav/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Enterprise Search and Fine-tuning Embedding Models with Glean
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/john-lexical-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lexical Search in RAG Applications
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/query-routing-anton/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Organization and Query Routing for RAG Systems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/chromadb-anton-chunking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Text Chunking Strategies for RAG Applications
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/superlinked-encoder-stacking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Encoder Stacking and Multi-Modal Retrieval Systems
     
   </span>
   
@@ -2293,6 +2418,15 @@
 </code></pre></div>
 <h2 id="implementing-tool-interfaces-for-retrieval">Implementing Tool Interfaces for Retrieval</h2>
 <p>Let's look at how to implement this pattern with a concrete example. Imagine we're building a construction information system that includes blueprints, text documents, and project schedules.</p>
+<div class="admonition note">
+<p class="admonition-title">Drawing from Previous Chapters</p>
+<ul>
+<li><strong><a href="../chapter1.md">Chapter 1</a></strong>: Evaluation metrics help test router accuracy</li>
+<li><strong><a href="../chapter3-1.md">Chapter 3</a></strong>: Feedback reveals which tools users need</li>
+<li><strong><a href="../chapter4-2.md">Chapter 4</a></strong>: Query analysis identifies tool requirements</li>
+<li><strong><a href="../chapter5-1.md">Chapter 5</a></strong>: Specialized retrievers become the tools</li>
+</ul>
+</div>
 <h3 id="building-a-blueprint-search-tool">Building a Blueprint Search Tool</h3>
 <p>Based on our analysis in Chapter 5, we've determined that users often search for blueprints by description and date range. We'll define a tool interface that captures this functionality:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
@@ -2347,6 +2481,35 @@
 </code></pre></div>
 <h3 id="the-power-of-tool-documentation">The Power of Tool Documentation</h3>
 <p>Notice the detailed docstrings and examples in these tool definitions. These aren't just for human developers—they're critical for language models to understand how and when to use each tool. The examples in particular help models recognize the patterns of queries that should trigger each tool.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tool Portfolio Design Principles</p>
+<p><strong>Tools vs Retrievers:</strong>
+- Tools are NOT one-to-one with retrievers
+- Think of tools like command-line utilities: multiple ways to access the same data
+- A single retriever might power multiple tools with different interfaces</p>
+<p><strong>Example: Document Retriever, Multiple Tools</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># One retriever, multiple access patterns</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DocumentRetriever</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Core retrieval engine for all documents&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Tool 1: Search by keyword</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SearchDocuments</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span>
+
+<span class="c1"># Tool 2: Find by metadata</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FindDocumentsByMetadata</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">author</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">date_range</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DateRange</span><span class="p">]</span>
+    <span class="n">document_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+
+<span class="c1"># Tool 3: Get related documents</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">GetRelatedDocuments</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">document_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">similarity_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span>
+</code></pre></div></p>
+<p>This separation allows users to access the same underlying data in ways that match their mental models.</p>
+</div>
 <h3 id="aside-on-mcp">Aside on MCP</h3>
 <p>The Model Context Protocol (MCP) is an open standard developed by Anthropic that standardizes how applications provide context to large language models. Conceptually similar to the tool interface pattern we've discussed, MCP creates a universal protocol for connecting AI systems to various data sources and tools.</p>
 <p>Think of MCP like a "USB-C port for AI applications" – just as USB-C provides a standardized way to connect devices to various peripherals, MCP provides a standardized way for AI models to interact with different data sources and tools.</p>
@@ -2377,6 +2540,29 @@
 <p class="admonition-title">Router vs. Individual Retrievers</p>
 </div>
 <p>It's critical to distinguish between the performance of your router (selecting the right tools) and the performance of each individual retriever (finding relevant information). A perfect router with mediocre retrievers will still yield mediocre results, while a mediocre router with perfect retrievers might miss capabilities entirely.</p>
+<div class="admonition info">
+<p class="admonition-title">Multi-Agent vs Single-Agent Architecture</p>
+<p><strong>When to Use Multi-Agent Systems:</strong></p>
+<p><strong>Coordination Challenges:</strong>
+- Agents sharing state is complex
+- Message passing adds latency
+- Debugging becomes harder
+- Error cascades are common</p>
+<p><strong>Primary Benefits:</strong>
+1. <strong>Token Efficiency</strong>: Each agent sees only relevant context
+2. <strong>Specialization</strong>: Different models for different tasks
+3. <strong>Read/Write Separation</strong>: Critical for safety</p>
+<p><strong>Read-Only vs Write Operations:</strong>
+- Keep read operations in single agent when possible
+- Separate write operations into specialized agents
+- Example: Reading code (safe) vs modifying code (requires careful agent)</p>
+<p><strong>Real-World Example:</strong>
+A coding assistant might use:
+- Single agent for code reading, analysis, explanation
+- Specialized agent for code generation with guardrails
+- Separate agent for file system operations</p>
+<p>This separation ensures safety while maintaining efficiency.</p>
+</div>
 <h3 id="implementing-a-simple-router">Implementing a Simple Router</h3>
 <p>Here's a basic implementation of a query router using the Instructor library for structured outputs:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">instructor</span>
@@ -2491,6 +2677,55 @@
 </code></pre></div>
 <h3 id="using-few-shot-examples-to-improve-routing">Using Few-Shot Examples to Improve Routing</h3>
 <p>The effectiveness of the router depends significantly on providing good examples of when to use each tool. These few-shot examples help the model understand the patterns that should trigger different tools.</p>
+<div class="admonition info">
+<p class="admonition-title">Evolution of RAG Architectures</p>
+<p><strong>From Embeddings to Tools:</strong></p>
+<p>The progression of RAG architectures follows a predictable pattern:</p>
+<ol>
+<li><strong>Generation 1: Pure Embeddings</strong></li>
+<li>Single vector database</li>
+<li>Semantic search only</li>
+<li>
+<p>Limited to similarity matching</p>
+</li>
+<li>
+<p><strong>Generation 2: Hybrid Search</strong></p>
+</li>
+<li>Combine semantic + lexical</li>
+<li>Add metadata filtering</li>
+<li>
+<p>Still retrieval-focused</p>
+</li>
+<li>
+<p><strong>Generation 3: Tool-Based</strong></p>
+</li>
+<li>Multiple specialized tools</li>
+<li>Goes beyond retrieval</li>
+<li>Includes actions and computations</li>
+</ol>
+<p><strong>Why This Evolution Happens:</strong>
+- Users don't just want to find information
+- They want to analyze, compare, compute
+- Tools enable richer interactions
+- Better matches user mental models</p>
+<p><strong>Example Evolution:</strong>
+<div class="highlight"><pre><span></span><code>V1: &quot;Find documents about project X&quot;
+V2: &quot;Find recent documents about project X by John&quot;
+V3: &quot;Compare project X budget vs actuals and identify variances&quot;
+</code></pre></div></p>
+<p>The third query requires tools that can compute, not just retrieve.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Complete the Journey</p>
+<p>This chapter brings together all the concepts from the book:
+- The improvement flywheel from <a href="../chapter0.md">Chapter 0</a>
+- Evaluation frameworks from <a href="../chapter1.md">Chapter 1</a>
+- Fine-tuning from <a href="../chapter2.md">Chapter 2</a>
+- Feedback loops from <a href="../chapter3-1.md">Chapter 3</a>
+- Query understanding from <a href="../chapter4-2.md">Chapter 4</a>
+- Specialized capabilities from <a href="../chapter5-1.md">Chapter 5</a></p>
+<p>The unified architecture is where everything comes together into a cohesive product.</p>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Effective Few-Shot Examples</p>
 </div>
@@ -2623,6 +2858,9 @@
     <span class="p">)</span>
 </code></pre></div>
 <p>This approach ensures that your routing layer continuously improves as you collect more examples of successful interactions, creating a learning system that adapts to your users' query patterns.</p>
+<hr />
+<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 
 

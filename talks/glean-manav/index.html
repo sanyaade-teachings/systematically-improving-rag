@@ -6,13 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Create a cohesive RAG system by intelligently routing queries to specialized components while maintaining a seamless user experience">
+        <meta name="description" content="Guest lecture with Manav from Glean on enterprise search, custom embedding models, and optimizing RAG systems for company-specific data">
       
       
       
-        <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/workshops/chapter6/">
+        <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/talks/glean-manav/">
       
       
+        <link rel="prev" href="../reducto-docs-adit/">
+      
+      
+        <link rel="next" href="../john-lexical-search/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +24,7 @@
     
     
       
-        <title>Unified Product Architecture - Systematically Improving RAG Applications</title>
+        <title>Enterprise Search and Fine-tuning Embedding Models with Glean - Systematically Improving RAG Applications</title>
       
     
     
@@ -82,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#unified-product-architecture-building-a-cohesive-rag-system" class="md-skip">
+        <a href="#enterprise-search-and-fine-tuning-embedding-models-with-glean" class="md-skip">
           Skip to content
         </a>
       
@@ -136,7 +140,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Unified Product Architecture
+              Enterprise Search and Fine-tuning Embedding Models with Glean
             
           </span>
         </div>
@@ -237,7 +241,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../" class="md-tabs__link">
+        <a href="../../workshops/" class="md-tabs__link">
           
   
   
@@ -277,11 +281,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../talks/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -430,7 +436,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../workshops/" class="md-nav__link ">
               
   
   
@@ -465,7 +471,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter0/" class="md-nav__link">
+      <a href="../../workshops/chapter0/" class="md-nav__link">
         
   
   
@@ -488,7 +494,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter1/" class="md-nav__link">
+      <a href="../../workshops/chapter1/" class="md-nav__link">
         
   
   
@@ -511,7 +517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter2/" class="md-nav__link">
+      <a href="../../workshops/chapter2/" class="md-nav__link">
         
   
   
@@ -534,7 +540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter3-1/" class="md-nav__link">
+      <a href="../../workshops/chapter3-1/" class="md-nav__link">
         
   
   
@@ -557,7 +563,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter3-2/" class="md-nav__link">
+      <a href="../../workshops/chapter3-2/" class="md-nav__link">
         
   
   
@@ -580,7 +586,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter3-3/" class="md-nav__link">
+      <a href="../../workshops/chapter3-3/" class="md-nav__link">
         
   
   
@@ -603,7 +609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter4-1/" class="md-nav__link">
+      <a href="../../workshops/chapter4-1/" class="md-nav__link">
         
   
   
@@ -626,7 +632,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter4-2/" class="md-nav__link">
+      <a href="../../workshops/chapter4-2/" class="md-nav__link">
         
   
   
@@ -649,7 +655,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter5-1/" class="md-nav__link">
+      <a href="../../workshops/chapter5-1/" class="md-nav__link">
         
   
   
@@ -672,7 +678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter5-2/" class="md-nav__link">
+      <a href="../../workshops/chapter5-2/" class="md-nav__link">
         
   
   
@@ -695,7 +701,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter6-1/" class="md-nav__link">
+      <a href="../../workshops/chapter6-1/" class="md-nav__link">
         
   
   
@@ -718,7 +724,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter6-2/" class="md-nav__link">
+      <a href="../../workshops/chapter6-2/" class="md-nav__link">
         
   
   
@@ -741,7 +747,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter6-3/" class="md-nav__link">
+      <a href="../../workshops/chapter6-3/" class="md-nav__link">
         
   
   
@@ -1609,6 +1615,8 @@
       
   
   
+    
+  
   
   
     
@@ -1646,22 +1654,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../talks/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -1674,13 +1683,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Talks
@@ -1696,7 +1705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/rag-antipatterns-skylar-payne/" class="md-nav__link">
+      <a href="../rag-antipatterns-skylar-payne/" class="md-nav__link">
         
   
   
@@ -1719,7 +1728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/semantic-search-exa-will-bryk/" class="md-nav__link">
+      <a href="../semantic-search-exa-will-bryk/" class="md-nav__link">
         
   
   
@@ -1742,7 +1751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
+      <a href="../embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
         
   
   
@@ -1765,7 +1774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/online-evals-production-monitoring-ben-sidhant/" class="md-nav__link">
+      <a href="../online-evals-production-monitoring-ben-sidhant/" class="md-nav__link">
         
   
   
@@ -1788,7 +1797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/rag-without-apis-browser-michael-struwig/" class="md-nav__link">
+      <a href="../rag-without-apis-browser-michael-struwig/" class="md-nav__link">
         
   
   
@@ -1811,7 +1820,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/colin-rag-agents/" class="md-nav__link">
+      <a href="../colin-rag-agents/" class="md-nav__link">
         
   
   
@@ -1834,7 +1843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/reducto-docs-adit/" class="md-nav__link">
+      <a href="../reducto-docs-adit/" class="md-nav__link">
         
   
   
@@ -1854,10 +1863,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../talks/glean-manav/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1868,6 +1886,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1880,7 +1899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/john-lexical-search/" class="md-nav__link">
+      <a href="../john-lexical-search/" class="md-nav__link">
         
   
   
@@ -1903,7 +1922,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/query-routing-anton/" class="md-nav__link">
+      <a href="../query-routing-anton/" class="md-nav__link">
         
   
   
@@ -1926,7 +1945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/chromadb-anton-chunking/" class="md-nav__link">
+      <a href="../chromadb-anton-chunking/" class="md-nav__link">
         
   
   
@@ -1949,7 +1968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/superlinked-encoder-stacking/" class="md-nav__link">
+      <a href="../superlinked-encoder-stacking/" class="md-nav__link">
         
   
   
@@ -2160,17 +2179,91 @@
 
 
 
-<h1 id="unified-product-architecture-building-a-cohesive-rag-system">Unified Product Architecture: Building a Cohesive RAG System</h1>
-<div class="admonition info">
-<p class="admonition-title">This chapter has been split into three parts</p>
-</div>
-<p>This content is now available in three more digestible parts:</p>
-<div class="highlight"><pre><span></span><code>- [Part 1: Query Routing Foundations](chapter6-1.md)
-- [Part 2: Tool Interfaces and Implementation](chapter6-2.md)
-- [Part 3: Performance Measurement and Improvement](chapter6-3.md)
-
-Please visit those pages for the updated content.
-</code></pre></div>
+<h1 id="enterprise-search-and-fine-tuning-embedding-models-with-glean">Enterprise Search and Fine-tuning Embedding Models with Glean</h1>
+<p>Study Notes</p>
+<p>I recently hosted Manav from Glean for an insightful guest lecture in my "Systematically Improving RAG Applications" course. This session focused on enterprise search and fine-tuning embedding models - a surprisingly underutilized approach that can dramatically improve RAG system performance. Here's what we learned about Glean's approach to optimizing AI and enterprise search through custom embedding models.</p>
+<p>What is Glean and why does their approach to enterprise search matter?
+Glean has built a comprehensive Work AI platform that unifies enterprise data across various applications (Google Drive, GitHub, Jira, Confluence) into a single system. Their flagship product, the Glean Assistant, leverages this unified data model to generate relevant answers to user questions and automate workflows.</p>
+<p>The foundation of their system is their semantic search capability, which Manav emphasized is absolutely critical for enterprise AI success. As he put it, "Search quality matters - you can't have a good RAG system, you can't have a good overall enterprise AI product unless you have good search." This makes intuitive sense - without retrieving the right context from your enterprise data, even the best LLMs will produce hallucinations and incorrect information.</p>
+<p>What makes enterprise data uniquely challenging?
+Unlike internet data, which has a significant "head problem" where most searches target popular websites or common information sources, enterprise data is far more heterogeneous and doesn't fit neatly into a single mold. Manav explained:</p>
+<p>"Enterprise data is very different than internet data... You have your basic document data sources like Google Drive, Google Docs, Confluence, Notion... But you're also working with a bunch of different types of applications, like Slack, which is a messaging platform. You have meetings, which doesn't really meet the standard concept of what a document is. You have GitHub and GitLab... They all behave in slightly different ways."</p>
+<p>This diversity requires a robust, generalized unified data model that can handle the nuances of different data types while maintaining security and privacy. Additionally, company-specific language (project names, initiatives, internal terminology) creates another layer of complexity that generic models struggle with.</p>
+<p>Key Takeaway: Enterprise search is fundamentally different from web search because of data heterogeneity and company-specific language. A unified data model that can handle diverse data types while preserving security is essential for effective enterprise AI.</p>
+<p>Why fine-tune embedding models for each customer?
+One of the most fascinating aspects of Glean's approach is that they build custom embedding models for each customer. While many companies focus on using large, general-purpose embedding models, Glean has found that smaller, fine-tuned models often perform better for specific enterprise contexts.</p>
+<p>Manav explained their process:</p>
+<ol>
+<li>Start with a high-performance base model (typically BERT-based)</li>
+<li>Perform continued pre-training on company data using masked language modeling</li>
+<li>Convert the language model into an embedding model through various training techniques</li>
+<li>Continuously update the model as the company evolves</li>
+</ol>
+<p>The results are impressive - after six months, they typically see a 20% improvement in search performance just from learning from user feedback and adapting to company changes.</p>
+<p>I found it particularly interesting that they prioritize smaller models when appropriate: "When you're thinking about building really performant enterprise AI... you want to also think about using smaller embedding models when you can, because small embedding models when fine-tuned to the domain and the specific task you have in hand can give you a lot better performance compared to just using large LLMs."</p>
+<p>How do they generate high-quality training data?
+Creating effective training data for fine-tuning embedding models is challenging, especially with enterprise privacy constraints. Glean uses several creative approaches:</p>
+<ol>
+<li>Title-body pairs: Mapping document titles to passages from the document body</li>
+<li>Anchor data: Using documents that reference other documents to create relevance pairs</li>
+<li>Co-access data: Identifying documents accessed together by users in short time periods</li>
+<li>Public datasets: Incorporating high-quality public datasets like MS MARCO</li>
+</ol>
+<p>They also leverage synthetic data generation using LLMs to create question-answer pairs for documents, which is particularly valuable for smaller corpuses with limited user activity.</p>
+<p>What I found most impressive was their attention to application-specific nuances. For example, with Slack data, they don't just treat each message as a document. Instead, they create "conversation documents" from threads or messages within a short timespan, then use the first message as a title and the rest as the body. This understanding of how different applications work leads to much higher quality training data.</p>
+<p>Key Takeaway: Generating high-quality training data requires understanding the nuances of different enterprise applications. Creative approaches like title-body pairs, anchor data, co-access signals, and synthetic data generation can provide valuable training signals even with privacy constraints.</p>
+<p>How do they learn from user feedback?
+Once users start interacting with their products, Glean incorporates those signals to further improve their models:</p>
+<p>For their search product, they use query-click pairs as direct signals of relevance.</p>
+<p>For RAG-only settings (like their Assistant product), where users don't explicitly click on documents, they face a more challenging problem. They implement various approaches:</p>
+<ul>
+<li>Upvote/downvote systems (though these tend to get sparse usage)</li>
+<li>Tracking when users click on citations to read more about a topic</li>
+<li>Monitoring various interaction patterns to infer relevance</li>
+</ul>
+<p>I've encountered similar challenges in my consulting work - getting explicit feedback signals for generative AI products is notoriously difficult. Manav's candid acknowledgment that "this is like a pretty hard open question" resonated with me. Their approach of combining multiple weak signals seems pragmatic.</p>
+<p>How do they evaluate embedding model quality?
+Evaluating embedding models in enterprise settings is particularly challenging because:</p>
+<ol>
+<li>You can't access customer data directly due to privacy concerns</li>
+<li>Each customer has a unique model</li>
+<li>End-to-end RAG evaluation involves many moving parts</li>
+</ol>
+<p>Glean's solution is to build "unit tests" for their models - targeted evaluations for specific behaviors they want their models to exhibit. For example, they test how well models understand paraphrases of the same query.</p>
+<p>This approach allows them to:</p>
+<ul>
+<li>Set performance targets for each customer's model</li>
+<li>Identify underperforming models before customers experience issues</li>
+<li>Focus optimization efforts on specific areas</li>
+</ul>
+<p>I particularly liked Manav's emphasis on isolating and improving individual components: "If you want to really make good tangible progress day by day, isolating and optimizing individual components is always going to be much more scalable than trying to improve everything all together all at once."</p>
+<p>What role does traditional search play alongside embeddings?
+Despite all the focus on embedding models, Manav emphasized that traditional search techniques remain crucial:</p>
+<p>"You don't want to over-index on semanticness or LLM-based scoring as the only thing that your search system should use... you can get a lot more bang for your buck by not using any semanticness at all to answer most questions."</p>
+<p>He estimated that for 60-70% of enterprise search queries, basic lexical search with recency signals works perfectly well. Semantic search becomes more important for complex queries, particularly in agent-based systems.</p>
+<p>This aligns with my experience - I often tell clients that getting 80% of the way there with full-text search and then adding semantic search as the cherry on top is a practical approach.</p>
+<p>Key Takeaway: Don't abandon traditional search techniques in pursuit of embedding-based approaches. A hybrid system that leverages both lexical and semantic search, along with signals like recency and authority, will deliver the best results for enterprise search.</p>
+<p>How do they handle document relevance over time?
+One interesting question addressed how Glean handles outdated documents that have been superseded by newer information. Their approach centers around a concept they call "authoritativeness," which incorporates:</p>
+<ol>
+<li>Recency: Newer documents are generally more relevant</li>
+<li>Reference patterns: Documents that continue to be linked to or accessed remain authoritative</li>
+<li>User satisfaction signals: Documents that consistently satisfy user queries maintain relevance</li>
+</ol>
+<p>For example, a document containing WiFi password information might be old but still highly relevant if people continue to reference it when answering related questions.</p>
+<p>This multi-faceted approach to document authority seems more sophisticated than simply prioritizing recent content, which would miss important evergreen documents.</p>
+<p>Final thoughts on building enterprise search systems
+Manav concluded with several key insights that resonated with me:</p>
+<ol>
+<li>A unified data model is critical for handling heterogeneous enterprise data</li>
+<li>Company-specific language matters tremendously for search quality</li>
+<li>Fine-tuned smaller models often outperform generic large models for specific tasks</li>
+<li>Learning from user feedback, though challenging, provides invaluable signals</li>
+<li>Evaluating models through targeted "unit tests" enables scalable quality assessment</li>
+<li>Traditional search techniques remain powerful and shouldn't be discarded</li>
+</ol>
+<p>As someone who's helped many early-stage companies build RAG systems, I found Glean's approach refreshingly pragmatic. They've clearly learned that the path to high-quality enterprise search isn't just about using the latest, largest models, but about understanding the unique characteristics of enterprise data and building systems that address those specific challenges.</p>
+<p>The emphasis on company-specific language models particularly stood out to me - this is an area where I've seen many companies struggle when they try to apply generic embedding models to their unique terminology and document structures. Glean's success with this approach suggests that more companies should consider fine-tuning strategies rather than relying solely on off-the-shelf embedding models.</p>
 
 
 
@@ -2206,6 +2299,44 @@ Please visit those pages for the updated content.
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../reducto-docs-adit/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Document Ingestion and Parsing with Reducto CEO and Adit">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Document Ingestion and Parsing with Reducto CEO and Adit
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../john-lexical-search/" class="md-footer__link md-footer__link--next" aria-label="Next: Lexical Search in RAG Applications">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lexical Search in RAG Applications
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">

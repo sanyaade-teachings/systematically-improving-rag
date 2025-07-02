@@ -1743,6 +1743,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -1941,6 +1951,121 @@
   
   <span class="md-ellipsis">
     Document Ingestion and Parsing with Reducto CEO and Adit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/glean-manav/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Enterprise Search and Fine-tuning Embedding Models with Glean
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/john-lexical-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lexical Search in RAG Applications
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/query-routing-anton/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Organization and Query Routing for RAG Systems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/chromadb-anton-chunking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Text Chunking Strategies for RAG Applications
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/superlinked-encoder-stacking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Encoder Stacking and Multi-Modal Retrieval Systems
     
   </span>
   
@@ -2229,14 +2354,66 @@
 <p>Different types of content demand different retrieval strategies. Let's explore approaches for three common modalities: documents, images, and tables.</p>
 <h3 id="document-search-beyond-basic-chunking">Document Search: Beyond Basic Chunking</h3>
 <p>For document retrieval, the foundation remains chunking documents with appropriate metadata and applying both lexical and semantic search techniques. However, several refinements can dramatically improve performance:</p>
+<div class="admonition tip">
+<p class="admonition-title">Page-Level Chunking for Documentation</p>
+<p><strong>When to Use Page-Level Chunks:</strong>
+- Documentation websites (respect page boundaries)
+- User manuals (preserve context)
+- Legal documents (maintain clause integrity)
+- Academic papers (keep sections together)</p>
+<p><strong>Why It Works:</strong>
+- Documentation is carefully organized by authors
+- Semantic boundaries align with page/section breaks
+- Users expect complete answers from single pages
+- Reduces context fragmentation</p>
+<p><strong>Implementation:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Instead of arbitrary chunking:</span>
+<span class="n">chunks</span> <span class="o">=</span> <span class="n">chunk_by_tokens</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+
+<span class="c1"># Use page-aware chunking:</span>
+<span class="n">chunks</span> <span class="o">=</span> <span class="n">chunk_by_pages</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> 
+                      <span class="n">respect_sections</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                      <span class="n">min_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+                      <span class="n">max_size</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+</code></pre></div></p>
+</div>
 <div class="admonition info">
 <p class="admonition-title">Advanced Document Retrieval Techniques</p>
 </div>
 <p>- <strong>Contextual Retrieval</strong>: Rather than using fixed chunks, dynamically rewrite or expand chunks based on the query context. This creates "query-aware" text representations that better match user intent.</p>
-<div class="highlight"><pre><span></span><code>- **Hybrid Retrieval Signals**: Combine semantic similarity with other signals like recency, authority, and citation frequency to create a more nuanced ranking function.
+<p>- <strong>Hybrid Retrieval Signals</strong>: Combine semantic similarity with other signals like recency, authority, and citation frequency to create a more nuanced ranking function.</p>
+<p>- <strong>Multi-stage Retrieval</strong>: Implement a cascade of increasingly sophisticated (and computationally expensive) retrieval and ranking steps, filtering out irrelevant content at each stage.</p>
+<div class="admonition example">
+<p class="admonition-title">Contextual Retrieval Implementation</p>
+<p><strong>The Power of Context-Aware Chunks:</strong></p>
+<p>Original chunk: "Jason the doctor is unhappy with Patient X"</p>
+<p>Without context, this is ambiguous:
+- Is Jason a medical doctor unhappy with a patient?
+- Is a doctor named Jason unhappy?
+- Is someone consulting Dr. Jason about Patient X?</p>
+<p><strong>Solution: Rewrite chunks with full document context:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_contextual_chunk</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">document</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Rewrite chunk with document context.&quot;&quot;&quot;</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Document context: </span><span class="si">{</span><span class="n">document</span><span class="o">.</span><span class="n">title</span><span class="si">}</span>
+<span class="s2">    Section: </span><span class="si">{</span><span class="n">chunk</span><span class="o">.</span><span class="n">section</span><span class="si">}</span>
 
-- **Multi-stage Retrieval**: Implement a cascade of increasingly sophisticated (and computationally expensive) retrieval and ranking steps, filtering out irrelevant content at each stage.
+<span class="s2">    Original chunk: </span><span class="si">{</span><span class="n">chunk</span><span class="o">.</span><span class="n">text</span><span class="si">}</span>
+
+<span class="s2">    Rewrite this chunk to include necessary context </span>
+<span class="s2">    so it can be understood in isolation.</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">llm</span><span class="o">.</span><span class="n">complete</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
 </code></pre></div>
+<p>Result: "In this employee feedback document, Jason (the medical doctor 
+on our staff) expressed dissatisfaction with the Patient X project 
+management software due to frequent crashes."</p>
+<p><strong>Key Decision: Compute at write-time vs read-time</strong>
+- Write-time: Higher storage cost, faster retrieval
+- Read-time: Lower storage cost, slower retrieval
+- Most teams should compute at write-time for production</p>
+</div>
 <pre class="mermaid"><code>flowchart LR
     A[Query] --&gt; B[Initial Retrieval]
     B --&gt; C[Candidate Chunks]
@@ -2328,6 +2505,10 @@ def contextual_retrieval(query: str, document_store: List[Dict[str, Any]]) -&gt;
 <p class="admonition-title">Embedding Spaces Mismatch</p>
 </div>
 <p>The naive approach—applying the same embedding strategy used for text—often fails because question embeddings and image caption embeddings exist in fundamentally different semantic spaces. Simply embedding captions like "two people" will not retrieve well when users search for "business meeting" or "team collaboration."</p>
+<div class="admonition tip">
+<p class="admonition-title">When to Use Vision Language Models</p>
+<p>According to Adit from Reducto, VLMs excel at "things that traditional OCR has always been horrible at" - handwriting, charts, figures, and diagrams. However, for clean structured information, traditional CV provides better precision and token efficiency. <a href="../../talks/reducto-docs-adit/">Learn about their hybrid approach →</a></p>
+</div>
 <p>To bridge this gap, more sophisticated image summarization techniques are essential:</p>
 <div class="admonition example">
 <p class="admonition-title">Advanced Image Description Techniques</p>
@@ -2405,6 +2586,42 @@ Generate a comprehensive description optimized for retrieval.</p>
 <p>The enhanced description dramatically improves retrieval capability when troubleshooting specific defects or components.</p>
 <h3 id="table-search-structured-data-in-context">Table Search: Structured Data in Context</h3>
 <p>Tables present a dual challenge: they contain structured data but exist within unstructured contexts. Two main approaches prove effective:</p>
+<div class="admonition quote">
+<p class="admonition-title">Expert Insight: Document Parsing Challenges</p>
+<p>Adit from Reducto emphasizes that tables are particularly challenging: "Tables are particularly challenging because they represent two-dimensional associations of data that can be formatted in countless ways. The failures are often subtle - a model might extract what appears to be a valid table but silently drop rows, columns, or individual values."</p>
+<p>For production-ready table extraction, consider specialized tools. <a href="../../talks/reducto-docs-adit/">Learn more about document ingestion best practices →</a></p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Markdown Tables: The Surprising Winner</p>
+<p><strong>Performance Comparison for Table Lookups:</strong>
+- Markdown tables: 85% accuracy
+- CSV format: 73% accuracy
+- JSON format: 71% accuracy<br />
+- YAML format: 69% accuracy</p>
+<p><strong>Why Markdown Tables Win:</strong>
+- Visual structure helps LLMs understand relationships
+- Column alignment provides natural grouping
+- Headers are clearly distinguished
+- Less token overhead than JSON/YAML</p>
+<p><strong>Best Practices:</strong>
+<div class="highlight"><pre><span></span><code>| Product ID | Name           | Price  | Stock |
+|------------|----------------|--------|-------|
+| SKU-001    | Widget Pro     | $29.99 | 150   |
+| SKU-002    | Widget Basic   | $19.99 | 0     |
+| SKU-003    | Widget Premium | $49.99 | 75    |
+</code></pre></div></p>
+<p><strong>Pro Tip:</strong> For financial data, beware of spacing in numbers!
+- Bad: <code>1 234 567</code> (tokenizes as three separate numbers)
+- Good: <code>1234567</code> or <code>1,234,567</code></p>
+<div class="admonition info">
+<p class="admonition-title">Production Table Extraction</p>
+<p>Reducto's approach to complex tables includes:
+- Using HTML for tables with 3+ merged cells
+- Traditional CV for initial extraction, VLMs for correction
+- Creating natural language summaries for better retrieval</p>
+<p>See their <a href="../../talks/reducto-docs-adit/">complete document parsing methodology</a> for handling PDFs, Excel files, and complex layouts.</p>
+</div>
+</div>
 <div class="admonition info">
 <p class="admonition-title">Table Retrieval Approaches</p>
 </div>
@@ -2520,6 +2737,58 @@ import pandas as pd</p>
 <p class="admonition-title">Data Science Experience</p>
 </div>
 <p>"We spent months trying to fine-tune models for SQL generation with limited success. Once we switched to retrieving exemplar queries from our analytics repository, accuracy jumped by 30% overnight."</p>
+<div class="admonition example">
+<p class="admonition-title">RAPTOR: Recursive Summarization for Long Documents</p>
+<p><strong>The RAPTOR Approach:</strong></p>
+<p>When dealing with concepts that span multiple pages or sections:</p>
+<ol>
+<li>
+<p><strong>Cluster Related Chunks:</strong>
+   <div class="highlight"><pre><span></span><code><span class="c1"># Embed all chunks</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="p">[</span><span class="n">embed</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">]</span>
+
+<span class="c1"># Cluster similar chunks</span>
+<span class="n">clusters</span> <span class="o">=</span> <span class="n">cluster_embeddings</span><span class="p">(</span><span class="n">embeddings</span><span class="p">,</span> 
+                            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;hierarchical&#39;</span><span class="p">,</span>
+                            <span class="n">threshold</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Summarize Each Cluster:</strong>
+   <div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="n">summarize_chunks</span><span class="p">(</span><span class="n">cluster</span><span class="o">.</span><span class="n">chunks</span><span class="p">)</span>
+    <span class="n">cluster</span><span class="o">.</span><span class="n">summary</span> <span class="o">=</span> <span class="n">summary</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Build Hierarchical Index:</strong></p>
+</li>
+<li>Leaf nodes: Original chunks</li>
+<li>Internal nodes: Cluster summaries</li>
+<li>
+<p>Root node: Document summary</p>
+</li>
+<li>
+<p><strong>Multi-Level Retrieval:</strong></p>
+</li>
+<li>Start with high-level summaries</li>
+<li>Drill down to specific chunks as needed</li>
+</ol>
+<p><strong>Use Cases:</strong>
+- Academic papers (methodology across sections)
+- Legal documents (related clauses)
+- Technical documentation (feature descriptions)
+- Books and long-form content</p>
+<p>This approach handles the "information spread" problem where relevant content is distributed across multiple non-contiguous sections.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">When Simple Tools Beat Embeddings</p>
+<p>Colin Flaherty's experience building top-performing coding agents reveals that sometimes simple tools like grep and find can outperform embedding-based retrieval: "The agent's persistence compensated for less sophisticated tools." However, he notes this works best for:
+- Highly structured content like code
+- Small to medium-sized repositories
+- When distinctive keywords exist</p>
+<p>For larger codebases or unstructured content, embeddings become essential. <a href="../../talks/colin-rag-agents/">Explore agentic retrieval patterns →</a></p>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">RAG Playbook for SQL Generation</p>
 </div>
@@ -2554,14 +2823,38 @@ import pandas as pd</p>
 <p class="admonition-title">Key Takeaways</p>
 </div>
 <p>1. <strong>The power of specialization</strong>: Building dedicated retrieval mechanisms for different content types and query patterns consistently outperforms monolithic approaches. Specialized models solving specific problems will outperform general-purpose solutions.</p>
-<div class="highlight"><pre><span></span><code>2. **Two complementary strategies**: Extract structured data from unstructured content, or create synthetic text chunks that point to source data—both serve as AI-powered materialized views that optimize retrievability.
+<p>2. <strong>Two complementary strategies</strong>: Extract structured data from unstructured content, or create synthetic text chunks that point to source data—both serve as AI-powered materialized views that optimize retrievability.</p>
+<p>3. <strong>Measurement drives improvement</strong>: Use precision and recall at both the router and retriever levels to identify your system's limiting factors using the formula: P(finding correct data) = P(selecting correct retriever) × P(finding correct data | correct retriever).</p>
+<p>4. <strong>Modality-specific optimizations</strong>: Each content type requires tailored approaches, from contextual retrieval for documents to rich descriptions for images to exemplar-based generation for SQL.</p>
+<p>5. <strong>Organizational benefits</strong>: Beyond performance, specialized indices enable division of labor, incremental improvement, and targeted innovation without disrupting the entire system.</p>
+<div class="admonition tip">
+<p class="admonition-title">Combining Lexical and Semantic Search</p>
+<p><strong>The Power of Hybrid Search:</strong></p>
+<p>Don't abandon lexical search! It excels at:
+- Exact matches (product codes, names)
+- Technical terms and abbreviations
+- Queries with specific keywords</p>
+<p><strong>Implementation Strategy:</strong>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">hybrid_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="c1"># Get results from both systems</span>
+    <span class="n">semantic_results</span> <span class="o">=</span> <span class="n">semantic_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">lexical_results</span> <span class="o">=</span> <span class="n">bm25_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
 
-3. **Measurement drives improvement**: Use precision and recall at both the router and retriever levels to identify your system&#39;s limiting factors using the formula: P(finding correct data) = P(selecting correct retriever) × P(finding correct data | correct retriever).
+    <span class="c1"># Combine with weighted scores</span>
+    <span class="n">combined</span> <span class="o">=</span> <span class="n">merge_results</span><span class="p">(</span>
+        <span class="n">semantic_results</span><span class="p">,</span> 
+        <span class="n">lexical_results</span><span class="p">,</span>
+        <span class="n">semantic_weight</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+        <span class="n">lexical_weight</span><span class="o">=</span><span class="mf">0.3</span>
+    <span class="p">)</span>
 
-4. **Modality-specific optimizations**: Each content type requires tailored approaches, from contextual retrieval for documents to rich descriptions for images to exemplar-based generation for SQL.
-
-5. **Organizational benefits**: Beyond performance, specialized indices enable division of labor, incremental improvement, and targeted innovation without disrupting the entire system.
-</code></pre></div>
+    <span class="k">return</span> <span class="n">combined</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span>
+</code></pre></div></p>
+<p><strong>Pro Tip:</strong> Adjust weights based on query type:
+- Technical queries: Increase lexical weight
+- Conceptual queries: Increase semantic weight
+- Let user behavior guide the optimization</p>
+</div>
 <pre class="mermaid"><code>flowchart TD
     A[User Query] --&gt; B[Query Analyzer]
     B --&gt; C[Query Router]
@@ -2595,6 +2888,9 @@ import pandas as pd</p>
 <p class="admonition-title">Cross-Reference</p>
 </div>
 <p>In <a href="../chapter6/">Chapter 6</a>, we'll explore how to bring these specialized components together through effective routing strategies, creating a unified system that seamlessly directs users to the appropriate retrievers based on their queries.</p>
+<hr />
+<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 
 

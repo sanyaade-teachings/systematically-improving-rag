@@ -723,6 +723,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#linear-adapters-a-cost-effective-alternative" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linear Adapters: A Cost-Effective Alternative
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#additional-resources" class="md-nav__link">
     <span class="md-ellipsis">
       Additional Resources
@@ -1872,6 +1881,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -2070,6 +2089,121 @@
   
   <span class="md-ellipsis">
     Document Ingestion and Parsing with Reducto CEO and Adit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/glean-manav/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Enterprise Search and Fine-tuning Embedding Models with Glean
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/john-lexical-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lexical Search in RAG Applications
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/query-routing-anton/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Organization and Query Routing for RAG Systems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/chromadb-anton-chunking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Text Chunking Strategies for RAG Applications
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/superlinked-encoder-stacking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Encoder Stacking and Multi-Modal Retrieval Systems
     
   </span>
   
@@ -2421,6 +2555,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#linear-adapters-a-cost-effective-alternative" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linear Adapters: A Cost-Effective Alternative
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#additional-resources" class="md-nav__link">
     <span class="md-ellipsis">
       Additional Resources
@@ -2487,10 +2630,32 @@
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Key Insight</p>
-</div>
 <p><strong>If you're not fine-tuning, you're Blockbuster, not Netflix.</strong> The goal isn't to fine-tune language models (which are expensive and complex), but to fine-tune embedding models that move toward your specific data distributions and improve retrieval, not generation.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Fine-Tuning Cost Reality Check</p>
+<p><strong>Embedding Model Fine-Tuning:</strong>
+- Cost: ~$1.50 for 6,000 examples
+- Time: 40 minutes on a laptop
+- Infrastructure: Consumer GPU or cloud notebook
+- Improvement: 6-10% better performance</p>
+<p><strong>Language Model Fine-Tuning:</strong>
+- Cost: $100-1000s depending on model size
+- Time: Hours to days
+- Infrastructure: Multiple GPUs or specialized services
+- Complexity: Requires ML expertise</p>
+<p>This dramatic difference explains why embedding fine-tuning should be your first focus.</p>
+</div>
 <h2 id="introduction">Introduction</h2>
 <p>In the previous chapter, we established our evaluation framework and generated synthetic data to benchmark our RAG system. Now we take the crucial next step in our improvement journey: transforming these evaluations into practical training assets that can significantly boost performance.</p>
+<div class="admonition note">
+<p class="admonition-title">Prerequisites from Previous Chapters</p>
+<ul>
+<li><strong><a href="../chapter0/">Chapter 0</a></strong>: Understanding the improvement flywheel concept</li>
+<li><strong><a href="../chapter1/">Chapter 1</a></strong>: Creating evaluation datasets with synthetic data</li>
+</ul>
+<p>The evaluation examples from Chapter 1 become your training data in this chapter.</p>
+</div>
 <p>This chapter bridges the gap between evaluation and production improvement, showing how the same datasets serve both purposes. The fundamental philosophy here is simple but powerful: <strong>the data you collect for evaluation should never go to waste</strong>. Every question, every relevance judgment, and every performance insight can—and should—be repurposed to train your system.</p>
 <div class="admonition quote">
 <p class="admonition-title">Key Philosophy</p>
@@ -2689,6 +2854,40 @@ If Document A is cited in the response while Document B isn&#39;t, we can create
 <p>Through many such examples, the model learns that queries about side effects should be closer to texts describing adverse reactions than to texts describing indications or administration instructions.</p>
 <h3 id="the-challenge-of-hard-negatives-and-how-ux-can-help">The Challenge of Hard Negatives and How UX Can Help</h3>
 <p>The triplet example above introduces an important subtlety in contrastive learning. Notice that our negative example, "Medication X is used to treat high blood pressure," is still about the same medication—it's just not about side effects. This makes it what we call a "hard negative"—it's similar to what we're looking for in some ways (same medication) but different in crucial aspects (not about side effects).</p>
+<div class="admonition example">
+<p class="admonition-title">Hard Negative Mining Strategies</p>
+<p><strong>Effective Approaches:</strong></p>
+<ol>
+<li><strong>Semantic Similarity with Different Intent:</strong></li>
+<li>"Software engineer" vs "Software engineering recruiter"</li>
+<li>
+<p>Both about software roles, but serving different user needs</p>
+</li>
+<li>
+<p><strong>User Deletion Signals:</strong></p>
+</li>
+<li>Track which documents users actively remove from results</li>
+<li>
+<p>These are perfect hard negatives - retrieved but explicitly rejected</p>
+</li>
+<li>
+<p><strong>Category Boundaries:</strong></p>
+</li>
+<li>Items from adjacent but different categories</li>
+<li>
+<p>Example: "Red running shoes" vs "Red dress shoes"</p>
+</li>
+<li>
+<p><strong>Temporal Relevance:</strong></p>
+</li>
+<li>Outdated versions of correct information</li>
+<li>Example: "2023 tax rates" when user needs "2024 tax rates"</li>
+</ol>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Agentic Retrieval Perspective</p>
+<p>Colin Flaherty's work on agentic coding systems reveals a surprising insight: "We found that for SweeBench tasks, embedding-based retrieval was not the bottleneck - grep and find were sufficient." The agent's persistence effectively compensated for less sophisticated tools. This suggests that while fine-tuning embeddings is valuable, the agent layer can sometimes overcome retrieval limitations through persistence. <a href="../../talks/colin-rag-agents/">Learn more about agentic approaches →</a></p>
+</div>
 <div class="admonition info">
 <p class="admonition-title">Value of Hard Negatives</p>
 </div>
@@ -2784,6 +2983,33 @@ If Document A is cited in the response while Document B isn&#39;t, we can create
 <p class="admonition-title">Prioritization in Action</p>
 </div>
 <p>In one project, we identified that implementing BM25 hybrid retrieval would be high-impact and medium-effort, while fine-tuning custom embeddings would be high-impact but high-effort. We prioritized the hybrid retrieval first, which gave us immediate gains while we collected data for the eventual embedding fine-tuning.</p>
+<h2 id="linear-adapters-a-cost-effective-alternative">Linear Adapters: A Cost-Effective Alternative</h2>
+<p>Before diving into full fine-tuning, consider linear adapters - a technique that can deliver significant improvements at a fraction of the cost.</p>
+<div class="admonition info">
+<p class="admonition-title">What Are Linear Adapters?</p>
+<p>Linear adapters add a small trainable layer on top of frozen embeddings:
+- Train only a linear transformation matrix
+- Keep the base embedding model unchanged
+- Combine benefits of domain specificity with pre-trained knowledge</p>
+<p><strong>Cost Comparison:</strong>
+- Full fine-tuning: <span class="arithmatex">\(50-100 for meaningful datasets
+- Linear adapters: ~\)</span>12 for the same improvement
+- Training time: Minutes vs hours</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">When to Use Linear Adapters</p>
+<p><strong>Perfect for:</strong>
+- Domain-specific terminology mapping
+- Multi-domain applications (train separate adapters)
+- Rapid experimentation
+- Limited computational resources</p>
+<p><strong>Implementation:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Simplified example</span>
+<span class="n">base_embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
+<span class="n">adapted_embeddings</span> <span class="o">=</span> <span class="n">linear_adapter</span><span class="p">(</span><span class="n">base_embeddings</span><span class="p">)</span>
+</code></pre></div></p>
+<p>You can train different adapters for different query types or domains, switching between them based on query classification.</p>
+</div>
 <h2 id="additional-resources">Additional Resources</h2>
 <div class="admonition info">
 <p class="admonition-title">Tools and Libraries</p>
@@ -2846,6 +3072,14 @@ For large datasets or production workloads:
 <p class="admonition-title">What's Coming Next</p>
 </div>
 <p>In <a href="../chapter3-1/">Chapter 3</a>, we'll dive into deployment strategies, user feedback collection methods, and how to use this feedback to further refine your RAG application. We'll explore practical techniques for gathering implicit and explicit feedback, designing effective user interfaces, and closing the loop between user interactions and system improvements.</p>
+<div class="admonition info">
+<p class="admonition-title">Related Concepts in Other Chapters</p>
+<ul>
+<li><strong>Query Segmentation</strong> (<a href="../chapter4-2/">Chapter 4</a>): Learn how to identify which queries benefit most from fine-tuning</li>
+<li><strong>Specialized Models</strong> (<a href="../chapter5-1/">Chapter 5</a>): See how fine-tuned embeddings power specialized retrievers</li>
+<li><strong>Router Optimization</strong> (<a href="../chapter6-2/">Chapter 6</a>): Understand how fine-tuning improves query routing</li>
+</ul>
+</div>
 <h2 id="summary">Summary</h2>
 <p>The data flywheel approach transforms what begins as evaluation into training assets that continuously improve your RAG system. By understanding the limitations of generic models, implementing few-shot examples, and preparing for fine-tuning, you create a foundation for ongoing enhancement.</p>
 <p>The most critical actions to take immediately are:</p>
@@ -2857,6 +3091,9 @@ For large datasets or production workloads:
 <li><strong>Test domain-specific models</strong> - Explore fine-tuned models for your specific application area</li>
 </ol>
 <p>This systematic approach ensures that every piece of data you collect contributes to a cycle of improvement that makes your application increasingly effective for your specific use case. When done properly, this flywheel effect touches every part of your system—improving clustering, topic modeling, and all other aspects we'll explore in the coming weeks.</p>
+<hr />
+<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 
 

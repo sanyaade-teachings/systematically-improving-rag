@@ -6,13 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Create a cohesive RAG system by intelligently routing queries to specialized components while maintaining a seamless user experience">
+        <meta name="description" content="Guest lecture with Daniel from Superlinked on improving retrieval systems using specialized encoders for different data types, moving beyond text-only embeddings">
       
       
       
-        <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/workshops/chapter6/">
+        <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/talks/superlinked-encoder-stacking/">
       
       
+        <link rel="prev" href="../chromadb-anton-chunking/">
+      
+      
+        <link rel="next" href="../../misc/learning-goals/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +24,7 @@
     
     
       
-        <title>Unified Product Architecture - Systematically Improving RAG Applications</title>
+        <title>Encoder Stacking and Multi-Modal Retrieval Systems - Systematically Improving RAG Applications</title>
       
     
     
@@ -82,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#unified-product-architecture-building-a-cohesive-rag-system" class="md-skip">
+        <a href="#encoder-stacking-and-multi-modal-retrieval-systems-daniel-superlinked" class="md-skip">
           Skip to content
         </a>
       
@@ -136,7 +140,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Unified Product Architecture
+              Encoder Stacking and Multi-Modal Retrieval Systems
             
           </span>
         </div>
@@ -237,7 +241,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../" class="md-tabs__link">
+        <a href="../../workshops/" class="md-tabs__link">
           
   
   
@@ -277,11 +281,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../talks/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -430,7 +436,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../workshops/" class="md-nav__link ">
               
   
   
@@ -465,7 +471,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter0/" class="md-nav__link">
+      <a href="../../workshops/chapter0/" class="md-nav__link">
         
   
   
@@ -488,7 +494,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter1/" class="md-nav__link">
+      <a href="../../workshops/chapter1/" class="md-nav__link">
         
   
   
@@ -511,7 +517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter2/" class="md-nav__link">
+      <a href="../../workshops/chapter2/" class="md-nav__link">
         
   
   
@@ -534,7 +540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter3-1/" class="md-nav__link">
+      <a href="../../workshops/chapter3-1/" class="md-nav__link">
         
   
   
@@ -557,7 +563,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter3-2/" class="md-nav__link">
+      <a href="../../workshops/chapter3-2/" class="md-nav__link">
         
   
   
@@ -580,7 +586,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter3-3/" class="md-nav__link">
+      <a href="../../workshops/chapter3-3/" class="md-nav__link">
         
   
   
@@ -603,7 +609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter4-1/" class="md-nav__link">
+      <a href="../../workshops/chapter4-1/" class="md-nav__link">
         
   
   
@@ -626,7 +632,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter4-2/" class="md-nav__link">
+      <a href="../../workshops/chapter4-2/" class="md-nav__link">
         
   
   
@@ -649,7 +655,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter5-1/" class="md-nav__link">
+      <a href="../../workshops/chapter5-1/" class="md-nav__link">
         
   
   
@@ -672,7 +678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter5-2/" class="md-nav__link">
+      <a href="../../workshops/chapter5-2/" class="md-nav__link">
         
   
   
@@ -695,7 +701,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter6-1/" class="md-nav__link">
+      <a href="../../workshops/chapter6-1/" class="md-nav__link">
         
   
   
@@ -718,7 +724,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter6-2/" class="md-nav__link">
+      <a href="../../workshops/chapter6-2/" class="md-nav__link">
         
   
   
@@ -741,7 +747,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter6-3/" class="md-nav__link">
+      <a href="../../workshops/chapter6-3/" class="md-nav__link">
         
   
   
@@ -1609,6 +1615,8 @@
       
   
   
+    
+  
   
   
     
@@ -1646,22 +1654,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../talks/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -1674,13 +1683,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Talks
@@ -1696,7 +1705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/rag-antipatterns-skylar-payne/" class="md-nav__link">
+      <a href="../rag-antipatterns-skylar-payne/" class="md-nav__link">
         
   
   
@@ -1719,7 +1728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/semantic-search-exa-will-bryk/" class="md-nav__link">
+      <a href="../semantic-search-exa-will-bryk/" class="md-nav__link">
         
   
   
@@ -1742,7 +1751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
+      <a href="../embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
         
   
   
@@ -1765,7 +1774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/online-evals-production-monitoring-ben-sidhant/" class="md-nav__link">
+      <a href="../online-evals-production-monitoring-ben-sidhant/" class="md-nav__link">
         
   
   
@@ -1788,7 +1797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/rag-without-apis-browser-michael-struwig/" class="md-nav__link">
+      <a href="../rag-without-apis-browser-michael-struwig/" class="md-nav__link">
         
   
   
@@ -1811,7 +1820,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/colin-rag-agents/" class="md-nav__link">
+      <a href="../colin-rag-agents/" class="md-nav__link">
         
   
   
@@ -1834,7 +1843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/reducto-docs-adit/" class="md-nav__link">
+      <a href="../reducto-docs-adit/" class="md-nav__link">
         
   
   
@@ -1857,7 +1866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/glean-manav/" class="md-nav__link">
+      <a href="../glean-manav/" class="md-nav__link">
         
   
   
@@ -1880,7 +1889,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/john-lexical-search/" class="md-nav__link">
+      <a href="../john-lexical-search/" class="md-nav__link">
         
   
   
@@ -1903,7 +1912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/query-routing-anton/" class="md-nav__link">
+      <a href="../query-routing-anton/" class="md-nav__link">
         
   
   
@@ -1926,7 +1935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/chromadb-anton-chunking/" class="md-nav__link">
+      <a href="../chromadb-anton-chunking/" class="md-nav__link">
         
   
   
@@ -1946,10 +1955,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../talks/superlinked-encoder-stacking/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1960,6 +1978,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -2160,17 +2179,126 @@
 
 
 
-<h1 id="unified-product-architecture-building-a-cohesive-rag-system">Unified Product Architecture: Building a Cohesive RAG System</h1>
-<div class="admonition info">
-<p class="admonition-title">This chapter has been split into three parts</p>
-</div>
-<p>This content is now available in three more digestible parts:</p>
-<div class="highlight"><pre><span></span><code>- [Part 1: Query Routing Foundations](chapter6-1.md)
-- [Part 2: Tool Interfaces and Implementation](chapter6-2.md)
-- [Part 3: Performance Measurement and Improvement](chapter6-3.md)
-
-Please visit those pages for the updated content.
-</code></pre></div>
+<h1 id="encoder-stacking-and-multi-modal-retrieval-systems-daniel-superlinked">Encoder Stacking and Multi-Modal Retrieval Systems [Daniel - Superlinked]</h1>
+<p>Study Notes:</p>
+<p>I hosted a special session with Daniel from Superlinked to explore how we can improve retrieval systems by applying lessons from recommender systems. This conversation revealed critical insights about the limitations of current search approaches and how to build more sophisticated retrieval architectures that handle diverse data types beyond just text.</p>
+<p><strong>Why traditional retrieval systems fall short for complex queries</strong></p>
+<p>When we look at complex queries like "popular family-friendly hotels with good Wi-Fi near Manhattan midtown under $400," traditional retrieval systems struggle because they're trying to handle multiple types of data with tools designed primarily for text.</p>
+<p>Each component of this query represents either a bias (steering results toward certain attributes) or a filter (binary yes/no conditions):</p>
+<ul>
+<li>"Popular" is a numerical bias</li>
+<li>"Family-friendly" is a categorical bias</li>
+<li>"Good Wi-Fi" is a semantic bias found in reviews</li>
+<li>"Near Manhattan midtown" is a location bias</li>
+<li>"Under $400" is a price filter</li>
+</ul>
+<p>If your toolkit is just a text embedding model, it simply can't understand these different data types effectively. The current approach using text-to-SQL or similar query generation has significant limitations in latency, reliability, and handling non-textual inputs like user clicks or contextual parameters.</p>
+<p><strong><em>Key Takeaway:</em></strong> Complex queries contain multiple data types that text embedding models alone can't properly understand. We need specialized approaches for handling numerical, categorical, location, and other non-textual data.</p>
+<p><strong>Three fundamental problems with current search systems</strong></p>
+<p>I've observed that even if you generate the perfect query, today's search systems have three fundamental flaws:</p>
+<ol>
+<li>Overuse of filters instead of biases
+When users say "near Manhattan midtown," they don't mean "exactly within X kilometers" - they have a preference that gradually decreases with distance. But systems typically implement this as a hard Boolean filter (a step function) rather than a smooth bias (a sigmoid function), creating an artificial cutoff that excludes potentially excellent results.</li>
+<li>Reliance on re-ranking as a hack
+Re-ranking exists because our underlying retrieval is inadequate. If retrieval worked properly, you wouldn't need to shuffle results afterward. The problem is that re-ranking only applies to a tiny fraction of your database (typically less than 1%), so whatever you miss in candidate selection can't be fixed through re-ranking.</li>
+<li>Misuse of text embeddings for non-textual data
+People try to stringify everything (JSON objects, numbers, etc.) and feed it to text embedding models. This fundamentally doesn't work because these models understand numbers through co-occurrence in training data, not as actual numerical values. If you stringify integers and calculate similarities between their embeddings, there's no concept that "49 is one less than 50" in the latent space.</li>
+</ol>
+<p><strong><em>Key Takeaway:</em></strong> Current systems rely too heavily on Boolean filters instead of smooth biases, use re-ranking to compensate for poor retrieval, and misapply text embeddings to non-textual data. These fundamental issues limit search quality regardless of prompt engineering.</p>
+<p><strong>A better approach: Mixture of encoders</strong></p>
+<p>Instead of forcing everything through text embeddings, we should use specialized encoders for different data types and then combine their outputs. This "encoder stacking" or "mixture of encoders" approach works like this:</p>
+<ol>
+<li>Break down the query into components using a DSPy-style optimized prompt</li>
+<li>Feed each component to the appropriate specialized encoder:<ul>
+<li>Text to a text encoder</li>
+<li>Numbers to a numerical encoder</li>
+<li>Locations to a location encoder</li>
+<li>User interactions to a graph encoder</li>
+</ul>
+</li>
+<li>Each encoder produces an embedding that natively understands its data type</li>
+<li>Combine these embeddings with appropriate weights to create a final query vector</li>
+<li>Add any necessary filter predicates for binary conditions</li>
+<li>Send this to a vector database for retrieval</li>
+</ol>
+<p>This approach compresses all biases into a single embedding while maintaining the ability to filter when absolutely necessary. The result is more accurate retrieval without needing extensive re-ranking or complex boosting logic.</p>
+<p><strong><em>Key Takeaway:</em></strong> By using specialized encoders for different data types rather than forcing everything through text embeddings, we can create retrieval systems that better understand user intent and produce higher quality results.</p>
+<p><strong>The pilot that sees the world as strings</strong></p>
+<p>One metaphor that really captures the current limitations is that language models are like "pilots that see the whole world as strings." This creates fundamental problems when dealing with non-textual data.</p>
+<p>Consider how LLMs handle numbers - they don't truly understand numerical relationships. That's why they might think 3.11 is larger than 3.9, or struggle with basic arithmetic. This isn't just a minor issue but a gateway to a much deeper problem: we can't effectively stringify the world and expect models to understand it properly.</p>
+<p>This limitation extends to graph-based approaches too. If you're using an LLM to navigate a graph where nodes have non-textual metadata, you're still forcing that data through a text-based understanding that fundamentally misrepresents its nature.</p>
+<p><strong><em>Key Takeaway:</em></strong> Language models fundamentally see everything as text, which creates inherent limitations when dealing with numerical data, location data, or other non-textual information. This "world as strings" problem requires specialized solutions.</p>
+<p><strong>Practical implementation considerations</strong></p>
+<p>When implementing these systems in production, several practical considerations emerge:</p>
+<ol>
+<li>Refreshing embedding models
+With traditional approaches, distribution drift on any property forces you to retrain the entire model. With a mixture of encoders, you can selectively update individual components as needed, making maintenance more manageable.</li>
+<li>Handling data updates
+If a hotel's popularity changes but its description doesn't, you don't need to re-encode the entire entity - just update the specific embedding signal for popularity and recombine it with the rest.</li>
+<li>Sparse vs. dense representations
+The more efficient and dense your encoders, the worse they respond to aggregation. If you average several dense embeddings together, you often destroy information. More sparse encoders (closer to bag-of-words) handle aggregation better because they represent a union of features rather than a point in a compressed space.</li>
+<li>Keyword-heavy queries
+For exact matches, you can either treat these as part of the filtering system or incorporate sparse representations alongside dense ones, depending on your vector database capabilities.</li>
+</ol>
+<p><strong><em>Key Takeaway:</em></strong> A modular approach with specialized encoders makes systems more maintainable, allowing selective updates to components affected by data drift rather than requiring complete retraining.</p>
+<p><strong>What we're not asking about retrieval systems</strong></p>
+<p>There are several critical issues that aren't getting enough attention in discussions about retrieval:</p>
+<ol>
+<li>We need to look at the world through lenses beyond text tokenization
+Text is just one data type among many, and forcing everything through text encoders fundamentally limits what we can achieve.</li>
+<li>Re-ranking is overused and often masks deeper problems
+Rather than fixing poor retrieval with re-ranking, we should improve the underlying retrieval to make re-ranking less necessary.</li>
+<li>Boolean filters are poor approximations of user preferences
+Most user preferences are gradual rather than binary, but we implement them as hard filters that exclude potentially valuable results.</li>
+</ol>
+<p>The future likely involves more sophisticated encoders that can handle diverse data types natively, but until then, we need to combine specialized encoders for different data types to get the maximum signal and control over our results.</p>
+<p><strong><em>Key Takeaway:</em></strong> The field needs to move beyond text-centric approaches, reduce reliance on re-ranking, and replace hard Boolean filters with smooth biases that better represent user preferences. This requires fundamentally rethinking how we encode and retrieve information.</p>
+<hr />
+<p>FAQs</p>
+<p><strong>What are the limitations of current search systems?</strong></p>
+<p>Most search systems today have three fundamental limitations. First, they overuse filters to approximate user preferences instead of using smoother bias functions. Second, they rely heavily on re-ranking, which is essentially a workaround for poor initial retrieval. Third, they misuse text embeddings by trying to encode non-textual data (like numbers) through text models, which creates inaccurate representations.</p>
+<p><strong>How do traditional search systems handle complex queries?</strong></p>
+<p>Traditional systems typically use a text-to-SQL approach where they convert natural language queries into database queries. This process often struggles with non-textual inputs (like user clicks or contextual data), has latency issues, and can be unreliable when generating complex queries. The resulting search pipeline usually involves pre-filters, boosting, vector search, re-ranking, and post-filtering—a complicated process with many potential failure points.</p>
+<p><strong>What's wrong with using text embedding models for all search needs?</strong></p>
+<p>Text embedding models understand the world as strings, which creates fundamental limitations. They process numbers by how they co-occur in training data rather than understanding their mathematical properties. For example, these models don't inherently understand that 49 is one less than 50 in their latent space. This makes them poorly suited for handling numerical data, location data, and other non-textual information that's critical in real-world search applications.</p>
+<p><strong>What is encoder stacking (or mixture of encoders)?</strong></p>
+<p>Encoder stacking is an approach that uses specialized encoders for different types of data instead of relying solely on text encoders. It involves breaking down a query into components and routing each component to the appropriate specialized encoder—such as numerical encoders for popularity scores, location encoders for geographical data, or graph encoders for user interaction patterns. The outputs from these encoders are then aggregated into a final embedding that captures all relevant signals.</p>
+<p><strong>How does encoder stacking handle a complex travel query?</strong></p>
+<p>For a query like "popular, family-friendly hotels with good Wi-Fi near Manhattan midtown under $400," encoder stacking would:</p>
+<ol>
+<li>
+<p>Route "popular" to a numerical encoder that creates a bias toward highly-rated properties</p>
+</li>
+<li>
+<p>Send "family-friendly" to a categorical encoder that biases toward that attribute</p>
+</li>
+<li>
+<p>Process "good Wi-Fi" through a semantic encoder that understands sentiment in reviews</p>
+</li>
+<li>
+<p>Direct "near Manhattan midtown" to a location encoder that understands geographical proximity</p>
+</li>
+<li>
+<p>Create a filter predicate for "under $400"</p>
+</li>
+<li>
+<p>Combine all these signals into a single embedding that captures all these preferences</p>
+</li>
+</ol>
+<p><strong>What are the benefits of using specialized encoders?</strong></p>
+<p>Specialized encoders provide more accurate representations of different data types than text-only models. They allow for smoother bias functions rather than rigid filters, eliminate the need for re-ranking by getting better initial results, and handle non-textual data properly. This approach also makes it easier to update individual components when data distributions change, rather than retraining an entire model.</p>
+<p><strong>How does Superlinked implement encoder stacking?</strong></p>
+<p>Superlinked provides an open-source framework that allows developers to create a system of specialized encoders. The framework includes components for query understanding, encoder routing, and result aggregation. It works with various vector databases (including Redis, MongoDB, and Quadrant) and provides APIs for building retrieval systems for RAG, recommendation systems, and search applications.</p>
+<p><strong>How often do you need to refresh embedding models in this approach?</strong></p>
+<p>One advantage of encoder stacking is that you can selectively update individual encoders when their specific data distributions change, rather than retraining the entire system. This modular approach makes maintenance more manageable. You can also implement caching at the individual encoder level, allowing you to update only the affected parts of an embedding when certain attributes change.</p>
+<p><strong>How do you handle keyword-heavy queries in this framework?</strong></p>
+<p>Keyword queries are typically handled through the filter component of the system. While sparse data structures (like traditional keyword search) could theoretically be integrated into the encoder framework, current vector databases are more optimized for handling these as filters. Superlinked uses the underlying sparse indexing capabilities (like BM25) of the database for keyword matching.</p>
+<p><strong>How should encoders be designed and combined?</strong></p>
+<p>Encoders should be designed to produce dense vector representations of their specific input types. These outputs are then aggregated—typically by normalizing each encoder's output and concatenating them dimension-wise into a larger vector. This approach preserves the signal from each encoder in separate dimensions, which helps with explainability and allows for query-time weighting of different signals.</p>
+<p><strong>Will text models eventually replace specialized encoders?</strong></p>
+<p>While large companies with massive data might be able to train transformers that outperform specialized encoders, most organizations benefit from having a toolkit that allows them to build systems specific to their needs. Until we reach true AGI, specialized encoders will likely remain valuable for handling non-textual data types and providing more control over search results.</p>
+<p><strong>What should we be focusing on to improve search systems?</strong></p>
+<p>We should focus on three key areas: 1) Looking at the world through lenses beyond text tokenization, 2) Reducing our reliance on re-ranking by improving initial retrieval, and 3) Using smooth bias functions instead of rigid Boolean filters. These approaches will lead to more accurate, efficient, and controllable search systems.</p>
 
 
 
@@ -2206,6 +2334,44 @@ Please visit those pages for the updated content.
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../chromadb-anton-chunking/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Text Chunking Strategies for RAG Applications">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Text Chunking Strategies for RAG Applications
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../misc/learning-goals/" class="md-footer__link md-footer__link--next" aria-label="Next: Learning Goals">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Learning Goals
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">

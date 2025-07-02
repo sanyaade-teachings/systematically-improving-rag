@@ -2064,6 +2064,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -2262,6 +2272,121 @@
   
   <span class="md-ellipsis">
     Document Ingestion and Parsing with Reducto CEO and Adit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/glean-manav/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Enterprise Search and Fine-tuning Embedding Models with Glean
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/john-lexical-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lexical Search in RAG Applications
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/query-routing-anton/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Organization and Query Routing for RAG Systems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/chromadb-anton-chunking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Text Chunking Strategies for RAG Applications
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/superlinked-encoder-stacking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Encoder Stacking and Multi-Modal Retrieval Systems
     
   </span>
   
@@ -3041,6 +3166,19 @@
 <p>When you focus on generation evaluations prematurely, factuality becomes subjective and confusing. As you adopt evaluation tools, you get flooded with information without clear actions. By contrast, improving precision and recall directly allows you to test whether lexical search, semantic search, or re-rankers improve your retrieval in a measurable way.</p>
 <h2 id="understanding-precision-and-recall">Understanding Precision and Recall</h2>
 <p>Before diving into implementation, let's clarify what precision and recall actually mean in the context of RAG:</p>
+<div class="admonition tip">
+<p class="admonition-title">Practical Guidance from Production Systems</p>
+<p><strong>Testing Different K Values:</strong>
+- Start with K=10 for initial testing
+- Test K=3, 5, 10, 20 to understand your precision/recall tradeoffs
+- Higher K improves recall but may hurt precision with simpler models
+- Advanced models (GPT-4, Claude) handle irrelevant docs better, so favor higher K</p>
+<p><strong>Why Embedding or Re-ranker Score Thresholds Are Dangerous:</strong>
+- Score distributions vary dramatically by query type
+- A threshold that works for one category fails for others, for example average ada-002 score is .7 and .5 for ada-003
+- Better approach: Always return top K results, let the LLM filter
+- If you must filter, use percentile-based thresholds, not absolute scores</p>
+</div>
 <pre class="mermaid"><code>graph TD
     subgraph "Document Universe"
         subgraph "All Relevant Documents"
@@ -3090,6 +3228,25 @@
 <p><strong>Approach</strong>: We hypothesized that better image captions would improve retrieval. We implemented a visual language model to create detailed captions for blueprints, using chain-of-thought prompting to reason about the images and generate hypothetical questions users might ask.</p>
 <p><strong>Result</strong>: In just four days of experimentation, recall improved from 27% to 85%. This allowed us to launch the feature and collect real user data, which revealed that 20% of queries involved counting objects in blueprints. This insight justified investing in bounding box models to count rooms and features automatically.</p>
 <p><strong>Key Takeaway</strong>: Testing specific subsystems independently enables rapid baseline improvements. Synthetic data generation for specific use cases can dramatically improve retrieval.</p>
+<div class="admonition info">
+<p class="admonition-title">Chunk Size Best Practices</p>
+<p>Based on extensive testing across multiple domains and recommendations from Anthropic and OpenAI:</p>
+<p><strong>Starting Point:</strong> 800 tokens with 50% overlap
+- This configuration works well for most use cases
+- Provides good context while maintaining relevance
+- Overlap ensures important information isn't split</p>
+<p><strong>Why Chunk Optimization Rarely Provides Big Wins:</strong>
+- Changing chunk size typically yields &lt;10% improvements
+- Time is better spent on:
+    - Query understanding and expansion
+    - Metadata filtering
+    - Contextual retrieval (adding document context to chunks)
+    - Better embedding models</p>
+<p><strong>When to Adjust Chunks:</strong>
+- Legal/regulatory: Larger chunks (1500-2000 tokens) to preserve full clauses
+- Technical docs: Smaller chunks (400-600 tokens) for precise retrieval
+- Conversational: Page-level chunks to maintain context</p>
+</div>
 <h2 id="practical-implementation-building-your-evaluation-framework">Practical Implementation: Building Your Evaluation Framework</h2>
 <p>With synthetic data in hand, you can build a proper evaluation framework. This framework should:</p>
 <ol>
@@ -3158,6 +3315,18 @@
 <li><strong>Failure analysis</strong>: Regularly review cases with 0% recall to identify patterns</li>
 <li><strong>Difficulty progression</strong>: As scores improve, add more challenging test cases</li>
 </ol>
+<div class="admonition example">
+<p class="admonition-title">Production Monitoring Insights</p>
+<p><strong>Track These Metrics Over Time:</strong>
+- Average cosine distance between queries and retrieved documents
+- Percentage of queries with no results above threshold
+- Distribution of retrieval scores (watch for bimodal distributions)</p>
+<p><strong>Segment Analysis by User Variables:</strong>
+- New vs returning users often have different query patterns
+- Technical vs non-technical users may need different retrieval strategies
+- Time-based patterns (e.g., queries during product launches)</p>
+<p><strong>Real Example:</strong> A company noticed cosine distances spiked during their Super Bowl ad campaign. New users asked different questions than existing users, revealing gaps in their content coverage. This led to creating onboarding-specific content that improved new user retention by 25%.</p>
+</div>
 <h3 id="integrating-with-development-workflow">Integrating with Development Workflow</h3>
 <p>To maximize the value of your evaluation framework:</p>
 <ol>
@@ -3287,6 +3456,21 @@ For each question, explain why it&#39;s challenging and what makes it a good tes
 <li><strong>User experience testing</strong>: Simulating realistic user sessions</li>
 </ol>
 <p>By investing time in creating high-quality synthetic data upfront, you establish a foundation that accelerates every aspect of your RAG development process.</p>
+<div class="admonition warning">
+<p class="admonition-title">Model Sensitivity Considerations</p>
+<p><strong>Key Discovery:</strong> Models are often more sensitive to irrelevant information than we expect.</p>
+<p><strong>Practical Implications:</strong>
+- Even GPT-4 and Claude can be distracted by marginally relevant content
+- Precision matters more than you might think, especially for:
+    - Multi-step reasoning tasks
+    - Numerical calculations
+    - Tasks requiring specific facts from specific documents</p>
+<p><strong>Testing Approach:</strong>
+1. Create test cases with varying amounts of irrelevant information
+2. Measure how performance degrades as noise increases
+3. Use this to set your precision/recall tradeoffs</p>
+<p><strong>Example:</strong> One team found that including 5 irrelevant documents (even when marked as "potentially less relevant") reduced their financial calculation accuracy by 30%. They adjusted their retrieval to favor precision for numerical queries.</p>
+</div>
 <h2 id="additional-resources">Additional Resources</h2>
 <p>!!! info "Tools and Libraries for RAG Evaluation" - <strong><a href="https://github.com/explodinggradients/ragas">RAGAS</a></strong>: Open-source framework for evaluating RAG applications - <strong><a href="https://python.langchain.com/docs/guides/evaluation/">LangChain Evaluation</a></strong>: Tools for evaluating retrieval and generation - <strong><a href="https://github.com/promptslab/prompttools">Prompttools</a></strong>: Toolkit for testing and evaluating LLM applications - <strong><a href="https://mlflow.org/">MLflow for Experiment Tracking</a></strong>: Open-source platform for managing ML lifecycle</p>
 <h2 id="reflection-questions">Reflection Questions</h2>

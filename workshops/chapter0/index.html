@@ -1869,6 +1869,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -2067,6 +2077,121 @@
   
   <span class="md-ellipsis">
     Document Ingestion and Parsing with Reducto CEO and Adit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/glean-manav/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Enterprise Search and Fine-tuning Embedding Models with Glean
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/john-lexical-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lexical Search in RAG Applications
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/query-routing-anton/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Organization and Query Routing for RAG Systems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/chromadb-anton-chunking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Text Chunking Strategies for RAG Applications
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/superlinked-encoder-stacking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Encoder Stacking and Multi-Modal Retrieval Systems
     
   </span>
   
@@ -2622,12 +2747,23 @@
 <p>The beauty of this approach is that each phase feeds into the next, creating momentum that accelerates improvement over time. As you collect more data, you gain clearer insights into what's working and what isn't, allowing you to make increasingly targeted enhancements.</p>
 <h3 id="optimizing-feedback-collection">Optimizing Feedback Collection</h3>
 <p>The effectiveness of your improvement flywheel depends heavily on how you collect feedback. During our office hours, we discovered that simply changing feedback prompt copy from "How did we do?" to "Did we answer your question?" increased feedback rates by 5x. This more specific framing focused users on the core value proposition rather than secondary concerns like latency or formatting.</p>
-<p>When implementing feedback mechanisms, remember that:</p>
-<ul>
-<li>Binary feedback (thumbs up/down) generally yields higher response rates than free text fields</li>
-<li>For enterprise applications, combining button options with free text and posting responses to Slack creates transparency that encourages more feedback</li>
-<li>Every metric you track should lead to a specific follow-up action—it's not just about knowing the number</li>
-</ul>
+<div class="admonition tip">
+<p class="admonition-title">Proven Feedback Patterns</p>
+<p>When implementing feedback mechanisms, remember that every metric you track should lead to a specific follow-up action—it's not just about knowing the number.</p>
+<p>Based on real-world implementations:</p>
+<p><strong>Copy that Works:</strong>
+- ✅ "Did we answer your question?" (5x higher response rate)
+- ✅ "Did we take the correct actions?" (for action-oriented systems)
+- ✅ "Was this information helpful?" (for knowledge bases)
+- ❌ "How did we do?" (too vague)
+- ❌ "Rate your experience" (focuses on UI, not content)</p>
+<p><strong>Implementation Tips:</strong>
+- Binary feedback (thumbs up/down) gets 3x more responses than 5-star ratings
+- For enterprise: Post feedback to Slack channels for transparency
+- Add optional text field only after binary feedback is given
+- Track feedback rates by query type to identify problem areas</p>
+</div>
+<p>When implementing feedback mechanisms, remember that every metric you track should lead to a specific follow-up action—it's not just about knowing the number.</p>
 <h2 id="the-system-vs-ad-hoc-approaches">The System vs. Ad Hoc Approaches</h2>
 <p>A system is a structured approach to solving problems that guides how we think about and tackle challenges. For RAG applications, this includes:</p>
 <ul>
@@ -2727,6 +2863,12 @@
 </tbody>
 </table>
 <p>This shift doesn't mean abandoning technical rigor—quite the opposite. It means applying that rigor to problems that actually matter to your users, guided by data rather than assumptions.</p>
+<div class="admonition example">
+<p class="admonition-title">Real-World Case: The Restaurant Voice AI Revolution</p>
+<p>A restaurant chain implemented voice AI for taking orders, initially focusing on speech recognition accuracy. But when they shifted to a product mindset, they discovered something surprising:</p>
+<p>Instead of perfecting order-taking, they analyzed actual conversations and found that 30% of callers asked "What's good here?" By implementing a simple upselling feature that recommended popular items, they generated 9% more revenue—without improving the core AI technology at all.</p>
+<p>The lesson? Sometimes the biggest wins come from understanding what users actually need, not from technical improvements.</p>
+</div>
 <h3 id="case-study-the-improvement-flywheel-in-action">Case Study: The Improvement Flywheel in Action</h3>
 <p>To illustrate the power of this approach, let's look at a real example from my consulting work with a legal technology company:</p>
 <ol>
@@ -2753,6 +2895,21 @@
 </li>
 </ol>
 <p>The result wasn't just better technical performance—it was significantly higher user adoption, reduced time spent on research, and ultimately, better legal outcomes for clients.</p>
+<div class="admonition info">
+<p class="admonition-title">Key Insight: Inventory vs Capabilities</p>
+<p>When diagnosing RAG performance issues, always ask: "Is this an inventory problem or a capabilities problem?"</p>
+<p><strong>Inventory Problems:</strong>
+- Missing documents or data
+- Incomplete knowledge base
+- Outdated information
+- Solution: Add more/better content</p>
+<p><strong>Capabilities Problems:</strong>
+- Poor retrieval for existing content
+- Inability to understand query intent
+- Wrong type of search for the task
+- Solution: Improve retrieval/processing</p>
+<p>This framework helps you avoid wasting time improving retrieval when you simply don't have the right content, or adding more content when your retrieval is the bottleneck.</p>
+</div>
 <h2 id="who-this-book-is-for">Who This Book Is For</h2>
 <p>This book is designed for a diverse range of practitioners involved in building AI applications. Based on my experiences teaching these concepts, I've found that the audience typically includes:</p>
 <ul>
@@ -2801,6 +2958,9 @@
 <p>In the next chapter, we'll take the first concrete step in the improvement flywheel: creating synthetic evaluation data to establish a foundation for systematic enhancement.</p>
 <hr />
 <p><em>Author Note: This approach has been refined through work with organizations ranging from startups to Fortune 500 companies across diverse domains including legal, financial, healthcare, and e-commerce. While the technical details vary by domain, the fundamental principles of the improvement flywheel remain consistent—focus on users, measure what matters, and systematically enhance based on data rather than assumptions.</em></p>
+<hr />
+<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 
 
