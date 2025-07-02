@@ -23,6 +23,7 @@ These talks focus on establishing evaluation frameworks and building feedback sy
 Learn about creating custom embedding models and fine-tuning for specific domains.
 
 - **[Enterprise Search and Fine-tuning Embedding Models](glean-manav.md)** - Manav from Glean demonstrates how custom embedding models dramatically improve enterprise search
+- **[Fine-tuning Re-rankers and Embedding Models for Better RAG Performance](fine-tuning-rerankers-embeddings-ayush-lancedb.md)** - Ayush from LanceDB shows practical approaches to enhancing retrieval quality through fine-tuning re-rankers and embedding models
 
 ### Week 3: Deployment and Feedback Collection
 
@@ -67,6 +68,10 @@ Skylar Payne shares extensive experience identifying common RAG anti-patterns ac
 Colin Flaherty (previously a founding engineer at Augment and co-author of Meta's Cicero AI) discusses autonomous coding agents and retrieval systems. This session explores how agentic approaches are transforming traditional RAG systems, revealing when simple tools like grep outperform sophisticated embedding models, and how agent persistence can overcome retrieval limitations.
 
 ### Search and Retrieval
+
+#### [Fine-tuning Re-rankers and Embedding Models for Better RAG Performance](fine-tuning-rerankers-embeddings-ayush-lancedb.md)
+
+Ayush from LanceDB presents comprehensive insights on improving retrieval performance through fine-tuning. This session covers practical approaches to training re-rankers, fine-tuning embedding models, and understanding the trade-offs between performance improvements and system complexity. Learn about the business impact of fine-tuning, when to use different architectures like ColBERT vs cross-encoders, and how to combine multiple optimization techniques for maximum retrieval effectiveness.
 
 #### [Semantic Search Over the Web with Exa](semantic-search-exa-will-bryk.md)
 
