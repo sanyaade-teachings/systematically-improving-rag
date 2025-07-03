@@ -1,6 +1,6 @@
 # ChromaDB Summary Loader
 
-This script loads conversation summaries into ChromaDB using the WildChatDAOChromaDB class.
+This script loads conversation summaries into ChromaDB using plain ChromaDB client (no DAO wrapper).
 
 ## Setup
 
@@ -19,7 +19,7 @@ export CHROMA_DATABASE="your-database"
 ## Usage
 
 ### Basic Usage
-Load all summaries to ChromaDB cloud:
+Load all v2 summaries to ChromaDB cloud:
 ```bash
 python load_summaries_to_chromadb.py
 ```
@@ -30,10 +30,16 @@ Use local ChromaDB instead of cloud:
 python load_summaries_to_chromadb.py --local
 ```
 
-### Custom Collection Name
-Specify a custom collection name:
+### Load v1 Summaries
+Load v1 summaries instead of v2:
 ```bash
-python load_summaries_to_chromadb.py --collection-name my-summaries
+python load_summaries_to_chromadb.py --version v1
+```
+
+### Custom Collection Prefix
+Specify a custom collection prefix:
+```bash
+python load_summaries_to_chromadb.py --prefix my-summaries
 ```
 
 ### Limit Number of Summaries
@@ -51,37 +57,86 @@ python load_summaries_to_chromadb.py --reset
 ### Custom Batch Size
 Adjust batch size for loading:
 ```bash
-python load_summaries_to_chromadb.py --batch-size 50
+python load_summaries_to_chromadb.py --batch-size 100
+```
+
+## Additional Commands
+
+### List Collections
+View all collections in your ChromaDB instance:
+```bash
+python load_summaries_to_chromadb.py list-collections
+```
+
+For local ChromaDB:
+```bash
+python load_summaries_to_chromadb.py list-collections --local
+```
+
+### Delete Collection
+Delete a specific collection:
+```bash
+python load_summaries_to_chromadb.py delete-collection --collection-name wildchat-synthetic-summaries-v2
+```
+
+With confirmation prompt:
+```bash
+python load_summaries_to_chromadb.py delete-collection --collection-name wildchat-synthetic-summaries-v2 --confirm
 ```
 
 ## Features
 
-- **Async Processing**: Uses async/await for better performance
+- **Plain ChromaDB**: Uses ChromaDB client directly without DAO wrapper
 - **Batch Loading**: Processes summaries in configurable batches
 - **Progress Tracking**: Shows progress bars during loading
 - **Error Handling**: Graceful handling of duplicates and errors
 - **Statistics**: Provides detailed loading statistics
 - **Test Query**: Automatically tests the loaded data with a sample query
 - **Dual Version Support**: Loads both v1 and v2 summaries into separate collections
+- **Cloud and Local**: Supports both ChromaDB Cloud and local persistent storage
 
 ## Output
 
 The script will:
 1. Load summaries from the SQLite database
-2. Convert them to WildChatDocument format
-3. Create embeddings using sentence-transformers/all-MiniLM-L6-v2
-4. Load them into ChromaDB collections
-5. Provide statistics and test the loaded data
+2. Create embeddings using sentence-transformers/all-MiniLM-L6-v2
+3. Load them into ChromaDB collections
+4. Provide statistics and test the loaded data
 
 ## Collections Created
 
-- `wildchat-summaries-v1`: Contains v1 summaries
-- `wildchat-summaries-v2`: Contains v2 summaries
+- `wildchat-synthetic-summaries-v1`: Contains v1 summaries
+- `wildchat-synthetic-summaries-v2`: Contains v2 summaries
 
-Each collection includes:
-- Vector embeddings for semantic search
-- Full text for keyword search
-- Metadata (hash, version, timestamps, etc.) 
+Each collection includes metadata:
+- `hash`: Original conversation hash
+- `summary_version`: Version of the summary (v1 or v2)
+- `model`: Model used to generate the summary
+- `timestamp`: When the summary was loaded
+- `text_length`: Length of the summary text
+
+## Example Usage
+
+```bash
+# Load v2 summaries to local ChromaDB with custom settings
+python load_summaries_to_chromadb.py \
+    --local \
+    --prefix my-summaries \
+    --version v2 \
+    --limit 5000 \
+    --batch-size 100 \
+    --reset
+
+# List all collections
+python load_summaries_to_chromadb.py list-collections --local
+
+# Delete a collection
+python load_summaries_to_chromadb.py delete-collection \
+    --collection-name my-summaries-v2 \
+    --local \
+    --confirm
+```
+
 ---
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to

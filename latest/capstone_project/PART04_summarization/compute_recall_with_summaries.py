@@ -342,7 +342,7 @@ async def main(
         cache = setup_cache(CACHE_DIR)
 
     # Load V2 queries only
-    console.print("\n[cyan]Loading V2 queries from database...[/cyan]")
+    console.print(f"\n[cyan]Loading {limit} queries from database...[/cyan]")
     all_queries = load_queries_from_db(QUERIES_DB_PATH, limit=limit)
 
     # Filter for specified query version

@@ -241,8 +241,8 @@ def load_summaries_to_chromadb(
 
 @app.command()
 def load(
-    collection_name: str = typer.Option(
-        "wildchat-summaries", "--collection-name", help="Name of the ChromaDB collection"
+    prefix: str = typer.Option(
+        "wildchat-synthetic-summaries", "--prefix", help="Prefix for the ChromaDB collection"
     ),
     version: str = typer.Option(
         "v2", "--version", help="Summary version to load (v1 or v2)"
@@ -269,7 +269,7 @@ def load(
     db_path = Path(__file__).parent / "data" / "synthetic_summaries.db"
     
     # Add version suffix to collection name
-    full_collection_name = f"{collection_name}-{version}"
+    full_collection_name = f"{prefix}-{version}"
     
     try:
         # Load summaries
@@ -293,7 +293,7 @@ def load(
 @app.command()
 def delete_collection(
     collection_name: str = typer.Option(
-        "wildchat-summaries-v2", "--collection-name", help="Name of the ChromaDB collection to delete"
+        "wildchat-synthetic-summaries-v2", "--collection-name", help="Name of the ChromaDB collection to delete"
     ),
     confirm: bool = typer.Option(
         False, "--confirm", help="Confirm deletion without prompting"
@@ -365,8 +365,8 @@ def list_collections(
 # Make load the default command
 @app.command()
 def main(
-    collection_name: str = typer.Option(
-        "wildchat-summaries", "--collection-name", help="Name of the ChromaDB collection"
+    prefix: str = typer.Option(
+        "wildchat-synthetic-summaries", "--prefix", help="Prefix for the ChromaDB collection"
     ),
     version: str = typer.Option(
         "v2", "--version", help="Summary version to load (v1 or v2)"
@@ -387,7 +387,7 @@ def main(
     """Load conversation summaries to ChromaDB (default command)"""
     
     # Call the load function
-    load(collection_name, version, limit, batch_size, reset, local)
+    load(prefix, version, limit, batch_size, reset, local)
 
 if __name__ == "__main__":
     app() 
