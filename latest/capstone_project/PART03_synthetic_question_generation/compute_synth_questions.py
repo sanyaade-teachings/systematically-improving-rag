@@ -29,6 +29,7 @@ from src.dataloader import WildChatDataLoader
 from src.generation_prompts import (
     synthetic_question_generation_v1,
     synthetic_question_generation_v2,
+    synthetic_question_generation_v3,
 )
 from src.db import (
     setup_database,
@@ -70,8 +71,10 @@ async def process_conversation_version(
         try:
             if version == "v1":
                 result = await synthetic_question_generation_v1(client, messages)
-            else:  # v2
+            elif version == "v2":
                 result = await synthetic_question_generation_v2(client, messages)
+            else:  # v3
+                result = await synthetic_question_generation_v3(client, messages)
 
             queries = result.queries if hasattr(result, "queries") else []
 
@@ -100,15 +103,18 @@ async def process_conversation(
     saved_count = 0
 
     try:
-        # Process both versions concurrently
+        # Process all versions concurrently
         v1_task = process_conversation_version(
             client, conversation, "v1", cache, semaphore
         )
         v2_task = process_conversation_version(
             client, conversation, "v2", cache, semaphore
         )
+        v3_task = process_conversation_version(
+            client, conversation, "v3", cache, semaphore
+        )
 
-        v1_queries, v2_queries = await asyncio.gather(v1_task, v2_task)
+        v1_queries, v2_queries, v3_queries = await asyncio.gather(v1_task, v2_task, v3_task)
 
         # Save v1 queries immediately
         for query in v1_queries:
@@ -118,6 +124,11 @@ async def process_conversation(
         # Save v2 queries immediately
         for query in v2_queries:
             if save_query_to_db(DB_PATH, conversation_hash, "v2", query):
+                saved_count += 1
+                
+        # Save v3 queries immediately
+        for query in v3_queries:
+            if save_query_to_db(DB_PATH, conversation_hash, "v3", query):
                 saved_count += 1
 
         progress.update(task_id, advance=1)

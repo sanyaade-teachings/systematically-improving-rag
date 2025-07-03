@@ -201,12 +201,12 @@ def load_summaries_to_turbopuffer(
                 results = ns.query(
                     rank_by=("vector", "ANN", test_embedding),
                     top_k=3,
-                    include_attributes=["text", "hash", "summary_version"],
+                    include_attributes=["summary", "hash", "summary_version"],
                 )
                 
                 console.print(f"Success: Query found {len(results.rows)} similar summaries", style="green")
                 if results.rows:
-                    console.print(f"   Most similar: '{results.rows[0].text[:100]}...'")
+                    console.print(f"   Most similar: '{results.rows[0].summary[:100]}...'")
                     console.print(f"   Hash: {getattr(results.rows[0], 'hash', 'N/A')}")
                     
             except Exception as e:

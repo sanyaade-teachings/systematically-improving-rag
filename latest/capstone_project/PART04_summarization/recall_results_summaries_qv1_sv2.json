@@ -1,0 +1,28 @@
+{
+  "timestamp": "2025-07-03T10:21:15.747424",
+  "summary_version": "v2",
+  "query_version": "v1",
+  "db_backend": "turbopuffer",
+  "total_queries": 2117,
+  "metrics": {
+    "total_queries": 2117,
+    "successful_searches": 2117,
+    "recall@1": 0.42890883325460555,
+    "recall@5": 0.680207841284837,
+    "recall@10": 0.7520075578649031,
+    "recall@20": 0.8049126121870571,
+    "recall@30": 0.8327822390174776,
+    "not_found": 354,
+    "search_errors": 0,
+    "error_rate": 0.0
+  },
+  "comparison": {
+    "with_summaries": {
+      "1": 0.42890883325460555,
+      "5": 0.680207841284837,
+      "10": 0.7520075578649031,
+      "20": 0.8049126121870571,
+      "30": 0.8327822390174776
+    }
+  }
+}

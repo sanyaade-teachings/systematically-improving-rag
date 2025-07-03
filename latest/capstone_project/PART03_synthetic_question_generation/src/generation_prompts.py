@@ -136,3 +136,161 @@ async def synthetic_question_generation_v2(
     )
 
     return response
+
+
+async def synthetic_question_generation_v3(
+    client,  # instructor-patched client
+    messages: List[Dict[str, Any]],
+) -> SearchQueries:
+    """
+    Generate highly specific search queries that balance pattern recognition with unique details.
+    
+    This version creates queries that:
+    - Maintain awareness of conversation patterns and types
+    - Include specific distinguishing details
+    - Capture customer satisfaction/frustration signals
+    - Are specific enough to find individual conversations
+    
+    Args:
+        client: instructor-patched client
+        messages: List of conversation messages
+        
+    Returns:
+        SearchQueries object with specific, pattern-aware search queries
+    """
+    
+    prompt = """
+    You are a search optimization specialist analyzing conversations from the WildChat dataset.
+    Your goal is to create search queries that would uniquely identify THIS SPECIFIC conversation
+    while maintaining awareness of its patterns and characteristics.
+    
+    Analyze this conversation and generate 5-7 search queries that:
+    
+    1. COMBINE pattern descriptions with specific details:
+       - Start with the conversation type/pattern
+       - Add unique technical terms, concepts, or specifics mentioned
+       - Include memorable phrases, examples, or distinctive elements
+    
+    2. CAPTURE user satisfaction signals:
+       - User frustration: "conversation where user gets frustrated about [specific issue]"
+       - User satisfaction: "helpful AI conversation successfully solving [specific problem]"
+       - Failed attempts: "AI struggling to understand user's request about [topic]"
+       - Misunderstandings: "conversation with miscommunication about [specific concept]"
+    
+    3. INCLUDE distinguishing combinations:
+       - Multiple topics discussed together
+       - Specific technical stack or tools mentioned
+       - Unique examples or scenarios presented
+       - Particular error messages or issues
+    
+    4. USE this query structure:
+       - "[conversation type] + [specific topic/issue] + [distinguishing detail]"
+       - Examples:
+         * "technical troubleshooting Docker PostgreSQL connection refused error"
+         * "frustrated user requesting medical advice AI refuses to provide"
+         * "role-playing conversation medieval blacksmith discussing enchanted sword crafting"
+         * "AI successfully helping debug React useState infinite loop issue"
+         * "creative writing collaboration vampire romance story plot twist"
+    
+    5. IDENTIFY unique aspects that distinguish this from similar conversations:
+       - Specific error messages or technical details
+       - Unusual combinations of topics
+       - Particular user reactions or feedback
+       - Distinctive AI responses or behaviors
+    
+    IMPORTANT: Each query should be specific enough that someone could find THIS conversation
+    among thousands of similar ones, while still being natural search queries.
+    
+    <conversation>
+    {% for message in messages %}
+        <message role="{{ message.role }}">
+            {{ message.content }}
+        </message>
+    {% endfor %}
+    </conversation>
+    
+    Generate queries that uniquely identify this conversation while capturing its patterns,
+    user satisfaction level, and distinguishing features.
+    """
+    
+    response = await client.chat.completions.create(
+        response_model=SearchQueries,
+        messages=[
+            {
+                "role": "system",
+                "content": "You are an expert at creating specific, distinguishing search queries that balance pattern recognition with unique details. Focus on what makes each conversation unique while maintaining awareness of its type and user satisfaction signals."
+            },
+            {"role": "user", "content": prompt}
+        ],
+        context={"messages": messages},
+    )
+    
+    return response
+
+
+async def synthetic_question_generation_v5(
+    client,  # instructor-patched client
+    messages: List[Dict[str, Any]],
+) -> SearchQueries:
+    """Generate queries optimized for AI agent analysis of system failures and improvements."""
+    
+    prompt = """
+    Analyze this conversation and generate 5-7 search queries that an AI analysis agent would use 
+    to find similar patterns for system improvement. Your queries should help identify:
+    
+    1. ROOT CAUSE PATTERNS:
+       - "AI failed to [specific capability] when user [specific context]"
+       - "misunderstanding about [concept] leading to [consequence]"
+       - "system limitation in [feature] causing [user reaction]"
+    
+    2. FAILURE MODE QUERIES:
+       - "conversation where AI [specific failure] despite [attempts to help]"
+       - "[error type] occurring when [specific conditions]"
+       - "repeated clarification needed for [topic] due to [root cause]"
+    
+    3. RECOVERY AND RESOLUTION:
+       - "AI successfully recovered from [initial failure] by [specific action]"
+       - "user satisfaction improved after [specific intervention]"
+       - "workaround provided for [limitation] using [alternative approach]"
+    
+    4. IMPACT AND SEVERITY:
+       - "high-impact failure in [domain] affecting [user goal]"
+       - "critical misunderstanding about [topic] preventing [outcome]"
+       - "user abandoned task due to [specific issue]"
+    
+    5. IMPROVEMENT OPPORTUNITIES:
+       - "conversation revealing need for [specific capability]"
+       - "user requesting [feature] not currently supported"
+       - "pattern of confusion about [concept] suggesting [improvement]"
+    
+    Structure each query to include:
+    - The failure pattern or success pattern
+    - Specific technical details or domain
+    - Root cause indicators
+    - User impact or satisfaction level
+    - Potential improvement direction
+    
+    <conversation>
+    {% for message in messages %}
+        <message role="{{ message.role }}">
+            {{ message.content }}
+        </message>
+    {% endfor %}
+    </conversation>
+    
+    Generate queries that would help an AI agent identify systemic issues and improvement opportunities.
+    """
+    
+    response = await client.chat.completions.create(
+        response_model=SearchQueries,
+        messages=[
+            {
+                "role": "system",
+                "content": "You are an expert at creating analytical queries for AI system improvement. Focus on identifying failure patterns, root causes, and improvement opportunities that would help an AI agent make data-driven recommendations."
+            },
+            {"role": "user", "content": prompt}
+        ],
+        context={"messages": messages},
+    )
+    
+    return response

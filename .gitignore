@@ -56,3 +56,5 @@ coverage.xml
 .mypy_cache/
 .dmypy.json
 chroma_db/
+logs/
+nohup.out

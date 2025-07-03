@@ -251,6 +251,7 @@ async def verify_single_query(
             "position": position,
             "total_results": len(results),
             "query_time_ms": query_time_ms,
+            "top_results": results[:5] if position == -1 else [],  # Save top 5 results for failures
         }
 
         # Cache the result
@@ -273,6 +274,7 @@ async def process_query_with_metrics(
     metrics: RecallMetrics,
     cache: GenericCache,
     semaphore: asyncio.Semaphore,
+    failed_queries: List[Dict[str, Any]],
 ) -> None:
     """Process a single query and update metrics"""
     async with semaphore:
@@ -286,6 +288,20 @@ async def process_query_with_metrics(
 
             if position == -1:
                 metrics.not_found += 1
+                # Capture failed query details
+                top_results = result.get("top_results", [])
+                failed_queries.append({
+                    "query": query,
+                    "conversation_hash": conversation_hash,
+                    "top_results": [
+                        {
+                            "hash": r.get("hash", ""),
+                            "summary": r.get("summary", "")[:200],  # First 200 chars
+                        }
+                        for r in top_results
+                    ],
+                    "query_time_ms": result.get("query_time_ms", 0),
+                })
             elif position == 0:
                 metrics.found_in_top_1 += 1
                 metrics.found_in_top_5 += 1
@@ -313,10 +329,10 @@ async def process_query_with_metrics(
 async def main(
     limit: int = typer.Option(None, help="Limit number of V2 queries to test"),
     query_version: str = typer.Option(
-        "v2", help="Which query version to test (v1 or v2)"
+        "v2", help="Which query version to test (v1, v2, or v3)"
     ),
     summary_version: str = typer.Option(
-        "v2", help="Which summary version to test (v1 or v2)"
+        "v2", help="Which summary version to test (v1, v2, v3, or v4)"
     ),
     no_cache: bool = typer.Option(False, help="Disable caching for fresh results"),
 ):
@@ -386,6 +402,7 @@ async def main(
 
     metrics = RecallMetrics()
     semaphore = asyncio.Semaphore(5)
+    failed_queries = []  # Collect failed queries
 
     # Create tasks
     tasks = []
@@ -398,6 +415,7 @@ async def main(
                 metrics,
                 cache,
                 semaphore,
+                failed_queries,
             )
         )
         tasks.append(task)
@@ -446,7 +464,7 @@ async def main(
 
     # Save results
     results_file = (
-        Path(__file__).parent / f"recall_results_summaries_{summary_version}.json"
+        Path(__file__).parent / f"recall_results_summaries_q{query_version}_s{summary_version}.json"
     )
     results_data = {
         "timestamp": datetime.now().isoformat(),
@@ -470,6 +488,30 @@ async def main(
         json.dump(results_data, f, indent=2)
 
     console.print(f"\n[green]Results saved to:[/green] {results_file}")
+    
+    # Save failed queries for analysis
+    if failed_queries:
+        failed_file = (
+            Path(__file__).parent / f"failed_queries_q{query_version}_s{summary_version}.json"
+        )
+        
+        # Sort by query for easier analysis
+        failed_queries.sort(key=lambda x: x["query"])
+        
+        failed_data = {
+            "timestamp": datetime.now().isoformat(),
+            "summary_version": summary_version,
+            "query_version": query_version,
+            "total_failed": len(failed_queries),
+            "recall_rate": 1 - (len(failed_queries) / len(queries)),
+            "failed_queries": failed_queries[:100],  # Save top 100 failures
+        }
+        
+        with open(failed_file, "w") as f:
+            json.dump(failed_data, f, indent=2)
+            
+        console.print(f"[yellow]Failed queries saved to:[/yellow] {failed_file}")
+        console.print(f"[yellow]Total failed queries: {len(failed_queries)}[/yellow]")
 
 
 app = typer.Typer()
@@ -479,10 +521,10 @@ app = typer.Typer()
 def run(
     limit: int = typer.Option(None, help="Limit number of queries to test"),
     query_version: str = typer.Option(
-        "v2", help="Which query version to test (v1 or v2)"
+        "v2", help="Which query version to test (v1, v2, or v3)"
     ),
     summary_version: str = typer.Option(
-        "v2", help="Which summary version to test (v1 or v2)"
+        "v2", help="Which summary version to test (v1, v2, v3, or v4)"
     ),
     no_cache: bool = typer.Option(False, help="Disable caching for fresh results"),
 ):

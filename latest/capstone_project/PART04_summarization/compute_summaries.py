@@ -29,6 +29,8 @@ from src.dataloader import WildChatDataLoader
 from src.summarization_prompts import (
     conversation_summary_v1,
     conversation_summary_v2,
+    conversation_summary_v3,
+    conversation_summary_v4,
 )
 from src.db import (
     setup_database,
@@ -73,8 +75,14 @@ async def process_conversation_version(
         try:
             if version == "v1":
                 result = await conversation_summary_v1(client, messages)
-            else:  # v2
+            elif version == "v2":
                 result = await conversation_summary_v2(client, messages)
+            elif version == "v3":
+                result = await conversation_summary_v3(client, messages)
+            elif version == "v4":
+                result = await conversation_summary_v4(client, messages)
+            else:
+                raise ValueError(f"Invalid version: {version}")
 
             summary = result.summary if hasattr(result, "summary") else ""
 
@@ -98,47 +106,28 @@ async def process_conversation(
     progress: Progress,
     task_id,
     model: str,
+    version: str,
     existing_summaries: set,
 ) -> int:
-    """Process a single conversation with both v1 and v2 generators and save immediately"""
+    """Process a single conversation with the specified version and save immediately"""
     conversation_hash = conversation["conversation_hash"]
     saved_count = 0
 
     try:
-        # Check which versions need to be processed
-        need_v1 = (conversation_hash, "v1") not in existing_summaries
-        need_v2 = (conversation_hash, "v2") not in existing_summaries
+        # Check if this version needs to be processed
+        if (conversation_hash, version) in existing_summaries:
+            progress.update(task_id, advance=1)
+            return 0
 
-        tasks = []
-        if need_v1:
-            tasks.append(
-                (
-                    "v1",
-                    process_conversation_version(
-                        client, conversation, "v1", cache, semaphore
-                    ),
-                )
-            )
-        if need_v2:
-            tasks.append(
-                (
-                    "v2",
-                    process_conversation_version(
-                        client, conversation, "v2", cache, semaphore
-                    ),
-                )
-            )
+        # Process the specified version
+        summary = await process_conversation_version(
+            client, conversation, version, cache, semaphore
+        )
 
-        # Process only needed versions
-        if tasks:
-            results = await asyncio.gather(*[task[1] for task in tasks])
-
-            for i, (version, _) in enumerate(tasks):
-                summary = results[i]
-                if summary and save_summary_to_db(
-                    DB_PATH, conversation_hash, version, summary, model
-                ):
-                    saved_count += 1
+        if summary and save_summary_to_db(
+            DB_PATH, conversation_hash, version, summary, model
+        ):
+            saved_count += 1
 
         progress.update(task_id, advance=1)
 
@@ -151,14 +140,21 @@ async def process_conversation(
 
 
 async def main(
-    limit: int = typer.Option(500, help="Number of conversations to process"),
+    limit: int = typer.Option(10000, help="Number of conversations to process"),
     clear_cache: bool = typer.Option(False, help="Clear the cache before starting"),
     concurrency: int = typer.Option(50, help="Max concurrent API requests"),
+    version: str = typer.Option("both", help="Version to process: v1, v2, v3, v4, or both"),
 ):
     """Generate synthetic summaries from WildChat conversations"""
 
+    # Validate version parameter
+    if version not in ["v1", "v2", "v3", "v4", "both"]:
+        console.print("[red]Error: version must be 'v1', 'v2', 'v3', 'v4', or 'both'[/red]")
+        return
+
     console.print("[bold green]Synthetic Summary Generation[/bold green]")
     console.print("=" * 50)
+    console.print(f"[cyan]Processing version: {version}[/cyan]")
 
     console.print(f"\n[cyan]Setting up database at {DB_PATH}[/cyan]")
     setup_database(DB_PATH)
@@ -198,12 +194,25 @@ async def main(
             filter_language="English",
             filter_toxic=True,
         ):
-            # Skip conversations that already have both v1 and v2 summaries for this model
+            # Skip conversations that already have the required version(s) for this model
             conversation_hash = conversation["conversation_hash"]
             has_v1 = (conversation_hash, "v1") in existing_summaries
             has_v2 = (conversation_hash, "v2") in existing_summaries
+            has_v3 = (conversation_hash, "v3") in existing_summaries
+            has_v4 = (conversation_hash, "v4") in existing_summaries
+            should_process = False
+            if version == "v1" and not has_v1:
+                should_process = True
+            elif version == "v2" and not has_v2:
+                should_process = True
+            elif version == "v3" and not has_v3:
+                should_process = True
+            elif version == "v4" and not has_v4:
+                should_process = True
+            elif version == "both" and not (has_v1 and has_v2 and has_v3 and has_v4):
+                should_process = True
 
-            if not (has_v1 and has_v2):
+            if should_process:
                 conversations.append(conversation)
                 progress.update(load_task, advance=1)
 
@@ -235,28 +244,41 @@ async def main(
             "Processing conversations", total=len(conversations)
         )
 
-        tasks = [
-            process_conversation(
-                client,
-                conversation,
-                cache,
-                semaphore,
-                progress,
-                process_task,
-                MODEL,
-                existing_summaries,
-            )
-            for conversation in conversations
-        ]
+        # Determine which versions to process
+        versions_to_process = []
+        if version == "both":
+            versions_to_process = ["v1", "v2", "v3", "v4"]
+        else:
+            versions_to_process = [version]
 
-        # Process all conversations concurrently
         total_saved = 0
-        for coro in asyncio.as_completed(tasks):
-            try:
-                saved_count = await coro
-                total_saved += saved_count
-            except Exception as e:
-                console.print(f"[red]Task failed: {e}[/red]")
+        
+        # Process each version separately
+        for current_version in versions_to_process:
+            console.print(f"\n[cyan]Processing version {current_version}[/cyan]")
+            
+            tasks = [
+                process_conversation(
+                    client,
+                    conversation,
+                    cache,
+                    semaphore,
+                    progress,
+                    process_task,
+                    MODEL,
+                    current_version,
+                    existing_summaries,
+                )
+                for conversation in conversations
+            ]
+
+            # Process all conversations concurrently for this version
+            for coro in asyncio.as_completed(tasks):
+                try:
+                    saved_count = await coro
+                    total_saved += saved_count
+                except Exception as e:
+                    console.print(f"[red]Task failed: {e}[/red]")
 
     console.print(f"\n[green]Saved {total_saved} new summaries to database[/green]")
 
@@ -283,12 +305,13 @@ app = typer.Typer()
 
 @app.command()
 def run(
-    limit: int = typer.Option(500, help="Number of conversations to process"),
+    limit: int = typer.Option(10000, help="Number of conversations to process"),
     clear_cache: bool = typer.Option(False, help="Clear the cache before starting"),
     concurrency: int = typer.Option(50, help="Max concurrent API requests"),
+    version: str = typer.Option("both", help="Version to process: v1, v2, v3, v4, or both"),
 ):
     """Generate synthetic summaries from WildChat conversations"""
-    asyncio.run(main(limit, clear_cache, concurrency))
+    asyncio.run(main(limit, clear_cache, concurrency, version))
 
 
 if __name__ == "__main__":
