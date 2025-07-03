@@ -30,6 +30,7 @@ from src.generation_prompts import (
     synthetic_question_generation_v1,
     synthetic_question_generation_v2,
     synthetic_question_generation_v3,
+    synthetic_question_generation_v5,
 )
 from src.db import (
     setup_database,
@@ -53,7 +54,7 @@ CACHE_DIR = Path(__file__).parent / "data" / ".cache"
 async def process_conversation_version(
     client,
     conversation: Dict[str, Any],
-    version: str,
+    query_version: str,
     cache: GenericCache,
     semaphore: asyncio.Semaphore,
 ) -> List[str]:
@@ -61,7 +62,7 @@ async def process_conversation_version(
     async with semaphore:
         conversation_hash = conversation["conversation_hash"]
         messages = conversation["conversation"]
-        cache_key = GenericCache.make_conversation_key(conversation_hash, version)
+        cache_key = GenericCache.make_conversation_key(conversation_hash, query_version)
 
         # Check cache first
         cached_result = cache.get(cache_key)
@@ -69,12 +70,16 @@ async def process_conversation_version(
             return cached_result
 
         try:
-            if version == "v1":
+            if query_version == "v1":
                 result = await synthetic_question_generation_v1(client, messages)
-            elif version == "v2":
+            elif query_version == "v2":
                 result = await synthetic_question_generation_v2(client, messages)
-            else:  # v3
+            elif query_version == "v3":
                 result = await synthetic_question_generation_v3(client, messages)
+            elif query_version == "v5":
+                result = await synthetic_question_generation_v5(client, messages)
+            else:
+                raise ValueError(f"Unknown query version: {query_version}")
 
             queries = result.queries if hasattr(result, "queries") else []
 
@@ -85,7 +90,7 @@ async def process_conversation_version(
 
         except Exception as e:
             console.print(
-                f"[red]Error processing {conversation_hash} {version}: {e}[/red]"
+                f"[red]Error processing {conversation_hash} {query_version}: {e}[/red]"
             )
             return []
 
@@ -93,6 +98,7 @@ async def process_conversation_version(
 async def process_conversation(
     client,
     conversation: Dict[str, Any],
+    query_version: str,
     cache: GenericCache,
     semaphore: asyncio.Semaphore,
     progress: Progress,
@@ -103,32 +109,28 @@ async def process_conversation(
     saved_count = 0
 
     try:
-        # Process all versions concurrently
+        # Process both versions concurrently
         v1_task = process_conversation_version(
             client, conversation, "v1", cache, semaphore
         )
-        v2_task = process_conversation_version(
-            client, conversation, "v2", cache, semaphore
-        )
-        v3_task = process_conversation_version(
-            client, conversation, "v3", cache, semaphore
-        )
-
-        v1_queries, v2_queries, v3_queries = await asyncio.gather(v1_task, v2_task, v3_task)
+        if query_version in ["v2", "v3", "v5"]:
+            v2_task = process_conversation_version(
+                client, conversation, query_version, cache, semaphore
+            )
+            v1_queries, v2_queries = await asyncio.gather(v1_task, v2_task)
+        else:
+            v2_task = None
+            v1_queries = await v1_task
+            v2_queries = []
 
         # Save v1 queries immediately
         for query in v1_queries:
             if save_query_to_db(DB_PATH, conversation_hash, "v1", query):
                 saved_count += 1
 
-        # Save v2 queries immediately
+        # Save v2/v3/v5 queries immediately
         for query in v2_queries:
-            if save_query_to_db(DB_PATH, conversation_hash, "v2", query):
-                saved_count += 1
-                
-        # Save v3 queries immediately
-        for query in v3_queries:
-            if save_query_to_db(DB_PATH, conversation_hash, "v3", query):
+            if save_query_to_db(DB_PATH, conversation_hash, query_version, query):
                 saved_count += 1
 
         progress.update(task_id, advance=1)
@@ -143,6 +145,9 @@ async def process_conversation(
 
 async def main(
     limit: int = typer.Option(500, help="Number of conversations to process"),
+    query_version: str = typer.Option(
+        "v2", help="Which query version to test (v1, v2, v3, or v5)"
+    ),
     clear_cache: bool = typer.Option(False, help="Clear the cache before starting"),
     concurrency: int = typer.Option(50, help="Max concurrent API requests"),
 ):
@@ -224,7 +229,7 @@ async def main(
 
         tasks = [
             process_conversation(
-                client, conversation, cache, semaphore, progress, process_task
+                client, conversation, query_version, cache, semaphore, progress, process_task
             )
             for conversation in conversations
         ]
@@ -260,11 +265,14 @@ app = typer.Typer()
 @app.command()
 def run(
     limit: int = typer.Option(500, help="Number of conversations to process"),
+    query_version: str = typer.Option(
+        "v2", help="Which query version to test (v1, v2, v3, or v5)"
+    ),
     clear_cache: bool = typer.Option(False, help="Clear the cache before starting"),
     concurrency: int = typer.Option(50, help="Max concurrent API requests"),
 ):
     """Generate synthetic queries from WildChat conversations"""
-    asyncio.run(main(limit, clear_cache, concurrency))
+    asyncio.run(main(limit, query_version, clear_cache, concurrency))
 
 
 if __name__ == "__main__":

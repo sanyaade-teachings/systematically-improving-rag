@@ -31,6 +31,7 @@ from src.summarization_prompts import (
     conversation_summary_v2,
     conversation_summary_v3,
     conversation_summary_v4,
+    conversation_summary_v5,
 )
 from src.db import (
     setup_database,
@@ -81,6 +82,8 @@ async def process_conversation_version(
                 result = await conversation_summary_v3(client, messages)
             elif version == "v4":
                 result = await conversation_summary_v4(client, messages)
+            elif version == "v5":
+                result = await conversation_summary_v5(client, messages)
             else:
                 raise ValueError(f"Invalid version: {version}")
 
@@ -143,13 +146,13 @@ async def main(
     limit: int = typer.Option(10000, help="Number of conversations to process"),
     clear_cache: bool = typer.Option(False, help="Clear the cache before starting"),
     concurrency: int = typer.Option(50, help="Max concurrent API requests"),
-    version: str = typer.Option("both", help="Version to process: v1, v2, v3, v4, or both"),
+    version: str = typer.Option("both", help="Version to process: v1, v2, v3, v4, v5, or both"),
 ):
     """Generate synthetic summaries from WildChat conversations"""
 
     # Validate version parameter
-    if version not in ["v1", "v2", "v3", "v4", "both"]:
-        console.print("[red]Error: version must be 'v1', 'v2', 'v3', 'v4', or 'both'[/red]")
+    if version not in ["v1", "v2", "v3", "v4", "v5", "both"]:
+        console.print("[red]Error: version must be 'v1', 'v2', 'v3', 'v4', 'v5', or 'both'[/red]")
         return
 
     console.print("[bold green]Synthetic Summary Generation[/bold green]")
@@ -200,6 +203,7 @@ async def main(
             has_v2 = (conversation_hash, "v2") in existing_summaries
             has_v3 = (conversation_hash, "v3") in existing_summaries
             has_v4 = (conversation_hash, "v4") in existing_summaries
+            has_v5 = (conversation_hash, "v5") in existing_summaries
             should_process = False
             if version == "v1" and not has_v1:
                 should_process = True
@@ -209,7 +213,9 @@ async def main(
                 should_process = True
             elif version == "v4" and not has_v4:
                 should_process = True
-            elif version == "both" and not (has_v1 and has_v2 and has_v3 and has_v4):
+            elif version == "v5" and not has_v5:
+                should_process = True
+            elif version == "both" and not (has_v1 and has_v2 and has_v3 and has_v4 and has_v5):
                 should_process = True
 
             if should_process:
@@ -247,7 +253,7 @@ async def main(
         # Determine which versions to process
         versions_to_process = []
         if version == "both":
-            versions_to_process = ["v1", "v2", "v3", "v4"]
+            versions_to_process = ["v1", "v2", "v3", "v4", "v5"]
         else:
             versions_to_process = [version]
 
@@ -308,7 +314,7 @@ def run(
     limit: int = typer.Option(10000, help="Number of conversations to process"),
     clear_cache: bool = typer.Option(False, help="Clear the cache before starting"),
     concurrency: int = typer.Option(50, help="Max concurrent API requests"),
-    version: str = typer.Option("both", help="Version to process: v1, v2, v3, v4, or both"),
+    version: str = typer.Option("both", help="Version to process: v1, v2, v3, v4, v5, or both"),
 ):
     """Generate synthetic summaries from WildChat conversations"""
     asyncio.run(main(limit, clear_cache, concurrency, version))

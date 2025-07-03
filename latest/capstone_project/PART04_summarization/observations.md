@@ -364,6 +364,73 @@ Agent-enabled approach:
 - Generate specific, data-backed hypotheses
 - Implement targeted improvements with measurable impact
 
+## V5: Agent-Optimized Prompts
+
+### Design Philosophy
+
+V5 represents a paradigm shift from human-searchable content to agent-analyzable intelligence. While V1-V4 focused on improving retrieval for finding specific conversations, V5 transforms the system into an analytical tool for continuous improvement.
+
+### V5 Query Generation: Root Cause Focus
+
+**Key innovations**:
+1. **Failure mode queries**: "AI failed to [capability] when user [context]"
+2. **Recovery patterns**: "AI successfully recovered from [failure] by [action]"
+3. **Impact assessment**: "high-impact failure in [domain] affecting [user goal]"
+4. **Improvement opportunities**: "conversation revealing need for [capability]"
+
+**Example V5 queries**:
+- "AI failed to understand Docker networking when user provided compose file"
+- "misunderstanding about state management leading to infinite loop suggestion"
+- "system limitation in file handling causing user abandoned task"
+- "AI successfully recovered from math error by showing step-by-step work"
+- "conversation revealing need for real-time data access capability"
+
+### V5 Summary Generation: Actionable Analysis
+
+**Structure optimized for agent parsing**:
+1. **Failure Analysis**: Root cause, pattern type, user impact, recovery attempts
+2. **Interaction Dynamics**: Communication breakdowns, clarification loops, frustration indicators
+3. **Capability Gaps**: Missing features, workarounds, knowledge limitations
+4. **Success Patterns**: What worked well and why
+5. **Improvement Hypotheses**: Specific suggestions with priority and implementation approach
+6. **Analysis Metadata**: Domain, complexity, severity, business impact
+
+**Example V5 summary excerpt**:
+```
+FAILURE ANALYSIS:
+- Root cause: AI lacked understanding of TypeScript generics with conditional types
+- Failure pattern: Knowledge limitation compounded by reasoning failure
+- User impact: 45-minute conversation that should have taken 5 minutes
+- Recovery attempts: AI suggested workarounds but missed the elegant solution
+
+IMPROVEMENT HYPOTHESES:
+- Would benefit from specialized TypeScript type system knowledge base
+- Similar to other advanced type system failures (found in 23 conversations)
+- Priority: HIGH (affects expert developers working on type-safe APIs)
+- Implementation: Create specialized retriever for TS documentation + examples
+```
+
+### Agent Analysis Workflow
+
+The `agent_analysis_example.py` demonstrates how an AI agent would:
+
+1. **Query for patterns**: Use V5 queries to find similar failures across conversations
+2. **Extract insights**: Parse V5 summaries to understand root causes and impacts
+3. **Group patterns**: Identify systemic issues vs one-off problems
+4. **Generate hypotheses**: Propose specific improvements with ROI estimates
+5. **Prioritize investments**: Rank improvements by expected impact vs effort
+
+### Measurable Outcomes
+
+With V5, we can answer questions like:
+- What are the top 5 capability gaps causing user frustration?
+- Which domains have the highest failure rates?
+- What recovery strategies are most effective?
+- Where would specialized retrievers provide the most value?
+- How do failure patterns change over time?
+
+This transforms our RAG system from a passive search tool into an active intelligence system that continuously learns from its interactions and identifies opportunities for improvement.
+
 ## Future Directions
 
 1. **Autonomous Hypothesis Generation**: Agent that continuously analyzes conversation patterns and proposes experiments

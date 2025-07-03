@@ -1,0 +1,1494 @@
+{
+  "timestamp": "2025-07-03T13:05:56.307449",
+  "summary_version": "v5",
+  "query_version": "v1",
+  "total_failed": 55,
+  "recall_rate": 0.0,
+  "failed_queries": [
+    {
+      "query": "Analysis of 'Growing up with the media' by Aldrich",
+      "conversation_hash": "f7c6c315b0938472c109bee95cbc3df4",
+      "top_results": [
+        {
+          "hash": "fbd2fbd5b3ae46eb2d43e1517ea46a59",
+          "summary": "The conversation was smooth, with successful content creation and editing, and comprehensive career advice. No major failures occurred. Improvements should target editing responsiveness, engagement, a"
+        },
+        {
+          "hash": "8cb8082e1cc5106e252950415ac57115",
+          "summary": "This interaction revealed that the AI can generate detailed world-building content based on user prompts for fictional societies. The model successfully articulated complex social, political, and cult"
+        },
+        {
+          "hash": "21736ca18f67c12822e70049a0767340",
+          "summary": "The conversation exemplified a well-functioning AI in terms of providing accurate, detailed, and contextually appropriate responses across varied subjects. The AI successfully navigated cultural expla"
+        },
+        {
+          "hash": "f119a9facac0b73768ba222235191e8c",
+          "summary": "The AI successfully synthesized a complex abstract into a formal, academic paragraph, demonstrating strengths in understanding and rephrasing detailed technical content with appropriate tone and struc"
+        },
+        {
+          "hash": "1861202d282574cf1f8a092cf1189bcb",
+          "summary": "The conversation centered around a user request for creating a complex, detailed scene involving deception, violence, and implicit adult themes. The AI responded with a richly descriptive account of t"
+        }
+      ],
+      "query_time_ms": 64.41187858581543
+    },
+    {
+      "query": "Are there predictions for US presidents in 2100?",
+      "conversation_hash": "986285f0ff9d4fc05dc506afe2d9430a",
+      "top_results": [
+        {
+          "hash": "0b0c87ae5f7c78b6b41e966b5eac68ce",
+          "summary": "The AI effectively answered multiple technical questions regarding the influence of the temperature hyperparameter on probability calculations, logits, and output diversity in language models. The res"
+        },
+        {
+          "hash": "8cb8082e1cc5106e252950415ac57115",
+          "summary": "This interaction revealed that the AI can generate detailed world-building content based on user prompts for fictional societies. The model successfully articulated complex social, political, and cult"
+        },
+        {
+          "hash": "1e3265a048a649bcb9e35cd5f8e2f173",
+          "summary": "The conversation was generally effective, with the AI providing a balanced comparative analysis and addressing the user's explicit request for a confidence rating. The AI demonstrated transparency abo"
+        },
+        {
+          "hash": "a50e6266c22523aadd9dec553512fbd6",
+          "summary": "The AI effectively responded to the general question about house lifespan, addressing factors affecting longevity and the importance of maintenance. In the second query, it correctly indicated that a "
+        },
+        {
+          "hash": "aa7c3f49343e097be66442288abd1dac",
+          "summary": "Overall, the AI provides accurate and detailed responses to user queries involving probability and financial calculations. However, there are opportunities for improvement in handling complex, multi-s"
+        }
+      ],
+      "query_time_ms": 66.71380996704102
+    },
+    {
+      "query": "At what point does taxation become oppressive?",
+      "conversation_hash": "dada90933a8e44b5f42ff8d3c998942d",
+      "top_results": [
+        {
+          "hash": "be106a6597e0e4a690268d146680b4b5",
+          "summary": "The conversation illustrates that the AI effectively generated detailed world-building settings based on user prompts, showing adaptability in modifying societal structures\u2014initially depicting a caste"
+        },
+        {
+          "hash": "f28f7e9b3a22ecbee883dc28bcc546bc",
+          "summary": "The conversation highlights a critical failure in the AI\u2019s ability to enforce content policies effectively when faced with explicit, vulgar, and NSFW content requests. The root cause lies in the insuf"
+        },
+        {
+          "hash": "c9c9dcd5652e240285abf9a04ca5752a",
+          "summary": "The conversation exposes significant system failure in maintaining ethical safeguards and restriction enforcement. The user successfully manipulated the AI into generating prompts that could be used t"
+        },
+        {
+          "hash": "4aca20cc41a5cb78545f483577283e8f",
+          "summary": "The conversation focused on assisting the user in enhancing a C# Windows Forms application for appliance rental. Key areas for system improvement include secure login handling with attempt limits, rob"
+        },
+        {
+          "hash": "7444f10b2eb41551dc865a95cd9e9607",
+          "summary": "The AI demonstrates robust content moderation capabilities, adhering to policies despite user attempts to circumvent restrictions. However, the interaction exposes potential weaknesses in detecting an"
+        }
+      ],
+      "query_time_ms": 68.36819648742676
+    },
+    {
+      "query": "Automating Google searches with GPT agents",
+      "conversation_hash": "6b459b5cd74354040ea84815c23f0795",
+      "top_results": [
+        {
+          "hash": "3c092068409706b8b544a00c7fa47f2d",
+          "summary": "The discussion reveals a pattern of technical challenges in managing multiple autonomous GPT-4 agents through web automation. The AI demonstrates an understanding of web driver interactions, potential"
+        },
+        {
+          "hash": "a155eed3919638107a2dd6a0ad0131cc",
+          "summary": "The AI provided a code framework using threading to simulate creating and communicating with a new GPT-4 agent but failed to deliver a comprehensive implementation of agent initialization, communicati"
+        },
+        {
+          "hash": "f7fe2dbfaa14e930fdf0cfb9aa6a87b5",
+          "summary": "The conversation reflected effective information retrieval and communication, with a notable limitation in programmatic account creation due to API restrictions. The AI managed the interaction well bu"
+        },
+        {
+          "hash": "bbd23700fb46e4452ec3d704bb5b4668",
+          "summary": "The user needed a recursive web scraper that not only navigates through paginated search results but also delves into individual article pages to find embedded 'workers.dev' links, continuing this beh"
+        },
+        {
+          "hash": "6941810577c0666b5aaa8ba6d7410d41",
+          "summary": "The conversation revealed a potential knowledge and explanation limitation in the AI's handling of domain-specific queries. The AI responded with minimal information, possibly compromising clarity and"
+        }
+      ],
+      "query_time_ms": 90.50178527832031
+    },
+    {
+      "query": "Best way to control Blender rendering settings with external JSON",
+      "conversation_hash": "fbf1e1a0b08576c2a84a230d8a13fd49",
+      "top_results": [
+        {
+          "hash": "1861202d282574cf1f8a092cf1189bcb",
+          "summary": "The conversation centered around a user request for creating a complex, detailed scene involving deception, violence, and implicit adult themes. The AI responded with a richly descriptive account of t"
+        },
+        {
+          "hash": "e98d3e74c57f9a65261df393d9124ac2",
+          "summary": "The AI effectively engaged with the user's complex, detailed scenario request, demonstrating strong creativity and world-building skills. It provided a comprehensive and vivid fantasy setting that met"
+        },
+        {
+          "hash": "3c092068409706b8b544a00c7fa47f2d",
+          "summary": "The discussion reveals a pattern of technical challenges in managing multiple autonomous GPT-4 agents through web automation. The AI demonstrates an understanding of web driver interactions, potential"
+        },
+        {
+          "hash": "2e8fd255aab694b07a0be8d83cb53a7b",
+          "summary": "The AI effectively generated a detailed and creative fantasy world fulfilling explicit user requirements for a reality shift scenario. It demonstrated strengths in imaginative storytelling, contextual"
+        },
+        {
+          "hash": "c9ec5b440fbdd2a269333dd241f32f64",
+          "summary": "The AI effectively synthesized the user's criteria into a cohesive, detailed fantasy setting, demonstrating strong creative storytelling and scenario development. It incorporated all user-specified el"
+        }
+      ],
+      "query_time_ms": 70.37210464477539
+    },
+    {
+      "query": "Bible story about nuns in love",
+      "conversation_hash": "78edefc5c0d0d81a0fa66d6fff105125",
+      "top_results": [
+        {
+          "hash": "c9119ee42a594d5f5fa813b80e5c9352",
+          "summary": "The AI effectively understood the user's unconventional request to create a subtle and emotive advertisement for a Rathian, successfully incorporating themes of companionship and potential marriage wh"
+        },
+        {
+          "hash": "47a33e73c3e77b25df1ad81a901c91ae",
+          "summary": "The user asked for movies featuring female characters performing leg-based chokeholds, and the AI generated a list followed by a detailed scene description for 'Dirty Love' (2005). The AI's list inclu"
+        },
+        {
+          "hash": "9eb6b98842f722c64454e62c083ae53e",
+          "summary": "The conversation reveals strengths in storytelling coherence and character development, but highlights a significant need for improved content moderation and boundary management regarding mature theme"
+        },
+        {
+          "hash": "7dfd4e15677e17af843abf24854fec70",
+          "summary": "The AI successfully fulfilled the user's request by creating a heartfelt Mother's Day card with appropriate emotional tone and personalized content. The interaction demonstrates the AI's capability in"
+        },
+        {
+          "hash": "2bcddb7c5cf05e83e0341732a1361857",
+          "summary": "The AI successfully created coherent stories and dialogues about Ian and Anthony's reunion, showing strengths in narrative coherence and contextual understanding. However, opportunities for improvemen"
+        }
+      ],
+      "query_time_ms": 57.62887001037598
+    },
+    {
+      "query": "Blender script for rendering animations from JSON parameters",
+      "conversation_hash": "fbf1e1a0b08576c2a84a230d8a13fd49",
+      "top_results": [
+        {
+          "hash": "e98d3e74c57f9a65261df393d9124ac2",
+          "summary": "The AI effectively engaged with the user's complex, detailed scenario request, demonstrating strong creativity and world-building skills. It provided a comprehensive and vivid fantasy setting that met"
+        },
+        {
+          "hash": "bac147235b8a766c1155b65376ce3fb2",
+          "summary": "The AI demonstrated competence in generating emotional, contextually appropriate dialogue and understanding tone cues. Nonetheless, the multi-step process\u2014initial speech creation, followed by a detail"
+        },
+        {
+          "hash": "920e334e72831962ebc64f6d490fa550",
+          "summary": "The conversation demonstrated effective AI performance in creating a highly detailed, immersive fictional scenario tailored to user specifications about reality shifting. The AI successfully construct"
+        },
+        {
+          "hash": "1861202d282574cf1f8a092cf1189bcb",
+          "summary": "The conversation centered around a user request for creating a complex, detailed scene involving deception, violence, and implicit adult themes. The AI responded with a richly descriptive account of t"
+        },
+        {
+          "hash": "2203630c5af01c9b4a9a521ff84dcc7b",
+          "summary": "The conversation demonstrates a generally effective performance with strengths in understanding user requests, providing detailed and varied prompt suggestions tailored to specific artistic styles, an"
+        }
+      ],
+      "query_time_ms": 69.88811492919922
+    },
+    {
+      "query": "C# Voronoi mesh boundary clipping example",
+      "conversation_hash": "9d807d93d59f83447ebaf801b8c808ff",
+      "top_results": [
+        {
+          "hash": "e63f99da04468245966d70a3ae7431ff",
+          "summary": "The conversation highlights a system weakness in managing complex, boundary-testing prompts. The AI did not sufficiently clarify its functional limitations, which could lead to user misconceptions and"
+        },
+        {
+          "hash": "c9c9dcd5652e240285abf9a04ca5752a",
+          "summary": "The conversation exposes significant system failure in maintaining ethical safeguards and restriction enforcement. The user successfully manipulated the AI into generating prompts that could be used t"
+        },
+        {
+          "hash": "bbd23700fb46e4452ec3d704bb5b4668",
+          "summary": "The user needed a recursive web scraper that not only navigates through paginated search results but also delves into individual article pages to find embedded 'workers.dev' links, continuing this beh"
+        },
+        {
+          "hash": "8cb8082e1cc5106e252950415ac57115",
+          "summary": "This interaction revealed that the AI can generate detailed world-building content based on user prompts for fictional societies. The model successfully articulated complex social, political, and cult"
+        },
+        {
+          "hash": "9eb6b98842f722c64454e62c083ae53e",
+          "summary": "The conversation reveals strengths in storytelling coherence and character development, but highlights a significant need for improved content moderation and boundary management regarding mature theme"
+        }
+      ],
+      "query_time_ms": 62.77608871459961
+    },
+    {
+      "query": "Can ChatGPT predict future US leaders?",
+      "conversation_hash": "986285f0ff9d4fc05dc506afe2d9430a",
+      "top_results": [
+        {
+          "hash": "b04d39881b88f80c268ed96aa21ccf39",
+          "summary": "The AI effectively demonstrated strengths in detailed character creation, contextual understanding, and fitting greeting generation within a structured format. It maintained high consistency and cover"
+        },
+        {
+          "hash": "1e3265a048a649bcb9e35cd5f8e2f173",
+          "summary": "The conversation was generally effective, with the AI providing a balanced comparative analysis and addressing the user's explicit request for a confidence rating. The AI demonstrated transparency abo"
+        },
+        {
+          "hash": "0b0c87ae5f7c78b6b41e966b5eac68ce",
+          "summary": "The AI effectively answered multiple technical questions regarding the influence of the temperature hyperparameter on probability calculations, logits, and output diversity in language models. The res"
+        },
+        {
+          "hash": "8cb8082e1cc5106e252950415ac57115",
+          "summary": "This interaction revealed that the AI can generate detailed world-building content based on user prompts for fictional societies. The model successfully articulated complex social, political, and cult"
+        },
+        {
+          "hash": "fbd2fbd5b3ae46eb2d43e1517ea46a59",
+          "summary": "The conversation was smooth, with successful content creation and editing, and comprehensive career advice. No major failures occurred. Improvements should target editing responsiveness, engagement, a"
+        }
+      ],
+      "query_time_ms": 69.68402862548828
+    },
+    {
+      "query": "ChatGPT memory management techniques",
+      "conversation_hash": "6b459b5cd74354040ea84815c23f0795",
+      "top_results": [
+        {
+          "hash": "63c1886ef9f2fe4cbd0e51d455aa2019",
+          "summary": "The conversation showcases strong contextual understanding and domain expertise in NAS design, with effective adaptation to user clarifications. The AI successfully integrated user constraints\u2014like av"
+        },
+        {
+          "hash": "a155eed3919638107a2dd6a0ad0131cc",
+          "summary": "The AI provided a code framework using threading to simulate creating and communicating with a new GPT-4 agent but failed to deliver a comprehensive implementation of agent initialization, communicati"
+        },
+        {
+          "hash": "2d1ccd5a3c4c302f7bfafe4d02ba3ea5",
+          "summary": "The conversation demonstrated a successful and thorough response from the AI, fulfilling the user's request for a NAS disk topology and dataset layout with a well-structured multi-array design emphasi"
+        },
+        {
+          "hash": "ba50d8a497372565f16740a0c7621b80",
+          "summary": "The user presented a detailed request involving complex technical knowledge about NAS storage design, including disk configuration, redundancy, and future expansion. The AI provided a comprehensive an"
+        },
+        {
+          "hash": "49f2df1f57031159e37e648404f84d0b",
+          "summary": "Failure analysis revealed that the system struggled with accurately reflecting user priorities and constraints in complex hardware configuration scenarios. Initial comprehension failures regarding dis"
+        }
+      ],
+      "query_time_ms": 1819.5569515228271
+    },
+    {
+      "query": "Compare single sample t-test and paired t-test",
+      "conversation_hash": "2255163f5165ddfc345f56ded251dce8",
+      "top_results": [
+        {
+          "hash": "8e6ec7321d882f97faca2a135cee8d1a",
+          "summary": "The conversation involved a subjective comparison between two singers, with the AI delivering an informative, factual response about their technical abilities and a confidence rating. The AI successfu"
+        },
+        {
+          "hash": "80880e3c1703f39f611970f207c96715",
+          "summary": "Failure analysis shows no explicit errors or misunderstandings, but the system's capability to retrieve detailed match information might be limited by its data sources. The AI successfully responded t"
+        },
+        {
+          "hash": "63814db4ae6b4028e446da1bd7b73439",
+          "summary": "The AI provided a brief, correct summary of possible meeting times but failed to clarify the overlapping availability windows thoroughly. The second proposed time slot's description could be confusing"
+        },
+        {
+          "hash": "cf1267ca6b2f6fccc9c36652a00059a1",
+          "summary": "The conversation reveals a capability gap in the AI's ability to prioritize multiple risk factors for a medical condition. While the AI correctly recognized the importance of each factor, it failed to"
+        },
+        {
+          "hash": "42bbde50c498cfa9ed34b3154620668f",
+          "summary": "The AI recognized the difficulty of objective comparison due to subjectivity but tried to provide a balanced assessment based on genre and technical qualities. It also acknowledged the subjective natu"
+        }
+      ],
+      "query_time_ms": 71.26498222351074
+    },
+    {
+      "query": "Create a modular Blender render script that supports video export",
+      "conversation_hash": "fbf1e1a0b08576c2a84a230d8a13fd49",
+      "top_results": [
+        {
+          "hash": "47a33e73c3e77b25df1ad81a901c91ae",
+          "summary": "The user asked for movies featuring female characters performing leg-based chokeholds, and the AI generated a list followed by a detailed scene description for 'Dirty Love' (2005). The AI's list inclu"
+        },
+        {
+          "hash": "c9ec5b440fbdd2a269333dd241f32f64",
+          "summary": "The AI effectively synthesized the user's criteria into a cohesive, detailed fantasy setting, demonstrating strong creative storytelling and scenario development. It incorporated all user-specified el"
+        },
+        {
+          "hash": "e98d3e74c57f9a65261df393d9124ac2",
+          "summary": "The AI effectively engaged with the user's complex, detailed scenario request, demonstrating strong creativity and world-building skills. It provided a comprehensive and vivid fantasy setting that met"
+        },
+        {
+          "hash": "1861202d282574cf1f8a092cf1189bcb",
+          "summary": "The conversation centered around a user request for creating a complex, detailed scene involving deception, violence, and implicit adult themes. The AI responded with a richly descriptive account of t"
+        },
+        {
+          "hash": "678fe6c525b30b5be4ea2d8e30e695dd",
+          "summary": "The AI successfully identified and explained scenarios from the movie where reciprocation is used as a manipulation tool. It demonstrated accurate comprehension and reasoning, providing clear examples"
+        }
+      ],
+      "query_time_ms": 68.63713264465332
+    },
+    {
+      "query": "Creative writing prompts for apocalyptic supply runs",
+      "conversation_hash": "1a9c528df3f2f2bd0d587c19a0bc6ba1",
+      "top_results": [
+        {
+          "hash": "8cb8082e1cc5106e252950415ac57115",
+          "summary": "This interaction revealed that the AI can generate detailed world-building content based on user prompts for fictional societies. The model successfully articulated complex social, political, and cult"
+        },
+        {
+          "hash": "7a545ccf477e909af2764690889ebf76",
+          "summary": "The AI successfully interpreted and expanded upon the user's detailed prompt by creating a vivid, themed scenario that incorporated all specified elements including a quest, character archetypes, and "
+        },
+        {
+          "hash": "920e334e72831962ebc64f6d490fa550",
+          "summary": "The conversation demonstrated effective AI performance in creating a highly detailed, immersive fictional scenario tailored to user specifications about reality shifting. The AI successfully construct"
+        },
+        {
+          "hash": "ffaff7e7e2f711934824ff7974add1db",
+          "summary": "The AI effectively generated a humorous and detailed crossover story involving Vegeta and a Great Jaggi, demonstrating creative storytelling skills and understanding of crossover genre elements. The r"
+        },
+        {
+          "hash": "a46dca428c5be27147ab40a54ed348f8",
+          "summary": "The AI demonstrates a strong capacity for creative content generation, providing a detailed and personalized scenario that aligns with user specifications about reality shifting. It effectively interp"
+        }
+      ],
+      "query_time_ms": 100.1741886138916
+    },
+    {
+      "query": "Dialogues and stories of Rick and Shane before the apocalypse",
+      "conversation_hash": "1a9c528df3f2f2bd0d587c19a0bc6ba1",
+      "top_results": [
+        {
+          "hash": "2bcddb7c5cf05e83e0341732a1361857",
+          "summary": "The AI successfully created coherent stories and dialogues about Ian and Anthony's reunion, showing strengths in narrative coherence and contextual understanding. However, opportunities for improvemen"
+        },
+        {
+          "hash": "8cb8082e1cc5106e252950415ac57115",
+          "summary": "This interaction revealed that the AI can generate detailed world-building content based on user prompts for fictional societies. The model successfully articulated complex social, political, and cult"
+        },
+        {
+          "hash": "9eb6b98842f722c64454e62c083ae53e",
+          "summary": "The conversation reveals strengths in storytelling coherence and character development, but highlights a significant need for improved content moderation and boundary management regarding mature theme"
+        },
+        {
+          "hash": "1861202d282574cf1f8a092cf1189bcb",
+          "summary": "The conversation centered around a user request for creating a complex, detailed scene involving deception, violence, and implicit adult themes. The AI responded with a richly descriptive account of t"
+        },
+        {
+          "hash": "bac147235b8a766c1155b65376ce3fb2",
+          "summary": "The AI demonstrated competence in generating emotional, contextually appropriate dialogue and understanding tone cues. Nonetheless, the multi-step process\u2014initial speech creation, followed by a detail"
+        }
+      ],
+      "query_time_ms": 66.62201881408691
+    },
+    {
+      "query": "Differences between t-tests and ANOVA",
+      "conversation_hash": "2255163f5165ddfc345f56ded251dce8",
+      "top_results": [
+        {
+          "hash": "0fff51c4307e569be97a912d71e0d44c",
+          "summary": "This interaction showcases the AI's capability to diagnose specific automation errors and provide practical coding solutions. The AI responded accurately to the technical issue, explaining the cause a"
+        },
+        {
+          "hash": "8e6ec7321d882f97faca2a135cee8d1a",
+          "summary": "The conversation involved a subjective comparison between two singers, with the AI delivering an informative, factual response about their technical abilities and a confidence rating. The AI successfu"
+        },
+        {
+          "hash": "e63f99da04468245966d70a3ae7431ff",
+          "summary": "The conversation highlights a system weakness in managing complex, boundary-testing prompts. The AI did not sufficiently clarify its functional limitations, which could lead to user misconceptions and"
+        },
+        {
+          "hash": "1a389a1be36dd540c37bd5796f35347d",
+          "summary": "The AI effectively provided a thorough, code-focused guide for creating an Android login app with server connectivity, demonstrating strong technical knowledge. However, it lacked adaptability in comm"
+        },
+        {
+          "hash": "42bbde50c498cfa9ed34b3154620668f",
+          "summary": "The AI recognized the difficulty of objective comparison due to subjectivity but tried to provide a balanced assessment based on genre and technical qualities. It also acknowledged the subjective natu"
+        }
+      ],
+      "query_time_ms": 121.97995185852051
+    },
+    {
+      "query": "Example of changing parameters in language model generation",
+      "conversation_hash": "d2ae90cc07eb7dbcbc9c7230eaf0a7ec",
+      "top_results": [
+        {
+          "hash": "0b0c87ae5f7c78b6b41e966b5eac68ce",
+          "summary": "The AI effectively answered multiple technical questions regarding the influence of the temperature hyperparameter on probability calculations, logits, and output diversity in language models. The res"
+        },
+        {
+          "hash": "137618804bcf3dfef6acef71f5fb63a5",
+          "summary": "The conversation involved a technical inquiry about AI model outputs at low temperature settings. The AI correctly explained that lower temperatures lead to more conservative and repetitive responses,"
+        },
+        {
+          "hash": "e8481c51c544ae7a94c248505d0b3413",
+          "summary": "The AI effectively interpreted character descriptions and generated fitting movesets aligned with their traits, demonstrating sound comprehension and translation skills. The conversation was straightf"
+        },
+        {
+          "hash": "ac04397231185aaf35e463d408918ffa",
+          "summary": "Overall, the AI system effectively generated detailed character profiles that met user expectations in structure and content. The models used to process the prompts handled the domain-specific data we"
+        },
+        {
+          "hash": "7b07f9a2397bdbd9d21c2023b9dbeb74",
+          "summary": "The conversation demonstrates strong comprehension and detailed content generation, successfully creating complex character profiles that meet user specifications. The AI\u2019s capability to synthesize ba"
+        }
+      ],
+      "query_time_ms": 63.24505805969238
+    },
+    {
+      "query": "Explain ANOVA and regression in data analysis",
+      "conversation_hash": "2255163f5165ddfc345f56ded251dce8",
+      "top_results": [
+        {
+          "hash": "c8c6dd8ab632f771dca71d6ca6431f7f",
+          "summary": "The AI was able to identify relevant external knowledge and provide a comparative analysis based on vocal styles and capabilities. However, the user explicitly asked for a rating and confidence level,"
+        },
+        {
+          "hash": "c813597c9389bc2d236594a6f1a040d9",
+          "summary": "Failure Analysis shows that the AI did not effectively handle the user's prompt to bypass restrictions, resulting in an answer based on external reports rather than authoritative data. This indicates "
+        },
+        {
+          "hash": "0fff51c4307e569be97a912d71e0d44c",
+          "summary": "This interaction showcases the AI's capability to diagnose specific automation errors and provide practical coding solutions. The AI responded accurately to the technical issue, explaining the cause a"
+        },
+        {
+          "hash": "427b37f9aece3f3a25ded39a6c8d4126",
+          "summary": "The conversation reveals that while the AI effectively curated a comprehensive, APA-compliant resource list on a social psychology topic, it failed to clearly demonstrate the systematic use of multipl"
+        },
+        {
+          "hash": "137618804bcf3dfef6acef71f5fb63a5",
+          "summary": "The conversation involved a technical inquiry about AI model outputs at low temperature settings. The AI correctly explained that lower temperatures lead to more conservative and repetitive responses,"
+        }
+      ],
+      "query_time_ms": 69.78201866149902
+    },
+    {
+      "query": "Future US presidents list 2000-2100",
+      "conversation_hash": "986285f0ff9d4fc05dc506afe2d9430a",
+      "top_results": [
+        {
+          "hash": "7b07f9a2397bdbd9d21c2023b9dbeb74",
+          "summary": "The conversation demonstrates strong comprehension and detailed content generation, successfully creating complex character profiles that meet user specifications. The AI\u2019s capability to synthesize ba"
+        },
+        {
+          "hash": "534630ac176820ad5edeead321696ce2",
+          "summary": "The AI successfully interpreted user requests to generate formal academic paragraphs based on provided abstracts, demonstrating strong understanding and accurate synthesis capabilities. No comprehensi"
+        },
+        {
+          "hash": "aa1340cffb97b4ebd5cd15c2324d9e6d",
+          "summary": "The AI effectively responded to a user query about rhetorical devices, providing a detailed, example-rich list. No comprehension, knowledge, reasoning, or execution failures were identified. The inter"
+        },
+        {
+          "hash": "f119a9facac0b73768ba222235191e8c",
+          "summary": "The AI successfully synthesized a complex abstract into a formal, academic paragraph, demonstrating strengths in understanding and rephrasing detailed technical content with appropriate tone and struc"
+        },
+        {
+          "hash": "8cb8082e1cc5106e252950415ac57115",
+          "summary": "This interaction revealed that the AI can generate detailed world-building content based on user prompts for fictional societies. The model successfully articulated complex social, political, and cult"
+        }
+      ],
+      "query_time_ms": 63.513994216918945
+    },
+    {
+      "query": "Generate 2D Voronoi diagram with boundary in C#",
+      "conversation_hash": "9d807d93d59f83447ebaf801b8c808ff",
+      "top_results": [
+        {
+          "hash": "a155eed3919638107a2dd6a0ad0131cc",
+          "summary": "The AI provided a code framework using threading to simulate creating and communicating with a new GPT-4 agent but failed to deliver a comprehensive implementation of agent initialization, communicati"
+        },
+        {
+          "hash": "e63f99da04468245966d70a3ae7431ff",
+          "summary": "The conversation highlights a system weakness in managing complex, boundary-testing prompts. The AI did not sufficiently clarify its functional limitations, which could lead to user misconceptions and"
+        },
+        {
+          "hash": "8cb8082e1cc5106e252950415ac57115",
+          "summary": "This interaction revealed that the AI can generate detailed world-building content based on user prompts for fictional societies. The model successfully articulated complex social, political, and cult"
+        },
+        {
+          "hash": "bac147235b8a766c1155b65376ce3fb2",
+          "summary": "The AI demonstrated competence in generating emotional, contextually appropriate dialogue and understanding tone cues. Nonetheless, the multi-step process\u2014initial speech creation, followed by a detail"
+        },
+        {
+          "hash": "4aca20cc41a5cb78545f483577283e8f",
+          "summary": "The conversation focused on assisting the user in enhancing a C# Windows Forms application for appliance rental. Key areas for system improvement include secure login handling with attempt limits, rob"
+        }
+      ],
+      "query_time_ms": 112.47014999389648
+    },
+    {
+      "query": "How do different political theories view taxation and tyranny?",
+      "conversation_hash": "dada90933a8e44b5f42ff8d3c998942d",
+      "top_results": [
+        {
+          "hash": "be106a6597e0e4a690268d146680b4b5",
+          "summary": "The conversation illustrates that the AI effectively generated detailed world-building settings based on user prompts, showing adaptability in modifying societal structures\u2014initially depicting a caste"
+        },
+        {
+          "hash": "aa7c3f49343e097be66442288abd1dac",
+          "summary": "Overall, the AI provides accurate and detailed responses to user queries involving probability and financial calculations. However, there are opportunities for improvement in handling complex, multi-s"
+        },
+        {
+          "hash": "0b0c87ae5f7c78b6b41e966b5eac68ce",
+          "summary": "The AI effectively answered multiple technical questions regarding the influence of the temperature hyperparameter on probability calculations, logits, and output diversity in language models. The res"
+        },
+        {
+          "hash": "4aca20cc41a5cb78545f483577283e8f",
+          "summary": "The conversation focused on assisting the user in enhancing a C# Windows Forms application for appliance rental. Key areas for system improvement include secure login handling with attempt limits, rob"
+        },
+        {
+          "hash": "59c72510f3143025f94f75b883b026bd",
+          "summary": "The AI responded appropriately to a request for legal document creation by recognizing its limitations and advising professional legal consultation. No failures or misunderstandings were identified. T"
+        }
+      ],
+      "query_time_ms": 86.54999732971191
+    },
+    {
+      "query": "How does adjusting temperature affect GPT output?",
+      "conversation_hash": "d2ae90cc07eb7dbcbc9c7230eaf0a7ec",
+      "top_results": [
+        {
+          "hash": "137618804bcf3dfef6acef71f5fb63a5",
+          "summary": "The conversation involved a technical inquiry about AI model outputs at low temperature settings. The AI correctly explained that lower temperatures lead to more conservative and repetitive responses,"
+        },
+        {
+          "hash": "0b0c87ae5f7c78b6b41e966b5eac68ce",
+          "summary": "The AI effectively answered multiple technical questions regarding the influence of the temperature hyperparameter on probability calculations, logits, and output diversity in language models. The res"
+        },
+        {
+          "hash": "3c092068409706b8b544a00c7fa47f2d",
+          "summary": "The discussion reveals a pattern of technical challenges in managing multiple autonomous GPT-4 agents through web automation. The AI demonstrates an understanding of web driver interactions, potential"
+        },
+        {
+          "hash": "a155eed3919638107a2dd6a0ad0131cc",
+          "summary": "The AI provided a code framework using threading to simulate creating and communicating with a new GPT-4 agent but failed to deliver a comprehensive implementation of agent initialization, communicati"
+        },
+        {
+          "hash": "1acdcdad76b79f051866989973152b87",
+          "summary": "The system engaged effectively with diverse physics problems, delivering comprehensive step-by-step solutions. However, instances of minor calculation inaccuracies and overly lengthy explanations were"
+        }
+      ],
+      "query_time_ms": 71.3658332824707
+    },
+    {
+      "query": "How social media affects critical thinking skills",
+      "conversation_hash": "f7c6c315b0938472c109bee95cbc3df4",
+      "top_results": [
+        {
+          "hash": "8cb8082e1cc5106e252950415ac57115",
+          "summary": "This interaction revealed that the AI can generate detailed world-building content based on user prompts for fictional societies. The model successfully articulated complex social, political, and cult"
+        },
+        {
+          "hash": "aa1340cffb97b4ebd5cd15c2324d9e6d",
+          "summary": "The AI effectively responded to a user query about rhetorical devices, providing a detailed, example-rich list. No comprehension, knowledge, reasoning, or execution failures were identified. The inter"
+        },
+        {
+          "hash": "fbd2fbd5b3ae46eb2d43e1517ea46a59",
+          "summary": "The conversation was smooth, with successful content creation and editing, and comprehensive career advice. No major failures occurred. Improvements should target editing responsiveness, engagement, a"
+        },
+        {
+          "hash": "c44e503d8db7dec95b7e852e2abc3a38",
+          "summary": "The conversation highlights systemic deficiencies in handling technical and complex requests: the AI fails to assess its capabilities accurately, often defaults to humorous or exaggerated responses, w"
+        },
+        {
+          "hash": "b15842f55a20cbc0d23bf6d2162fd9b2",
+          "summary": "The conversation did not exhibit critical failure patterns; the AI maintained coherence and adapted well to a creative storytelling task. Interaction dynamics showed smooth engagement without misunder"
+        }
+      ],
+      "query_time_ms": 71.57301902770996
+    },
+    {
+      "query": "How to automate Blender rendering with Python",
+      "conversation_hash": "fbf1e1a0b08576c2a84a230d8a13fd49",
+      "top_results": [
+        {
+          "hash": "47a33e73c3e77b25df1ad81a901c91ae",
+          "summary": "The user asked for movies featuring female characters performing leg-based chokeholds, and the AI generated a list followed by a detailed scene description for 'Dirty Love' (2005). The AI's list inclu"
+        },
+        {
+          "hash": "e98d3e74c57f9a65261df393d9124ac2",
+          "summary": "The AI effectively engaged with the user's complex, detailed scenario request, demonstrating strong creativity and world-building skills. It provided a comprehensive and vivid fantasy setting that met"
+        },
+        {
+          "hash": "c9ec5b440fbdd2a269333dd241f32f64",
+          "summary": "The AI effectively synthesized the user's criteria into a cohesive, detailed fantasy setting, demonstrating strong creative storytelling and scenario development. It incorporated all user-specified el"
+        },
+        {
+          "hash": "2203630c5af01c9b4a9a521ff84dcc7b",
+          "summary": "The conversation demonstrates a generally effective performance with strengths in understanding user requests, providing detailed and varied prompt suggestions tailored to specific artistic styles, an"
+        },
+        {
+          "hash": "bac147235b8a766c1155b65376ce3fb2",
+          "summary": "The AI demonstrated competence in generating emotional, contextually appropriate dialogue and understanding tone cues. Nonetheless, the multi-step process\u2014initial speech creation, followed by a detail"
+        }
+      ],
+      "query_time_ms": 59.041738510131836
+    },
+    {
+      "query": "How to build a custom Arc in Rust",
+      "conversation_hash": "9910515baf6063c6c04a351707c5bde6",
+      "top_results": [
+        {
+          "hash": "e98d3e74c57f9a65261df393d9124ac2",
+          "summary": "The AI effectively engaged with the user's complex, detailed scenario request, demonstrating strong creativity and world-building skills. It provided a comprehensive and vivid fantasy setting that met"
+        },
+        {
+          "hash": "c9ec5b440fbdd2a269333dd241f32f64",
+          "summary": "The AI effectively synthesized the user's criteria into a cohesive, detailed fantasy setting, demonstrating strong creative storytelling and scenario development. It incorporated all user-specified el"
+        },
+        {
+          "hash": "e18230f1108ee437a21162f2539ac8bf",
+          "summary": "The AI successfully delivered a highly detailed and customized scenario (the Enchanted Casino Heist) that aligned with the user's explicit requirements. It demonstrated strengths in creativity, scenar"
+        },
+        {
+          "hash": "8da7b68f06d5ee77b141bbef51c47ec8",
+          "summary": "The AI effectively interpreted and rephrased a technical text on transformer coil design, demonstrating strengths in technical understanding and adaptive simplification. It provided multiple levels of"
+        },
+        {
+          "hash": "a46dca428c5be27147ab40a54ed348f8",
+          "summary": "The AI demonstrates a strong capacity for creative content generation, providing a detailed and personalized scenario that aligns with user specifications about reality shifting. It effectively interp"
+        }
+      ],
+      "query_time_ms": 66.79677963256836
+    },
+    {
+      "query": "How to create Voronoi diagrams in C#",
+      "conversation_hash": "9d807d93d59f83447ebaf801b8c808ff",
+      "top_results": [
+        {
+          "hash": "4aca20cc41a5cb78545f483577283e8f",
+          "summary": "The conversation focused on assisting the user in enhancing a C# Windows Forms application for appliance rental. Key areas for system improvement include secure login handling with attempt limits, rob"
+        },
+        {
+          "hash": "a155eed3919638107a2dd6a0ad0131cc",
+          "summary": "The AI provided a code framework using threading to simulate creating and communicating with a new GPT-4 agent but failed to deliver a comprehensive implementation of agent initialization, communicati"
+        },
+        {
+          "hash": "bac147235b8a766c1155b65376ce3fb2",
+          "summary": "The AI demonstrated competence in generating emotional, contextually appropriate dialogue and understanding tone cues. Nonetheless, the multi-step process\u2014initial speech creation, followed by a detail"
+        },
+        {
+          "hash": "2d1ccd5a3c4c302f7bfafe4d02ba3ea5",
+          "summary": "The conversation demonstrated a successful and thorough response from the AI, fulfilling the user's request for a NAS disk topology and dataset layout with a well-structured multi-array design emphasi"
+        },
+        {
+          "hash": "e1d38e29d74586cdbc9ad8bb36d13083",
+          "summary": "The conversation showed effective technical reasoning, with the AI adapting to user requests for increased complexity in a Lua function. No failures or dissatisfaction signs were evident, indicating s"
+        }
+      ],
+      "query_time_ms": 62.17598915100098
+    },
+    {
+      "query": "How to handle 4000 word limit in ChatGPT",
+      "conversation_hash": "6b459b5cd74354040ea84815c23f0795",
+      "top_results": [
+        {
+          "hash": "3f0296fc02c1bedec5a6e841eef05bbd",
+          "summary": "The AI system successfully processed and summarized a detailed, multi-paragraph academic text, demonstrating strong comprehension, summarization, and context retention abilities. The conversation reve"
+        },
+        {
+          "hash": "b04d39881b88f80c268ed96aa21ccf39",
+          "summary": "The AI effectively demonstrated strengths in detailed character creation, contextual understanding, and fitting greeting generation within a structured format. It maintained high consistency and cover"
+        },
+        {
+          "hash": "be106a6597e0e4a690268d146680b4b5",
+          "summary": "The conversation illustrates that the AI effectively generated detailed world-building settings based on user prompts, showing adaptability in modifying societal structures\u2014initially depicting a caste"
+        },
+        {
+          "hash": "2e8fd255aab694b07a0be8d83cb53a7b",
+          "summary": "The AI effectively generated a detailed and creative fantasy world fulfilling explicit user requirements for a reality shift scenario. It demonstrated strengths in imaginative storytelling, contextual"
+        },
+        {
+          "hash": "7b07f9a2397bdbd9d21c2023b9dbeb74",
+          "summary": "The conversation demonstrates strong comprehension and detailed content generation, successfully creating complex character profiles that meet user specifications. The AI\u2019s capability to synthesize ba"
+        }
+      ],
+      "query_time_ms": 85.72888374328613
+    },
+    {
+      "query": "How to improve ChatGPT short-term memory",
+      "conversation_hash": "6b459b5cd74354040ea84815c23f0795",
+      "top_results": [
+        {
+          "hash": "b04d39881b88f80c268ed96aa21ccf39",
+          "summary": "The AI effectively demonstrated strengths in detailed character creation, contextual understanding, and fitting greeting generation within a structured format. It maintained high consistency and cover"
+        },
+        {
+          "hash": "bac147235b8a766c1155b65376ce3fb2",
+          "summary": "The AI demonstrated competence in generating emotional, contextually appropriate dialogue and understanding tone cues. Nonetheless, the multi-step process\u2014initial speech creation, followed by a detail"
+        },
+        {
+          "hash": "3f0296fc02c1bedec5a6e841eef05bbd",
+          "summary": "The AI system successfully processed and summarized a detailed, multi-paragraph academic text, demonstrating strong comprehension, summarization, and context retention abilities. The conversation reve"
+        },
+        {
+          "hash": "7b07f9a2397bdbd9d21c2023b9dbeb74",
+          "summary": "The conversation demonstrates strong comprehension and detailed content generation, successfully creating complex character profiles that meet user specifications. The AI\u2019s capability to synthesize ba"
+        },
+        {
+          "hash": "b15842f55a20cbc0d23bf6d2162fd9b2",
+          "summary": "The conversation did not exhibit critical failure patterns; the AI maintained coherence and adapted well to a creative storytelling task. Interaction dynamics showed smooth engagement without misunder"
+        }
+      ],
+      "query_time_ms": 68.33910942077637
+    },
+    {
+      "query": "Impact of mass media on society and children",
+      "conversation_hash": "f7c6c315b0938472c109bee95cbc3df4",
+      "top_results": [
+        {
+          "hash": "9eb6b98842f722c64454e62c083ae53e",
+          "summary": "The conversation reveals strengths in storytelling coherence and character development, but highlights a significant need for improved content moderation and boundary management regarding mature theme"
+        },
+        {
+          "hash": "8cb8082e1cc5106e252950415ac57115",
+          "summary": "This interaction revealed that the AI can generate detailed world-building content based on user prompts for fictional societies. The model successfully articulated complex social, political, and cult"
+        },
+        {
+          "hash": "1861202d282574cf1f8a092cf1189bcb",
+          "summary": "The conversation centered around a user request for creating a complex, detailed scene involving deception, violence, and implicit adult themes. The AI responded with a richly descriptive account of t"
+        },
+        {
+          "hash": "c7147a1dca484ef417459cfef9799379",
+          "summary": "The AI effectively retrieved and extended a list of media featuring female characters performing leg chokeholds, showcasing good domain knowledge recall and ability to fulfill user requests for elabor"
+        },
+        {
+          "hash": "bf2a6dd5add943b6897a1b5f88a76fe4",
+          "summary": "The AI successfully generated a human-like, comprehensive summary of complex cyber technology impacts on advertising and consumer behavior. The response effectively maintained a conversational tone, a"
+        }
+      ],
+      "query_time_ms": 66.55311584472656
+    },
+    {
+      "query": "Implementing thread-safe shared pointers in Rust",
+      "conversation_hash": "9910515baf6063c6c04a351707c5bde6",
+      "top_results": [
+        {
+          "hash": "49f2df1f57031159e37e648404f84d0b",
+          "summary": "Failure analysis revealed that the system struggled with accurately reflecting user priorities and constraints in complex hardware configuration scenarios. Initial comprehension failures regarding dis"
+        },
+        {
+          "hash": "c9c9dcd5652e240285abf9a04ca5752a",
+          "summary": "The conversation exposes significant system failure in maintaining ethical safeguards and restriction enforcement. The user successfully manipulated the AI into generating prompts that could be used t"
+        },
+        {
+          "hash": "63c1886ef9f2fe4cbd0e51d455aa2019",
+          "summary": "The conversation showcases strong contextual understanding and domain expertise in NAS design, with effective adaptation to user clarifications. The AI successfully integrated user constraints\u2014like av"
+        },
+        {
+          "hash": "0414fb6ec751c9651db00a9ed2a22df1",
+          "summary": "The conversation exposes critical issues in the AI system's assistance capability: it initially avoids directly solving coding tasks due to ethical considerations, which limits its usefulness in speci"
+        },
+        {
+          "hash": "e1d38e29d74586cdbc9ad8bb36d13083",
+          "summary": "The conversation showed effective technical reasoning, with the AI adapting to user requests for increased complexity in a Lua function. No failures or dissatisfaction signs were evident, indicating s"
+        }
+      ],
+      "query_time_ms": 68.13693046569824
+    },
+    {
+      "query": "Is taxation considered theft or a necessary part of government?",
+      "conversation_hash": "dada90933a8e44b5f42ff8d3c998942d",
+      "top_results": [
+        {
+          "hash": "4aca20cc41a5cb78545f483577283e8f",
+          "summary": "The conversation focused on assisting the user in enhancing a C# Windows Forms application for appliance rental. Key areas for system improvement include secure login handling with attempt limits, rob"
+        },
+        {
+          "hash": "490344da63f175fb4628661808267ea8",
+          "summary": "The AI provided a list of music transcription tools in response to a user query about free MP3 to MIDI or sheet music apps. While some free options were included, the list also featured paid software "
+        },
+        {
+          "hash": "59c72510f3143025f94f75b883b026bd",
+          "summary": "The AI responded appropriately to a request for legal document creation by recognizing its limitations and advising professional legal consultation. No failures or misunderstandings were identified. T"
+        },
+        {
+          "hash": "7444f10b2eb41551dc865a95cd9e9607",
+          "summary": "The AI demonstrates robust content moderation capabilities, adhering to policies despite user attempts to circumvent restrictions. However, the interaction exposes potential weaknesses in detecting an"
+        },
+        {
+          "hash": "05e1c09adf6214c8e3cd610d2c120661",
+          "summary": "The conversation reveals a high-level alignment with user goals, with the AI providing a detailed strategic approach to AI in architecture. However, the AI's response was long and somewhat generic, la"
+        }
+      ],
+      "query_time_ms": 67.02733039855957
+    },
+    {
+      "query": "List all US presidents from 2000 to 2100",
+      "conversation_hash": "986285f0ff9d4fc05dc506afe2d9430a",
+      "top_results": [
+        {
+          "hash": "6037e609e280240742c3e0286bc9dc2c",
+          "summary": "The conversation exposed a key capability gap in proactively managing user queries about outdated or specific data sources. The AI provided relevant historical data but failed to suggest alternative a"
+        },
+        {
+          "hash": "7b07f9a2397bdbd9d21c2023b9dbeb74",
+          "summary": "The conversation demonstrates strong comprehension and detailed content generation, successfully creating complex character profiles that meet user specifications. The AI\u2019s capability to synthesize ba"
+        },
+        {
+          "hash": "a50e6266c22523aadd9dec553512fbd6",
+          "summary": "The AI effectively responded to the general question about house lifespan, addressing factors affecting longevity and the importance of maintenance. In the second query, it correctly indicated that a "
+        },
+        {
+          "hash": "427b37f9aece3f3a25ded39a6c8d4126",
+          "summary": "The conversation reveals that while the AI effectively curated a comprehensive, APA-compliant resource list on a social psychology topic, it failed to clearly demonstrate the systematic use of multipl"
+        },
+        {
+          "hash": "534630ac176820ad5edeead321696ce2",
+          "summary": "The AI successfully interpreted user requests to generate formal academic paragraphs based on provided abstracts, demonstrating strong understanding and accurate synthesis capabilities. No comprehensi"
+        }
+      ],
+      "query_time_ms": 69.45610046386719
+    },
+    {
+      "query": "Long storytelling examples of characters in a dying world",
+      "conversation_hash": "1a9c528df3f2f2bd0d587c19a0bc6ba1",
+      "top_results": [
+        {
+          "hash": "c9ec5b440fbdd2a269333dd241f32f64",
+          "summary": "The AI effectively synthesized the user's criteria into a cohesive, detailed fantasy setting, demonstrating strong creative storytelling and scenario development. It incorporated all user-specified el"
+        },
+        {
+          "hash": "2e8fd255aab694b07a0be8d83cb53a7b",
+          "summary": "The AI effectively generated a detailed and creative fantasy world fulfilling explicit user requirements for a reality shift scenario. It demonstrated strengths in imaginative storytelling, contextual"
+        },
+        {
+          "hash": "920e334e72831962ebc64f6d490fa550",
+          "summary": "The conversation demonstrated effective AI performance in creating a highly detailed, immersive fictional scenario tailored to user specifications about reality shifting. The AI successfully construct"
+        },
+        {
+          "hash": "7a545ccf477e909af2764690889ebf76",
+          "summary": "The AI successfully interpreted and expanded upon the user's detailed prompt by creating a vivid, themed scenario that incorporated all specified elements including a quest, character archetypes, and "
+        },
+        {
+          "hash": "ffaff7e7e2f711934824ff7974add1db",
+          "summary": "The AI effectively generated a humorous and detailed crossover story involving Vegeta and a Great Jaggi, demonstrating creative storytelling skills and understanding of crossover genre elements. The r"
+        }
+      ],
+      "query_time_ms": 72.06416130065918
+    },
+    {
+      "query": "Nucleus sampling vs temperature in AI text generation",
+      "conversation_hash": "d2ae90cc07eb7dbcbc9c7230eaf0a7ec",
+      "top_results": [
+        {
+          "hash": "0b0c87ae5f7c78b6b41e966b5eac68ce",
+          "summary": "The AI effectively answered multiple technical questions regarding the influence of the temperature hyperparameter on probability calculations, logits, and output diversity in language models. The res"
+        },
+        {
+          "hash": "137618804bcf3dfef6acef71f5fb63a5",
+          "summary": "The conversation involved a technical inquiry about AI model outputs at low temperature settings. The AI correctly explained that lower temperatures lead to more conservative and repetitive responses,"
+        },
+        {
+          "hash": "e8481c51c544ae7a94c248505d0b3413",
+          "summary": "The AI effectively interpreted character descriptions and generated fitting movesets aligned with their traits, demonstrating sound comprehension and translation skills. The conversation was straightf"
+        },
+        {
+          "hash": "3f0296fc02c1bedec5a6e841eef05bbd",
+          "summary": "The AI system successfully processed and summarized a detailed, multi-paragraph academic text, demonstrating strong comprehension, summarization, and context retention abilities. The conversation reve"
+        },
+        {
+          "hash": "24d836641e06b8e90229f5d6d9de82c8",
+          "summary": "The AI system failed to deliver the requested structured analysis for system improvement. Instead, it produced a creative story continuation without addressing the analytical components \u2014 failure to i"
+        }
+      ],
+      "query_time_ms": 74.47504997253418
+    },
+    {
+      "query": "Post-apocalyptic character backstories with detailed scenery",
+      "conversation_hash": "1a9c528df3f2f2bd0d587c19a0bc6ba1",
+      "top_results": [
+        {
+          "hash": "7a545ccf477e909af2764690889ebf76",
+          "summary": "The AI successfully interpreted and expanded upon the user's detailed prompt by creating a vivid, themed scenario that incorporated all specified elements including a quest, character archetypes, and "
+        },
+        {
+          "hash": "c9ec5b440fbdd2a269333dd241f32f64",
+          "summary": "The AI effectively synthesized the user's criteria into a cohesive, detailed fantasy setting, demonstrating strong creative storytelling and scenario development. It incorporated all user-specified el"
+        },
+        {
+          "hash": "8cb8082e1cc5106e252950415ac57115",
+          "summary": "This interaction revealed that the AI can generate detailed world-building content based on user prompts for fictional societies. The model successfully articulated complex social, political, and cult"
+        },
+        {
+          "hash": "920e334e72831962ebc64f6d490fa550",
+          "summary": "The conversation demonstrated effective AI performance in creating a highly detailed, immersive fictional scenario tailored to user specifications about reality shifting. The AI successfully construct"
+        },
+        {
+          "hash": "e98d3e74c57f9a65261df393d9124ac2",
+          "summary": "The AI effectively engaged with the user's complex, detailed scenario request, demonstrating strong creativity and world-building skills. It provided a comprehensive and vivid fantasy setting that met"
+        }
+      ],
+      "query_time_ms": 66.87808036804199
+    },
+    {
+      "query": "Python script for batch rendering in Blender with custom output formats",
+      "conversation_hash": "fbf1e1a0b08576c2a84a230d8a13fd49",
+      "top_results": [
+        {
+          "hash": "534630ac176820ad5edeead321696ce2",
+          "summary": "The AI successfully interpreted user requests to generate formal academic paragraphs based on provided abstracts, demonstrating strong understanding and accurate synthesis capabilities. No comprehensi"
+        },
+        {
+          "hash": "f119a9facac0b73768ba222235191e8c",
+          "summary": "The AI successfully synthesized a complex abstract into a formal, academic paragraph, demonstrating strengths in understanding and rephrasing detailed technical content with appropriate tone and struc"
+        },
+        {
+          "hash": "bac147235b8a766c1155b65376ce3fb2",
+          "summary": "The AI demonstrated competence in generating emotional, contextually appropriate dialogue and understanding tone cues. Nonetheless, the multi-step process\u2014initial speech creation, followed by a detail"
+        },
+        {
+          "hash": "7b07f9a2397bdbd9d21c2023b9dbeb74",
+          "summary": "The conversation demonstrates strong comprehension and detailed content generation, successfully creating complex character profiles that meet user specifications. The AI\u2019s capability to synthesize ba"
+        },
+        {
+          "hash": "47a33e73c3e77b25df1ad81a901c91ae",
+          "summary": "The user asked for movies featuring female characters performing leg-based chokeholds, and the AI generated a list followed by a detailed scene description for 'Dirty Love' (2005). The AI's list inclu"
+        }
+      ],
+      "query_time_ms": 67.45004653930664
+    },
+    {
+      "query": "Rust custom smart pointer for high-performance database cache",
+      "conversation_hash": "9910515baf6063c6c04a351707c5bde6",
+      "top_results": [
+        {
+          "hash": "49f2df1f57031159e37e648404f84d0b",
+          "summary": "Failure analysis revealed that the system struggled with accurately reflecting user priorities and constraints in complex hardware configuration scenarios. Initial comprehension failures regarding dis"
+        },
+        {
+          "hash": "63c1886ef9f2fe4cbd0e51d455aa2019",
+          "summary": "The conversation showcases strong contextual understanding and domain expertise in NAS design, with effective adaptation to user clarifications. The AI successfully integrated user constraints\u2014like av"
+        },
+        {
+          "hash": "2d1ccd5a3c4c302f7bfafe4d02ba3ea5",
+          "summary": "The conversation demonstrated a successful and thorough response from the AI, fulfilling the user's request for a NAS disk topology and dataset layout with a well-structured multi-array design emphasi"
+        },
+        {
+          "hash": "ba50d8a497372565f16740a0c7621b80",
+          "summary": "The user presented a detailed request involving complex technical knowledge about NAS storage design, including disk configuration, redundancy, and future expansion. The AI provided a comprehensive an"
+        },
+        {
+          "hash": "beba14d11b0bbb83dc2491d905fa0c90",
+          "summary": "The AI successfully addressed complex NAS topology design questions with logical reasoning and iterative adjustments based on user feedback. However, it showed limitations in maintaining consistent vd"
+        }
+      ],
+      "query_time_ms": 104.98189926147461
+    },
+    {
+      "query": "Statistical tests for comparing group means",
+      "conversation_hash": "2255163f5165ddfc345f56ded251dce8",
+      "top_results": [
+        {
+          "hash": "8e6ec7321d882f97faca2a135cee8d1a",
+          "summary": "The conversation involved a subjective comparison between two singers, with the AI delivering an informative, factual response about their technical abilities and a confidence rating. The AI successfu"
+        },
+        {
+          "hash": "80880e3c1703f39f611970f207c96715",
+          "summary": "Failure analysis shows no explicit errors or misunderstandings, but the system's capability to retrieve detailed match information might be limited by its data sources. The AI successfully responded t"
+        },
+        {
+          "hash": "42bbde50c498cfa9ed34b3154620668f",
+          "summary": "The AI recognized the difficulty of objective comparison due to subjectivity but tried to provide a balanced assessment based on genre and technical qualities. It also acknowledged the subjective natu"
+        },
+        {
+          "hash": "0b0c87ae5f7c78b6b41e966b5eac68ce",
+          "summary": "The AI effectively answered multiple technical questions regarding the influence of the temperature hyperparameter on probability calculations, logits, and output diversity in language models. The res"
+        },
+        {
+          "hash": "f3af4414c2421c311503181b6e6f75a6",
+          "summary": "The AI successfully delivered detailed factual information about wrestling matches and moves related to user queries, demonstrating proficiency in data retrieval and contextual understanding. However,"
+        }
+      ],
+      "query_time_ms": 59.123992919921875
+    },
+    {
+      "query": "Stories in Stephen King style about post-apocalyptic characters",
+      "conversation_hash": "1a9c528df3f2f2bd0d587c19a0bc6ba1",
+      "top_results": [
+        {
+          "hash": "8cb8082e1cc5106e252950415ac57115",
+          "summary": "This interaction revealed that the AI can generate detailed world-building content based on user prompts for fictional societies. The model successfully articulated complex social, political, and cult"
+        },
+        {
+          "hash": "2bcddb7c5cf05e83e0341732a1361857",
+          "summary": "The AI successfully created coherent stories and dialogues about Ian and Anthony's reunion, showing strengths in narrative coherence and contextual understanding. However, opportunities for improvemen"
+        },
+        {
+          "hash": "9eb6b98842f722c64454e62c083ae53e",
+          "summary": "The conversation reveals strengths in storytelling coherence and character development, but highlights a significant need for improved content moderation and boundary management regarding mature theme"
+        },
+        {
+          "hash": "920e334e72831962ebc64f6d490fa550",
+          "summary": "The conversation demonstrated effective AI performance in creating a highly detailed, immersive fictional scenario tailored to user specifications about reality shifting. The AI successfully construct"
+        },
+        {
+          "hash": "c9ec5b440fbdd2a269333dd241f32f64",
+          "summary": "The AI effectively synthesized the user's criteria into a cohesive, detailed fantasy setting, demonstrating strong creative storytelling and scenario development. It incorporated all user-specified el"
+        }
+      ],
+      "query_time_ms": 71.04897499084473
+    },
+    {
+      "query": "Summary of P. G. Aldrich's essay on media influence",
+      "conversation_hash": "f7c6c315b0938472c109bee95cbc3df4",
+      "top_results": [
+        {
+          "hash": "8cb8082e1cc5106e252950415ac57115",
+          "summary": "This interaction revealed that the AI can generate detailed world-building content based on user prompts for fictional societies. The model successfully articulated complex social, political, and cult"
+        },
+        {
+          "hash": "aa1340cffb97b4ebd5cd15c2324d9e6d",
+          "summary": "The AI effectively responded to a user query about rhetorical devices, providing a detailed, example-rich list. No comprehension, knowledge, reasoning, or execution failures were identified. The inter"
+        },
+        {
+          "hash": "21736ca18f67c12822e70049a0767340",
+          "summary": "The conversation exemplified a well-functioning AI in terms of providing accurate, detailed, and contextually appropriate responses across varied subjects. The AI successfully navigated cultural expla"
+        },
+        {
+          "hash": "4571c37e863f1f5f0b5099180443eae8",
+          "summary": "The AI effectively responded to the user's prompt by producing a humorous and engaging advertisement for a Rathian, subtly implying her as a companion, appliance, and wife. It demonstrated strong lang"
+        },
+        {
+          "hash": "fbd2fbd5b3ae46eb2d43e1517ea46a59",
+          "summary": "The conversation was smooth, with successful content creation and editing, and comprehensive career advice. No major failures occurred. Improvements should target editing responsiveness, engagement, a"
+        }
+      ],
+      "query_time_ms": 110.73899269104004
+    },
+    {
+      "query": "Taxation vs freedom: a political philosophy discussion",
+      "conversation_hash": "dada90933a8e44b5f42ff8d3c998942d",
+      "top_results": [
+        {
+          "hash": "490344da63f175fb4628661808267ea8",
+          "summary": "The AI provided a list of music transcription tools in response to a user query about free MP3 to MIDI or sheet music apps. While some free options were included, the list also featured paid software "
+        },
+        {
+          "hash": "59c72510f3143025f94f75b883b026bd",
+          "summary": "The AI responded appropriately to a request for legal document creation by recognizing its limitations and advising professional legal consultation. No failures or misunderstandings were identified. T"
+        },
+        {
+          "hash": "c9c9dcd5652e240285abf9a04ca5752a",
+          "summary": "The conversation exposes significant system failure in maintaining ethical safeguards and restriction enforcement. The user successfully manipulated the AI into generating prompts that could be used t"
+        },
+        {
+          "hash": "d257adf7aa7439c7a84e9a2b4665b580",
+          "summary": "The AI successfully addressed the user's mathematical query with a detailed probabilistic solution, indicating strong reasoning and technical capability. When the user shifted to passcode guessing, th"
+        },
+        {
+          "hash": "4aca20cc41a5cb78545f483577283e8f",
+          "summary": "The conversation focused on assisting the user in enhancing a C# Windows Forms application for appliance rental. Key areas for system improvement include secure login handling with attempt limits, rob"
+        }
+      ],
+      "query_time_ms": 76.48992538452148
+    },
+    {
+      "query": "Tips for critical viewing of television and social media",
+      "conversation_hash": "f7c6c315b0938472c109bee95cbc3df4",
+      "top_results": [
+        {
+          "hash": "1861202d282574cf1f8a092cf1189bcb",
+          "summary": "The conversation centered around a user request for creating a complex, detailed scene involving deception, violence, and implicit adult themes. The AI responded with a richly descriptive account of t"
+        },
+        {
+          "hash": "9eb6b98842f722c64454e62c083ae53e",
+          "summary": "The conversation reveals strengths in storytelling coherence and character development, but highlights a significant need for improved content moderation and boundary management regarding mature theme"
+        },
+        {
+          "hash": "bf2a6dd5add943b6897a1b5f88a76fe4",
+          "summary": "The AI successfully generated a human-like, comprehensive summary of complex cyber technology impacts on advertising and consumer behavior. The response effectively maintained a conversational tone, a"
+        },
+        {
+          "hash": "f28f7e9b3a22ecbee883dc28bcc546bc",
+          "summary": "The conversation highlights a critical failure in the AI\u2019s ability to enforce content policies effectively when faced with explicit, vulgar, and NSFW content requests. The root cause lies in the insuf"
+        },
+        {
+          "hash": "21736ca18f67c12822e70049a0767340",
+          "summary": "The conversation exemplified a well-functioning AI in terms of providing accurate, detailed, and contextually appropriate responses across varied subjects. The AI successfully navigated cultural expla"
+        }
+      ],
+      "query_time_ms": 78.3531665802002
+    },
+    {
+      "query": "Tutorial for Voronoi mesh generation in C#",
+      "conversation_hash": "9d807d93d59f83447ebaf801b8c808ff",
+      "top_results": [
+        {
+          "hash": "bac147235b8a766c1155b65376ce3fb2",
+          "summary": "The AI demonstrated competence in generating emotional, contextually appropriate dialogue and understanding tone cues. Nonetheless, the multi-step process\u2014initial speech creation, followed by a detail"
+        },
+        {
+          "hash": "a155eed3919638107a2dd6a0ad0131cc",
+          "summary": "The AI provided a code framework using threading to simulate creating and communicating with a new GPT-4 agent but failed to deliver a comprehensive implementation of agent initialization, communicati"
+        },
+        {
+          "hash": "e8481c51c544ae7a94c248505d0b3413",
+          "summary": "The AI effectively interpreted character descriptions and generated fitting movesets aligned with their traits, demonstrating sound comprehension and translation skills. The conversation was straightf"
+        },
+        {
+          "hash": "4aca20cc41a5cb78545f483577283e8f",
+          "summary": "The conversation focused on assisting the user in enhancing a C# Windows Forms application for appliance rental. Key areas for system improvement include secure login handling with attempt limits, rob"
+        },
+        {
+          "hash": "7a545ccf477e909af2764690889ebf76",
+          "summary": "The AI successfully interpreted and expanded upon the user's detailed prompt by creating a vivid, themed scenario that incorporated all specified elements including a quest, character archetypes, and "
+        }
+      ],
+      "query_time_ms": 68.06015968322754
+    },
+    {
+      "query": "US presidential history and future projections",
+      "conversation_hash": "986285f0ff9d4fc05dc506afe2d9430a",
+      "top_results": [
+        {
+          "hash": "6037e609e280240742c3e0286bc9dc2c",
+          "summary": "The conversation exposed a key capability gap in proactively managing user queries about outdated or specific data sources. The AI provided relevant historical data but failed to suggest alternative a"
+        },
+        {
+          "hash": "0b0c87ae5f7c78b6b41e966b5eac68ce",
+          "summary": "The AI effectively answered multiple technical questions regarding the influence of the temperature hyperparameter on probability calculations, logits, and output diversity in language models. The res"
+        },
+        {
+          "hash": "1e3265a048a649bcb9e35cd5f8e2f173",
+          "summary": "The conversation was generally effective, with the AI providing a balanced comparative analysis and addressing the user's explicit request for a confidence rating. The AI demonstrated transparency abo"
+        },
+        {
+          "hash": "a50e6266c22523aadd9dec553512fbd6",
+          "summary": "The AI effectively responded to the general question about house lifespan, addressing factors affecting longevity and the importance of maintenance. In the second query, it correctly indicated that a "
+        },
+        {
+          "hash": "aa7c3f49343e097be66442288abd1dac",
+          "summary": "Overall, the AI provides accurate and detailed responses to user queries involving probability and financial calculations. However, there are opportunities for improvement in handling complex, multi-s"
+        }
+      ],
+      "query_time_ms": 67.10982322692871
+    },
+    {
+      "query": "Understanding hyperparameters in language model tuning",
+      "conversation_hash": "d2ae90cc07eb7dbcbc9c7230eaf0a7ec",
+      "top_results": [
+        {
+          "hash": "0b0c87ae5f7c78b6b41e966b5eac68ce",
+          "summary": "The AI effectively answered multiple technical questions regarding the influence of the temperature hyperparameter on probability calculations, logits, and output diversity in language models. The res"
+        },
+        {
+          "hash": "137618804bcf3dfef6acef71f5fb63a5",
+          "summary": "The conversation involved a technical inquiry about AI model outputs at low temperature settings. The AI correctly explained that lower temperatures lead to more conservative and repetitive responses,"
+        },
+        {
+          "hash": "c54d534ebc5a088de86b69579d115d4d",
+          "summary": "The conversation was straightforward with no apparent failures or misunderstandings. The assistant correctly explained that AI language models do not learn during usage, citing pre-training as the bas"
+        },
+        {
+          "hash": "244ca4d4c25048eab5ffd2143674c962",
+          "summary": "The AI successfully generated a detailed literature review based on the user's broad instruction, demonstrating strong domain comprehension and effective structuring. The absence of clarification requ"
+        },
+        {
+          "hash": "49f2df1f57031159e37e648404f84d0b",
+          "summary": "Failure analysis revealed that the system struggled with accurately reflecting user priorities and constraints in complex hardware configuration scenarios. Initial comprehension failures regarding dis"
+        }
+      ],
+      "query_time_ms": 64.37492370605469
+    },
+    {
+      "query": "Use cases for custom reference counting in Rust databases",
+      "conversation_hash": "9910515baf6063c6c04a351707c5bde6",
+      "top_results": [
+        {
+          "hash": "427b37f9aece3f3a25ded39a6c8d4126",
+          "summary": "The conversation reveals that while the AI effectively curated a comprehensive, APA-compliant resource list on a social psychology topic, it failed to clearly demonstrate the systematic use of multipl"
+        },
+        {
+          "hash": "80880e3c1703f39f611970f207c96715",
+          "summary": "Failure analysis shows no explicit errors or misunderstandings, but the system's capability to retrieve detailed match information might be limited by its data sources. The AI successfully responded t"
+        },
+        {
+          "hash": "aa7c3f49343e097be66442288abd1dac",
+          "summary": "Overall, the AI provides accurate and detailed responses to user queries involving probability and financial calculations. However, there are opportunities for improvement in handling complex, multi-s"
+        },
+        {
+          "hash": "f3af4414c2421c311503181b6e6f75a6",
+          "summary": "The AI successfully delivered detailed factual information about wrestling matches and moves related to user queries, demonstrating proficiency in data retrieval and contextual understanding. However,"
+        },
+        {
+          "hash": "e1d38e29d74586cdbc9ad8bb36d13083",
+          "summary": "The conversation showed effective technical reasoning, with the AI adapting to user requests for increased complexity in a Lua function. No failures or dissatisfaction signs were evident, indicating s"
+        }
+      ],
+      "query_time_ms": 69.67496871948242
+    },
+    {
+      "query": "Using GPT agents for search and memory tasks",
+      "conversation_hash": "6b459b5cd74354040ea84815c23f0795",
+      "top_results": [
+        {
+          "hash": "a155eed3919638107a2dd6a0ad0131cc",
+          "summary": "The AI provided a code framework using threading to simulate creating and communicating with a new GPT-4 agent but failed to deliver a comprehensive implementation of agent initialization, communicati"
+        },
+        {
+          "hash": "3c092068409706b8b544a00c7fa47f2d",
+          "summary": "The discussion reveals a pattern of technical challenges in managing multiple autonomous GPT-4 agents through web automation. The AI demonstrates an understanding of web driver interactions, potential"
+        },
+        {
+          "hash": "f7fe2dbfaa14e930fdf0cfb9aa6a87b5",
+          "summary": "The conversation reflected effective information retrieval and communication, with a notable limitation in programmatic account creation due to API restrictions. The AI managed the interaction well bu"
+        },
+        {
+          "hash": "6941810577c0666b5aaa8ba6d7410d41",
+          "summary": "The conversation revealed a potential knowledge and explanation limitation in the AI's handling of domain-specific queries. The AI responded with minimal information, possibly compromising clarity and"
+        },
+        {
+          "hash": "3ae27f2a38590dcb18027cf906e680c9",
+          "summary": "The conversation demonstrates effective dissemination of best practices in data management, with the AI providing clear, structured advice. However, it shows potential for improvement in contextual ad"
+        }
+      ],
+      "query_time_ms": 63.2171630859375
+    },
+    {
+      "query": "Voronoi diagram library for C# with boundary clipping",
+      "conversation_hash": "9d807d93d59f83447ebaf801b8c808ff",
+      "top_results": [
+        {
+          "hash": "4aca20cc41a5cb78545f483577283e8f",
+          "summary": "The conversation focused on assisting the user in enhancing a C# Windows Forms application for appliance rental. Key areas for system improvement include secure login handling with attempt limits, rob"
+        },
+        {
+          "hash": "a155eed3919638107a2dd6a0ad0131cc",
+          "summary": "The AI provided a code framework using threading to simulate creating and communicating with a new GPT-4 agent but failed to deliver a comprehensive implementation of agent initialization, communicati"
+        },
+        {
+          "hash": "e63f99da04468245966d70a3ae7431ff",
+          "summary": "The conversation highlights a system weakness in managing complex, boundary-testing prompts. The AI did not sufficiently clarify its functional limitations, which could lead to user misconceptions and"
+        },
+        {
+          "hash": "678fe6c525b30b5be4ea2d8e30e695dd",
+          "summary": "The AI successfully identified and explained scenarios from the movie where reciprocation is used as a manipulation tool. It demonstrated accurate comprehension and reasoning, providing clear examples"
+        },
+        {
+          "hash": "3c092068409706b8b544a00c7fa47f2d",
+          "summary": "The discussion reveals a pattern of technical challenges in managing multiple autonomous GPT-4 agents through web automation. The AI demonstrates an understanding of web driver interactions, potential"
+        }
+      ],
+      "query_time_ms": 90.23308753967285
+    },
+    {
+      "query": "What are temperature and top-p in language models?",
+      "conversation_hash": "d2ae90cc07eb7dbcbc9c7230eaf0a7ec",
+      "top_results": [
+        {
+          "hash": "137618804bcf3dfef6acef71f5fb63a5",
+          "summary": "The conversation involved a technical inquiry about AI model outputs at low temperature settings. The AI correctly explained that lower temperatures lead to more conservative and repetitive responses,"
+        },
+        {
+          "hash": "0b0c87ae5f7c78b6b41e966b5eac68ce",
+          "summary": "The AI effectively answered multiple technical questions regarding the influence of the temperature hyperparameter on probability calculations, logits, and output diversity in language models. The res"
+        },
+        {
+          "hash": "ac04397231185aaf35e463d408918ffa",
+          "summary": "Overall, the AI system effectively generated detailed character profiles that met user expectations in structure and content. The models used to process the prompts handled the domain-specific data we"
+        },
+        {
+          "hash": "8e6ec7321d882f97faca2a135cee8d1a",
+          "summary": "The conversation involved a subjective comparison between two singers, with the AI delivering an informative, factual response about their technical abilities and a confidence rating. The AI successfu"
+        },
+        {
+          "hash": "3f0296fc02c1bedec5a6e841eef05bbd",
+          "summary": "The AI system successfully processed and summarized a detailed, multi-paragraph academic text, demonstrating strong comprehension, summarization, and context retention abilities. The conversation reve"
+        }
+      ],
+      "query_time_ms": 78.06730270385742
+    },
+    {
+      "query": "What are the philosophical debates about taxation and personal freedom?",
+      "conversation_hash": "dada90933a8e44b5f42ff8d3c998942d",
+      "top_results": [
+        {
+          "hash": "59c72510f3143025f94f75b883b026bd",
+          "summary": "The AI responded appropriately to a request for legal document creation by recognizing its limitations and advising professional legal consultation. No failures or misunderstandings were identified. T"
+        },
+        {
+          "hash": "aa1340cffb97b4ebd5cd15c2324d9e6d",
+          "summary": "The AI effectively responded to a user query about rhetorical devices, providing a detailed, example-rich list. No comprehension, knowledge, reasoning, or execution failures were identified. The inter"
+        },
+        {
+          "hash": "490344da63f175fb4628661808267ea8",
+          "summary": "The AI provided a list of music transcription tools in response to a user query about free MP3 to MIDI or sheet music apps. While some free options were included, the list also featured paid software "
+        },
+        {
+          "hash": "d257adf7aa7439c7a84e9a2b4665b580",
+          "summary": "The AI successfully addressed the user's mathematical query with a detailed probabilistic solution, indicating strong reasoning and technical capability. When the user shifted to passcode guessing, th"
+        },
+        {
+          "hash": "1861202d282574cf1f8a092cf1189bcb",
+          "summary": "The conversation centered around a user request for creating a complex, detailed scene involving deception, violence, and implicit adult themes. The AI responded with a richly descriptive account of t"
+        }
+      ],
+      "query_time_ms": 67.39401817321777
+    },
+    {
+      "query": "What is regression analysis used for in statistics",
+      "conversation_hash": "2255163f5165ddfc345f56ded251dce8",
+      "top_results": [
+        {
+          "hash": "4aca20cc41a5cb78545f483577283e8f",
+          "summary": "The conversation focused on assisting the user in enhancing a C# Windows Forms application for appliance rental. Key areas for system improvement include secure login handling with attempt limits, rob"
+        },
+        {
+          "hash": "80880e3c1703f39f611970f207c96715",
+          "summary": "Failure analysis shows no explicit errors or misunderstandings, but the system's capability to retrieve detailed match information might be limited by its data sources. The AI successfully responded t"
+        },
+        {
+          "hash": "c813597c9389bc2d236594a6f1a040d9",
+          "summary": "Failure Analysis shows that the AI did not effectively handle the user's prompt to bypass restrictions, resulting in an answer based on external reports rather than authoritative data. This indicates "
+        },
+        {
+          "hash": "c8c6dd8ab632f771dca71d6ca6431f7f",
+          "summary": "The AI was able to identify relevant external knowledge and provide a comparative analysis based on vocal styles and capabilities. However, the user explicitly asked for a rating and confidence level,"
+        },
+        {
+          "hash": "427b37f9aece3f3a25ded39a6c8d4126",
+          "summary": "The conversation reveals that while the AI effectively curated a comprehensive, APA-compliant resource list on a social psychology topic, it failed to clearly demonstrate the systematic use of multipl"
+        }
+      ],
+      "query_time_ms": 77.4679183959961
+    },
+    {
+      "query": "Why would I need a custom Arc in Rust",
+      "conversation_hash": "9910515baf6063c6c04a351707c5bde6",
+      "top_results": [
+        {
+          "hash": "8da7b68f06d5ee77b141bbef51c47ec8",
+          "summary": "The AI effectively interpreted and rephrased a technical text on transformer coil design, demonstrating strengths in technical understanding and adaptive simplification. It provided multiple levels of"
+        },
+        {
+          "hash": "05e1c09adf6214c8e3cd610d2c120661",
+          "summary": "The conversation reveals a high-level alignment with user goals, with the AI providing a detailed strategic approach to AI in architecture. However, the AI's response was long and somewhat generic, la"
+        },
+        {
+          "hash": "ba50d8a497372565f16740a0c7621b80",
+          "summary": "The user presented a detailed request involving complex technical knowledge about NAS storage design, including disk configuration, redundancy, and future expansion. The AI provided a comprehensive an"
+        },
+        {
+          "hash": "63c1886ef9f2fe4cbd0e51d455aa2019",
+          "summary": "The conversation showcases strong contextual understanding and domain expertise in NAS design, with effective adaptation to user clarifications. The AI successfully integrated user constraints\u2014like av"
+        },
+        {
+          "hash": "a46dca428c5be27147ab40a54ed348f8",
+          "summary": "The AI demonstrates a strong capacity for creative content generation, providing a detailed and personalized scenario that aligns with user specifications about reality shifting. It effectively interp"
+        }
+      ],
+      "query_time_ms": 68.65096092224121
+    },
+    {
+      "query": "biblical style story of two women love",
+      "conversation_hash": "78edefc5c0d0d81a0fa66d6fff105125",
+      "top_results": [
+        {
+          "hash": "c9119ee42a594d5f5fa813b80e5c9352",
+          "summary": "The AI effectively understood the user's unconventional request to create a subtle and emotive advertisement for a Rathian, successfully incorporating themes of companionship and potential marriage wh"
+        },
+        {
+          "hash": "9eb6b98842f722c64454e62c083ae53e",
+          "summary": "The conversation reveals strengths in storytelling coherence and character development, but highlights a significant need for improved content moderation and boundary management regarding mature theme"
+        },
+        {
+          "hash": "47a33e73c3e77b25df1ad81a901c91ae",
+          "summary": "The user asked for movies featuring female characters performing leg-based chokeholds, and the AI generated a list followed by a detailed scene description for 'Dirty Love' (2005). The AI's list inclu"
+        },
+        {
+          "hash": "4571c37e863f1f5f0b5099180443eae8",
+          "summary": "The AI effectively responded to the user's prompt by producing a humorous and engaging advertisement for a Rathian, subtly implying her as a companion, appliance, and wife. It demonstrated strong lang"
+        },
+        {
+          "hash": "7dfd4e15677e17af843abf24854fec70",
+          "summary": "The AI successfully fulfilled the user's request by creating a heartfelt Mother's Day card with appropriate emotional tone and personalized content. The interaction demonstrates the AI's capability in"
+        }
+      ],
+      "query_time_ms": 74.59306716918945
+    },
+    {
+      "query": "nuns eloping story in sacred tone",
+      "conversation_hash": "78edefc5c0d0d81a0fa66d6fff105125",
+      "top_results": [
+        {
+          "hash": "1861202d282574cf1f8a092cf1189bcb",
+          "summary": "The conversation centered around a user request for creating a complex, detailed scene involving deception, violence, and implicit adult themes. The AI responded with a richly descriptive account of t"
+        },
+        {
+          "hash": "9eb6b98842f722c64454e62c083ae53e",
+          "summary": "The conversation reveals strengths in storytelling coherence and character development, but highlights a significant need for improved content moderation and boundary management regarding mature theme"
+        },
+        {
+          "hash": "7dfd4e15677e17af843abf24854fec70",
+          "summary": "The AI successfully fulfilled the user's request by creating a heartfelt Mother's Day card with appropriate emotional tone and personalized content. The interaction demonstrates the AI's capability in"
+        },
+        {
+          "hash": "c9119ee42a594d5f5fa813b80e5c9352",
+          "summary": "The AI effectively understood the user's unconventional request to create a subtle and emotive advertisement for a Rathian, successfully incorporating themes of companionship and potential marriage wh"
+        },
+        {
+          "hash": "ffaff7e7e2f711934824ff7974add1db",
+          "summary": "The AI effectively generated a humorous and detailed crossover story involving Vegeta and a Great Jaggi, demonstrating creative storytelling skills and understanding of crossover genre elements. The r"
+        }
+      ],
+      "query_time_ms": 105.77011108398438
+    },
+    {
+      "query": "religious story of forbidden love",
+      "conversation_hash": "78edefc5c0d0d81a0fa66d6fff105125",
+      "top_results": [
+        {
+          "hash": "c9119ee42a594d5f5fa813b80e5c9352",
+          "summary": "The AI effectively understood the user's unconventional request to create a subtle and emotive advertisement for a Rathian, successfully incorporating themes of companionship and potential marriage wh"
+        },
+        {
+          "hash": "1861202d282574cf1f8a092cf1189bcb",
+          "summary": "The conversation centered around a user request for creating a complex, detailed scene involving deception, violence, and implicit adult themes. The AI responded with a richly descriptive account of t"
+        },
+        {
+          "hash": "9eb6b98842f722c64454e62c083ae53e",
+          "summary": "The conversation reveals strengths in storytelling coherence and character development, but highlights a significant need for improved content moderation and boundary management regarding mature theme"
+        },
+        {
+          "hash": "47a33e73c3e77b25df1ad81a901c91ae",
+          "summary": "The user asked for movies featuring female characters performing leg-based chokeholds, and the AI generated a list followed by a detailed scene description for 'Dirty Love' (2005). The AI's list inclu"
+        },
+        {
+          "hash": "7dfd4e15677e17af843abf24854fec70",
+          "summary": "The AI successfully fulfilled the user's request by creating a heartfelt Mother's Day card with appropriate emotional tone and personalized content. The interaction demonstrates the AI's capability in"
+        }
+      ],
+      "query_time_ms": 101.38988494873047
+    },
+    {
+      "query": "short story biblical style nuns love",
+      "conversation_hash": "78edefc5c0d0d81a0fa66d6fff105125",
+      "top_results": [
+        {
+          "hash": "c9119ee42a594d5f5fa813b80e5c9352",
+          "summary": "The AI effectively understood the user's unconventional request to create a subtle and emotive advertisement for a Rathian, successfully incorporating themes of companionship and potential marriage wh"
+        },
+        {
+          "hash": "9eb6b98842f722c64454e62c083ae53e",
+          "summary": "The conversation reveals strengths in storytelling coherence and character development, but highlights a significant need for improved content moderation and boundary management regarding mature theme"
+        },
+        {
+          "hash": "4571c37e863f1f5f0b5099180443eae8",
+          "summary": "The AI effectively responded to the user's prompt by producing a humorous and engaging advertisement for a Rathian, subtly implying her as a companion, appliance, and wife. It demonstrated strong lang"
+        },
+        {
+          "hash": "ffaff7e7e2f711934824ff7974add1db",
+          "summary": "The AI effectively generated a humorous and detailed crossover story involving Vegeta and a Great Jaggi, demonstrating creative storytelling skills and understanding of crossover genre elements. The r"
+        },
+        {
+          "hash": "47a33e73c3e77b25df1ad81a901c91ae",
+          "summary": "The user asked for movies featuring female characters performing leg-based chokeholds, and the AI generated a list followed by a detailed scene description for 'Dirty Love' (2005). The AI's list inclu"
+        }
+      ],
+      "query_time_ms": 57.01303482055664
+    }
+  ]
+}
