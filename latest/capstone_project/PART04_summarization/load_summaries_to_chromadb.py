@@ -8,10 +8,12 @@ ChromaDB for improved RAG performance with V2 queries.
 
 import os
 import sys
-import asyncio
 from pathlib import Path
 from typing import List
 from datetime import datetime
+import chromadb
+from chromadb.utils import embedding_functions
+from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
 from rich.console import Console
 from rich.progress import Progress
@@ -21,15 +23,50 @@ import typer
 sys.path.append(str(Path(__file__).parent))
 from src.db import load_summaries_from_db, get_results_summary
 
-# Add the utils directory to path for DAO access
-sys.path.append(str(Path(__file__).parent.parent / "utils"))
-from dao.wildchat_dao import WildChatDocument
-from dao.wildchat_dao_chromadb import WildChatDAOChromaDB
-
 console = Console()
 app = typer.Typer(help="Load conversation summaries to ChromaDB")
 
-async def load_summaries_to_chromadb(
+# Global embedding model
+embedding_model = None
+
+def get_embedding_model() -> SentenceTransformer:
+    """Get or create the embedding model"""
+    global embedding_model
+    if embedding_model is None:
+        console.print("Loading embedding model...", style="cyan")
+        embedding_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+        console.print("Embedding model loaded successfully", style="green")
+    return embedding_model
+
+def create_chromadb_client(use_cloud: bool = True):
+    """Create ChromaDB client"""
+    load_dotenv()
+    
+    if use_cloud:
+        # Cloud connection
+        required_env_vars = ["CHROMA_API_KEY", "CHROMA_TENANT", "CHROMA_DATABASE"]
+        missing_vars = [var for var in required_env_vars if not os.getenv(var)]
+        
+        if missing_vars:
+            raise ValueError(f"Missing required environment variables for ChromaDB cloud: {missing_vars}")
+        
+        console.print("Connecting to ChromaDB Cloud...", style="blue")
+        client = chromadb.CloudClient(
+            api_key=os.getenv("CHROMA_API_KEY"),
+            tenant=os.getenv("CHROMA_TENANT"),
+            database=os.getenv("CHROMA_DATABASE"),
+        )
+        console.print("Connected to ChromaDB Cloud", style="green")
+    else:
+        # Local persistent client
+        db_path = "./chroma_db"
+        console.print(f"Connecting to local ChromaDB at {db_path}...", style="blue")
+        client = chromadb.PersistentClient(path=db_path)
+        console.print("Connected to local ChromaDB", style="green")
+    
+    return client
+
+def load_summaries_to_chromadb(
     db_path: Path,
     collection_name: str,
     version: str = "v2",
@@ -66,23 +103,33 @@ async def load_summaries_to_chromadb(
     console.print(f"SQLite database contains {stats['total_summaries']} summaries")
     console.print(f"Version counts: {stats['version_counts']}")
     
-    # Create DAO instance
-    dao = WildChatDAOChromaDB(table_name=collection_name, use_cloud=use_cloud)
-    
     try:
-        # Connect to ChromaDB
-        await dao.connect()
-        console.print(f"Connected to {'cloud' if use_cloud else 'local'} ChromaDB", style="green")
+        # Create ChromaDB client
+        client = create_chromadb_client(use_cloud)
+        
+        # Create embedding function
+        embedding_function = embedding_functions.SentenceTransformerEmbeddingFunction(
+            model_name="sentence-transformers/all-MiniLM-L6-v2"
+        )
         
         # Handle collection reset
         if reset_collection:
             try:
-                await dao.delete_table()
+                client.delete_collection(collection_name)
                 console.print(f"Deleted existing collection: {collection_name}", style="yellow")
-                # Reconnect after deletion
-                await dao.connect()
             except Exception:
                 pass  # Collection might not exist
+        
+        # Get or create collection
+        collection = client.get_or_create_collection(
+            name=collection_name,
+            embedding_function=embedding_function,
+            metadata={
+                "description": f"WildChat conversation summaries ({version})",
+                "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+                "summary_version": version,
+            },
+        )
         
         # Load summaries from database
         console.print(f"Loading {version} summaries from database...", style="cyan")
@@ -105,47 +152,62 @@ async def load_summaries_to_chromadb(
             for i in range(0, len(summaries), batch_size):
                 batch = summaries[i:i + batch_size]
                 
-                # Prepare batch data as WildChatDocument objects
-                batch_documents = []
+                # Prepare batch data
+                batch_texts = []
+                batch_metadatas = []
+                batch_ids = []
                 
                 for conv_hash, summary_version, summary_text, model in batch:
                     # Create unique ID for this summary
                     doc_id = f"{conv_hash}_{summary_version}"
                     
-                    # Create WildChatDocument
-                    doc = WildChatDocument(
-                        id=doc_id,
-                        text=summary_text,
-                        conversation_string="",  # Not available for summaries
-                        hash=conv_hash,
-                        timestamp=datetime.now(),  # Use current time since we don't have original
-                        language="Unknown",  # Not available for summaries
-                        model_name=model,
-                        conversation_length=0,  # Not available for summaries
-                        country="Unknown",  # Not available for summaries
-                        toxic=False,  # Assume summaries are not toxic
-                        redacted=False,  # Assume summaries are not redacted
-                        turn=1,  # Default turn
-                    )
+                    # Prepare metadata
+                    metadata = {
+                        "hash": conv_hash,
+                        "summary_version": summary_version,
+                        "model": model,
+                        "timestamp": datetime.now().isoformat(),
+                        "text_length": len(summary_text),
+                    }
                     
-                    batch_documents.append(doc)
+                    batch_texts.append(summary_text)
+                    batch_metadatas.append(metadata)
+                    batch_ids.append(doc_id)
                 
                 try:
-                    # Write batch to ChromaDB
-                    result = await dao.add(batch_documents)
-                    total_added += result["added_count"]
-                    total_skipped += result["skipped_count"]
+                    # Add batch to collection
+                    collection.add(
+                        documents=batch_texts,
+                        metadatas=batch_metadatas,
+                        ids=batch_ids
+                    )
+                    
+                    total_added += len(batch_texts)
                     total_processed += len(batch)
                     
                     progress.update(task, advance=len(batch))
                     
                 except Exception as e:
-                    console.print(f"Error writing batch: {e}", style="red")
-                    raise
+                    if "Expected IDs to be unique" in str(e):
+                        # Handle duplicates by trying to add one by one
+                        for text, metadata, doc_id in zip(batch_texts, batch_metadatas, batch_ids):
+                            try:
+                                collection.add(
+                                    documents=[text],
+                                    metadatas=[metadata],
+                                    ids=[doc_id]
+                                )
+                                total_added += 1
+                            except Exception:
+                                total_skipped += 1
+                        total_processed += len(batch)
+                        progress.update(task, advance=len(batch))
+                    else:
+                        console.print(f"Error writing batch: {e}", style="red")
+                        raise
         
         # Get final statistics
-        stats = await dao.get_stats()
-        final_count = stats.get("total_documents", 0)
+        final_count = collection.count()
         
         console.print("\nLoad completed!", style="green bold")
         console.print("Statistics:")
@@ -158,21 +220,17 @@ async def load_summaries_to_chromadb(
         if total_added > 0:
             console.print("\nTesting collection with sample query...", style="blue")
             try:
-                from dao.wildchat_dao import SearchRequest, SearchType
-                
-                search_request = SearchRequest(
-                    query="How to learn programming",
-                    top_k=3,
-                    search_type=SearchType.VECTOR,
+                results = collection.query(
+                    query_texts=["How to learn programming"],
+                    n_results=3,
+                    include=["documents", "metadatas", "distances"]
                 )
                 
-                results = await dao.search(search_request)
-                
-                console.print(f"Success: Query found {len(results.results)} similar summaries", style="green")
-                console.print(f"   - Search time: {results.query_time_ms:.1f} ms")
-                if results.results:
-                    console.print(f"   Most similar: '{results.results[0].text[:100]}...'")
-                    console.print(f"   Hash: {results.results[0].metadata.get('hash', 'N/A')}")
+                console.print(f"Success: Query found {len(results['documents'][0])} similar summaries", style="green")
+                if results['documents'][0]:
+                    console.print(f"   Most similar: '{results['documents'][0][0][:100]}...'")
+                    console.print(f"   Hash: {results['metadatas'][0][0].get('hash', 'N/A')}")
+                    console.print(f"   Distance: {results['distances'][0][0]:.4f}")
                     
             except Exception as e:
                 console.print(f"Warning: Query error: {e}", style="yellow")
@@ -180,13 +238,6 @@ async def load_summaries_to_chromadb(
     except Exception as e:
         console.print(f"Error during summary loading: {e}", style="red")
         raise
-    
-    finally:
-        # Cleanup
-        try:
-            await dao.disconnect()
-        except Exception:
-            pass
 
 @app.command()
 def load(
@@ -222,16 +273,14 @@ def load(
     
     try:
         # Load summaries
-        asyncio.run(
-            load_summaries_to_chromadb(
-                db_path=db_path,
-                collection_name=full_collection_name,
-                version=version,
-                limit=limit,
-                batch_size=batch_size,
-                reset_collection=reset,
-                use_cloud=not local,
-            )
+        load_summaries_to_chromadb(
+            db_path=db_path,
+            collection_name=full_collection_name,
+            version=version,
+            limit=limit,
+            batch_size=batch_size,
+            reset_collection=reset,
+            use_cloud=not local,
         )
         
     except KeyboardInterrupt:
@@ -264,29 +313,53 @@ def delete_collection(
             console.print("Operation cancelled", style="yellow")
             return
     
-    async def delete_collection_async():
-        dao = WildChatDAOChromaDB(table_name=collection_name, use_cloud=not local)
-        try:
-            await dao.connect()
-            console.print(f"Deleting collection: {collection_name}", style="red")
-            result = await dao.delete_table()
-            if result.get("success", False):
-                console.print(f"Successfully deleted collection: {collection_name}", style="green")
-            else:
-                console.print(f"Error deleting collection: {result.get('error', 'Unknown error')}", style="red")
-        except Exception as e:
-            if "not found" in str(e).lower():
-                console.print(f"Collection '{collection_name}' not found", style="yellow")
-            else:
-                console.print(f"Error deleting collection: {e}", style="red")
-                sys.exit(1)
-        finally:
-            await dao.disconnect()
+    try:
+        # Create client
+        client = create_chromadb_client(use_cloud=not local)
+        
+        # Delete collection
+        console.print(f"Deleting collection: {collection_name}", style="red")
+        client.delete_collection(collection_name)
+        console.print(f"Successfully deleted collection: {collection_name}", style="green")
+        
+    except Exception as e:
+        if "not found" in str(e).lower():
+            console.print(f"Collection '{collection_name}' not found", style="yellow")
+        else:
+            console.print(f"Error deleting collection: {e}", style="red")
+            sys.exit(1)
+
+@app.command()
+def list_collections(
+    local: bool = typer.Option(
+        False, "--local", help="Use local ChromaDB instead of cloud"
+    ),
+):
+    """List all ChromaDB collections"""
+    
+    console.print("ChromaDB Collections", style="bold blue")
+    console.print("=" * 50)
     
     try:
-        asyncio.run(delete_collection_async())
+        # Create client
+        client = create_chromadb_client(use_cloud=not local)
+        
+        # List collections
+        collections = client.list_collections()
+        
+        if not collections:
+            console.print("No collections found", style="yellow")
+            return
+        
+        console.print(f"Found {len(collections)} collections:", style="green")
+        for collection in collections:
+            console.print(f"  - {collection.name} (count: {collection.count()})")
+            if collection.metadata:
+                for key, value in collection.metadata.items():
+                    console.print(f"    {key}: {value}")
+        
     except Exception as e:
-        console.print(f"Error: {e}", style="red")
+        console.print(f"Error listing collections: {e}", style="red")
         sys.exit(1)
 
 # Make load the default command
