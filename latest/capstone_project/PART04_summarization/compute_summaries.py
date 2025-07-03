@@ -34,6 +34,7 @@ from src.db import (
     setup_database,
     save_summary_to_db,
     get_processed_conversations,
+    get_existing_summaries,
     get_results_summary,
 )
 from src.cache import setup_cache, GenericCache
@@ -96,33 +97,38 @@ async def process_conversation(
     semaphore: asyncio.Semaphore,
     progress: Progress,
     task_id,
+    model: str,
+    existing_summaries: set,
 ) -> int:
     """Process a single conversation with both v1 and v2 generators and save immediately"""
     conversation_hash = conversation["conversation_hash"]
     saved_count = 0
 
     try:
-        # Process both versions concurrently
-        v1_task = process_conversation_version(
-            client, conversation, "v1", cache, semaphore
-        )
-        v2_task = process_conversation_version(
-            client, conversation, "v2", cache, semaphore
-        )
+        # Check which versions need to be processed
+        need_v1 = (conversation_hash, "v1") not in existing_summaries
+        need_v2 = (conversation_hash, "v2") not in existing_summaries
 
-        v1_summary, v2_summary = await asyncio.gather(v1_task, v2_task)
+        tasks = []
+        if need_v1:
+            tasks.append(("v1", process_conversation_version(
+                client, conversation, "v1", cache, semaphore
+            )))
+        if need_v2:
+            tasks.append(("v2", process_conversation_version(
+                client, conversation, "v2", cache, semaphore
+            )))
 
-        # Save v1 summary immediately
-        if v1_summary and save_summary_to_db(
-            DB_PATH, conversation_hash, "v1", v1_summary
-        ):
-            saved_count += 1
-
-        # Save v2 summary immediately
-        if v2_summary and save_summary_to_db(
-            DB_PATH, conversation_hash, "v2", v2_summary
-        ):
-            saved_count += 1
+        # Process only needed versions
+        if tasks:
+            results = await asyncio.gather(*[task[1] for task in tasks])
+            
+            for i, (version, _) in enumerate(tasks):
+                summary = results[i]
+                if summary and save_summary_to_db(
+                    DB_PATH, conversation_hash, version, summary, model
+                ):
+                    saved_count += 1
 
         progress.update(task_id, advance=1)
 
@@ -144,21 +150,23 @@ async def main(
     console.print("[bold green]Synthetic Summary Generation[/bold green]")
     console.print("=" * 50)
 
-    console.print("\n[cyan]Setting up database...[/cyan]")
+    console.print(f"\n[cyan]Setting up database at {DB_PATH}[/cyan]")
     setup_database(DB_PATH)
 
     # Set up disk cache
-    console.print(f"[cyan]Using disk cache at: {CACHE_DIR}[/cyan]")
+    console.print(f"[cyan]Setting up disk cache at {CACHE_DIR}[/cyan]")
     cache = setup_cache(CACHE_DIR, clear_cache=clear_cache)
 
-    # Check for already processed conversations
-    processed = get_processed_conversations(DB_PATH)
-    if processed:
+    MODEL = "openai/gpt-4.1-nano"
+    
+    # Check for already existing summaries for this model
+    existing_summaries = get_existing_summaries(DB_PATH, MODEL)
+    if existing_summaries:
         console.print(
-            f"[yellow]Found {len(processed)} already processed conversations[/yellow]"
+            f"[yellow]Found {len(existing_summaries)} existing summaries for model {MODEL}[/yellow]"
         )
 
-    console.print("\n[cyan]Loading conversations...[/cyan]")
+    console.print(f"\n[cyan]Loading {limit} conversations[/cyan]")
     # Load conversations
     loader = WildChatDataLoader()  # No limit on dataset loader - let stream_conversations handle filtering
     conversations = []
@@ -178,8 +186,12 @@ async def main(
             filter_language="English",
             filter_toxic=True,
         ):
-            # Skip already processed conversations
-            if conversation["conversation_hash"] not in processed:
+            # Skip conversations that already have both v1 and v2 summaries for this model
+            conversation_hash = conversation["conversation_hash"]
+            has_v1 = (conversation_hash, "v1") in existing_summaries
+            has_v2 = (conversation_hash, "v2") in existing_summaries
+            
+            if not (has_v1 and has_v2):
                 conversations.append(conversation)
                 progress.update(load_task, advance=1)
 
@@ -190,17 +202,11 @@ async def main(
         f"[green]Loaded {len(conversations)} new conversations to process[/green]"
     )
 
-    # Set up OpenAI client with instructor
-    api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key:
-        raise ValueError("OPENAI_API_KEY environment variable not set")
-
-    client = instructor.from_provider(model="openai/gpt-4.1-nano", async_client=True)
+    client = instructor.from_provider(model=MODEL, async_client=True)
 
     # Control concurrency to avoid rate limits
+    console.print(f"\n[cyan]Processing conversations with {concurrency} concurrency[/cyan]")
     semaphore = asyncio.Semaphore(concurrency)
-
-    console.print("\n[cyan]Processing conversations...[/cyan]")
 
     # Process conversations with progress bar
     with Progress(
@@ -217,7 +223,7 @@ async def main(
 
         tasks = [
             process_conversation(
-                client, conversation, cache, semaphore, progress, process_task
+                client, conversation, cache, semaphore, progress, process_task, MODEL, existing_summaries
             )
             for conversation in conversations
         ]
@@ -240,8 +246,12 @@ async def main(
     for version, count in summary["version_counts"].items():
         console.print(f"  [cyan]{version}:[/cyan] {count} summaries")
 
+    console.print("\n[bold]By model:[/bold]")
+    for model, count in summary["model_counts"].items():
+        console.print(f"  [cyan]{model}:[/cyan] {count} summaries")
+
     console.print(
-        f"  [cyan]Unique conversations:[/cyan] {summary['unique_conversations']}"
+        f"\n[cyan]Unique conversations:[/cyan] {summary['unique_conversations']}"
     )
     console.print(f"\n[green]Database saved to:[/green] {DB_PATH}")
     console.print(f"[green]Cache directory:[/green] {CACHE_DIR}")
@@ -252,6 +262,7 @@ app = typer.Typer()
 
 @app.command()
 def run(
+    
     limit: int = typer.Option(500, help="Number of conversations to process"),
     clear_cache: bool = typer.Option(False, help="Clear the cache before starting"),
     concurrency: int = typer.Option(50, help="Max concurrent API requests"),

@@ -144,7 +144,7 @@ def load_summaries_to_turbopuffer(
         with Progress() as progress:
             task = progress.add_task("Processing summaries...", total=len(summaries))
 
-            for i, (conv_hash, version, summary) in enumerate(summaries):
+            for i, (conv_hash, version, summary, model) in enumerate(summaries):
                 progress.update(task, advance=1)
 
                 # Check for duplicates in current batch
@@ -300,9 +300,6 @@ app = typer.Typer()
 
 @app.command()
 def main(
-    summary_version: str = typer.Argument(
-        ..., help="Summary version to load (v1 or v2)"
-    ),
     namespace_name: str = typer.Option(
         None, help="TurboPuffer namespace (default: wildchat-summaries-{version})"
     ),
@@ -319,15 +316,16 @@ def main(
         # Create client
         client = create_client()
 
-        # Load data
-        load_summaries_to_turbopuffer(
-            client=client,
-            summary_version=summary_version,
-            namespace_name=namespace_name,
-            limit=limit,
-            batch_size=batch_size,
-            reset_namespace=reset,
-        )
+        for version in ["v1", "v2"]:
+        
+            load_summaries_to_turbopuffer(
+                client=client,
+                summary_version=version,
+                namespace_name=namespace_name,
+                limit=limit,
+                    batch_size=batch_size,
+                    reset_namespace=reset,
+                )
 
     except KeyboardInterrupt:
         console.print("\nOperation cancelled by user", style="yellow")

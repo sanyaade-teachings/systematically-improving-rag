@@ -1,17 +1,17 @@
 {
-  "timestamp": "2025-06-30T21:02:16.601551",
+  "timestamp": "2025-07-03T00:08:50.697091",
   "summary_version": "v2",
   "db_backend": "turbopuffer",
-  "total_v2_queries": 4415,
+  "total_queries": 3399,
   "metrics": {
-    "total_queries": 4415,
-    "successful_searches": 4415,
+    "total_queries": 3399,
+    "successful_searches": 3399,
     "recall@1": 0.0,
     "recall@5": 0.0,
     "recall@10": 0.0,
     "recall@20": 0.0,
     "recall@30": 0.0,
-    "not_found": 4415,
+    "not_found": 3399,
     "search_errors": 0,
     "error_rate": 0.0
   },

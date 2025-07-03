@@ -22,6 +22,7 @@ from rich.table import Table
 from rich.live import Live
 from rich.layout import Layout
 from rich.panel import Panel
+from rich.progress import Progress, TaskID, SpinnerColumn, TextColumn, BarColumn, TimeRemainingColumn
 
 # Add parent directories to path
 sys.path.append(str(Path(__file__).parent.parent))
@@ -30,7 +31,6 @@ sys.path.append(
 )
 
 # Import DAOs
-from utils.dao.wildchat_dao_chromadb import WildChatDAOChromaDB
 from utils.dao.wildchat_dao_turbopuffer import WildChatDAOTurbopuffer
 from utils.dao.wildchat_dao import SearchRequest, SearchType, WildChatDAOBase
 
@@ -260,11 +260,11 @@ def create_comparison_table(
 
 async def main(
     limit: int = typer.Option(None, help="Limit number of V2 queries to test"),
+    query_version: str = typer.Option(
+        "v2", help="Which query version to test (v1 or v2)"
+    ),
     summary_version: str = typer.Option(
         "v2", help="Which summary version to test (v1 or v2)"
-    ),
-    db_backend: str = typer.Option(
-        "chromadb", help="Vector DB backend (chromadb or turbopuffer)"
     ),
 ):
     """Test V2 queries against summary-based embeddings"""
@@ -289,25 +289,18 @@ async def main(
     all_queries = load_queries_from_db(QUERIES_DB_PATH, limit=limit)
 
     # Filter for V2 queries only
-    v2_queries = [(h, v, q) for h, v, q in all_queries if v == "v2"]
+    queries = [(h, v, q) for h, v, q in all_queries if v == query_version]
 
-    if not v2_queries:
+    if not queries:
         console.print("[red]No V2 queries found in database[/red]")
         return
 
-    console.print(f"[green]Loaded {len(v2_queries)} V2 queries[/green]")
+    console.print(f"[green]Loaded {len(queries)} {query_version} queries[/green]")
 
     # Initialize DAO based on backend
-    if db_backend == "chromadb":
-        collection_name = f"wildchat_summaries_{summary_version}"
-        dao = WildChatDAOChromaDB(
-            db_path=".chroma_summaries", collection_name=collection_name
-        )
-        dao_name = f"ChromaDB (summaries {summary_version})"
-    else:  # turbopuffer
-        table_name = f"wildchat-summaries-{summary_version}"
-        dao = WildChatDAOTurbopuffer(table_name=table_name)
-        dao_name = f"TurboPuffer (summaries {summary_version})"
+    table_name = f"wildchat-summaries-{summary_version}"
+    dao = WildChatDAOTurbopuffer(table_name=table_name)
+    dao_name = f"TurboPuffer (summaries {summary_version})"
 
     console.print(f"\n[cyan]Connecting to {dao_name}...[/cyan]")
     try:
@@ -338,12 +331,12 @@ async def main(
 
     # Create tasks
     tasks = []
-    for conversation_hash, _, query in v2_queries:
+    for conversation_hash, _, query in queries:
         task = asyncio.create_task(
             process_query_with_metrics(
                 dao,
                 conversation_hash,
-                "v2",  # All queries are V2
+                query_version,
                 query,
                 metrics,
                 cache,
@@ -353,16 +346,21 @@ async def main(
         )
         tasks.append(task)
 
-    # Process with progress indicator
-    completed = 0
-    with console.status("[cyan]Processing queries...[/cyan]") as status:
+    # Process with progress bar
+    with Progress(
+        SpinnerColumn(),
+        TextColumn("[progress.description]{task.description}"),
+        BarColumn(),
+        TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
+        TextColumn("({task.completed}/{task.total})"),
+        TimeRemainingColumn(),
+        console=console,
+    ) as progress:
+        task = progress.add_task("Processing queries...", total=len(tasks))
+        
         for coro in asyncio.as_completed(tasks):
             await coro
-            completed += 1
-            if completed % 10 == 0:
-                status.update(
-                    f"[cyan]Processing queries... {completed}/{len(tasks)}[/cyan]"
-                )
+            progress.update(task, advance=1)
 
     await dao.disconnect()
 
@@ -371,11 +369,11 @@ async def main(
 
     summary = metrics.get_summary()
 
-    results_table = Table(title="V2 Queries vs Summary-based Embeddings")
+    results_table = Table(title=f"{query_version} Queries vs Summary-based Embeddings")
     results_table.add_column("Metric", style="cyan")
     results_table.add_column("Value", style="magenta", justify="right")
 
-    results_table.add_row("Total V2 Queries", str(summary["total_queries"]))
+    results_table.add_row(f"Total {query_version} Queries", str(summary["total_queries"]))
     results_table.add_row("Successful Searches", str(summary["successful_searches"]))
     results_table.add_row("Recall@1", f"{summary['recall@1']:.2%}")
     results_table.add_row("Recall@5", f"{summary['recall@5']:.2%}")
@@ -412,8 +410,8 @@ async def main(
     results_data = {
         "timestamp": datetime.now().isoformat(),
         "summary_version": summary_version,
-        "db_backend": db_backend,
-        "total_v2_queries": len(v2_queries),
+        "db_backend": "turbopuffer",
+        "total_queries": len(queries),
         "metrics": summary,
         "comparison": {
             "original_first_message_only": original_v2_recall,
@@ -431,11 +429,6 @@ async def main(
         json.dump(results_data, f, indent=2)
 
     console.print(f"\n[green]Results saved to:[/green] {results_file}")
-    console.print("\n[cyan]Key Insight:[/cyan]")
-    console.print("V2 queries now achieve much better recall because the summaries")
-    console.print(
-        "capture the full conversation context that V2 queries are looking for!"
-    )
 
 
 app = typer.Typer()
@@ -444,15 +437,14 @@ app = typer.Typer()
 @app.command()
 def run(
     limit: int = typer.Option(None, help="Limit number of V2 queries to test"),
+    query_version: str = typer.Option(
+        "v2", help="Which query version to test (v1 or v2)"
+    ),
     summary_version: str = typer.Option(
         "v2", help="Which summary version to test (v1 or v2)"
     ),
-    db_backend: str = typer.Option(
-        "chromadb", help="Vector DB backend (chromadb or turbopuffer)"
-    ),
 ):
-    """Test V2 queries against summary-based embeddings"""
-    asyncio.run(main(limit, summary_version, db_backend))
+    asyncio.run(main(limit, query_version, summary_version))
 
 
 if __name__ == "__main__":

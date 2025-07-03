@@ -36,7 +36,7 @@ Generate summaries that capture the full conversation context, then embed these 
 ```bash
 python compute_summaries.py --limit 500
 ```
-- Processes conversations from SQLite
+- Processes conversations from SQLite as a local file
 - Generates both V1 and V2 summaries
 - Caches results to avoid recomputation
 - Shows progress with rich formatting
