@@ -246,6 +246,41 @@ def get_evaluation_results(experiment_id: str, db_path: Path) -> List[Dict[str, 
         ]
 
 
+def get_processed_question_hashes(version: str, db_path: Path, experiment_id: Optional[str] = None) -> List[str]:
+    """Get conversation hashes that already have questions generated for a specific version"""
+    engine = get_engine(db_path)
+    
+    with Session(engine) as session:
+        statement = select(Question.conversation_hash).where(Question.version == version)
+        if experiment_id:
+            statement = statement.where(Question.experiment_id == experiment_id)
+        
+        return list(session.exec(statement).all())
+
+
+def get_processed_summary_hashes(technique: str, db_path: Path, experiment_id: Optional[str] = None) -> List[str]:
+    """Get conversation hashes that already have summaries generated for a specific technique"""
+    engine = get_engine(db_path)
+    
+    with Session(engine) as session:
+        statement = select(Summary.conversation_hash).where(Summary.technique == technique)
+        if experiment_id:
+            statement = statement.where(Summary.experiment_id == experiment_id)
+        
+        return list(session.exec(statement).all())
+
+
+def filter_unprocessed_hashes(conversation_hashes: List[str], version: str, db_path: Path, 
+                            experiment_id: Optional[str] = None, is_summary: bool = False) -> List[str]:
+    """Filter conversation hashes to only include unprocessed ones"""
+    if is_summary:
+        processed_hashes = set(get_processed_summary_hashes(version, db_path, experiment_id))
+    else:
+        processed_hashes = set(get_processed_question_hashes(version, db_path, experiment_id))
+    
+    return [h for h in conversation_hashes if h not in processed_hashes]
+
+
 def get_database_stats(db_path: Path) -> Dict[str, int]:
     """Get database statistics"""
     if not db_path.exists():
