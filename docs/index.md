@@ -76,11 +76,11 @@ Explore insights from industry experts and practitioners through our collection 
 
 ### [Featured Talks](talks/index.md)
 
+- **[Fine-tuning Re-rankers and Embedding Models for Better RAG Performance](talks/fine-tuning-rerankers-embeddings-ayush-lancedb.md)** - Practical approaches to enhancing retrieval quality (Ayush from LanceDB)
 - **[RAG Anti-patterns in the Wild](talks/rag-antipatterns-skylar-payne.md)** - Common mistakes and how to fix them (Skylar Payne)
 - **[Semantic Search Over the Web with Exa](talks/semantic-search-exa-will-bryk.md)** - Building AI-first search engines (Will Bryk)
 - **[Understanding Embedding Performance through Generative Evals](talks/embedding-performance-generative-evals-kelly-hong.md)** - Custom evaluation methodologies (Kelly Hong)
 - **[Online Evals and Production Monitoring](talks/online-evals-production-monitoring-ben-sidhant.md)** - Monitoring AI systems at scale (Ben Hylak & Sidhant Bendre)
-- **[RAG Without APIs](talks/rag-without-apis-browser-michael-struwig.md)** - Browser-based data integration (Michael Struwig)
 
 [View all talks →](talks/index.md)
 
