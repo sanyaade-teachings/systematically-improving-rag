@@ -160,7 +160,7 @@ async def main(
 
     console.print("\n[cyan]Loading conversations...[/cyan]")
     # Load conversations
-    loader = WildChatDataLoader(limit=2000)  # Load more to ensure we get enough
+    loader = WildChatDataLoader()  # No limit on dataset loader - let stream_conversations handle filtering
     conversations = []
 
     with Progress(

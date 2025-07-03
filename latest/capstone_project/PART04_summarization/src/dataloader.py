@@ -71,7 +71,6 @@ class WildChatDataLoader:
         min_message_length: int = 10,
         filter_language: Optional[str] = None,
         filter_toxic: bool = True,
-        dataset_chunk_size: int = 50000,
     ) -> Generator[dict, None, None]:
         """
         Stream conversations as Pydantic objects
@@ -81,7 +80,6 @@ class WildChatDataLoader:
             min_message_length: Minimum character length for first message
             filter_language: Only yield conversations in this language
             filter_toxic: Skip toxic conversations if True
-            dataset_chunk_size: Size of chunks to load from dataset at a time
 
         Yields:
             WildChatConversation objects
@@ -155,8 +153,6 @@ class WildChatDataLoader:
                 if limit and count >= limit:
                     break
 
-                # Silent processing - no progress logs
-
-            except Exception:
-                # Silent error handling
+            except Exception as e:
+                print(f"Error processing conversation {conversation_hash}: {e}")
                 continue
