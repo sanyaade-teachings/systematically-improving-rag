@@ -11,6 +11,34 @@ from typing import Any
 from diskcache import Cache as DiskCache
 
 
+class NoOpCache:
+    """No-operation cache that doesn't store anything - for disabling caching"""
+
+    def __init__(self):
+        """Initialize no-op cache"""
+        pass
+
+    def get(self, key: str) -> Any:
+        """Always return None (cache miss)"""
+        return None
+
+    def set(self, key: str, value: Any) -> None:
+        """Do nothing (don't store)"""
+        pass
+
+    def clear(self) -> None:
+        """Do nothing"""
+        pass
+
+    def __len__(self) -> int:
+        """Always return 0"""
+        return 0
+
+    def get_stats(self) -> dict:
+        """Return empty stats"""
+        return {"size": 0, "directory": "disabled"}
+
+
 class GenericCache:
     """Generic cache wrapper with utilities for different use cases"""
 

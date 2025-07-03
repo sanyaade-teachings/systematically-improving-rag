@@ -85,7 +85,7 @@ async def conversation_summary_v2(
     - Overall conversation flow and structure
     - User feedback and emotional context
     - Knowledge requests and learning progression
-    - User Satisfaction and Frustration Points  
+    - User Satisfaction and Frustration Points
 
     The summary should be detailed enough to match pattern-based queries and understand
     the full context of user-AI interaction dynamics.

@@ -111,18 +111,28 @@ async def process_conversation(
 
         tasks = []
         if need_v1:
-            tasks.append(("v1", process_conversation_version(
-                client, conversation, "v1", cache, semaphore
-            )))
+            tasks.append(
+                (
+                    "v1",
+                    process_conversation_version(
+                        client, conversation, "v1", cache, semaphore
+                    ),
+                )
+            )
         if need_v2:
-            tasks.append(("v2", process_conversation_version(
-                client, conversation, "v2", cache, semaphore
-            )))
+            tasks.append(
+                (
+                    "v2",
+                    process_conversation_version(
+                        client, conversation, "v2", cache, semaphore
+                    ),
+                )
+            )
 
         # Process only needed versions
         if tasks:
             results = await asyncio.gather(*[task[1] for task in tasks])
-            
+
             for i, (version, _) in enumerate(tasks):
                 summary = results[i]
                 if summary and save_summary_to_db(
@@ -158,7 +168,7 @@ async def main(
     cache = setup_cache(CACHE_DIR, clear_cache=clear_cache)
 
     MODEL = "openai/gpt-4.1-nano"
-    
+
     # Check for already existing summaries for this model
     existing_summaries = get_existing_summaries(DB_PATH, MODEL)
     if existing_summaries:
@@ -168,7 +178,9 @@ async def main(
 
     console.print(f"\n[cyan]Loading {limit} conversations[/cyan]")
     # Load conversations
-    loader = WildChatDataLoader()  # No limit on dataset loader - let stream_conversations handle filtering
+    loader = (
+        WildChatDataLoader()
+    )  # No limit on dataset loader - let stream_conversations handle filtering
     conversations = []
 
     with Progress(
@@ -190,7 +202,7 @@ async def main(
             conversation_hash = conversation["conversation_hash"]
             has_v1 = (conversation_hash, "v1") in existing_summaries
             has_v2 = (conversation_hash, "v2") in existing_summaries
-            
+
             if not (has_v1 and has_v2):
                 conversations.append(conversation)
                 progress.update(load_task, advance=1)
@@ -205,7 +217,9 @@ async def main(
     client = instructor.from_provider(model=MODEL, async_client=True)
 
     # Control concurrency to avoid rate limits
-    console.print(f"\n[cyan]Processing conversations with {concurrency} concurrency[/cyan]")
+    console.print(
+        f"\n[cyan]Processing conversations with {concurrency} concurrency[/cyan]"
+    )
     semaphore = asyncio.Semaphore(concurrency)
 
     # Process conversations with progress bar
@@ -223,7 +237,14 @@ async def main(
 
         tasks = [
             process_conversation(
-                client, conversation, cache, semaphore, progress, process_task, MODEL, existing_summaries
+                client,
+                conversation,
+                cache,
+                semaphore,
+                progress,
+                process_task,
+                MODEL,
+                existing_summaries,
             )
             for conversation in conversations
         ]
@@ -262,7 +283,6 @@ app = typer.Typer()
 
 @app.command()
 def run(
-    
     limit: int = typer.Option(500, help="Number of conversations to process"),
     clear_cache: bool = typer.Option(False, help="Clear the cache before starting"),
     concurrency: int = typer.Option(50, help="Max concurrent API requests"),

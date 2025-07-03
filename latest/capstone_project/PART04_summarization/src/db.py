@@ -48,7 +48,11 @@ def setup_database(db_path: Path) -> None:
 
 
 def save_summary_to_db(
-    db_path: Path, conversation_hash: str, summary_version: str, summary: str, model: str
+    db_path: Path,
+    conversation_hash: str,
+    summary_version: str,
+    summary: str,
+    model: str,
 ) -> bool:
     """Save a summary to the database
 
@@ -90,13 +94,16 @@ def get_processed_conversations(db_path: Path, model: str) -> set:
     cursor = conn.cursor()
 
     # Get conversations that have both v1 and v2 summaries for the specific model
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT conversation_hash 
         FROM synthetic_summaries
         WHERE model = ?
         GROUP BY conversation_hash
         HAVING COUNT(DISTINCT summary_version) >= 2
-    """, (model,))
+    """,
+        (model,),
+    )
 
     processed = {row[0] for row in cursor.fetchall()}
     conn.close()
@@ -112,11 +119,14 @@ def get_existing_summaries(db_path: Path, model: str) -> set:
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT conversation_hash, summary_version 
         FROM synthetic_summaries
         WHERE model = ?
-    """, (model,))
+    """,
+        (model,),
+    )
 
     existing = {(row[0], row[1]) for row in cursor.fetchall()}
     conn.close()
@@ -138,9 +148,7 @@ def load_summaries_from_db(
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    query = (
-        "SELECT conversation_hash, summary_version, summary, model FROM synthetic_summaries"
-    )
+    query = "SELECT conversation_hash, summary_version, summary, model FROM synthetic_summaries"
     params = []
 
     if version:
@@ -190,7 +198,12 @@ def get_summaries_by_hash(db_path: Path, conversation_hash: str) -> Dict[str, st
 def get_results_summary(db_path: Path) -> Dict[str, Any]:
     """Get summary statistics about the database"""
     if not db_path.exists():
-        return {"version_counts": {}, "model_counts": {}, "unique_conversations": 0, "total_summaries": 0}
+        return {
+            "version_counts": {},
+            "model_counts": {},
+            "unique_conversations": 0,
+            "total_summaries": 0,
+        }
 
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()

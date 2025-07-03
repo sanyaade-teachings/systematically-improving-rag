@@ -7,7 +7,9 @@ to demonstrate improved recall when the embedding strategy aligns with the query
 """
 
 import asyncio
+import os
 import sys
+import time
 from pathlib import Path
 from typing import List, Dict, Any, Tuple
 from dataclasses import dataclass
@@ -15,14 +17,19 @@ from collections import defaultdict
 import json
 from datetime import datetime
 import typer
+import turbopuffer
+from sentence_transformers import SentenceTransformer
 
 from dotenv import load_dotenv
 from rich.console import Console
 from rich.table import Table
-from rich.live import Live
-from rich.layout import Layout
-from rich.panel import Panel
-from rich.progress import Progress, TaskID, SpinnerColumn, TextColumn, BarColumn, TimeRemainingColumn
+from rich.progress import (
+    Progress,
+    SpinnerColumn,
+    TextColumn,
+    BarColumn,
+    TimeRemainingColumn,
+)
 
 # Add parent directories to path
 sys.path.append(str(Path(__file__).parent.parent))
@@ -30,12 +37,8 @@ sys.path.append(
     str(Path(__file__).parent.parent / "PART03_synthetic_question_generation")
 )
 
-# Import DAOs
-from utils.dao.wildchat_dao_turbopuffer import WildChatDAOTurbopuffer
-from utils.dao.wildchat_dao import SearchRequest, SearchType, WildChatDAOBase
-
 # Import cache from local src
-from src.cache import setup_cache, GenericCache
+from src.cache import setup_cache, GenericCache, NoOpCache
 
 # Import load_queries_from_db from PART03
 sys.path.insert(
@@ -111,21 +114,111 @@ class RecallMetrics:
         }
 
 
+class SummaryTurboPufferClient:
+    """Custom TurboPuffer client for summary data"""
+
+    def __init__(self, namespace_name: str):
+        self.namespace_name = namespace_name
+        self.client = None
+        self.namespace = None
+        self.embedding_model = None
+
+    def _get_embedding_model(self) -> SentenceTransformer:
+        """Get or create the embedding model"""
+        if self.embedding_model is None:
+            self.embedding_model = SentenceTransformer(
+                "sentence-transformers/all-MiniLM-L6-v2"
+            )
+        return self.embedding_model
+
+    def _create_embeddings(self, texts: List[str]) -> List[List[float]]:
+        """Create embeddings for a list of texts"""
+        model = self._get_embedding_model()
+        embeddings = model.encode(texts, convert_to_tensor=False)
+        return [embedding.tolist() for embedding in embeddings]
+
+    async def connect(self) -> None:
+        """Connect to TurboPuffer"""
+        api_key = os.getenv("TURBOPUFFER_API_KEY")
+        if not api_key:
+            raise ValueError(
+                "Missing required environment variable: TURBOPUFFER_API_KEY"
+            )
+
+        region = os.getenv("TURBOPUFFER_REGION", "gcp-us-central1")
+        self.client = turbopuffer.Turbopuffer(api_key=api_key, region=region)
+        self.namespace = self.client.namespace(self.namespace_name)
+
+    async def disconnect(self) -> None:
+        """Disconnect from TurboPuffer"""
+        self.client = None
+        self.namespace = None
+        self.embedding_model = None
+
+    async def search(self, query: str, top_k: int = 30) -> List[Dict[str, Any]]:
+        """Search summaries and return results"""
+        if not self.namespace:
+            raise RuntimeError("Not connected to TurboPuffer. Call connect() first.")
+
+        # Create embedding for query
+        query_embedding = self._create_embeddings([query])[0]
+
+        # Search with vector similarity
+        results = self.namespace.query(
+            rank_by=("vector", "ANN", query_embedding),
+            top_k=top_k,
+            include_attributes=["summary", "hash", "summary_version", "model"],
+        )
+
+        # Convert results to our format
+        search_results = []
+        for row in results.rows:
+            result = {
+                "id": row.id,
+                "summary": getattr(row, "summary", ""),
+                "hash": getattr(row, "hash", ""),
+                "summary_version": getattr(row, "summary_version", ""),
+                "model": getattr(row, "model", ""),
+            }
+            search_results.append(result)
+
+        return search_results
+
+    async def get_stats(self) -> Dict[str, Any]:
+        """Get namespace statistics"""
+        if not self.namespace:
+            raise RuntimeError("Not connected to TurboPuffer. Call connect() first.")
+
+        try:
+            count_result = self.namespace.query(
+                aggregate_by={"document_count": ("Count", "id")}
+            )
+            total_count = count_result.aggregations["document_count"]
+            return {
+                "total_documents": total_count,
+                "namespace_name": self.namespace_name,
+            }
+        except Exception as e:
+            return {
+                "error": str(e),
+                "total_documents": 0,
+                "namespace_name": self.namespace_name,
+            }
+
+
 async def verify_single_query(
-    dao: WildChatDAOBase,
+    client: SummaryTurboPufferClient,
     conversation_hash: str,
     query: str,
     cache: GenericCache,
     *,
-    search_type: SearchType = SearchType.VECTOR,
     top_k: int = 30,
 ) -> Dict[str, Any]:
     """Verify if search results contain the original conversation hash"""
 
-    # Create cache key with DAO type and summary indicator
-    dao_type = dao.__class__.__name__
+    # Create cache key
     cache_key = GenericCache.make_generic_key(
-        "recall_summary", dao_type, search_type.name, conversation_hash, query[:50]
+        "recall_summary", client.namespace_name, conversation_hash, query[:50]
     )
 
     # Check cache first
@@ -134,26 +227,30 @@ async def verify_single_query(
         return cached_result
 
     try:
-        # Create search request
-        request = SearchRequest(query=query, top_k=top_k, search_type=search_type)
+        start_time = time.time()
 
         # Perform search
-        results = await dao.search(request)
+        results = await client.search(query, top_k=top_k)
+
+        end_time = time.time()
+        query_time_ms = (end_time - start_time) * 1000
 
         # Check if conversation hash is in results
         position = -1
-        for i, result in enumerate(results.results):
-            # The hash is stored in metadata
-            result_hash = result.metadata.get("hash", "")
-            if result_hash == conversation_hash:
-                position = i
-                break
+
+        # Check if target hash is in results
+        if len(results) > 0:
+            for i, result in enumerate(results):
+                hash_value = result.get("hash", "")
+                if hash_value == conversation_hash:
+                    position = i  # Found it!
+                    break
 
         result = {
             "success": True,
             "position": position,
-            "total_results": len(results.results),
-            "query_time_ms": results.query_time_ms,
+            "total_results": len(results),
+            "query_time_ms": query_time_ms,
         }
 
         # Cache the result
@@ -170,21 +267,16 @@ async def verify_single_query(
 
 
 async def process_query_with_metrics(
-    dao: WildChatDAOBase,
+    client: SummaryTurboPufferClient,
     conversation_hash: str,
-    prompt_version: str,
     query: str,
     metrics: RecallMetrics,
     cache: GenericCache,
     semaphore: asyncio.Semaphore,
-    *,
-    search_type: SearchType = SearchType.VECTOR,
 ) -> None:
     """Process a single query and update metrics"""
     async with semaphore:
-        result = await verify_single_query(
-            dao, conversation_hash, query, cache, search_type=search_type
-        )
+        result = await verify_single_query(client, conversation_hash, query, cache)
 
         metrics.total_queries += 1
 
@@ -218,46 +310,6 @@ async def process_query_with_metrics(
             metrics.search_errors += 1
 
 
-def create_comparison_table(
-    original_recall: float,
-    summary_v1_recall: float,
-    summary_v2_recall: float,
-    k: int,
-) -> Table:
-    """Create a comparison table for recall@k"""
-    table = Table(title=f"Recall@{k} Comparison")
-
-    table.add_column("Embedding Strategy", style="cyan")
-    table.add_column("Recall", style="magenta", justify="right")
-    table.add_column("Improvement", style="green", justify="right")
-
-    table.add_row("Original (First Message Only)", f"{original_recall:.2%}", "-")
-
-    v1_improvement = (
-        ((summary_v1_recall - original_recall) / original_recall * 100)
-        if original_recall > 0
-        else float("inf")
-    )
-    table.add_row(
-        "Summary V1 (Concise)",
-        f"{summary_v1_recall:.2%}",
-        f"+{v1_improvement:.1f}%" if v1_improvement != float("inf") else "∞",
-    )
-
-    v2_improvement = (
-        ((summary_v2_recall - original_recall) / original_recall * 100)
-        if original_recall > 0
-        else float("inf")
-    )
-    table.add_row(
-        "Summary V2 (Comprehensive)",
-        f"{summary_v2_recall:.2%}",
-        f"+{v2_improvement:.1f}%" if v2_improvement != float("inf") else "∞",
-    )
-
-    return table
-
-
 async def main(
     limit: int = typer.Option(None, help="Limit number of V2 queries to test"),
     query_version: str = typer.Option(
@@ -266,6 +318,7 @@ async def main(
     summary_version: str = typer.Option(
         "v2", help="Which summary version to test (v1 or v2)"
     ),
+    no_cache: bool = typer.Option(False, help="Disable caching for fresh results"),
 ):
     """Test V2 queries against summary-based embeddings"""
 
@@ -281,49 +334,54 @@ async def main(
         return
 
     # Set up disk cache
-    console.print(f"\n[cyan]Using disk cache at: {CACHE_DIR}[/cyan]")
-    cache = setup_cache(CACHE_DIR)
+    if no_cache:
+        console.print(f"\n[cyan]Cache disabled - running fresh queries[/cyan]")
+        cache = NoOpCache()
+    else:
+        console.print(f"\n[cyan]Using disk cache at: {CACHE_DIR}[/cyan]")
+        cache = setup_cache(CACHE_DIR)
 
     # Load V2 queries only
     console.print("\n[cyan]Loading V2 queries from database...[/cyan]")
     all_queries = load_queries_from_db(QUERIES_DB_PATH, limit=limit)
 
-    # Filter for V2 queries only
+    # Filter for specified query version
     queries = [(h, v, q) for h, v, q in all_queries if v == query_version]
 
     if not queries:
-        console.print("[red]No V2 queries found in database[/red]")
+        console.print(f"[red]No {query_version} queries found in database[/red]")
         return
 
     console.print(f"[green]Loaded {len(queries)} {query_version} queries[/green]")
 
-    # Initialize DAO based on backend
-    table_name = f"wildchat-summaries-{summary_version}"
-    dao = WildChatDAOTurbopuffer(table_name=table_name)
-    dao_name = f"TurboPuffer (summaries {summary_version})"
+    # Initialize custom TurboPuffer client
+    namespace_name = f"wildchat-synthetic-summaries-{summary_version}"
+    client = SummaryTurboPufferClient(namespace_name)
 
-    console.print(f"\n[cyan]Connecting to {dao_name}...[/cyan]")
+    console.print(
+        f"\n[cyan]Connecting to TurboPuffer namespace: {namespace_name}[/cyan]"
+    )
     try:
-        await dao.connect()
-        console.print(f"[green]Connected to {dao_name}[/green]")
+        await client.connect()
+        console.print(f"[green]Connected to TurboPuffer[/green]")
 
         # Get stats
         try:
-            stats = await dao.get_stats()
+            stats = await client.get_stats()
             if stats and "total_documents" in stats:
                 console.print(
                     f"[cyan]Total documents: {stats['total_documents']:,}[/cyan]"
                 )
-        except Exception:
-            pass
+        except Exception as e:
+            console.print(f"[yellow]Could not get stats: {e}[/yellow]")
 
     except Exception as e:
-        console.print(f"[red]Failed to connect to {dao_name}: {e}[/red]")
+        console.print(f"[red]Failed to connect to TurboPuffer: {e}[/red]")
         return
 
     # Process queries
     console.print(
-        f"\n[cyan]Testing V2 queries against {summary_version} summaries...[/cyan]"
+        f"\n[cyan]Testing {query_version} queries against {summary_version} summaries...[/cyan]"
     )
 
     metrics = RecallMetrics()
@@ -334,14 +392,12 @@ async def main(
     for conversation_hash, _, query in queries:
         task = asyncio.create_task(
             process_query_with_metrics(
-                dao,
+                client,
                 conversation_hash,
-                query_version,
                 query,
                 metrics,
                 cache,
                 semaphore,
-                search_type=SearchType.VECTOR,
             )
         )
         tasks.append(task)
@@ -353,27 +409,30 @@ async def main(
         BarColumn(),
         TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
         TextColumn("({task.completed}/{task.total})"),
-        TimeRemainingColumn(),
         console=console,
     ) as progress:
         task = progress.add_task("Processing queries...", total=len(tasks))
-        
+
         for coro in asyncio.as_completed(tasks):
             await coro
             progress.update(task, advance=1)
 
-    await dao.disconnect()
+    await client.disconnect()
 
     # Display results
     console.print("\n[bold]Results Summary:[/bold]")
 
     summary = metrics.get_summary()
 
-    results_table = Table(title=f"{query_version} Queries vs Summary-based Embeddings")
+    results_table = Table(
+        title=f"{query_version} Queries vs {summary_version} Summary Embeddings"
+    )
     results_table.add_column("Metric", style="cyan")
     results_table.add_column("Value", style="magenta", justify="right")
 
-    results_table.add_row(f"Total {query_version} Queries", str(summary["total_queries"]))
+    results_table.add_row(
+        f"Total {query_version} Queries", str(summary["total_queries"])
+    )
     results_table.add_row("Successful Searches", str(summary["successful_searches"]))
     results_table.add_row("Recall@1", f"{summary['recall@1']:.2%}")
     results_table.add_row("Recall@5", f"{summary['recall@5']:.2%}")
@@ -385,24 +444,6 @@ async def main(
 
     console.print(results_table)
 
-    # Compare with original results (hardcoded from PART03 typical results)
-    console.print(
-        "\n[bold]Comparison with Original First-Message-Only Approach:[/bold]"
-    )
-
-    # Typical V2 recall with first-message-only embeddings
-    original_v2_recall = {1: 0.00, 5: 0.02, 10: 0.05, 20: 0.08, 30: 0.10}
-
-    for k in [1, 5, 10, 20, 30]:
-        comparison_table = create_comparison_table(
-            original_v2_recall[k],
-            summary["recall@" + str(k)],  # Using current summary version
-            summary["recall@" + str(k)],  # Same for now, but could compare v1 vs v2
-            k,
-        )
-        console.print(comparison_table)
-        console.print()
-
     # Save results
     results_file = (
         Path(__file__).parent / f"recall_results_summaries_{summary_version}.json"
@@ -410,11 +451,11 @@ async def main(
     results_data = {
         "timestamp": datetime.now().isoformat(),
         "summary_version": summary_version,
+        "query_version": query_version,
         "db_backend": "turbopuffer",
         "total_queries": len(queries),
         "metrics": summary,
         "comparison": {
-            "original_first_message_only": original_v2_recall,
             "with_summaries": {
                 1: summary["recall@1"],
                 5: summary["recall@5"],
@@ -436,15 +477,16 @@ app = typer.Typer()
 
 @app.command()
 def run(
-    limit: int = typer.Option(None, help="Limit number of V2 queries to test"),
+    limit: int = typer.Option(None, help="Limit number of queries to test"),
     query_version: str = typer.Option(
         "v2", help="Which query version to test (v1 or v2)"
     ),
     summary_version: str = typer.Option(
         "v2", help="Which summary version to test (v1 or v2)"
     ),
+    no_cache: bool = typer.Option(False, help="Disable caching for fresh results"),
 ):
-    asyncio.run(main(limit, query_version, summary_version))
+    asyncio.run(main(limit, query_version, summary_version, no_cache))
 
 
 if __name__ == "__main__":

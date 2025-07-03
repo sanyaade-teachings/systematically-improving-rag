@@ -1,28 +1,22 @@
 {
-  "timestamp": "2025-07-03T00:08:50.697091",
+  "timestamp": "2025-07-03T00:43:35.891601",
   "summary_version": "v2",
+  "query_version": "v2",
   "db_backend": "turbopuffer",
-  "total_queries": 3399,
+  "total_queries": 5,
   "metrics": {
-    "total_queries": 3399,
-    "successful_searches": 3399,
+    "total_queries": 5,
+    "successful_searches": 0,
     "recall@1": 0.0,
     "recall@5": 0.0,
     "recall@10": 0.0,
     "recall@20": 0.0,
     "recall@30": 0.0,
-    "not_found": 3399,
-    "search_errors": 0,
-    "error_rate": 0.0
+    "not_found": 0,
+    "search_errors": 5,
+    "error_rate": 1.0
   },
   "comparison": {
-    "original_first_message_only": {
-      "1": 0.0,
-      "5": 0.02,
-      "10": 0.05,
-      "20": 0.08,
-      "30": 0.1
-    },
     "with_summaries": {
       "1": 0.0,
       "5": 0.0,
