@@ -83,3 +83,21 @@ def setup_cache(cache_dir: Path, clear_cache: bool = False) -> GenericCache:
             print(f"[yellow]Found {cache_size} cached items[/yellow]")
 
     return cache
+
+class NoOpCache:
+    """No-op cache implementation"""
+
+    def __init__(self):
+        pass
+
+    def get(self, key: str) -> Any:
+        return None
+
+    def set(self, key: str, value: Any) -> None:
+        pass
+
+    def clear(self) -> None:
+        pass
+
+    def __len__(self) -> int:
+        return 0

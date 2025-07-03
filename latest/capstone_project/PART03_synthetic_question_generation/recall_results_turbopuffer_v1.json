@@ -1,0 +1,19 @@
+{
+  "timestamp": "2025-07-03T09:09:40.811076",
+  "query_version": "v1",
+  "backend": "turbopuffer",
+  "search_type": "vector",
+  "total_queries": 2117,
+  "metrics": {
+    "total_queries": 2117,
+    "successful_searches": 2117,
+    "recall@1": 0.382144544166273,
+    "recall@5": 0.5970713273500237,
+    "recall@10": 0.6636750118091639,
+    "recall@20": 0.7198866320264525,
+    "recall@30": 0.7501180916391119,
+    "not_found": 529,
+    "search_errors": 0,
+    "error_rate": 0.0
+  }
+}

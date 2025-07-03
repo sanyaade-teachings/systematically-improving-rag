@@ -385,7 +385,7 @@ def run(
         "v2", help="Which query version to test (v1 or v2)"
     ),
     backend: str = typer.Option(
-        "chromadb", help="Backend to use (chromadb or turbopuffer)"
+        "turbopuffer", help="Backend to use (chromadb or turbopuffer)"
     ),
     search_type: str = typer.Option(
         "vector", help="Search type (vector, full_text, or hybrid)"
