@@ -110,7 +110,7 @@ async def verify_single_query(
     top_k: int = 30,
 ) -> Dict[str, Any]:
     """Verify if search results contain the original conversation hash"""
-    
+
     # Create cache key with DAO type
     dao_type = dao.__class__.__name__
     cache_key = GenericCache.make_generic_key(
@@ -124,13 +124,13 @@ async def verify_single_query(
 
     try:
         start_time = time.time()
-        
+
         # Create search request
         request = SearchRequest(query=query, top_k=top_k, search_type=search_type)
 
         # Perform search
         results = await dao.search(request)
-        
+
         end_time = time.time()
         query_time_ms = (end_time - start_time) * 1000
 
@@ -359,7 +359,9 @@ async def main(
     console.print(results_table)
 
     # Save results
-    results_file = Path(__file__).parent / f"recall_results_{backend}_{query_version}.json"
+    results_file = (
+        Path(__file__).parent / f"recall_results_{backend}_{query_version}.json"
+    )
     results_data = {
         "timestamp": datetime.now().isoformat(),
         "query_version": query_version,

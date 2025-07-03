@@ -146,13 +146,17 @@ async def main(
     limit: int = typer.Option(10000, help="Number of conversations to process"),
     clear_cache: bool = typer.Option(False, help="Clear the cache before starting"),
     concurrency: int = typer.Option(50, help="Max concurrent API requests"),
-    version: str = typer.Option("both", help="Version to process: v1, v2, v3, v4, v5, or both"),
+    version: str = typer.Option(
+        "both", help="Version to process: v1, v2, v3, v4, v5, or both"
+    ),
 ):
     """Generate synthetic summaries from WildChat conversations"""
 
     # Validate version parameter
     if version not in ["v1", "v2", "v3", "v4", "v5", "both"]:
-        console.print("[red]Error: version must be 'v1', 'v2', 'v3', 'v4', 'v5', or 'both'[/red]")
+        console.print(
+            "[red]Error: version must be 'v1', 'v2', 'v3', 'v4', 'v5', or 'both'[/red]"
+        )
         return
 
     console.print("[bold green]Synthetic Summary Generation[/bold green]")
@@ -215,7 +219,9 @@ async def main(
                 should_process = True
             elif version == "v5" and not has_v5:
                 should_process = True
-            elif version == "both" and not (has_v1 and has_v2 and has_v3 and has_v4 and has_v5):
+            elif version == "both" and not (
+                has_v1 and has_v2 and has_v3 and has_v4 and has_v5
+            ):
                 should_process = True
 
             if should_process:
@@ -258,11 +264,11 @@ async def main(
             versions_to_process = [version]
 
         total_saved = 0
-        
+
         # Process each version separately
         for current_version in versions_to_process:
             console.print(f"\n[cyan]Processing version {current_version}[/cyan]")
-            
+
             tasks = [
                 process_conversation(
                     client,
@@ -314,7 +320,9 @@ def run(
     limit: int = typer.Option(10000, help="Number of conversations to process"),
     clear_cache: bool = typer.Option(False, help="Clear the cache before starting"),
     concurrency: int = typer.Option(50, help="Max concurrent API requests"),
-    version: str = typer.Option("both", help="Version to process: v1, v2, v3, v4, v5, or both"),
+    version: str = typer.Option(
+        "both", help="Version to process: v1, v2, v3, v4, v5, or both"
+    ),
 ):
     """Generate synthetic summaries from WildChat conversations"""
     asyncio.run(main(limit, clear_cache, concurrency, version))

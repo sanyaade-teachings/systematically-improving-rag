@@ -229,7 +229,13 @@ async def main(
 
         tasks = [
             process_conversation(
-                client, conversation, query_version, cache, semaphore, progress, process_task
+                client,
+                conversation,
+                query_version,
+                cache,
+                semaphore,
+                progress,
+                process_task,
             )
             for conversation in conversations
         ]

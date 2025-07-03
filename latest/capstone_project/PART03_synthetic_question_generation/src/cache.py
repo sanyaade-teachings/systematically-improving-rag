@@ -84,6 +84,7 @@ def setup_cache(cache_dir: Path, clear_cache: bool = False) -> GenericCache:
 
     return cache
 
+
 class NoOpCache:
     """No-op cache implementation"""
 

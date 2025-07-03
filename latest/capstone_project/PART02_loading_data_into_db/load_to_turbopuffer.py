@@ -86,8 +86,12 @@ def load_to_turbopuffer(
     """
 
     console.print(f"Starting data load to namespace: {namespace_name}", style="blue")
-    console.print(f"Config: limit={limit}, batch_size={batch_size}, language={filter_language}")
-    console.print("Using embedding model: sentence-transformers/all-MiniLM-L6-v2", style="cyan")
+    console.print(
+        f"Config: limit={limit}, batch_size={batch_size}, language={filter_language}"
+    )
+    console.print(
+        "Using embedding model: sentence-transformers/all-MiniLM-L6-v2", style="cyan"
+    )
 
     try:
         # Get namespace
@@ -97,7 +101,9 @@ def load_to_turbopuffer(
         if reset_namespace:
             try:
                 client.delete_namespace(namespace_name)
-                console.print(f"Deleted existing namespace: {namespace_name}", style="yellow")
+                console.print(
+                    f"Deleted existing namespace: {namespace_name}", style="yellow"
+                )
                 ns = client.namespace(namespace_name)
             except Exception:
                 pass  # Namespace might not exist
@@ -156,7 +162,9 @@ def load_to_turbopuffer(
                 batch_data["hash"].append(conversation["conversation_hash"])
                 batch_data["language"].append(conversation["language"])
                 batch_data["model"].append(conversation["model"])
-                batch_data["conversation_length"].append(conversation["conversation_length"])
+                batch_data["conversation_length"].append(
+                    conversation["conversation_length"]
+                )
                 batch_data["toxic"].append(conversation["toxic"])
 
                 batch_texts.append(message_text)
@@ -165,7 +173,9 @@ def load_to_turbopuffer(
                 if len(batch_data["id"]) >= batch_size:
                     try:
                         # Generate embeddings for the batch (truncate for embedding)
-                        embeddings = create_embeddings([text[:2000] for text in batch_texts])
+                        embeddings = create_embeddings(
+                            [text[:2000] for text in batch_texts]
+                        )
                         batch_data["vector"] = embeddings
 
                         # Write batch to Turbopuffer
@@ -185,8 +195,14 @@ def load_to_turbopuffer(
                         total_added += len(batch_data["id"])
 
                     except Exception as e:
-                        if "duplicate" in str(e).lower() or "already exists" in str(e).lower():
-                            console.print("Warning: Duplicate entries detected in batch, skipping", style="yellow")
+                        if (
+                            "duplicate" in str(e).lower()
+                            or "already exists" in str(e).lower()
+                        ):
+                            console.print(
+                                "Warning: Duplicate entries detected in batch, skipping",
+                                style="yellow",
+                            )
                             duplicates_skipped += len(batch_data["id"])
                         else:
                             console.print(f"Error writing batch: {e}", style="red")
@@ -220,7 +236,10 @@ def load_to_turbopuffer(
 
             except Exception as e:
                 if "duplicate" in str(e).lower() or "already exists" in str(e).lower():
-                    console.print("Warning: Duplicate entries in final batch, skipping", style="yellow")
+                    console.print(
+                        "Warning: Duplicate entries in final batch, skipping",
+                        style="yellow",
+                    )
                     duplicates_skipped += len(batch_data["id"])
                 else:
                     console.print(f"Error writing final batch: {e}", style="red")
@@ -238,7 +257,9 @@ def load_to_turbopuffer(
             final_count = count_result.aggregations["document_count"]
         except Exception:
             try:
-                count_result = ns.query(aggregate_by={"document_count": ("Count", "id")})
+                count_result = ns.query(
+                    aggregate_by={"document_count": ("Count", "id")}
+                )
                 final_count = count_result.aggregations["document_count"]
             except Exception:
                 final_count = "Unknown"
@@ -265,7 +286,10 @@ def load_to_turbopuffer(
                 search_end_time = time.time()
                 search_duration_ms = (search_end_time - search_start_time) * 1000
 
-                console.print(f"Success: Query found {len(results.rows)} similar conversations", style="green")
+                console.print(
+                    f"Success: Query found {len(results.rows)} similar conversations",
+                    style="green",
+                )
                 console.print(f"   - Search time: {search_duration_ms:.1f} ms")
                 if results.rows:
                     console.print(f"   Most similar: '{results.rows[0].text[:100]}...'")

@@ -4,7 +4,7 @@ async def conversation_summary_v4(
 ) -> ConversationSummary:
     """
     Generate a pattern-focused summary optimized for v2-style queries.
-    
+
     This approach creates summaries that explicitly capture:
     - Conversation categorization and type
     - Interaction patterns and dynamics
@@ -12,17 +12,17 @@ async def conversation_summary_v4(
     - User behavior patterns
     - AI response patterns
     - Meta-conversation characteristics
-    
+
     The summary uses pattern-descriptive language that aligns with v2 query style.
-    
+
     Args:
         client: instructor-patched client
         messages: List of conversation messages
-        
+
     Returns:
         ConversationSummary object with pattern-optimized summary
     """
-    
+
     prompt = """
 You are a conversation analyst creating searchable summaries that capture conversation PATTERNS and TYPES, not just content details.
 
@@ -86,13 +86,13 @@ Generate a pattern-focused summary that would be discoverable by researchers loo
         response_model=ConversationSummary,
         messages=[
             {
-                "role": "system", 
-                "content": "You are an expert at categorizing conversations by their patterns, types, and interaction dynamics. Focus on creating summaries that match how researchers search for conversation patterns rather than specific content."
+                "role": "system",
+                "content": "You are an expert at categorizing conversations by their patterns, types, and interaction dynamics. Focus on creating summaries that match how researchers search for conversation patterns rather than specific content.",
             },
-            {"role": "user", "content": prompt}
+            {"role": "user", "content": prompt},
         ],
         context={"messages": messages},
         max_retries=3,
     )
-    
+
     return response
