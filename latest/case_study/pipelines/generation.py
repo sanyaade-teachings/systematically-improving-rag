@@ -14,6 +14,7 @@ from core.db import (
     get_conversations_by_hashes,
     save_questions_to_sqlite,
     save_summaries_to_sqlite,
+    filter_unprocessed_hashes,
 )
 from core.synthetic_queries import (
     synthetic_question_generation_v1,
@@ -30,6 +31,7 @@ from core.summarization import (
     conversation_summary_v5,
     ConversationSummary,
 )
+from core.cache import setup_cache, GenericCache
 
 console = Console()
 
@@ -86,6 +88,7 @@ async def generate_questions_pipeline(
     db_path: Path,
     experiment_id: Optional[str] = None,
     concurrency: int = 10,
+    use_cache: bool = True,
 ) -> Dict[str, int]:
     """
     Generate questions for conversations using specified techniques
@@ -104,12 +107,30 @@ async def generate_questions_pipeline(
         f"[bold green]Generating questions with version: {version}[/bold green]"
     )
 
+    # Filter out already processed conversations
+    unprocessed_hashes = filter_unprocessed_hashes(
+        conversation_hashes, version, db_path, experiment_id
+    )
+    
+    if len(unprocessed_hashes) < len(conversation_hashes):
+        console.print(
+            f"[yellow]Skipping {len(conversation_hashes) - len(unprocessed_hashes)} already processed conversations[/yellow]"
+        )
+    
+    if not unprocessed_hashes:
+        console.print("[green]All conversations already processed[/green]")
+        return {version: 0}
+
     # Initialize instructor client
     client = instructor.from_provider("openai/gpt-4.1-nano", async_client=True)
+    
+    # Set up cache
+    cache_dir = db_path.parent / "cache" / "questions"
+    cache = setup_cache(cache_dir) if use_cache else None
 
     # Load conversations
-    conversations = get_conversations_by_hashes(conversation_hashes, db_path)
-    console.print(f"Loaded {len(conversations)} conversations")
+    conversations = get_conversations_by_hashes(unprocessed_hashes, db_path)
+    console.print(f"Loaded {len(conversations)} conversations to process")
 
     results = {}
 
@@ -121,26 +142,55 @@ async def generate_questions_pipeline(
             f"Generating {version} questions", total=len(conversations)
         )
 
-        async def process_conversation(conv: Dict[str, Any]) -> SearchQueries | None:
+        async def process_conversation(conv: Dict[str, Any]) -> List[Dict[str, Any]] | None:
             async with semaphore:
                 try:
+                    conversation_hash = conv['conversation_hash']
+                    
+                    # Check cache first
+                    if cache:
+                        cache_key = GenericCache.make_conversation_key(conversation_hash, version)
+                        cached_queries = cache.get(cache_key)
+                        if cached_queries is not None:
+                            # Convert cached queries to question data format
+                            question_data_list = []
+                            for query in cached_queries:
+                                question_data = {
+                                    "id": f"{conversation_hash}_{version}_{idx}",
+                                    "conversation_hash": conversation_hash,
+                                    "version": version,
+                                    "question": query,
+                                    "experiment_id": experiment_id,
+                                }
+                                question_data_list.append(question_data)
+                            progress.advance(task)
+                            return question_data_list
+                    
                     # Parse conversation messages
                     messages = parse_conversation_messages(conv)
                     
                     # Generate questions using the version
                     generated = await fn_query[version](client, messages)
                     
-                    # Add metadata for saving
-                    question_data = {
-                        "id": f"{conv['conversation_hash']}_{version}",
-                        "conversation_hash": conv['conversation_hash'],
-                        "version": version,
-                        "question": generated.queries[0] if generated.queries else "",
-                        "experiment_id": experiment_id,
-                    }
+                    # Cache the result
+                    if cache and generated.queries:
+                        cache_key = GenericCache.make_conversation_key(conversation_hash, version)
+                        cache.set(cache_key, generated.queries)
+                    
+                    # Create question data for each generated query
+                    question_data_list = []
+                    for idx, query in enumerate(generated.queries):
+                        question_data = {
+                            "id": f"{conversation_hash}_{version}_{idx}",
+                            "conversation_hash": conversation_hash,
+                            "version": version,
+                            "question": query,
+                            "experiment_id": experiment_id,
+                        }
+                        question_data_list.append(question_data)
                     
                     progress.advance(task)
-                    return question_data
+                    return question_data_list
                 except Exception as e:
                     console.print(
                         f"[red]Error processing {conv['conversation_hash']}: {e}[/red]"
@@ -150,8 +200,13 @@ async def generate_questions_pipeline(
 
         # Process all conversations concurrently
         tasks = [process_conversation(conv) for conv in conversations]
-        questions = await asyncio.gather(*tasks)
-        questions = [q for q in questions if q is not None]
+        question_lists = await asyncio.gather(*tasks)
+        
+        # Flatten the list of lists and filter out None results
+        questions = []
+        for q_list in question_lists:
+            if q_list is not None:
+                questions.extend(q_list)
         
         # Save to database
         saved_count = save_questions_to_sqlite(questions, db_path)
@@ -167,6 +222,7 @@ async def generate_summaries_pipeline(
     db_path: Path,
     experiment_id: Optional[str] = None,
     concurrency: int = 10,
+    use_cache: bool = True,
 ) -> Dict[str, int]:
     """
     Generate summaries for conversations using specified techniques
@@ -175,12 +231,30 @@ async def generate_summaries_pipeline(
         f"[bold green]Generating summaries with version: {version}[/bold green]"
     )
 
+    # Filter out already processed conversations
+    unprocessed_hashes = filter_unprocessed_hashes(
+        conversation_hashes, version, db_path, experiment_id, is_summary=True
+    )
+    
+    if len(unprocessed_hashes) < len(conversation_hashes):
+        console.print(
+            f"[yellow]Skipping {len(conversation_hashes) - len(unprocessed_hashes)} already processed conversations[/yellow]"
+        )
+    
+    if not unprocessed_hashes:
+        console.print("[green]All conversations already processed[/green]")
+        return {version: 0}
+
     # Initialize instructor client
     client = instructor.from_provider("openai/gpt-4.1-nano", async_client=True)
+    
+    # Set up cache
+    cache_dir = db_path.parent / "cache" / "summaries"
+    cache = setup_cache(cache_dir) if use_cache else None
 
     # Load conversations
-    conversations = get_conversations_by_hashes(conversation_hashes, db_path)
-    console.print(f"Loaded {len(conversations)} conversations")
+    conversations = get_conversations_by_hashes(unprocessed_hashes, db_path)
+    console.print(f"Loaded {len(conversations)} conversations to process")
 
     results = {}
 
