@@ -268,17 +268,28 @@ def evaluate(
     embedding_model: str = typer.Option("text-embedding-3-large", help="Embedding model name"),
     limit: Optional[int] = typer.Option(None, help="Limit number of questions to evaluate"),
     experiment_id: Optional[str] = typer.Option(None, help="Experiment ID for tracking"),
+    reranker: str = typer.Option("none", help="Reranker to use: none, sentence-transformers, cohere"),
+    target_type: str = typer.Option("conversations", help="Target type: conversations or summary"),
+    target_technique: Optional[str] = typer.Option(None, help="Summary technique when target_type=summary"),
 ):
     """Evaluate question generation performance"""
-    # Determine embeddings path
-    if embeddings_type == "conversations":
-        embeddings_path = PATH_TO_DB.parent / "embeddings" / "conversations" / f"{embedding_model.replace('/', '-')}.parquet"
-    elif embeddings_type == "full_conversations":
-        embeddings_path = PATH_TO_DB.parent / "embeddings" / "full_conversations" / f"{embedding_model.replace('/', '-')}.parquet"
-    else:  # summaries
-        # For summaries, need to specify which summary version
-        summary_version = typer.prompt("Which summary version? (v1-v5)")
-        embeddings_path = PATH_TO_DB.parent / "embeddings" / "summaries" / f"{summary_version}_{embedding_model.replace('/', '-')}.parquet"
+    # Determine embeddings path based on target_type
+    if target_type == "conversations":
+        if embeddings_type == "conversations":
+            embeddings_path = PATH_TO_DB.parent / "embeddings" / "conversations" / f"{embedding_model.replace('/', '-')}.parquet"
+        elif embeddings_type == "full_conversations":
+            embeddings_path = PATH_TO_DB.parent / "embeddings" / "full_conversations" / f"{embedding_model.replace('/', '-')}.parquet"
+        else:
+            console.print(f"[red]Invalid embeddings_type '{embeddings_type}' for target_type 'conversations'[/red]")
+            raise typer.Exit(1)
+    elif target_type == "summary":
+        if not target_technique:
+            console.print(f"[red]target_technique is required when target_type='summary'[/red]")
+            raise typer.Exit(1)
+        embeddings_path = PATH_TO_DB.parent / "embeddings" / "summaries" / f"{target_technique}_{embedding_model.replace('/', '-')}.parquet"
+    else:
+        console.print(f"[red]Invalid target_type '{target_type}'. Use 'conversations' or 'summary'[/red]")
+        raise typer.Exit(1)
     
     if not embeddings_path.exists():
         console.print(f"[red]Embeddings not found at {embeddings_path}[/red]")
@@ -293,12 +304,16 @@ def evaluate(
             db_path=PATH_TO_DB,
             embedding_model=embedding_model,
             limit=limit,
-            experiment_id=experiment_id
+            experiment_id=experiment_id,
+            reranker_name=reranker,
+            target_type=target_type
         )
     )
     
     # Save report
-    report_path = PATH_TO_DB.parent / "results" / f"eval_{question_version}_{embeddings_type}_{embedding_model.replace('/', '-')}.json"
+    reranker_suffix = f"_{reranker}" if reranker != "none" else ""
+    target_suffix = f"_{target_technique}" if target_type == "summary" and target_technique else ""
+    report_path = PATH_TO_DB.parent / "results" / f"eval_{question_version}_{target_type}{target_suffix}_{embedding_model.replace('/', '-')}{reranker_suffix}.json"
     from core.evaluation import save_evaluation_report
     save_evaluation_report(
         results, 
@@ -307,7 +322,10 @@ def evaluate(
         metadata={
             "question_version": question_version,
             "embeddings_type": embeddings_type,
-            "embedding_model": embedding_model
+            "embedding_model": embedding_model,
+            "reranker": reranker,
+            "target_type": target_type,
+            "target_technique": target_technique
         },
         db_path=PATH_TO_DB,
         experiment_id=experiment_id

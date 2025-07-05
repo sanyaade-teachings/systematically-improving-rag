@@ -504,47 +504,29 @@ async def conversation_summary_v5(
     """
 
     prompt = """
-    Analyze this conversation from the perspective of an AI analysis agent looking for system improvement opportunities.
-    Create a structured summary with the following components:
+    Create a hybrid summary that excels at both pattern-based (v2) and content-based (v1) search queries.
+
+    CRITICAL: Balance these two needs:
+    1. Pattern queries like "conversations where users ask about X" (v2 style)
+    2. Content queries like "quantum physics explanation" (v1 style)
     
-    1. **FAILURE ANALYSIS** (if applicable):
-       - Root cause: What specific capability or understanding failed?
-       - Failure pattern: Is this a comprehension, knowledge, reasoning, or execution failure?
-       - User impact: How did this affect the user's goals?
-       - Recovery attempts: What strategies did the AI try to recover?
-       
-    2. **INTERACTION DYNAMICS**:
-       - Communication breakdowns: Where did misunderstandings occur?
-       - Clarification loops: How many rounds of clarification were needed?
-       - User frustration indicators: Signs of impatience, confusion, or dissatisfaction
-       - Resolution status: Was the issue resolved? How?
+    Write ONE paragraph (600 chars max) with this structure:
     
-    3. **CAPABILITY GAPS**:
-       - Missing features: What did the user need that wasn't available?
-       - Workarounds required: Alternative approaches suggested
-       - Knowledge limitations: Topics where the AI lacked depth
-       - Tool limitations: Technical constraints encountered
+    FIRST SENTENCE - Pattern Hook (for v2):
+    "Conversation where user [action: asks about/requests/seeks help with/discusses/explores] [specific topic/goal]"
     
-    4. **SUCCESS PATTERNS** (if applicable):
-       - Effective strategies: What approaches worked well?
-       - User satisfaction signals: Positive feedback or successful outcomes
-       - Reusable solutions: Patterns that could help in similar cases
+    SECOND SENTENCE - Type & Domain (for both):
+    "This [type] conversation covers [key technical terms, concepts, tools, or domains]"
+    Types: educational Q&A, technical troubleshooting, creative collaboration, task assistance, problem solving
     
-    5. **IMPROVEMENT HYPOTHESES**:
-       - Specific capability needed: "Would benefit from [specific feature/knowledge]"
-       - Pattern recognition: "Similar to other [type] failures"
-       - Priority assessment: Impact level (high/medium/low) based on user goals
-       - Implementation suggestion: "Could be addressed by [approach]"
+    THIRD SENTENCE - Interaction & Content (balanced):
+    "The [interaction pattern] includes [specific solutions/information/techniques discussed]"
+    Patterns: step-by-step guidance, iterative problem-solving, exploratory discussion, direct Q&A
     
-    6. **METADATA FOR ANALYSIS**:
-       - Domain: [technical/creative/educational/etc.]
-       - Complexity: [simple/moderate/complex]
-       - User expertise: [beginner/intermediate/expert]
-       - Failure severity: [minor/moderate/critical]
-       - Business impact: [low/medium/high]
+    FOURTH SENTENCE - Searchable Details (for v1):
+    Pack in specific technical terms, tools, concepts, and solutions that users might search for.
     
-    Format: Create a narrative summary that an AI agent could parse to identify patterns across many conversations.
-    Focus on actionable insights rather than just describing what happened.
+    Balance pattern description with content keywords. Be specific and searchable.
     
     <conversation>
     {% for message in messages %}
@@ -554,7 +536,7 @@ async def conversation_summary_v5(
     {% endfor %}
     </conversation>
     
-    Generate a summary that enables systematic improvement of the AI system.
+    Generate a balanced summary optimized for both pattern and content queries.
     """
 
     response = await client.chat.completions.create(

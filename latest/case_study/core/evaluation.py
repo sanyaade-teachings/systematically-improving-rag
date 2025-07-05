@@ -22,6 +22,7 @@ from core.db import (
     Conversation,
     Question
 )
+from core.reranking import get_reranker
 from core.search import VectorSearchEngine
 from sqlmodel import Session, select
 
@@ -108,7 +109,9 @@ async def evaluate_questions(
     top_k: int = 30,
     limit: Optional[int] = None,
     experiment_id: Optional[str] = None,
-    save_results: bool = True
+    save_results: bool = True,
+    reranker_name: str = "none",
+    target_type: str = "conversations"
 ) -> Tuple[List[EvaluationResult], RecallMetrics]:
     """
     Evaluate generated questions against embedded conversations
@@ -142,8 +145,16 @@ async def evaluate_questions(
     
     console.print(f"[cyan]Loaded {len(questions)} questions[/cyan]")
     
-    # Initialize search engine
+    # Initialize search engine and reranker
     search_engine = VectorSearchEngine(embeddings_path, embedding_model)
+    reranker = get_reranker(reranker_name)
+    
+    if reranker_name != "none":
+        console.print(f"[yellow]Using reranker: {reranker.name}[/yellow]")
+        # For reranking, we need to retrieve more candidates initially
+        initial_top_k = min(100, top_k * 3)  # Get 3x more candidates for reranking
+    else:
+        initial_top_k = top_k
     
     # Evaluate each question
     evaluation_results = []
@@ -162,8 +173,14 @@ async def evaluate_questions(
             
             # Search for all queries in batch
             search_results = await search_engine.batch_search(
-                queries, top_k=top_k, show_progress=False
+                queries, top_k=initial_top_k, show_progress=False
             )
+            
+            # Apply reranking if requested
+            if reranker_name != "none":
+                search_results = await _apply_reranking(
+                    queries, search_results, reranker, db_path, target_type, top_k
+                )
             
             # Process results
             for question, results in zip(batch, search_results):
@@ -298,6 +315,109 @@ def analyze_failures(
             console.print(f"[yellow]Score:[/yellow] {failure.score:.4f}")
     
     return failure_analysis
+
+
+async def _apply_reranking(
+    queries: List[str],
+    search_results: List,
+    reranker,
+    db_path: Path,
+    target_type: str,
+    final_top_k: int
+):
+    """Apply reranking to search results"""
+    from core.db import get_conversations_by_hashes, get_summaries_by_hashes_and_technique
+    
+    reranked_results = []
+    
+    for query, results in zip(queries, search_results):
+        if not results.results:
+            reranked_results.append(results)
+            continue
+        
+        # Extract conversation hashes and get text content
+        doc_info = []
+        conversation_hashes = []
+        
+        for r in results.results:
+            # Handle ID format variations
+            result_hash = r.id
+            if 'conversation_hash' in r.metadata:
+                result_hash = r.metadata['conversation_hash']
+            elif result_hash.endswith(('_v1', '_v2', '_v3', '_v4', '_v5')):
+                result_hash = result_hash.rsplit('_', 1)[0]
+            
+            conversation_hashes.append(result_hash)
+            doc_info.append((r.id, result_hash, r.score, r.rank))
+        
+        # Get document text based on target type
+        if target_type == "conversations":
+            # Get conversation text
+            conversations = get_conversations_by_hashes(conversation_hashes, db_path)
+            hash_to_text = {c['conversation_hash']: c['text'] for c in conversations}
+        else:
+            # Get summary text - need to determine technique from metadata or ID
+            technique = None
+            if 'technique' in results.results[0].metadata:
+                technique = results.results[0].metadata['technique']
+            elif results.results[0].id.endswith(('_v1', '_v2', '_v3', '_v4', '_v5')):
+                technique = results.results[0].id.split('_')[-1]
+            
+            if technique:
+                summaries = get_summaries_by_hashes_and_technique(conversation_hashes, technique, db_path)
+                hash_to_text = {s['conversation_hash']: s['summary'] for s in summaries}
+            else:
+                # Fallback to original ranking if we can't determine technique
+                reranked_results.append(results)
+                continue
+        
+        # Prepare documents for reranking
+        documents = []
+        for doc_id, conv_hash, score, rank in doc_info:
+            text = hash_to_text.get(conv_hash, "")
+            if text:
+                documents.append((doc_id, text, score))
+        
+        if not documents:
+            reranked_results.append(results)
+            continue
+        
+        # Apply reranking
+        rerank_results = reranker.rerank(query, documents)
+        
+        # Convert back to search result format
+        from dataclasses import dataclass
+        
+        @dataclass
+        class RerankedResult:
+            id: str
+            score: float
+            rank: int
+            metadata: dict
+        
+        @dataclass
+        class RerankedSearchResult:
+            results: List[RerankedResult]
+        
+        new_results = []
+        for rerank_result in rerank_results[:final_top_k]:
+            # Find original metadata
+            original_metadata = {}
+            for r in results.results:
+                if r.id == rerank_result.document_id:
+                    original_metadata = r.metadata
+                    break
+            
+            new_results.append(RerankedResult(
+                id=rerank_result.document_id,
+                score=rerank_result.rerank_score,
+                rank=rerank_result.reranked_rank,
+                metadata=original_metadata
+            ))
+        
+        reranked_results.append(RerankedSearchResult(results=new_results))
+    
+    return reranked_results
 
 
 def save_evaluation_report(

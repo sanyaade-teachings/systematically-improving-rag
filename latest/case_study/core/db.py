@@ -204,7 +204,7 @@ def save_detailed_evaluation_results(
         for result in detailed_results:
             try:
                 eval_result = EvaluationResult(
-                    id=f"{result['question_id']}_detail",
+                    id=f"{result['question_id']}_detail_{experiment_id or 'default'}",
                     question_id=result["question_id"],
                     query=result["query"],
                     target_conversation_hash=result["target"],
@@ -258,6 +258,38 @@ def get_detailed_evaluation_results(
             })
     
     return results
+
+
+def get_summaries_by_hashes_and_technique(
+    conversation_hashes: List[str], 
+    technique: str,
+    db_path: Path
+) -> List[Dict[str, Any]]:
+    """Get summaries by conversation hashes and technique"""
+    engine = get_engine(db_path)
+    summaries = []
+    
+    with Session(engine) as session:
+        for hash_val in conversation_hashes:
+            try:
+                summary = session.exec(
+                    select(Summary).where(
+                        Summary.conversation_hash == hash_val,
+                        Summary.technique == technique
+                    )
+                ).first()
+                
+                if summary:
+                    summaries.append({
+                        "conversation_hash": summary.conversation_hash,
+                        "technique": summary.technique,
+                        "summary": summary.summary
+                    })
+            except Exception as e:
+                print(f"Error getting summary for {hash_val}: {e}")
+                continue
+    
+    return summaries
 
 
 def get_conversations_by_hashes(

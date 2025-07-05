@@ -132,18 +132,28 @@ class ChromaSearchEngine:
         Returns:
             SearchResults object
         """
+        import time
+        
         # Generate query embedding
+        embed_start = time.time()
         query_embedding = await self.query_embedder.generate_embeddings(
             [query], show_progress=False
         )
         query_embedding = query_embedding[0].tolist()
+        embed_time = (time.time() - embed_start) * 1000
         
         # Search in ChromaDB
+        search_start = time.time()
         results = self.collection.query(
             query_embeddings=[query_embedding],
             n_results=top_k,
             where=where
         )
+        search_time = (time.time() - search_start) * 1000
+        
+        # Store timing info for analysis
+        self._last_embed_time = embed_time
+        self._last_search_time = search_time
         
         # Convert to SearchResult objects
         search_results = []
