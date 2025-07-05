@@ -6,32 +6,34 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Summaries and key insights from weekly office hours sessions">
+        <meta name="description" content="Practical approaches to enhancing retrieval quality through fine-tuning, re-ranking, and understanding trade-offs in RAG systems">
       
       
-      
-        <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/office-hours/">
-      
-      
-        <link rel="prev" href="../workshops/chapter6-3/">
+        <meta name="author" content="Ayush (ML Engineer at LanceDB)">
       
       
-        <link rel="next" href="faq/">
+        <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/talks/fine-tuning-rerankers-embeddings-ayush-lancedb/">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+        <link rel="prev" href="../superlinked-encoder-stacking/">
+      
+      
+        <link rel="next" href="../zapier-vitor-evals/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>Office Hours - Systematically Improving RAG Applications</title>
+        <title>Fine-tuning Re-rankers and Embedding Models for Better RAG Performance - Systematically Improving RAG Applications</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,9 +52,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -86,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#office-hours" class="md-skip">
+        <a href="#fine-tuning-re-rankers-and-embedding-models-for-better-rag-performance" class="md-skip">
           Skip to content
         </a>
       
@@ -120,7 +122,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Systematically Improving RAG Applications" class="md-header__button md-logo" aria-label="Systematically Improving RAG Applications" data-md-component="logo">
+    <a href="../.." title="Systematically Improving RAG Applications" class="md-header__button md-logo" aria-label="Systematically Improving RAG Applications" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -140,7 +142,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Office Hours
+              Fine-tuning Re-rankers and Embedding Models for Better RAG Performance
             
           </span>
         </div>
@@ -220,7 +222,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -241,7 +243,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../workshops/" class="md-tabs__link">
+        <a href="../../workshops/" class="md-tabs__link">
           
   
   
@@ -259,13 +261,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../office-hours/" class="md-tabs__link">
           
   
   
@@ -283,11 +283,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../talks/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -309,7 +311,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../misc/learning-goals/" class="md-tabs__link">
+        <a href="../../misc/learning-goals/" class="md-tabs__link">
           
   
   
@@ -345,7 +347,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Systematically Improving RAG Applications" class="md-nav__button md-logo" aria-label="Systematically Improving RAG Applications" data-md-component="logo">
+    <a href="../.." title="Systematically Improving RAG Applications" class="md-nav__button md-logo" aria-label="Systematically Improving RAG Applications" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -363,7 +365,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -436,7 +438,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../workshops/" class="md-nav__link ">
+            <a href="../../workshops/" class="md-nav__link ">
               
   
   
@@ -471,7 +473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../workshops/chapter0/" class="md-nav__link">
+      <a href="../../workshops/chapter0/" class="md-nav__link">
         
   
   
@@ -494,7 +496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../workshops/chapter1/" class="md-nav__link">
+      <a href="../../workshops/chapter1/" class="md-nav__link">
         
   
   
@@ -517,7 +519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../workshops/chapter2/" class="md-nav__link">
+      <a href="../../workshops/chapter2/" class="md-nav__link">
         
   
   
@@ -540,7 +542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../workshops/chapter3-1/" class="md-nav__link">
+      <a href="../../workshops/chapter3-1/" class="md-nav__link">
         
   
   
@@ -563,7 +565,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../workshops/chapter3-2/" class="md-nav__link">
+      <a href="../../workshops/chapter3-2/" class="md-nav__link">
         
   
   
@@ -586,7 +588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../workshops/chapter3-3/" class="md-nav__link">
+      <a href="../../workshops/chapter3-3/" class="md-nav__link">
         
   
   
@@ -609,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../workshops/chapter4-1/" class="md-nav__link">
+      <a href="../../workshops/chapter4-1/" class="md-nav__link">
         
   
   
@@ -632,7 +634,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../workshops/chapter4-2/" class="md-nav__link">
+      <a href="../../workshops/chapter4-2/" class="md-nav__link">
         
   
   
@@ -655,7 +657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../workshops/chapter5-1/" class="md-nav__link">
+      <a href="../../workshops/chapter5-1/" class="md-nav__link">
         
   
   
@@ -678,7 +680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../workshops/chapter5-2/" class="md-nav__link">
+      <a href="../../workshops/chapter5-2/" class="md-nav__link">
         
   
   
@@ -701,7 +703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../workshops/chapter6-1/" class="md-nav__link">
+      <a href="../../workshops/chapter6-1/" class="md-nav__link">
         
   
   
@@ -724,7 +726,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../workshops/chapter6-2/" class="md-nav__link">
+      <a href="../../workshops/chapter6-2/" class="md-nav__link">
         
   
   
@@ -747,7 +749,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../workshops/chapter6-3/" class="md-nav__link">
+      <a href="../../workshops/chapter6-3/" class="md-nav__link">
         
   
   
@@ -774,8 +776,6 @@
       
   
   
-    
-  
   
   
     
@@ -797,23 +797,22 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="./" class="md-nav__link md-nav__link--active">
+            <a href="../../office-hours/" class="md-nav__link ">
               
   
   
@@ -826,13 +825,13 @@
             </a>
             
               
-              <label class="md-nav__link md-nav__link--active" for="__nav_3" id="__nav_3_label" tabindex="">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Office Hours
@@ -848,7 +847,7 @@
   
   
     <li class="md-nav__item">
-      <a href="faq/" class="md-nav__link">
+      <a href="../../office-hours/faq/" class="md-nav__link">
         
   
   
@@ -871,7 +870,7 @@
   
   
     <li class="md-nav__item">
-      <a href="AGENTS/" class="md-nav__link">
+      <a href="../../office-hours/AGENTS/" class="md-nav__link">
         
   
   
@@ -914,13 +913,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -929,7 +925,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
         
           
-          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
             
   
   
@@ -956,7 +952,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cohort2/week1-summary/" class="md-nav__link">
+      <a href="../../office-hours/cohort2/week1-summary/" class="md-nav__link">
         
   
   
@@ -979,7 +975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cohort2/week2-summary/" class="md-nav__link">
+      <a href="../../office-hours/cohort2/week2-summary/" class="md-nav__link">
         
   
   
@@ -1002,7 +998,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cohort2/week3-summary/" class="md-nav__link">
+      <a href="../../office-hours/cohort2/week3-summary/" class="md-nav__link">
         
   
   
@@ -1025,7 +1021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cohort2/week4-summary/" class="md-nav__link">
+      <a href="../../office-hours/cohort2/week4-summary/" class="md-nav__link">
         
   
   
@@ -1048,7 +1044,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cohort2/week5-summary/" class="md-nav__link">
+      <a href="../../office-hours/cohort2/week5-summary/" class="md-nav__link">
         
   
   
@@ -1071,7 +1067,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cohort2/week6-summary/" class="md-nav__link">
+      <a href="../../office-hours/cohort2/week6-summary/" class="md-nav__link">
         
   
   
@@ -1120,13 +1116,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -1135,7 +1128,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
             
   
   
@@ -1213,7 +1206,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cohort3/week-1-1/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-1-1/" class="md-nav__link">
         
   
   
@@ -1236,7 +1229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cohort3/week-1-2/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-1-2/" class="md-nav__link">
         
   
   
@@ -1318,7 +1311,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cohort3/week-2-1/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-2-1/" class="md-nav__link">
         
   
   
@@ -1341,7 +1334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cohort3/week-2-2/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-2-2/" class="md-nav__link">
         
   
   
@@ -1421,7 +1414,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cohort3/week-3-1/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-3-1/" class="md-nav__link">
         
   
   
@@ -1503,7 +1496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cohort3/week-4-1/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-4-1/" class="md-nav__link">
         
   
   
@@ -1526,7 +1519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cohort3/week-4-2/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-4-2/" class="md-nav__link">
         
   
   
@@ -1608,7 +1601,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cohort3/week-5-1/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-5-1/" class="md-nav__link">
         
   
   
@@ -1631,7 +1624,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cohort3/week-5-2/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-5-2/" class="md-nav__link">
         
   
   
@@ -1674,6 +1667,8 @@
       
   
   
+    
+  
   
   
     
@@ -1715,22 +1710,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../talks/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -1743,13 +1739,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Talks
@@ -1765,7 +1761,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../talks/rag-antipatterns-skylar-payne/" class="md-nav__link">
+      <a href="../rag-antipatterns-skylar-payne/" class="md-nav__link">
         
   
   
@@ -1788,7 +1784,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../talks/semantic-search-exa-will-bryk/" class="md-nav__link">
+      <a href="../semantic-search-exa-will-bryk/" class="md-nav__link">
         
   
   
@@ -1811,7 +1807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../talks/embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
+      <a href="../embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
         
   
   
@@ -1834,7 +1830,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../talks/online-evals-production-monitoring-ben-sidhant/" class="md-nav__link">
+      <a href="../online-evals-production-monitoring-ben-sidhant/" class="md-nav__link">
         
   
   
@@ -1857,7 +1853,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../talks/rag-without-apis-browser-michael-struwig/" class="md-nav__link">
+      <a href="../rag-without-apis-browser-michael-struwig/" class="md-nav__link">
         
   
   
@@ -1880,7 +1876,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../talks/colin-rag-agents/" class="md-nav__link">
+      <a href="../colin-rag-agents/" class="md-nav__link">
         
   
   
@@ -1903,7 +1899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../talks/reducto-docs-adit/" class="md-nav__link">
+      <a href="../reducto-docs-adit/" class="md-nav__link">
         
   
   
@@ -1926,7 +1922,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../talks/glean-manav/" class="md-nav__link">
+      <a href="../glean-manav/" class="md-nav__link">
         
   
   
@@ -1949,7 +1945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../talks/john-lexical-search/" class="md-nav__link">
+      <a href="../john-lexical-search/" class="md-nav__link">
         
   
   
@@ -1972,7 +1968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../talks/query-routing-anton/" class="md-nav__link">
+      <a href="../query-routing-anton/" class="md-nav__link">
         
   
   
@@ -1995,7 +1991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../talks/chromadb-anton-chunking/" class="md-nav__link">
+      <a href="../chromadb-anton-chunking/" class="md-nav__link">
         
   
   
@@ -2018,7 +2014,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../talks/superlinked-encoder-stacking/" class="md-nav__link">
+      <a href="../superlinked-encoder-stacking/" class="md-nav__link">
         
   
   
@@ -2038,10 +2034,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../talks/fine-tuning-rerankers-embeddings-ayush-lancedb/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Fine-tuning Rerankers and Embeddings
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2052,6 +2070,152 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-re-rankers-and-why-should-we-use-them-in-rag-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are re-rankers and why should we use them in RAG systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-train-a-re-ranker-from-scratch" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you train a re-ranker from scratch?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-the-colbert-architecture-and-how-does-it-compare-to-cross-encoders" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is the ColBERT architecture and how does it compare to cross-encoders?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#should-i-fine-tune-an-existing-re-ranker-or-train-one-from-scratch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Should I fine-tune an existing re-ranker or train one from scratch?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-the-trade-offs-when-implementing-re-rankers" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the trade-offs when implementing re-rankers?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-effective-is-fine-tuning-embedding-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      How effective is fine-tuning embedding models?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#can-we-combine-re-ranking-and-embedding-model-fine-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can we combine re-ranking and embedding model fine-tuning?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-find-and-use-hard-negatives-for-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you find and use hard negatives for training?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-real-world-examples-where-fine-tuning-makes-sense" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are real-world examples where fine-tuning makes sense?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#should-i-use-data-augmentation-or-synthetic-data-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Should I use data augmentation or synthetic data generation?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-the-business-benefit-of-all-this-fine-tuning-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the business benefit of all this fine-tuning work?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-should-we-be-thinking-about-next-in-retrieval-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      What should we be thinking about next in retrieval systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-i-approach-model-selection-for-my-rag-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should I approach model selection for my RAG system?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      FAQs:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2064,7 +2228,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../talks/zapier-vitor-evals/" class="md-nav__link">
+      <a href="../zapier-vitor-evals/" class="md-nav__link">
         
   
   
@@ -2149,7 +2313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../misc/learning-goals/" class="md-nav__link">
+      <a href="../../misc/learning-goals/" class="md-nav__link">
         
   
   
@@ -2172,7 +2336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../misc/what-i-want-you-to-takeaway/" class="md-nav__link">
+      <a href="../../misc/what-i-want-you-to-takeaway/" class="md-nav__link">
         
   
   
@@ -2195,7 +2359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../misc/introduction/" class="md-nav__link">
+      <a href="../../misc/introduction/" class="md-nav__link">
         
   
   
@@ -2218,7 +2382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../misc/landingpage/" class="md-nav__link">
+      <a href="../../misc/landingpage/" class="md-nav__link">
         
   
   
@@ -2268,51 +2432,126 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#available-sessions" class="md-nav__link">
+  <a href="#what-are-re-rankers-and-why-should-we-use-them-in-rag-systems" class="md-nav__link">
     <span class="md-ellipsis">
-      Available Sessions
+      What are re-rankers and why should we use them in RAG systems?
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Available Sessions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cohort-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cohort 2
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cohort-3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cohort 3
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#additional-sessions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Additional Sessions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#questions-and-topics" class="md-nav__link">
+  <a href="#how-do-you-train-a-re-ranker-from-scratch" class="md-nav__link">
     <span class="md-ellipsis">
-      Questions and Topics
+      How do you train a re-ranker from scratch?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-the-colbert-architecture-and-how-does-it-compare-to-cross-encoders" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is the ColBERT architecture and how does it compare to cross-encoders?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#should-i-fine-tune-an-existing-re-ranker-or-train-one-from-scratch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Should I fine-tune an existing re-ranker or train one from scratch?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-the-trade-offs-when-implementing-re-rankers" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the trade-offs when implementing re-rankers?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-effective-is-fine-tuning-embedding-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      How effective is fine-tuning embedding models?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#can-we-combine-re-ranking-and-embedding-model-fine-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can we combine re-ranking and embedding model fine-tuning?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-you-find-and-use-hard-negatives-for-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do you find and use hard negatives for training?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-real-world-examples-where-fine-tuning-makes-sense" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are real-world examples where fine-tuning makes sense?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#should-i-use-data-augmentation-or-synthetic-data-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Should I use data augmentation or synthetic data generation?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-the-business-benefit-of-all-this-fine-tuning-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the business benefit of all this fine-tuning work?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-should-we-be-thinking-about-next-in-retrieval-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      What should we be thinking about next in retrieval systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-i-approach-model-selection-for-my-rag-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should I approach model selection for my RAG system?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      FAQs:
     </span>
   </a>
   
@@ -2334,49 +2573,139 @@
 
 
 
-<h1 id="office-hours">Office Hours</h1>
-<p>This section contains summaries and key insights from our weekly office hours sessions, where we discuss challenges, solutions, and best practices for RAG systems.</p>
-<p>If you want to see all the questions and answers, you can find them in the <a href="faq/">FAQ</a> page.</p>
-<p><a class="md-button md-button--primary" href="faq/">See all FAQ Questions</a></p>
-<h2 id="available-sessions">Available Sessions</h2>
-<h3 id="cohort-2">Cohort 2</h3>
-<ul>
-<li><a href="cohort2/week1-summary/">Week 1 Summary</a></li>
-<li><a href="cohort2/week2-summary/">Week 2 Summary</a></li>
-<li><a href="cohort2/week3-summary/">Week 3 Summary</a></li>
-<li><a href="cohort2/week4-summary/">Week 4 Summary</a></li>
-<li><a href="cohort2/week5-summary/">Week 5 Summary</a></li>
-<li><a href="cohort2/week6-summary/">Week 6 Summary</a></li>
-</ul>
-<h3 id="cohort-3">Cohort 3</h3>
-<ul>
-<li><a href="cohort3/week-1-1/">Week 1 Session 1</a></li>
-<li><a href="cohort3/week-1-2/">Week 1 Session 2</a></li>
-<li><a href="cohort3/week-2-1/">Week 2 Session 1</a></li>
-<li><a href="cohort3/week-2-2/">Week 2 Session 2</a></li>
-<li><a href="cohort3/week-3-1/">Week 3 Session 1</a></li>
-<li><a href="cohort3/week-4-1/">Week 4 Session 1</a></li>
-<li><a href="cohort3/week-4-2/">Week 4 Session 2</a></li>
-</ul>
-<h3 id="additional-sessions">Additional Sessions</h3>
-<p>Each summary captures the questions, answers, and discussions from our sessions, providing additional context and real-world examples to complement the workshop materials.</p>
-<h2 id="questions-and-topics">Questions and Topics</h2>
-<p>Office hours cover a wide range of topics including:</p>
-<ul>
-<li>Practical implementation challenges</li>
-<li>Data collection strategies</li>
-<li>Evaluation methodologies</li>
-<li>User experience considerations</li>
-<li>Architecture decisions</li>
-<li>Product development approaches</li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">Get the Most from Office Hours</p>
-<p>Review the workshop materials before office hours sessions to come prepared with specific questions and challenges from your own RAG implementations.</p>
-</div>
-<hr />
-<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
+<h1 id="fine-tuning-re-rankers-and-embedding-models-for-better-rag-performance">Fine-tuning Re-rankers and Embedding Models for Better RAG Performance</h1>
+<p>I hosted a session with Ayush, an ML Engineer at LanceDB, to explore how fine-tuning re-rankers and embedding models can significantly improve retrieval performance in RAG systems. We discussed practical approaches to enhancing retrieval quality, the trade-offs involved, and when these techniques make the most business sense.</p>
+<h2 id="what-are-re-rankers-and-why-should-we-use-them-in-rag-systems">What are re-rankers and why should we use them in RAG systems?</h2>
+<p>Re-rankers fit into the RAG pipeline after retrieval and before the context is provided to the LLM. When you retrieve documents from a vector database, the embedding model gets these documents based on semantic search. Re-rankers then rearrange them so that the most relevant documents to the query rank at the top.</p>
+<p>The power of re-rankers comes from their architecture. While embedding models (bi-encoders) calculate embeddings independently for documents and queries, cross-encoders process both together, allowing them to attend to each other throughout the pipeline. This cross-attention enables much better similarity assessment than independent embeddings.</p>
+<p>You might wonder why we don't just use cross-encoders for retrieval directly. The answer is computational intensity - comparing a query with each document in your database isn't feasible at scale. However, once you've narrowed down to your top 5-10 results, re-ranking becomes practical and only adds milliseconds to your pipeline.</p>
+<p><strong>Key Takeaway:</strong> Re-rankers are a "low-hanging fruit" for improving RAG systems because they don't disrupt your pipeline - you don't need to re-ingest data into your embedding database. They simply plug in after retrieval and before sending context to the LLM.</p>
+<h2 id="how-do-you-train-a-re-ranker-from-scratch">How do you train a re-ranker from scratch?</h2>
+<p>Training a re-ranker requires query-context pairs, similar to training embedding models. In Ayush's benchmark, he used Google's QA dataset with 3 million query-context pairs, using 2 million for training and 5,000 for evaluation.</p>
+<p>The training process involves providing an anchor (the query) along with positive examples (correct answers) and negative examples (incorrect answers). The most effective approach is mining "hard negatives" - wrong answers that are very close to the query in embedding space. These challenge the model to learn subtle distinctions.</p>
+<p>For the base architecture, Ayush experimented with two models:
+MiniLM - A small 6 million parameter model that's easy to train and test
+Modern BERT - A 150 million parameter model developed by AnswerAI that performs better than some billion-parameter models</p>
+<p>On top of these base models, he attached re-ranking heads (either cross-encoder or ColBERT) and trained them to function as re-rankers. The results showed significant improvements:
+Vector search improved by 12% at top-5 and 6% at top-10
+Full-text search saw improvements up to 20% in some cases
+Even the small MiniLM model showed improvements over baseline performance</p>
+<p><strong>Key Takeaway:</strong> Even a small re-ranker model can provide significant retrieval improvements. If you're unsure whether re-ranking will help your specific data, try training a small model in 30-60 minutes to get a signal before investing in more sophisticated approaches.</p>
+<h2 id="what-is-the-colbert-architecture-and-how-does-it-compare-to-cross-encoders">What is the ColBERT architecture and how does it compare to cross-encoders?</h2>
+<p>ColBERT is a late interaction model that offers a middle ground between bi-encoders and cross-encoders. It independently calculates document embeddings offline (which can be stored in a vector database), but at query time, it compares token-level embeddings with the query.</p>
+<p>This approach allows for more nuanced matching than standard bi-encoders while being more computationally efficient than cross-encoders. In Ayush's benchmarks, ColBERT architectures performed well, particularly when built on top of the Modern BERT base model.</p>
+<p>The key advantage of ColBERT is that it still attends to token-level features but does so in two stages - the part that can be calculated offline is saved in a vector database, and at query time, it performs a maximum operation on token-level similarities to find the best match.</p>
+<h2 id="should-i-fine-tune-an-existing-re-ranker-or-train-one-from-scratch">Should I fine-tune an existing re-ranker or train one from scratch?</h2>
+<p>When deciding whether to train a re-ranker from scratch or fine-tune an existing one, consider these factors:</p>
+<p>If there are no re-rankers available for your base model of choice, you'll need to train from scratch.
+If your dataset has become specialized enough (drifted from the original data the model was trained on), you should fine-tune to align with your distribution.</p>
+<p>In Ayush's experiments, using an off-the-shelf re-ranker (AnswerAI's ColBERT Small) immediately improved performance by about 10% over the baseline. Fine-tuning that model further improved results by an additional 2-3%.</p>
+<p>Fine-tuning has practical advantages - it converges much faster since the weights aren't random and already have context. However, be careful about catastrophic forgetting - if you fine-tune for too long on low-quality data, the model's performance can degrade from its baseline.</p>
+<p><strong>Key Takeaway:</strong> Start with an existing re-ranker if available for your use case, and fine-tune it on your domain-specific data. This approach is faster and often produces better results than training from scratch.</p>
+<h2 id="what-are-the-trade-offs-when-implementing-re-rankers">What are the trade-offs when implementing re-rankers?</h2>
+<p>The main trade-off with re-rankers is added latency. Ayush presented latency comparisons on an L4 GPU (similar to a T4 with larger memory):
+Without re-ranking: Baseline latency
+With ColBERT on Modern BERT: ~30ms additional latency
+With smaller models like MiniLM: Negligible additional latency on GPU</p>
+<p>When fetching larger result sets (overfetching documents to then re-rank them), the slowdown factor ranges from 2-3x. On CPU, the penalty is larger - up to 4-5x depending on the architecture.</p>
+<p>Given these trade-offs, who should use re-rankers? Ayush suggests that rather than asking who should use them, we should ask who shouldn't:
+If latency is absolutely critical (even 10ms matters), you might want to skip re-ranking
+In all other cases where a few hundred milliseconds doesn't matter (which is most use cases), re-rankers are worth implementing</p>
+<p><strong>Key Takeaway:</strong> Re-rankers add some latency to your pipeline, but for most applications, the performance improvement outweighs this cost. Only the most latency-sensitive applications should avoid them.</p>
+<h2 id="how-effective-is-fine-tuning-embedding-models">How effective is fine-tuning embedding models?</h2>
+<p>Embedding models fit into your retriever when you ingest data - they create vector representations of your documents that get stored in your database. Fine-tuning these models can also improve retrieval performance.</p>
+<p>In Ayush's experiments with the MiniLM model:
+Baseline performance at top-5: 48%
+After fine-tuning: 58% (a 10% improvement)
+Similar improvements at top-10</p>
+<p>However, not all embedding models should be fine-tuned. The ideal scenario for fine-tuning is when:
+Your domain-specific data has drifted from the original training distribution
+You have a sufficiently large dataset (tens of thousands of examples)</p>
+<p>If your data is just a subset of what the model was already trained on, fine-tuning might lead to overfitting and catastrophic forgetting. This was demonstrated when fine-tuning on the Stanford Question Answering Dataset (SQuAD) - only 3 of the fine-tuned models performed better than baseline because most embedding models are already trained on this common dataset.</p>
+<p><strong>Key Takeaway:</strong> Fine-tune embedding models when you have domain-specific data that differs from general web content, and when you have enough examples to properly train the model.</p>
+<h2 id="can-we-combine-re-ranking-and-embedding-model-fine-tuning">Can we combine re-ranking and embedding model fine-tuning?</h2>
+<p>Yes, and this approach yields the best results. In Ayush's experiments:
+Baseline: 48% (top-5) and 60% (top-10)
+Best embedding-tuned model: 62% (top-5) and 69% (top-10)
+Combined with best re-ranking model: 64% (top-5) and 71% (top-10)</p>
+<p>This gives you flexibility in addressing trade-offs. If latency is a concern, you might focus more on embedding model improvements. If re-ingesting data is problematic (e.g., with billions of entries), you might emphasize re-ranking instead.</p>
+<h2 id="how-do-you-find-and-use-hard-negatives-for-training">How do you find and use hard negatives for training?</h2>
+<p>Hard negatives are incorrect answers that are very similar to the query in embedding space. To mine them:
+Take your corpus and use an independent embedding model (not the one in your RAG pipeline)
+Find wrong answers that are closest to your query according to the embedding model
+Use these as negative examples during training</p>
+<p>In real-world applications, there are other ways to find negatives:
+If a user deletes a citation that an LLM provided, that's a strong negative signal
+You can use an LLM to propose potential negatives and verify them</p>
+<p>These approaches help create training data that challenges the model to learn subtle distinctions between relevant and irrelevant content.</p>
+<h2 id="what-are-real-world-examples-where-fine-tuning-makes-sense">What are real-world examples where fine-tuning makes sense?</h2>
+<p>Fine-tuning is particularly valuable in specialized domains like legal or healthcare, where general training data from the internet doesn't contain all the necessary information or where much of the information is proprietary.</p>
+<p>Another scenario is when you understand the specific types of queries users are asking. For example, if you know users frequently ask about timing-related information, but the relevant text doesn't contain explicit time words, fine-tuning can help bridge that semantic gap.</p>
+<p>Project-specific terminology is another case - if your company uses internal codenames or jargon (like Pokemon names for projects), fine-tuning helps the model understand these connections.</p>
+<p><strong>Key Takeaway:</strong> Fine-tuning is most valuable when dealing with domain-specific knowledge, proprietary information, or company-specific terminology that general models wouldn't have encountered during training.</p>
+<h2 id="should-i-use-data-augmentation-or-synthetic-data-generation">Should I use data augmentation or synthetic data generation?</h2>
+<p>Ayush cautions against confusing these two approaches:
+Data augmentation helps generalize an already good dataset with more examples to prevent overfitting
+Synthetic data generation creates new examples from an existing dataset</p>
+<p>The problem with synthetic data generation is that LLMs (even powerful ones like GPT-4) can hallucinate up to 70% of the time when creating synthetic query-context pairs. This means you might be adding low-quality data to your training set.</p>
+<p>In Ayush's experiments with SQuAD, synthetic data generation consistently produced worse results than baseline. Be very careful with this approach and verify the quality of synthetic data before using it.</p>
+<h2 id="whats-the-business-benefit-of-all-this-fine-tuning-work">What's the business benefit of all this fine-tuning work?</h2>
+<p>As I explained during the session, if you're not fine-tuning your embedding models or re-rankers, you're probably closer to Blockbuster than Netflix in your approach. At some point, these performance improvements directly correlate with business outcomes.</p>
+<p>For example:
+In product recommendations, better re-ranking might mean fewer returns or higher sales volume
+For content platforms like Netflix, better embeddings ensure users find relevant content without scrolling
+For search experiences, the difference between the 1st and 10th result is enormous for user experience</p>
+<p>Whenever you're building for humans (rather than AI), ranking quality matters tremendously. Even small improvements in retrieval performance can translate to significant business value.</p>
+<h2 id="what-should-we-be-thinking-about-next-in-retrieval-systems">What should we be thinking about next in retrieval systems?</h2>
+<p>Ayush highlighted multimodality as the next frontier. While we've made significant progress with text retrieval, humans interact with technology in multimodal ways (text, images, audio, video).</p>
+<p>The default approach for multimodal embeddings has been CLIP, with many architectures built on top of it. However, we've come a long way from the original CLIP model, and there hasn't been enough content written about these advances.</p>
+<p>Building better benchmarks for multimodal data retrieval and establishing stronger baselines for multimodal RAG systems represents a significant opportunity. While companies like Cohere now offer RAG over PDF screenshots, it's unclear how well these approaches extend to scenes in movies, audio clips, or podcasts.</p>
+<p><strong>Key Takeaway:</strong> Multimodal retrieval is likely the next wave of innovation in RAG systems, but we still lack established benchmarks and best practices in this area.</p>
+<h2 id="how-should-i-approach-model-selection-for-my-rag-system">How should I approach model selection for my RAG system?</h2>
+<p>When selecting models for your RAG pipeline, it's never just about which model has the best performance. Instead, you need to consider a portfolio of factors:
+Maintenance costs
+Inference complexity
+Latency requirements
+Performance improvements</p>
+<p>You might love using a powerful model like GPT-3 as a re-ranker, but if it takes 2 minutes per API call, that's probably not practical for most applications. The best model is the one that balances these considerations for your specific use case.</p>
+<p>This is why having a range of options - from lightweight models like MiniLM to more powerful ones like Modern BERT - gives you flexibility in designing your system. Start with simpler approaches, measure their impact, and scale up complexity only when necessary.</p>
+<p><strong>Key Takeaway:</strong> Model selection should be driven by your specific constraints and requirements, not just raw performance numbers. Consider the entire system when making these decisions.</p>
+<h2 id="faqs">FAQs:</h2>
+<p><strong>What are re-rankers and why should I use them?</strong>
+Re-rankers are models that improve retrieval quality by reordering documents after they've been retrieved from a database. They fit into your pipeline after retrieval and before the context is provided to an LLM, helping to ensure the most relevant documents appear at the top. Re-rankers are particularly valuable because they don't disrupt your existing pipeline—you don't need to re-ingest your entire dataset, making them a low-hanging fruit for improving retrieval performance.</p>
+<p><strong>How do re-rankers work compared to embedding models?</strong>
+While embedding models (bi-encoders) calculate embeddings for documents and queries independently, re-rankers (cross-encoders) process document-query pairs together, allowing them to calculate cross-attention between both inputs. This enables re-rankers to better understand the relevance between a query and document, resulting in more accurate rankings. However, this power comes with higher computational costs, which is why re-rankers are typically used only on a small subset of already retrieved documents.</p>
+<p><strong>What performance improvements can I expect from re-rankers?</strong>
+Based on extensive benchmarking, re-rankers typically improve retrieval performance by 10-20% depending on the algorithm used. In the experiments presented, vector search results improved by 12% for top-5 retrieval and 6% for top-10 retrieval. Full-text search saw even more dramatic improvements, with some models showing up to 20% better performance.</p>
+<p><strong>What are the trade-offs when using re-rankers?</strong>
+The main trade-off is latency. Re-rankers add processing time after retrieval, typically in the range of tens of milliseconds when using a GPU. On CPUs, the latency penalty is higher, potentially 3-4x the baseline retrieval time. For most applications, this additional latency is acceptable, but if your use case is extremely latency-sensitive (where even 10ms matters), you might want to consider other approaches.</p>
+<p><strong>What re-ranker architectures are available?</strong>
+There are two main re-ranker architectures:
+Cross-encoders: These process the query and document together, allowing for maximum interaction but requiring more computation.
+ColBERT: This "late interaction" architecture calculates document embeddings offline and compares token-level embeddings with the query at retrieval time, offering a balance between performance and speed.</p>
+<p><strong>When should I train a re-ranker from scratch versus fine-tuning an existing one?</strong>
+Train a re-ranker from scratch when:
+There are no re-rankers available for your preferred base model
+Your dataset has become highly specialized or has drifted significantly from general data
+Fine-tune an existing re-ranker when:
+You want faster convergence during training
+You have a specialized dataset but don't want to risk catastrophic forgetting
+Remember that fine-tuning typically converges much faster since the weights aren't random, but training for too long on low-quality data can lead to performance degradation.</p>
+<p><strong>How do I train a re-ranker?</strong>
+To train a re-ranker, you need query-context pairs with positive (relevant) and negative (irrelevant) examples. The most effective approach is to mine "hard negatives"—documents that are semantically similar to the query but aren't actually relevant answers. This challenges the model to learn nuanced distinctions. Tools like sentence-transformers provide frameworks for training re-rankers with appropriate loss functions.</p>
+<p><strong>Should I fine-tune my embedding models as well?</strong>
+Fine-tuning embedding models can also improve retrieval performance by 8-10%, but it's more disruptive to your pipeline since it requires re-embedding your entire dataset. Consider fine-tuning your embedding model when:
+Your data has a different distribution than what the model was originally trained on
+You have a sufficiently large dataset (tens of thousands of examples)
+Your data is domain-specific (like legal or medical content)</p>
+<p><strong>Can I combine re-ranking with fine-tuned embedding models?</strong>
+Yes, and this approach can yield even better results. In the experiments presented, combining the best fine-tuned embedding model with the best re-ranker improved performance from a baseline of 48% to 64% for top-5 retrieval, and from 60% to 71% for top-10 retrieval. This gives you flexibility to choose the approach that best fits your latency and performance requirements.</p>
+<p><strong>What about data augmentation and synthetic data generation?</strong>
+Be cautious with synthetic data generation. While it might seem like a solution for limited data, LLMs can hallucinate up to 70% of the time when generating synthetic query-context pairs. Data augmentation works best when you already have a good dataset and want to prevent overfitting, not as a solution for poor-quality data.</p>
+<p><strong>How do I evaluate if re-ranking will help my specific use case?</strong>
+Start with a small experiment using a lightweight model that you can train quickly (like MiniLM). If you see improvements with this simple approach, it's a strong signal that investing in more sophisticated re-ranking will yield even better results. This allows you to validate the approach before committing significant resources.</p>
+<p><strong>What's the future of retrieval improvement beyond re-ranking?</strong>
+Multimodal retrieval is likely the next frontier. While much work has been done on text retrieval, there's still significant room for improvement in retrieving and ranking content across different modalities like images, audio, and video. Building better benchmarks and baselines for multimodal RAG systems represents an important area for future development.</p>
 
 
 
@@ -2417,7 +2746,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../workshops/chapter6-3/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 6: Architecture - Improvement">
+          <a href="../superlinked-encoder-stacking/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Encoder Stacking">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2427,20 +2756,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Chapter 6: Architecture - Improvement
+                Encoder Stacking
               </div>
             </div>
           </a>
         
         
           
-          <a href="faq/" class="md-footer__link md-footer__link--next" aria-label="Next: FAQ">
+          <a href="../zapier-vitor-evals/" class="md-footer__link md-footer__link--next" aria-label="Next: Zapier&#39;s Evals with Vitor">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                FAQ
+                Zapier's Evals with Vitor
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2491,10 +2820,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
         <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
       
@@ -2502,7 +2831,7 @@
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
-        <script src="../javascripts/mathjax.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
       
     
   </body>
