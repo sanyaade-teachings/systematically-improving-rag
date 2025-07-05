@@ -1,3 +1,20 @@
+---
+title: RAG Office Hours Q&A Summary - Week 6
+date: '2024-02-19'
+cohort: 2
+week: 6
+session: 1
+type: Office Hour Summary
+description: Deep Research applications, long context vs RAG trade-offs, and the importance of human-labeled data for RAG systems
+topics:
+  - Deep Research
+  - Long Context Models
+  - Document-Level Retrieval
+  - Human-Labeled Data
+  - Report Generation
+  - Model Fine-Tuning
+---
+
 # RAG Office Hours Q&A Summary - Week 6
 
 ## What is Deep Research and how does it relate to RAG?
@@ -211,3 +228,9 @@ For most organizations building AI applications, starting with a specific domain
 - [Claude 3.7 Sonnet](https://www.anthropic.com/news/claude-3-7-sonnet) - Latest model referenced in discussions
 - [Cloud Code](https://cloud.google.com/code) - AI coding tool discussed in the sessions
 - [Manus](https://manus.ai/) - Emerging AI agent mentioned in the discussions
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

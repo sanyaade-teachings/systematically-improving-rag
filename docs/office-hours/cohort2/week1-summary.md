@@ -1,3 +1,23 @@
+---
+title: Week 1 - Office Hours Summary
+date: '2024-01-15'
+cohort: 2
+week: 1
+session: 1
+type: Office Hour Summary
+description: Comprehensive Q&A covering DSpy, graph databases, ColBERT models, multimodal retrieval, and AI reasoning models
+topics:
+  - DSpy and Prompt Optimization
+  - Graph Database Evaluation
+  - ColBERT Models and Specialized Retrieval
+  - Multimodal Retrieval
+  - AI Reasoning Models
+  - Medical RAG Applications
+  - Vector Database Selection
+  - Fine-tuning Embedding Models
+  - Citation and Report Generation
+---
+
 # RAG Office Hours Q&A Summary - Week 1
 
 ## What is your take on DSpy? Should we use it?
@@ -323,3 +343,9 @@ The metrics become more meaningful when:
 Even with one-to-one mappings, MRR (Mean Reciprocal Rank) is still useful to see where the correct answer appears in your results.
 
 What really matters isn't the absolute number but whether we can move these metrics in a positive direction with our interventions. It's like weighing yourself—the absolute number may vary by scale, but if you've gained two pounds, you've definitely gained two pounds.
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

@@ -24,7 +24,8 @@ Study Notes:
 
 In this office hours session, I addressed questions about specialized indices, data engineering for AI applications, and strategies for blending traditional ML with LLMs. The discussion covered practical approaches to metadata extraction, cost considerations for processing large datasets, and techniques for improving recommendation systems with AI.
 
-**How should I approach dynamically generating and handling metadata for documents?**
+## How should I approach dynamically generating and handling metadata for documents?
+
 When dealing with the need to extract new metadata from existing documents, the architectural approach depends largely on your current infrastructure. Most companies I work with already have some existing setup, so we're rarely building from scratch.
 
 In essence, this is just like any ETL (Extract, Transform, Load) job where a process creates a new database artifact. The key question is: what makes backfilling this data challenging in your specific context? Is it the cost of reprocessing millions of documents? Is it the unpredictability of expenses?
@@ -37,14 +38,16 @@ For specialized extraction tasks, consider using smaller, purpose-built models. 
 
 ***Key Takeaway:*** Calculate token volumes and costs before deciding on your extraction approach. Sometimes the cost difference between APIs and self-hosted models is smaller than expected, making the engineering effort to switch questionable. For specialized extractions, consider purpose-built models that solve specific business problems rather than trying to do everything with one large model.
 
-**What are the challenges with extracting multiple attributes in a single API call?**
+## What are the challenges with extracting multiple attributes in a single API call?
+
 When extracting multiple attributes from documents, be aware that prompts for some attributes can affect the extraction of other attributes. We found this when processing transcripts - when we asked for shorter action items, the summaries would also get shorter.
 
 To address this, we split our extraction into separate jobs: one for action items and another for summary and memo generation. This separation gave us better control over each component. We made this approach cost-effective by leveraging prompt caching - the transcript only needed to be processed once, with multiple outputs generated from that single input.
 
 ***Key Takeaway:*** Be cautious about extracting too many attributes in a single API call, as they can influence each other in unexpected ways. Consider splitting extractions into separate jobs with specific focuses, and use techniques like prompt caching to maintain cost efficiency.
 
-**How should I approach recommendation systems with LLMs?**
+## How should I approach recommendation systems with LLMs?
+
 For recommendation systems like predicting product purchases, I wouldn't use an LLM directly in the recommendation system. Companies like Stitch Fix and YouTube use LLMs primarily to create better embeddings, not for the core recommendation logic.
 
 The approach I'd recommend is building item embeddings using historical data, where the inputs might include product images, descriptions, user comments, and checkout rates. Similarly, user embeddings would incorporate their feedback, fit comments, and other behavioral signals.
@@ -57,7 +60,8 @@ We addressed this by building a "Tinder for clothes" where users could swipe lef
 
 ***Key Takeaway:*** Rather than using LLMs directly for recommendations, use them to generate better embeddings and synthetic data to address cold-start problems. Consider creative ways to gather user preferences at scale, as the velocity of data collection is often the limiting factor in recommendation quality.
 
-**How can I blend traditional ML with unstructured data from LLMs?**
+## How can I blend traditional ML with unstructured data from LLMs?
+
 The most promising approach I've seen is using LLMs for synthetic data generation and feature engineering. The challenge with many recommendation systems is the low velocity of data - unlike Spotify or Netflix where users consume content quickly, physical product recommendations might take weeks to validate through purchases and returns.
 
 Our focus at Stitch Fix was making each sample more efficient. Instead of building general-purpose computer vision models, we created specialized models for specific attributes (like detecting belt loops). These targeted models were more data-efficient and could directly drive business decisions (like upselling belts with pants that have belt loops).
@@ -74,7 +78,8 @@ This approach recognizes that different models have different data efficiency pr
 
 ***Key Takeaway:*** Blend traditional ML with LLMs by using LLMs for feature engineering and synthetic data generation. Build specialized, data-efficient models for specific attributes, then use these to feed larger models. This creates a virtuous cycle where each type of model enhances the capabilities of the others.
 
-**Are there good tools for data engineering in the LLM ecosystem?**
+## Are there good tools for data engineering in the LLM ecosystem?
+
 The data engineering landscape for LLMs is still developing, with most early-stage companies using relatively simple approaches like "data to JSON" pipelines. One company worth looking at is Tensor Lake, which provides sophisticated data processing for tensors.
 
 A critical area that's often overlooked is managing evaluation datasets. Many companies have inconsistent approaches where individual team members export data in ad-hoc ways:
@@ -87,7 +92,8 @@ At Facebook, defining a new table for newsfeed views would involve a data engine
 
 ***Key Takeaway:*** The data engineering ecosystem for LLMs is still maturing. Pay special attention to how you organize evaluation datasets, as inconsistent approaches lead to unreliable metrics. Consider investing in proper data engineering for your evaluation pipeline, similar to how established companies handle critical data infrastructure.
 
-**What's your approach to topic modeling and specialized indices?**
+## What's your approach to topic modeling and specialized indices?
+
 For topic modeling and specialized indices, we've been developing tools like Kora, which helps with topic extraction from documents. This approach is becoming increasingly valuable as managing knowledge bases becomes more complex.
 
 The fundamental issue is that embeddings alone aren't sufficient for many complex queries. If someone asks "Who is the best basketball player under 25 years old from Europe?", embeddings might not find a direct answer unless that exact information exists in a paragraph somewhere.
@@ -104,7 +110,8 @@ This is similar to how command-line tools interact with a file system - you have
 
 ***Key Takeaway:*** Don't rely solely on embeddings for complex information retrieval. Build a portfolio of specialized tools that can work with your data in different ways. This approach is gaining traction in code generation and will likely become standard across other domains as well.
 
-**Will reasoning models eliminate the need for specialized indices?**
+## Will reasoning models eliminate the need for specialized indices?
+
 Even with advanced reasoning models that can perform multi-step thinking, I don't believe they'll eliminate the need for specialized indices and tools. Instead, the focus should be on exposing a wide range of tools that these models can leverage.
 
 The key insight is that tools aren't necessarily one-to-one with retrievers. You might have multiple tools hitting the same index, similar to how command-line tools interact with a file system. For example, you might have tools for listing directories, viewing files, sorting by modification date, or filtering by editor.
@@ -115,7 +122,8 @@ This is the direction that code generation tools are taking - they're finding th
 
 ***Key Takeaway:*** Even with advanced reasoning capabilities, models benefit from having access to specialized tools rather than trying to do everything through a single approach. The future lies in building portfolios of tools that models can intelligently select and combine, not in creating a single universal solution.
 
-**How do you approach cost calculations for AI processing?**
+## How do you approach cost calculations for AI processing?
+
 When calculating costs for AI processing, focus on understanding your token volumes. For any extraction or processing task, calculate the expected input and output tokens to make informed decisions about model selection.
 
 We had a surprising discovery when comparing OpenAI's API to open source models for summarizing a million conversations. The open source approach was only 8 times cheaper, saving just $60 total. While it was 26 times faster, the absolute cost was so low that it wasn't worth the engineering effort to switch.
@@ -126,9 +134,6 @@ These calculations help you make rational decisions about where to invest your e
 
 ***Key Takeaway:*** Calculate token volumes and costs before investing in optimization. Modern AI models are often surprisingly affordable at scale, making some optimizations unnecessary. Focus your engineering efforts where they'll have meaningful impact rather than chasing small percentage improvements.
 
----
-
-**FAQs**
 
 ## How should I approach dynamically generating and handling metadata for documents?
 
@@ -182,6 +187,7 @@ For companies exploring this space, tools like Tensor Lake might be worth invest
 ## Will better reasoning models eliminate the need for specialized indices?
 
 Not entirely. Even as models improve at reasoning, having a portfolio of specialized tools remains valuable. The approach is shifting toward giving models access to multiple tools that can retrieve and process data in different ways, rather than expecting a single model to handle everything. For example, instead of one mega-search tool, you might have tools for listing directories, viewing files, filtering by metadata, semantic search, and full-text search - all potentially accessing the same underlying data but in different ways.
+
 ---
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to

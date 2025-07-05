@@ -1,3 +1,23 @@
+---
+title: Week 2 - Office Hours Summary
+date: '2024-01-22'
+cohort: 2
+week: 2
+session: 1
+type: Office Hour Summary
+description: Advanced RAG evaluation strategies, fine-tuning decisions, synthetic data challenges, and multi-agent approaches
+topics:
+  - Document Parsing Evaluation
+  - Fine-tuning vs Prompting
+  - Synthetic Data Distribution Mismatch
+  - Embedding vs Re-ranker Fine-tuning
+  - Collaborative Filtering Cold Start
+  - Multimodal Content Processing
+  - Function Calling Workflows
+  - Long Context vs RAG
+  - Research Paper Evaluation
+---
+
 # RAG Office Hours Q&A Summary - Week 2
 
 ## How would you evaluate the effect of different parsing strategies in RAG, notably on documents with weird layouts, tables, and charts?
@@ -329,3 +349,9 @@ This approach helps ensure reliability across different types of function callin
 1. **Research pragmatism**: Focus on solving specific problems with your data rather than chasing the latest research papers, which often reinvent existing techniques.
 
 1. **Cross-encoders vs. bi-encoders**: Cross-encoders (re-rankers) understand semantic distinctions better but are slower; bi-encoders (embedding models) are faster but less nuanced. Use both for optimal performance.
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

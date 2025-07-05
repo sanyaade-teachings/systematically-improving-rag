@@ -23,7 +23,7 @@ topics:
 
 I hosted an office hours session focused on fine-tuning models for citation accuracy and designing effective tool portfolios for RAG systems. Here are my insights on improving citation capabilities through fine-tuning, structuring data for temporal reasoning, and creating effective tool portfolios for specialized retrieval tasks.
 
-**How effective is fine-tuning for improving citation accuracy?**
+## How effective is fine-tuning for improving citation accuracy?
 
 When working with citation requirements, fine-tuning can dramatically reduce error rates. In one project, we used OpenAI's fine-tuning API with about 1,000 examples to improve our marketing content generation system.
 
@@ -39,7 +39,7 @@ Different models will have different learning curves - a 1.3 billion parameter m
 
 ***Key Takeaway:*** Fine-tuning can be remarkably effective for formatting tasks like citation, often requiring less data than you might expect. Start with small batches, measure performance, and increase data volume until you reach your desired accuracy level.
 
-**Should we shuffle citation sources during fine-tuning?**
+## Should we shuffle citation sources during fine-tuning?
 
 When fine-tuning models to cite sources correctly, shuffling the order of retrieved sources can be beneficial to prevent position bias. This approach makes the model invariant to the order of sources, which is particularly important if you're not sorting by relevance.
 
@@ -53,7 +53,7 @@ The real challenge that remains is reasoning over multiple "needles" of informat
 
 ***Key Takeaway:*** Consider shuffling citation sources during fine-tuning if you want position-invariant citations, but if you're sorting by relevance, maintaining order may be beneficial. Newer models have better attention across their context window, reducing the need for this technique.
 
-**How should we approach tool design for specialized retrieval tasks?**
+## How should we approach tool design for specialized retrieval tasks?
 
 When designing tools for retrieval systems, focus on creating a portfolio of specialized tools rather than just distinguishing between semantic and structured data. The key question isn't "Am I searching semantic or structured data?" but rather "What is the portfolio of tools I want to expose to my system?"
 
@@ -74,7 +74,7 @@ The naming of tools significantly impacts how models use them. In coding agents,
 
 ***Key Takeaway:*** Design a portfolio of specialized tools based on specific use cases rather than general data types. Focus on clear tool descriptions and evaluate how well the model selects the appropriate tools for different queries.
 
-**How can we handle temporal reasoning in medical data?**
+## How can we handle temporal reasoning in medical data?
 
 One of the most challenging aspects of working with medical data is reasoning about information across a timeline. When retrieving documents about medications, for example, you might get 20 documents all describing medications, but understanding what changed over time requires special handling.
 
@@ -98,7 +98,7 @@ For building better temporal reasoning capabilities, consider:
 
 ***Key Takeaway:*** For temporal reasoning, structure data chronologically in markdown tables and implement a two-stage approach where the model first extracts and organizes relevant timeline information before reasoning about it.
 
-**What's the difference between multi-agent and single-agent approaches?**
+## What's the difference between multi-agent and single-agent approaches?
 
 The debate between multi-agent and single-agent systems often comes down to context coordination challenges. For coding tasks, Devin (from Cognition) chose a single-threaded approach because coordinating between agents modifying different parts of a codebase is extremely difficult.
 
@@ -114,7 +114,7 @@ For medical data applications that are primarily read-only, a multi-agent approa
 
 ***Key Takeaway:*** Choose multi-agent approaches for read-only tasks where you need to process more tokens than a single context window allows. For tasks requiring coordination of changes, single-agent approaches remain more practical until better coordination mechanisms are developed.
 
-**How can we use document summarization to improve retrieval?**
+## How can we use document summarization to improve retrieval?
 
 Generating summaries during document ingestion can be a cost-effective approach to improving retrieval. Summaries function as a form of compression and can be particularly valuable when working with smaller context window models.
 
@@ -140,7 +140,7 @@ This approach works particularly well for documents like financial reports, wher
 
 ***Key Takeaway:*** Document summarization during ingestion creates valuable synthetic text chunks that can dramatically improve retrieval performance. Design summary prompts based on the specific information needs of your application and iterate based on evaluation results.
 
-**How can we implement price quote generation using RAG?**
+## How can we implement price quote generation using RAG?
 
 One practical application we've built is an automated price quote system for sales teams. After multiple calls with a prospect, the system generates personalized pricing options and potential upsells.
 
@@ -166,7 +166,7 @@ This approach of extracting variables, reasoning about them, and then generating
 
 ***Key Takeaway:*** For complex reasoning tasks, implement a multi-step process where the model first extracts and organizes relevant information, then reasons about it, and finally generates output. This structured approach makes the reasoning more transparent and easier to evaluate.
 
-**What's the best way to format data for language models?**
+## What's the best way to format data for language models?
 
 When presenting structured data to language models, markdown tables consistently outperform other formats like CSV, JSON, or YAML. In our testing, markdown tables were 12% more effective for complex lookup tasks.
 
@@ -182,7 +182,7 @@ For temporal data specifically, presenting information in chronological order (e
 
 Markdown tables consistently outperform other data formats for structured information. Pay attention to spacing and formatting details, as they affect tokenization and retrieval performance. For temporal data, experiment with both chronological and reverse-chronological ordering.
 
-**How should we approach end-to-end evaluation of complex RAG systems?**
+## How should we approach end-to-end evaluation of complex RAG systems?
 
 End-to-end evaluation of complex retrieval systems remains challenging, especially when there isn't a single correct answer or when the system needs to perform multi-step reasoning.
 
@@ -212,57 +212,54 @@ For systems like our price quote generator, we use a practical metric - do sales
 
 ***Key Takeaway:*** Break evaluation into component parts rather than relying solely on end-to-end metrics. Incorporate user feedback into your evaluation process, and track how often outputs require human editing or intervention.
 
----
-
-**FAQs**
-
-**How does fine-tuning improve citation accuracy in LLMs?**
+## How does fine-tuning improve citation accuracy in LLMs?
 
 Fine-tuning can dramatically reduce error rates when teaching models to properly cite sources. In one example, fine-tuning reduced citation errors from 4% to nearly 0% for marketing content generation. The process involves collecting properly formatted examples, validating them, filtering out incorrect formats, and using them in the fine-tuning process.
 
-**How many examples are typically needed for effective fine-tuning?**
+## How many examples are typically needed for effective fine-tuning?
 
 Around 1,000 high-quality examples can be sufficient for format-related fine-tuning tasks. However, the exact number depends on your specific use case. It's recommended to experiment with increasing sample sizes to determine the optimal amount for your needs. Start with a smaller subset and gradually increase to identify where performance improvements begin to plateau.
 
-**Should I shuffle the order of retrieved sources in my fine-tuning dataset?**
+## Should I shuffle the order of retrieved sources in my fine-tuning dataset?
 
 Shuffling retrieved sources can be beneficial to make your model invariant to the order of information. This approach helps prevent the model from developing biases toward information presented first. However, if your retrieval system sorts by relevance, maintaining that order might be important as the first chunk would genuinely contain the most relevant information.
 
-**How should I approach tool selection for my LLM application?**
+## How should I approach tool selection for my LLM application?
 
 Focus on developing a portfolio of specialized tools rather than simply categorizing between semantic and structured data searches. Consider what specific capabilities would benefit your use case, such as date-range filtering, categorical filters, or metadata tag filtering. The implementation details (whether semantic or structured) matter less than ensuring your model understands when to use each tool.
 
-**What's an effective way to evaluate tool selection by the model?**
+## What's an effective way to evaluate tool selection by the model?
 
 A practical approach is to have the model write a plan listing all tools it would use for a given query, then evaluate that plan before execution. You can present this plan to users for approval or rejection, which generates valuable feedback data. Analyzing rejected plans helps identify improvements needed in your tool selection and routing logic.
 
-**How do coding agents approach tool integration?**
+## How do coding agents approach tool integration?
 
 Coding agents have made significant progress with tool integration. One key insight is that providing named tools for specific functions (rather than general capabilities) significantly changes how frequently these functions are used. For example, providing a dedicated "grep" tool versus expecting the model to remember to use grep through a general command line interface can improve performance by several percentage points.
 
-**How should I organize timeline-based data for LLM processing?**
+## How should I organize timeline-based data for LLM processing?
 
 For timeline data, consider presenting information in a markdown table format, which models tend to process effectively. Order the data chronologically (either ascending or descending) and include clear date markers. This organization helps the model understand temporal relationships and reason about cause and effect. Testing both ascending and descending time orders may yield different results depending on your use case.
 
-**Why are markdown tables particularly effective for structured data?**
+## Why are markdown tables particularly effective for structured data?
 
 Markdown tables have shown superior performance (approximately 12% better) compared to other formats like CSV, JSON, or YAML when models need to perform lookup tasks or understand relationships between data points. The spacing between tokens in markdown tables appears to be particularly well-suited to how models process information.
 
-**How can I help models reason across complex information?**
+## How can I help models reason across complex information?
 
 For complex reasoning tasks, consider implementing a two-step approach: first have the model extract and reorganize all relevant information from different sources, then reason about this reorganized information. This approach works well for tasks requiring synthesis across multiple data points, such as analyzing medical timelines or generating pricing quotes based on multiple conversations.
 
-**Is it beneficial to generate summaries during data ingestion?**
+## Is it beneficial to generate summaries during data ingestion?
 
 Creating summaries during data ingestion can be very effective, especially for longer documents. Summaries act as compressed versions of your data that can be more efficiently processed. For specific use cases like blueprints or financial documents, you can design summarization prompts that extract the most relevant information (like room counts or key financial figures) to make subsequent queries more efficient.
 
-**How can I handle reasoning across multiple documents?**
+## How can I handle reasoning across multiple documents?
 
 For reasoning across multiple documents, consider having the model first extract all relevant information related to the query, reorganize it (possibly chronologically or thematically), and then reason about the reorganized information. This approach helps manage context limitations and focuses the model's attention on the most pertinent details.
 
-**What's the best way to handle long context windows?**
+## What's the best way to handle long context windows?
 
 Newer models with improved attention mechanisms handle long contexts better than older models. However, for complex reasoning tasks involving multiple "needles" of information spread throughout a document, consider using tools that first organize the relevant information before reasoning about it. This approach remains effective even with models that have long context windows.
+
 ---
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to

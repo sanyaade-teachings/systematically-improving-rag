@@ -1,4 +1,24 @@
-# RAG Office Hours Q&A Summary
+---
+title: Week 3 - Office Hours Summary
+date: '2024-01-29'
+cohort: 2
+week: 3
+session: 1
+type: Office Hour Summary
+description: Negative feedback handling, RAG vs recommendations, impact measurement, and advanced evaluation strategies
+topics:
+  - LLM Labeler Reliability
+  - Inventory vs Capabilities Analysis
+  - RAG vs Recommendation Systems
+  - Impact and Economic Value
+  - Feedback Lifecycle Management
+  - Knowledge Base Topology
+  - Classical vs Agent-based RAG
+  - Citation and UX Best Practices
+  - Data Labeling Evolution
+---
+
+# RAG Office Hours Q&A Summary - Week 3
 
 ## When gathering negative feedback from documents not being found, how do we use and validate the reliability of an LLM labeler?
 
@@ -257,3 +277,9 @@ ______________________________________________________________________
 - For friends example in recommendation systems, consider platforms like Facebook's friend recommendation system as reference implementations
 
 _Note: I'll continue to add resources and notes from future office hours sessions_
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

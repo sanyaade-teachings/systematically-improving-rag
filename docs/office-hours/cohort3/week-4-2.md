@@ -5,26 +5,26 @@ cohort: 3
 week: 4
 session: 2
 type: Office Hour
-transcript: ../GMT20250612-174842_Recording.transcript.vtt
-description: AI report generation, data visualization, and unstructured feedback data analysis systems
+transcript: ../GMT20250612-174726_Recording.transcript.vtt
+description: Dynamic data visualization in AI-generated reports, styling challenges, and analyzing unstructured customer feedback data
 topics:
   - Dynamic Data Visualization
-  - Professional Report Styling
-  - Unstructured Customer Feedback
-  - Fast Classifier Development
+  - Report Generation
+  - Professional Styling Challenges
+  - Customer Feedback Analysis
   - Tool-based vs Semantic Search
-  - Kura Project Development
-  - Future Course Content
-  - Report Generation Enhancement
+  - Visual Document Processing
+  - Cura Project Development
 ---
 
-# Week 4, Office Hour 2 (June 12)
+# Week 4 - Office Hour 2 (June 12)
 
 Study Notes:
 
-I hosted another office hours session focused on AI report generation, data visualization, and handling unstructured feedback data. Here are my thoughts on creating effective AI-generated reports, implementing dynamic visualizations, and building systems that can analyze customer feedback at scale.
+I hosted an office hours session focused on advanced report generation with dynamic visualizations, professional styling challenges, and effective approaches to analyzing unstructured customer feedback data. Here are my insights on integrating visual elements into AI-generated reports, managing professional styling requirements, and building effective feedback analysis systems.
 
 ## How should I approach dynamic data visualization in AI-generated reports?
+
 When creating AI-generated reports with dynamic visualizations, there are several approaches to consider depending on your specific needs.
 
 For deep research-style reports (like those from Gemini, Claude, or OpenAI), the LLM typically decides on a set of subtasks and executes them sequentially. These reports often don't include charts or visualizations by default, though OpenAI's deep research does incorporate images.
@@ -39,7 +39,7 @@ For standard data visualizations, most companies use JavaScript libraries like R
 
 The approach depends on whether your report format is flexible or fixed. If fixed, each header might have its own RAG workflow - for example, every competitor analysis might need a leadership team section, which triggers a subtask to find the leadership team of the target company.
 
-***Key Takeaway:*** The most effective approach I've found is creating an abundance of visualization options during generation and letting users delete what they don't want. This creates a natural feedback loop where you can track which visualizations users keep versus delete, building a dataset that improves future recommendations.
+
 
 ## How can we handle styling challenges in professional reports?
 One of the biggest challenges in AI report generation is matching the exact styling expectations of professional reports. I work with companies that sell to consultants like McKinsey, and the hardest part isn't generating the content - it's making the slides and plots look exactly like McKinsey-branded material.
@@ -81,6 +81,7 @@ The key is building a system that can quickly create and apply these classifiers
 ***Key Takeaway:*** Fast classifier development is essential for responsive feedback analysis. Combining embedding-based approaches with domain expertise allows you to quickly identify both known issues and emerging patterns in user feedback.
 
 ## How should we think about tool-based approaches versus semantic search?
+
 I believe we're moving toward a world where many RAG applications will use tool-based approaches rather than pure semantic search, especially for structured data.
 
 In the coming weeks, we'll have talks from teams building coding agents that use a portfolio of tools rather than semantic search. Their thesis is that for structured data, the right way to prepare context isn't one semantic search request, but an agent using multiple tools to build context incrementally.
@@ -115,38 +116,10 @@ Beyond the course, I'm organizing a speaker series with guests from OpenAI's mem
 
 ***Key Takeaway:*** The future of RAG systems, especially for structured data like code, may involve less semantic search and more tool-based approaches where agents navigate information using a portfolio of tools to build context incrementally.
 
-______________________________________________________________________
 
-FAQs
 
-## How can I create dynamic charts and tables for high-value reports?
+---
 
-There are several approaches to creating dynamic visualizations in reports. You can use JavaScript libraries like Rechart for data visualizations, where you pass in data and choose between different chart types (bar charts, pie charts, etc.). For diagram generation, Mermaid is a popular option, though you'll need a validation system to catch and fix any errors in the generated code. For more complex reports, you might need to consider the specific styling requirements of your audience and potentially use specialized tools that match their expected formats.
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 
-## What's an effective approach to handling multiple visualization options in reports?
-
-A powerful technique is to generate multiple visualization options and let users delete what they don't want. By providing an abundance of charts and visualizations with a simple delete function, you allow users to filter what works best for their needs. This approach has the added benefit of generating valuable feedback data - by tracking which visualizations users keep versus delete, you can improve future recommendations and learn which visualization types work best for specific data scenarios.
-
-## How can I handle citations in reports?
-
-Similar to visualizations, you can implement a system where citations are included with mouse-over functionality to show the source. Users can delete citations they don't find valuable and regenerate them if needed. This creates an interactive review process that improves the quality of the final report while collecting useful preference data.
-
-## What are the challenges with styling reports for specific clients?
-
-One of the biggest challenges is matching the exact styling requirements of specific organizations, especially consulting firms that have distinctive visual branding. Standard libraries like Rechart or Matplotlib can generate visualizations, but they often don't match the precise styling (legend shapes, specific colors, font treatments) that clients expect in high-value reports. This "last 5%" of styling is what makes reports not look AI-generated and can be crucial for client acceptance.
-
-## How can I analyze unstructured feedback data effectively?
-
-For analyzing unstructured feedback (like customer comments or issue reports), consider implementing a hierarchical clustering approach to identify patterns and create a taxonomy of categories. This allows you to provide both semantic search capabilities and accurate counts of issues by category. The most effective systems combine semantic search with structured filtering, allowing users to traverse the data in multiple ways - searching for specific issues while also seeing the distribution of issues across different dimensions (products, regions, time periods, etc.).
-
-## What's the difference between deep research reports and structured reports?
-
-Deep research reports are more freeform, where an LLM decides on subtasks and conducts research independently. These often don't include charts or visualizations but focus on comprehensive text analysis. Structured reports, on the other hand, follow specific templates with predefined sections, potentially including visualizations, citations, and formatted data. Both have their place depending on the use case and audience requirements.
-
-## Should I use semantic search or direct tool access for document navigation?
-
-It depends on your document structure. If you're working with highly structured documents where specific terminology is consistent (like technical manuals or legal documents), a portfolio of simple tools (grep, read file, list files) can be more efficient than semantic search. This "tool-based traversal" approach can be particularly effective for large documents with clear organization, allowing an agent to navigate through content using direct commands rather than embedding the entire document.
-
-## How can I quickly build classifiers for new categories in feedback data?
-
-For rapid classifier development, you can use embedding-based approaches where you embed category descriptions and then match new items to the closest category embedding. Another approach is to use a small set of labeled examples to train a lightweight classifier. The key is having a system to validate the accuracy of these classifiers and being able to quickly deploy them to generate counts and insights from your data.
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

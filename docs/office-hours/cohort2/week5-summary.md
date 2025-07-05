@@ -1,3 +1,20 @@
+---
+title: RAG Office Hours Q&A Summary - Week 5
+date: '2024-02-12'
+cohort: 2
+week: 5
+session: 1
+type: Office Hour Summary
+description: Complex Excel file handling, SQL generation techniques, and embedding fine-tuning with Linear Adapters
+topics:
+  - Excel File Processing
+  - Multi-Table Data Handling
+  - SQL Generation
+  - Embedding Fine-Tuning
+  - Linear Adapters
+  - Data Validation
+---
+
 # RAG Office Hours Q&A Summary - Week 5
 
 ## How should we handle Excel files with multiple sheets and tables?
@@ -158,3 +175,9 @@ For more structured workflows, some developers create development plans using mo
 Many developers find that keeping AI agents away from certain code areas (particularly tests) helps maintain structure. This can be accomplished either through explicit instructions or by adding files to the cursor.ignore configuration, which prevents them from being indexed while still allowing the AI to run commands like pytest.
 
 Follow-up prompts at the end of interactions help maintain momentum. By asking what else needs to be done or what the next steps are, you encourage the AI to reference the to-do list and continue working on remaining tasks, creating a more cohesive development experience.
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

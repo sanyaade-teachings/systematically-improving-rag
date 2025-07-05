@@ -1,3 +1,20 @@
+---
+title: RAG Office Hours Q&A Summary - Week 4
+date: '2024-02-05'
+cohort: 2
+week: 4
+session: 1
+type: Office Hour Summary
+description: Advanced segmentation strategies for RAG systems, conversation analysis techniques, and user behavior pattern identification
+topics:
+  - Customer Segmentation
+  - Query Pattern Analysis
+  - Conversation-Level Analysis
+  - Tool Building Strategy
+  - Data-Driven Insights
+  - Intent Discovery
+---
+
 # RAG Office Hours Q&A Summary - Week 4
 
 ## What can "segments" mean beyond query volume and satisfaction values in a RAG system?
@@ -346,3 +363,9 @@ The protocol is still evolving but shows promise for creating more powerful AI s
 - Aider CLI coding tool: https://aider.chat/
 - Lovable for no-code app generation with Supabase integration
 - Cursor and Windsurf for AI-assisted coding environments
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
