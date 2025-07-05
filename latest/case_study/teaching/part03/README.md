@@ -5,7 +5,6 @@
 In Part 02, we discovered a severe alignment problem: v2 pattern-focused queries achieve only 12% Recall@1 compared to 62% for v1 content-focused queries when searching against embeddings of conversation first messages. This 50% performance gap occurs because we're searching for patterns in embeddings that only contain content.
 
 This part explores multiple solutions to bridge this gap through better alignment strategies.
-
 ## Hypotheses
 
 ### Primary Hypothesis
@@ -65,6 +64,9 @@ The alignment problem can be solved by changing what we embed to match what we s
 - [ ] Run evaluation with first-message embeddings using text-embedding-3-small
 - [ ] Verify: v1 ~58.7%, v2 ~11.3% Recall@1
 - [ ] Document exact metrics for comparison
+
+!!! note "Synthetic Data for Cold Start"
+    Our approach here follows the principles from [Chapter 1: Starting the Flywheel with Data](../../../../docs/workshops/chapter1.md). By generating synthetic v1 and v2 queries from our conversation data, we create evaluation datasets that help us understand performance before having real users. This synthetic approach is crucial for establishing baselines and testing hypotheses systematically.
 
 ### Experiment 2: Full Conversation Embeddings
 **TODO**: Implement and evaluate full conversation embeddings
@@ -264,6 +266,11 @@ When tasked with improving v5 performance, I approached this as an iterative opt
 5. **Iteration 4**: I tried to push further with ultra-dense keyword packing, but performance plateaued, indicating we'd found the optimal balance.
 
 The key insight was that prompts must be designed to match how users actually search. By analyzing the query patterns and iteratively refining the prompt structure, we achieved a 358% improvement in pattern search while simultaneously improving content search to 82% - making v5 the best overall approach.
+
+!!! note "From Evaluation to Enhancement"
+    This iterative optimization process exemplifies the principles from [Chapter 2: From Evaluation to Product Enhancement](../../../../docs/workshops/chapter2.md). While that chapter focuses on fine-tuning embeddings, our prompt engineering approach achieves similar goals—moving our summaries toward the distribution of actual user queries. Both techniques transform evaluation insights into concrete improvements.
+
+    Idealy with we have more than 1000 questions we can use the same approach to fine-tune the embeddings and get even better results.
 
 ### The Reverse Approach: Query-Time vs Ingestion-Time Optimization
 
@@ -636,6 +643,9 @@ uv run python pipelines/evaluation.py evaluate-summary --question-version v1 --s
 - Not analyzing why failures occur
 - Ignoring performance plateaus
 
+!!! note "Pattern Analysis at Scale"
+    The techniques for analyzing failure patterns connect directly to [Chapter 4: Topic Modeling and Analysis](../../../../docs/workshops/chapter4-1.md). While we manually analyzed query patterns here, that chapter shows how to automate this process using clustering and classification to identify systematic improvement opportunities across thousands of queries.
+
 ### 3. Recognizing Performance Plateaus
 
 **Warning signs:**
@@ -700,6 +710,9 @@ Best: "Conversation where user asks about Napoleon Bonaparte, the French emperor
 **Remember**: 55% recall that ships is better than 90% recall in development.
 
 ---
+
+!!! note "The Improvement Flywheel in Action"
+    This case study demonstrates the [improvement flywheel](../../../../docs/workshops/chapter0.md#the-improvement-flywheel-from-static-to-dynamic-systems) from Chapter 0 in practice. We started with synthetic evaluation data, identified the alignment problem through metrics, tested hypotheses systematically, and achieved a 358% improvement through iterative refinement. This is exactly how the product mindset transforms static RAG implementations into continuously improving systems.
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 

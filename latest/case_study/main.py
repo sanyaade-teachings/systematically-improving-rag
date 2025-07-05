@@ -268,7 +268,8 @@ def evaluate(
     embedding_model: str = typer.Option("text-embedding-3-large", help="Embedding model name"),
     limit: Optional[int] = typer.Option(None, help="Limit number of questions to evaluate"),
     experiment_id: Optional[str] = typer.Option(None, help="Experiment ID for tracking"),
-    reranker: str = typer.Option("none", help="Reranker to use: none, sentence-transformers, cohere"),
+    reranker: str = typer.Option("none", help="Reranker to use: none, sentence-transformers/<model>, cohere/<model>"),
+    reranker_n: int = typer.Option(60, help="Number of documents to retrieve for reranking"),
     target_type: str = typer.Option("conversations", help="Target type: conversations or summary"),
     target_technique: Optional[str] = typer.Option(None, help="Summary technique when target_type=summary"),
 ):
@@ -306,6 +307,7 @@ def evaluate(
             limit=limit,
             experiment_id=experiment_id,
             reranker_name=reranker,
+            reranker_n=reranker_n,
             target_type=target_type
         )
     )

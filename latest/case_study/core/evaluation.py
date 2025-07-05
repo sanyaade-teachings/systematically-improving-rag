@@ -111,6 +111,7 @@ async def evaluate_questions(
     experiment_id: Optional[str] = None,
     save_results: bool = True,
     reranker_name: str = "none",
+    reranker_n: int = 60,
     target_type: str = "conversations"
 ) -> Tuple[List[EvaluationResult], RecallMetrics]:
     """
@@ -125,6 +126,9 @@ async def evaluate_questions(
         limit: Limit number of questions to evaluate
         experiment_id: Experiment ID for tracking
         save_results: Whether to save results to database
+        reranker_name: Name of reranker to use ("none", "sentence-transformers/<model>", "cohere/<model>")
+        reranker_n: Number of documents to retrieve for reranking
+        target_type: Type of target documents ("conversations" or "summary")
         
     Returns:
         Tuple of (evaluation results, recall metrics)
@@ -151,8 +155,9 @@ async def evaluate_questions(
     
     if reranker_name != "none":
         console.print(f"[yellow]Using reranker: {reranker.name}[/yellow]")
-        # For reranking, we need to retrieve more candidates initially
-        initial_top_k = min(100, top_k * 3)  # Get 3x more candidates for reranking
+        console.print(f"[yellow]Retrieving {reranker_n} documents for reranking[/yellow]")
+        # For reranking, we retrieve reranker_n documents initially
+        initial_top_k = reranker_n
     else:
         initial_top_k = top_k
     
