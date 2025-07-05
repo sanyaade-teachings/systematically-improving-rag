@@ -154,17 +154,19 @@ echo "v1" | uv run python main.py evaluate --question-version v1 --embeddings-ty
 
 | Summary Type | Status | v1 Recall@1 | v2 Recall@1 | Storage Size | Generation Time |
 |--------------|--------|-------------|-------------|--------------|-----------------|
-| v1 (search)  |  Generated | 0%  | 0%  | 2.3 MB | ~5 min |
+| v1 (search)  |  Generated | 62%  | Not tested  | 2.3 MB | ~5 min |
 | v2 (comprehensive) |  Validation errors | - | - | - | - |
 | v3 (concise pattern) |  Generated | 54%  | 12%  | 2.3 MB | ~5 min |
 | v4 (pattern) |  Generated | 43%  | 22%  | 2.3 MB | ~5 min |
 | v5 (analysis)|  Generated (100) | - | - | - | ~15 min |
 
 **Key Findings**:
-- v1 summaries showed 0% recall for both query types, indicating they may be too brief or abstract
-- v3 summaries maintain good v1 performance (54%) while improving v2 queries to 12%
+- v1 search-optimized summaries achieve excellent v1 performance (62%) matching baseline first-message embeddings
+- v3 concise pattern summaries maintain good v1 performance (54%) while improving v2 queries to 12%
 - v4 pattern-optimized summaries achieve the best v2 performance (22%) while keeping reasonable v1 performance (43%)
 - This proves that **pattern-optimized summaries can nearly double v2 query performance** compared to baseline
+
+**Technical Note**: Initial v1 evaluation showed 0% recall due to ChromaDB caching stale data with suffixed IDs. Fixed by clearing cache and updating evaluation code to handle ID format variations.
 
 ### TODO: Performance Comparison
 [To be filled after Experiment 5]
@@ -272,6 +274,23 @@ We successfully demonstrated that the alignment problem can be solved through in
 2. **Summary design matters**: v4 summaries nearly double v2 performance by including pattern information
 3. **Trade-offs are manageable**: Pattern-optimized summaries maintain reasonable content search performance
 4. **Cost-effective solution**: Summaries provide significant improvements with minimal additional cost
+
+### Technical Implementation Notes
+
+**ID Format Issue in Summary Embeddings**:
+- Summary database uses composite primary keys like "hash_v1" for uniqueness
+- ChromaDB initially cached these suffixed IDs, causing search mismatches
+- Solution: Updated evaluation code to check metadata['conversation_hash'] field
+- Lesson: Always consider ID format alignment between storage and search systems
+
+**Commands to Fix ChromaDB Cache Issues**:
+```bash
+# Clear ChromaDB cache if needed
+rm -rf data/chromadb/
+
+# Re-run evaluation (will reload embeddings automatically)
+echo "v1" | uv run python main.py evaluate --question-version v1 --embeddings-type summaries --embedding-model text-embedding-3-small --limit 100
+```
 
 ### Future Work
 - Test full conversation embeddings (8k token truncation) for maximum performance
