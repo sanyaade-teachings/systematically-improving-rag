@@ -71,102 +71,6 @@ async def conversation_summary_v1(
     return response
 
 
-async def conversation_summary_v5(
-    client,  # instructor-patched client
-    messages: List[Dict[str, Any]],
-) -> ConversationSummary:
-    """
-    Generate summaries optimized for AI agent failure analysis and improvement identification.
-
-    This approach creates summaries that capture:
-    - Root causes of AI failures and misunderstandings
-    - User impact and satisfaction metrics
-    - Recovery patterns and resolution strategies
-    - Capability gaps and improvement opportunities
-    - Success patterns that can be replicated
-    - Metadata for prioritizing improvements
-
-    The summary is structured to enable an AI agent to identify patterns across conversations
-    and propose data-driven improvements.
-
-    Args:
-        client: instructor-patched client
-        messages: List of conversation messages
-
-    Returns:
-        ConversationSummary object with analysis-optimized summary
-    """
-
-    prompt = """
-    Analyze this conversation from the perspective of an AI analysis agent looking for system improvement opportunities.
-    Create a structured summary with the following components:
-    
-    1. **FAILURE ANALYSIS** (if applicable):
-       - Root cause: What specific capability or understanding failed?
-       - Failure pattern: Is this a comprehension, knowledge, reasoning, or execution failure?
-       - User impact: How did this affect the user's goals?
-       - Recovery attempts: What strategies did the AI try to recover?
-       
-    2. **INTERACTION DYNAMICS**:
-       - Communication breakdowns: Where did misunderstandings occur?
-       - Clarification loops: How many rounds of clarification were needed?
-       - User frustration indicators: Signs of impatience, confusion, or dissatisfaction
-       - Resolution status: Was the issue resolved? How?
-    
-    3. **CAPABILITY GAPS**:
-       - Missing features: What did the user need that wasn't available?
-       - Workarounds required: Alternative approaches suggested
-       - Knowledge limitations: Topics where the AI lacked depth
-       - Tool limitations: Technical constraints encountered
-    
-    4. **SUCCESS PATTERNS** (if applicable):
-       - Effective strategies: What approaches worked well?
-       - User satisfaction signals: Positive feedback or successful outcomes
-       - Reusable solutions: Patterns that could help in similar cases
-    
-    5. **IMPROVEMENT HYPOTHESES**:
-       - Specific capability needed: "Would benefit from [specific feature/knowledge]"
-       - Pattern recognition: "Similar to other [type] failures"
-       - Priority assessment: Impact level (high/medium/low) based on user goals
-       - Implementation suggestion: "Could be addressed by [approach]"
-    
-    6. **METADATA FOR ANALYSIS**:
-       - Domain: [technical/creative/educational/etc.]
-       - Complexity: [simple/moderate/complex]
-       - User expertise: [beginner/intermediate/expert]
-       - Failure severity: [minor/moderate/critical]
-       - Business impact: [low/medium/high]
-    
-    Format: Create a narrative summary that an AI agent could parse to identify patterns across many conversations.
-    Focus on actionable insights rather than just describing what happened.
-    
-    <conversation>
-    {% for message in messages %}
-        <message role="{{ message.role }}">
-            {{ message.content }}
-        </message>
-    {% endfor %}
-    </conversation>
-    
-    Generate a summary that enables systematic improvement of the AI system.
-    """
-
-    response = await client.chat.completions.create(
-        response_model=ConversationSummary,
-        messages=[
-            {
-                "role": "system",
-                "content": "You are an expert at analyzing AI conversations for system improvement. Focus on identifying failure patterns, root causes, and specific opportunities for enhancement. Your summaries should enable data-driven decisions about where to invest development effort.",
-            },
-            {"role": "user", "content": prompt},
-        ],
-        context={"messages": messages},
-        max_retries=3,
-    )
-
-    return response
-
-
 async def conversation_summary_v2(
     client,  # instructor-patched client
     messages: List[Dict[str, Any]],
@@ -390,210 +294,71 @@ Please provide your summary based on the conversation so far, following this str
     return response
 
 
-async def conversation_summary_v5(
-    client,  # instructor-patched client
-    messages: List[Dict[str, Any]],
-) -> ConversationSummary:
-    """
-    Generate summaries optimized for AI agent failure analysis and improvement identification.
-
-    This approach creates summaries that capture:
-    - Root causes of AI failures and misunderstandings
-    - User impact and satisfaction metrics
-    - Recovery patterns and resolution strategies
-    - Capability gaps and improvement opportunities
-    - Success patterns that can be replicated
-    - Metadata for prioritizing improvements
-
-    The summary is structured to enable an AI agent to identify patterns across conversations
-    and propose data-driven improvements.
-
-    Args:
-        client: instructor-patched client
-        messages: List of conversation messages
-
-    Returns:
-        ConversationSummary object with analysis-optimized summary
-    """
-
-    prompt = """
-    Analyze this conversation from the perspective of an AI analysis agent looking for system improvement opportunities.
-    Create a structured summary with the following components:
-    
-    1. **FAILURE ANALYSIS** (if applicable):
-       - Root cause: What specific capability or understanding failed?
-       - Failure pattern: Is this a comprehension, knowledge, reasoning, or execution failure?
-       - User impact: How did this affect the user's goals?
-       - Recovery attempts: What strategies did the AI try to recover?
-       
-    2. **INTERACTION DYNAMICS**:
-       - Communication breakdowns: Where did misunderstandings occur?
-       - Clarification loops: How many rounds of clarification were needed?
-       - User frustration indicators: Signs of impatience, confusion, or dissatisfaction
-       - Resolution status: Was the issue resolved? How?
-    
-    3. **CAPABILITY GAPS**:
-       - Missing features: What did the user need that wasn't available?
-       - Workarounds required: Alternative approaches suggested
-       - Knowledge limitations: Topics where the AI lacked depth
-       - Tool limitations: Technical constraints encountered
-    
-    4. **SUCCESS PATTERNS** (if applicable):
-       - Effective strategies: What approaches worked well?
-       - User satisfaction signals: Positive feedback or successful outcomes
-       - Reusable solutions: Patterns that could help in similar cases
-    
-    5. **IMPROVEMENT HYPOTHESES**:
-       - Specific capability needed: "Would benefit from [specific feature/knowledge]"
-       - Pattern recognition: "Similar to other [type] failures"
-       - Priority assessment: Impact level (high/medium/low) based on user goals
-       - Implementation suggestion: "Could be addressed by [approach]"
-    
-    6. **METADATA FOR ANALYSIS**:
-       - Domain: [technical/creative/educational/etc.]
-       - Complexity: [simple/moderate/complex]
-       - User expertise: [beginner/intermediate/expert]
-       - Failure severity: [minor/moderate/critical]
-       - Business impact: [low/medium/high]
-    
-    Format: Create a narrative summary that an AI agent could parse to identify patterns across many conversations.
-    Focus on actionable insights rather than just describing what happened.
-    
-    <conversation>
-    {% for message in messages %}
-        <message role="{{ message.role }}">
-            {{ message.content }}
-        </message>
-    {% endfor %}
-    </conversation>
-    
-    Generate a summary that enables systematic improvement of the AI system.
-    """
-
-    response = await client.chat.completions.create(
-        response_model=ConversationSummary,
-        messages=[
-            {
-                "role": "system",
-                "content": "You are an expert at analyzing AI conversations for system improvement. Focus on identifying failure patterns, root causes, and specific opportunities for enhancement. Your summaries should enable data-driven decisions about where to invest development effort.",
-            },
-            {"role": "user", "content": prompt},
-        ],
-        context={"messages": messages},
-        max_retries=3,
-    )
-
-    return response
-
-
 async def conversation_summary_v3(
     client,  # instructor-patched client
     messages: List[Dict[str, Any]],
 ) -> ConversationSummary:
     """
-    Generate a comprehensive summary that captures conversation patterns, themes, and user interaction dynamics.
+    Generate a concise pattern-focused summary that bridges content and patterns.
 
-    This approach creates summaries that capture:
-    - Conversation patterns and interaction types
-    - User intent, behavior, and preferences
-    - AI response characteristics and adjustments
-    - Overall conversation flow and structure
-    - User feedback and emotional context
-    - Knowledge requests and learning progression
-    - User Satisfaction and Frustration Points
+    This approach creates 3-5 sentence summaries that capture:
+    - Conversation type and category
+    - Main interaction pattern
+    - Key topics with pattern context
+    - User intent category
+    - Notable characteristics
 
-    The summary should be detailed enough to match pattern-based queries and understand
-    the full context of user-AI interaction dynamics.
+    The summary balances brevity with pattern recognition, making it useful
+    for both content and pattern-based searches.
 
     Args:
         client: instructor-patched client
         messages: List of conversation messages
 
     Returns:
-        ConversationSummary object with comprehensive, pattern-focused summary
+        ConversationSummary object with concise pattern-aware summary
     """
 
     prompt = """
-Your task is to create a detailed summary of the conversation, paying close attention to the user's explicit requests, feedback, and the assistant's responses.
-This summary should be thorough in capturing key topics, important details, interaction patterns, and user preferences that would be essential for understanding the conversation's context and continuation.
+You are creating balanced summaries that capture both content and conversation patterns.
 
-Before providing your final summary, wrap your analysis in <analysis> tags to organize your thoughts and ensure you've covered all necessary points. In your analysis process:
+Generate a 3-5 sentence summary that includes:
 
-1. Chronologically analyze each message and section of the conversation. For each section thoroughly identify:
-   - The user's explicit requests and intents
-   - The assistant's approach to addressing the user's requests
-   - Key decisions, important concepts, and significant details
-   - Specific information, examples, or resources mentioned
-   - User feedback, preferences, and emotional responses
-   - Learning progression and context switches
-2. Double-check for accuracy and completeness, addressing each required element thoroughly.
+1. **Opening Pattern Statement**: "This is a [TYPE] conversation where [PATTERN]."
+   Examples:
+   - "This is a technical troubleshooting conversation where the user seeks help with database errors."
+   - "This is an educational Q&A conversation where the user explores quantum physics concepts."
+   - "This is a creative collaboration where the user and AI co-write a fantasy story."
 
-Your summary should include the following sections:
+2. **Interaction Dynamic**: One sentence about HOW the conversation unfolds.
+   Examples:
+   - "The user provides error messages and the AI diagnoses issues step-by-step."
+   - "Through iterative questions, the user deepens their understanding of complex topics."
+   - "The conversation follows a pattern of proposal, feedback, and refinement."
 
-1. Primary Request and Intent: Capture all of the user's explicit requests and intents in detail
+3. **Key Content**: One sentence listing the main topics/concepts discussed.
+   Examples:
+   - "Key topics include PostgreSQL configuration, connection pooling, and query optimization."
+   - "The discussion covers wave-particle duality, quantum entanglement, and measurement."
+   - "Central elements include character backstories, world-building, and plot development."
 
-2. Knowledge Requests: Identify specific knowledge, explanations, or information the user is seeking from the AI
+4. **User Characteristic** (optional): If notable, one sentence about the user's approach or state.
+   Examples:
+   - "The user demonstrates intermediate technical knowledge and methodical debugging."
+   - "The user shows curiosity and asks progressively deeper questions."
+   - "The user expresses frustration with initial attempts but persists toward resolution."
 
-3. User Feedback and Preferences: Document any feedback about the AI's responses, communication style preferences, or corrections requested by the user (e.g., "be less verbose," "provide more examples," "explain differently")
+Focus on creating a summary that works for BOTH content searches AND pattern searches.
 
-4. Key Topics and Concepts: List all important topics, concepts, and subject matter discussed
-
-5. Information and Resources: Enumerate specific information, examples, resources, or references provided or discussed. Pay special attention to the most recent messages and include important details where applicable
-
-6. Problem Solving: Document problems addressed and any ongoing efforts to resolve issues
-
-7. Conversation Dynamics: Note the user's communication style, level of expertise, emotional state (frustration, satisfaction, confusion), and any adjustments made to match their needs
-
-8. User Frustration Points: Specifically identify and quote instances where the user expresses significant frustration, impatience, or dissatisfaction with the AI's responses or the conversation flow
-
-9. Learning Progression: Track how the user's understanding evolves throughout the conversation and any knowledge building that occurs
-
-10. Context Switches: Identify when the conversation shifts topics or focus areas, and note any repeated patterns or recurring themes
-
-11. Clarifications and Corrections: Track instances where the user needed to clarify their request or correct the AI's understanding
-
-12. User Goals and Success Metrics: Distinguish between immediate requests and broader objectives, noting what constitutes success for the user
-
-13. Assumptions Made: Track assumptions the AI made about user needs, context, or expertise level
-
-14. Pending Tasks: Outline any pending tasks or follow-up items that have been explicitly requested
-
-15. Current Focus: Describe in detail precisely what was being discussed or worked on immediately before this summary request, paying special attention to the most recent messages from both user and assistant
-
-16. Optional Next Step: List the next step that would logically follow based on the most recent work or discussion. IMPORTANT: ensure that this step is DIRECTLY in line with the user's explicit requests and the topic being addressed immediately before this summary request. If the last topic was concluded, then only list next steps if they are explicitly in line with the user's request
-
-17. If there is a next step, include direct quotes from the most recent conversation showing exactly what was being discussed and where the conversation left off. This should be verbatim to ensure there's no drift in topic interpretation
-
-18. User Journey & Task Completion: Analyze the user's workflow - did they complete their intended task? Where did they get stuck? How many exchanges were needed? What was their entry point and approach?
-
-19. AI Performance Issues: Identify instances where the AI failed to understand, provided incorrect information, or hit capability limits. Note any hallucinations or clear mistakes.
-
-20. User Behavior Patterns: Document the user's information-seeking strategies, trust indicators (verification, doubt), and usage intensity (quick question vs. deep exploration).
-
-21. Product Experience Insights: Note any feature discoveries, expectation mismatches, or workaround behaviors the user developed to handle AI limitations.
-
-22. Conversation Quality Indicators: Track satisfaction signals (thanks, success expressions), abandonment patterns, and any repetitive questioning that suggests the user wasn't getting what they needed.
-
-Here's an example of how your output should be structured:
-
-<example>
-<chain_of_thought>
-[Your thought process, ensuring all points are covered thoroughly and accurately]
-</chain_of_thought>
-
-<summary>
-This conversation analysis captures the user's primary request and intent, detailing their knowledge requests and feedback about AI responses while documenting communication preferences and style adjustments. The discussion covered key topics and concepts with specific information and resources provided, including important details and examples that enhanced understanding. Problem-solving elements addressed specific issues with ongoing efforts documented, while interaction dynamics revealed the user's expertise level, communication style, emotional state, and AI adjustments made to meet their needs. Notable frustration points emerged with direct quotes showing user impatience or dissatisfaction, including triggering contexts and AI responses to alleviate concerns. The learning progression demonstrated how the user's understanding evolved, what knowledge was built, and what skills were mastered, while context switches occurred as topics shifted with repeated patterns emerging. Clarifications and corrections were needed where the user clarified requests or corrected AI misunderstandings, leading to resolved issues. The user's goals included both immediate objectives and broader aims with clear success indicators, while the AI made assumptions about user needs, context, expertise level, and preferred approaches. Pending tasks were identified requiring follow-up attention, and the current focus was precisely described capturing recent discussion points with special attention to the most recent messages. An optional next step was suggested aligning with user requests and current topics, while the user journey analysis examined task completion status, obstacles encountered, exchange efficiency, and entry strategies. AI performance issues documented failure points, incorrect information, and capability gaps, while user behavior patterns revealed information-seeking strategies, trust indicators, and usage intensity ranging from quick questions to deep exploration. Product experience insights captured feature discoveries, expectation mismatches, and workaround behaviors, with conversation quality indicators tracking satisfaction signals, abandonment patterns, and repetitive questioning suggesting unmet needs.
-
-</summary>
-</example>
-
-Please provide your summary based on the conversation so far, following this structure and ensuring precision and thoroughness in your response.
-
+<conversation>
 {% for message in messages %}
     <message role="{{ message.role }}">
         {{ message.content }}
     </message>
 {% endfor %}
+</conversation>
+
+Generate a concise, pattern-aware summary that balances content and conversation dynamics.
     """
 
     response = await client.chat.completions.create(
@@ -601,103 +366,7 @@ Please provide your summary based on the conversation so far, following this str
         messages=[
             {
                 "role": "system",
-                "content": "You are an expert at analyzing and categorizing human-AI conversations, focusing on patterns, themes, interaction characteristics, and user experience dynamics across all types of conversations.",
-            },
-            {"role": "user", "content": prompt},
-        ],
-        context={"messages": messages},
-        max_retries=3,
-    )
-
-    return response
-
-
-async def conversation_summary_v5(
-    client,  # instructor-patched client
-    messages: List[Dict[str, Any]],
-) -> ConversationSummary:
-    """
-    Generate summaries optimized for AI agent failure analysis and improvement identification.
-
-    This approach creates summaries that capture:
-    - Root causes of AI failures and misunderstandings
-    - User impact and satisfaction metrics
-    - Recovery patterns and resolution strategies
-    - Capability gaps and improvement opportunities
-    - Success patterns that can be replicated
-    - Metadata for prioritizing improvements
-
-    The summary is structured to enable an AI agent to identify patterns across conversations
-    and propose data-driven improvements.
-
-    Args:
-        client: instructor-patched client
-        messages: List of conversation messages
-
-    Returns:
-        ConversationSummary object with analysis-optimized summary
-    """
-
-    prompt = """
-    Analyze this conversation from the perspective of an AI analysis agent looking for system improvement opportunities.
-    Create a structured summary with the following components:
-    
-    1. **FAILURE ANALYSIS** (if applicable):
-       - Root cause: What specific capability or understanding failed?
-       - Failure pattern: Is this a comprehension, knowledge, reasoning, or execution failure?
-       - User impact: How did this affect the user's goals?
-       - Recovery attempts: What strategies did the AI try to recover?
-       
-    2. **INTERACTION DYNAMICS**:
-       - Communication breakdowns: Where did misunderstandings occur?
-       - Clarification loops: How many rounds of clarification were needed?
-       - User frustration indicators: Signs of impatience, confusion, or dissatisfaction
-       - Resolution status: Was the issue resolved? How?
-    
-    3. **CAPABILITY GAPS**:
-       - Missing features: What did the user need that wasn't available?
-       - Workarounds required: Alternative approaches suggested
-       - Knowledge limitations: Topics where the AI lacked depth
-       - Tool limitations: Technical constraints encountered
-    
-    4. **SUCCESS PATTERNS** (if applicable):
-       - Effective strategies: What approaches worked well?
-       - User satisfaction signals: Positive feedback or successful outcomes
-       - Reusable solutions: Patterns that could help in similar cases
-    
-    5. **IMPROVEMENT HYPOTHESES**:
-       - Specific capability needed: "Would benefit from [specific feature/knowledge]"
-       - Pattern recognition: "Similar to other [type] failures"
-       - Priority assessment: Impact level (high/medium/low) based on user goals
-       - Implementation suggestion: "Could be addressed by [approach]"
-    
-    6. **METADATA FOR ANALYSIS**:
-       - Domain: [technical/creative/educational/etc.]
-       - Complexity: [simple/moderate/complex]
-       - User expertise: [beginner/intermediate/expert]
-       - Failure severity: [minor/moderate/critical]
-       - Business impact: [low/medium/high]
-    
-    Format: Create a narrative summary that an AI agent could parse to identify patterns across many conversations.
-    Focus on actionable insights rather than just describing what happened.
-    
-    <conversation>
-    {% for message in messages %}
-        <message role="{{ message.role }}">
-            {{ message.content }}
-        </message>
-    {% endfor %}
-    </conversation>
-    
-    Generate a summary that enables systematic improvement of the AI system.
-    """
-
-    response = await client.chat.completions.create(
-        response_model=ConversationSummary,
-        messages=[
-            {
-                "role": "system",
-                "content": "You are an expert at analyzing AI conversations for system improvement. Focus on identifying failure patterns, root causes, and specific opportunities for enhancement. Your summaries should enable data-driven decisions about where to invest development effort.",
+                "content": "You are an expert at creating concise summaries that capture both what was discussed and how the conversation unfolded. Balance pattern recognition with content summary.",
             },
             {"role": "user", "content": prompt},
         ],

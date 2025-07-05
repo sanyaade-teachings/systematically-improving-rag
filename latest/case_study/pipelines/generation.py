@@ -223,6 +223,7 @@ async def generate_summaries_pipeline(
     experiment_id: Optional[str] = None,
     concurrency: int = 10,
     use_cache: bool = True,
+    show_progress: bool = True,
 ) -> Dict[str, int]:
     """
     Generate summaries for conversations using specified techniques
@@ -261,46 +262,54 @@ async def generate_summaries_pipeline(
     summaries = []
     semaphore = asyncio.Semaphore(concurrency)
 
-    with Progress() as progress:
-        task = progress.add_task(
-            f"Generating {version} summaries", total=len(conversations)
-        )
+    async def process_conversation(
+        conv: Dict[str, Any],
+        progress_task: Optional[TaskID] = None,
+        progress_obj: Optional[Progress] = None,
+    ) -> Dict[str, Any] | None:
+        async with semaphore:
+            try:
+                # Parse conversation messages
+                messages = parse_conversation_messages(conv)
+                
+                # Generate summary using the version
+                generated = await fn_summary[version](client, messages)
+                
+                # Add metadata for saving
+                summary_data = {
+                    "id": f"{conv['conversation_hash']}_{version}",  # Keep unique ID for database
+                    "conversation_hash": conv['conversation_hash'],
+                    "technique": version,
+                    "summary": generated.summary,
+                    "experiment_id": experiment_id,
+                }
+                
+                if progress_obj and progress_task is not None:
+                    progress_obj.advance(progress_task)
+                return summary_data
+            except Exception as e:
+                console.print(
+                    f"[red]Error processing {conv['conversation_hash']}: {e}[/red]"
+                )
+                if progress_obj and progress_task is not None:
+                    progress_obj.advance(progress_task)
+                return None
 
-        async def process_conversation(
-            conv: Dict[str, Any],
-        ) -> Dict[str, Any] | None:
-            async with semaphore:
-                try:
-                    # Parse conversation messages
-                    messages = parse_conversation_messages(conv)
-                    
-                    # Generate summary using the version
-                    generated = await fn_summary[version](client, messages)
-                    
-                    # Add metadata for saving
-                    summary_data = {
-                        "id": f"{conv['conversation_hash']}_{version}",
-                        "conversation_hash": conv['conversation_hash'],
-                        "technique": version,
-                        "summary": generated.summary,
-                        "experiment_id": experiment_id,
-                    }
-                    
-                    progress.advance(task)
-                    return summary_data
-                except Exception as e:
-                    console.print(
-                        f"[red]Error processing {conv['conversation_hash']}: {e}[/red]"
-                    )
-                    progress.advance(task)
-                    return None
-
-        # Process all conversations concurrently
+    if show_progress:
+        with Progress() as progress:
+            task = progress.add_task(
+                f"Generating {version} summaries", total=len(conversations)
+            )
+            # Process all conversations concurrently
+            tasks = [process_conversation(conv, task, progress) for conv in conversations]
+            summaries = await asyncio.gather(*tasks)
+    else:
+        # Process without progress bar
         tasks = [process_conversation(conv) for conv in conversations]
         summaries = await asyncio.gather(*tasks)
 
-        # Filter out None results
-        summaries = [s for s in summaries if s is not None]
+    # Filter out None results
+    summaries = [s for s in summaries if s is not None]
 
     # Save to database
     saved_count = save_summaries_to_sqlite(summaries, db_path)

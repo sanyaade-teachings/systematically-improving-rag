@@ -50,6 +50,18 @@ class Evaluation(SQLModel, table=True):
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
 
+class EvaluationResult(SQLModel, table=True):
+    id: str = Field(primary_key=True)
+    question_id: str = Field(foreign_key="question.id")
+    query: str
+    target_conversation_hash: str = Field(foreign_key="conversation.conversation_hash")
+    found: bool
+    rank: Optional[int] = None
+    score: Optional[float] = None
+    experiment_id: Optional[str] = None
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+
 def get_engine(db_path: Path):
     """Get SQLModel engine for database"""
     return create_engine(f"sqlite:///{db_path}")
@@ -177,6 +189,75 @@ def save_evaluations_to_sqlite(evaluations: List[Dict[str, Any]], db_path: Path)
                 continue
 
     return inserted
+
+
+def save_detailed_evaluation_results(
+    detailed_results: List[Dict[str, Any]], 
+    db_path: Path, 
+    experiment_id: Optional[str] = None
+) -> int:
+    """Save detailed evaluation results to SQLite"""
+    engine = get_engine(db_path)
+    inserted = 0
+
+    with Session(engine) as session:
+        for result in detailed_results:
+            try:
+                eval_result = EvaluationResult(
+                    id=f"{result['question_id']}_detail",
+                    question_id=result["question_id"],
+                    query=result["query"],
+                    target_conversation_hash=result["target"],
+                    found=result["found"],
+                    rank=result.get("rank"),
+                    score=result.get("score"),
+                    experiment_id=experiment_id,
+                )
+                session.add(eval_result)
+                session.commit()
+                inserted += 1
+            except Exception as e:
+                print(f"Error inserting detailed result {result.get('question_id')}: {e}")
+                session.rollback()
+                continue
+
+    return inserted
+
+
+def get_detailed_evaluation_results(
+    db_path: Path,
+    experiment_id: Optional[str] = None,
+    question_version: Optional[str] = None
+) -> List[Dict[str, Any]]:
+    """Get detailed evaluation results from SQLite"""
+    engine = get_engine(db_path)
+    results = []
+    
+    with Session(engine) as session:
+        # Build query
+        query = select(EvaluationResult)
+        if experiment_id:
+            query = query.where(EvaluationResult.experiment_id == experiment_id)
+        
+        # If question_version is specified, join with Question table
+        if question_version:
+            query = query.join(Question).where(Question.version == question_version)
+        
+        eval_results = session.exec(query).all()
+        
+        for result in eval_results:
+            results.append({
+                "question_id": result.question_id,
+                "query": result.query,
+                "target": result.target_conversation_hash,
+                "found": result.found,
+                "rank": result.rank,
+                "score": result.score,
+                "experiment_id": result.experiment_id,
+                "created_at": result.created_at
+            })
+    
+    return results
 
 
 def get_conversations_by_hashes(

@@ -17,6 +17,7 @@ from core.db import (
     get_questions_by_technique,
     get_conversations_by_hashes,
     save_evaluations_to_sqlite,
+    save_detailed_evaluation_results,
     get_engine,
     Conversation,
     Question
@@ -291,9 +292,23 @@ def save_evaluation_report(
     evaluation_results: List[EvaluationResult],
     metrics: RecallMetrics,
     output_path: Path,
-    metadata: Optional[Dict[str, Any]] = None
+    metadata: Optional[Dict[str, Any]] = None,
+    db_path: Optional[Path] = None,
+    experiment_id: Optional[str] = None
 ):
-    """Save detailed evaluation report to JSON"""
+    """Save detailed evaluation report to JSON and optionally to SQLite"""
+    detailed_results = [
+        {
+            "question_id": r.question_id,
+            "query": r.query,
+            "target": r.target_conversation_hash,
+            "found": r.found,
+            "rank": r.rank,
+            "score": r.score
+        }
+        for r in evaluation_results
+    ]
+    
     report = {
         "timestamp": datetime.now().isoformat(),
         "metrics": {
@@ -305,21 +320,24 @@ def save_evaluation_report(
             "successful_queries": metrics.successful_queries
         },
         "metadata": metadata or {},
-        "detailed_results": [
-            {
-                "question_id": r.question_id,
-                "query": r.query,
-                "target": r.target_conversation_hash,
-                "found": r.found,
-                "rank": r.rank,
-                "score": r.score
-            }
-            for r in evaluation_results
-        ]
+        "detailed_results": detailed_results
     }
     
+    # Save to JSON
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, 'w') as f:
         json.dump(report, f, indent=2)
     
     console.print(f"[green]Saved evaluation report to {output_path}[/green]")
+    
+    # Save detailed results to SQLite if requested
+    if db_path and experiment_id:
+        try:
+            inserted = save_detailed_evaluation_results(
+                detailed_results, 
+                db_path, 
+                experiment_id
+            )
+            console.print(f"[green]Saved {inserted} detailed results to SQLite[/green]")
+        except Exception as e:
+            console.print(f"[red]Error saving detailed results to SQLite: {e}[/red]")

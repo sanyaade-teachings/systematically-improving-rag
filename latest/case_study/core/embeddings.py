@@ -226,13 +226,17 @@ async def generate_conversation_embeddings(
     for conv in conversations:
         if conv['text'] and conv['text'].strip():  # Skip empty texts
             texts.append(conv['text'])
-            metadata.append({
+            meta = {
                 'id': conv['conversation_hash'],
                 'conversation_hash': conv['conversation_hash'],
                 'language': conv.get('language', 'English'),
-                'country': conv.get('country'),
-                'timestamp': conv.get('timestamp')
-            })
+            }
+            # Only add non-None values
+            if conv.get('country') is not None:
+                meta['country'] = conv['country']
+            if conv.get('timestamp') is not None:
+                meta['timestamp'] = conv['timestamp']
+            metadata.append(meta)
         else:
             skipped += 1
     
@@ -272,17 +276,23 @@ async def generate_summary_embeddings(
     # Initialize embedding generator
     generator = EmbeddingGenerator(embedding_model)
     
-    # Extract texts and metadata
+    # Extract texts and metadata, filtering out None values
     texts = [s['summary'] for s in summaries]
-    metadata = [
-        {
-            'id': s['id'],
+    metadata = []
+    for s in summaries:
+        # IMPORTANT: ChromaDB document IDs must match what we search for in evaluation
+        # The summary table uses IDs like "hash_v1" for uniqueness, but we search by
+        # conversation_hash alone. So we use conversation_hash as the ChromaDB document ID.
+        # This ensures that when we search for a conversation_hash, we find the right document.
+        meta = {
+            'id': s['conversation_hash'],  # Use conversation_hash as ChromaDB doc ID (NOT the database ID with suffix!)
             'conversation_hash': s['conversation_hash'],
             'technique': s['technique'],
-            'experiment_id': s.get('experiment_id')
         }
-        for s in summaries
-    ]
+        # Only add experiment_id if it's not None
+        if s.get('experiment_id') is not None:
+            meta['experiment_id'] = s['experiment_id']
+        metadata.append(meta)
     
     # Generate embeddings
     embeddings = await generator.generate_embeddings(texts, batch_size)
@@ -290,6 +300,126 @@ async def generate_summary_embeddings(
     # Save to parquet
     technique = summaries[0]['technique'] if summaries else 'unknown'
     output_path = output_dir / f"{technique}_{embedding_model.replace('/', '-')}.parquet"
+    save_embeddings_to_parquet(embeddings, metadata, output_path, embedding_model)
+    
+    return output_path
+
+
+def truncate_text_to_tokens(text: str, max_tokens: int = 8000, model: str = "text-embedding-3-large") -> str:
+    """
+    Truncate text to approximately max_tokens.
+    
+    For simplicity, we use character-based truncation with a rough estimate:
+    - Average English word is ~5 characters
+    - Average token is ~4 characters (0.75 tokens per word)
+    
+    Args:
+        text: Text to truncate
+        max_tokens: Maximum number of tokens
+        model: Model name (for future token counting improvements)
+        
+    Returns:
+        Truncated text
+    """
+    # Rough estimate: 1 token ≈ 4 characters
+    max_chars = max_tokens * 4
+    
+    if len(text) <= max_chars:
+        return text
+    
+    # Truncate and add ellipsis
+    return text[:max_chars - 3] + "..."
+
+
+async def generate_full_conversation_embeddings(
+    conversations: List[Dict[str, Any]],
+    embedding_model: str = "text-embedding-3-large",
+    output_dir: Path = Path("data/embeddings/full_conversations"),
+    batch_size: int = 100,
+    max_tokens: int = 8000
+) -> Path:
+    """
+    Generate embeddings for full conversations (not just first message) and save to parquet
+    
+    Args:
+        conversations: List of conversation dicts (must have 'conversation_hash' and 'conversation_full')
+        embedding_model: Name of the embedding model to use
+        output_dir: Directory to save embeddings
+        batch_size: Batch size for embedding generation
+        max_tokens: Maximum tokens per conversation (will truncate if longer)
+        
+    Returns:
+        Path to the saved parquet file
+    """
+    console.print(f"[bold green]Generating full conversation embeddings for {len(conversations)} conversations[/bold green]")
+    console.print(f"[yellow]Max tokens per conversation: {max_tokens}[/yellow]")
+    
+    # Initialize embedding generator
+    generator = EmbeddingGenerator(embedding_model)
+    
+    # Extract texts and metadata, filtering out empty conversations
+    texts = []
+    metadata = []
+    skipped = 0
+    truncated = 0
+    
+    for conv in conversations:
+        # Parse conversation_full JSON string if needed
+        if isinstance(conv.get('conversation_full'), str):
+            try:
+                import json
+                conversation_data = json.loads(conv['conversation_full'])
+            except:
+                # If not JSON, use as is
+                conversation_data = conv.get('conversation_full', '')
+        else:
+            conversation_data = conv.get('conversation_full', [])
+        
+        # Convert conversation to text
+        if isinstance(conversation_data, list):
+            # Format as "role: content" for each message
+            full_text = "\n\n".join([
+                f"{msg.get('role', 'unknown')}: {msg.get('content', '')}"
+                for msg in conversation_data
+                if msg.get('content')
+            ])
+        else:
+            full_text = str(conversation_data)
+        
+        if full_text and full_text.strip():  # Skip empty conversations
+            # Truncate if needed
+            original_len = len(full_text)
+            truncated_text = truncate_text_to_tokens(full_text, max_tokens, embedding_model)
+            if len(truncated_text) < original_len:
+                truncated += 1
+            
+            texts.append(truncated_text)
+            meta = {
+                'id': conv['conversation_hash'],
+                'conversation_hash': conv['conversation_hash'],
+                'language': conv.get('language', 'English'),
+                'original_length': str(original_len),  # Convert to string for ChromaDB
+                'truncated': str(len(truncated_text) < original_len)  # Convert bool to string
+            }
+            # Only add non-None values
+            if conv.get('country') is not None:
+                meta['country'] = conv['country']
+            if conv.get('timestamp') is not None:
+                meta['timestamp'] = conv['timestamp']
+            metadata.append(meta)
+        else:
+            skipped += 1
+    
+    if skipped > 0:
+        console.print(f"[yellow]Skipped {skipped} conversations with empty text[/yellow]")
+    if truncated > 0:
+        console.print(f"[yellow]Truncated {truncated} conversations to {max_tokens} tokens[/yellow]")
+    
+    # Generate embeddings
+    embeddings = await generator.generate_embeddings(texts, batch_size)
+    
+    # Save to parquet
+    output_path = output_dir / f"{embedding_model.replace('/', '-')}.parquet"
     save_embeddings_to_parquet(embeddings, metadata, output_path, embedding_model)
     
     return output_path

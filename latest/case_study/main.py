@@ -8,7 +8,7 @@ from core.db import get_engine, get_conversations_by_hashes, get_database_stats,
 from core.documents import load_wildchat_into_db
 from core.summarization import ConversationSummary
 from pipelines.generation import generate_questions_pipeline, generate_summaries_pipeline
-from core.embeddings import generate_conversation_embeddings, generate_summary_embeddings
+from core.embeddings import generate_conversation_embeddings, generate_summary_embeddings, generate_full_conversation_embeddings
 from core.evaluation import evaluate_questions
 from config import PATH_TO_DB
 from sqlmodel import Session, select
@@ -44,7 +44,7 @@ def generate_questions(
     version: str = typer.Option("v1", help="Question generation version (v1, v2, v3, v5)"),
     limit: Optional[int] = typer.Option(None, help="Limit number of conversations to process"),
     experiment_id: Optional[str] = typer.Option(None, help="Experiment ID for tracking"),
-    concurrency: int = typer.Option(10, help="Max concurrent API requests"),
+    concurrency: int = typer.Option(50, help="Max concurrent API requests"),
     conversation_hashes: Optional[List[str]] = typer.Option(None, help="Specific conversation hashes to process"),
 ):
     """Generate synthetic questions for conversations"""
@@ -83,19 +83,26 @@ def generate_questions(
 
 @app.command()
 def generate_summaries(
-    version: str = typer.Option("v1", help="Summary generation version (v1, v2, v3, v4, v5)"),
+    versions: str = typer.Option("v1", help="Comma-separated summary versions (e.g., 'v1,v2,v3' or 'all' for v1-v5)"),
     limit: Optional[int] = typer.Option(None, help="Limit number of conversations to process"),
     experiment_id: Optional[str] = typer.Option(None, help="Experiment ID for tracking"),
-    concurrency: int = typer.Option(10, help="Max concurrent API requests"),
+    concurrency: int = typer.Option(50, help="Max concurrent API requests"),
     conversation_hashes: Optional[List[str]] = typer.Option(None, help="Specific conversation hashes to process"),
 ):
-    """Generate summaries for conversations"""
+    """Generate summaries for conversations using one or more versions"""
     
-    # Validate version
+    # Parse versions
     valid_versions = ["v1", "v2", "v3", "v4", "v5"]
-    if version not in valid_versions:
-        console.print(f"[red]Error: Invalid version '{version}'. Must be one of: {valid_versions}[/red]")
-        raise typer.Exit(1)
+    if versions.lower() == "all":
+        version_list = valid_versions
+    else:
+        version_list = [v.strip() for v in versions.split(",")]
+    
+    # Validate versions
+    for version in version_list:
+        if version not in valid_versions:
+            console.print(f"[red]Error: Invalid version '{version}'. Must be one of: {valid_versions}[/red]")
+            raise typer.Exit(1)
     
     # Get conversation hashes
     if conversation_hashes:
@@ -107,18 +114,33 @@ def generate_summaries(
         console.print("[red]No conversations found in database[/red]")
         raise typer.Exit(1)
     
-    console.print(f"[blue]Processing {len(hashes)} conversations with version {version}[/blue]")
+    console.print(f"[blue]Processing {len(hashes)} conversations with versions: {', '.join(version_list)}[/blue]")
     
-    # Run the generation pipeline
-    results = asyncio.run(
-        generate_summaries_pipeline(
-            conversation_hashes=hashes,
-            version=version,
-            db_path=PATH_TO_DB,
-            experiment_id=experiment_id,
-            concurrency=concurrency,
-        )
-    )
+    # Run the generation pipeline for each version
+    all_results = {}
+    
+    async def run_all_versions():
+        tasks = []
+        for version in version_list:
+            task = generate_summaries_pipeline(
+                conversation_hashes=hashes,
+                version=version,
+                db_path=PATH_TO_DB,
+                experiment_id=experiment_id,
+                concurrency=concurrency // len(version_list),  # Divide concurrency among versions
+                show_progress=len(version_list) == 1,  # Only show progress for single version
+            )
+            tasks.append(task)
+        
+        results = await asyncio.gather(*tasks)
+        
+        # Combine results
+        for result in results:
+            all_results.update(result)
+        
+        return all_results
+    
+    results = asyncio.run(run_all_versions())
     
     console.print(f"[green]Generation completed: {results}[/green]")
 
@@ -142,8 +164,15 @@ def embed_conversations(
     embedding_model: str = typer.Option("text-embedding-3-large", help="Embedding model to use"),
     limit: Optional[int] = typer.Option(None, help="Limit number of conversations to embed"),
     batch_size: int = typer.Option(100, help="Batch size for embedding generation"),
+    mode: str = typer.Option("first_message", help="Embedding mode: 'first_message' or 'full'"),
+    max_tokens: int = typer.Option(8000, help="Max tokens for full conversation mode"),
 ):
     """Generate embeddings for conversations"""
+    # Validate mode
+    if mode not in ["first_message", "full"]:
+        console.print(f"[red]Invalid mode '{mode}'. Must be 'first_message' or 'full'[/red]")
+        raise typer.Exit(1)
+    
     # Get conversations
     hashes = get_all_conversation_hashes(PATH_TO_DB, limit)
     
@@ -153,18 +182,30 @@ def embed_conversations(
     
     # Load full conversation data
     conversations = get_conversations_by_hashes(hashes, PATH_TO_DB)
-    console.print(f"[blue]Embedding {len(conversations)} conversations[/blue]")
+    console.print(f"[blue]Embedding {len(conversations)} conversations (mode: {mode})[/blue]")
     
-    # Generate embeddings
-    output_dir = PATH_TO_DB.parent / "embeddings" / "conversations"
-    output_path = asyncio.run(
-        generate_conversation_embeddings(
-            conversations,
-            embedding_model=embedding_model,
-            output_dir=output_dir,
-            batch_size=batch_size
+    # Generate embeddings based on mode
+    if mode == "first_message":
+        output_dir = PATH_TO_DB.parent / "embeddings" / "conversations"
+        output_path = asyncio.run(
+            generate_conversation_embeddings(
+                conversations,
+                embedding_model=embedding_model,
+                output_dir=output_dir,
+                batch_size=batch_size
+            )
         )
-    )
+    else:  # full mode
+        output_dir = PATH_TO_DB.parent / "embeddings" / "full_conversations"
+        output_path = asyncio.run(
+            generate_full_conversation_embeddings(
+                conversations,
+                embedding_model=embedding_model,
+                output_dir=output_dir,
+                batch_size=batch_size,
+                max_tokens=max_tokens
+            )
+        )
     
     console.print(f"[green]Embeddings saved to: {output_path}[/green]")
 
@@ -191,10 +232,12 @@ def embed_summaries(
         raise typer.Exit(1)
     
     # Convert to dict format
+    # Note: We use conversation_hash as the ID for ChromaDB compatibility
+    # The database ID has a suffix (e.g., "_v1") but we need just the hash for search
     summary_dicts = [
         {
-            "id": s.id,
-            "conversation_hash": s.conversation_hash,
+            "id": s.id,  # This will be like "hash_v1" but won't be used for ChromaDB
+            "conversation_hash": s.conversation_hash,  # This is what we'll use as the ChromaDB ID
             "technique": s.technique,
             "summary": s.summary,
             "experiment_id": s.experiment_id
@@ -221,7 +264,7 @@ def embed_summaries(
 @app.command()
 def evaluate(
     question_version: str = typer.Option("v1", help="Question version to evaluate (v1, v2, v3, v5)"),
-    embeddings_type: str = typer.Option("conversations", help="Type of embeddings to search (conversations or summaries)"),
+    embeddings_type: str = typer.Option("conversations", help="Type of embeddings to search: conversations, full_conversations, or summaries"),
     embedding_model: str = typer.Option("text-embedding-3-large", help="Embedding model name"),
     limit: Optional[int] = typer.Option(None, help="Limit number of questions to evaluate"),
     experiment_id: Optional[str] = typer.Option(None, help="Experiment ID for tracking"),
@@ -230,7 +273,9 @@ def evaluate(
     # Determine embeddings path
     if embeddings_type == "conversations":
         embeddings_path = PATH_TO_DB.parent / "embeddings" / "conversations" / f"{embedding_model.replace('/', '-')}.parquet"
-    else:
+    elif embeddings_type == "full_conversations":
+        embeddings_path = PATH_TO_DB.parent / "embeddings" / "full_conversations" / f"{embedding_model.replace('/', '-')}.parquet"
+    else:  # summaries
         # For summaries, need to specify which summary version
         summary_version = typer.prompt("Which summary version? (v1-v5)")
         embeddings_path = PATH_TO_DB.parent / "embeddings" / "summaries" / f"{summary_version}_{embedding_model.replace('/', '-')}.parquet"
@@ -263,7 +308,9 @@ def evaluate(
             "question_version": question_version,
             "embeddings_type": embeddings_type,
             "embedding_model": embedding_model
-        }
+        },
+        db_path=PATH_TO_DB,
+        experiment_id=experiment_id
     )
 
 
