@@ -13,13 +13,11 @@ date: 2025-04-10
 *A systematic approach to building self-improving AI systems*
 
 !!! abstract "About This Book"
-    This book provides a structured approach to evolving Retrieval-Augmented Generation (RAG) from a technical implementation into a continuously improving product. You'll learn to combine product thinking with data science principles to create AI systems that deliver increasing value over time.
-    
-    Most teams focus on the latest models and algorithms while missing the fundamentals: understanding their data, measuring performance, and systematically improving based on user feedback. This resource shows you the proven approach used by companies like Zapier, Glean, and Exa.
+This book provides a structured approach to evolving Retrieval-Augmented Generation (RAG) from a technical implementation into a continuously improving product. You'll learn to combine product thinking with data science principles to create AI systems that deliver increasing value over time.
 
 ## The RAG Improvement Flywheel
 
-At the core of this book is the RAG improvement flywheel - a continuous cycle that transforms user interactions into product enhancements:
+At the core of this book is the RAG improvement flywheel - a continuous cycle that transforms user interactions into product enhancements.
 
 ```mermaid
 graph TD
@@ -36,159 +34,64 @@ graph TD
 ```
 
 !!! tip "Beyond Technical Implementation"
-    This book goes beyond teaching you how to implement RAG. It shows you how to think about RAG as a product that continuously evolves to meet user needs and deliver business value.
+This book goes beyond teaching you how to implement RAG. It shows you how to think about RAG as a product that continuously evolves to meet user needs and deliver business value.
 
-## Table of Contents
+## Chapters
 
-### Workshop Series
+### [Introduction: Beyond Implementation to Improvement](workshops/chapter0.md)
 
-| Chapter | Title | Focus Area | Key Outcomes |
-|---------|-------|------------|-------------|
-| [Introduction](workshops/chapter0.md) | Beyond Implementation to Improvement | Product Mindset | Shift from technical to product thinking |
-| [Chapter 1](workshops/chapter1.md) | Starting the Flywheel | Evaluation & Metrics | Build synthetic data and evaluation frameworks |
-| [Chapter 2](workshops/chapter2.md) | From Evaluation to Enhancement | Fine-tuning & Training | Convert evaluations into training data |
-| [Chapter 3.1](workshops/chapter3-1.md) | Feedback Collection | User Experience | Design feedback mechanisms that users actually use |
-| [Chapter 3.2](workshops/chapter3-2.md) | Streaming & Performance | User Experience | Implement streaming and reduce perceived latency |
-| [Chapter 3.3](workshops/chapter3-3.md) | Quality Improvements | User Experience | Citations, chain-of-thought, and validation |
-| [Chapter 4.1](workshops/chapter4-1.md) | Topic Modeling | User Analysis | Find patterns in user feedback and queries |
-| [Chapter 4.2](workshops/chapter4-2.md) | Prioritization | User Analysis | Turn insights into strategic action plans |
-| [Chapter 5.1](workshops/chapter5-1.md) | Specialized Retrieval | Architecture | Build specialized capabilities for different content |
-| [Chapter 5.2](workshops/chapter5-2.md) | Multimodal Search | Architecture | Handle documents, images, tables, and SQL |
-| [Chapter 6.1](workshops/chapter6-1.md) | Query Routing | Architecture | Route queries to specialized components |
-| [Chapter 6.2](workshops/chapter6-2.md) | Tool Implementation | Architecture | Build interfaces and routers |
-| [Chapter 6.3](workshops/chapter6-3.md) | Continuous Improvement | Architecture | Measure and improve systematically |
+Understand why systematic improvement matters and how to approach RAG as a product rather than just a technical implementation.
 
-### Expert Talks
+### [Chapter 1: Starting the Flywheel](workshops/chapter1.md)
 
-| Speaker | Company | Topic | Key Insight |
-|---------|---------|-------|-------------|
-| [Skylar Payne](talks/rag-antipatterns-skylar-payne.md) | Independent | RAG Anti-patterns | 90% of teams adding complexity see worse performance |
-| [Ayush](talks/fine-tuning-rerankers-embeddings-ayush-lancedb.md) | LanceDB | Fine-tuning | Re-rankers provide 15-20% improvement with minimal latency |
-| [Vitor](talks/zapier-vitor-evals.md) | Zapier | Feedback Systems | Simple UX changes increased feedback 4x |
-| [Kelly Hong](talks/embedding-performance-generative-evals-kelly-hong.md) | Independent | Evaluation | Custom benchmarks often contradict public ones |
-| [Ben & Sidhant](talks/online-evals-production-monitoring-ben-sidhant.md) | Independent | Production Monitoring | Traditional error monitoring doesn't work for AI |
-| [Manav](talks/glean-manav.md) | Glean | Enterprise Search | Custom embeddings achieve 20% improvements |
-| [Anton](talks/chromadb-anton-chunking.md) | ChromaDB | Chunking | Chunking remains critical even with infinite context |
-| [Colin](talks/colin-rag-agents.md) | Independent | Agentic RAG | Simple tools often outperform sophisticated embeddings |
-| [Adit](talks/reducto-docs-adit.md) | Reducto | Document Processing | Hybrid CV + VLM pipelines outperform pure approaches |
-| [Will Bryk](talks/semantic-search-exa-will-bryk.md) | Exa | Semantic Search | AI systems need fundamentally different search engines |
-| [John Berryman](talks/john-lexical-search.md) | Independent | Lexical Search | Semantic search struggles with exact matching |
-| [Daniel](talks/superlinked-encoder-stacking.md) | Superlinked | Multi-modal | Mixture of specialized encoders beats text-only |
-| [Michael](talks/rag-without-apis-browser-michael-struwig.md) | OpenBB | Browser RAG | Browser-as-data-layer for secure access |
-| [Anton](talks/query-routing-anton.md) | ChromaDB | Query Routing | Separate indexes often outperform filtered large ones |
+Learn how to overcome the cold-start problem, establish meaningful metrics, and create a data foundation that drives product decisions.
 
-## Quick Wins: High-Impact RAG Improvements
+### [Chapter 2: From Evaluation to Enhancement](workshops/chapter2.md)
 
-Based on real-world implementations, here are proven improvements you can implement quickly:
+Transform evaluation insights into concrete product improvements through fine-tuning, re-ranking, and targeted enhancements.
 
-!!! success "Top 5 Quick Wins"
-    1. **Change Feedback Copy** : Replace "How did we do?" with "Did we answer your question?"
-    2. **Use Markdown Tables** : Format structured data as markdown tables instead of JSON/CSV or XML when tables are complex and multiple columns / headers are needed. 
-    3. **Add Streaming Progress** : Show "Searching... Analyzing... Generating..." with progress
-    4. **Implement Page-Level Chunking** : For documentation, respect page boundaries, and use page-level chunking. Humans tend to create semantically coherent chunks at the page level.
+### [Chapter 3: The User Experience of AI](workshops/chapter3-1.md)
 
-!!! tip "Medium-Term Improvements (2-4 weeks)"
-    - **Fine-tune embeddings**: $1.50 and 40 minutes for 6-10% improvement
-    - **Add re-ranker**: 15-20% retrieval improvement
-    - **Build specialized tools**: 10x better for specific use cases
-    - **Implement contextual retrieval**: 30% better context understanding
-    - **Create Slack feedback integration**: 5x more enterprise feedback
+Design interfaces that both delight users and gather valuable feedback, creating a virtuous cycle of improvement.
 
-## Workshop Series
+### [Chapter 4: Understanding Your Users](workshops/chapter4-1.md)
 
-### Foundation: Metrics & Evaluation
+Segment users and queries to identify high-value opportunities and create targeted improvement strategies.
 
-**[Introduction: Beyond Implementation to Improvement](workshops/chapter0.md)**  
-Shifting from technical implementation to product-focused continuous improvement. Understanding RAG as a recommendation engine wrapped around language models and the improvement flywheel.
+### [Chapter 5: Building Specialized Capabilities](workshops/chapter5-1.md)
 
-**[Chapter 1: Kickstarting the Data Flywheel with Synthetic Data](workshops/chapter1.md)**  
-Common pitfalls in AI development, leading vs. lagging metrics, understanding precision and recall for retrieval evaluation, and synthetic data generation techniques.
+Develop purpose-built solutions for different user needs spanning documents, images, tables, and structured data.
 
-**[Chapter 2: Converting Evaluations into Training Data for Fine-Tuning](workshops/chapter2.md)**  
-Why generic embeddings fall short, converting evaluation examples into effective few-shot prompts, contrastive learning, and re-rankers as cost-effective enhancement strategies.
+### [Chapter 6: Unified Product Architecture](workshops/chapter6-1.md)
 
-### User Experience & Feedback
+Create a cohesive product experience that intelligently routes to specialized components while maintaining a seamless user experience.
 
-**[Chapter 3.1: Feedback Collection - Building Your Improvement Flywheel](workshops/chapter3-1.md)**  
-Making feedback visible and engaging (increasing rates from <1% to >30%), proven copy patterns, segmented feedback, and enterprise feedback collection.
+### [Key Takeaways: Product Principles for AI Applications](misc/what-i-want-you-to-takeaway.md)
 
-**[Chapter 3.2: Overcoming Latency - Streaming and Interstitials](workshops/chapter3-2.md)**  
-Psychology of waiting, implementing streaming responses for 30-40% higher feedback collection, skeleton screens and meaningful interstitials.
+Core principles that will guide your approach to building AI products regardless of how the technology evolves.
 
-**[Chapter 3.3: Quality of Life Improvements](workshops/chapter3-3.md)**  
-Interactive citations, chain of thought reasoning for 8-15% accuracy improvements, validation patterns as safety nets, and strategic rejection.
+## Talks and Presentations
 
-### Analysis & Specialization
+Explore insights from industry experts and practitioners through our collection of talks, lightning lessons, and presentations:
 
-**[Chapter 4.1: Topic Modeling and Analysis](workshops/chapter4-1.md)**  
-Moving from individual feedback to systematic pattern identification, topics vs. capabilities, and transforming "make the AI better" into specific priorities.
+### [Featured Talks](talks/index.md)
 
-**[Chapter 4.2: Prioritization and Roadmapping](workshops/chapter4-2.md)**  
-Impact/effort prioritization using 2x2 frameworks, failure mode analysis, and building strategic roadmaps based on user behavior patterns.
+- **[Fine-tuning Re-rankers and Embedding Models for Better RAG Performance](talks/fine-tuning-rerankers-embeddings-ayush-lancedb.md)** - Practical approaches to enhancing retrieval quality (Ayush from LanceDB)
+- **[RAG Anti-patterns in the Wild](talks/rag-antipatterns-skylar-payne.md)** - Common mistakes and how to fix them (Skylar Payne)
+- **[Semantic Search Over the Web with Exa](talks/semantic-search-exa-will-bryk.md)** - Building AI-first search engines (Will Bryk)
+- **[Understanding Embedding Performance through Generative Evals](talks/embedding-performance-generative-evals-kelly-hong.md)** - Custom evaluation methodologies (Kelly Hong)
+- **[Online Evals and Production Monitoring](talks/online-evals-production-monitoring-ben-sidhant.md)** - Monitoring AI systems at scale (Ben Hylak & Sidhant Bendre)
 
-### Advanced Architecture
-
-**[Chapter 5.1: Understanding Specialized Retrieval](workshops/chapter5-1.md)**  
-Why monolithic approaches reach limits, two complementary strategies (extracting metadata vs. creating synthetic text), and two-level measurement.
-
-**[Chapter 5.2: Implementing Multimodal Search](workshops/chapter5-2.md)**  
-Advanced document retrieval, image search challenges, table search dual approach, SQL generation using RAG playbook, and RAPTOR hierarchical summarization.
-
-**[Chapter 6.1: Query Routing Foundations](workshops/chapter6-1.md)**  
-The API mindset, organizational structure, evolution from monolithic to modular architecture, and performance formula.
-
-**[Chapter 6.2: Tool Interfaces and Implementation](workshops/chapter6-2.md)**  
-Designing tool interfaces, router implementation using structured outputs, dynamic example selection, and tool portfolio design.
-
-**[Chapter 6.3: Performance Measurement and Improvement](workshops/chapter6-3.md)**  
-Measuring tool selection effectiveness, dual-mode UI, user feedback as training data, and creating improvement flywheel.
-
-## How to Use This Resource
-
-**For Beginners**: Start with the [Introduction](workshops/chapter0.md) to understand the product mindset, then work through the chapters sequentially.
-
-**For Quick Wins**: Jump to the [Quick Wins section](#quick-wins-high-impact-rag-improvements) above for immediate improvements you can implement today.
-
-**For Specific Problems**: Check the [FAQ](office-hours/faq.md) for answers to common questions, or browse talks by topic in the table above.
-
-**For Complete Implementation**: Follow the full workshop series from Chapter 1 through 6.3 to build a comprehensive self-improving RAG system.
-
-## Key Insights Across All Content
-
-**Most Important Finding**: Teams that iterate fastest on data examination consistently outperform those focused on algorithmic sophistication.
-
-**Most Underutilized Techniques**: Fine-tuning embeddings and re-rankers are more accessible and impactful than most teams realize.
-
-**Biggest Mistake**: 90% of teams add complexity that makes their RAG systems worse. Start simple, measure everything, improve systematically.
-
-**Critical Success Factors**:
-- Establish evaluation frameworks before building
-- Design feedback collection into your UX from day one
-- Understand your users and their query patterns
-- Build specialized tools for different content types
-- Create unified routing that feels seamless to users
-
-## Frequently Asked Questions
-
-Top questions from office hours:
-
-- **"Is knowledge graph RAG production ready?"** Probably not. [See why →](office-hours/faq.md#is-knowledge-graph-rag-production-ready-by-now-do-you-recommend-it)
-- **"How do we handle time-based queries?"** Use PostgreSQL with pgvector-scale. [Learn more →](office-hours/faq.md#how-do-we-introduce-a-concept-of-time-and-vector-search-to-answer-questions-like-whats-the-latest-news-without-needing-to-move-to-a-graph-database)
-- **"Should we use DSPy for prompt optimization?"** It depends. [See when →](office-hours/faq.md#what-is-your-take-on-dspy-should-we-use-it)
-- **"Would you recommend ColBERT models?"** Test against your baseline first. [See approach →](office-hours/faq.md#would-you-recommend-using-colbert-models-or-other-specialized-retrieval-approaches)
-
-[Browse All FAQ](office-hours/faq.md){ .md-button } [View Office Hours](office-hours/){ .md-button }
+[View all talks →](talks/index.md)
 
 ## For Product Leaders, Engineers, and Data Scientists
 
 !!! info "What You'll Learn"
-
     **For Product Leaders**
     - How to establish metrics that align with business outcomes
     - Frameworks for prioritizing AI product improvements  
     - Approaches to building product roadmaps for RAG applications
     - Methods for communicating AI improvements to stakeholders
-
     **For Engineers**
     - Implementation patterns that facilitate rapid iteration
     - Architectural decisions that enable continuous improvement
@@ -201,27 +104,51 @@ Top questions from office hours:
     - Frameworks for measuring retrieval effectiveness
     - Approaches to continuous learning from user interactions
 
-## Navigate by Topic
+## Quick Wins: High-Impact RAG Improvements
 
-**Evaluation & Metrics**: [Chapter 1](workshops/chapter1.md) • [Kelly Hong Talk](talks/embedding-performance-generative-evals-kelly-hong.md) • [Vitor Zapier Talk](talks/zapier-vitor-evals.md)
+Based on real-world implementations, here are proven improvements you can implement quickly:
 
-**Fine-tuning & Training**: [Chapter 2](workshops/chapter2.md) • [Ayush LanceDB Talk](talks/fine-tuning-rerankers-embeddings-ayush-lancedb.md) • [Manav Glean Talk](talks/glean-manav.md)
+!!! success "Top 5 Quick Wins"
+    1. **Change Feedback Copy** 
+       - Replace "How did we do?" with "Did we answer your question?"
+       - **Impact**: 5x increase in feedback collection
+       - **Effort**: 1 hour
+    
+    2. **Use Markdown Tables**
+       - Format structured data as markdown tables instead of JSON/CSV
+       - If tables are complex, represent it in XML
+       - **Impact**: 12% better lookup accuracy
+       - **Effort**: 2-4 hours
+    
+    3. **Add Streaming Progress**
+       - Show "Searching... Analyzing... Generating..." with progress
+       - Stream the response as it's being generated when possible
+       - **Impact**: 45% reduction in perceived latency
+       - **Effort**: 1 sprint
+    
+    4. **Implement Page-Level Chunking**
+       - For documentation, respect page boundaries, and use page-level chunking. Humans tend to create semantically coherent chunks at the page level.
+       - **Impact**: 20-30% better retrieval for docs
+       - **Effort**: 1 day
 
-**User Experience**: [Chapter 3 Series](workshops/chapter3-1.md) • [Streaming Guide](workshops/chapter3-2.md) • [Quality Improvements](workshops/chapter3-3.md)
+!!! tip "Medium-Term Improvements (2-4 weeks)"
+    - **Fine-tune embeddings**: $1.50 and 40 minutes for 6-10% improvement
+    - **Add re-ranker**: 15-20% retrieval improvement
+    - **Build specialized tools**: 10x better for specific use cases
+    - **Implement contextual retrieval**: 30% better context understanding
+    - **Create Slack feedback integration**: 5x more enterprise feedback
 
-**Architecture & Routing**: [Chapter 6 Series](workshops/chapter6-1.md) • [Anton Query Routing](talks/query-routing-anton.md) • [Multi-modal Retrieval](talks/superlinked-encoder-stacking.md)
-
-**Production & Monitoring**: [Ben & Sidhant Talk](talks/online-evals-production-monitoring-ben-sidhant.md) • [RAG Anti-patterns](talks/rag-antipatterns-skylar-payne.md)
-
+!!! info "Learn from the Experts"
+    Before implementing, learn from these practical talks:
+    - [**RAG Anti-patterns in the Wild**](talks/rag-antipatterns-skylar-payne.md) - Common mistakes across industries and how to fix them
+    - [**Document Ingestion Best Practices**](talks/reducto-docs-adit.md) - Production-ready parsing for tables, PDFs, and complex documents
 
 ## About the Author
 
-Jason Liu brings practical experience from his work at Facebook, Stitch Fix, and as a consultant for companies like HubSpot, Zapier, and many others. His background spans computer vision, recommendation systems, and RAG applications across diverse domains.
+Jason Liu brings practical experience from Facebook, Stitch Fix, and as a consultant for companies like HubSpot, Zapier, and many others. His background spans computer vision, recommendation systems, and RAG applications across diverse domains.
 
 !!! quote "Author's Philosophy"
-   "The most successful AI products aren't the ones with the most sophisticated models, but those built on disciplined processes for understanding users, measuring performance, and systematically improving. This resource will show you how to create not just a RAG application, but a product that becomes more valuable with every interaction."
-
----
+   "The most successful AI products aren't the ones with the most sophisticated models, but those built on disciplined processes for understanding users, measuring performance, and systematically improving. This book will show you how to create not just a RAG application, but a product that becomes more valuable with every interaction."
 
 ## Getting Started
 
