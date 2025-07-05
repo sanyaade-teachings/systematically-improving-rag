@@ -19,22 +19,8 @@ This book provides a structured approach to evolving Retrieval-Augmented Generat
 
 At the core of this book is the RAG improvement flywheel - a continuous cycle that transforms user interactions into product enhancements.
 
-```mermaid
-graph TD
-    A[Synthetic Data & Evaluation] --> B[Learning from Evaluations]
-    B --> C[UX Design & Feedback Collection]
-    C --> D[User Segmentation & Analysis]
-    D --> E[Building Specialized Capabilities]
-    E --> F[Unified Product Architecture]
-    F --> A
-
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style C fill:#bbf,stroke:#333,stroke-width:2px
-    style E fill:#dfd,stroke:#333,stroke-width:2px
-```
-
 !!! tip "Beyond Technical Implementation"
-This book goes beyond teaching you how to implement RAG. It shows you how to think about RAG as a product that continuously evolves to meet user needs and deliver business value.
+    This book goes beyond teaching you how to implement RAG. It shows you how to think about RAG as a product that continuously evolves to meet user needs and deliver business value.
 
 ## Chapters
 
