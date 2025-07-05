@@ -202,12 +202,7 @@ One unique advantage of streaming is the ability to show users not just the fina
 
 For example, you can stream the function calls and arguments that your RAG system is using:
 
-!!! example "Function Call Streaming"
-![Example of JavaScript code for streaming function calls and thought process](../assets/images/function-call-streaming.png)
 
-```
-*This code processes streaming chunks to separate thought processes from function calls, displaying each in their own UI components. This creates engagement by showing users the system's reasoning and operations in real-time.*
-```
 
 This approach gives users insight into how their query is being processed, creating engagement during what would otherwise be idle waiting time.
 
@@ -312,12 +307,7 @@ For RAG applications, skeleton screens can be particularly effective when showin
 - Follow-up question button outlines
 - Tool usage summaries that will appear
 
-!!! example "Skeleton Loader Implementation"
-![Example of React component and CSS for implementing skeleton screens](../assets/images/skeleton-loader-code.png)
 
-```
-*This code shows how to implement animated skeleton loaders that mimic the structure of your content while it loads. The animation creates the impression of progress and helps users understand what content is coming.*
-```
 
 !!! example "Meaningful vs. Generic Interstitials"
 **Generic Interstitial:** "Loading..."
@@ -430,12 +420,7 @@ Caching dramatically improves performance for repeated or similar queries:
 
 Here's a simple implementation of semantic caching:
 
-!!! example "Semantic Caching Implementation"
-![Example of Python code for implementing semantic caching based on embedding similarity](../assets/images/semantic-cache-code.png)
 
-```
-*This code demonstrates a semantic caching system that stores and retrieves results based on query embedding similarity rather than exact string matching. This dramatically improves performance for similar queries without requiring exact matches.*
-```
 
 ### 3. Implement Progressive Loading
 
@@ -569,3 +554,9 @@ Remember: If you only implement one improvement from this chapter, make it strea
 1. Article: ["The Psychology of Waiting Lines"](https://www.nngroup.com/articles/progress-indicators/) - David Maister's research on the psychological aspects of waiting
 
 1. GitHub Repository: [React Skeleton Screens](https://github.com/danilowoz/react-content-loader) - Open-source library for implementing skeleton screens in React applications
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

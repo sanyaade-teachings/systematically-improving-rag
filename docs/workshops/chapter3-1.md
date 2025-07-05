@@ -17,8 +17,8 @@ This chapter explores the essential role of feedback collection in RAG systems, 
 The true power of RAG isn't in its initial deployment—it's in how the system improves over time through feedback collection. Many RAG implementations focus exclusively on the technical details of retrieval and generation while neglecting the critical infrastructure needed to collect and utilize user feedback.
 
 !!! note "Building on Previous Chapters"
-    - **[Chapter 1](../chapter1.md)**: The evaluation framework you built provides the baseline
-    - **[Chapter 2](../chapter2.md)**: The fine-tuning techniques need feedback data to be effective
+    - **[Chapter 1](chapter1.md)**: The evaluation framework you built provides the baseline
+    - **[Chapter 2](chapter2.md)**: The fine-tuning techniques need feedback data to be effective
     
     This chapter shows you how to collect the data that powers continuous improvement.
 
@@ -198,12 +198,7 @@ Negative feedback is particularly valuable for improvement, but users often aban
 
 Here's how you might implement segmented negative feedback collection:
 
-!!! example "Detailed Negative Feedback Form"
-![Example of detailed negative feedback form showing checkboxes for specific issues](../assets/images/detailed-feedback-form.png)
 
-```
-*This code generates a segmented feedback form that collects specific information about where the response fell short, allowing for targeted improvements to the RAG pipeline.*
-```
 
 ## Learning from User Behavior: The Implicit Feedback Gold Mine
 
@@ -258,12 +253,7 @@ Remember: Hard negatives are the most valuable training examples for improving r
 
 Here's a simple algorithm for mining hard negatives from user interactions:
 
-!!! example "Hard Negatives Mining Algorithm"
-![Example of Python code for identifying hard negative documents from user interactions](../assets/images/hard-negatives-algorithm.png)
 
-```
-*This algorithm identifies potential hard negative documents based on user interactions, assigning confidence scores to each candidate based on behavior patterns like query refinements and explicit ratings.*
-```
 
 By collecting these potential hard negatives over time, you can build a dataset for fine-tuning embedding models or training re-rankers to avoid these problematic documents in future queries.
 
@@ -349,12 +339,7 @@ A feedback-driven roadmap:
 
 This approach ensures that engineering efforts focus on changes that will have the greatest impact on user satisfaction rather than on the most technically interesting problems.
 
-!!! example "Feedback Analysis for Roadmap Prioritization"
-![Example of Python code for analyzing feedback data to prioritize improvements](../assets/images/roadmap-analysis.png)
 
-```
-*This algorithm analyzes feedback data to identify high-priority improvement areas, considering factors like frequency, severity, number of affected users, and recency to calculate an impact score for each issue category.*
-```
 
 ## Conclusion: Feedback as Foundation
 
@@ -375,9 +360,9 @@ Remember that small UX changes can make enormous differences in feedback collect
 In the next chapter, we'll explore how to reduce perceived latency through streaming and progressive responses, building on the feedback foundation to create a more engaging user experience.
 
 !!! info "How This Chapter Connects Forward"
-    - **[Chapter 4](../chapter4-2.md)**: The feedback you collect enables query segmentation and analysis
-    - **[Chapter 5](../chapter5-1.md)**: User behavior patterns reveal which specialized retrievers to build
-    - **[Chapter 6](../chapter6-2.md)**: Feedback on router decisions improves tool selection
+    - **[Chapter 4](chapter4-2.md)**: The feedback you collect enables query segmentation and analysis
+    - **[Chapter 5](chapter5-1.md)**: User behavior patterns reveal which specialized retrievers to build
+    - **[Chapter 6](chapter6-2.md)**: Feedback on router decisions improves tool selection
 
 ## Reflection Questions
 

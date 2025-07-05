@@ -29,10 +29,10 @@ This part explores how to implement the key components of a unified RAG system:
 Let's look at how to implement this pattern with a concrete example. Imagine we're building a construction information system that includes blueprints, text documents, and project schedules.
 
 !!! note "Drawing from Previous Chapters"
-    - **[Chapter 1](../chapter1.md)**: Evaluation metrics help test router accuracy
-    - **[Chapter 3](../chapter3-1.md)**: Feedback reveals which tools users need
-    - **[Chapter 4](../chapter4-2.md)**: Query analysis identifies tool requirements
-    - **[Chapter 5](../chapter5-1.md)**: Specialized retrievers become the tools
+    - **[Chapter 1](chapter1.md)**: Evaluation metrics help test router accuracy
+    - **[Chapter 3](chapter3-1.md)**: Feedback reveals which tools users need
+    - **[Chapter 4](chapter4-2.md)**: Query analysis identifies tool requirements
+    - **[Chapter 5](chapter5-1.md)**: Specialized retrievers become the tools
 
 ### Building a Blueprint Search Tool
 
@@ -349,17 +349,17 @@ The effectiveness of the router depends significantly on providing good examples
 
 !!! tip "Complete the Journey"
     This chapter brings together all the concepts from the book:
-    - The improvement flywheel from [Chapter 0](../chapter0.md)
-    - Evaluation frameworks from [Chapter 1](../chapter1.md)
-    - Fine-tuning from [Chapter 2](../chapter2.md)
-    - Feedback loops from [Chapter 3](../chapter3-1.md)
-    - Query understanding from [Chapter 4](../chapter4-2.md)
-    - Specialized capabilities from [Chapter 5](../chapter5-1.md)
+    - The improvement flywheel from [Chapter 0](chapter0.md)
+    - Evaluation frameworks from [Chapter 1](chapter1.md)
+    - Fine-tuning from [Chapter 2](chapter2.md)
+    - Feedback loops from [Chapter 3](chapter3-1.md)
+    - Query understanding from [Chapter 4](chapter4-2.md)
+    - Specialized capabilities from [Chapter 5](chapter5-1.md)
     
     The unified architecture is where everything comes together into a cohesive product.
 
 !!! tip "Effective Few-Shot Examples"
-When creating few-shot examples for query routing:
+    When creating few-shot examples for query routing:
 
 ```
 1. **Cover edge cases**: Include examples of ambiguous queries that could be interpreted multiple ways

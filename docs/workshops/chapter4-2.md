@@ -29,8 +29,8 @@ This chapter explores how to turn query pattern insights into strategic action p
 Before diving into prioritization techniques, let's clarify two key concepts: topics and capabilities.
 
 !!! note "Foundations from Earlier Chapters"
-    - **[Chapter 1](../chapter1.md)**: The evaluation metrics help identify performance by topic
-    - **[Chapter 3](../chapter3-1.md)**: Feedback collection provides the raw data for analysis
+    - **[Chapter 1](chapter1.md)**: The evaluation metrics help identify performance by topic
+    - **[Chapter 3](chapter3-1.md)**: Feedback collection provides the raw data for analysis
     
     This chapter shows you how to turn that data into actionable insights.
 

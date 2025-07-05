@@ -596,7 +596,7 @@ The beauty of this framework is its recursive nature. The same playbook—synthe
 "No matter how much better AI gets, you'll always be responsible for retrieval. Understanding what to retrieve and how to retrieve it remains the core challenge even as models become more capable."
 
 !!! tip "Cross-Reference"
-In [Chapter 6](chapter6.md), we'll explore how to bring these specialized components together through effective routing strategies, creating a unified system that seamlessly directs users to the appropriate retrievers based on their queries.
+In [Chapter 6](chapter6-1.md), we'll explore how to bring these specialized components together through effective routing strategies, creating a unified system that seamlessly directs users to the appropriate retrievers based on their queries.
 
 ---
 

@@ -284,15 +284,15 @@ Discover how to transform evaluation insights into concrete product improvements
 
 Explore how to design interfaces that both delight users and gather valuable feedback, creating the virtuous cycle at the heart of the improvement flywheel.
 
-### [Chapter 4: Understanding Your Users](chapter4.md)
+### [Chapter 4: Understanding Your Users](chapter4-1.md)
 
 Learn techniques for segmenting users and queries to identify high-value opportunities and create prioritized improvement roadmaps.
 
-### [Chapter 5: Building Specialized Capabilities](chapter5.md)
+### [Chapter 5: Building Specialized Capabilities](chapter5-1.md)
 
 Develop purpose-built solutions for different user needs, spanning documents, images, tables, and structured data.
 
-### [Chapter 6: Unified Product Architecture](chapter6.md)
+### [Chapter 6: Unified Product Architecture](chapter6-1.md)
 
 Create a cohesive product experience that intelligently routes to specialized components while maintaining a seamless user experience.
 

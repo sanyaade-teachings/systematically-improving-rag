@@ -29,10 +29,10 @@ This part explores the foundations of specialized retrieval and its importance:
 In our journey through systematically improving RAG applications, we've reached a pivotal moment. The previous sessions have equipped us with the fundamental building blocks: the RAG playbook, synthetic data generation, fine-tuning approaches, user experience design for data collection, and segmentation techniques. Now, in Session 5, we turn our attention to a concept that often separates basic implementations from truly exceptional ones—multimodal RAG and specialized search indices.
 
 !!! note "Building on the Foundation"
-    - **[Chapter 1](../chapter1.md)**: Evaluation metrics for each specialized retriever
-    - **[Chapter 2](../chapter2.md)**: Fine-tuning embeddings for specific domains
-    - **[Chapter 3](../chapter3-1.md)**: Collecting feedback on retrieval quality
-    - **[Chapter 4](../chapter4-2.md)**: Identifying which capabilities need specialization
+    - **[Chapter 1](chapter1.md)**: Evaluation metrics for each specialized retriever
+    - **[Chapter 2](chapter2.md)**: Fine-tuning embeddings for specific domains
+    - **[Chapter 3](chapter3-1.md)**: Collecting feedback on retrieval quality
+    - **[Chapter 4](chapter4-2.md)**: Identifying which capabilities need specialization
 
 !!! quote "Key Insight"
 The fundamental insight that drives this session is deceptively simple yet profound: _not all queries are created equal_. Different types of information require different approaches to retrieval. Just as you wouldn't use a hammer for every home repair task, you shouldn't rely on a single retrieval mechanism for every type of query your users might have.
@@ -205,7 +205,7 @@ If you find that your system correctly routes 95% of queries to the appropriate 
 This two-level evaluation framework ensures you invest your improvement efforts where they'll have the greatest impact.
 
 !!! tip "Next Steps"
-    In [Chapter 6](../chapter6-1.md), we'll explore how to bring these specialized components together through intelligent routing, creating a unified system that seamlessly directs queries to the appropriate retrievers.
+    In [Chapter 6](chapter6-1.md), we'll explore how to bring these specialized components together through intelligent routing, creating a unified system that seamlessly directs queries to the appropriate retrievers.
 
 ---
 
