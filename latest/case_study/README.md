@@ -25,6 +25,10 @@ case_study/
 ├── main.py                     # CLI interface for all operations
 ├── core/                       # Core implementation
 ├── data/                       # Generated data and results
+│   ├── db.sqlite              # SQLite database with all data
+│   ├── results/               # JSON evaluation reports
+│   ├── embeddings/            # Vector embeddings
+│   └── chromadb/              # ChromaDB vector store
 ├── pipelines/                  # Data processing pipelines
 └── tests/                      # Test suite
 ```
@@ -58,6 +62,41 @@ uv run python main.py load-wildchat --limit 100
 # Check what was loaded
 uv run python main.py stats
 ```
+
+## Database Schema
+
+The case study uses SQLite to store all data with full traceability and rich querying capabilities:
+
+### Core Tables
+- **conversation**: Main conversation data (hash, text, language, country, timestamps)
+- **question**: Generated questions for evaluation (linked to conversations)
+- **summary**: Generated summaries using different techniques
+- **evaluation**: Aggregated evaluation metrics (recall@1, recall@5, etc.)
+- **evaluationresult**: Detailed evaluation results for every query
+
+### Detailed Results Storage
+
+Unlike many RAG experiments that only save aggregate metrics, this system stores **every query result** with full context:
+
+```sql
+-- Example: Get all failed v2 queries with their similarity scores
+SELECT er.query, er.rank, er.score, q.version 
+FROM evaluationresult er 
+JOIN question q ON er.question_id = q.id 
+WHERE er.found = 0 AND q.version = 'v2';
+
+-- Example: Compare performance across embedding models
+SELECT er.experiment_id, AVG(er.score) as avg_score
+FROM evaluationresult er 
+WHERE er.found = 1 
+GROUP BY er.experiment_id;
+```
+
+### Dual Storage Strategy
+- **SQLite**: Structured data for analysis, aggregations, and complex queries
+- **JSON**: Complete experiment reports with metadata for reproducibility
+- **ChromaDB**: Vector embeddings for similarity search
+- **Parquet**: Raw data and embeddings for efficient loading
 
 ## Learning Path
 
@@ -196,6 +235,13 @@ uv run python main.py stats
 # Verify embeddings
 uv run python verify_embeddings.py
 
+# Check detailed evaluation results
+sqlite3 data/db.sqlite "SELECT COUNT(*) FROM evaluationresult;"
+sqlite3 data/db.sqlite "SELECT experiment_id, COUNT(*) FROM evaluationresult GROUP BY experiment_id;"
+
+# Query specific results
+sqlite3 data/db.sqlite "SELECT query, found, rank, score FROM evaluationresult WHERE experiment_id='your_experiment' LIMIT 5;"
+
 # View detailed logs
 tail -f logs/case_study.log
 ```
@@ -222,6 +268,7 @@ This case study is designed to be:
 - **Systematic**: Controlled experiments with clear hypotheses
 - **Practical**: Real-world dataset and production considerations
 - **Measurable**: Quantitative evaluation at every step
+- **Traceable**: Every query result stored with full context for deep analysis
 - **Scalable**: Start small, scale up as you learn
 
 ## Additional Resources

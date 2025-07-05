@@ -176,8 +176,20 @@ async def evaluate_questions(
                 top_k_hashes = []
                 
                 for r in results.results:
-                    top_k_hashes.append(r.id)
-                    if r.id == target_hash:
+                    # Handle ID format variations between embeddings and summaries
+                    # Summary embeddings in ChromaDB may have IDs like "hash_v1" while we search for "hash"
+                    # The clean conversation_hash is stored in metadata for summaries
+                    result_hash = r.id
+                    
+                    # First check if metadata contains conversation_hash (for summary embeddings)
+                    if 'conversation_hash' in r.metadata:
+                        result_hash = r.metadata['conversation_hash']
+                    # Otherwise, check if ID has a technique suffix and remove it
+                    elif result_hash.endswith(('_v1', '_v2', '_v3', '_v4', '_v5')):
+                        result_hash = result_hash.rsplit('_', 1)[0]
+                    
+                    top_k_hashes.append(result_hash)
+                    if result_hash == target_hash:
                         found = True
                         rank = r.rank
                         score = r.score
