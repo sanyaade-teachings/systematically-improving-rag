@@ -44,7 +44,8 @@ def score_question(eval_question: EvalQuestion, model: CrossEncoder) -> float:
     first_stage_ids = first_stage.id.astype(int).values
     review_text = first_stage.review.values
     reranked_results = model.rank(query, review_text)
-    is_right_result = lambda x: first_stage_ids[x["corpus_id"]] == target_id
+    def is_right_result(x):
+        return first_stage_ids[x["corpus_id"]] == target_id
     try:
         rank_of_desired_result = next(
             i + 1 for i, d in enumerate(reranked_results) if is_right_result(d)

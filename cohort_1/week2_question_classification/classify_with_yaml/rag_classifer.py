@@ -5,7 +5,6 @@ from textwrap import dedent
 from pydantic import Field
 import chromadb.utils.embedding_functions as embedding_functions
 import os
-from pydantic import Field
 import instructor
 import openai
 
