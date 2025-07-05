@@ -120,7 +120,7 @@ def analyze(
     data = load_failed_queries(file_path)
     failed_queries = data["failed_queries"]
 
-    console.print(f"[bold]Failed Query Analysis[/bold]")
+    console.print("[bold]Failed Query Analysis[/bold]")
     console.print(f"Query Version: {query_version}")
     console.print(f"Summary Version: {summary_version}")
     console.print(f"Total Failed: {data['total_failed']}")

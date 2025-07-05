@@ -11,9 +11,8 @@ import os
 import sys
 import time
 from pathlib import Path
-from typing import List, Dict, Any, Tuple
+from typing import List, Dict, Any
 from dataclasses import dataclass
-from collections import defaultdict
 import json
 from datetime import datetime
 import typer
@@ -28,7 +27,6 @@ from rich.progress import (
     SpinnerColumn,
     TextColumn,
     BarColumn,
-    TimeRemainingColumn,
 )
 
 # Add parent directories to path
@@ -357,7 +355,7 @@ async def main(
 
     # Set up disk cache
     if no_cache:
-        console.print(f"\n[cyan]Cache disabled - running fresh queries[/cyan]")
+        console.print("\n[cyan]Cache disabled - running fresh queries[/cyan]")
         cache = NoOpCache()
     else:
         console.print(f"\n[cyan]Using disk cache at: {CACHE_DIR}[/cyan]")
@@ -385,7 +383,7 @@ async def main(
     )
     try:
         await client.connect()
-        console.print(f"[green]Connected to TurboPuffer[/green]")
+        console.print("[green]Connected to TurboPuffer[/green]")
 
         # Get stats
         try:

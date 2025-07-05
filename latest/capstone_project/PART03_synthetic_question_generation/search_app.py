@@ -254,7 +254,7 @@ def main():
                     )
 
                     # Button to view full conversation
-                    if st.button(f"View Full Conversation", key=f"view_{i}"):
+                    if st.button("View Full Conversation", key=f"view_{i}"):
                         st.session_state.selected_conversation = result
 
     with col2:

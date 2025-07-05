@@ -21,11 +21,13 @@ def load_wildchat_into_db(db_path: Path, limit: int = 10000):
             first_message = ""
             if conv.get("conversation") and len(conv["conversation"]) > 0:
                 first_message = conv["conversation"][0].get("content", "")
-            
+
             conversation_data = {
                 "conversation_hash": conv["conversation_hash"],
                 "text": first_message,  # Just the first message for embedding
-                "conversation_full": str(conv["conversation"]),  # Full conversation as string
+                "conversation_full": str(
+                    conv["conversation"]
+                ),  # Full conversation as string
                 "timestamp": conv.get("timestamp"),
                 "language": conv.get("language", "English"),
                 "country": conv.get("country"),

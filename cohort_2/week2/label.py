@@ -2,9 +2,8 @@ import streamlit as st
 import json
 import pandas as pd
 from streamlit_shortcuts import button
-from pydantic import BaseModel, field_validator, ValidationInfo
+from pydantic import BaseModel
 from typing import Optional
-from textwrap import dedent
 
 
 categories = json.load(open("./data/categories.json"))

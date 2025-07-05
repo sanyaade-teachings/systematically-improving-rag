@@ -9,7 +9,6 @@ ChromaDB for improved RAG performance with V2 queries.
 import os
 import sys
 from pathlib import Path
-from typing import List
 from datetime import datetime
 import chromadb
 from chromadb.utils import embedding_functions

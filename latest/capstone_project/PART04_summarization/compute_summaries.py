@@ -8,9 +8,8 @@ to a SQLite database.
 """
 
 import asyncio
-import os
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import Dict, Any
 import instructor
 from dotenv import load_dotenv
 from rich.console import Console
@@ -36,7 +35,6 @@ from src.summarization_prompts import (
 from src.db import (
     setup_database,
     save_summary_to_db,
-    get_processed_conversations,
     get_existing_summaries,
     get_results_summary,
 )

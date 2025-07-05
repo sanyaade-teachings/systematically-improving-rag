@@ -8,11 +8,10 @@ with support for various search types and filtering options.
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import List, Dict, Any, Optional, Literal
+from typing import List, Dict, Any, Optional
 from datetime import datetime
 from enum import Enum
 from pydantic import BaseModel, Field
-import instructor
 
 
 class SearchType(Enum):

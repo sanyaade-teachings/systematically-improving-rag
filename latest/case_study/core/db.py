@@ -5,9 +5,7 @@ Database utilities using SQLModel
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 from datetime import datetime
-import json
 from sqlmodel import SQLModel, Session, create_engine, select, Field
-from pydantic import BaseModel
 from core.synthetic_queries import SearchQueries
 
 
@@ -192,9 +190,9 @@ def save_evaluations_to_sqlite(evaluations: List[Dict[str, Any]], db_path: Path)
 
 
 def save_detailed_evaluation_results(
-    detailed_results: List[Dict[str, Any]], 
-    db_path: Path, 
-    experiment_id: Optional[str] = None
+    detailed_results: List[Dict[str, Any]],
+    db_path: Path,
+    experiment_id: Optional[str] = None,
 ) -> int:
     """Save detailed evaluation results to SQLite"""
     engine = get_engine(db_path)
@@ -217,7 +215,9 @@ def save_detailed_evaluation_results(
                 session.commit()
                 inserted += 1
             except Exception as e:
-                print(f"Error inserting detailed result {result.get('question_id')}: {e}")
+                print(
+                    f"Error inserting detailed result {result.get('question_id')}: {e}"
+                )
                 session.rollback()
                 continue
 
@@ -227,68 +227,70 @@ def save_detailed_evaluation_results(
 def get_detailed_evaluation_results(
     db_path: Path,
     experiment_id: Optional[str] = None,
-    question_version: Optional[str] = None
+    question_version: Optional[str] = None,
 ) -> List[Dict[str, Any]]:
     """Get detailed evaluation results from SQLite"""
     engine = get_engine(db_path)
     results = []
-    
+
     with Session(engine) as session:
         # Build query
         query = select(EvaluationResult)
         if experiment_id:
             query = query.where(EvaluationResult.experiment_id == experiment_id)
-        
+
         # If question_version is specified, join with Question table
         if question_version:
             query = query.join(Question).where(Question.version == question_version)
-        
+
         eval_results = session.exec(query).all()
-        
+
         for result in eval_results:
-            results.append({
-                "question_id": result.question_id,
-                "query": result.query,
-                "target": result.target_conversation_hash,
-                "found": result.found,
-                "rank": result.rank,
-                "score": result.score,
-                "experiment_id": result.experiment_id,
-                "created_at": result.created_at
-            })
-    
+            results.append(
+                {
+                    "question_id": result.question_id,
+                    "query": result.query,
+                    "target": result.target_conversation_hash,
+                    "found": result.found,
+                    "rank": result.rank,
+                    "score": result.score,
+                    "experiment_id": result.experiment_id,
+                    "created_at": result.created_at,
+                }
+            )
+
     return results
 
 
 def get_summaries_by_hashes_and_technique(
-    conversation_hashes: List[str], 
-    technique: str,
-    db_path: Path
+    conversation_hashes: List[str], technique: str, db_path: Path
 ) -> List[Dict[str, Any]]:
     """Get summaries by conversation hashes and technique"""
     engine = get_engine(db_path)
     summaries = []
-    
+
     with Session(engine) as session:
         for hash_val in conversation_hashes:
             try:
                 summary = session.exec(
                     select(Summary).where(
                         Summary.conversation_hash == hash_val,
-                        Summary.technique == technique
+                        Summary.technique == technique,
                     )
                 ).first()
-                
+
                 if summary:
-                    summaries.append({
-                        "conversation_hash": summary.conversation_hash,
-                        "technique": summary.technique,
-                        "summary": summary.summary
-                    })
+                    summaries.append(
+                        {
+                            "conversation_hash": summary.conversation_hash,
+                            "technique": summary.technique,
+                            "summary": summary.summary,
+                        }
+                    )
             except Exception as e:
                 print(f"Error getting summary for {hash_val}: {e}")
                 continue
-    
+
     return summaries
 
 
@@ -359,38 +361,55 @@ def get_evaluation_results(experiment_id: str, db_path: Path) -> List[Dict[str, 
         ]
 
 
-def get_processed_question_hashes(version: str, db_path: Path, experiment_id: Optional[str] = None) -> List[str]:
+def get_processed_question_hashes(
+    version: str, db_path: Path, experiment_id: Optional[str] = None
+) -> List[str]:
     """Get conversation hashes that already have questions generated for a specific version"""
     engine = get_engine(db_path)
-    
+
     with Session(engine) as session:
-        statement = select(Question.conversation_hash).where(Question.version == version)
+        statement = select(Question.conversation_hash).where(
+            Question.version == version
+        )
         if experiment_id:
             statement = statement.where(Question.experiment_id == experiment_id)
-        
+
         return list(session.exec(statement).all())
 
 
-def get_processed_summary_hashes(technique: str, db_path: Path, experiment_id: Optional[str] = None) -> List[str]:
+def get_processed_summary_hashes(
+    technique: str, db_path: Path, experiment_id: Optional[str] = None
+) -> List[str]:
     """Get conversation hashes that already have summaries generated for a specific technique"""
     engine = get_engine(db_path)
-    
+
     with Session(engine) as session:
-        statement = select(Summary.conversation_hash).where(Summary.technique == technique)
+        statement = select(Summary.conversation_hash).where(
+            Summary.technique == technique
+        )
         if experiment_id:
             statement = statement.where(Summary.experiment_id == experiment_id)
-        
+
         return list(session.exec(statement).all())
 
 
-def filter_unprocessed_hashes(conversation_hashes: List[str], version: str, db_path: Path, 
-                            experiment_id: Optional[str] = None, is_summary: bool = False) -> List[str]:
+def filter_unprocessed_hashes(
+    conversation_hashes: List[str],
+    version: str,
+    db_path: Path,
+    experiment_id: Optional[str] = None,
+    is_summary: bool = False,
+) -> List[str]:
     """Filter conversation hashes to only include unprocessed ones"""
     if is_summary:
-        processed_hashes = set(get_processed_summary_hashes(version, db_path, experiment_id))
+        processed_hashes = set(
+            get_processed_summary_hashes(version, db_path, experiment_id)
+        )
     else:
-        processed_hashes = set(get_processed_question_hashes(version, db_path, experiment_id))
-    
+        processed_hashes = set(
+            get_processed_question_hashes(version, db_path, experiment_id)
+        )
+
     return [h for h in conversation_hashes if h not in processed_hashes]
 
 
@@ -404,7 +423,10 @@ def get_database_stats(db_path: Path) -> Dict[str, int]:
 
     with Session(engine) as session:
         from sqlmodel import func
-        stats["conversations"] = session.exec(select(func.count(Conversation.conversation_hash))).one()
+
+        stats["conversations"] = session.exec(
+            select(func.count(Conversation.conversation_hash))
+        ).one()
         stats["questions"] = session.exec(select(func.count(Question.id))).one()
         stats["summaries"] = session.exec(select(func.count(Summary.id))).one()
         stats["evaluations"] = session.exec(select(func.count(Evaluation.id))).one()

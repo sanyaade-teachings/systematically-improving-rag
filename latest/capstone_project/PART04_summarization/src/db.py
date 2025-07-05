@@ -5,7 +5,6 @@ Database operations for synthetic summaries
 import sqlite3
 from pathlib import Path
 from typing import List, Tuple, Dict, Any
-from datetime import datetime
 
 
 def setup_database(db_path: Path) -> None:

@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 from typing import List
-from pydantic import BaseModel, field_validator
+from pydantic import field_validator
 from instructor import Instructor, AsyncInstructor
 from jinja2 import Template
 from textwrap import dedent

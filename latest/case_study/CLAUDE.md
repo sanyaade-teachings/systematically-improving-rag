@@ -28,6 +28,10 @@ uv pip install -e .
 # Load conversations from WildChat dataset
 uv run python main.py load-wildchat --limit 100  # Start small
 uv run python main.py load-wildchat --limit 1000  # Full dataset
+
+# Code quality checks
+uv run ruff check --fix --unsafe-fixes .
+uv run ruff format .
 ```
 
 ### Generate Synthetic Queries
