@@ -6,14 +6,14 @@ import pandas as pd
 from rich.console import Console
 from rich.table import Table
 
-from config import PATH_TO_DB
+from config import PATH_TO_DATA, PATH_TO_DB
 
 console = Console()
 
 
 def verify_embeddings():
     """Verify all generated embeddings"""
-    embeddings_dir = PATH_TO_DB.parent / "embeddings" / "questions"
+    embeddings_dir = PATH_TO_DATA / "embeddings" / "questions"
 
     console.print("[bold blue]Verifying Generated Embeddings[/bold blue]\n")
 

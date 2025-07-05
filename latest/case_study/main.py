@@ -16,7 +16,7 @@ from core.embeddings import (
     generate_full_conversation_embeddings,
 )
 from core.evaluation import evaluate_questions
-from config import PATH_TO_DB
+from config import PATH_TO_DB, PATH_TO_DATA
 from sqlmodel import Session, select
 from core.db import Conversation
 
@@ -231,7 +231,7 @@ def embed_conversations(
 
     # Generate embeddings based on mode
     if mode == "first_message":
-        output_dir = PATH_TO_DB.parent / "embeddings" / "conversations"
+        output_dir = PATH_TO_DATA / "embeddings" / "conversations"
         output_path = asyncio.run(
             generate_conversation_embeddings(
                 conversations,
@@ -241,7 +241,7 @@ def embed_conversations(
             )
         )
     else:  # full mode
-        output_dir = PATH_TO_DB.parent / "embeddings" / "full_conversations"
+        output_dir = PATH_TO_DATA / "embeddings" / "full_conversations"
         output_path = asyncio.run(
             generate_full_conversation_embeddings(
                 conversations,
@@ -297,7 +297,7 @@ def embed_summaries(
     console.print(f"[blue]Embedding {len(summaries)} {technique} summaries[/blue]")
 
     # Generate embeddings
-    output_dir = PATH_TO_DB.parent / "embeddings" / "summaries"
+    output_dir = PATH_TO_DATA / "embeddings" / "summaries"
     output_path = asyncio.run(
         generate_summary_embeddings(
             summary_dicts,
@@ -347,14 +347,14 @@ def evaluate(
     if target_type == "conversations":
         if embeddings_type == "conversations":
             embeddings_path = (
-                PATH_TO_DB.parent
+                PATH_TO_DATA
                 / "embeddings"
                 / "conversations"
                 / f"{embedding_model.replace('/', '-')}.parquet"
             )
         elif embeddings_type == "full_conversations":
             embeddings_path = (
-                PATH_TO_DB.parent
+                PATH_TO_DATA
                 / "embeddings"
                 / "full_conversations"
                 / f"{embedding_model.replace('/', '-')}.parquet"
@@ -371,7 +371,7 @@ def evaluate(
             )
             raise typer.Exit(1)
         embeddings_path = (
-            PATH_TO_DB.parent
+            PATH_TO_DATA
             / "embeddings"
             / "summaries"
             / f"{target_technique}_{embedding_model.replace('/', '-')}.parquet"
@@ -410,7 +410,7 @@ def evaluate(
         f"_{target_technique}" if target_type == "summary" and target_technique else ""
     )
     report_path = (
-        PATH_TO_DB.parent
+        PATH_TO_DATA
         / "results"
         / f"eval_{question_version}_{target_type}{target_suffix}_{embedding_model.replace('/', '-')}{reranker_suffix}.json"
     )
