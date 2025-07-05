@@ -60,22 +60,59 @@ graph TD
 
 ### Expert Talks
 
-| Speaker | Company | Topic | Key Insight |
-|---------|---------|-------|-------------|
-| [Skylar Payne](talks/rag-antipatterns-skylar-payne.md) | Independent | RAG Anti-patterns | 90% of teams adding complexity see worse performance |
-| [Ayush](talks/fine-tuning-rerankers-embeddings-ayush-lancedb.md) | LanceDB | Fine-tuning | Re-rankers provide 15-20% improvement with minimal latency |
-| [Vitor](talks/zapier-vitor-evals.md) | Zapier | Feedback Systems | Simple UX changes increased feedback 4x |
-| [Kelly Hong](talks/embedding-performance-generative-evals-kelly-hong.md) | Independent | Evaluation | Custom benchmarks often contradict public ones |
-| [Ben & Sidhant](talks/online-evals-production-monitoring-ben-sidhant.md) | Independent | Production Monitoring | Traditional error monitoring doesn't work for AI |
-| [Manav](talks/glean-manav.md) | Glean | Enterprise Search | Custom embeddings achieve 20% improvements |
-| [Anton](talks/chromadb-anton-chunking.md) | ChromaDB | Chunking | Chunking remains critical even with infinite context |
-| [Colin](talks/colin-rag-agents.md) | Independent | Agentic RAG | Simple tools often outperform sophisticated embeddings |
-| [Adit](talks/reducto-docs-adit.md) | Reducto | Document Processing | Hybrid CV + VLM pipelines outperform pure approaches |
-| [Will Bryk](talks/semantic-search-exa-will-bryk.md) | Exa | Semantic Search | AI systems need fundamentally different search engines |
-| [John Berryman](talks/john-lexical-search.md) | Independent | Lexical Search | Semantic search struggles with exact matching |
-| [Daniel](talks/superlinked-encoder-stacking.md) | Superlinked | Multi-modal | Mixture of specialized encoders beats text-only |
-| [Michael](talks/rag-without-apis-browser-michael-struwig.md) | OpenBB | Browser RAG | Browser-as-data-layer for secure access |
-| [Anton](talks/query-routing-anton.md) | ChromaDB | Query Routing | Separate indexes often outperform filtered large ones |
+#### Foundation and Evaluation
+
+**[Building Feedback Systems for AI Products](talks/zapier-vitor-evals.md)** - Vitor (Zapier)  
+Simple UX changes increased feedback collection from 10 to 40+ submissions per day (4x improvement). Game-changing insight: specific feedback questions like "Did this run do what you expected?" dramatically outperform generic "How did we do?" prompts.
+
+**[Text Chunking Strategies](talks/chromadb-anton-chunking.md)** - Anton (ChromaDB)  
+Why chunking remains critical even with infinite context windows due to embedding model limitations and retrieval performance. Surprising discovery: default chunking strategies in popular libraries often produce terrible results for specific datasets.
+
+**[Understanding Embedding Performance through Generative Evals](talks/embedding-performance-generative-evals-kelly-hong.md)** - Kelly Hong  
+Generative benchmarking for creating custom evaluation sets from your own data. Surprising finding: model rankings on custom benchmarks often contradict MTEB rankings, showing that public benchmark performance doesn't guarantee real-world success.
+
+#### Training and Fine-Tuning
+
+**[Enterprise Search and Fine-tuning Embedding Models](talks/glean-manav.md)** - Manav (Glean)  
+Custom embedding models for each customer achieve 20% performance improvements over 6 months through continuous learning. Counter-intuitive insight: smaller, fine-tuned models often outperform larger general-purpose models for company-specific terminology.
+
+**[Fine-tuning Re-rankers and Embedding Models for Better RAG Performance](talks/fine-tuning-rerankers-embeddings-ayush-lancedb.md)** - Ayush (LanceDB)  
+Re-rankers provide 12-20% retrieval improvement with minimal latency penalty, making them "low-hanging fruit" for RAG optimization. Even small 6M parameter models show significant improvements.
+
+#### Production and Monitoring
+
+**[Online Evals and Production Monitoring](talks/online-evals-production-monitoring-ben-sidhant.md)** - Ben & Sidhant  
+Trellis framework for managing AI systems with millions of users. Critical discovery: traditional error monitoring (like Sentry) doesn't work for AI since there's no exception when models produce bad outputs.
+
+**[RAG Anti-patterns in the Wild](talks/rag-antipatterns-skylar-payne.md)** - Skylar Payne  
+90% of teams adding complexity to RAG systems see worse performance when properly evaluated. Major discovery: silent failures in document processing can eliminate 20%+ of corpus without detection.
+
+#### Query Analysis and Data Organization
+
+**[Query Routing for RAG Systems](talks/query-routing-anton.md)** - Anton (ChromaDB)  
+Why the "big pile of records" approach reduces recall due to approximate nearest neighbor algorithms. When filtering large indexes, compute budget is wasted on irrelevant nodes.
+
+#### Specialized Retrieval Systems
+
+**[Agentic RAG](talks/colin-rag-agents.md)** - Colin Flaherty  
+Surprising findings from top SWE-Bench performance: simple tools like grep and find outperformed sophisticated embedding models due to agent persistence and course-correction capabilities.
+
+**[Better RAG Through Better Data](talks/reducto-docs-adit.md)** - Adit (Reducto)  
+Hybrid computer vision + VLM pipelines outperform pure approaches for document parsing. Critical finding: even 1-2 degree document skews can dramatically impact extraction quality.
+
+**[Encoder Stacking and Multi-Modal Retrieval](talks/superlinked-encoder-stacking.md)** - Daniel (Superlinked)  
+LLMs as "pilots that see the world as strings" fundamentally can't understand numerical relationships. Solution: mixture of specialized encoders for different data types rather than forcing everything through text embeddings.
+
+**[Lexical Search in RAG Applications](talks/john-lexical-search.md)** - John Berryman  
+Why semantic search struggles with exact matching, product IDs, and specialized terminology. Lexical search provides efficient simultaneous filtering and rich metadata that helps LLMs make better decisions.
+
+#### Advanced Topics and Innovation
+
+**[Semantic Search Over the Web with Exa](talks/semantic-search-exa-will-bryk.md)** - Will Bryk (Exa)  
+Why AI systems need fundamentally different search engines than humans. Vision for "perfect search" includes test-time compute where complex queries may take hours or days.
+
+**[RAG Without APIs: Browser-Based Retrieval](talks/rag-without-apis-browser-michael-struwig.md)** - Michael (OpenBB)  
+Browser-as-data-layer for secure financial data access without traditional API redistribution. Innovation: stateless agent protocol enables remote function execution in browser.
 
 ## Quick Wins: High-Impact RAG Improvements
 
