@@ -44,6 +44,7 @@ nav:
       - "Chapter 6: Architecture - Improvement": "workshops/chapter6-3.md"
   - "Office Hours":
       - "office-hours/index.md"
+      - "FAQ": "office-hours/faq.md"
       - "Cohort 2":
         - "Week 1": "office-hours/cohort2/week1-summary.md"
         - "Week 2": "office-hours/cohort2/week2-summary.md"
