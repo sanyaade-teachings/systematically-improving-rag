@@ -280,7 +280,7 @@ Top questions from office hours:
 - **"Should we use DSPy for prompt optimization?"** It depends. [See when →](office-hours/faq.md#what-is-your-take-on-dspy-should-we-use-it)
 - **"Would you recommend ColBERT models?"** Test against your baseline first. [See approach →](office-hours/faq.md#would-you-recommend-using-colbert-models-or-other-specialized-retrieval-approaches)
 
-[Browse All FAQ](office-hours/faq.md){ .md-button } [View Office Hours](office-hours/){ .md-button }
+[Browse All FAQ](office-hours/faq.md){ .md-button } [View Office Hours](office-hours/index.md){ .md-button }
 
 ## For Product Leaders, Engineers, and Data Scientists
 
