@@ -73,62 +73,95 @@ Reranking introduces significant latency overhead that must be carefully monitor
 - **Batch Processing**: Can reduce per-query overhead for offline scenarios
 - **Production Trade-offs**: Quality improvement vs response time requirements
 
-## Implementation Plan
+## Experiments
 
-### Phase 1: Core Reranking Infrastructure
-- [ ] Abstract reranker interface
-- [ ] Sentence transformers reranker implementation
-- [ ] Cohere reranker implementation
-- [ ] CLI flag integration (`--reranker none|sentence-transformers|cohere`)
+### Experiment 1: Reranking Infrastructure Implementation
+**COMPLETED**: Built complete reranking pipeline
+- [x] Abstract `BaseReranker` interface with `rerank()` and `batch_rerank()` methods
+- [x] `SentenceTransformersReranker` implementation with cross-encoder support
+- [x] `CohereReranker` implementation with API integration
+- [x] CLI integration with `--reranker` and `--reranker-n` parameters
+- [x] Factory function `get_reranker()` for dynamic reranker selection
 
-### Phase 2: Evaluation Pipeline Integration
-- [ ] Modify search engine to support reranking
-- [ ] Update evaluation to handle reranked results
-- [ ] Extend database schema for reranking experiments
-- [ ] Add reranking metadata to results
+**Technical Implementation**:
+- Reranker types: `none`, `sentence-transformers/<model>`, `cohere/<model>`
+- Parameterized candidate count with `--reranker-n` (default: 60)
+- Latency tracking for performance analysis
+- Graceful fallback handling for API failures
 
-### Phase 3: Experimentation
-- [ ] Baseline confirmation (rerun Part 3 results)
-- [ ] Small-scale testing (100 conversations)
-- [ ] Full-scale evaluation (1000 conversations)
-- [ ] Cross-model comparison analysis
+### Experiment 2: Evaluation Pipeline Integration  
+**COMPLETED**: Updated evaluation system for reranking
+- [x] Modified `evaluate_questions()` to support reranking workflow
+- [x] Two-stage retrieval: initial search → reranking → final results
+- [x] Preserved existing evaluation metrics (Recall@1, @5, @10, @30)
+- [x] Added experiment tracking for reranking configurations
 
-### Phase 4: Analysis and Documentation
-- [ ] Performance improvement analysis
-- [ ] Cost-benefit analysis  
-- [ ] Failure case analysis
-- [ ] Best practices recommendations
+**Pipeline Flow**:
+1. Retrieve `reranker_n` candidates via vector search
+2. Apply reranker to reorder candidates  
+3. Return top-K results for evaluation
+4. Calculate standard recall metrics on reranked results
 
-## Expected Commands
+### Experiment 3: Reranker Comparison Study
+**COMPLETED**: Systematic comparison across reranker types
+- [x] Baseline confirmation: v2 queries on conversations (12.0% Recall@1)
+- [x] Cohere reranking with variable candidate counts (30, 60, 100 docs)
+- [x] SentenceTransformers reranking comparison (60 docs)
+- [x] Performance vs candidate count analysis
+
+**Key Results**:
+- **Cohere + 60 docs**: 11.0% Recall@1, 48.0% Recall@30
+- **Cohere + 100 docs**: 11.0% Recall@1, 50.0% Recall@30  
+- **SentenceTransformers + 60 docs**: 9.0% Recall@1, 38.0% Recall@30
+- **Baseline (no reranking)**: 12.0% Recall@1, 41.0% Recall@30
+
+### Experiment 4: Production Performance Analysis
+**COMPLETED**: Validated reranking effectiveness at scale
+- [x] Large-scale evaluation (1000 queries) on aligned data (v4 summaries)
+- [x] Compared reranking gains vs alignment improvements
+- [x] Cost-benefit analysis for production deployment
+
+**Strategic Findings**:
+- **Alignment impact**: 42.5% → 70.4% Recall@30 (167% improvement)
+- **Reranking impact**: 70.4% → 70.6% Recall@30 (0.3% improvement)  
+- **Conclusion**: Alignment strategy far outweighs reranking optimizations
+
+## Actual Commands Used
 
 ```bash
-# Test sentence transformers reranking on v1 queries
-uv run python main.py evaluate \
-  --question-version v1 \
-  --embedding-model text-embedding-3-small \
-  --reranker sentence-transformers \
-  --limit 100
-
-# Test Cohere reranking on v2 queries with summaries
+# Baseline evaluation (no reranking)
 uv run python main.py evaluate \
   --question-version v2 \
   --embedding-model text-embedding-3-small \
-  --target-type summary \
-  --target-technique v4 \
-  --reranker cohere \
-  --limit 100
+  --limit 100 \
+  --experiment-id part4_100_baseline \
+  --reranker none
 
-# Compare all reranking approaches
-for reranker in none sentence-transformers cohere; do
-  for version in v1 v2; do
-    uv run python main.py evaluate \
-      --question-version $version \
-      --embedding-model text-embedding-3-small \
-      --reranker $reranker \
-      --experiment-id "part04_${version}_${reranker}" \
-      --limit 100
-  done
-done
+# Cohere reranking with different candidate counts
+uv run python main.py evaluate \
+  --question-version v2 \
+  --embedding-model text-embedding-3-small \
+  --limit 100 \
+  --experiment-id part4_100_cohere_60 \
+  --reranker cohere/rerank-english-v3.0 \
+  --reranker-n 60
+
+uv run python main.py evaluate \
+  --question-version v2 \
+  --embedding-model text-embedding-3-small \
+  --limit 100 \
+  --experiment-id part4_100_cohere_100 \
+  --reranker cohere/rerank-english-v3.0 \
+  --reranker-n 100
+
+# SentenceTransformers reranking comparison
+uv run python main.py evaluate \
+  --question-version v2 \
+  --embedding-model text-embedding-3-small \
+  --limit 100 \
+  --experiment-id part4_100_st_60 \
+  --reranker sentence-transformers/cross-encoder/ms-marco-MiniLM-L-6-v2 \
+  --reranker-n 60
 ```
 
 ## Expected Database Schema Extension
@@ -142,25 +175,36 @@ ALTER TABLE evaluationresult ADD COLUMN reranker_score FLOAT;
 
 ## Results Summary
 
-### Initial Results (5-query test runs)
+### Actual Results (100-query evaluation runs)
 
-| Query Type | Target | Approach | Recall@1 | Recall@5 | Recall@10 | Recall@30 | Avg Latency/Query | Notes |
-|------------|---------|----------|----------|----------|-----------|-----------|------------------|--------|
-| v1 (content) | conversations | No reranking | 100% | 100% | 100% | 100% | ~300ms | Perfect alignment baseline |
-| v2 (pattern) | conversations | No reranking | 0% | 0% | 0% | 0% | ~300ms | Severe alignment problem |
-| v2 (pattern) | conversations | SentenceTransformers | 0% | 0% | 0% | 33% | ~1600ms | Minimal improvement |
-| v2 (pattern) | conversations | Cohere | 0% | 33% | 33% | 33% | ~950ms | Slight improvement, faster than ST |
-| v2 (pattern) | v4 summaries | No reranking | 0% | 80% | 80% | 80% | ~300ms | Good alignment strategy |
-| v2 (pattern) | v4 summaries | SentenceTransformers | 20% | 80% | 80% | 80% | ~650ms | Reranking improves precision |
-| v2 (pattern) | v4 summaries | **Cohere** | **80%** | **80%** | **80%** | **80%** | **~450ms** | **Best overall performance** |
+| Configuration | Recall@1 | Recall@5 | Recall@10 | Recall@30 | Reranker-N | Notes |
+|---------------|----------|----------|-----------|-----------|------------|--------|
+| **Baseline (no reranking)** | 12.0% | 28.0% | 31.0% | 41.0% | - | v2 queries on conversations |
+| **Cohere + 30 docs** | 12.0% | 26.0% | 37.0% | 41.0% | 30 | Same as baseline for early precision |
+| **Cohere + 60 docs** | 11.0% | 25.0% | 36.0% | 48.0% | 60 | Improved Recall@30 |
+| **Cohere + 100 docs** | 11.0% | 23.0% | 35.0% | 50.0% | 100 | Best overall recall |
+| **SentenceTransformers + 60 docs** | 9.0% | 17.0% | 20.0% | 38.0% | 60 | Significantly worse than Cohere |
+
+### Large-Scale Results (1000-query evaluation)
+
+For comparison with Part 3 findings:
+
+| Query Type | Target | Approach | Recall@1 | Recall@5 | Recall@10 | Recall@30 | Notes |
+|------------|---------|----------|----------|----------|-----------|-----------|--------|
+| v2 (pattern) | conversations | No reranking | 10.7% | 23.7% | 31.0% | 42.5% | Part 3 baseline |
+| v2 (pattern) | v4 summaries | No reranking | 24.7% | 46.0% | 55.7% | 70.4% | **Best alignment strategy** |
+| v2 (pattern) | v4 summaries | **Cohere reranking** | **25.1%** | **47.6%** | **56.5%** | **70.6%** | **Minimal improvement** |
 
 ### Key Findings
 
-1. **Small-Scale Results Are Misleading**: 5-query tests showed dramatic improvements that disappeared at 1000-query scale
-2. **Minimal Reranking Gains**: On well-aligned targets (summaries), reranking improves Recall@1 by only 0.4-1.6%
-3. **Alignment Beats Reranking**: Going from misaligned (10.7%) to aligned embeddings (24.7%) beats any reranking gains
-4. **Cost-Benefit Poor**: Reranking adds significant latency for minimal performance gains
-5. **Production Reality**: At scale, reranking is expensive optimization for marginal gains
+1. **Reranker-N Parameter Works**: Successfully implemented parameterized reranking with `--reranker-n` controlling candidate document count (30, 60, 100)
+2. **Cohere Outperforms SentenceTransformers**: Cohere achieves 48-50% Recall@30 vs 38% for SentenceTransformers at 60 documents
+3. **Diminishing Returns with More Candidates**: 
+   - 60 docs: 48.0% Recall@30
+   - 100 docs: 50.0% Recall@30 (only 2% improvement)
+4. **Early Precision Trade-off**: More reranking candidates hurt Recall@1 and @5 performance
+5. **Alignment Still Beats Reranking**: Summary embeddings (70.4% Recall@30) far outperform reranked conversations (50.0% Recall@30)
+6. **Minimal Gains on Aligned Data**: On v4 summaries, reranking improves by only 0.2-1.6% across all metrics
 
 ### Strategic Insights
 

@@ -1,5 +1,17 @@
 # Part 03: Solving the Alignment Problem Through Summaries and Full Conversations
 
+## Prerequisites
+- Completed Part 02 (understanding the alignment problem)
+- Python environment with dependencies installed (see CLAUDE.md)
+- ~45 minutes for reading, ~2 hours if running all experiments
+
+## What You'll Learn in This Part
+1. How to solve alignment problems by changing what you embed
+2. The trade-offs between different summary generation strategies
+3. How iterative prompt engineering can achieve 358% performance improvements
+4. When to invest compute at ingestion time vs query time
+5. Practical techniques for optimizing RAG systems systematically
+
 ## Overview
 
 In Part 02, we discovered a severe alignment problem: v2 pattern-focused queries achieve only 12% Recall@1 compared to 62% for v1 content-focused queries when searching against embeddings of conversation first messages. This 50% performance gap occurs because we're searching for patterns in embeddings that only contain content.
