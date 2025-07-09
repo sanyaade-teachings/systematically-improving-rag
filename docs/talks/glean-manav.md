@@ -1,5 +1,5 @@
 ---
-title: "Enterprise Search and Fine-tuning Embedding Models with Glean"
+title: "Why Glean Builds Custom Embedding Models for Every Customer"
 speaker: Manav
 cohort: 3
 description: "Guest lecture with Manav from Glean on enterprise search, custom embedding models, and optimizing RAG systems for company-specific data"
@@ -7,7 +7,7 @@ tags: [enterprise search, embedding models, fine-tuning, RAG optimization, Glean
 date: 2025-01-01
 ---
 
-# Enterprise Search - Manav (Glean)
+# Why Glean Builds Custom Embedding Models for Every Customer
 
 I recently hosted Manav from Glean for an insightful guest lecture in my "Systematically Improving RAG Applications" course. This session focused on enterprise search and fine-tuning embedding models - a surprisingly underutilized approach that can dramatically improve RAG system performance. Here's what we learned about Glean's approach to optimizing AI and enterprise search through custom embedding models.
 

@@ -1,5 +1,5 @@
 ---
-title: Document Ingestion and Parsing (Reducto)
+title: Why Most Document Parsing Sucks (And How Reducto Fixed It)
 speaker: Adit
 cohort: 3
 description: A conversation with Adit, CEO of Reducto, covering challenges of document ingestion, parsing tables and forms, hybrid CV + VLM pipelines, and optimizing representations for reliable AI systems.
@@ -7,7 +7,7 @@ tags: [document parsing, ingestion, Reducto, computer vision, VLM]
 date: 2025-06-28
 ---
 
-# Document Parsing - Adit (Reducto)
+# Why Most Document Parsing Sucks (And How Reducto Fixed It)
 
 Study Notes:
 

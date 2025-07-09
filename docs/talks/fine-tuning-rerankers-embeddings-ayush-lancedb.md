@@ -1,5 +1,5 @@
 ---
-title: Fine-tuning Re-rankers and Embedding Models for Better RAG Performance
+title: The 12% RAG Performance Boost You're Missing (LanceDB's Re-ranking Secrets)
 speaker: Ayush
 cohort: 3
 description: Practical approaches to enhancing retrieval quality through fine-tuning, re-ranking, and understanding trade-offs in RAG systems
@@ -7,7 +7,7 @@ tags: [fine-tuning, re-rankers, embedding models, LanceDB, RAG performance]
 date: 2025-01-01
 ---
 
-# Fine-tuning Models - Ayush (LanceDB)
+# The 12% RAG Performance Boost You're Missing (LanceDB's Re-ranking Secrets)
 
 I hosted a session with Ayush, an ML Engineer at LanceDB, to explore how fine-tuning re-rankers and embedding models can significantly improve retrieval performance in RAG systems. We discussed practical approaches to enhancing retrieval quality, the trade-offs involved, and when these techniques make the most business sense.
 
