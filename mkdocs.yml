@@ -70,7 +70,7 @@ nav:
           - "Session 2": "office-hours/cohort3/week-5-2.md"
   - "Talks":
       - "Overview": "talks/index.md"
-      - "RAG is Dead - Long Live Agentic Code Exploration": "talks/rag-is-dead-cline-nik.md"
+      - "Autonomous Coding Agents w/ Nik Pash @ Cline": "talks/rag-is-dead-cline-nik.md"
       - "RAG Anti-patterns in the Wild": "talks/rag-antipatterns-skylar-payne.md"
       - "Semantic Search Over the Web with Exa": "talks/semantic-search-exa-will-bryk.md"
       - "Generative Evals": "talks/embedding-performance-generative-evals-kelly-hong.md"
