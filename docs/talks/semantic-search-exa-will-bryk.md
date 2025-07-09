@@ -1,14 +1,13 @@
 ---
-title: Semantic Search Over the Web with Exa
+title: Why Google Search Sucks for AI (And How Exa Is Building Something Better)
 speaker: Will Bryk
-type: Lightning Lesson
 cohort: 3
 description: How AI is changing search requirements and the technical challenges of building a semantic search engine designed for AI applications rather than human users.
 tags: [semantic search, AI search, embeddings, web search, Exa]
-date: 2025
+date: 2025-01-01
 ---
 
-# Semantic search over the web with Exa [Will Bryk]
+# Why Google Search Sucks for AI (And How Exa Is Building Something Better)
 
 I hosted a session with Will Bryk from Exa who shared insights about the evolution of search technology, how AI is changing search requirements, and the technical challenges of building a semantic search engine. This session explores how traditional search engines like Google differ from next-generation semantic search systems designed for AI applications rather than human users.
 
@@ -201,3 +200,9 @@ Exa's neural embedding-based approach makes it inherently more resistant to trad
 **How does Exa handle document size and chunking?**
 
 Exa works with web documents which naturally have a structure that makes them manageable for embedding. While there are limits to document size, Exa can handle most web content effectively. The company is exploring chunking strategies for longer documents but has found that the natural structure of web content often provides reasonable document boundaries.
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

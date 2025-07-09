@@ -1,18 +1,13 @@
 ---
 title: "Encoder Stacking and Multi-Modal Retrieval Systems"
+speaker: Daniel
+cohort: 3
 description: "Guest lecture with Daniel from Superlinked on improving retrieval systems using specialized encoders for different data types, moving beyond text-only embeddings"
-tags:
-  - encoder stacking
-  - multi-modal retrieval
-  - specialized encoders
-  - Superlinked
-  - recommender systems
-  - data types
-speakers: [Daniel]
-date: 2025
+tags: [encoder stacking, multi-modal retrieval, specialized encoders, Superlinked, recommender systems, data types]
+date: 2025-01-01
 ---
 
-# Encoder Stacking and Multi-Modal Retrieval Systems [Daniel - Superlinked]
+# Encoder Stacking - Daniel (Superlinked)
 
 Study Notes:
 

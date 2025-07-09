@@ -1,14 +1,10 @@
 ---
 title: "Building Feedback Systems for AI Products"
+speaker: Vitor
+cohort: 3
 description: "Vitor from Zapier shares how they dramatically improved their feedback collection systems for AI products through strategic UX changes and systematic analysis"
-tags:
-  - feedback systems
-  - evaluation
-  - user feedback
-  - AI products
-  - Zapier
-speakers: [Vitor from Zapier]
-date: 2025
+tags: [feedback systems, evaluation, user feedback, AI products, Zapier]
+date: 2025-01-01
 ---
 
 # Building Feedback Systems for AI Products

@@ -1,22 +1,13 @@
 ---
-title: Agentic RAG
-date: '2025-06-30'
+title: Why Grep Beat Embeddings in Our SWE-Bench Agent (Lessons from Augment)
+speaker: Colin Flaherty
 cohort: 3
-week: 5
-session: 1
-type: Talk
-transcript: ../Agentic_RAG_-_Colin_Flaherty.transcript.vtt
 description: Insights from Colin Flaherty on building autonomous coding agents and how agentic approaches reshape retrieval-augmented generation systems.
-topics:
-  - Agentic retrieval
-  - grep and find search tools
-  - Embedding models vs simple search
-  - Retrieval system evaluation
-  - Hybrid retrieval architectures
-  - Tool exposure for agents
-  - Scaling to large codebases
-  - Persistent agent loops
+tags: [RAG, agents, autonomous coding, agentic systems, retrieval]
+date: 2025-06-30
 ---
+
+# Why Grep Beat Embeddings in Our SWE-Bench Agent (Lessons from Augment)
 
 I hosted Colin Flaherty, previously a founding engineer at Augment and co-author of Meta's Cicero AI, to discuss autonomous coding agents and retrieval systems. This session explores how agentic approaches are transforming traditional RAG systems, what we can learn from state-of-the-art coding agents, and how these insights might apply to other domains.
 

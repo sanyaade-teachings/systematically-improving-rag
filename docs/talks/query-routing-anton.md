@@ -1,18 +1,13 @@
 ---
 title: "Data Organization and Query Routing for RAG Systems"
+speaker: Anton
+cohort: 3
 description: "Guest lecture with Anton Troynikov from ChromaDB on organizing data for retrieval systems, query routing strategies, and optimizing vector search performance"
-tags:
-  - data organization
-  - query routing
-  - vector search
-  - ChromaDB
-  - retrieval optimization
-  - filtering
-speakers: [Anton Troynikov]
-date: 2025
+tags: [data organization, query routing, vector search, ChromaDB, retrieval optimization, filtering]
+date: 2025-01-01
 ---
 
-# Data Organization and Query Routing for RAG Systems [Anton Troynikov]
+# Query Routing - Anton (ChromaDB)
 
 Study Notes:
 

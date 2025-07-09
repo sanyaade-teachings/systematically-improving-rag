@@ -1,13 +1,13 @@
 ---
-title: RAG Anti-patterns in the Wild, and How to Fix Them
+title: The RAG Mistakes That Are Killing Your AI (Lessons from Google & LinkedIn)
 speaker: Skylar Payne
 cohort: 3
 description: Common RAG anti-patterns across different industries and practical advice for improving AI systems through better data handling, retrieval, and evaluation practices.
 tags: [RAG, antipatterns, data quality, evaluation, best practices]
-date: 2025
+date: 2025-01-01
 ---
 
-# RAG Anti-patterns in the Wild, and How to Fix Them [Skylar Payne]
+# The RAG Mistakes That Are Killing Your AI (Lessons from Google & LinkedIn)
 
 I hosted a Lightning Lesson with Skylar Payne, an experienced AI practitioner who's worked at companies like Google and LinkedIn over the past decade. Skylar shared valuable insights on common RAG (Retrieval-Augmented Generation) anti-patterns he's observed across multiple client engagements, providing practical advice for improving AI systems through better data handling, retrieval, and evaluation practices.
 
@@ -267,3 +267,9 @@ The value of metadata tagging depends on two factors:
 1. The diversity of queries you're answering
 
 Metadata becomes more valuable when you have both high data volume and diverse query types. For B2B applications where customer data is segregated, the benefit may be limited since each customer's data volume is relatively small.
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

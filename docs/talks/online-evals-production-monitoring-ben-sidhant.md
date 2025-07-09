@@ -1,13 +1,13 @@
 ---
-title: Online Evals and Production Monitoring
+title: Why Your AI Is Failing in Production (Lessons from Raindrop & Oleve)
 speakers: [Ben Hylak, Sidhant Bendre]
 cohort: 3
 description: AI monitoring, production testing, and data analysis frameworks for identifying issues in AI systems and implementing structured monitoring.
 tags: [monitoring, evaluation, production, AI systems, debugging]
-date: 2025
+date: 2025-01-01
 ---
 
-# Online Evals and Production Monitoring [Ben Hylak & Sidhant Bendre]
+# Why Your AI Is Failing in Production (Lessons from Raindrop & Oleve)
 
 I hosted a lightning lesson featuring Ben from Raindrop and Sid from Oleve to discuss AI monitoring, production testing, and data analysis frameworks. This session explored how to effectively identify issues in AI systems, implement structured monitoring, and develop frameworks for improving AI products based on real user data.
 
@@ -219,3 +219,9 @@ When building AI systems, you want your improvements to be engineered, repeatabl
 **How can I validate that my AI improvements are working?**
 
 Monitor your system before and after making changes to see if the frequency of related issues decreases. Look for positive user feedback that specifically mentions the improved experience. The most reliable validation comes from seeing a measurable reduction in the issues you were targeting, combined with positive user sentiment about the specific improvements you made.
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

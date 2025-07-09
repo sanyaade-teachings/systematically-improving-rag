@@ -1,13 +1,13 @@
 ---
-title: 'RAG Without APIs: When Function Calling Talks to Your Browser'
+title: 'How OpenBB Ditched APIs and Put RAG in the Browser Instead'
 speaker: Michael Struwig
 cohort: 3
 description: A novel approach to RAG systems that leverages the browser as a data layer, connecting agents to sensitive data without traditional APIs.
 tags: [RAG, browser, function calling, data security, OpenBB]
-date: 2025
+date: 2025-01-01
 ---
 
-# RAG Without APIs: When Function Calling Talks to Your Browser [Michael Struwig]
+# How OpenBB Ditched APIs and Put RAG in the Browser Instead
 
 I hosted a session with Michael Struwig, Head of AI at OpenBB, who shared a fascinating approach to RAG systems that leverages the browser as a data layer. This conversation explored how financial data platforms can connect agents to sensitive data without traditional APIs, creating more secure and flexible AI-powered analysis tools.
 
@@ -262,3 +262,9 @@ Rather than building complex self-improving systems, OpenBB focuses on:
 **What does OpenBB believe about the future of AI integration?**
 
 OpenBB believes that human plus AI will be better than either human or AI alone. Their vision focuses on collaboration rather than replacement, with AI making humans better or offloading certain tasks. They maintain that anything the human can do, the AI must be able to do, and vice versa, creating a unified interface for both. Looking further ahead, they predict that locally-running language models will eventually be integrated directly into browsers as a web standard, particularly on mobile devices.
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

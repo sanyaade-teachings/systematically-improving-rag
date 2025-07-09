@@ -1,20 +1,13 @@
 ---
 title: "Text Chunking Strategies for RAG Applications"
+speaker: Anton
+cohort: 3
 description: "Technical session with Anton from ChromaDB on text chunking fundamentals, evaluation methods, and practical tips for improving retrieval performance"
-tags:
-  - text chunking
-  - ChromaDB
-  - retrieval performance
-  - semantic chunking
-  - heuristic chunking
-  - evaluation
-speakers: [Anton Troynikov]
-date: 2025
+tags: [text chunking, ChromaDB, retrieval performance, semantic chunking, heuristic chunking, evaluation]
+date: 2025-01-01
 ---
 
-# Text Chunking Strategies for RAG Applications [Anton Troynikov]
-
-Study Notes:
+# Text Chunking - Anton (ChromaDB)
 
 I hosted a special session with Anton from ChromaDB to discuss their latest technical research on text chunking for RAG applications. This session covers the fundamentals of chunking strategies, evaluation methods, and practical tips for improving retrieval performance in your AI systems.
 

@@ -1,26 +1,13 @@
 ---
 title: Document Ingestion and Parsing (Reducto)
-date: '2025-06-28'
+speaker: Adit
 cohort: 3
-week: 5
-session: 2
-type: Talk
-transcript: ../Reducto_Document_Ingestion.transcript.vtt
 description: A conversation with Adit, CEO of Reducto, covering challenges of document ingestion, parsing tables and forms, hybrid CV + VLM pipelines, and optimizing representations for reliable AI systems.
-topics:
-  - Document parsing challenges
-  - Table extraction
-  - Hybrid CV and VLM pipelines
-  - Evaluation frameworks
-  - Document representation formats
-  - Chunking strategies
-  - Retrieval optimization
-  - Excel processing
-  - Edge cases in production
-  - Agentic RAG for multi-source answers
+tags: [document parsing, ingestion, Reducto, computer vision, VLM]
+date: 2025-06-28
 ---
 
-# Document Ingestion and Parsing (Reducto)
+# Document Parsing - Adit (Reducto)
 
 Study Notes:
 

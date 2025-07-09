@@ -1,18 +1,13 @@
 ---
 title: "Lexical Search in RAG Applications"
+speaker: John Berryman
+cohort: 3
 description: "Guest lecture with John Berryman on traditional search techniques, their application in RAG systems, and how lexical search complements semantic search"
-tags:
-  - lexical search
-  - traditional search
-  - hybrid search
-  - information retrieval
-  - TF-IDF
-  - filtering
-speakers: [John Berryman]
-date: 2025
+tags: [lexical search, traditional search, hybrid search, information retrieval, TF-IDF, filtering]
+date: 2025-01-01
 ---
 
-# Lexical Search in RAG Applications [John Berryman]
+# Lexical Search - John Berryman
 
 Study Notes:
 

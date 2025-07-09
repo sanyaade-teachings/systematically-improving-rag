@@ -1,13 +1,13 @@
 ---
-title: Understanding Embedding Performance through Generative Evals
+title: Stop Trusting MTEB Rankings - Here's How Chroma Actually Tests Embeddings
 speaker: Kelly Hong
 cohort: 3
 description: A deep dive into generative benchmarking - creating custom evaluation sets from your own data to better assess embedding model performance.
 tags: [embeddings, evaluation, benchmarking, generative evals, Chroma]
-date: 2025
+date: 2025-01-01
 ---
 
-# Understanding Embedding Performance through Generative Evals [Kelly Hong]
+# Stop Trusting MTEB Rankings - Here's How Chroma Actually Tests Embeddings
 
 I hosted a session with Kelly Hong from Chroma, who presented her research on generative benchmarking for retrieval systems. She explained how to create custom evaluation sets from your own data to better test embedding models and retrieval pipelines, addressing the limitations of standard benchmarks like MTEB.
 
@@ -185,3 +185,9 @@ You can try generative benchmarking on your own data by using Chroma's open-sour
 **How does contextual chunk rewriting fit into retrieval evaluation?**
 
 Contextual chunk rewriting involves adding context to document chunks to improve retrieval. While it can be effective, especially for content like tables or technical information that lacks context, it's also expensive since it requires running an LLM on every chunk. A more efficient approach might be to only rewrite chunks that need additional context, which you can identify during the filtering process. The value of this approach can be quantified through your evaluation metrics.
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

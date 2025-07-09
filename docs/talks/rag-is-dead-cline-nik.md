@@ -1,13 +1,13 @@
 ---
-title: RAG is Dead - Long Live Agentic Code Exploration
-speaker: Nik Pash
+title: Why I Stopped Using RAG for Coding Agents (And You Should Too)
+speaker: Nik Pash, Cline
 cohort: 3
 description: Why leading coding agent companies are abandoning embedding-based RAG in favor of direct, agentic approaches to code exploration that mirror how senior engineers actually work.
 tags: [RAG, coding agents, embeddings, agentic exploration, code understanding]
 date: 2025-07-09
 ---
 
-# Autonomous Coding Agents w/ Nik Pash @ Cline
+# Why I Stopped Using RAG for Coding Agents (And You Should Too)
 
 I hosted a discussion with Nik Pash, head of AI at Cline, about his viral essay "Why I No Longer Recommend RAG for Autonomous Coding Agents." We explored why embedding-based retrieval systems are being abandoned by leading coding agent companies in favor of more direct, agentic approaches to code exploration.
 

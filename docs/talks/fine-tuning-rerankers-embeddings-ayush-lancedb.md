@@ -1,10 +1,13 @@
 ---
 title: Fine-tuning Re-rankers and Embedding Models for Better RAG Performance
+speaker: Ayush
+cohort: 3
 description: Practical approaches to enhancing retrieval quality through fine-tuning, re-ranking, and understanding trade-offs in RAG systems
-author: Ayush (ML Engineer at LanceDB)
+tags: [fine-tuning, re-rankers, embedding models, LanceDB, RAG performance]
+date: 2025-01-01
 ---
 
-# Fine-tuning Re-rankers and Embedding Models for Better RAG Performance
+# Fine-tuning Models - Ayush (LanceDB)
 
 I hosted a session with Ayush, an ML Engineer at LanceDB, to explore how fine-tuning re-rankers and embedding models can significantly improve retrieval performance in RAG systems. We discussed practical approaches to enhancing retrieval quality, the trade-offs involved, and when these techniques make the most business sense.
 
@@ -213,3 +216,8 @@ Start with a small experiment using a lightweight model that you can train quick
 
 **What's the future of retrieval improvement beyond re-ranking?**
 Multimodal retrieval is likely the next frontier. While much work has been done on text retrieval, there's still significant room for improvement in retrieving and ranking content across different modalities like images, audio, and video. Building better benchmarks and baselines for multimodal RAG systems represents an important area for future development.
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
