@@ -1,5 +1,12 @@
 # Talks and Presentations - AGENTS.md
 
+> **Project Setup Note:**
+> To install all dependencies and extras for building and working with this documentation, always use:
+> 
+> ```sh
+> uv sync --all-extras
+> ```
+
 ## Overview
 This directory contains industry talks and presentations from the Systematically Improving RAG Applications series. Each talk provides insights from experts at companies like ChromaDB, Zapier, Glean, Exa, and others, covering practical RAG implementation strategies and lessons learned.
 

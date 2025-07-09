@@ -33,3 +33,6 @@ When writing or editing documentation in the `docs/` directory, follow these sty
 - **Check links**: Verify all internal and external links are functional
 - **Consistent terminology**: Use the same terms throughout related documents
 - **Proper citations**: Reference sources and speakers appropriately
+
+## Project Setup
+- **Dependency installation**: Always use `uv sync --all-extras` to install all dependencies and extras for building and working with documentation.
