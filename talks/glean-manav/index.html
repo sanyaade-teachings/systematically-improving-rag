@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Guest lecture with Manav from Glean on enterprise search, custom embedding models, and optimizing RAG systems for company-specific data">
+        <meta name="description" content="How Glean achieves 20% search performance improvements through customer-specific embedding models, unified data architecture, and smart feedback loops that most enterprise AI companies are missing.">
       
       
       
@@ -24,7 +24,7 @@
     
     
       
-        <title>Enterprise Search and Fine-tuning Embedding Models with Glean - Systematically Improving RAG Applications</title>
+        <title>Why Glean Builds Custom Embedding Models for Every Customer - Systematically Improving RAG Applications</title>
       
     
     
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#enterprise-search-and-fine-tuning-embedding-models-with-glean" class="md-skip">
+        <a href="#why-glean-builds-custom-embedding-models-for-every-customer" class="md-skip">
           Skip to content
         </a>
       
@@ -140,7 +140,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Enterprise Search and Fine-tuning Embedding Models with Glean
+              Why Glean Builds Custom Embedding Models for Every Customer
             
           </span>
         </div>
@@ -1995,9 +1995,231 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-emphasis-on-company-specific-language-models-particularly-stood-out-to-me-this-is-an-area-where-ive-seen-many-companies-struggle-when-they-try-to-apply-generic-embedding-models-to-their-unique-terminology-and-document-structures-gleans-success-with-this-approach-suggests-that-more-companies-should-consider-fine-tuning-strategies-rather-than-relying-solely-on-off-the-shelf-embedding-models" class="md-nav__link">
+  <a href="#what-is-glean-and-why-does-their-approach-to-enterprise-search-matter" class="md-nav__link">
     <span class="md-ellipsis">
-      The emphasis on company-specific language models particularly stood out to me - this is an area where I've seen many companies struggle when they try to apply generic embedding models to their unique terminology and document structures. Glean's success with this approach suggests that more companies should consider fine-tuning strategies rather than relying solely on off-the-shelf embedding models.
+      What is Glean and why does their approach to enterprise search matter?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-makes-enterprise-data-uniquely-challenging" class="md-nav__link">
+    <span class="md-ellipsis">
+      What makes enterprise data uniquely challenging?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-fine-tune-embedding-models-for-each-customer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why fine-tune embedding models for each customer?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Why fine-tune embedding models for each customer?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gleans-custom-model-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glean's Custom Model Process:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-they-generate-high-quality-training-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do they generate high-quality training data?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How do they generate high-quality training data?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#training-data-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Training Data Sources:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-specific-intelligence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application-Specific Intelligence
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-they-learn-from-user-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do they learn from user feedback?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How do they learn from user feedback?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#search-product-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Search Product Feedback:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rag-assistant-feedback-more-challenging" class="md-nav__link">
+    <span class="md-ellipsis">
+      RAG Assistant Feedback (More Challenging):
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-they-evaluate-embedding-model-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do they evaluate embedding model quality?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How do they evaluate embedding model quality?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gleans-unit-test-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glean's "Unit Test" Approach
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-role-does-traditional-search-play-alongside-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      What role does traditional search play alongside embeddings?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What role does traditional search play alongside embeddings?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-60-70-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      The 60-70% Rule
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-they-handle-document-relevance-over-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do they handle document relevance over time?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How do they handle document relevance over time?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authoritativeness-factors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authoritativeness Factors:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-world-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-World Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-thoughts-on-building-enterprise-search-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Final thoughts on building enterprise search systems
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Final thoughts on building enterprise search systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Principles:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-pragmatic-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Pragmatic Approach
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-you-want-to-get-discounts-and-6-day-email-source-on-the-topic-make-sure-to-subscribe-to" class="md-nav__link">
+    <span class="md-ellipsis">
+      If you want to get discounts and 6 day email source on the topic make sure to subscribe to
     </span>
   </a>
   
@@ -2338,9 +2560,231 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-emphasis-on-company-specific-language-models-particularly-stood-out-to-me-this-is-an-area-where-ive-seen-many-companies-struggle-when-they-try-to-apply-generic-embedding-models-to-their-unique-terminology-and-document-structures-gleans-success-with-this-approach-suggests-that-more-companies-should-consider-fine-tuning-strategies-rather-than-relying-solely-on-off-the-shelf-embedding-models" class="md-nav__link">
+  <a href="#what-is-glean-and-why-does-their-approach-to-enterprise-search-matter" class="md-nav__link">
     <span class="md-ellipsis">
-      The emphasis on company-specific language models particularly stood out to me - this is an area where I've seen many companies struggle when they try to apply generic embedding models to their unique terminology and document structures. Glean's success with this approach suggests that more companies should consider fine-tuning strategies rather than relying solely on off-the-shelf embedding models.
+      What is Glean and why does their approach to enterprise search matter?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-makes-enterprise-data-uniquely-challenging" class="md-nav__link">
+    <span class="md-ellipsis">
+      What makes enterprise data uniquely challenging?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-fine-tune-embedding-models-for-each-customer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why fine-tune embedding models for each customer?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Why fine-tune embedding models for each customer?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gleans-custom-model-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glean's Custom Model Process:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-they-generate-high-quality-training-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do they generate high-quality training data?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How do they generate high-quality training data?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#training-data-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Training Data Sources:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-specific-intelligence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application-Specific Intelligence
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-they-learn-from-user-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do they learn from user feedback?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How do they learn from user feedback?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#search-product-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Search Product Feedback:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rag-assistant-feedback-more-challenging" class="md-nav__link">
+    <span class="md-ellipsis">
+      RAG Assistant Feedback (More Challenging):
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-they-evaluate-embedding-model-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do they evaluate embedding model quality?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How do they evaluate embedding model quality?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gleans-unit-test-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glean's "Unit Test" Approach
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-role-does-traditional-search-play-alongside-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      What role does traditional search play alongside embeddings?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What role does traditional search play alongside embeddings?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-60-70-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      The 60-70% Rule
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-they-handle-document-relevance-over-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do they handle document relevance over time?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How do they handle document relevance over time?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authoritativeness-factors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authoritativeness Factors:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-world-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-World Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-thoughts-on-building-enterprise-search-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Final thoughts on building enterprise search systems
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Final thoughts on building enterprise search systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Principles:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-pragmatic-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Pragmatic Approach
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-you-want-to-get-discounts-and-6-day-email-source-on-the-topic-make-sure-to-subscribe-to" class="md-nav__link">
+    <span class="md-ellipsis">
+      If you want to get discounts and 6 day email source on the topic make sure to subscribe to
     </span>
   </a>
   
@@ -2362,92 +2806,126 @@
 
 
 
-<h1 id="enterprise-search-and-fine-tuning-embedding-models-with-glean">Enterprise Search and Fine-tuning Embedding Models with Glean</h1>
-<p>Study Notes</p>
-<p>I recently hosted Manav from Glean for an insightful guest lecture in my "Systematically Improving RAG Applications" course. This session focused on enterprise search and fine-tuning embedding models - a surprisingly underutilized approach that can dramatically improve RAG system performance. Here's what we learned about Glean's approach to optimizing AI and enterprise search through custom embedding models.</p>
-<p>What is Glean and why does their approach to enterprise search matter?
-Glean has built a comprehensive Work AI platform that unifies enterprise data across various applications (Google Drive, GitHub, Jira, Confluence) into a single system. Their flagship product, the Glean Assistant, leverages this unified data model to generate relevant answers to user questions and automate workflows.</p>
-<p>The foundation of their system is their semantic search capability, which Manav emphasized is absolutely critical for enterprise AI success. As he put it, "Search quality matters - you can't have a good RAG system, you can't have a good overall enterprise AI product unless you have good search." This makes intuitive sense - without retrieving the right context from your enterprise data, even the best LLMs will produce hallucinations and incorrect information.</p>
-<p>What makes enterprise data uniquely challenging?
-Unlike internet data, which has a significant "head problem" where most searches target popular websites or common information sources, enterprise data is far more heterogeneous and doesn't fit neatly into a single mold. Manav explained:</p>
+<h1 id="why-glean-builds-custom-embedding-models-for-every-customer">Why Glean Builds Custom Embedding Models for Every Customer</h1>
+<p>I hosted Manav from Glean for a guest lecture on enterprise search and fine-tuning embedding models. This session revealed a surprisingly underutilized approach that can dramatically improve RAG system performance - building custom embedding models for each customer rather than using generic solutions.</p>
+<h2 id="what-is-glean-and-why-does-their-approach-to-enterprise-search-matter">What is Glean and why does their approach to enterprise search matter?</h2>
+<p>Glean has built a comprehensive Work AI platform that unifies enterprise data across various applications (Google Drive, GitHub, Jira, Confluence) into a single system. Their flagship product, the Glean Assistant, leverages this unified data model to generate relevant answers to user questions and automate workflows.</p>
+<p>The foundation of their system is semantic search capability, which Manav emphasized is absolutely critical for enterprise AI success:</p>
+<blockquote>
+<p>"Search quality matters - you can't have a good RAG system, you can't have a good overall enterprise AI product unless you have good search."</p>
+</blockquote>
+<p>This makes intuitive sense - without retrieving the right context from your enterprise data, even the best LLMs will produce hallucinations and incorrect information.</p>
+<p><strong>Key Takeaway:</strong> Search quality is the foundation of enterprise AI success. Without effective retrieval from enterprise data, even the most advanced LLMs will generate hallucinations and provide incorrect information.</p>
+<h2 id="what-makes-enterprise-data-uniquely-challenging">What makes enterprise data uniquely challenging?</h2>
+<p>Unlike internet data, which has a significant "head problem" where most searches target popular websites or common information sources, enterprise data is far more heterogeneous and doesn't fit neatly into a single mold. Manav explained:</p>
+<blockquote>
 <p>"Enterprise data is very different than internet data... You have your basic document data sources like Google Drive, Google Docs, Confluence, Notion... But you're also working with a bunch of different types of applications, like Slack, which is a messaging platform. You have meetings, which doesn't really meet the standard concept of what a document is. You have GitHub and GitLab... They all behave in slightly different ways."</p>
+</blockquote>
 <p>This diversity requires a robust, generalized unified data model that can handle the nuances of different data types while maintaining security and privacy. Additionally, company-specific language (project names, initiatives, internal terminology) creates another layer of complexity that generic models struggle with.</p>
-<p>Key Takeaway: Enterprise search is fundamentally different from web search because of data heterogeneity and company-specific language. A unified data model that can handle diverse data types while preserving security is essential for effective enterprise AI.</p>
-<p>Why fine-tune embedding models for each customer?
-One of the most fascinating aspects of Glean's approach is that they build custom embedding models for each customer. While many companies focus on using large, general-purpose embedding models, Glean has found that smaller, fine-tuned models often perform better for specific enterprise contexts.</p>
-<p>Manav explained their process:</p>
+<p><strong>Key Takeaway:</strong> Enterprise search is fundamentally different from web search because of data heterogeneity and company-specific language. A unified data model that can handle diverse data types while preserving security is essential for effective enterprise AI.</p>
+<h2 id="why-fine-tune-embedding-models-for-each-customer">Why fine-tune embedding models for each customer?</h2>
+<p>One of the most fascinating aspects of Glean's approach is that they build custom embedding models for each customer. While many companies focus on using large, general-purpose embedding models, Glean has found that smaller, fine-tuned models often perform better for specific enterprise contexts.</p>
+<h3 id="gleans-custom-model-process">Glean's Custom Model Process:</h3>
 <ol>
-<li>Start with a high-performance base model (typically BERT-based)</li>
-<li>Perform continued pre-training on company data using masked language modeling</li>
-<li>Convert the language model into an embedding model through various training techniques</li>
-<li>Continuously update the model as the company evolves</li>
+<li><strong>Start with a high-performance base model</strong> (typically BERT-based)</li>
+<li><strong>Perform continued pre-training</strong> on company data using masked language modeling</li>
+<li><strong>Convert the language model</strong> into an embedding model through various training techniques</li>
+<li><strong>Continuously update the model</strong> as the company evolves</li>
 </ol>
-<p>The results are impressive - after six months, they typically see a 20% improvement in search performance just from learning from user feedback and adapting to company changes.</p>
-<p>I found it particularly interesting that they prioritize smaller models when appropriate: "When you're thinking about building really performant enterprise AI... you want to also think about using smaller embedding models when you can, because small embedding models when fine-tuned to the domain and the specific task you have in hand can give you a lot better performance compared to just using large LLMs."</p>
-<p>How do they generate high-quality training data?
-Creating effective training data for fine-tuning embedding models is challenging, especially with enterprise privacy constraints. Glean uses several creative approaches:</p>
-<ol>
-<li>Title-body pairs: Mapping document titles to passages from the document body</li>
-<li>Anchor data: Using documents that reference other documents to create relevance pairs</li>
-<li>Co-access data: Identifying documents accessed together by users in short time periods</li>
-<li>Public datasets: Incorporating high-quality public datasets like MS MARCO</li>
-</ol>
-<p>They also leverage synthetic data generation using LLMs to create question-answer pairs for documents, which is particularly valuable for smaller corpuses with limited user activity.</p>
-<p>What I found most impressive was their attention to application-specific nuances. For example, with Slack data, they don't just treat each message as a document. Instead, they create "conversation documents" from threads or messages within a short timespan, then use the first message as a title and the rest as the body. This understanding of how different applications work leads to much higher quality training data.</p>
-<p>Key Takeaway: Generating high-quality training data requires understanding the nuances of different enterprise applications. Creative approaches like title-body pairs, anchor data, co-access signals, and synthetic data generation can provide valuable training signals even with privacy constraints.</p>
-<p>How do they learn from user feedback?
-Once users start interacting with their products, Glean incorporates those signals to further improve their models:</p>
-<p>For their search product, they use query-click pairs as direct signals of relevance.</p>
-<p>For RAG-only settings (like their Assistant product), where users don't explicitly click on documents, they face a more challenging problem. They implement various approaches:</p>
+<p>The results are impressive - after six months, they typically see a <strong>20% improvement in search performance</strong> just from learning from user feedback and adapting to company changes.</p>
+<p>Manav emphasized the power of smaller, specialized models:</p>
+<blockquote>
+<p>"When you're thinking about building really performant enterprise AI... you want to also think about using smaller embedding models when you can, because small embedding models when fine-tuned to the domain and the specific task you have in hand can give you a lot better performance compared to just using large LLMs."</p>
+</blockquote>
+<p><strong>Key Takeaway:</strong> Smaller, fine-tuned embedding models often outperform large general-purpose models for enterprise contexts. Glean achieves 20% search performance improvements through continuous model adaptation to company-specific language and user feedback.</p>
+<h2 id="how-do-they-generate-high-quality-training-data">How do they generate high-quality training data?</h2>
+<p>Creating effective training data for fine-tuning embedding models is challenging, especially with enterprise privacy constraints. Glean uses several creative approaches:</p>
+<h3 id="training-data-sources">Training Data Sources:</h3>
 <ul>
-<li>Upvote/downvote systems (though these tend to get sparse usage)</li>
-<li>Tracking when users click on citations to read more about a topic</li>
-<li>Monitoring various interaction patterns to infer relevance</li>
+<li><strong>Title-body pairs:</strong> Mapping document titles to passages from the document body</li>
+<li><strong>Anchor data:</strong> Using documents that reference other documents to create relevance pairs</li>
+<li><strong>Co-access data:</strong> Identifying documents accessed together by users in short time periods</li>
+<li><strong>Public datasets:</strong> Incorporating high-quality public datasets like MS MARCO</li>
+<li><strong>Synthetic data:</strong> Using LLMs to create question-answer pairs for documents</li>
 </ul>
-<p>I've encountered similar challenges in my consulting work - getting explicit feedback signals for generative AI products is notoriously difficult. Manav's candid acknowledgment that "this is like a pretty hard open question" resonated with me. Their approach of combining multiple weak signals seems pragmatic.</p>
-<p>How do they evaluate embedding model quality?
-Evaluating embedding models in enterprise settings is particularly challenging because:</p>
-<ol>
-<li>You can't access customer data directly due to privacy concerns</li>
-<li>Each customer has a unique model</li>
-<li>End-to-end RAG evaluation involves many moving parts</li>
-</ol>
+<h3 id="application-specific-intelligence">Application-Specific Intelligence</h3>
+<p>What's most impressive is their attention to application-specific nuances. For example, with Slack data, they don't just treat each message as a document. Instead, they create "conversation documents" from threads or messages within a short timespan, then use the first message as a title and the rest as the body.</p>
+<p>This understanding of how different applications work leads to much higher quality training data than generic approaches.</p>
+<p><strong>Key Takeaway:</strong> Generating high-quality training data requires understanding the nuances of different enterprise applications. Creative approaches like title-body pairs, anchor data, co-access signals, and synthetic data generation can provide valuable training signals even with privacy constraints.</p>
+<h2 id="how-do-they-learn-from-user-feedback">How do they learn from user feedback?</h2>
+<p>Once users start interacting with their products, Glean incorporates those signals to further improve their models:</p>
+<h3 id="search-product-feedback">Search Product Feedback:</h3>
+<ul>
+<li><strong>Query-click pairs:</strong> Direct signals of relevance from user interactions</li>
+</ul>
+<h3 id="rag-assistant-feedback-more-challenging">RAG Assistant Feedback (More Challenging):</h3>
+<p>For RAG-only settings like their Assistant product, where users don't explicitly click on documents, they face a more challenging problem:</p>
+<ul>
+<li><strong>Upvote/downvote systems</strong> (though these tend to get sparse usage)</li>
+<li><strong>Citation tracking</strong> when users click on citations to read more about a topic</li>
+<li><strong>Interaction pattern monitoring</strong> to infer relevance from various user behaviors</li>
+</ul>
+<p>Manav candidly acknowledged the difficulty:</p>
+<blockquote>
+<p>"This is like a pretty hard open question"</p>
+</blockquote>
+<p>Their approach of combining multiple weak signals seems pragmatic given the inherent challenge of getting explicit feedback signals for generative AI products.</p>
+<p><strong>Key Takeaway:</strong> Learning from user feedback in RAG systems is challenging, especially for generative interfaces. Combining multiple weak signals (upvotes, citation clicks, interaction patterns) provides a more robust approach than relying on any single feedback mechanism.</p>
+<h2 id="how-do-they-evaluate-embedding-model-quality">How do they evaluate embedding model quality?</h2>
+<p>Evaluating embedding models in enterprise settings is particularly challenging because:</p>
+<ul>
+<li><strong>Privacy constraints:</strong> You can't access customer data directly</li>
+<li><strong>Unique models:</strong> Each customer has a different model</li>
+<li><strong>Complex systems:</strong> End-to-end RAG evaluation involves many moving parts</li>
+</ul>
+<h3 id="gleans-unit-test-approach">Glean's "Unit Test" Approach</h3>
 <p>Glean's solution is to build "unit tests" for their models - targeted evaluations for specific behaviors they want their models to exhibit. For example, they test how well models understand paraphrases of the same query.</p>
-<p>This approach allows them to:</p>
-<ul>
-<li>Set performance targets for each customer's model</li>
-<li>Identify underperforming models before customers experience issues</li>
-<li>Focus optimization efforts on specific areas</li>
-</ul>
-<p>I particularly liked Manav's emphasis on isolating and improving individual components: "If you want to really make good tangible progress day by day, isolating and optimizing individual components is always going to be much more scalable than trying to improve everything all together all at once."</p>
-<p>What role does traditional search play alongside embeddings?
-Despite all the focus on embedding models, Manav emphasized that traditional search techniques remain crucial:</p>
+<p>This approach allows them to:
+- <strong>Set performance targets</strong> for each customer's model
+- <strong>Identify underperforming models</strong> before customers experience issues
+- <strong>Focus optimization efforts</strong> on specific areas</p>
+<p>Manav emphasized the importance of component-level optimization:</p>
+<blockquote>
+<p>"If you want to really make good tangible progress day by day, isolating and optimizing individual components is always going to be much more scalable than trying to improve everything all together all at once."</p>
+</blockquote>
+<p><strong>Key Takeaway:</strong> Evaluating embedding models in enterprise settings requires targeted "unit tests" that isolate specific behaviors. This component-level approach enables scalable optimization and prevents customer-facing issues.</p>
+<h2 id="what-role-does-traditional-search-play-alongside-embeddings">What role does traditional search play alongside embeddings?</h2>
+<p>Despite all the focus on embedding models, Manav emphasized that traditional search techniques remain crucial:</p>
+<blockquote>
 <p>"You don't want to over-index on semanticness or LLM-based scoring as the only thing that your search system should use... you can get a lot more bang for your buck by not using any semanticness at all to answer most questions."</p>
-<p>He estimated that for 60-70% of enterprise search queries, basic lexical search with recency signals works perfectly well. Semantic search becomes more important for complex queries, particularly in agent-based systems.</p>
-<p>This aligns with my experience - I often tell clients that getting 80% of the way there with full-text search and then adding semantic search as the cherry on top is a practical approach.</p>
-<p>Key Takeaway: Don't abandon traditional search techniques in pursuit of embedding-based approaches. A hybrid system that leverages both lexical and semantic search, along with signals like recency and authority, will deliver the best results for enterprise search.</p>
-<p>How do they handle document relevance over time?
-One interesting question addressed how Glean handles outdated documents that have been superseded by newer information. Their approach centers around a concept they call "authoritativeness," which incorporates:</p>
-<ol>
-<li>Recency: Newer documents are generally more relevant</li>
-<li>Reference patterns: Documents that continue to be linked to or accessed remain authoritative</li>
-<li>User satisfaction signals: Documents that consistently satisfy user queries maintain relevance</li>
-</ol>
-<p>For example, a document containing WiFi password information might be old but still highly relevant if people continue to reference it when answering related questions.</p>
-<p>This multi-faceted approach to document authority seems more sophisticated than simply prioritizing recent content, which would miss important evergreen documents.</p>
-<p>Final thoughts on building enterprise search systems
-Manav concluded with several key insights that resonated with me:</p>
-<ol>
-<li>A unified data model is critical for handling heterogeneous enterprise data</li>
-<li>Company-specific language matters tremendously for search quality</li>
-<li>Fine-tuned smaller models often outperform generic large models for specific tasks</li>
-<li>Learning from user feedback, though challenging, provides invaluable signals</li>
-<li>Evaluating models through targeted "unit tests" enables scalable quality assessment</li>
-<li>Traditional search techniques remain powerful and shouldn't be discarded</li>
-</ol>
-<p>As someone who's helped many early-stage companies build RAG systems, I found Glean's approach refreshingly pragmatic. They've clearly learned that the path to high-quality enterprise search isn't just about using the latest, largest models, but about understanding the unique characteristics of enterprise data and building systems that address those specific challenges.</p>
-<h2 id="the-emphasis-on-company-specific-language-models-particularly-stood-out-to-me-this-is-an-area-where-ive-seen-many-companies-struggle-when-they-try-to-apply-generic-embedding-models-to-their-unique-terminology-and-document-structures-gleans-success-with-this-approach-suggests-that-more-companies-should-consider-fine-tuning-strategies-rather-than-relying-solely-on-off-the-shelf-embedding-models">The emphasis on company-specific language models particularly stood out to me - this is an area where I've seen many companies struggle when they try to apply generic embedding models to their unique terminology and document structures. Glean's success with this approach suggests that more companies should consider fine-tuning strategies rather than relying solely on off-the-shelf embedding models.</h2>
-<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
+</blockquote>
+<h3 id="the-60-70-rule">The 60-70% Rule</h3>
+<p>Manav estimated that for <strong>60-70% of enterprise search queries</strong>, basic lexical search with recency signals works perfectly well. Semantic search becomes more important for complex queries, particularly in agent-based systems.</p>
+<p>This aligns with practical experience - getting 80% of the way there with full-text search and then adding semantic search as the cherry on top is often the most effective approach.</p>
+<p><strong>Key Takeaway:</strong> Don't abandon traditional search techniques in pursuit of embedding-based approaches. A hybrid system that leverages both lexical and semantic search, along with signals like recency and authority, will deliver the best results for enterprise search.</p>
+<h2 id="how-do-they-handle-document-relevance-over-time">How do they handle document relevance over time?</h2>
+<p>One interesting question addressed how Glean handles outdated documents that have been superseded by newer information. Their approach centers around a concept they call "authoritativeness," which incorporates:</p>
+<h3 id="authoritativeness-factors">Authoritativeness Factors:</h3>
+<ul>
+<li><strong>Recency:</strong> Newer documents are generally more relevant</li>
+<li><strong>Reference patterns:</strong> Documents that continue to be linked to or accessed remain authoritative</li>
+<li><strong>User satisfaction signals:</strong> Documents that consistently satisfy user queries maintain relevance</li>
+</ul>
+<h3 id="real-world-example">Real-World Example</h3>
+<p>A document containing WiFi password information might be old but still highly relevant if people continue to reference it when answering related questions.</p>
+<p>This multi-faceted approach to document authority is more sophisticated than simply prioritizing recent content, which would miss important evergreen documents.</p>
+<p><strong>Key Takeaway:</strong> Document relevance over time requires a multi-faceted "authoritativeness" approach that balances recency with reference patterns and user satisfaction signals, rather than simply prioritizing the newest content.</p>
+<h2 id="final-thoughts-on-building-enterprise-search-systems">Final thoughts on building enterprise search systems</h2>
+<p>Manav concluded with several key insights for building effective enterprise search systems:</p>
+<h3 id="core-principles">Core Principles:</h3>
+<ul>
+<li><strong>Unified data model</strong> is critical for handling heterogeneous enterprise data</li>
+<li><strong>Company-specific language</strong> matters tremendously for search quality</li>
+<li><strong>Fine-tuned smaller models</strong> often outperform generic large models for specific tasks</li>
+<li><strong>User feedback learning</strong>, though challenging, provides invaluable signals</li>
+<li><strong>Targeted "unit tests"</strong> enable scalable model quality assessment</li>
+<li><strong>Traditional search techniques</strong> remain powerful and shouldn't be discarded</li>
+</ul>
+<h3 id="the-pragmatic-approach">The Pragmatic Approach</h3>
+<p>Glean's approach is refreshingly pragmatic. They've learned that the path to high-quality enterprise search isn't just about using the latest, largest models, but about understanding the unique characteristics of enterprise data and building systems that address those specific challenges.</p>
+<p>The emphasis on company-specific language models is particularly noteworthy - this is an area where many companies struggle when they try to apply generic embedding models to their unique terminology and document structures.</p>
+<p><strong>Key Takeaway:</strong> Successful enterprise search requires a pragmatic approach that combines custom embedding models, unified data architecture, hybrid search techniques, and continuous learning from user feedback rather than relying solely on off-the-shelf solutions.</p>
+<h2 id="if-you-want-to-get-discounts-and-6-day-email-source-on-the-topic-make-sure-to-subscribe-to">If you want to get discounts and 6 day email source on the topic make sure to subscribe to</h2>
 <script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 

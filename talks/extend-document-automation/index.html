@@ -6,17 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Guest lecture with Anton Troynikov from ChromaDB on organizing data for retrieval systems, query routing strategies, and optimizing vector search performance">
+        <meta name="description" content="Insights from Eli Badgio, CTO of Extend, on mapping document workflows, building task-specific evaluations, and implementing partial automation with human-in-the-loop approaches for 95%+ extraction accuracy.">
       
       
       
-        <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/talks/query-routing-anton/">
+        <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/talks/extend-document-automation/">
       
       
-        <link rel="prev" href="../john-lexical-search/">
-      
-      
-        <link rel="next" href="../chromadb-anton-chunking/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +20,7 @@
     
     
       
-        <title>Data Organization and Query Routing for RAG Systems - Systematically Improving RAG Applications</title>
+        <title>How Extend Achieves 95%+ Document Automation (Lessons from Eli Badgio) - Systematically Improving RAG Applications</title>
       
     
     
@@ -86,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#query-routing-anton-chromadb" class="md-skip">
+        <a href="#how-extend-achieves-95-document-automation-lessons-from-eli-badgio" class="md-skip">
           Skip to content
         </a>
       
@@ -140,7 +136,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Data Organization and Query Routing for RAG Systems
+              How Extend Achieves 95%+ Document Automation (Lessons from Eli Badgio)
             
           </span>
         </div>
@@ -281,12 +277,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../" class="md-tabs__link">
           
   
@@ -1665,8 +1659,6 @@
       
   
   
-    
-  
   
   
     
@@ -1710,19 +1702,18 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -1739,13 +1730,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Talks
@@ -1988,32 +1979,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Query Routing - Anton (ChromaDB)
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../query-routing-anton/" class="md-nav__link">
         
   
   
@@ -2024,35 +1993,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#key-takeaway-data-organization-for-rag-systems-requires-thinking-beyond-traditional-search-paradigms-by-carefully-considering-user-access-patterns-data-source-characteristics-and-query-requirements-you-can-design-a-system-that-delivers-better-results-while-maintaining-security-and-performance" class="md-nav__link">
-    <span class="md-ellipsis">
-      Key Takeaway: Data organization for RAG systems requires thinking beyond traditional search paradigms. By carefully considering user access patterns, data source characteristics, and query requirements, you can design a system that delivers better results while maintaining security and performance.
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2338,9 +2278,90 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#key-takeaway-data-organization-for-rag-systems-requires-thinking-beyond-traditional-search-paradigms-by-carefully-considering-user-access-patterns-data-source-characteristics-and-query-requirements-you-can-design-a-system-that-delivers-better-results-while-maintaining-security-and-performance" class="md-nav__link">
+  <a href="#what-are-the-key-challenges-in-document-automation" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Takeaway: Data organization for RAG systems requires thinking beyond traditional search paradigms. By carefully considering user access patterns, data source characteristics, and query requirements, you can design a system that delivers better results while maintaining security and performance.
+      What are the key challenges in document automation?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-companies-approach-understanding-their-document-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should companies approach understanding their document data?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-are-task-specific-evaluations-critical-for-document-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why are task-specific evaluations critical for document automation?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-companies-think-about-partial-automation-versus-full-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should companies think about partial automation versus full automation?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-companies-redesign-processes-around-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should companies redesign processes around automation?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-companies-balance-cost-speed-and-accuracy-in-document-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should companies balance cost, speed, and accuracy in document processing?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-role-should-domain-experts-play-in-document-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      What role should domain experts play in document automation?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-companies-approach-change-management-for-document-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should companies approach change management for document automation?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-thoughts-on-document-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Final thoughts on document automation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      FAQs
     </span>
   </a>
   
@@ -2362,111 +2383,157 @@
 
 
 
-<h1 id="query-routing-anton-chromadb">Query Routing - Anton (ChromaDB)</h1>
-<p>Study Notes:</p>
-<p>I recently hosted a session featuring Anton Troynikov from ChromaDB who shared critical insights about organizing data for retrieval systems. This often-overlooked aspect of RAG implementation can significantly impact retrieval accuracy and overall system performance. Here's a breakdown of the key concepts and best practices for structuring your data to optimize query routing.</p>
-<p><strong>Why is data organization so critical for RAG systems?</strong>
-Anton emphasized that before doing anything else with your retrieval system, you need to look at two critical elements: your data and your queries. This fundamental step is often skipped, leading to suboptimal performance.</p>
-<p>"You need to look at your data. You need to look at what exactly is going into your vector database or your database. You need to actually see what's in there before you do literally anything else," Anton explained.</p>
-<p>Beyond just examining your data, you should also analyze what your users are actually trying to access. There's often a misalignment between the data you've stored and what users are attempting to retrieve, which can lead to unexpected results.</p>
-<p>This initial examination forms the foundation for how you'll organize your data for effective retrieval. Without this understanding, you're essentially building on unstable ground.</p>
-<p><strong><em>Key Takeaway:</em></strong> Always examine both your data and user queries before setting up your retrieval pipeline. This fundamental step will inform your data organization strategy and significantly impact your system's performance.</p>
-<p><strong>What factors should you consider when organizing data for retrieval?</strong>
-When organizing data for retrieval, Anton highlighted three main considerations: user access patterns, data source characteristics, and query scope.</p>
-<p>For user access patterns, ask yourself:</p>
-<ul>
-<li>Do users have access to their own data or shared data?</li>
-<li>Is access limited by team, role, or other factors?</li>
-<li>Does access change over time (adding/removing users, changing permissions)?</li>
-</ul>
-<p>For data sources, consider:</p>
-<ul>
-<li>Are you dealing with different types of data (financial reports, scientific papers, etc.)?</li>
-<li>Is your data multimodal (text, images, audio)?</li>
-<li>How frequently is each data source updated?</li>
-<li>Do all users have access to all data sources?</li>
-</ul>
-<p>For query scope, think about:</p>
-<ul>
-<li>Do queries need to be filtered by date range, keywords, or other metadata?</li>
-<li>Are queries uniform across users, or do different users query the same data differently?</li>
-</ul>
-<p>Understanding these factors will help you determine the most effective way to organize your data for retrieval. This isn't about finding a one-size-fits-all solution, but rather developing a conceptual framework for making informed decisions.</p>
-<p>The "big pile of records" approach and its limitations
-Anton described what he calls the "big pile of records" approach - using one giant index for all data in your application. This is the default assumption for many vector database vendors, primarily because they were originally built as large-scale search indexes rather than application databases.</p>
-<p>"This is what most vendors try to push you into doing," Anton noted. "It's not strictly illegal. You're probably not going to get arrested for doing this yet."</p>
-<p>However, this approach has several significant drawbacks:</p>
-<ol>
-<li>Security and compliance issues: User data is commingled with no logical separation except through filters, which may not provide the same guarantees as proper access controls.</li>
-<li>Reduced recall: This is a technical but crucial point. When you filter a large index, you're more likely to miss relevant results due to how vector search works under the hood.</li>
-</ol>
-<p>Anton explained: "The way that vector search works under the hood for most implementations today is you have your vectors stored as a graph data structure, and you have a compute budget for how many edges of that graph you're going to traverse."</p>
-<p>When filtering, you're essentially wasting part of your compute budget on irrelevant nodes, which reduces your ability to find all relevant results. The more specific your filter (like filtering to just one user out of many), the worse this problem becomes.</p>
-<ol>
-<li>Performance issues: Writing to an already giant index is more expensive than writing to smaller, dedicated indexes.</li>
-<li>Commingled data types: Different types of data (like code vs. documentation) may require different embedding models for optimal performance, but a single index forces you to use a general embedding model.</li>
-</ol>
-<p><strong><em>Key Takeaway:</em></strong> The "big pile of records" approach is simple but comes with significant drawbacks in security, performance, and recall. It's suitable for simple use cases like searching Wikipedia, but problematic for complex applications with multiple users and data sources.</p>
-<p>The denormalized approach: One index per user per data source
-As an alternative to the "big pile" approach, Anton proposed what he calls the "fully denormalized" approach: creating one index per user per data source.</p>
-<p>While this sounds complicated and potentially expensive, it offers several significant advantages:</p>
-<ol>
-<li>Complete separation of user data, eliminating commingling concerns</li>
-<li>Improved recall because you're no longer filtering indexes</li>
-<li>Independent indexing, allowing data sources to be updated individually</li>
-<li>More efficient reads, as you're working with smaller indexes</li>
-</ol>
-<p>"It basically overcomes all the problems that I discussed so far," Anton explained.</p>
-<p>The main challenges with this approach include:</p>
-<ul>
-<li>Managing more indexes (though Anton noted that ChromaDB was designed to make this efficient)</li>
-<li>Determining where to route queries</li>
-<li>Handling duplicate updates and deletes</li>
-</ul>
-<p>For mapping users to indexes, Anton suggested simple solutions like keeping a relational table of which data source goes to which user. This approach also moves access control out of the vector database itself, which may not have robust controls for compliance.</p>
-<p><strong><em>Key Takeaway:</em></strong> The denormalized approach of one index per user per data source offers better security, performance, and recall than the "big pile" approach, though it requires more sophisticated management of indexes and query routing.</p>
-<p><strong>How do you route queries to the right data sources?</strong>
-With multiple indexes, routing queries becomes a critical challenge. Anton outlined two main approaches:</p>
-<ol>
-<li>Full multiplexing: Send the query to all applicable data sources and combine the results. This raises the question of how many results to return from each source. With longer context windows and lower per-token costs, you could simply send all results to the model and let it figure out what's relevant.</li>
-</ol>
-<p>Re-ranking models can be particularly effective here: "I think re-ranking models are actually underrated, mostly because people try to use them in the one giant index context instead of using them as an augmentation to query routing."</p>
-<ol>
-<li>LLM routing: Have an LLM determine which sources are relevant for a given query. This works by telling the model which sources are available and having it decide where to route the query.</li>
-</ol>
-<p>"This is a classification task that they're really good at," Anton noted. You don't need the latest and greatest model for this - even smaller, faster models can handle this type of classification effectively.</p>
-<p>When using an LLM as a judge for routing, Anton emphasized the importance of calibration: "Go back and look at your data, go and see what the LLM is actually really doing and see what you as a human would do."</p>
-<p><strong><em>Key Takeaway:</em></strong> Query routing can be handled through full multiplexing (sending queries to all relevant sources) or LLM routing (having a model decide which sources are relevant). Both approaches have merit, with re-ranking models being particularly valuable for combining results from multiple sources.</p>
-<p><strong>Why does filtering reduce recall in vector search?</strong>
-One of the most technical but important points Anton made was explaining why filtering reduces recall in vector search. This isn't immediately obvious to many practitioners.</p>
-<p>Vector search at scale uses approximate nearest neighbor (ANN) search rather than exact matching. As Anton explained:</p>
-<p>"In order to make vector search efficient, we cannot use exact matching. Beyond a certain scale, it becomes infeasible to store all of your vectors in memory, and then to perform a nearest neighbor computation against all of those vectors."</p>
-<p>Instead, vectors are stored in graph data structures that allow for logarithmic lookup times. This is a fundamental trade-off: "We trade recall for speed, and we trade recall for space."</p>
-<p>When filtering is applied in this context, there are two approaches:</p>
-<ol>
-<li>Pre-filtering: Traversing the graph and only considering nodes that match the filter. If your filter has low selectivity (matches a small percentage of data), most nodes you encounter won't contribute relevant results, wasting your compute budget.</li>
-<li>Post-filtering: Grabbing many more results than needed (say 1,000 instead of 10) and then filtering that list. This reduces recall even further.</li>
-</ol>
-<p>Anton provided a geometric intuition: "Imagine you have red and green points in space, and you're looking for green points. If there's roughly 50-50 red and green points and you draw a circle around them, you're going to have a good chance of getting the number of green points that you're looking for. However, if there are 10 times more red points than green points, and you're selecting 100 points, you're only going to get one-tenth of all the ones that you're looking for."</p>
-<p><strong><em>Key Takeaway:</em></strong> Filtering in vector search inherently reduces recall due to the approximate nature of vector search algorithms. The more specific your filter, the worse this problem becomes, which is why organizing data into separate indexes can significantly improve performance.</p>
-<p><strong>Should you fine-tune embedding models for specific indexes?</strong>
-On the topic of fine-tuning embedding models, Anton was enthusiastic: "It's cheap, and you should do it."</p>
-<p>He noted that many people get intimidated by fine-tuning because it seems like "big brain AI PhD land," but the reality is that "the hardest part of fine-tuning is creating a dataset and then benchmarking the results."</p>
-<p>With separate indexes for different users or data sources, fine-tuning becomes even more powerful. Anton gave the example of an engineering firm with a parts catalog: "The people who are creating the products have a different use for the data in that parts catalog to what the sales people have. So it's the same data, but two groups of users are accessing it completely differently."</p>
-<p>Using techniques like embedding adapters, you can fine-tune for different user groups without even needing to re-embed your data, making it a very cost-effective approach.</p>
-<p><strong><em>Key Takeaway:</em></strong> Fine-tuning embedding models for specific indexes or user groups is more accessible than many realize and can significantly improve retrieval performance. With separate indexes, this becomes even more practical and powerful.</p>
-<p><strong>How should you handle dynamic metadata filtering?</strong>
-For implementing dynamic metadata filtering, Anton shared examples from financial research and legal domains:</p>
-<p>In financial research, you might filter documents based on stock tickers. If a user asks about Uber, it's more effective to either filter against the Uber ticker or have a dedicated index for Uber-related documents.</p>
-<p>In the legal domain, you might have different collections for court decisions, briefs, and evidence. When a user asks about a specific court's determination on a particular case, you can route the query specifically to the court decisions index rather than searching across all legal documents.</p>
-<p>The key is understanding the natural categories in your domain and creating either separate indexes or robust metadata filtering based on those categories.</p>
-<p><strong><em>Key Takeaway:</em></strong> Dynamic metadata filtering should be based on natural categories in your domain and user query patterns. This can be implemented through dedicated indexes or metadata filters, with the choice depending on your specific requirements for recall, performance, and security.</p>
-<p><strong>Final thoughts on data organization for RAG</strong>
-Anton emphasized that many of the best practices for organizing data in retrieval systems are still evolving. The field of AI application development is relatively young, and many current approaches still carry conceptual baggage from traditional search technologies.</p>
-<p>"A lot of what we do in retrieval still has this conceptual overhang from when these were primarily search technologies," Anton noted. The difference is that search indexes rarely remove data, while application databases need to accurately represent a constantly changing world.</p>
-<p>As we continue to develop best practices for RAG and retrieval systems, we need to carefully consider which concepts from search technology apply to retrieval and which need to be reconsidered.</p>
-<p>The key message throughout Anton's presentation was that data organization isn't just a technical implementation detail - it's a fundamental design decision that impacts security, performance, and most importantly, the quality of results your system can deliver.</p>
-<h2 id="key-takeaway-data-organization-for-rag-systems-requires-thinking-beyond-traditional-search-paradigms-by-carefully-considering-user-access-patterns-data-source-characteristics-and-query-requirements-you-can-design-a-system-that-delivers-better-results-while-maintaining-security-and-performance"><strong><em>Key Takeaway:</em></strong> Data organization for RAG systems requires thinking beyond traditional search paradigms. By carefully considering user access patterns, data source characteristics, and query requirements, you can design a system that delivers better results while maintaining security and performance.</h2>
+<h1 id="how-extend-achieves-95-document-automation-lessons-from-eli-badgio">How Extend Achieves 95%+ Document Automation (Lessons from Eli Badgio)</h1>
+<p>I hosted a special session with Eli Badgio, CTO of Extend, to discuss AI-native document processing in the cloud. Extend helps companies achieve 95%+ extraction accuracy for customers like Brex and other Fortune 500s. This session covered mapping document workflows, building task-specific evaluations, and implementing partial automation with human-in-the-loop approaches.</p>
+<h2 id="what-are-the-key-challenges-in-document-automation">What are the key challenges in document automation?</h2>
+<p>Document processing is an incredibly broad field, from ingestion (RAG context for agents, data mining) to back-office processing (where documents are systems of record) to in-product experiences (traditional OCR).</p>
+<p>The most common failure case is companies trying to "one-shot" automation—attempting to replace an entire manual process with AI in a single step. This almost never works, even when extraction accuracy seems high in initial tests.</p>
+<blockquote>
+<p>"In practice, it will never work, even if the use case is not that complex and the accuracy on the extraction is going to be close to perfect. It's extraordinarily difficult to just swap out a manual process for an automated process." — Eli Badgio</p>
+</blockquote>
+<p>This one-shot approach sets unrealistic expectations for business stakeholders and product teams. Instead, successful document automation requires a more methodical, step-by-step approach.</p>
+<p><strong>Key Takeaway:</strong> Don't try to replace entire document workflows in one go. Start with partial automation and gradually expand as you build confidence in the system and gain stakeholder buy-in.</p>
+<h2 id="how-should-companies-approach-understanding-their-document-data">How should companies approach understanding their document data?</h2>
+<p>The first critical step is developing a deep understanding of both your documents and the existing manual processes around them. In most companies, there's an enormous amount of tacit knowledge hidden in people's heads—whether in engineering, operations, or domain experts.</p>
+<p>One client Extend worked with took a fascinating approach to this challenge. They were trying to automate software contract ingestion but initially struggled with accuracy issues. Their solution was four-fold:
+- Implemented a human-in-the-loop flow where AI-processed documents were still routed to humans for verification, allowing them to collect robust production data
+- Brought in domain experts from within the company who had previously done this work manually
+- Created a series of extractors that characterized normalized attributes (supplier, layout type, pricing terminology) rather than trying to extract actionable data
+- Ran this workflow on approximately 150,000-200,000 documents (nearly a million pages) to develop an accurate representation of their historical data</p>
+<p>This approach allowed them to identify blind spots in their understanding—problematic suppliers, pricing terms that weren't being extracted correctly, and document types they weren't properly accounting for.</p>
+<blockquote>
+<p>"Take some kind of initial first pass that is entirely focused on understanding the data, not actually trying to get the data out." — Eli Badgio</p>
+</blockquote>
+<p><strong>Key Takeaway:</strong> Invest time in understanding your documents and existing processes before attempting automation. Consider running a data characterization phase where you classify document attributes to identify patterns and edge cases.</p>
+<h2 id="why-are-task-specific-evaluations-critical-for-document-automation">Why are task-specific evaluations critical for document automation?</h2>
+<p>Generic benchmarks like "Gemini Flash is better than GPT-X" aren't particularly useful for document automation. What matters is how well a system performs on your specific documents and use cases.</p>
+<p>A healthcare vertical AI team Extend worked with discovered this when automating EHR entry of referral orders. They were dealing with 100+ page scanned PDFs containing multiple referrals mixed with patient history and provider notes.</p>
+<p>Their solution was to have their AI engineers collaborate directly with in-house nurses and medical technicians to build comprehensive, fine-grained evaluation sets across a variety of document examples. The domain experts helped optimize schemas and extraction rules to properly interpret medical jargon.</p>
+<p>This approach created a competitive advantage—proprietary evaluation data that allowed them to quickly test new models and capabilities against their specific needs. They maintained this advantage by continuing to review a percentage of documents to understand how real-world production data changes over time.</p>
+<blockquote>
+<p>"You really need to invest the evals at every step of a flow when you're trying to automate an end-to-end document process." — Eli Badgio</p>
+</blockquote>
+<p><strong>Key Takeaway:</strong> Create detailed, domain-specific evaluation sets with help from subject matter experts. These evaluations should test each step of your pipeline and reflect the real-world complexity of your documents.</p>
+<h2 id="how-should-companies-think-about-partial-automation-versus-full-automation">How should companies think about partial automation versus full automation?</h2>
+<p>Rather than aiming for 100% automation from the start, successful companies focus on what Eli called "true automation rate"—how high of an accuracy can you get where the end-to-end pipeline works 100% of the time, and inaccuracies are caught 100% of the time?</p>
+<p>A dental billing automation company took this approach when processing explanation of benefits (EOB) documents. They implemented:
+- A multi-step process that segmented the problem, limiting what each module needed to handle
+- Configuration workflows for different providers with known edge cases
+- Data validations and guardrails that could declaratively identify when a document needed human review</p>
+<p>This approach recognized that 85% true automation (where you know with certainty which 15% need human review) is more valuable than 98% accuracy where you can't identify the problematic 2%.</p>
+<blockquote>
+<p>"In most cases, for these critical systems of records ingestion use cases, that's strictly worse than if you can get to like 85% true automation rate, where the 15% of the time that's not going to properly handle the document, you can catch that declaratively." — Eli Badgio</p>
+</blockquote>
+<p><strong>Key Takeaway:</strong> Focus on "automate when possible, augment otherwise" rather than full automation. Design systems that can confidently identify which documents need human review rather than trying to automate everything.</p>
+<h2 id="how-should-companies-redesign-processes-around-automation">How should companies redesign processes around automation?</h2>
+<p>Rather than trying to replicate existing manual processes with automation, successful implementations rethink the entire workflow with automation in mind.</p>
+<p>This might involve:
+- Breaking document processing into multiple pipeline steps (parsing, classification, splitting, extraction, semantic chunking)
+- Creating declarative validation rules to identify when automation might fail
+- Designing human-in-the-loop workflows that efficiently handle exceptions</p>
+<p>When working with clients, Extend often starts by asking them to walk through their current process end-to-end. This helps identify opportunities to redesign workflows rather than simply automating existing inefficient processes.</p>
+<blockquote>
+<p>"It can be very difficult to just full swap out something that's been done over many years among many different stakeholders and just make that automated as opposed to really understanding as an engineer what is the end-to-end process." — Eli Badgio</p>
+</blockquote>
+<p><strong>Key Takeaway:</strong> Don't try to replicate manual processes with automation. Instead, redesign workflows from first principles with automation in mind, focusing on validation and exception handling.</p>
+<h2 id="how-should-companies-balance-cost-speed-and-accuracy-in-document-processing">How should companies balance cost, speed, and accuracy in document processing?</h2>
+<p>Document processing involves multiple trade-offs between cost, speed, and accuracy. For back-office workflows, accuracy should generally take priority over speed.</p>
+<p>Eli recommended several approaches to manage these trade-offs:
+- Use model distillation to create smaller, faster models for specific tasks like chunking
+- Implement pre-filtering steps with lightweight classifiers to avoid running expensive operations on all documents
+- For back-office flows, design processes that remove latency as a consideration</p>
+<blockquote>
+<p>"If it's a back-office flow, I would encourage everyone not to think about latency as a problem. In fact, you should think about designing a process where you can effectively remove latency as being a consideration." — Eli Badgio</p>
+</blockquote>
+<p>He also noted that deterministic code-based approaches are often preferable to LLM-based solutions for certain extraction tasks:</p>
+<blockquote>
+<p>"If you can solve it with code... you should do the code-based approach because then you can actually guarantee it's going to behave how you want." — Eli Badgio</p>
+</blockquote>
+<p><strong>Key Takeaway:</strong> For back-office document processing, prioritize accuracy over speed. Use lightweight models for initial classification and filtering, and consider deterministic code-based approaches where possible to reduce uncertainty.</p>
+<h2 id="what-role-should-domain-experts-play-in-document-automation">What role should domain experts play in document automation?</h2>
+<p>One of the most overlooked aspects of document automation is the critical role of domain experts. These are the people who understand the tacit knowledge embedded in documents and processes—nurses who know how to interpret medical terminology, financial analysts who understand billing codes, or operations staff who have been processing these documents manually.</p>
+<p>Eli emphasized that involving these experts early in the process creates a significant competitive advantage:</p>
+<blockquote>
+<p>"If you're an engineer and you're tasked with this kind of problem... and you don't feel like you actually understand this process, someone on your team has to. If you're doing this currently and you're in industry, someone understands this." — Eli Badgio</p>
+</blockquote>
+<p>The most successful implementations Extend has seen involve close collaboration between AI engineers and domain experts to:
+- Design appropriate schemas and extraction rules
+- Create comprehensive evaluation datasets
+- Develop validation rules to identify edge cases
+- Interpret domain-specific terminology and formats</p>
+<p><strong>Key Takeaway:</strong> Involve domain experts early in your document automation projects. Their tacit knowledge is essential for understanding document semantics, designing appropriate schemas, and creating effective evaluation datasets.</p>
+<h2 id="how-should-companies-approach-change-management-for-document-automation">How should companies approach change management for document automation?</h2>
+<p>Implementing document automation requires careful change management. Eli recommends starting with augmentation rather than full automation:</p>
+<blockquote>
+<p>"Most companies are much more willing to roll something out and deal with the change management if you focus on augmentation at start and then turn augmentation into automation." — Eli Badgio</p>
+</blockquote>
+<p>When working with clients, Extend often leads with building a human-in-the-loop system first, allowing companies to:
+- Collect real-world data about their documents
+- Build confidence in the system gradually
+- Identify edge cases and failure modes
+- Manage stakeholder expectations</p>
+<p>This approach aligns with their mantra: "Automate when possible, augment otherwise."</p>
+<p><strong>Key Takeaway:</strong> Start with augmentation rather than full automation to ease change management. Build human-in-the-loop systems that gradually increase automation levels as confidence grows.</p>
+<h2 id="final-thoughts-on-document-automation">Final thoughts on document automation</h2>
+<p>Document automation is a complex field that requires deep understanding of both technical capabilities and domain-specific knowledge. The most successful implementations I've seen follow these principles:
+- Understand your data and existing manual processes thoroughly
+- Invest early in tailored evaluations specific to your domain
+- Break processing into multiple pipeline steps
+- Don't aim for 100% automation initially
+- Redesign processes around automation rather than trying to replicate manual workflows</p>
+<p>As AI capabilities continue to advance, the companies that will benefit most are those that take a thoughtful, systematic approach to document automation rather than rushing to replace human processes overnight.</p>
+<hr />
+<h2 id="faqs">FAQs</h2>
+<p><strong>What is document automation and why is it important?</strong></p>
+<p>Document automation uses AI to process and extract information from documents, reducing manual effort and errors. This is particularly crucial for enterprises where manual document workflows consume significant resources. For example, a single building construction project can require processing a million documents. Effective document automation can achieve 95%+ extraction accuracy, streamlining operations across industries from finance to healthcare.</p>
+<p><strong>What are the main types of document processing use cases?</strong></p>
+<p>There are three broad categories of document processing:
+- Ingestion: Including RAG context for agents and data mining
+- Back office processing: When documents serve as systems of record (contracts, deeds, etc.)
+- In-product experiences: Traditional OCR use cases like uploading an invoice to extract data</p>
+<p>The most challenging and often overlooked category is back office processing, where documents serve as critical systems of record with zero tolerance for errors.</p>
+<p><strong>What's the most common mistake when implementing document automation?</strong></p>
+<p>The most common failure is attempting to "one-shot" the automation—trying to replace an entire manual process with automation in a single step. This approach almost never works, even for relatively simple use cases. It sets unrealistic expectations and doesn't account for the complex change management required when transitioning from manual to automated processes.</p>
+<p><strong>How should I approach understanding my document data?</strong></p>
+<p>Take time to thoroughly understand both your documents and the existing manual processes around them. Many companies have enormous amounts of tacit knowledge hidden in people's heads—whether in engineering, operations, or domain experts. This knowledge is critical for successful automation.</p>
+<p>One effective approach is to implement a human-in-the-loop flow where AI-processed documents are still routed to humans for review. This helps collect robust production data separate from your evaluation sets. Also consider creating extractors that characterize normalized attributes of your documents (supplier types, layout patterns, terminology variations) to help cluster and understand your document landscape.</p>
+<p><strong>Why are tailored evaluations so important for document automation?</strong></p>
+<p>Generic benchmarks don't translate well to specific document automation tasks. You need evaluations tailored to your domain, data, and processes. Invest early in creating comprehensive, fine-grained evaluation sets across a variety of document examples.</p>
+<p>The best approach is to involve domain experts (like nurses for healthcare documents or billing specialists for financial documents) to help build robust evaluation sets and optimize extraction schemas. This creates a competitive advantage as you can quickly test and confidently roll out improvements when new models become available.</p>
+<p><strong>Should I aim for 100% automation from the start?</strong></p>
+<p>No. It's much more effective to start with partial automation and gradually increase automation rates. Focus on what's called the "true automation rate"—not just accuracy on extracted data, but how often the end-to-end pipeline works perfectly and you can catch errors 100% of the time.</p>
+<p>For example, a system with 85% true automation rate where you can reliably identify the 15% that needs human review is far better than a system with 98% accuracy but no way to identify which 2% contains errors.</p>
+<p><strong>How should I think about redesigning processes for automation?</strong></p>
+<p>Rather than trying to create a one-to-one replacement of an existing manual process, rethink the process from scratch with automation in mind. This might involve:
+- Breaking complex workflows into multiple steps
+- Creating deterministic routing based on document classifications
+- Implementing validation checks and guardrails
+- Designing human review processes for edge cases</p>
+<p>When possible, design the process around asynchronous processing rather than optimizing for latency, especially for back-office workflows where accuracy is more important than speed.</p>
+<p><strong>How can I reduce costs for document processing?</strong></p>
+<p>Several strategies can help manage costs:
+- Use model distillation to create smaller, faster models for specific tasks
+- Implement lightweight classifiers as an initial step to route documents appropriately
+- Use pre-filtering to only apply expensive processing (like semantic chunking) to documents that require it
+- Break processing into multiple steps with specialized models for each task</p>
+<p>For back-office workflows, prioritize accuracy over latency and design processes that accommodate asynchronous processing.</p>
+<p><strong>How should I involve domain experts in document automation?</strong></p>
+<p>Domain experts are crucial for successful document automation. Involve them in:
+- Tailoring classifications and schema design to match industry jargon
+- Building comprehensive evaluation sets
+- Optimizing extraction rules to properly interpret domain-specific terminology
+- Designing validation checks based on their knowledge of the data</p>
+<p>Teams that effectively incorporate domain experts gain a significant competitive advantage in document automation.</p>
+<p><strong>What's the best way to start automating a document workflow?</strong></p>
+<p>Start by identifying a single, high-priority use case rather than attempting to automate multiple workflows simultaneously. Focus on understanding the data and existing process thoroughly before designing automation.</p>
+<p>Consider these steps:
+- Implement a human-in-the-loop flow to collect production data
+- Involve domain experts to understand tacit knowledge
+- Create robust evaluation sets for each step in the process
+- Start with augmentation before moving to automation
+- Design the process around automation rather than trying to replicate the manual process</p>
+<p>This approach delivers business value faster while building organizational comfort with automation.</p>
+<hr />
 <p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
 <script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
@@ -2504,44 +2571,6 @@ Anton emphasized that many of the best practices for organizing data in retrieva
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../john-lexical-search/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lexical Search - John Berryman">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Lexical Search - John Berryman
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../chromadb-anton-chunking/" class="md-footer__link md-footer__link--next" aria-label="Next: Text Chunking - Anton (ChromaDB)">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                Text Chunking - Anton (ChromaDB)
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">

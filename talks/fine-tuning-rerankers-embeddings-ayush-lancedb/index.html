@@ -9,8 +9,6 @@
         <meta name="description" content="Practical approaches to enhancing retrieval quality through fine-tuning, re-ranking, and understanding trade-offs in RAG systems">
       
       
-        <meta name="author" content="Ayush (ML Engineer at LanceDB)">
-      
       
         <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/talks/fine-tuning-rerankers-embeddings-ayush-lancedb/">
       
@@ -26,7 +24,7 @@
     
     
       
-        <title>Fine-tuning Re-rankers and Embedding Models for Better RAG Performance - Systematically Improving RAG Applications</title>
+        <title>The 12% RAG Performance Boost You're Missing (LanceDB's Re-ranking Secrets) - Systematically Improving RAG Applications</title>
       
     
     
@@ -88,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fine-tuning-re-rankers-and-embedding-models-for-better-rag-performance" class="md-skip">
+        <a href="#the-12-rag-performance-boost-youre-missing-lancedbs-re-ranking-secrets" class="md-skip">
           Skip to content
         </a>
       
@@ -142,7 +140,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Fine-tuning Re-rankers and Embedding Models for Better RAG Performance
+              The 12% RAG Performance Boost You're Missing (LanceDB's Re-ranking Secrets)
             
           </span>
         </div>
@@ -2598,7 +2596,7 @@
 
 
 
-<h1 id="fine-tuning-re-rankers-and-embedding-models-for-better-rag-performance">Fine-tuning Re-rankers and Embedding Models for Better RAG Performance</h1>
+<h1 id="the-12-rag-performance-boost-youre-missing-lancedbs-re-ranking-secrets">The 12% RAG Performance Boost You're Missing (LanceDB's Re-ranking Secrets)</h1>
 <p>I hosted a session with Ayush, an ML Engineer at LanceDB, to explore how fine-tuning re-rankers and embedding models can significantly improve retrieval performance in RAG systems. We discussed practical approaches to enhancing retrieval quality, the trade-offs involved, and when these techniques make the most business sense.</p>
 <h2 id="what-are-re-rankers-and-why-should-we-use-them-in-rag-systems">What are re-rankers and why should we use them in RAG systems?</h2>
 <p>Re-rankers fit into the RAG pipeline after retrieval and before the context is provided to the LLM. When you retrieve documents from a vector database, the embedding model gets these documents based on semantic search. Re-rankers then rearrange them so that the most relevant documents to the query rank at the top.</p>
@@ -2731,6 +2729,9 @@ Be cautious with synthetic data generation. While it might seem like a solution 
 Start with a small experiment using a lightweight model that you can train quickly (like MiniLM). If you see improvements with this simple approach, it's a strong signal that investing in more sophisticated re-ranking will yield even better results. This allows you to validate the approach before committing significant resources.</p>
 <p><strong>What's the future of retrieval improvement beyond re-ranking?</strong>
 Multimodal retrieval is likely the next frontier. While much work has been done on text retrieval, there's still significant room for improvement in retrieving and ranking content across different modalities like images, audio, and video. Building better benchmarks and baselines for multimodal RAG systems represents an important area for future development.</p>
+<hr />
+<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 
 

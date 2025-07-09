@@ -2294,6 +2294,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#title-format-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      Title Format Standards
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Title Format Standards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#title-pattern-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Title Pattern Examples:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#title-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Title Principles:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#content-standards" class="md-nav__link">
     <span class="md-ellipsis">
       Content Standards
@@ -2315,6 +2348,15 @@
   <a href="#writing-style" class="md-nav__link">
     <span class="md-ellipsis">
       Writing Style
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formatting-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formatting Standards
     </span>
   </a>
   
@@ -2350,30 +2392,49 @@
 <p>This directory contains industry talks and presentations from the Systematically Improving RAG Applications series. Each talk provides insights from experts at companies like ChromaDB, Zapier, Glean, Exa, and others, covering practical RAG implementation strategies and lessons learned.</p>
 <h2 id="file-structure">File Structure</h2>
 <ul>
-<li><strong>Industry expert talks</strong>: 15 markdown files covering specific RAG topics</li>
+<li><strong>Industry expert talks</strong>: 15+ markdown files covering specific RAG topics</li>
 <li><strong>Organized by chapter</strong>: Talks align with workshop chapters (evaluation, training, UX, etc.)</li>
-<li><strong>Consistent format</strong>: YAML frontmatter with title, description, tags, speakers, and date</li>
+<li><strong>Consistent format</strong>: YAML frontmatter with catchy titles, descriptions, tags, speakers, and dates</li>
 <li><strong>Study notes format</strong>: Key takeaways and technical insights highlighted</li>
+</ul>
+<h2 id="title-format-standards">Title Format Standards</h2>
+<p>All talk titles follow a <strong>catchy, conversational format</strong> designed to grab attention and communicate value:</p>
+<h3 id="title-pattern-examples">Title Pattern Examples:</h3>
+<ul>
+<li><strong>"Why I Stopped Using RAG for Coding Agents (And You Should Too)"</strong> - Personal story + actionable advice</li>
+<li><strong>"The RAG Mistakes That Are Killing Your AI (Lessons from Google &amp; LinkedIn)"</strong> - Problem identification + company credibility</li>
+<li><strong>"Stop Trusting MTEB Rankings - Here's How Chroma Actually Tests Embeddings"</strong> - Contrarian take + insider knowledge</li>
+<li><strong>"The 12% RAG Performance Boost You're Missing (LanceDB's Re-ranking Secrets)"</strong> - Specific benefit + insider secrets</li>
+</ul>
+<h3 id="title-principles">Title Principles:</h3>
+<ul>
+<li><strong>Conversational tone</strong>: Use "I", "You", "Why", "How" to make it personal</li>
+<li><strong>Specific benefits</strong>: Include numbers, percentages, or concrete outcomes when possible</li>
+<li><strong>Company attribution</strong>: Reference the company/organization for credibility</li>
+<li><strong>Controversial hooks</strong>: Challenge conventional wisdom or common practices</li>
+<li><strong>Actionable implications</strong>: Suggest there's something readers should do differently</li>
 </ul>
 <h2 id="content-standards">Content Standards</h2>
 <ul>
-<li><strong>YAML frontmatter</strong>: title, description, tags, speakers, date</li>
-<li><strong>Study notes structure</strong>: Technical insights with <code>***Key Takeaway:***</code> summaries</li>
+<li><strong>YAML frontmatter</strong>: catchy title, speaker with company, description, tags, date</li>
+<li><strong>H1 title</strong>: Matches the YAML title exactly for consistency</li>
+<li><strong>Study notes structure</strong>: Technical insights with <code>**Key Takeaway:**</code> summaries</li>
 <li><strong>Question-answer format</strong>: Practical insights organized by topic</li>
 <li><strong>Code examples</strong>: Where applicable, include implementation details</li>
 <li><strong>Performance metrics</strong>: Specific numbers and improvements mentioned</li>
 </ul>
 <h2 id="key-topics-covered">Key Topics Covered</h2>
 <ul>
-<li><strong>Text chunking strategies</strong> (ChromaDB - Anton)</li>
-<li><strong>Feedback systems</strong> (Zapier - Vitor)</li>
-<li><strong>Embedding performance</strong> (Kelly Hong)</li>
-<li><strong>Enterprise search</strong> (Glean - Manav)</li>
-<li><strong>Query routing</strong> (Anton)</li>
-<li><strong>RAG anti-patterns</strong> (Skylar Payne)</li>
-<li><strong>Semantic search</strong> (Exa - Will Bryk)</li>
-<li><strong>Online evaluations</strong> (Ben &amp; Sidhant)</li>
-<li><strong>Browser-based RAG</strong> (Michael Struwig)</li>
+<li><strong>"Why I Stopped Using RAG for Coding Agents (And You Should Too)"</strong> - Nik Pash (Cline)</li>
+<li><strong>"The RAG Mistakes That Are Killing Your AI (Lessons from Google &amp; LinkedIn)"</strong> - Skylar Payne</li>
+<li><strong>"Stop Trusting MTEB Rankings - Here's How Chroma Actually Tests Embeddings"</strong> - Kelly Hong (Chroma)</li>
+<li><strong>"Why Glean Builds Custom Embedding Models for Every Customer"</strong> - Manav (Glean)</li>
+<li><strong>"Why Google Search Sucks for AI (And How Exa Is Building Something Better)"</strong> - Will Bryk (Exa)</li>
+<li><strong>"Why Your AI Is Failing in Production (Lessons from Raindrop &amp; Oleve)"</strong> - Ben &amp; Sidhant</li>
+<li><strong>"How OpenBB Ditched APIs and Put RAG in the Browser Instead"</strong> - Michael (OpenBB)</li>
+<li><strong>"Why Grep Beat Embeddings in Our SWE-Bench Agent (Lessons from Augment)"</strong> - Colin Flaherty</li>
+<li><strong>"Why Most Document Parsing Sucks (And How Reducto Fixed It)"</strong> - Adit (Reducto)</li>
+<li><strong>"The 12% RAG Performance Boost You're Missing (LanceDB's Re-ranking Secrets)"</strong> - Ayush (LanceDB)</li>
 </ul>
 <h2 id="writing-style">Writing Style</h2>
 <ul>
@@ -2382,9 +2443,22 @@
 <li><strong>Actionable insights</strong> over theoretical concepts</li>
 <li><strong>Surprising discoveries</strong> and counter-intuitive findings highlighted</li>
 <li><strong>Specific metrics</strong> and performance improvements noted</li>
+<li><strong>Conversational tone</strong> that matches the catchy titles</li>
+</ul>
+<h2 id="formatting-standards">Formatting Standards</h2>
+<ul>
+<li><strong>Consistent H1 titles</strong>: Match YAML frontmatter exactly</li>
+<li><strong>Proper markdown structure</strong>: Use ## for main sections, ### for subsections</li>
+<li><strong>Bold key takeaways</strong>: <code>**Key Takeaway:**</code> format for main insights</li>
+<li><strong>Blockquotes for quotes</strong>: Use <code>&gt;</code> for speaker quotes</li>
+<li><strong>Bullet points</strong>: Use <code>-</code> for lists with <strong>bold</strong> labels</li>
+<li><strong>Company attribution</strong>: Always include company names in titles and content</li>
 </ul>
 <h2 id="tags-and-organization">Tags and Organization</h2>
-<p>Common tags include: text chunking, evaluation, feedback systems, embedding models, query routing, performance optimization, user experience, production monitoring</p>
+<p>Common tags include: RAG, coding agents, embeddings, evaluation, feedback systems, enterprise search, query routing, performance optimization, user experience, production monitoring, document parsing, fine-tuning, re-ranking</p>
+<hr />
+<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 
 

@@ -24,7 +24,7 @@
     
     
       
-        <title>Understanding Embedding Performance through Generative Evals - Systematically Improving RAG Applications</title>
+        <title>Stop Trusting MTEB Rankings - Here's How Chroma Actually Tests Embeddings - Systematically Improving RAG Applications</title>
       
     
     
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#understanding-embedding-performance-through-generative-evals-kelly-hong" class="md-skip">
+        <a href="#stop-trusting-mteb-rankings-heres-how-chroma-actually-tests-embeddings" class="md-skip">
           Skip to content
         </a>
       
@@ -140,7 +140,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Understanding Embedding Performance through Generative Evals
+              Stop Trusting MTEB Rankings - Here's How Chroma Actually Tests Embeddings
             
           </span>
         </div>
@@ -2304,7 +2304,7 @@
 
 
 
-<h1 id="understanding-embedding-performance-through-generative-evals-kelly-hong">Understanding Embedding Performance through Generative Evals [Kelly Hong]</h1>
+<h1 id="stop-trusting-mteb-rankings-heres-how-chroma-actually-tests-embeddings">Stop Trusting MTEB Rankings - Here's How Chroma Actually Tests Embeddings</h1>
 <p>I hosted a session with Kelly Hong from Chroma, who presented her research on generative benchmarking for retrieval systems. She explained how to create custom evaluation sets from your own data to better test embedding models and retrieval pipelines, addressing the limitations of standard benchmarks like MTEB.</p>
 <p><strong>Why public benchmarks like MTEB don't reflect real-world performance</strong></p>
 <p>When evaluating embedding models for retrieval applications, many teams rely on public benchmarks like MTEB (Massive Text Embedding Benchmark). While convenient for comparing models, these benchmarks have significant limitations:</p>
@@ -2425,6 +2425,9 @@
 <p>You can try generative benchmarking on your own data by using Chroma's open-source tools. The full technical report is available at research.trychroma.com, and you can run the process with just a few lines of code. Chroma Cloud is also available if you want to use their hosted vector database solution.</p>
 <p><strong>How does contextual chunk rewriting fit into retrieval evaluation?</strong></p>
 <p>Contextual chunk rewriting involves adding context to document chunks to improve retrieval. While it can be effective, especially for content like tables or technical information that lacks context, it's also expensive since it requires running an LLM on every chunk. A more efficient approach might be to only rewrite chunks that need additional context, which you can identify during the filtering process. The value of this approach can be quantified through your evaluation metrics.</p>
+<hr />
+<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 
 
