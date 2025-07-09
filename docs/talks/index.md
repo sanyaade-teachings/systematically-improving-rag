@@ -53,8 +53,15 @@ Why the "big pile of records" approach reduces recall due to approximate nearest
 
 Building specialized capabilities for different content types and use cases.
 
+#### Coding Agents
+
+**[Autonomous Coding Agents w/ Nik Pash @ Cline](rag-is-dead-cline-nik.md)** - Nik Pash (Cline)  
+Why leading coding agent companies are abandoning embedding-based RAG in favor of direct code exploration. Surprising insight: even massive enterprise codebases work better with agentic exploration than vector search. Key finding: "narrative integrity" - agents need coherent thought processes, not disconnected code snippets from similarity search.
+
 **[Agentic RAG](colin-rag-agents.md)** - Colin Flaherty  
 Surprising findings from top SWE-Bench performance: simple tools like grep and find outperformed sophisticated embedding models due to agent persistence and course-correction capabilities. Key recommendation: expose existing retrieval systems as tools to agents rather than replacing them.
+
+#### Document Processing and Multi-Modal
 
 **[Better RAG Through Better Data](reducto-docs-adit.md)** - Adit (Reducto)  
 Hybrid computer vision + VLM pipelines outperform pure approaches for document parsing. Critical finding: even 1-2 degree document skews can dramatically impact extraction quality. Essential insight: invest heavily in domain-specific evaluation rather than generic benchmarks.
@@ -62,12 +69,18 @@ Hybrid computer vision + VLM pipelines outperform pure approaches for document p
 **[Encoder Stacking and Multi-Modal Retrieval](superlinked-encoder-stacking.md)** - Daniel (Superlinked)  
 LLMs as "pilots that see the world as strings" fundamentally can't understand numerical relationships. Solution: mixture of specialized encoders for different data types (text, numerical, location, graph) rather than forcing everything through text embeddings. This approach eliminates over-reliance on re-ranking.
 
+#### Search Technologies
+
 **[Lexical Search in RAG Applications](john-lexical-search.md)** - John Berryman  
 Why semantic search struggles with exact matching, product IDs, and specialized terminology. Lexical search provides efficient simultaneous filtering and rich metadata that helps LLMs make better decisions. Recommended approach: use lexical search for filtering, semantic search for understanding meaning.
 
 ### Chapter 6: Advanced Topics and Innovation
 
 Cutting-edge approaches and innovative techniques.
+
+**[RAG is Dead - Long Live Agentic Code Exploration](rag-is-dead-cline-nik.md)** - Nik Pash (Cline)  
+
+Why leading coding agent companies are abandoning embedding-based RAG in favor of direct code exploration. Surprising insight: even massive enterprise codebases work better with agentic exploration than vector search. Key finding: "narrative integrity" - agents need coherent thought processes, not disconnected code snippets from similarity search.
 
 **[Semantic Search Over the Web with Exa](semantic-search-exa-will-bryk.md)** - Will Bryk (Exa)  
 Why AI systems need fundamentally different search engines than humans. Vision for "perfect search" includes test-time compute where complex queries may take hours or days. Prediction: search market will fragment into specialized providers rather than one-size-fits-all solutions.
