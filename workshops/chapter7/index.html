@@ -6,32 +6,28 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Fine-tuning citation accuracy, temporal reasoning, and specialized tool portfolios for RAG systems">
+        <meta name="description" content="Essential guidance for deploying and maintaining RAG systems in production environments">
       
       
       
-        <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/office-hours/cohort3/week-5-1/">
+        <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/workshops/chapter7/">
       
       
-        <link rel="prev" href="../../cohort2/week5-summary/">
       
       
-        <link rel="next" href="../week-5-2/">
-      
-      
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
     
     
       
-        <title>Week 5 - Office Hour 1 - Systematically Improving RAG Applications</title>
+        <title>Production Considerations - Systematically Improving RAG Applications</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,9 +46,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -88,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#week-5-office-hour-1-june-17" class="md-skip">
+        <a href="#production-considerations-from-prototype-to-scale" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +118,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Systematically Improving RAG Applications" class="md-header__button md-logo" aria-label="Systematically Improving RAG Applications" data-md-component="logo">
+    <a href="../.." title="Systematically Improving RAG Applications" class="md-header__button md-logo" aria-label="Systematically Improving RAG Applications" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -142,7 +138,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Week 5 - Office Hour 1
+              Production Considerations
             
           </span>
         </div>
@@ -248,7 +244,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -269,7 +265,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../workshops/" class="md-tabs__link">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -287,13 +283,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../office-hours/" class="md-tabs__link">
           
   
   
@@ -315,7 +309,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../talks/" class="md-tabs__link">
+        <a href="../../talks/" class="md-tabs__link">
           
   
   
@@ -337,7 +331,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../misc/learning-goals/" class="md-tabs__link">
+        <a href="../../misc/learning-goals/" class="md-tabs__link">
           
   
   
@@ -373,7 +367,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Systematically Improving RAG Applications" class="md-nav__button md-logo" aria-label="Systematically Improving RAG Applications" data-md-component="logo">
+    <a href="../.." title="Systematically Improving RAG Applications" class="md-nav__button md-logo" aria-label="Systematically Improving RAG Applications" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -391,7 +385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -452,7 +446,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../workshops/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -487,7 +481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter0/" class="md-nav__link">
+      <a href="../chapter0/" class="md-nav__link">
         
   
   
@@ -559,7 +553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter1/" class="md-nav__link">
+      <a href="../chapter1/" class="md-nav__link">
         
   
   
@@ -639,7 +633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter2/" class="md-nav__link">
+      <a href="../chapter2/" class="md-nav__link">
         
   
   
@@ -723,7 +717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter3-1/" class="md-nav__link">
+      <a href="../chapter3-1/" class="md-nav__link">
         
   
   
@@ -746,7 +740,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter3-2/" class="md-nav__link">
+      <a href="../chapter3-2/" class="md-nav__link">
         
   
   
@@ -769,7 +763,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter3-3/" class="md-nav__link">
+      <a href="../chapter3-3/" class="md-nav__link">
         
   
   
@@ -851,7 +845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter4-1/" class="md-nav__link">
+      <a href="../chapter4-1/" class="md-nav__link">
         
   
   
@@ -874,7 +868,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter4-2/" class="md-nav__link">
+      <a href="../chapter4-2/" class="md-nav__link">
         
   
   
@@ -956,7 +950,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter5-1/" class="md-nav__link">
+      <a href="../chapter5-1/" class="md-nav__link">
         
   
   
@@ -979,7 +973,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter5-2/" class="md-nav__link">
+      <a href="../chapter5-2/" class="md-nav__link">
         
   
   
@@ -1063,7 +1057,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter6-1/" class="md-nav__link">
+      <a href="../chapter6-1/" class="md-nav__link">
         
   
   
@@ -1086,7 +1080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter6-2/" class="md-nav__link">
+      <a href="../chapter6-2/" class="md-nav__link">
         
   
   
@@ -1109,7 +1103,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter6-3/" class="md-nav__link">
+      <a href="../chapter6-3/" class="md-nav__link">
         
   
   
@@ -1144,8 +1138,6 @@
       
   
   
-    
-  
   
   
     
@@ -1175,23 +1167,22 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
+            <a href="../../office-hours/" class="md-nav__link ">
               
   
   
@@ -1204,13 +1195,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Office Hours
@@ -1226,7 +1217,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../faq/" class="md-nav__link">
+      <a href="../../office-hours/faq/" class="md-nav__link">
         
   
   
@@ -1249,7 +1240,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../AGENTS/" class="md-nav__link">
+      <a href="../../office-hours/AGENTS/" class="md-nav__link">
         
   
   
@@ -1286,13 +1277,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -1301,7 +1289,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
         
           
-          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
             
   
   
@@ -1328,7 +1316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cohort2/week1-summary/" class="md-nav__link">
+      <a href="../../office-hours/cohort2/week1-summary/" class="md-nav__link">
         
   
   
@@ -1351,7 +1339,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../week-1-1/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-1-1/" class="md-nav__link">
         
   
   
@@ -1374,7 +1362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../week-1-2/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-1-2/" class="md-nav__link">
         
   
   
@@ -1419,13 +1407,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -1434,7 +1419,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
             
   
   
@@ -1461,7 +1446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cohort2/week2-summary/" class="md-nav__link">
+      <a href="../../office-hours/cohort2/week2-summary/" class="md-nav__link">
         
   
   
@@ -1484,7 +1469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../week-2-1/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-2-1/" class="md-nav__link">
         
   
   
@@ -1507,7 +1492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../week-2-2/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-2-2/" class="md-nav__link">
         
   
   
@@ -1550,13 +1535,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -1565,7 +1547,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
         
           
-          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
             
   
   
@@ -1592,7 +1574,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cohort2/week3-summary/" class="md-nav__link">
+      <a href="../../office-hours/cohort2/week3-summary/" class="md-nav__link">
         
   
   
@@ -1615,7 +1597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../week-3-1/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-3-1/" class="md-nav__link">
         
   
   
@@ -1660,13 +1642,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -1675,7 +1654,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7" >
         
           
-          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
             
   
   
@@ -1702,7 +1681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cohort2/week4-summary/" class="md-nav__link">
+      <a href="../../office-hours/cohort2/week4-summary/" class="md-nav__link">
         
   
   
@@ -1725,7 +1704,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../week-4-1/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-4-1/" class="md-nav__link">
         
   
   
@@ -1748,7 +1727,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../week-4-2/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-4-2/" class="md-nav__link">
         
   
   
@@ -1776,10 +1755,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -1794,21 +1771,20 @@
     
       
       
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
         
           
-          
         
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" checked>
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_8" >
         
           
-          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
             
   
   
@@ -1821,7 +1797,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_8">
             <span class="md-nav__icon md-icon"></span>
             Chapter 5: Multimodal Capabilities
@@ -1835,7 +1811,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cohort2/week5-summary/" class="md-nav__link">
+      <a href="../../office-hours/cohort2/week5-summary/" class="md-nav__link">
         
   
   
@@ -1855,32 +1831,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Cohort 3 - Session 1
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-5-1/" class="md-nav__link">
         
   
   
@@ -1891,215 +1845,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#how-effective-is-fine-tuning-for-improving-citation-accuracy" class="md-nav__link">
-    <span class="md-ellipsis">
-      How effective is fine-tuning for improving citation accuracy?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#should-we-shuffle-citation-sources-during-fine-tuning" class="md-nav__link">
-    <span class="md-ellipsis">
-      Should we shuffle citation sources during fine-tuning?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-should-we-approach-tool-design-for-specialized-retrieval-tasks" class="md-nav__link">
-    <span class="md-ellipsis">
-      How should we approach tool design for specialized retrieval tasks?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-we-handle-temporal-reasoning-in-medical-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      How can we handle temporal reasoning in medical data?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-the-difference-between-multi-agent-and-single-agent-approaches" class="md-nav__link">
-    <span class="md-ellipsis">
-      What's the difference between multi-agent and single-agent approaches?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-we-use-document-summarization-to-improve-retrieval" class="md-nav__link">
-    <span class="md-ellipsis">
-      How can we use document summarization to improve retrieval?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-we-implement-price-quote-generation-using-rag" class="md-nav__link">
-    <span class="md-ellipsis">
-      How can we implement price quote generation using RAG?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-the-best-way-to-format-data-for-language-models" class="md-nav__link">
-    <span class="md-ellipsis">
-      What's the best way to format data for language models?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-should-we-approach-end-to-end-evaluation-of-complex-rag-systems" class="md-nav__link">
-    <span class="md-ellipsis">
-      How should we approach end-to-end evaluation of complex RAG systems?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-does-fine-tuning-improve-citation-accuracy-in-llms" class="md-nav__link">
-    <span class="md-ellipsis">
-      How does fine-tuning improve citation accuracy in LLMs?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-many-examples-are-typically-needed-for-effective-fine-tuning" class="md-nav__link">
-    <span class="md-ellipsis">
-      How many examples are typically needed for effective fine-tuning?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#should-i-shuffle-the-order-of-retrieved-sources-in-my-fine-tuning-dataset" class="md-nav__link">
-    <span class="md-ellipsis">
-      Should I shuffle the order of retrieved sources in my fine-tuning dataset?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-should-i-approach-tool-selection-for-my-llm-application" class="md-nav__link">
-    <span class="md-ellipsis">
-      How should I approach tool selection for my LLM application?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-an-effective-way-to-evaluate-tool-selection-by-the-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      What's an effective way to evaluate tool selection by the model?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-do-coding-agents-approach-tool-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      How do coding agents approach tool integration?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-should-i-organize-timeline-based-data-for-llm-processing" class="md-nav__link">
-    <span class="md-ellipsis">
-      How should I organize timeline-based data for LLM processing?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-are-markdown-tables-particularly-effective-for-structured-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why are markdown tables particularly effective for structured data?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-i-help-models-reason-across-complex-information" class="md-nav__link">
-    <span class="md-ellipsis">
-      How can I help models reason across complex information?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#is-it-beneficial-to-generate-summaries-during-data-ingestion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Is it beneficial to generate summaries during data ingestion?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-i-handle-reasoning-across-multiple-documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      How can I handle reasoning across multiple documents?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-the-best-way-to-handle-long-context-windows" class="md-nav__link">
-    <span class="md-ellipsis">
-      What's the best way to handle long context windows?
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2112,7 +1857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../week-5-2/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-5-2/" class="md-nav__link">
         
   
   
@@ -2153,13 +1898,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -2168,7 +1910,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_9" >
         
           
-          <label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
             
   
   
@@ -2195,7 +1937,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cohort2/week6-summary/" class="md-nav__link">
+      <a href="../../office-hours/cohort2/week6-summary/" class="md-nav__link">
         
   
   
@@ -2268,7 +2010,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../talks/" class="md-nav__link ">
+            <a href="../../talks/" class="md-nav__link ">
               
   
   
@@ -2360,7 +2102,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/chromadb-anton-chunking/" class="md-nav__link">
+      <a href="../../talks/chromadb-anton-chunking/" class="md-nav__link">
         
   
   
@@ -2383,7 +2125,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/john-lexical-search/" class="md-nav__link">
+      <a href="../../talks/john-lexical-search/" class="md-nav__link">
         
   
   
@@ -2406,7 +2148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/query-routing-anton/" class="md-nav__link">
+      <a href="../../talks/query-routing-anton/" class="md-nav__link">
         
   
   
@@ -2429,7 +2171,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/semantic-search-exa-will-bryk/" class="md-nav__link">
+      <a href="../../talks/semantic-search-exa-will-bryk/" class="md-nav__link">
         
   
   
@@ -2452,7 +2194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/rag-without-apis-browser-michael-struwig/" class="md-nav__link">
+      <a href="../../talks/rag-without-apis-browser-michael-struwig/" class="md-nav__link">
         
   
   
@@ -2536,7 +2278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/glean-manav/" class="md-nav__link">
+      <a href="../../talks/glean-manav/" class="md-nav__link">
         
   
   
@@ -2559,7 +2301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/fine-tuning-rerankers-embeddings-ayush-lancedb/" class="md-nav__link">
+      <a href="../../talks/fine-tuning-rerankers-embeddings-ayush-lancedb/" class="md-nav__link">
         
   
   
@@ -2582,7 +2324,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
+      <a href="../../talks/embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
         
   
   
@@ -2666,7 +2408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/online-evals-production-monitoring-ben-sidhant/" class="md-nav__link">
+      <a href="../../talks/online-evals-production-monitoring-ben-sidhant/" class="md-nav__link">
         
   
   
@@ -2689,7 +2431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/rag-antipatterns-skylar-payne/" class="md-nav__link">
+      <a href="../../talks/rag-antipatterns-skylar-payne/" class="md-nav__link">
         
   
   
@@ -2712,7 +2454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/zapier-vitor-evals/" class="md-nav__link">
+      <a href="../../talks/zapier-vitor-evals/" class="md-nav__link">
         
   
   
@@ -2794,7 +2536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/rag-is-dead-cline-nik/" class="md-nav__link">
+      <a href="../../talks/rag-is-dead-cline-nik/" class="md-nav__link">
         
   
   
@@ -2817,7 +2559,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/colin-rag-agents/" class="md-nav__link">
+      <a href="../../talks/colin-rag-agents/" class="md-nav__link">
         
   
   
@@ -2899,7 +2641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/reducto-docs-adit/" class="md-nav__link">
+      <a href="../../talks/reducto-docs-adit/" class="md-nav__link">
         
   
   
@@ -2922,7 +2664,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/superlinked-encoder-stacking/" class="md-nav__link">
+      <a href="../../talks/superlinked-encoder-stacking/" class="md-nav__link">
         
   
   
@@ -3015,7 +2757,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/learning-goals/" class="md-nav__link">
+      <a href="../../misc/learning-goals/" class="md-nav__link">
         
   
   
@@ -3038,7 +2780,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/what-i-want-you-to-takeaway/" class="md-nav__link">
+      <a href="../../misc/what-i-want-you-to-takeaway/" class="md-nav__link">
         
   
   
@@ -3061,7 +2803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/introduction/" class="md-nav__link">
+      <a href="../../misc/introduction/" class="md-nav__link">
         
   
   
@@ -3084,7 +2826,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/landingpage/" class="md-nav__link">
+      <a href="../../misc/landingpage/" class="md-nav__link">
         
   
   
@@ -3134,189 +2876,261 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-effective-is-fine-tuning-for-improving-citation-accuracy" class="md-nav__link">
+  <a href="#introduction" class="md-nav__link">
     <span class="md-ellipsis">
-      How effective is fine-tuning for improving citation accuracy?
+      Introduction
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#should-we-shuffle-citation-sources-during-fine-tuning" class="md-nav__link">
+  <a href="#cost-optimization-strategies" class="md-nav__link">
     <span class="md-ellipsis">
-      Should we shuffle citation sources during fine-tuning?
+      Cost Optimization Strategies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cost Optimization Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#understanding-token-economics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding Token Economics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-calculation-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token Calculation Framework
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-caching-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Caching Implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-source-vs-api-trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Open Source vs API Trade-offs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#infrastructure-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Infrastructure Decisions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Infrastructure Decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#write-time-vs-read-time-computation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Write-Time vs Read-Time Computation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caching Strategies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-selection-for-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Selection for Scale
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-and-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring and Observability
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring and Observability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-metrics-to-track" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Metrics to Track
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling-and-degradation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling and Degradation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-and-compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security and Compliance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security and Compliance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-privacy-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Privacy Considerations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compliance-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compliance Strategies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scaling Strategies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scaling Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#horizontal-scaling-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Horizontal Scaling Patterns
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cost-effective-growth" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cost-Effective Growth
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintenance-and-evolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maintenance and Evolution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Maintenance and Evolution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#continuous-improvement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Continuous Improvement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#team-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Team Structure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Takeaways
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-should-we-approach-tool-design-for-specialized-retrieval-tasks" class="md-nav__link">
+  <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
-      How should we approach tool design for specialized retrieval tasks?
+      Next Steps
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-can-we-handle-temporal-reasoning-in-medical-data" class="md-nav__link">
+  <a href="#additional-resources" class="md-nav__link">
     <span class="md-ellipsis">
-      How can we handle temporal reasoning in medical data?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-the-difference-between-multi-agent-and-single-agent-approaches" class="md-nav__link">
-    <span class="md-ellipsis">
-      What's the difference between multi-agent and single-agent approaches?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-we-use-document-summarization-to-improve-retrieval" class="md-nav__link">
-    <span class="md-ellipsis">
-      How can we use document summarization to improve retrieval?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-we-implement-price-quote-generation-using-rag" class="md-nav__link">
-    <span class="md-ellipsis">
-      How can we implement price quote generation using RAG?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-the-best-way-to-format-data-for-language-models" class="md-nav__link">
-    <span class="md-ellipsis">
-      What's the best way to format data for language models?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-should-we-approach-end-to-end-evaluation-of-complex-rag-systems" class="md-nav__link">
-    <span class="md-ellipsis">
-      How should we approach end-to-end evaluation of complex RAG systems?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-does-fine-tuning-improve-citation-accuracy-in-llms" class="md-nav__link">
-    <span class="md-ellipsis">
-      How does fine-tuning improve citation accuracy in LLMs?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-many-examples-are-typically-needed-for-effective-fine-tuning" class="md-nav__link">
-    <span class="md-ellipsis">
-      How many examples are typically needed for effective fine-tuning?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#should-i-shuffle-the-order-of-retrieved-sources-in-my-fine-tuning-dataset" class="md-nav__link">
-    <span class="md-ellipsis">
-      Should I shuffle the order of retrieved sources in my fine-tuning dataset?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-should-i-approach-tool-selection-for-my-llm-application" class="md-nav__link">
-    <span class="md-ellipsis">
-      How should I approach tool selection for my LLM application?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-an-effective-way-to-evaluate-tool-selection-by-the-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      What's an effective way to evaluate tool selection by the model?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-do-coding-agents-approach-tool-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      How do coding agents approach tool integration?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-should-i-organize-timeline-based-data-for-llm-processing" class="md-nav__link">
-    <span class="md-ellipsis">
-      How should I organize timeline-based data for LLM processing?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-are-markdown-tables-particularly-effective-for-structured-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why are markdown tables particularly effective for structured data?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-i-help-models-reason-across-complex-information" class="md-nav__link">
-    <span class="md-ellipsis">
-      How can I help models reason across complex information?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#is-it-beneficial-to-generate-summaries-during-data-ingestion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Is it beneficial to generate summaries during data ingestion?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-i-handle-reasoning-across-multiple-documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      How can I handle reasoning across multiple documents?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-the-best-way-to-handle-long-context-windows" class="md-nav__link">
-    <span class="md-ellipsis">
-      What's the best way to handle long context windows?
+      Additional Resources
     </span>
   </a>
   
@@ -3338,183 +3152,291 @@
 
 
 
-<h1 id="week-5-office-hour-1-june-17">Week 5, Office Hour 1 (June 17)</h1>
-<p>I hosted an office hours session focused on fine-tuning models for citation accuracy and designing effective tool portfolios for RAG systems. Here are my insights on improving citation capabilities through fine-tuning, structuring data for temporal reasoning, and creating effective tool portfolios for specialized retrieval tasks.</p>
-<h2 id="how-effective-is-fine-tuning-for-improving-citation-accuracy">How effective is fine-tuning for improving citation accuracy?</h2>
-<p>When working with citation requirements, fine-tuning can dramatically reduce error rates. In one project, we used OpenAI's fine-tuning API with about 1,000 examples to improve our marketing content generation system.</p>
-<p>The results were impressive - our error rates dropped from around 4% to essentially 0% on our test set of 200 examples. We didn't need complex frameworks like Fluoro since we weren't hosting local models, just using OpenAI's API directly.</p>
-<p>The key was having evaluators validate our offline data, filtering out incorrectly formatted examples before using them in the fine-tuning process. This approach worked particularly well because we weren't trying to change the model's knowledge - just its formatting behavior.</p>
-<p>When determining how much data you need, I recommend experimenting with different sample sizes:</p>
-<p>"What I would often do is try to use a subset of my data for fine-tuning, then increase the sample size and figure out what that curve looks like. It's going to be performance versus volume."</p>
-<p>Different models will have different learning curves - a 1.3 billion parameter model might flatten out at 10,000 data points, while larger models might show different patterns. Adjusting learning rates can also affect these curves.</p>
-<p><strong><em>Key Takeaway:</em></strong> Fine-tuning can be remarkably effective for formatting tasks like citation, often requiring less data than you might expect. Start with small batches, measure performance, and increase data volume until you reach your desired accuracy level.</p>
-<h2 id="should-we-shuffle-citation-sources-during-fine-tuning">Should we shuffle citation sources during fine-tuning?</h2>
-<p>When fine-tuning models to cite sources correctly, shuffling the order of retrieved sources can be beneficial to prevent position bias. This approach makes the model invariant to the order of sources, which is particularly important if you're not sorting by relevance.</p>
-<p>However, if you are sorting by relevance, maintaining the original order might actually be preferable: "Maybe it is important for the model to know that the first text chunk is the most relevant text chunk."</p>
-<p>The need for shuffling may also depend on the context length of your model. With older, smaller context models (like 4K token models), position bias was more pronounced due to the "lost in the middle" effect. Newer models with better attention mechanisms have improved recall across their context window.</p>
-<p>"If you look at the newer models, they just have way better lost-in-the-middle sensitivity in general, and I would expect that when you fine-tune these things, they also preserve some of that ability to attend over long contexts."</p>
-<p>The real challenge that remains is reasoning over multiple "needles" of information scattered throughout a document - connecting facts from different sections remains difficult for most models.</p>
-<p><strong><em>Key Takeaway:</em></strong> Consider shuffling citation sources during fine-tuning if you want position-invariant citations, but if you're sorting by relevance, maintaining order may be beneficial. Newer models have better attention across their context window, reducing the need for this technique.</p>
-<h2 id="how-should-we-approach-tool-design-for-specialized-retrieval-tasks">How should we approach tool design for specialized retrieval tasks?</h2>
-<p>When designing tools for retrieval systems, focus on creating a portfolio of specialized tools rather than just distinguishing between semantic and structured data. The key question isn't "Am I searching semantic or structured data?" but rather "What is the portfolio of tools I want to expose to my system?"</p>
-<p>For example, in a construction use case, we implemented several specialized tools:</p>
+<h1 id="production-considerations-from-prototype-to-scale">Production Considerations: From Prototype to Scale</h1>
+<div class="admonition abstract">
+<p class="admonition-title">Chapter Overview</p>
+</div>
+<div class="highlight"><pre><span></span><code>This chapter addresses the critical considerations for taking RAG systems from prototype to production:
+
+- Cost optimization strategies and token economics
+- Infrastructure decisions and trade-offs
+- Monitoring and maintenance approaches
+- Security and compliance considerations
+- Scaling strategies for growth
+</code></pre></div>
+<h2 id="introduction">Introduction</h2>
+<p>Throughout this course, we've built sophisticated RAG systems with advanced retrieval strategies, fine-tuned models, and elegant user experiences. But there's a crucial gap between a working prototype and a production system serving thousands of users reliably and cost-effectively. This chapter bridges that gap with hard-won insights from deploying RAG systems at scale.</p>
+<div class="admonition quote">
+<p class="admonition-title">Production Reality</p>
+<p>"The difference between a demo and production isn't features—it's reliability, cost-effectiveness, and maintainability. A system that works perfectly for 10 queries might fail catastrophically at 10,000."</p>
+</div>
+<h2 id="cost-optimization-strategies">Cost Optimization Strategies</h2>
+<h3 id="understanding-token-economics">Understanding Token Economics</h3>
+<p>Before optimizing costs, you need to understand where money goes in a RAG system:</p>
+<div class="admonition info">
+<p class="admonition-title">Cost Breakdown</p>
+<p>Based on production systems analysis:
+- <strong>Embedding generation</strong>: 5-10% of costs
+- <strong>Retrieval infrastructure</strong>: 10-20% of costs<br />
+- <strong>LLM generation</strong>: 60-75% of costs
+- <strong>Logging/monitoring</strong>: 5-10% of costs</p>
+</div>
+<h3 id="token-calculation-framework">Token Calculation Framework</h3>
+<p>Always calculate expected costs before choosing an approach:</p>
+<div class="admonition tip">
+<p class="admonition-title">Production Insight</p>
+<p>From office hours: "Token calculation importance cannot be overstated. Calculate expected costs before choosing approach. Open source is often only 8x cheaper than APIs; absolute costs may not justify engineering effort."</p>
+</div>
+<p><strong>Cost Calculation Template:</strong></p>
+<ol>
+<li><strong>Document Processing</strong>:</li>
+<li>Number of documents × Average tokens per document × Embedding cost</li>
+<li>
+<p>One-time cost (unless documents change frequently)</p>
+</li>
+<li>
+<p><strong>Query Processing</strong>:</p>
+</li>
+<li>Expected queries/day × (Retrieval tokens + Generation tokens) × Token cost</li>
+<li>
+<p>Recurring cost that scales with usage</p>
+</li>
+<li>
+<p><strong>Hidden Costs</strong>:</p>
+</li>
+<li>Re-ranking API calls</li>
+<li>Failed requests requiring retries</li>
+<li>Development and maintenance time</li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">Real Cost Comparison</p>
+<p>E-commerce search system serving 50K queries/day:
+- <strong>API-based</strong>: <span class="arithmatex">\(180/day (\)</span>5,400/month)
+- <strong>Self-hosted</strong>: $23/day infrastructure + $3,000/month engineer
+- <strong>Hybrid approach</strong>: $65/day (embed self-hosted, generate via API)
+- <strong>Decision</strong>: Hybrid approach balanced cost and complexity</p>
+</div>
+<h3 id="prompt-caching-implementation">Prompt Caching Implementation</h3>
+<p>Dramatic cost reductions through intelligent caching:</p>
+<div class="admonition quote">
+<p class="admonition-title">Caching Impact</p>
+<p>"Prompt caching can dramatically improve performance with many examples. If you have 50+ examples in your prompt, caching reduces costs by 70-90% for repeat queries."</p>
+</div>
+<p><strong>Provider Comparison:</strong>
+- <strong>Anthropic</strong>: Caches prompts for 5 minutes, automatic on repeat queries
+- <strong>OpenAI</strong>: Automatically identifies optimal prefix to cache
+- <strong>Self-hosted</strong>: Implement Redis-based caching for embeddings</p>
+<h3 id="open-source-vs-api-trade-offs">Open Source vs API Trade-offs</h3>
+<p>Making informed decisions about infrastructure:</p>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Open Source</th>
+<th>API Services</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Initial Cost</strong></td>
+<td>Low (just compute)</td>
+<td>None</td>
+</tr>
+<tr>
+<td><strong>Operational Cost</strong></td>
+<td>Engineer time + infrastructure</td>
+<td>Per-token pricing</td>
+</tr>
+<tr>
+<td><strong>Scalability</strong></td>
+<td>Manual scaling required</td>
+<td>Automatic</td>
+</tr>
+<tr>
+<td><strong>Latency</strong></td>
+<td>Can optimize locally</td>
+<td>Network dependent</td>
+</tr>
+<tr>
+<td><strong>Reliability</strong></td>
+<td>Your responsibility</td>
+<td>SLA guaranteed</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Hidden Costs of Self-Hosting</p>
 <ul>
-<li>Generic document search that searches everything</li>
-<li>Contact search for finding people</li>
-<li>RFI (Request for Information) search that takes specific RFI codes</li>
-<li>Contract search that returns not just text chunks but also responsible parties</li>
+<li>CUDA driver compatibility issues</li>
+<li>Model version management</li>
+<li>Scaling infrastructure</li>
+<li>24/7 on-call requirements</li>
 </ul>
-<p>The implementation details (whether it's semantic search or structured data) matter less than how you present these tools to the language model. Your focus should be on making sure the model understands what tool to use and when.</p>
-<p>For evaluating tool selection, I recommend having the model "write a plan of all the tools it might want to use" for a given query, then evaluating that plan first. You can even present this plan to users for approval before execution, which creates valuable training data based on acceptance rates.</p>
-<p>"That gets you a pretty good dataset in terms of customer plan acceptance rates, and then you can look at the ones that are not accepted and figure out what you need to do afterwards."</p>
-<p>The naming of tools significantly impacts how models use them. In coding agents, for example, providing a specific "grep" tool versus just mentioning grep in the command line instructions can change execution patterns by 2% in evaluations.</p>
-<p><strong><em>Key Takeaway:</em></strong> Design a portfolio of specialized tools based on specific use cases rather than general data types. Focus on clear tool descriptions and evaluate how well the model selects the appropriate tools for different queries.</p>
-<h2 id="how-can-we-handle-temporal-reasoning-in-medical-data">How can we handle temporal reasoning in medical data?</h2>
-<p>One of the most challenging aspects of working with medical data is reasoning about information across a timeline. When retrieving documents about medications, for example, you might get 20 documents all describing medications, but understanding what changed over time requires special handling.</p>
-<p>"You might want to know what changed over time, or you have to always see it in the context of time. And you also need to find relationships like 'there's this medication and the patient became worse' or 'this medication went up' - that all needs to be conceived in the system."</p>
-<p>For presenting temporal data effectively to models, I recommend structuring it as a markdown table whenever possible. In our testing, markdown tables performed 12% better than CSV, JSON, or YAML formats for complex lookup tasks across large datasets.</p>
-<p>"We've done tests where I put like 6,000 rows, 50 columns as CSV, as markdown, as JSON, as YAML - and markdown tables is like 12% better in terms of identifying on row X where the value is Y, find me the row that's one above and one to the left."</p>
-<p>The ordering of temporal data also matters significantly. You might get different results if you order events in ascending versus descending time. This affects how the model scans and reasons about cause and effect relationships.</p>
-<p>For building better temporal reasoning capabilities, consider:</p>
+</div>
+<h2 id="infrastructure-decisions">Infrastructure Decisions</h2>
+<h3 id="write-time-vs-read-time-computation">Write-Time vs Read-Time Computation</h3>
+<p>A fundamental architectural decision:</p>
+<div class="admonition info">
+<p class="admonition-title">Computation Timing Trade-offs</p>
+<p><strong>Write-time computation</strong> (preprocessing):
+- Higher storage costs
+- Better query latency
+- Suitable for stable content</p>
+<p><strong>Read-time computation</strong> (on-demand):
+- Lower storage costs
+- Higher query latency
+- Suitable for dynamic content</p>
+</div>
+<h3 id="caching-strategies">Caching Strategies</h3>
+<p>Multi-level caching for production systems:</p>
 <ol>
-<li>
-<p>Ordering retrieved documents chronologically</p>
-</li>
-<li>
-<p>Presenting data in markdown table format with clear timestamps</p>
-</li>
-<li>
-<p>Having the model first extract and reorganize relevant information before reasoning about it</p>
-</li>
-<li>
-<p>Mining reasoning chains from expert users to create training data</p>
-</li>
+<li><strong>Embedding Cache</strong>: Store computed embeddings (Redis/Memcached)</li>
+<li><strong>Result Cache</strong>: Cache full responses for common queries</li>
+<li><strong>Semantic Cache</strong>: Cache similar queries (requires similarity threshold)</li>
 </ol>
-<p><strong><em>Key Takeaway:</em></strong> For temporal reasoning, structure data chronologically in markdown tables and implement a two-stage approach where the model first extracts and organizes relevant timeline information before reasoning about it.</p>
-<h2 id="whats-the-difference-between-multi-agent-and-single-agent-approaches">What's the difference between multi-agent and single-agent approaches?</h2>
-<p>The debate between multi-agent and single-agent systems often comes down to context coordination challenges. For coding tasks, Devin (from Cognition) chose a single-threaded approach because coordinating between agents modifying different parts of a codebase is extremely difficult.</p>
-<p>"If one agent modifies one directory and another agent modifies another directory, that communication channel is sort of not well defined yet."</p>
-<p>In contrast, Claude's Deep Research uses multiple agents, but they're all read-only - they don't need to coordinate changes because they're just retrieving information that will later be combined:</p>
-<p>"In that multi-agent system, the agents are all read-only, so they don't need to manage that communication overhead because they're all going to be reduced. If I search about who I am, one agent searches childhood, one agent searches career, and once they bring all the information back, they can be reduced."</p>
-<p>The primary benefit of multi-agent systems appears to be token efficiency - you can use more tokens across multiple agents than with a single agent. "The performance just increases with the amount of tokens each sub-agent is able to consume. If you have 10 sub-agents, you can use more tokens, and your research quality is better."</p>
-<p>For medical data applications that are primarily read-only, a multi-agent approach might work, but the challenge remains in ensuring no context is missed when combining information from different agents.</p>
-<p><strong><em>Key Takeaway:</em></strong> Choose multi-agent approaches for read-only tasks where you need to process more tokens than a single context window allows. For tasks requiring coordination of changes, single-agent approaches remain more practical until better coordination mechanisms are developed.</p>
-<h2 id="how-can-we-use-document-summarization-to-improve-retrieval">How can we use document summarization to improve retrieval?</h2>
-<p>Generating summaries during document ingestion can be a cost-effective approach to improving retrieval. Summaries function as a form of compression and can be particularly valuable when working with smaller context window models.</p>
-<p>"In general, this is a good idea because that's almost in some ways just a more cost-effective way of doing this contextual retrieval stuff. Summary is just compression."</p>
-<p>The key is designing your summarization prompt based on the specific tasks your system needs to perform. For example, with architectural blueprints, we knew users would ask about room counts and dimensions, so we created summaries that explicitly counted and listed these elements:</p>
-<p>"Because we know that our tasks involve things like extracting the names of rooms and counting things, if our language model can have a summary that counts everything, then it becomes much easier to think about 'the place with 4 bedrooms and 2 bathrooms.'"</p>
-<p>We implemented this as a separate document search tool that only hits the summaries. Through iteration and evaluation, we improved our summary generation from 16% recall to 85% recall in just a few days.</p>
-<p>For implementation, you can:</p>
+<div class="admonition example">
+<p class="admonition-title">Semantic Caching Success</p>
+<p>Customer support system:
+- Identified 30% of queries were semantically similar
+- Implemented semantic caching with 0.95 similarity threshold
+- Reduced LLM calls by 28%, saving $8,000/month</p>
+</div>
+<h3 id="database-selection-for-scale">Database Selection for Scale</h3>
+<p>Moving beyond prototypes requires careful database selection:</p>
+<div class="admonition tip">
+<p class="admonition-title">Scale Considerations</p>
+<p>From office hours: "At scale, graphs are hard to manage. Around 2017-2018, only LinkedIn had a true graph database because they needed to compute 3rd-degree friendships quickly. For most companies, SQL databases offer better performance, easier maintenance, and more familiar tooling."</p>
+</div>
+<p><strong>Production Database Recommendations:</strong></p>
 <ol>
-<li>
-<p>Create a separate "search summaries" tool</p>
-</li>
-<li>
-<p>Design summary prompts that extract the specific types of information users will query</p>
-</li>
-<li>
-<p>Evaluate and iterate on summary quality using test queries</p>
-</li>
-<li>
-<p>Use summaries as synthetic text chunks that supplement your existing text chunks</p>
-</li>
+<li><strong>&lt; 1M documents</strong>: PostgreSQL with pgvector</li>
+<li><strong>1M - 10M documents</strong>: Dedicated vector database (Pinecone, Weaviate)</li>
+<li><strong>&gt; 10M documents</strong>: Distributed solutions (Elasticsearch with vector support)</li>
 </ol>
-<p>This approach works particularly well for documents like financial reports, where structured information can be extracted, or for multimedia content where describing images or videos in text makes them searchable.</p>
-<p><strong><em>Key Takeaway:</em></strong> Document summarization during ingestion creates valuable synthetic text chunks that can dramatically improve retrieval performance. Design summary prompts based on the specific information needs of your application and iterate based on evaluation results.</p>
-<h2 id="how-can-we-implement-price-quote-generation-using-rag">How can we implement price quote generation using RAG?</h2>
-<p>One practical application we've built is an automated price quote system for sales teams. After multiple calls with a prospect, the system generates personalized pricing options and potential upsells.</p>
-<p>The process works like this:</p>
+<h2 id="monitoring-and-observability">Monitoring and Observability</h2>
+<h3 id="key-metrics-to-track">Key Metrics to Track</h3>
+<p>Essential metrics for production RAG systems:</p>
+<div class="admonition info">
+<p class="admonition-title">Operational Metrics</p>
+<p><strong>Performance Metrics:</strong>
+- Query latency (p50, p95, p99)
+- Retrieval recall and precision
+- Token usage per query
+- Cache hit rates</p>
+<p><strong>Business Metrics:</strong>
+- User satisfaction scores
+- Query success rates
+- Cost per query
+- Feature adoption rates</p>
+</div>
+<h3 id="error-handling-and-degradation">Error Handling and Degradation</h3>
+<p>Graceful degradation strategies:</p>
 <ol>
-<li>
-<p>We have 16 pages of pricing information (per-seat pricing, volume discounts, prepayment options)</p>
-</li>
-<li>
-<p>We have transcripts from 6 phone calls with the prospect</p>
-</li>
-<li>
-<p>We ask the language model to:</p>
-</li>
-<li>
-<p>Read the transcripts and list all relevant variables</p>
-</li>
-<li>Extract the values of those variables</li>
-<li>Reason about the pricing document</li>
-<li>Propose options and upsells</li>
-<li>Write an email to the prospect</li>
+<li><strong>Fallback Retrievers</strong>: If primary fails, use simpler backup</li>
+<li><strong>Cached Responses</strong>: Serve stale cache vs. errors</li>
+<li><strong>Reduced Functionality</strong>: Disable advanced features under load</li>
+<li><strong>Circuit Breakers</strong>: Prevent cascade failures</li>
 </ol>
-<p>"The email's like 'Great talking to you, Tim. It sounds like for a company your size, you can probably commit to 15 seats. This will get you a 20% discount. If you don't use it, we'll move it to next year, and if you pay upfront, we can give you another 20-25% discount because I know that's something your CTO really values.'"</p>
-<p>Our evaluation method is simple but effective - we have salespeople review the generated emails before sending them, and we track whether they make edits. When edits are needed, we analyze what went wrong in the reasoning step.</p>
-<p>This approach of extracting variables, reasoning about them, and then generating output could be applied to medical data as well. For example, if a patient shows drowsiness, the system could first extract all timeline information about drowsiness, then reason about potential causes.</p>
-<p><strong><em>Key Takeaway:</em></strong> For complex reasoning tasks, implement a multi-step process where the model first extracts and organizes relevant information, then reasons about it, and finally generates output. This structured approach makes the reasoning more transparent and easier to evaluate.</p>
-<h2 id="whats-the-best-way-to-format-data-for-language-models">What's the best way to format data for language models?</h2>
-<p>When presenting structured data to language models, markdown tables consistently outperform other formats like CSV, JSON, or YAML. In our testing, markdown tables were 12% more effective for complex lookup tasks.</p>
-<p>"We've done tests where I put like 6,000 rows, 50 columns as CSV, as markdown, as JSON, as YAML - and markdown tables is like 12% better in terms of identifying on row X where the value is Y, find me the row that's one above and one to the left."</p>
-<p>The formatting details matter significantly. For example, having spaces between tokens in markdown tables (like "| data |" instead of "|data|") affects how the model processes the information.</p>
-<p>"If I search for the word Jason, the token is 'space Jason'. But if it's Jason in JSON, it's actually 'quote Jason' - those are different tokens. And so those things end up affecting the lookup a little bit."</p>
-<p>These seemingly minor formatting choices can have meaningful impacts on model performance, especially for tasks requiring precise information retrieval or table navigation.</p>
-<p>For temporal data specifically, presenting information in chronological order (either ascending or descending) can significantly affect how models reason about cause and effect. Testing both approaches is worthwhile, as one may work better than the other depending on your specific use case.</p>
-<p>Markdown tables consistently outperform other data formats for structured information. Pay attention to spacing and formatting details, as they affect tokenization and retrieval performance. For temporal data, experiment with both chronological and reverse-chronological ordering.</p>
-<h2 id="how-should-we-approach-end-to-end-evaluation-of-complex-rag-systems">How should we approach end-to-end evaluation of complex RAG systems?</h2>
-<p>End-to-end evaluation of complex retrieval systems remains challenging, especially when there isn't a single correct answer or when the system needs to perform multi-step reasoning.</p>
-<p>"The end-to-end evaluation of these kinds of things are still pretty challenging, unless it really is the case that there are just certain text chunks that we're trying to achieve or certain answers we already know ahead of time."</p>
-<p>For tool selection, one effective approach is evaluating the system's planning capabilities:</p>
+<div class="admonition example">
+<p class="admonition-title">Degradation in Practice</p>
+<p>Financial advisory system:
+- Primary: Complex multi-index RAG
+- Fallback 1: Single-index semantic search
+- Fallback 2: Pre-computed FAQ responses
+- Result: 99.9% availability despite component failures</p>
+</div>
+<h2 id="security-and-compliance">Security and Compliance</h2>
+<h3 id="data-privacy-considerations">Data Privacy Considerations</h3>
+<p>Critical for production deployments:</p>
+<div class="admonition warning">
+<p class="admonition-title">Security Checklist</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> PII detection and masking</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Audit logging for all queries</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Role-based access control</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Data retention policies</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Encryption at rest and in transit</li>
+</ul>
+</div>
+<h3 id="compliance-strategies">Compliance Strategies</h3>
+<p>Industry-specific requirements:</p>
+<ul>
+<li><strong>Healthcare</strong>: HIPAA compliance, patient data isolation</li>
+<li><strong>Financial</strong>: SOC2 compliance, transaction auditing</li>
+<li><strong>Legal</strong>: Privilege preservation, citation accuracy</li>
+</ul>
+<div class="admonition quote">
+<p class="admonition-title">Compliance Reality</p>
+<p>"In regulated industries, the technical solution is often 20% of the work. The other 80% is ensuring compliance, audit trails, and proper data governance."</p>
+</div>
+<h2 id="scaling-strategies">Scaling Strategies</h2>
+<h3 id="horizontal-scaling-patterns">Horizontal Scaling Patterns</h3>
+<p>Growing from hundreds to millions of queries:</p>
 <ol>
-<li>
-<p>Ask the model to write a plan of which tools it would use for a query</p>
-</li>
-<li>
-<p>Evaluate the plan before executing it</p>
-</li>
-<li>
-<p>Allow users to approve or reject the plan</p>
-</li>
-<li>
-<p>Track plan acceptance rates and analyze rejected plans</p>
-</li>
+<li><strong>Sharded Indices</strong>: Partition by domain/category</li>
+<li><strong>Read Replicas</strong>: Distribute query load</li>
+<li><strong>Async Processing</strong>: Queue heavy operations</li>
+<li><strong>Edge Caching</strong>: CDN for common queries</li>
 </ol>
-<p>For reasoning tasks, breaking evaluation into steps can be helpful:</p>
+<h3 id="cost-effective-growth">Cost-Effective Growth</h3>
+<p>Strategies for managing growth:</p>
+<div class="admonition tip">
+<p class="admonition-title">Scaling Economics</p>
+<p>"Focus on business value, not just cost savings. Successful implementations target economic value (better decisions) rather than just time savings."</p>
+</div>
+<p><strong>Progressive Enhancement:</strong>
+1. Start with simple, cheap solutions
+2. Identify high-value query segments
+3. Invest in specialized solutions for those segments
+4. Monitor ROI continuously</p>
+<h2 id="maintenance-and-evolution">Maintenance and Evolution</h2>
+<h3 id="continuous-improvement">Continuous Improvement</h3>
+<p>Production systems require ongoing attention:</p>
+<ul>
+<li><strong>Weekly</strong>: Review error logs and user feedback</li>
+<li><strong>Monthly</strong>: Analyze cost trends and optimization opportunities</li>
+<li><strong>Quarterly</strong>: Evaluate new models and approaches</li>
+<li><strong>Annually</strong>: Architecture review and major upgrades</li>
+</ul>
+<h3 id="team-structure">Team Structure</h3>
+<p>Recommended team composition:</p>
+<ul>
+<li><strong>ML Engineer</strong>: Model selection and fine-tuning</li>
+<li><strong>Backend Engineer</strong>: Infrastructure and scaling</li>
+<li><strong>Data Analyst</strong>: Metrics and optimization</li>
+<li><strong>Domain Expert</strong>: Content and quality assurance</li>
+</ul>
+<h2 id="key-takeaways">Key Takeaways</h2>
+<div class="admonition success">
+<p class="admonition-title">Production Principles</p>
 <ol>
-<li>
-<p>Evaluate information extraction (did the system find the relevant information?)</p>
-</li>
-<li>
-<p>Evaluate reasoning (given the correct information, did it reach valid conclusions?)</p>
-</li>
-<li>
-<p>Evaluate output generation (was the final response clear and actionable?)</p>
-</li>
+<li><strong>Calculate costs before building</strong>: Know your economics</li>
+<li><strong>Start simple, enhance gradually</strong>: Complexity should be earned</li>
+<li><strong>Monitor everything</strong>: You can't improve what you don't measure</li>
+<li><strong>Plan for failure</strong>: Systems will fail; design for graceful degradation</li>
+<li><strong>Focus on value</strong>: Technical metrics mean nothing without business impact</li>
 </ol>
-<p>In some domains like coding, the evaluation metrics are clearer - does the code pass tests? In other domains like medical reasoning, evaluation may require expert review or comparison to known outcomes.</p>
-<p>For systems like our price quote generator, we use a practical metric - do salespeople edit the generated emails before sending them? This real-world usage metric helps us identify where the system's reasoning falls short.</p>
-<p><strong><em>Key Takeaway:</em></strong> Break evaluation into component parts rather than relying solely on end-to-end metrics. Incorporate user feedback into your evaluation process, and track how often outputs require human editing or intervention.</p>
-<h2 id="how-does-fine-tuning-improve-citation-accuracy-in-llms">How does fine-tuning improve citation accuracy in LLMs?</h2>
-<p>Fine-tuning can dramatically reduce error rates when teaching models to properly cite sources. In one example, fine-tuning reduced citation errors from 4% to nearly 0% for marketing content generation. The process involves collecting properly formatted examples, validating them, filtering out incorrect formats, and using them in the fine-tuning process.</p>
-<h2 id="how-many-examples-are-typically-needed-for-effective-fine-tuning">How many examples are typically needed for effective fine-tuning?</h2>
-<p>Around 1,000 high-quality examples can be sufficient for format-related fine-tuning tasks. However, the exact number depends on your specific use case. It's recommended to experiment with increasing sample sizes to determine the optimal amount for your needs. Start with a smaller subset and gradually increase to identify where performance improvements begin to plateau.</p>
-<h2 id="should-i-shuffle-the-order-of-retrieved-sources-in-my-fine-tuning-dataset">Should I shuffle the order of retrieved sources in my fine-tuning dataset?</h2>
-<p>Shuffling retrieved sources can be beneficial to make your model invariant to the order of information. This approach helps prevent the model from developing biases toward information presented first. However, if your retrieval system sorts by relevance, maintaining that order might be important as the first chunk would genuinely contain the most relevant information.</p>
-<h2 id="how-should-i-approach-tool-selection-for-my-llm-application">How should I approach tool selection for my LLM application?</h2>
-<p>Focus on developing a portfolio of specialized tools rather than simply categorizing between semantic and structured data searches. Consider what specific capabilities would benefit your use case, such as date-range filtering, categorical filters, or metadata tag filtering. The implementation details (whether semantic or structured) matter less than ensuring your model understands when to use each tool.</p>
-<h2 id="whats-an-effective-way-to-evaluate-tool-selection-by-the-model">What's an effective way to evaluate tool selection by the model?</h2>
-<p>A practical approach is to have the model write a plan listing all tools it would use for a given query, then evaluate that plan before execution. You can present this plan to users for approval or rejection, which generates valuable feedback data. Analyzing rejected plans helps identify improvements needed in your tool selection and routing logic.</p>
-<h2 id="how-do-coding-agents-approach-tool-integration">How do coding agents approach tool integration?</h2>
-<p>Coding agents have made significant progress with tool integration. One key insight is that providing named tools for specific functions (rather than general capabilities) significantly changes how frequently these functions are used. For example, providing a dedicated "grep" tool versus expecting the model to remember to use grep through a general command line interface can improve performance by several percentage points.</p>
-<h2 id="how-should-i-organize-timeline-based-data-for-llm-processing">How should I organize timeline-based data for LLM processing?</h2>
-<p>For timeline data, consider presenting information in a markdown table format, which models tend to process effectively. Order the data chronologically (either ascending or descending) and include clear date markers. This organization helps the model understand temporal relationships and reason about cause and effect. Testing both ascending and descending time orders may yield different results depending on your use case.</p>
-<h2 id="why-are-markdown-tables-particularly-effective-for-structured-data">Why are markdown tables particularly effective for structured data?</h2>
-<p>Markdown tables have shown superior performance (approximately 12% better) compared to other formats like CSV, JSON, or YAML when models need to perform lookup tasks or understand relationships between data points. The spacing between tokens in markdown tables appears to be particularly well-suited to how models process information.</p>
-<h2 id="how-can-i-help-models-reason-across-complex-information">How can I help models reason across complex information?</h2>
-<p>For complex reasoning tasks, consider implementing a two-step approach: first have the model extract and reorganize all relevant information from different sources, then reason about this reorganized information. This approach works well for tasks requiring synthesis across multiple data points, such as analyzing medical timelines or generating pricing quotes based on multiple conversations.</p>
-<h2 id="is-it-beneficial-to-generate-summaries-during-data-ingestion">Is it beneficial to generate summaries during data ingestion?</h2>
-<p>Creating summaries during data ingestion can be very effective, especially for longer documents. Summaries act as compressed versions of your data that can be more efficiently processed. For specific use cases like blueprints or financial documents, you can design summarization prompts that extract the most relevant information (like room counts or key financial figures) to make subsequent queries more efficient.</p>
-<h2 id="how-can-i-handle-reasoning-across-multiple-documents">How can I handle reasoning across multiple documents?</h2>
-<p>For reasoning across multiple documents, consider having the model first extract all relevant information related to the query, reorganize it (possibly chronologically or thematically), and then reason about the reorganized information. This approach helps manage context limitations and focuses the model's attention on the most pertinent details.</p>
-<h2 id="whats-the-best-way-to-handle-long-context-windows">What's the best way to handle long context windows?</h2>
-<p>Newer models with improved attention mechanisms handle long contexts better than older models. However, for complex reasoning tasks involving multiple "needles" of information spread throughout a document, consider using tools that first organize the relevant information before reasoning about it. This approach remains effective even with models that have long context windows.</p>
-<hr />
-<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
+</div>
+<h2 id="next-steps">Next Steps</h2>
+<p>With production considerations in mind, you're ready to:</p>
+<ol>
+<li>Conduct a cost analysis of your current approach</li>
+<li>Implement comprehensive monitoring</li>
+<li>Design degradation strategies</li>
+<li>Plan your scaling roadmap</li>
+</ol>
+<p>Remember: The best production system isn't the most sophisticated—it's the one that reliably delivers value while being maintainable and cost-effective.</p>
+<h2 id="additional-resources">Additional Resources</h2>
+<p>For deeper dives into production topics:</p>
+<ul>
+<li><a href="https://sre.google/books/">Google SRE Book</a> - Reliability engineering principles</li>
+<li><a href="https://hpbn.co/">High Performance Browser Networking</a> - Latency optimization</li>
+<li><a href="https://dataintensive.net/">Designing Data-Intensive Applications</a> - Scalability patterns</li>
+</ul>
+<div class="admonition quote">
+<p class="admonition-title">Final Thought</p>
+<p>"Production readiness isn't a destination—it's a continuous journey of optimization, monitoring, and improvement. Embrace the journey."</p>
+</div>
 
 
 
@@ -3550,44 +3472,6 @@
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../../cohort2/week5-summary/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Cohort 2 - Week 5">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Cohort 2 - Week 5
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../week-5-2/" class="md-footer__link md-footer__link--next" aria-label="Next: Cohort 3 - Session 2">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                Cohort 3 - Session 2
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -3629,10 +3513,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
         <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
       
@@ -3640,7 +3524,7 @@
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
-        <script src="../../../javascripts/mathjax.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
       
     
   </body>

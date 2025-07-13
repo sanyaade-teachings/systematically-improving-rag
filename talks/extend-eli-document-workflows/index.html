@@ -6,32 +6,28 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Fine-tuning citation accuracy, temporal reasoning, and specialized tool portfolios for RAG systems">
+        <meta name="description" content="Insights from Eli Badgio (CTO of Extend) on practical, stepwise approaches to AI-native document automation, evaluation, and human-in-the-loop workflows.">
       
       
       
-        <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/office-hours/cohort3/week-5-1/">
+        <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/talks/extend-eli-document-workflows/">
       
       
-        <link rel="prev" href="../../cohort2/week5-summary/">
       
       
-        <link rel="next" href="../week-5-2/">
-      
-      
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
     
     
       
-        <title>Week 5 - Office Hour 1 - Systematically Improving RAG Applications</title>
+        <title>Building Trust in Document Automation: Insights from Extend’s CTO - Systematically Improving RAG Applications</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,9 +46,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -88,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#week-5-office-hour-1-june-17" class="md-skip">
+        <a href="#building-trust-in-document-automation-insights-from-extends-cto" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +118,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Systematically Improving RAG Applications" class="md-header__button md-logo" aria-label="Systematically Improving RAG Applications" data-md-component="logo">
+    <a href="../.." title="Systematically Improving RAG Applications" class="md-header__button md-logo" aria-label="Systematically Improving RAG Applications" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -142,7 +138,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Week 5 - Office Hour 1
+              Building Trust in Document Automation: Insights from Extend’s CTO
             
           </span>
         </div>
@@ -248,7 +244,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -269,7 +265,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../workshops/" class="md-tabs__link">
+        <a href="../../workshops/" class="md-tabs__link">
           
   
   
@@ -287,13 +283,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../office-hours/" class="md-tabs__link">
           
   
   
@@ -315,7 +309,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../talks/" class="md-tabs__link">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -337,7 +331,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../misc/learning-goals/" class="md-tabs__link">
+        <a href="../../misc/learning-goals/" class="md-tabs__link">
           
   
   
@@ -373,7 +367,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Systematically Improving RAG Applications" class="md-nav__button md-logo" aria-label="Systematically Improving RAG Applications" data-md-component="logo">
+    <a href="../.." title="Systematically Improving RAG Applications" class="md-nav__button md-logo" aria-label="Systematically Improving RAG Applications" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -391,7 +385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -452,7 +446,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../workshops/" class="md-nav__link ">
+            <a href="../../workshops/" class="md-nav__link ">
               
   
   
@@ -487,7 +481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter0/" class="md-nav__link">
+      <a href="../../workshops/chapter0/" class="md-nav__link">
         
   
   
@@ -559,7 +553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter1/" class="md-nav__link">
+      <a href="../../workshops/chapter1/" class="md-nav__link">
         
   
   
@@ -639,7 +633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter2/" class="md-nav__link">
+      <a href="../../workshops/chapter2/" class="md-nav__link">
         
   
   
@@ -723,7 +717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter3-1/" class="md-nav__link">
+      <a href="../../workshops/chapter3-1/" class="md-nav__link">
         
   
   
@@ -746,7 +740,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter3-2/" class="md-nav__link">
+      <a href="../../workshops/chapter3-2/" class="md-nav__link">
         
   
   
@@ -769,7 +763,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter3-3/" class="md-nav__link">
+      <a href="../../workshops/chapter3-3/" class="md-nav__link">
         
   
   
@@ -851,7 +845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter4-1/" class="md-nav__link">
+      <a href="../../workshops/chapter4-1/" class="md-nav__link">
         
   
   
@@ -874,7 +868,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter4-2/" class="md-nav__link">
+      <a href="../../workshops/chapter4-2/" class="md-nav__link">
         
   
   
@@ -956,7 +950,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter5-1/" class="md-nav__link">
+      <a href="../../workshops/chapter5-1/" class="md-nav__link">
         
   
   
@@ -979,7 +973,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter5-2/" class="md-nav__link">
+      <a href="../../workshops/chapter5-2/" class="md-nav__link">
         
   
   
@@ -1063,7 +1057,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter6-1/" class="md-nav__link">
+      <a href="../../workshops/chapter6-1/" class="md-nav__link">
         
   
   
@@ -1086,7 +1080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter6-2/" class="md-nav__link">
+      <a href="../../workshops/chapter6-2/" class="md-nav__link">
         
   
   
@@ -1109,7 +1103,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/chapter6-3/" class="md-nav__link">
+      <a href="../../workshops/chapter6-3/" class="md-nav__link">
         
   
   
@@ -1144,8 +1138,6 @@
       
   
   
-    
-  
   
   
     
@@ -1175,23 +1167,22 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
+            <a href="../../office-hours/" class="md-nav__link ">
               
   
   
@@ -1204,13 +1195,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Office Hours
@@ -1226,7 +1217,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../faq/" class="md-nav__link">
+      <a href="../../office-hours/faq/" class="md-nav__link">
         
   
   
@@ -1249,7 +1240,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../AGENTS/" class="md-nav__link">
+      <a href="../../office-hours/AGENTS/" class="md-nav__link">
         
   
   
@@ -1286,13 +1277,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -1301,7 +1289,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
         
           
-          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
             
   
   
@@ -1328,7 +1316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cohort2/week1-summary/" class="md-nav__link">
+      <a href="../../office-hours/cohort2/week1-summary/" class="md-nav__link">
         
   
   
@@ -1351,7 +1339,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../week-1-1/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-1-1/" class="md-nav__link">
         
   
   
@@ -1374,7 +1362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../week-1-2/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-1-2/" class="md-nav__link">
         
   
   
@@ -1419,13 +1407,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -1434,7 +1419,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
             
   
   
@@ -1461,7 +1446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cohort2/week2-summary/" class="md-nav__link">
+      <a href="../../office-hours/cohort2/week2-summary/" class="md-nav__link">
         
   
   
@@ -1484,7 +1469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../week-2-1/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-2-1/" class="md-nav__link">
         
   
   
@@ -1507,7 +1492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../week-2-2/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-2-2/" class="md-nav__link">
         
   
   
@@ -1550,13 +1535,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -1565,7 +1547,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
         
           
-          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
             
   
   
@@ -1592,7 +1574,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cohort2/week3-summary/" class="md-nav__link">
+      <a href="../../office-hours/cohort2/week3-summary/" class="md-nav__link">
         
   
   
@@ -1615,7 +1597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../week-3-1/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-3-1/" class="md-nav__link">
         
   
   
@@ -1660,13 +1642,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -1675,7 +1654,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7" >
         
           
-          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
             
   
   
@@ -1702,7 +1681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cohort2/week4-summary/" class="md-nav__link">
+      <a href="../../office-hours/cohort2/week4-summary/" class="md-nav__link">
         
   
   
@@ -1725,7 +1704,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../week-4-1/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-4-1/" class="md-nav__link">
         
   
   
@@ -1748,7 +1727,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../week-4-2/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-4-2/" class="md-nav__link">
         
   
   
@@ -1776,10 +1755,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -1794,21 +1771,20 @@
     
       
       
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
         
           
-          
         
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" checked>
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_8" >
         
           
-          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
             
   
   
@@ -1821,7 +1797,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_8">
             <span class="md-nav__icon md-icon"></span>
             Chapter 5: Multimodal Capabilities
@@ -1835,7 +1811,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cohort2/week5-summary/" class="md-nav__link">
+      <a href="../../office-hours/cohort2/week5-summary/" class="md-nav__link">
         
   
   
@@ -1855,32 +1831,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Cohort 3 - Session 1
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../office-hours/cohort3/week-5-1/" class="md-nav__link">
         
   
   
@@ -1891,215 +1845,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#how-effective-is-fine-tuning-for-improving-citation-accuracy" class="md-nav__link">
-    <span class="md-ellipsis">
-      How effective is fine-tuning for improving citation accuracy?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#should-we-shuffle-citation-sources-during-fine-tuning" class="md-nav__link">
-    <span class="md-ellipsis">
-      Should we shuffle citation sources during fine-tuning?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-should-we-approach-tool-design-for-specialized-retrieval-tasks" class="md-nav__link">
-    <span class="md-ellipsis">
-      How should we approach tool design for specialized retrieval tasks?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-we-handle-temporal-reasoning-in-medical-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      How can we handle temporal reasoning in medical data?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-the-difference-between-multi-agent-and-single-agent-approaches" class="md-nav__link">
-    <span class="md-ellipsis">
-      What's the difference between multi-agent and single-agent approaches?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-we-use-document-summarization-to-improve-retrieval" class="md-nav__link">
-    <span class="md-ellipsis">
-      How can we use document summarization to improve retrieval?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-we-implement-price-quote-generation-using-rag" class="md-nav__link">
-    <span class="md-ellipsis">
-      How can we implement price quote generation using RAG?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-the-best-way-to-format-data-for-language-models" class="md-nav__link">
-    <span class="md-ellipsis">
-      What's the best way to format data for language models?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-should-we-approach-end-to-end-evaluation-of-complex-rag-systems" class="md-nav__link">
-    <span class="md-ellipsis">
-      How should we approach end-to-end evaluation of complex RAG systems?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-does-fine-tuning-improve-citation-accuracy-in-llms" class="md-nav__link">
-    <span class="md-ellipsis">
-      How does fine-tuning improve citation accuracy in LLMs?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-many-examples-are-typically-needed-for-effective-fine-tuning" class="md-nav__link">
-    <span class="md-ellipsis">
-      How many examples are typically needed for effective fine-tuning?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#should-i-shuffle-the-order-of-retrieved-sources-in-my-fine-tuning-dataset" class="md-nav__link">
-    <span class="md-ellipsis">
-      Should I shuffle the order of retrieved sources in my fine-tuning dataset?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-should-i-approach-tool-selection-for-my-llm-application" class="md-nav__link">
-    <span class="md-ellipsis">
-      How should I approach tool selection for my LLM application?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-an-effective-way-to-evaluate-tool-selection-by-the-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      What's an effective way to evaluate tool selection by the model?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-do-coding-agents-approach-tool-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      How do coding agents approach tool integration?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-should-i-organize-timeline-based-data-for-llm-processing" class="md-nav__link">
-    <span class="md-ellipsis">
-      How should I organize timeline-based data for LLM processing?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-are-markdown-tables-particularly-effective-for-structured-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why are markdown tables particularly effective for structured data?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-i-help-models-reason-across-complex-information" class="md-nav__link">
-    <span class="md-ellipsis">
-      How can I help models reason across complex information?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#is-it-beneficial-to-generate-summaries-during-data-ingestion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Is it beneficial to generate summaries during data ingestion?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-i-handle-reasoning-across-multiple-documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      How can I handle reasoning across multiple documents?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-the-best-way-to-handle-long-context-windows" class="md-nav__link">
-    <span class="md-ellipsis">
-      What's the best way to handle long context windows?
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2112,7 +1857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../week-5-2/" class="md-nav__link">
+      <a href="../../office-hours/cohort3/week-5-2/" class="md-nav__link">
         
   
   
@@ -2153,13 +1898,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -2168,7 +1910,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_9" >
         
           
-          <label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
             
   
   
@@ -2195,7 +1937,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cohort2/week6-summary/" class="md-nav__link">
+      <a href="../../office-hours/cohort2/week6-summary/" class="md-nav__link">
         
   
   
@@ -2268,7 +2010,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../talks/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -2360,7 +2102,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/chromadb-anton-chunking/" class="md-nav__link">
+      <a href="../chromadb-anton-chunking/" class="md-nav__link">
         
   
   
@@ -2383,7 +2125,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/john-lexical-search/" class="md-nav__link">
+      <a href="../john-lexical-search/" class="md-nav__link">
         
   
   
@@ -2406,7 +2148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/query-routing-anton/" class="md-nav__link">
+      <a href="../query-routing-anton/" class="md-nav__link">
         
   
   
@@ -2429,7 +2171,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/semantic-search-exa-will-bryk/" class="md-nav__link">
+      <a href="../semantic-search-exa-will-bryk/" class="md-nav__link">
         
   
   
@@ -2452,7 +2194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/rag-without-apis-browser-michael-struwig/" class="md-nav__link">
+      <a href="../rag-without-apis-browser-michael-struwig/" class="md-nav__link">
         
   
   
@@ -2536,7 +2278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/glean-manav/" class="md-nav__link">
+      <a href="../glean-manav/" class="md-nav__link">
         
   
   
@@ -2559,7 +2301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/fine-tuning-rerankers-embeddings-ayush-lancedb/" class="md-nav__link">
+      <a href="../fine-tuning-rerankers-embeddings-ayush-lancedb/" class="md-nav__link">
         
   
   
@@ -2582,7 +2324,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
+      <a href="../embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
         
   
   
@@ -2666,7 +2408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/online-evals-production-monitoring-ben-sidhant/" class="md-nav__link">
+      <a href="../online-evals-production-monitoring-ben-sidhant/" class="md-nav__link">
         
   
   
@@ -2689,7 +2431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/rag-antipatterns-skylar-payne/" class="md-nav__link">
+      <a href="../rag-antipatterns-skylar-payne/" class="md-nav__link">
         
   
   
@@ -2712,7 +2454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/zapier-vitor-evals/" class="md-nav__link">
+      <a href="../zapier-vitor-evals/" class="md-nav__link">
         
   
   
@@ -2794,7 +2536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/rag-is-dead-cline-nik/" class="md-nav__link">
+      <a href="../rag-is-dead-cline-nik/" class="md-nav__link">
         
   
   
@@ -2817,7 +2559,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/colin-rag-agents/" class="md-nav__link">
+      <a href="../colin-rag-agents/" class="md-nav__link">
         
   
   
@@ -2899,7 +2641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/reducto-docs-adit/" class="md-nav__link">
+      <a href="../reducto-docs-adit/" class="md-nav__link">
         
   
   
@@ -2922,7 +2664,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../talks/superlinked-encoder-stacking/" class="md-nav__link">
+      <a href="../superlinked-encoder-stacking/" class="md-nav__link">
         
   
   
@@ -3015,7 +2757,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/learning-goals/" class="md-nav__link">
+      <a href="../../misc/learning-goals/" class="md-nav__link">
         
   
   
@@ -3038,7 +2780,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/what-i-want-you-to-takeaway/" class="md-nav__link">
+      <a href="../../misc/what-i-want-you-to-takeaway/" class="md-nav__link">
         
   
   
@@ -3061,7 +2803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/introduction/" class="md-nav__link">
+      <a href="../../misc/introduction/" class="md-nav__link">
         
   
   
@@ -3084,7 +2826,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/landingpage/" class="md-nav__link">
+      <a href="../../misc/landingpage/" class="md-nav__link">
         
   
   
@@ -3134,189 +2876,81 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-effective-is-fine-tuning-for-improving-citation-accuracy" class="md-nav__link">
+  <a href="#what-are-the-key-challenges-in-document-automation" class="md-nav__link">
     <span class="md-ellipsis">
-      How effective is fine-tuning for improving citation accuracy?
+      What are the key challenges in document automation?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#should-we-shuffle-citation-sources-during-fine-tuning" class="md-nav__link">
+  <a href="#how-should-companies-approach-understanding-their-document-data" class="md-nav__link">
     <span class="md-ellipsis">
-      Should we shuffle citation sources during fine-tuning?
+      How should companies approach understanding their document data?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-should-we-approach-tool-design-for-specialized-retrieval-tasks" class="md-nav__link">
+  <a href="#why-are-task-specific-evaluations-critical-for-document-automation" class="md-nav__link">
     <span class="md-ellipsis">
-      How should we approach tool design for specialized retrieval tasks?
+      Why are task-specific evaluations critical for document automation?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-can-we-handle-temporal-reasoning-in-medical-data" class="md-nav__link">
+  <a href="#how-should-companies-think-about-partial-automation-versus-full-automation" class="md-nav__link">
     <span class="md-ellipsis">
-      How can we handle temporal reasoning in medical data?
+      How should companies think about partial automation versus full automation?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#whats-the-difference-between-multi-agent-and-single-agent-approaches" class="md-nav__link">
+  <a href="#how-should-companies-redesign-processes-around-automation" class="md-nav__link">
     <span class="md-ellipsis">
-      What's the difference between multi-agent and single-agent approaches?
+      How should companies redesign processes around automation?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-can-we-use-document-summarization-to-improve-retrieval" class="md-nav__link">
+  <a href="#how-should-companies-balance-cost-speed-and-accuracy-in-document-processing" class="md-nav__link">
     <span class="md-ellipsis">
-      How can we use document summarization to improve retrieval?
+      How should companies balance cost, speed, and accuracy in document processing?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-can-we-implement-price-quote-generation-using-rag" class="md-nav__link">
+  <a href="#what-role-should-domain-experts-play-in-document-automation" class="md-nav__link">
     <span class="md-ellipsis">
-      How can we implement price quote generation using RAG?
+      What role should domain experts play in document automation?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#whats-the-best-way-to-format-data-for-language-models" class="md-nav__link">
+  <a href="#how-should-companies-approach-change-management-for-document-automation" class="md-nav__link">
     <span class="md-ellipsis">
-      What's the best way to format data for language models?
+      How should companies approach change management for document automation?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-should-we-approach-end-to-end-evaluation-of-complex-rag-systems" class="md-nav__link">
+  <a href="#final-thoughts-on-document-automation" class="md-nav__link">
     <span class="md-ellipsis">
-      How should we approach end-to-end evaluation of complex RAG systems?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-does-fine-tuning-improve-citation-accuracy-in-llms" class="md-nav__link">
-    <span class="md-ellipsis">
-      How does fine-tuning improve citation accuracy in LLMs?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-many-examples-are-typically-needed-for-effective-fine-tuning" class="md-nav__link">
-    <span class="md-ellipsis">
-      How many examples are typically needed for effective fine-tuning?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#should-i-shuffle-the-order-of-retrieved-sources-in-my-fine-tuning-dataset" class="md-nav__link">
-    <span class="md-ellipsis">
-      Should I shuffle the order of retrieved sources in my fine-tuning dataset?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-should-i-approach-tool-selection-for-my-llm-application" class="md-nav__link">
-    <span class="md-ellipsis">
-      How should I approach tool selection for my LLM application?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-an-effective-way-to-evaluate-tool-selection-by-the-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      What's an effective way to evaluate tool selection by the model?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-do-coding-agents-approach-tool-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      How do coding agents approach tool integration?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-should-i-organize-timeline-based-data-for-llm-processing" class="md-nav__link">
-    <span class="md-ellipsis">
-      How should I organize timeline-based data for LLM processing?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-are-markdown-tables-particularly-effective-for-structured-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why are markdown tables particularly effective for structured data?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-i-help-models-reason-across-complex-information" class="md-nav__link">
-    <span class="md-ellipsis">
-      How can I help models reason across complex information?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#is-it-beneficial-to-generate-summaries-during-data-ingestion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Is it beneficial to generate summaries during data ingestion?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-i-handle-reasoning-across-multiple-documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      How can I handle reasoning across multiple documents?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-the-best-way-to-handle-long-context-windows" class="md-nav__link">
-    <span class="md-ellipsis">
-      What's the best way to handle long context windows?
+      Final thoughts on document automation
     </span>
   </a>
   
@@ -3338,183 +2972,206 @@
 
 
 
-<h1 id="week-5-office-hour-1-june-17">Week 5, Office Hour 1 (June 17)</h1>
-<p>I hosted an office hours session focused on fine-tuning models for citation accuracy and designing effective tool portfolios for RAG systems. Here are my insights on improving citation capabilities through fine-tuning, structuring data for temporal reasoning, and creating effective tool portfolios for specialized retrieval tasks.</p>
-<h2 id="how-effective-is-fine-tuning-for-improving-citation-accuracy">How effective is fine-tuning for improving citation accuracy?</h2>
-<p>When working with citation requirements, fine-tuning can dramatically reduce error rates. In one project, we used OpenAI's fine-tuning API with about 1,000 examples to improve our marketing content generation system.</p>
-<p>The results were impressive - our error rates dropped from around 4% to essentially 0% on our test set of 200 examples. We didn't need complex frameworks like Fluoro since we weren't hosting local models, just using OpenAI's API directly.</p>
-<p>The key was having evaluators validate our offline data, filtering out incorrectly formatted examples before using them in the fine-tuning process. This approach worked particularly well because we weren't trying to change the model's knowledge - just its formatting behavior.</p>
-<p>When determining how much data you need, I recommend experimenting with different sample sizes:</p>
-<p>"What I would often do is try to use a subset of my data for fine-tuning, then increase the sample size and figure out what that curve looks like. It's going to be performance versus volume."</p>
-<p>Different models will have different learning curves - a 1.3 billion parameter model might flatten out at 10,000 data points, while larger models might show different patterns. Adjusting learning rates can also affect these curves.</p>
-<p><strong><em>Key Takeaway:</em></strong> Fine-tuning can be remarkably effective for formatting tasks like citation, often requiring less data than you might expect. Start with small batches, measure performance, and increase data volume until you reach your desired accuracy level.</p>
-<h2 id="should-we-shuffle-citation-sources-during-fine-tuning">Should we shuffle citation sources during fine-tuning?</h2>
-<p>When fine-tuning models to cite sources correctly, shuffling the order of retrieved sources can be beneficial to prevent position bias. This approach makes the model invariant to the order of sources, which is particularly important if you're not sorting by relevance.</p>
-<p>However, if you are sorting by relevance, maintaining the original order might actually be preferable: "Maybe it is important for the model to know that the first text chunk is the most relevant text chunk."</p>
-<p>The need for shuffling may also depend on the context length of your model. With older, smaller context models (like 4K token models), position bias was more pronounced due to the "lost in the middle" effect. Newer models with better attention mechanisms have improved recall across their context window.</p>
-<p>"If you look at the newer models, they just have way better lost-in-the-middle sensitivity in general, and I would expect that when you fine-tune these things, they also preserve some of that ability to attend over long contexts."</p>
-<p>The real challenge that remains is reasoning over multiple "needles" of information scattered throughout a document - connecting facts from different sections remains difficult for most models.</p>
-<p><strong><em>Key Takeaway:</em></strong> Consider shuffling citation sources during fine-tuning if you want position-invariant citations, but if you're sorting by relevance, maintaining order may be beneficial. Newer models have better attention across their context window, reducing the need for this technique.</p>
-<h2 id="how-should-we-approach-tool-design-for-specialized-retrieval-tasks">How should we approach tool design for specialized retrieval tasks?</h2>
-<p>When designing tools for retrieval systems, focus on creating a portfolio of specialized tools rather than just distinguishing between semantic and structured data. The key question isn't "Am I searching semantic or structured data?" but rather "What is the portfolio of tools I want to expose to my system?"</p>
-<p>For example, in a construction use case, we implemented several specialized tools:</p>
-<ul>
-<li>Generic document search that searches everything</li>
-<li>Contact search for finding people</li>
-<li>RFI (Request for Information) search that takes specific RFI codes</li>
-<li>Contract search that returns not just text chunks but also responsible parties</li>
-</ul>
-<p>The implementation details (whether it's semantic search or structured data) matter less than how you present these tools to the language model. Your focus should be on making sure the model understands what tool to use and when.</p>
-<p>For evaluating tool selection, I recommend having the model "write a plan of all the tools it might want to use" for a given query, then evaluating that plan first. You can even present this plan to users for approval before execution, which creates valuable training data based on acceptance rates.</p>
-<p>"That gets you a pretty good dataset in terms of customer plan acceptance rates, and then you can look at the ones that are not accepted and figure out what you need to do afterwards."</p>
-<p>The naming of tools significantly impacts how models use them. In coding agents, for example, providing a specific "grep" tool versus just mentioning grep in the command line instructions can change execution patterns by 2% in evaluations.</p>
-<p><strong><em>Key Takeaway:</em></strong> Design a portfolio of specialized tools based on specific use cases rather than general data types. Focus on clear tool descriptions and evaluate how well the model selects the appropriate tools for different queries.</p>
-<h2 id="how-can-we-handle-temporal-reasoning-in-medical-data">How can we handle temporal reasoning in medical data?</h2>
-<p>One of the most challenging aspects of working with medical data is reasoning about information across a timeline. When retrieving documents about medications, for example, you might get 20 documents all describing medications, but understanding what changed over time requires special handling.</p>
-<p>"You might want to know what changed over time, or you have to always see it in the context of time. And you also need to find relationships like 'there's this medication and the patient became worse' or 'this medication went up' - that all needs to be conceived in the system."</p>
-<p>For presenting temporal data effectively to models, I recommend structuring it as a markdown table whenever possible. In our testing, markdown tables performed 12% better than CSV, JSON, or YAML formats for complex lookup tasks across large datasets.</p>
-<p>"We've done tests where I put like 6,000 rows, 50 columns as CSV, as markdown, as JSON, as YAML - and markdown tables is like 12% better in terms of identifying on row X where the value is Y, find me the row that's one above and one to the left."</p>
-<p>The ordering of temporal data also matters significantly. You might get different results if you order events in ascending versus descending time. This affects how the model scans and reasons about cause and effect relationships.</p>
-<p>For building better temporal reasoning capabilities, consider:</p>
-<ol>
-<li>
-<p>Ordering retrieved documents chronologically</p>
-</li>
-<li>
-<p>Presenting data in markdown table format with clear timestamps</p>
-</li>
-<li>
-<p>Having the model first extract and reorganize relevant information before reasoning about it</p>
-</li>
-<li>
-<p>Mining reasoning chains from expert users to create training data</p>
-</li>
-</ol>
-<p><strong><em>Key Takeaway:</em></strong> For temporal reasoning, structure data chronologically in markdown tables and implement a two-stage approach where the model first extracts and organizes relevant timeline information before reasoning about it.</p>
-<h2 id="whats-the-difference-between-multi-agent-and-single-agent-approaches">What's the difference between multi-agent and single-agent approaches?</h2>
-<p>The debate between multi-agent and single-agent systems often comes down to context coordination challenges. For coding tasks, Devin (from Cognition) chose a single-threaded approach because coordinating between agents modifying different parts of a codebase is extremely difficult.</p>
-<p>"If one agent modifies one directory and another agent modifies another directory, that communication channel is sort of not well defined yet."</p>
-<p>In contrast, Claude's Deep Research uses multiple agents, but they're all read-only - they don't need to coordinate changes because they're just retrieving information that will later be combined:</p>
-<p>"In that multi-agent system, the agents are all read-only, so they don't need to manage that communication overhead because they're all going to be reduced. If I search about who I am, one agent searches childhood, one agent searches career, and once they bring all the information back, they can be reduced."</p>
-<p>The primary benefit of multi-agent systems appears to be token efficiency - you can use more tokens across multiple agents than with a single agent. "The performance just increases with the amount of tokens each sub-agent is able to consume. If you have 10 sub-agents, you can use more tokens, and your research quality is better."</p>
-<p>For medical data applications that are primarily read-only, a multi-agent approach might work, but the challenge remains in ensuring no context is missed when combining information from different agents.</p>
-<p><strong><em>Key Takeaway:</em></strong> Choose multi-agent approaches for read-only tasks where you need to process more tokens than a single context window allows. For tasks requiring coordination of changes, single-agent approaches remain more practical until better coordination mechanisms are developed.</p>
-<h2 id="how-can-we-use-document-summarization-to-improve-retrieval">How can we use document summarization to improve retrieval?</h2>
-<p>Generating summaries during document ingestion can be a cost-effective approach to improving retrieval. Summaries function as a form of compression and can be particularly valuable when working with smaller context window models.</p>
-<p>"In general, this is a good idea because that's almost in some ways just a more cost-effective way of doing this contextual retrieval stuff. Summary is just compression."</p>
-<p>The key is designing your summarization prompt based on the specific tasks your system needs to perform. For example, with architectural blueprints, we knew users would ask about room counts and dimensions, so we created summaries that explicitly counted and listed these elements:</p>
-<p>"Because we know that our tasks involve things like extracting the names of rooms and counting things, if our language model can have a summary that counts everything, then it becomes much easier to think about 'the place with 4 bedrooms and 2 bathrooms.'"</p>
-<p>We implemented this as a separate document search tool that only hits the summaries. Through iteration and evaluation, we improved our summary generation from 16% recall to 85% recall in just a few days.</p>
-<p>For implementation, you can:</p>
-<ol>
-<li>
-<p>Create a separate "search summaries" tool</p>
-</li>
-<li>
-<p>Design summary prompts that extract the specific types of information users will query</p>
-</li>
-<li>
-<p>Evaluate and iterate on summary quality using test queries</p>
-</li>
-<li>
-<p>Use summaries as synthetic text chunks that supplement your existing text chunks</p>
-</li>
-</ol>
-<p>This approach works particularly well for documents like financial reports, where structured information can be extracted, or for multimedia content where describing images or videos in text makes them searchable.</p>
-<p><strong><em>Key Takeaway:</em></strong> Document summarization during ingestion creates valuable synthetic text chunks that can dramatically improve retrieval performance. Design summary prompts based on the specific information needs of your application and iterate based on evaluation results.</p>
-<h2 id="how-can-we-implement-price-quote-generation-using-rag">How can we implement price quote generation using RAG?</h2>
-<p>One practical application we've built is an automated price quote system for sales teams. After multiple calls with a prospect, the system generates personalized pricing options and potential upsells.</p>
-<p>The process works like this:</p>
-<ol>
-<li>
-<p>We have 16 pages of pricing information (per-seat pricing, volume discounts, prepayment options)</p>
-</li>
-<li>
-<p>We have transcripts from 6 phone calls with the prospect</p>
-</li>
-<li>
-<p>We ask the language model to:</p>
-</li>
-<li>
-<p>Read the transcripts and list all relevant variables</p>
-</li>
-<li>Extract the values of those variables</li>
-<li>Reason about the pricing document</li>
-<li>Propose options and upsells</li>
-<li>Write an email to the prospect</li>
-</ol>
-<p>"The email's like 'Great talking to you, Tim. It sounds like for a company your size, you can probably commit to 15 seats. This will get you a 20% discount. If you don't use it, we'll move it to next year, and if you pay upfront, we can give you another 20-25% discount because I know that's something your CTO really values.'"</p>
-<p>Our evaluation method is simple but effective - we have salespeople review the generated emails before sending them, and we track whether they make edits. When edits are needed, we analyze what went wrong in the reasoning step.</p>
-<p>This approach of extracting variables, reasoning about them, and then generating output could be applied to medical data as well. For example, if a patient shows drowsiness, the system could first extract all timeline information about drowsiness, then reason about potential causes.</p>
-<p><strong><em>Key Takeaway:</em></strong> For complex reasoning tasks, implement a multi-step process where the model first extracts and organizes relevant information, then reasons about it, and finally generates output. This structured approach makes the reasoning more transparent and easier to evaluate.</p>
-<h2 id="whats-the-best-way-to-format-data-for-language-models">What's the best way to format data for language models?</h2>
-<p>When presenting structured data to language models, markdown tables consistently outperform other formats like CSV, JSON, or YAML. In our testing, markdown tables were 12% more effective for complex lookup tasks.</p>
-<p>"We've done tests where I put like 6,000 rows, 50 columns as CSV, as markdown, as JSON, as YAML - and markdown tables is like 12% better in terms of identifying on row X where the value is Y, find me the row that's one above and one to the left."</p>
-<p>The formatting details matter significantly. For example, having spaces between tokens in markdown tables (like "| data |" instead of "|data|") affects how the model processes the information.</p>
-<p>"If I search for the word Jason, the token is 'space Jason'. But if it's Jason in JSON, it's actually 'quote Jason' - those are different tokens. And so those things end up affecting the lookup a little bit."</p>
-<p>These seemingly minor formatting choices can have meaningful impacts on model performance, especially for tasks requiring precise information retrieval or table navigation.</p>
-<p>For temporal data specifically, presenting information in chronological order (either ascending or descending) can significantly affect how models reason about cause and effect. Testing both approaches is worthwhile, as one may work better than the other depending on your specific use case.</p>
-<p>Markdown tables consistently outperform other data formats for structured information. Pay attention to spacing and formatting details, as they affect tokenization and retrieval performance. For temporal data, experiment with both chronological and reverse-chronological ordering.</p>
-<h2 id="how-should-we-approach-end-to-end-evaluation-of-complex-rag-systems">How should we approach end-to-end evaluation of complex RAG systems?</h2>
-<p>End-to-end evaluation of complex retrieval systems remains challenging, especially when there isn't a single correct answer or when the system needs to perform multi-step reasoning.</p>
-<p>"The end-to-end evaluation of these kinds of things are still pretty challenging, unless it really is the case that there are just certain text chunks that we're trying to achieve or certain answers we already know ahead of time."</p>
-<p>For tool selection, one effective approach is evaluating the system's planning capabilities:</p>
-<ol>
-<li>
-<p>Ask the model to write a plan of which tools it would use for a query</p>
-</li>
-<li>
-<p>Evaluate the plan before executing it</p>
-</li>
-<li>
-<p>Allow users to approve or reject the plan</p>
-</li>
-<li>
-<p>Track plan acceptance rates and analyze rejected plans</p>
-</li>
-</ol>
-<p>For reasoning tasks, breaking evaluation into steps can be helpful:</p>
-<ol>
-<li>
-<p>Evaluate information extraction (did the system find the relevant information?)</p>
-</li>
-<li>
-<p>Evaluate reasoning (given the correct information, did it reach valid conclusions?)</p>
-</li>
-<li>
-<p>Evaluate output generation (was the final response clear and actionable?)</p>
-</li>
-</ol>
-<p>In some domains like coding, the evaluation metrics are clearer - does the code pass tests? In other domains like medical reasoning, evaluation may require expert review or comparison to known outcomes.</p>
-<p>For systems like our price quote generator, we use a practical metric - do salespeople edit the generated emails before sending them? This real-world usage metric helps us identify where the system's reasoning falls short.</p>
-<p><strong><em>Key Takeaway:</em></strong> Break evaluation into component parts rather than relying solely on end-to-end metrics. Incorporate user feedback into your evaluation process, and track how often outputs require human editing or intervention.</p>
-<h2 id="how-does-fine-tuning-improve-citation-accuracy-in-llms">How does fine-tuning improve citation accuracy in LLMs?</h2>
-<p>Fine-tuning can dramatically reduce error rates when teaching models to properly cite sources. In one example, fine-tuning reduced citation errors from 4% to nearly 0% for marketing content generation. The process involves collecting properly formatted examples, validating them, filtering out incorrect formats, and using them in the fine-tuning process.</p>
-<h2 id="how-many-examples-are-typically-needed-for-effective-fine-tuning">How many examples are typically needed for effective fine-tuning?</h2>
-<p>Around 1,000 high-quality examples can be sufficient for format-related fine-tuning tasks. However, the exact number depends on your specific use case. It's recommended to experiment with increasing sample sizes to determine the optimal amount for your needs. Start with a smaller subset and gradually increase to identify where performance improvements begin to plateau.</p>
-<h2 id="should-i-shuffle-the-order-of-retrieved-sources-in-my-fine-tuning-dataset">Should I shuffle the order of retrieved sources in my fine-tuning dataset?</h2>
-<p>Shuffling retrieved sources can be beneficial to make your model invariant to the order of information. This approach helps prevent the model from developing biases toward information presented first. However, if your retrieval system sorts by relevance, maintaining that order might be important as the first chunk would genuinely contain the most relevant information.</p>
-<h2 id="how-should-i-approach-tool-selection-for-my-llm-application">How should I approach tool selection for my LLM application?</h2>
-<p>Focus on developing a portfolio of specialized tools rather than simply categorizing between semantic and structured data searches. Consider what specific capabilities would benefit your use case, such as date-range filtering, categorical filters, or metadata tag filtering. The implementation details (whether semantic or structured) matter less than ensuring your model understands when to use each tool.</p>
-<h2 id="whats-an-effective-way-to-evaluate-tool-selection-by-the-model">What's an effective way to evaluate tool selection by the model?</h2>
-<p>A practical approach is to have the model write a plan listing all tools it would use for a given query, then evaluate that plan before execution. You can present this plan to users for approval or rejection, which generates valuable feedback data. Analyzing rejected plans helps identify improvements needed in your tool selection and routing logic.</p>
-<h2 id="how-do-coding-agents-approach-tool-integration">How do coding agents approach tool integration?</h2>
-<p>Coding agents have made significant progress with tool integration. One key insight is that providing named tools for specific functions (rather than general capabilities) significantly changes how frequently these functions are used. For example, providing a dedicated "grep" tool versus expecting the model to remember to use grep through a general command line interface can improve performance by several percentage points.</p>
-<h2 id="how-should-i-organize-timeline-based-data-for-llm-processing">How should I organize timeline-based data for LLM processing?</h2>
-<p>For timeline data, consider presenting information in a markdown table format, which models tend to process effectively. Order the data chronologically (either ascending or descending) and include clear date markers. This organization helps the model understand temporal relationships and reason about cause and effect. Testing both ascending and descending time orders may yield different results depending on your use case.</p>
-<h2 id="why-are-markdown-tables-particularly-effective-for-structured-data">Why are markdown tables particularly effective for structured data?</h2>
-<p>Markdown tables have shown superior performance (approximately 12% better) compared to other formats like CSV, JSON, or YAML when models need to perform lookup tasks or understand relationships between data points. The spacing between tokens in markdown tables appears to be particularly well-suited to how models process information.</p>
-<h2 id="how-can-i-help-models-reason-across-complex-information">How can I help models reason across complex information?</h2>
-<p>For complex reasoning tasks, consider implementing a two-step approach: first have the model extract and reorganize all relevant information from different sources, then reason about this reorganized information. This approach works well for tasks requiring synthesis across multiple data points, such as analyzing medical timelines or generating pricing quotes based on multiple conversations.</p>
-<h2 id="is-it-beneficial-to-generate-summaries-during-data-ingestion">Is it beneficial to generate summaries during data ingestion?</h2>
-<p>Creating summaries during data ingestion can be very effective, especially for longer documents. Summaries act as compressed versions of your data that can be more efficiently processed. For specific use cases like blueprints or financial documents, you can design summarization prompts that extract the most relevant information (like room counts or key financial figures) to make subsequent queries more efficient.</p>
-<h2 id="how-can-i-handle-reasoning-across-multiple-documents">How can I handle reasoning across multiple documents?</h2>
-<p>For reasoning across multiple documents, consider having the model first extract all relevant information related to the query, reorganize it (possibly chronologically or thematically), and then reason about the reorganized information. This approach helps manage context limitations and focuses the model's attention on the most pertinent details.</p>
-<h2 id="whats-the-best-way-to-handle-long-context-windows">What's the best way to handle long context windows?</h2>
-<p>Newer models with improved attention mechanisms handle long contexts better than older models. However, for complex reasoning tasks involving multiple "needles" of information spread throughout a document, consider using tools that first organize the relevant information before reasoning about it. This approach remains effective even with models that have long context windows.</p>
+<h1 id="building-trust-in-document-automation-insights-from-extends-cto">Building Trust in Document Automation: Insights from Extend’s CTO</h1>
+<p>I hosted a special session with Eli Badgio, CTO of Extend, to discuss AI-native document processing in the cloud. Extend helps companies achieve 95%+ extraction accuracy for customers like Brex and other Fortune 500s. This session covered mapping document workflows, building task-specific evaluations, and implementing partial automation with human-in-the-loop approaches.</p>
 <hr />
-<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
+<h2 id="what-are-the-key-challenges-in-document-automation">What are the key challenges in document automation?</h2>
+<p>Document processing is an incredibly broad field encompassing everything from ingestion (RAG context for agents, data mining) to back-office processing (where documents serve as systems of record) to in-product experiences (traditional OCR).</p>
+<blockquote>
+<p>The most common failure case I've observed is companies trying to "one-shot" automation - attempting to replace an entire manual process with AI in a single step. This approach almost never works, even when the extraction accuracy seems high in initial tests.</p>
+</blockquote>
+<p>As Eli explained:</p>
+<blockquote>
+<p>"In practice, it will never work, even if the use case is not that complex and the accuracy on the extraction is going to be close to perfect. It's extraordinarily difficult to just swap out a manual process for an automated process."</p>
+</blockquote>
+<p>This one-shot approach sets unrealistic expectations for business stakeholders and product teams. Instead, successful document automation requires a more methodical, step-by-step approach.</p>
+<p><strong>Key Takeaway:</strong></p>
+<blockquote>
+<p>Don't try to replace entire document workflows in one go. Start with partial automation and gradually expand as you build confidence in the system and gain stakeholder buy-in.</p>
+</blockquote>
+<hr />
+<h2 id="how-should-companies-approach-understanding-their-document-data">How should companies approach understanding their document data?</h2>
+<p>The first critical step is developing a deep understanding of both your documents and the existing manual processes around them. In most companies, there's an enormous amount of tacit knowledge hidden in people's heads—whether in engineering, operations, or domain experts.</p>
+<p>One client Extend worked with took a fascinating approach to this challenge. They were trying to automate software contract ingestion but initially struggled with accuracy issues. Their solution was four-fold:</p>
+<ol>
+<li>Implemented a human-in-the-loop flow where AI-processed documents were still routed to humans for verification, allowing them to collect robust production data.</li>
+<li>Brought in domain experts from within the company who had previously done this work manually.</li>
+<li>Created a series of extractors that characterized normalized attributes (supplier, layout type, pricing terminology) rather than trying to extract actionable data.</li>
+<li>Ran this workflow on approximately 150,000-200,000 documents (nearly a million pages) to develop an accurate representation of their historical data.</li>
+</ol>
+<p>This approach allowed them to identify blind spots in their understanding—problematic suppliers, pricing terms not being extracted correctly, and document types they weren't properly accounting for.</p>
+<p>As Eli noted:</p>
+<blockquote>
+<p>"Take some kind of initial first pass that is entirely focused on understanding the data, not actually trying to get the data out."</p>
+</blockquote>
+<p><strong>Key Takeaway:</strong></p>
+<blockquote>
+<p>Invest time in understanding your documents and existing processes before attempting automation. Consider running a data characterization phase where you classify document attributes to identify patterns and edge cases.</p>
+</blockquote>
+<hr />
+<h2 id="why-are-task-specific-evaluations-critical-for-document-automation">Why are task-specific evaluations critical for document automation?</h2>
+<p>Generic benchmarks like "Gemini Flash is better than GPT-X" aren't particularly useful for document automation. What matters is how well a system performs on your specific documents and use cases.</p>
+<p>A healthcare vertical AI team Extend worked with discovered this when automating EHR entry of referral orders. They were dealing with 100+ page scanned PDFs containing multiple referrals mixed with patient history and provider notes.</p>
+<p>Their solution:
+- AI engineers collaborated directly with in-house nurses and medical technicians to build comprehensive, fine-grained evaluation sets across a variety of document examples.
+- Domain experts helped optimize schemas and extraction rules to properly interpret medical jargon.</p>
+<p>This approach created a competitive advantage—proprietary evaluation data that allowed them to quickly test new models and capabilities against their specific needs. They maintained this advantage by continuing to review a percentage of documents to understand how real-world production data changes over time.</p>
+<p>As Eli emphasized:</p>
+<blockquote>
+<p>"You really need to invest the evals at every step of a flow when you're trying to automate an end-to-end document process."</p>
+</blockquote>
+<p><strong>Key Takeaway:</strong></p>
+<blockquote>
+<p>Create detailed, domain-specific evaluation sets with help from subject matter experts. These evaluations should test each step of your pipeline and reflect the real-world complexity of your documents.</p>
+</blockquote>
+<hr />
+<h2 id="how-should-companies-think-about-partial-automation-versus-full-automation">How should companies think about partial automation versus full automation?</h2>
+<p>Rather than aiming for 100% automation from the start, successful companies focus on what Eli called "true automation rate"—how high of an accuracy can you get where the end-to-end pipeline works 100% of the time, and inaccuracies are caught 100% of the time?</p>
+<p>A dental billing automation company took this approach when processing explanation of benefits (EOB) documents. They implemented:
+- A multi-step process that segmented the problem, limiting what each module needed to handle
+- Configuration workflows for different providers with known edge cases
+- Data validations and guardrails that could declaratively identify when a document needed human review</p>
+<p>This approach recognized that 85% true automation (where you know with certainty which 15% need human review) is more valuable than 98% accuracy where you can't identify the problematic 2%.</p>
+<p>As Eli explained:</p>
+<blockquote>
+<p>"In most cases, for these critical systems of records ingestion use cases, that's strictly worse than if you can get to like 85% true automation rate, where the 15% of the time that's not going to properly handle the document, you can catch that declaratively."</p>
+</blockquote>
+<p><strong>Key Takeaway:</strong></p>
+<blockquote>
+<p>Focus on "automate when possible, augment otherwise" rather than full automation. Design systems that can confidently identify which documents need human review rather than trying to automate everything.</p>
+</blockquote>
+<hr />
+<h2 id="how-should-companies-redesign-processes-around-automation">How should companies redesign processes around automation?</h2>
+<p>Rather than trying to replicate existing manual processes with automation, successful implementations rethink the entire workflow with automation in mind.</p>
+<p>This might involve:
+- Breaking document processing into multiple pipeline steps (parsing, classification, splitting, extraction, semantic chunking)
+- Creating declarative validation rules to identify when automation might fail
+- Designing human-in-the-loop workflows that efficiently handle exceptions</p>
+<p>When working with clients, Extend often starts by asking them to walk through their current process end-to-end. This helps identify opportunities to redesign workflows rather than simply automating existing inefficient processes.</p>
+<p>As Eli noted:</p>
+<blockquote>
+<p>"It can be very difficult to just full swap out something that's been done over many years among many different stakeholders and just make that automated as opposed to really understanding as an engineer what is the end-to-end process."</p>
+</blockquote>
+<p><strong>Key Takeaway:</strong></p>
+<blockquote>
+<p>Don't try to replicate manual processes with automation. Instead, redesign workflows from first principles with automation in mind, focusing on validation and exception handling.</p>
+</blockquote>
+<hr />
+<h2 id="how-should-companies-balance-cost-speed-and-accuracy-in-document-processing">How should companies balance cost, speed, and accuracy in document processing?</h2>
+<p>Document processing involves multiple trade-offs between cost, speed, and accuracy. For back-office workflows, accuracy should generally take priority over speed.</p>
+<p>Eli recommended several approaches to manage these trade-offs:
+- Use model distillation to create smaller, faster models for specific tasks like chunking
+- Implement pre-filtering steps with lightweight classifiers to avoid running expensive operations on all documents
+- For back-office flows, design processes that remove latency as a consideration</p>
+<p>As Eli advised:</p>
+<blockquote>
+<p>"If it's a back-office flow, I would encourage everyone not to think about latency as a problem. In fact, you should think about designing a process where you can effectively remove latency as being a consideration."</p>
+</blockquote>
+<p>He also noted:</p>
+<blockquote>
+<p>"If you can solve it with code... you should do the code-based approach because then you can actually guarantee it's going to behave how you want."</p>
+</blockquote>
+<p><strong>Key Takeaway:</strong></p>
+<blockquote>
+<p>For back-office document processing, prioritize accuracy over speed. Use lightweight models for initial classification and filtering, and consider deterministic code-based approaches where possible to reduce uncertainty.</p>
+</blockquote>
+<hr />
+<h2 id="what-role-should-domain-experts-play-in-document-automation">What role should domain experts play in document automation?</h2>
+<p>One of the most overlooked aspects of document automation is the critical role of domain experts. These are the people who understand the tacit knowledge embedded in documents and processes—nurses who know how to interpret medical terminology, financial analysts who understand billing codes, or operations staff who have been processing these documents manually.</p>
+<p>Eli emphasized:</p>
+<blockquote>
+<p>"If you're an engineer and you're tasked with this kind of problem... and you don't feel like you actually understand this process, someone on your team has to. If you're doing this currently and you're in industry, someone understands this."</p>
+</blockquote>
+<p>The most successful implementations Extend has seen involve close collaboration between AI engineers and domain experts to:
+- Design appropriate schemas and extraction rules
+- Create comprehensive evaluation datasets
+- Develop validation rules to identify edge cases
+- Interpret domain-specific terminology and formats</p>
+<p><strong>Key Takeaway:</strong></p>
+<blockquote>
+<p>Involve domain experts early in your document automation projects. Their tacit knowledge is essential for understanding document semantics, designing appropriate schemas, and creating effective evaluation datasets.</p>
+</blockquote>
+<hr />
+<h2 id="how-should-companies-approach-change-management-for-document-automation">How should companies approach change management for document automation?</h2>
+<p>Implementing document automation requires careful change management. Eli recommends starting with augmentation rather than full automation:</p>
+<blockquote>
+<p>"Most companies are much more willing to roll something out and deal with the change management if you focus on augmentation at start and then turn augmentation into automation."</p>
+</blockquote>
+<p>When working with clients, Extend often leads with building a human-loop system first, allowing companies to:
+- Collect real-world data about their documents
+- Build confidence in the system gradually
+- Identify edge cases and failure modes
+- Manage stakeholder expectations</p>
+<p>This approach aligns with their mantra:</p>
+<blockquote>
+<p>"Automate when possible, augment otherwise."</p>
+</blockquote>
+<p><strong>Key Takeaway:</strong></p>
+<blockquote>
+<p>Start with augmentation rather than full automation to ease change management. Build human-loop systems that gradually increase automation levels as confidence grows.</p>
+</blockquote>
+<hr />
+<h2 id="final-thoughts-on-document-automation">Final thoughts on document automation</h2>
+<p>Document automation is a complex field that requires deep understanding of both technical capabilities and domain-specific knowledge. The most successful implementations I've seen follow these principles:</p>
+<ul>
+<li>Understand your data and existing manual processes thoroughly</li>
+<li>Invest early in tailored evaluations specific to your domain</li>
+<li>Break processing into multiple pipeline steps</li>
+<li>Don't aim for 100% automation initially</li>
+<li>Redesign processes around automation rather than trying to replicate manual workflows</li>
+</ul>
+<p>As AI capabilities continue to advance, the companies that will benefit most are those that take a thoughtful, systematic approach to document automation rather than rushing to replace human processes overnight.</p>
+<hr />
+<h1 id="faqs">FAQs</h1>
+<h3 id="what-is-document-automation-and-why-is-it-important">What is document automation and why is it important?</h3>
+<p>Document automation uses AI to process and extract information from documents, reducing manual effort and errors. This is particularly crucial for enterprises where manual document workflows consume significant resources. For example, a single building construction project can require processing a million documents. Effective document automation can achieve 95%+ extraction accuracy, streamlining operations across industries from finance to healthcare.</p>
+<h3 id="what-are-the-main-types-of-document-processing-use-cases">What are the main types of document processing use cases?</h3>
+<p>There are three broad categories of document processing:
+- <strong>Ingestion:</strong> Including RAG context for agents and data mining
+- <strong>Back office processing:</strong> When documents serve as systems of record (contracts, deeds, etc.)
+- <strong>In-product experiences:</strong> Traditional OCR use cases like uploading an invoice to extract data</p>
+<p>The most challenging and often overlooked category is back office processing, where documents serve as critical systems of record with zero tolerance for errors.</p>
+<h3 id="whats-the-most-common-mistake-when-implementing-document-automation">What's the most common mistake when implementing document automation?</h3>
+<p>The most common failure is attempting to "one-shot" the automation—trying to replace an entire manual process with automation in a single step. This approach almost never works, even for relatively simple use cases. It sets unrealistic expectations and doesn't account for the complex change management required when transitioning from manual to automated processes.</p>
+<h3 id="how-should-i-approach-understanding-my-document-data">How should I approach understanding my document data?</h3>
+<p>Take time to thoroughly understand both your documents and the existing manual processes around them. Many companies have enormous amounts of tacit knowledge hidden in people's heads—whether in engineering, operations, or domain experts. This knowledge is critical for successful automation.</p>
+<p>One effective approach is to implement a human-in-the-loop flow where AI-processed documents are still routed to humans for review. This helps collect robust production data separate from your evaluation sets. Also consider creating extractors that characterize normalized attributes of your documents (supplier types, layout patterns, terminology variations) to help cluster and understand your document landscape.</p>
+<h3 id="why-are-tailored-evaluations-so-important-for-document-automation">Why are tailored evaluations so important for document automation?</h3>
+<p>Generic benchmarks don't translate well to specific document automation tasks. You need evaluations tailored to your domain, data, and processes. Invest early in creating comprehensive, fine-grained evaluation sets across a variety of document examples.</p>
+<p>The best approach is to involve domain experts (like nurses for healthcare documents or billing specialists for financial documents) to help build robust evaluation sets and optimize extraction schemas. This creates a competitive advantage as you can quickly test and confidently roll out improvements when new models become available.</p>
+<h3 id="should-i-aim-for-100-automation-from-the-start">Should I aim for 100% automation from the start?</h3>
+<p>No. It's much more effective to start with partial automation and gradually increase automation rates. Focus on what's called the "true automation rate"—not just accuracy on extracted data, but how often the end-to-end pipeline works perfectly and you can catch errors 100% of the time.</p>
+<p>For example, a system with 85% true automation rate where you can reliably identify the 15% that needs human review is far better than a system with 98% accuracy but no way to identify which 2% contains errors.</p>
+<h3 id="how-should-i-think-about-redesigning-processes-for-automation">How should I think about redesigning processes for automation?</h3>
+<p>Rather than trying to create a one-to-one replacement of an existing manual process, rethink the process from scratch with automation in mind. This might involve:
+- Breaking complex workflows into multiple steps
+- Creating deterministic routing based on document classifications
+- Implementing validation checks and guardrails
+- Designing human review processes for edge cases</p>
+<p>When possible, design the process around asynchronous processing rather than optimizing for latency, especially for back-office workflows where accuracy is more important than speed.</p>
+<h3 id="how-can-i-reduce-costs-for-document-processing">How can I reduce costs for document processing?</h3>
+<p>Several strategies can help manage costs:
+- Use model distillation to create smaller, faster models for specific tasks
+- Implement lightweight classifiers as an initial step to route documents appropriately
+- Use pre-filtering to only apply expensive processing (like semantic chunking) to documents that require it
+- Break processing into multiple steps with specialized models for each task
+- For back-office workflows, prioritize accuracy over latency and design processes that accommodate asynchronous processing.</p>
+<h3 id="how-should-i-involve-domain-experts-in-document-automation">How should I involve domain experts in document automation?</h3>
+<p>Domain experts are crucial for successful document automation. Involve them in:
+- Tailoring classifications and schema design to match industry jargon
+- Building comprehensive evaluation sets
+- Optimizing extraction rules to properly interpret domain-specific terminology
+- Designing validation checks based on their knowledge of the data</p>
+<p>Teams that effectively incorporate domain experts gain a significant competitive advantage in document automation.</p>
+<h3 id="whats-the-best-way-to-start-automating-a-document-workflow">What's the best way to start automating a document workflow?</h3>
+<p>Start by identifying a single, high-priority use case rather than attempting to automate multiple workflows simultaneously. Focus on understanding the data and existing process thoroughly before designing automation.</p>
+<p>Consider these steps:
+1. Implement a human-in-the-loop flow to collect production data
+2. Involve domain experts to understand tacit knowledge
+3. Create robust evaluation sets for each step in the process
+4. Start with augmentation before moving to automation
+5. Design the process around automation rather than trying to replicate the manual process</p>
+<p>This approach delivers business value faster while building organizational comfort with automation.</p>
 
 
 
@@ -3550,44 +3207,6 @@
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../../cohort2/week5-summary/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Cohort 2 - Week 5">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Cohort 2 - Week 5
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../week-5-2/" class="md-footer__link md-footer__link--next" aria-label="Next: Cohort 3 - Session 2">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                Cohort 3 - Session 2
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -3629,10 +3248,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
         <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
       
@@ -3640,7 +3259,7 @@
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
-        <script src="../../../javascripts/mathjax.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
       
     
   </body>
