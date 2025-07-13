@@ -111,24 +111,63 @@ nav:
       - "Introduction": "misc/introduction.md"
       - "Landing Page": "misc/landingpage.md"
 
+# --- Enhancements for mkdocs.yml ---
+# 1. Add recommended plugins for better UX, SEO, and maintainability
+# 2. Add markdown extensions for richer content
+# 3. Add comments and placeholders for further improvements
+# 4. Do not remove existing configuration
+
+# --- Recommended Plugins ---
+plugins:
+  - search
+  - awesome-pages           # For easy page ordering and structure via .pages files
+  - git-revision-date-localized  # Show last updated date on each page
+  - minify                  # Minify HTML output for faster load times
+  - redirects               # Avoid broken links when renaming/moving pages
+  - section-index           # Index pages for sections, improves navigation
+  - glightbox               # Beautiful image lightboxes
+  - mermaid2                # Enhanced Mermaid diagram support
+  # - sitemap               # Uncomment for better SEO
+  # - mike                  # Uncomment for versioned docs if needed
+
+# --- Markdown Extensions ---
 markdown_extensions:
   - pymdownx.highlight
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
+  - pymdownx.superfences
+  - pymdownx.caret          # Insertions, deletions, highlights
+  - pymdownx.snippets       # Reusable markdown snippets
+  - pymdownx.inlinehilite   # Inline code highlighting
+  # - pymdownx.emoji        # Emoji shortcodes (optional)
   - admonition
   - pymdownx.details
   - pymdownx.tabbed
   - attr_list
   - md_in_html
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.arithmatex:
-      generic: true
+  - pymdownx.tasklist
+  - pymdownx.arithmatex
 
-plugins:
-  - search
+# --- Navigation Suggestions ---
+# - Ensure each major section starts with an overview/landing page
+# - Use .pages files for custom ordering if awesome-pages is enabled
+# - Group long lists under collapsible headers for clarity
+
+# --- Content & Authoring Utilities ---
+# - Add a CONTRIBUTING.md for contributor guidelines (see below)
+# - Add a 404.md for a custom not-found page (see below)
+# - Add a robots.txt for SEO control (see below)
+
+# --- Example: Custom 404 Page ---
+# Create docs/404.md with helpful navigation links
+# Then add to nav if desired:
+#   - '404': '404.md'
+
+# --- Example: robots.txt ---
+# Place docs/robots.txt to control search engine indexing
+
+# --- Example: CONTRIBUTING.md ---
+# Place CONTRIBUTING.md in the root or docs/ for contributor guidelines
+
+# --- End Enhancements ---
 
 extra_javascript:
   - https://unpkg.com/mermaid/dist/mermaid.min.js
