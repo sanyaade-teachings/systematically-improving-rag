@@ -168,8 +168,8 @@ The workshops follow a complete methodology:
     - Implements validation patterns and quality safeguards
     - Scales across teams and complexity levels
 
-## Newsletters
+## Stay Updated
 
-If you want to get the latest news and updates, you can subscribe to our newsletter.
+Get access to exclusive discounts and our free 6-day email course on RAG improvement:
 
 <script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

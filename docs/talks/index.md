@@ -102,4 +102,8 @@ The series reveals that successful RAG systems require a portfolio of techniques
 
 For more information about the broader curriculum, see the [main index](../index.md).
 
+## Stay Updated
+
+Get access to exclusive discounts and our free 6-day email course on RAG improvement:
+
 <script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

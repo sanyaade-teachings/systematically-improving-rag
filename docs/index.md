@@ -13,7 +13,7 @@ date: 2025-04-10
 *A systematic approach to building self-improving AI systems*
 
 !!! abstract "About This Book"
-This book provides a structured approach to evolving Retrieval-Augmented Generation (RAG) from a technical implementation into a continuously improving product. You'll learn to combine product thinking with data science principles to create AI systems that deliver increasing value over time.
+    This book provides a structured approach to evolving Retrieval-Augmented Generation (RAG) from a technical implementation into a continuously improving product. You'll learn to combine product thinking with data science principles to create AI systems that deliver increasing value over time.
 
 ## The RAG Improvement Flywheel
 
@@ -74,17 +74,21 @@ Explore insights from industry experts and practitioners through our collection 
 
 !!! info "What You'll Learn"
     **For Product Leaders**
+    
     - How to establish metrics that align with business outcomes
     - Frameworks for prioritizing AI product improvements  
     - Approaches to building product roadmaps for RAG applications
     - Methods for communicating AI improvements to stakeholders
+    
     **For Engineers**
+    
     - Implementation patterns that facilitate rapid iteration
     - Architectural decisions that enable continuous improvement
     - Techniques for building modular, specialized capabilities
     - Approaches to technical debt management in AI systems
     
     **For Data Scientists**
+    
     - Methods for creating synthetic evaluation datasets
     - Techniques for segmenting and analyzing user queries
     - Frameworks for measuring retrieval effectiveness
@@ -140,6 +144,8 @@ Jason Liu brings practical experience from Facebook, Stitch Fix, and as a consul
 
 Begin your journey by reading the [Introduction](workshops/chapter0.md) or jump directly to [Chapter 1](workshops/chapter1.md) to start building your evaluation framework and data foundation.
 
-If you want to get discounts and 6 day email source on the topic make sure to subscribe to
+## Stay Updated
+
+Get access to exclusive discounts and our free 6-day email course on RAG improvement:
 
 <script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
