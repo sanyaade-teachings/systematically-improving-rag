@@ -181,6 +181,73 @@ The second approach reverses the flow: taking structured data (or even unstructu
 
 These synthetic chunks become intermediaries—easier to search than the original content, but pointing back to that source material when needed for the final response. When implemented correctly, you gain the benefits of both worlds: optimized retrieval via the synthetic chunks, and full fidelity from the source content.
 
+### Strategy 3: RAPTOR for Long Documents
+
+When dealing with extremely long documents (1,500-2,000+ pages), traditional chunking strategies often fail to capture information that spans multiple sections. The RAPTOR (Recursive Abstractive Processing for Tree-Organized Retrieval) approach offers a sophisticated solution.
+
+!!! tip "Production Insight"
+    From office hours: "For documents with 1,500-2,000 pages, the RAPTOR approach with clustering and summarization shows significant promise. After chunking documents, recluster the chunks to identify concepts that span multiple pages, then summarize those clusters for retrieval."
+
+#### The RAPTOR Process
+
+1. **Initial Chunking**: Start with page-level or section-level chunks
+2. **Embedding & Clustering**: Embed chunks and cluster semantically similar content
+3. **Hierarchical Summarization**: Create summaries at multiple levels of abstraction
+4. **Tree Structure**: Build a retrieval tree from detailed chunks to high-level summaries
+
+!!! example "Legal Document Processing"
+    A tax law firm implemented RAPTOR for their regulatory documents:
+    - Laws on pages 1-30, exemptions scattered throughout pages 50-200
+    - Clustering identified related exemptions across different sections
+    - Summaries linked laws with all relevant exemptions
+    - One-time processing cost: $10 in LLM calls per document
+    - Result: 85% improvement in finding complete legal information
+
+#### Implementation Considerations
+
+**When to Use RAPTOR:**
+- Documents where related information is scattered across many pages
+- Content with hierarchical structure (laws/exemptions, rules/exceptions)
+- Long-form documents that don't change frequently (worth the preprocessing cost)
+- Cases where missing related information has high consequences
+
+**Cost-Benefit Analysis:**
+- **Upfront Cost**: $5-20 in LLM calls per document for clustering and summarization
+- **Processing Time**: 10-30 minutes per document depending on length
+- **Benefit**: Dramatically improved recall for cross-document concepts
+- **ROI**: Justified for documents accessed frequently or with high-value queries
+
+!!! warning "Implementation Tips"
+    1. Test on a subset first to validate clustering quality
+    2. Store cluster relationships for explainability
+    3. Consider incremental updates for living documents
+    4. Monitor which summary levels get used most
+
+#### Practical Example
+
+For a construction company's specification documents:
+
+```
+Original Structure:
+- General requirements (pages 1-50)
+- Specific materials (pages 51-300) 
+- Installation procedures (pages 301-500)
+- Exceptions and special cases (scattered throughout)
+
+After RAPTOR Processing:
+- Clustered related materials with their installation procedures
+- Linked all exceptions to their base requirements
+- Created summaries at project, section, and detail levels
+- Reduced average retrieval attempts from 5.2 to 1.3 per query
+```
+
+!!! quote "Key Takeaway"
+    "RAPTOR transforms the challenging problem of long document retrieval into a more manageable hierarchical search problem. The upfront investment in processing pays dividends through dramatically improved retrieval accuracy for complex, multi-faceted queries."
+
+For implementation details, see:
+- [Original RAPTOR paper](https://arxiv.org/abs/2401.18059)
+- [LlamaIndex RAPTOR implementation](https://docs.llamaindex.ai/en/stable/examples/retrievers/raptor.html)
+
 ## Measuring What Matters
 
 As we introduce specialized indices, our measurement framework expands to assess performance at two levels:

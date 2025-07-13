@@ -83,43 +83,6 @@ The solution is clear: try to be world-class in just a few narrow domains and ea
 
 Understanding the distinction between leading and lagging metrics can transform your approach to improvement. This concept was profound to me when I worked at Facebook, and it applies perfectly to RAG applications. Shifting your focus from outcomes to inputs is often the most significant mindset change for successful RAG development.
 
-```mermaid
-flowchart TD
-    subgraph "Leading Metrics<br>(Controllable Inputs)"
-        A1[Number of Experiments Run]
-        A2[Retrieval Precision & Recall]
-        A3[User Feedback Collection Rate]
-        A4[Evaluation Coverage]
-    end
-
-    subgraph "Lagging Metrics<br>(Business Outcomes)"
-        B1[User Satisfaction]
-        B2[Application Quality]
-        B3[Churn Rate]
-        B4[Revenue]
-    end
-
-    A1 -->|"predicts & influences"| B1
-    A1 -->|"predicts & influences"| B2
-    A2 -->|"predicts & influences"| B1
-    A2 -->|"predicts & influences"| B2
-    A3 -->|"predicts & influences"| B1
-    A3 -->|"predicts & influences"| B3
-    A4 -->|"predicts & influences"| B2
-    A4 -->|"predicts & influences"| B3
-
-    B1 -->|"eventually impacts"| B3
-    B1 -->|"eventually impacts"| B4
-    B2 -->|"eventually impacts"| B1
-    B3 -->|"eventually impacts"| B4
-
-    classDef leading fill:#D4F1F9,stroke:#05445E
-    classDef lagging fill:#FFD700,stroke:#B8860B
-
-    class A1,A2,A3,A4 leading
-    class B1,B2,B3,B4 lagging
-```
-
 ### Lagging Metrics
 
 Lagging metrics are outcomes that are difficult to improve directly but easy to measure. They're measurements of past results, often unresponsive to immediate changes, and represent the outputs of your system.
@@ -179,30 +142,6 @@ Key questions almost no one asks until I prompt them:
 - Is your data extraction pipeline working as expected?
 - Do you have metrics for retrieval separate from generation?
 
-```mermaid
-graph LR
-    classDef visible fill:#FF9999,stroke:#CC0000
-    classDef invisible fill:#CCCCCC,stroke:#666666,stroke-dasharray: 5 5
-
-    subgraph "RAG System Components"
-        A[Data Extraction]:::invisible
-        B[Text Chunking]:::invisible
-        C[Vector Embedding]:::invisible
-        D[Retrieval]:::invisible
-        E[Generation]:::visible
-        F[UI/UX]:::visible
-        G[Response Time]:::visible
-
-        A --> B --> C --> D --> E --> F
-        E -.-> G
-    end
-
-    subgraph "Team Focus"
-        H["✅ High Attention<br>(Visible Components)"]:::visible
-        I["❌ Low Attention<br>(Invisible Components)"]:::invisible
-    end
-```
-
 Have you verified whether your retrieval brings back the right documents? Are your text chunks properly segmented? Is your data extraction pipeline working as expected? These invisible components often cause the most significant issues but receive the least attention.
 
 ### Intervention Bias
@@ -226,22 +165,6 @@ The solution is to establish evaluations that enable methodical improvement—ev
 ## The RAG Flywheel and Retrieval Evaluations
 
 The basic principle of improving RAG applications is that everything we've learned in search is incredibly relevant to retrieval. If you already have a basic RAG setup, the next step is to bring in synthetic questions that test your system's retrieval capabilities.
-
-```mermaid
-flowchart TD
-    A["1. Evaluate Retrieval<br>with Synthetic Data"] -->|"identify gaps"| B["2. Implement<br>Targeted Improvements"]
-    B -->|"measure impact"| C["3. Observe<br>Performance Changes"]
-    C -->|"collect real data"| D["4. Gather User<br>Behavior & Feedback"]
-    D -->|"refine evaluation set"| A
-
-    style A fill:#FFD700,stroke:#B8860B,stroke-width:2px
-    style B fill:#98FB98,stroke:#006400,stroke-width:2px
-    style C fill:#ADD8E6,stroke:#0000A0,stroke-width:2px
-    style D fill:#FFA07A,stroke:#A52A2A,stroke-width:2px
-
-    %% Arrow styling to create flywheel effect
-    linkStyle 0,1,2,3 stroke-width:2px
-```
 
 ### Why Prioritize Retrieval Evaluations
 
@@ -462,6 +385,119 @@ To maximize the value of your evaluation framework:
 1. **Tie to business metrics**: Connect retrieval metrics to business outcomes
 
 Remember that your evaluation framework should evolve with your application. Start simple and add complexity as you gain more insights and collect more data.
+
+## Vector Database Selection Guide
+
+One of the most common questions in office hours is: "Which vector database should I use?" The answer depends on your specific requirements, but here's a comprehensive guide based on production experience across multiple deployments.
+
+### Understanding Your Requirements
+
+Before choosing a vector database, consider these key factors:
+
+1. **Scale**: How many documents/chunks will you store?
+2. **Query patterns**: Do you need metadata filtering? SQL queries? Hybrid search?
+3. **Performance**: What are your latency requirements?
+4. **Infrastructure**: Do you have existing database expertise on your team?
+5. **Budget**: Open source vs managed services
+
+### Vector Database Comparison
+
+| Database | Best For | Pros | Cons | When to Use |
+|----------|----------|------|------|-------------|
+| **PostgreSQL + pgvector** | Teams with SQL expertise | • Familiar SQL interface<br>• Metadata filtering<br>• ACID compliance<br>• Single database for everything | • Not optimized for vector operations<br>• Limited to ~1M vectors for good performance<br>• No built-in hybrid search | When you need to combine vector search with complex SQL queries and already use PostgreSQL |
+| **LanceDB** | Experimentation & hybrid search | • One-line hybrid search<br>• Built-in re-ranking<br>• S3 storage support<br>• DuckDB for analytics | • Newer, less battle-tested<br>• Smaller community | When you want to quickly test lexical vs vector vs hybrid search approaches |
+| **Timescale pgvector_scale** | Large-scale exhaustive search | • Exhaustive search capability<br>• Better scaling than pgvector<br>• Time-series support | • Requires Timescale<br>• More complex setup | When you need guaranteed recall on large datasets with time-based queries |
+| **ChromaDB** | Simple prototypes | • Easy to get started<br>• Good Python API<br>• Local development friendly | • Performance issues at scale<br>• Limited production features | For POCs and demos under 100k documents |
+| **Turbopuffer** | High-performance search | • Very fast<br>• Good scaling<br>• Simple API | • Newer entrant<br>• Limited ecosystem | When raw performance is critical |
+| **Pinecone** | Managed solution | • Fully managed<br>• Good performance<br>• Reliable | • Expensive at scale<br>• Vendor lock-in | When you want zero infrastructure management |
+
+### Decision Framework
+
+```mermaid
+flowchart TD
+    A[Start] --> B{Do you have<br>existing PostgreSQL?}
+    B -->|Yes| C{Need exhaustive<br>search?}
+    B -->|No| D{Want to experiment<br>with hybrid search?}
+    
+    C -->|Yes| E[pgvector_scale]
+    C -->|No| F{< 1M vectors?}
+    F -->|Yes| G[pgvector]
+    F -->|No| H[Consider migration]
+    
+    D -->|Yes| I[LanceDB]
+    D -->|No| J{Budget for<br>managed service?}
+    
+    J -->|Yes| K[Pinecone]
+    J -->|No| L{Team size?}
+    
+    L -->|Small| M[ChromaDB]
+    L -->|Large| N[LanceDB/Turbopuffer]
+    
+    style E fill:#90EE90
+    style G fill:#90EE90
+    style I fill:#90EE90
+    style K fill:#90EE90
+    style M fill:#90EE90
+    style N fill:#90EE90
+```
+
+### Implementation Example: LanceDB for Hybrid Search
+
+Here's why we use LanceDB in this course - it makes it trivial to compare different retrieval strategies:
+
+```python
+import lancedb
+from lancedb.embeddings import get_registry
+from lancedb.pydantic import LanceModel, Vector
+from lancedb.rerankers import CohereReranker
+
+# Define your schema
+class Document(LanceModel):
+    text: str
+    source: str
+    metadata: dict
+    vector: Vector(get_registry().get("openai").create())
+
+# Create database
+db = lancedb.connect("./my_rag_db")
+table = db.create_table("documents", schema=Document)
+
+# Add documents
+table.add([
+    Document(text="...", source="...", metadata={...})
+    for doc in documents
+])
+
+# Compare retrieval strategies with one line changes
+results_vector = table.search(query).limit(10).to_list()
+results_lexical = table.search(query, query_type="fts").limit(10).to_list()
+results_hybrid = table.search(query, query_type="hybrid").limit(10).to_list()
+
+# Add re-ranking with one more line
+reranker = CohereReranker()
+results_reranked = table.search(query).limit(50).rerank(reranker).limit(10).to_list()
+```
+
+This flexibility allows you to quickly test which approach works best for your data without rewriting your entire pipeline.
+
+### Migration Considerations
+
+If you're already using a vector database but experiencing issues:
+
+1. **Measure first**: Quantify your current performance (latency, recall, cost)
+2. **Test in parallel**: Run a subset of queries against both systems
+3. **Compare results**: Use evaluation metrics to ensure quality doesn't degrade
+4. **Plan migration**: Consider dual-writing during transition
+
+!!! warning "Common Pitfall"
+    Don't choose a vector database based on hype or benchmarks. Choose based on:
+    - Your team's expertise
+    - Your specific query patterns
+    - Your scaling requirements
+    - Your budget constraints
+
+!!! tip "Production Insight"
+    From office hours: "We generally want to use SQL databases. If you use something like Timescale or PostgreSQL, there are many ways of doing time filtering... The general idea is to use structured extraction to identify start and end dates, prompt your language model with an understanding of what those dates are, and then use filtering."
 
 ## Creating Synthetic Data for Evaluation
 

@@ -137,6 +137,66 @@ On the frontend, you can transform these citations into interactive elements:
 
 This creates an interactive experience where citations are visually distinct, clickable elements. When users engage with these elements, you can collect valuable feedback while enhancing their understanding of the response.
 
+### Advanced Citation Implementation
+
+Based on extensive office hours discussions, here are production-tested approaches for implementing reliable citations that scale.
+
+#### XML-Based Citation Approach
+
+The most reliable method for generating accurate citations uses XML tags with chunk IDs and text spans:
+
+
+**Citation Example 1: Wrapping the cited text in XML tags**
+
+```txt
+The study found that accurate citations improve user trust<cit id="42">Accurate citations improve user trust</cit>. Additionally, validating each citation against the source document reduces error rates<cit id="87">Validating citations reduces errors</cit>.
+```
+
+
+**Citation Example 2: XML Including Citation Span**
+
+```txt
+The study found that accurate citations improve user trust<cit id="42" span="Accurate citations improve user trust">Accurate citations improve user trust</cit>. Additionally, validating each citation against the source document reduces error rates<cit id="87" span="Validating citations reduces errors">Validating citations reduces errors</cit>.
+```
+
+!!! tip "Production Insight"
+    From office hours: "XML-based approaches with chunk IDs and text span references have proven most reliable. Fine-tuning can reduce citation error rates from 4% to nearly 0% with ~10,000 examples." but this is easy to sythnetically generate.
+
+**Key Implementation Details:**
+
+1. **Chunk ID Management**: Assign unique IDs to each document chunk during indexing
+2. **Text Span References**: Include exact text spans in citations for verification
+3. **Validation Layer**: Verify cited text exists in referenced chunks before displaying
+
+#### Fine-Tuning for Citation Accuracy
+
+Significant improvements come from fine-tuning on citation-specific tasks:
+
+- **Training Data**: Collect ~10,000 examples of correct citations from user feedback
+- **Error Patterns**: Focus on common failure modes (wrong chunk, hallucinated citations)
+- **Validation**: Always validate citations against source documents before display
+
+!!! example "Real-World Results"
+    A healthcare documentation system reduced citation errors from 4% to 0.1% through:
+    - Fine-tuning on 1,200 validated citation examples
+    - XML-based citation format with chunk IDs
+    - Post-generation validation against source documents
+    - Special handling for medical abbreviations
+
+#### Implementation Best Practices
+
+1. **Citation Format**: Use structured formats that are easy to parse and validate
+2. **Source Verification**: Always verify cited content exists in the source
+3. **User Feedback Loop**: Make it easy for users to report incorrect citations
+4. **Graceful Degradation**: If citation validation fails, show conservative results
+
+For detailed implementation examples, see:
+- [Anthropic's Constitutional AI approach to citations](https://www.anthropic.com/news/constitutional-ai-harmlessness-from-ai-feedback)
+- [OpenAI's best practices for reliable citations](https://platform.openai.com/docs/guides/prompt-engineering)
+
+!!! quote "Key Takeaway"
+    "The combination of XML-based formatting, fine-tuning on domain-specific examples, and post-generation validation creates a citation system users can trust. This trust is essential for deployment in regulated industries like healthcare and legal services."
+
 ## Chain of Thought: Making Thinking Visible
 
 ### The Underutilized Superpower

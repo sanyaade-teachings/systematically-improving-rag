@@ -365,6 +365,86 @@ Re-rankers benefit from more nuanced training data than binary relevant/not-rele
 
 This richer data helps the re-ranker understand not just what's relevant versus irrelevant, but also what's highly relevant versus somewhat relevant—a distinction that can significantly improve user experience.
 
+## Practical Fine-Tuning Workflow
+
+Based on extensive office hours discussions, here's a practical workflow for fine-tuning embedding models that consistently delivers results.
+
+### When to Fine-Tune Embeddings
+
+Fine-tune your embedding models when:
+
+1. **You have 6,000+ query-document pairs** with relevance labels
+2. **Domain-specific terminology** isn't well-represented in generic models
+3. **Your definition of similarity** differs from general language understanding
+4. **Cost at scale** justifies maintaining your own infrastructure
+
+!!! tip "Production Insight"
+    From office hours: "With just 6,000 examples from your domain, you can train embedding models and cross-encoders that outperform general-purpose models on your specific tasks. This typically costs around $1.50 and takes about 40 minutes on a laptop."
+
+### The Fine-Tuning Process
+
+#### Step 1: Data Preparation
+
+Transform your evaluation data into training format:
+
+- **Positive pairs**: Query-document combinations that should rank highly
+- **Hard negatives**: Similar but incorrect documents for each query
+- **Validation set**: Hold out 20% for testing improvements
+
+!!! warning "Critical Success Factor"
+    The quality of your hard negatives determines the quality of your fine-tuned model. Documents that are topically similar but serve different intents make the best hard negatives.
+
+#### Step 2: Model Selection
+
+Choose your base model wisely:
+
+- **For English-only**: Modern BERT models with 8,000 token context (vs original 512)
+- **For multilingual**: Cohere's multilingual models or mE5
+- **For specialized domains**: Start with models pre-trained on similar content
+
+#### Step 3: Training Infrastructure
+
+You don't need massive infrastructure:
+
+- **Local training**: Consumer GPU with 8GB+ VRAM
+- **Cloud notebooks**: Colab Pro or similar services
+- **Training time**: 30-60 minutes for most datasets
+- **Cost**: Under $5 for most use cases
+
+### Measuring Success
+
+Track these metrics before and after fine-tuning:
+
+1. **Recall@K** at different values (5, 10, 20)
+2. **Mean Reciprocal Rank (MRR)**
+3. **Business metrics** tied to retrieval quality
+4. **Latency impact** if self-hosting
+
+!!! example "Real-World Results"
+    A healthcare company fine-tuned embeddings on medical abbreviations where generic models confused similar acronyms. Results:
+    - Recall@10 improved from 72% to 89%
+    - Reduced confusion between similar medical terms
+    - Cost: $1.50 in compute, 45 minutes of training
+    - ROI: Prevented multiple medical documentation errors
+
+### Common Pitfalls to Avoid
+
+1. **Training on too little data**: Wait until you have at least 6,000 examples
+2. **Ignoring hard negatives**: Easy negatives don't improve the model
+3. **Not validating on real queries**: Synthetic data alone isn't sufficient
+4. **Over-optimizing on metrics**: Ensure improvements translate to user experience
+
+### Resources for Implementation
+
+For detailed implementation guides:
+
+- [Sentence Transformers Training Documentation](https://www.sbert.net/docs/training/overview.html)
+- [Cohere's Fine-tuning Guide](https://docs.cohere.com/docs/fine-tuning)
+- [OpenAI's Fine-tuning Best Practices](https://platform.openai.com/docs/guides/fine-tuning)
+
+!!! quote "Key Takeaway"
+    "It's probably a bad idea to train your own language model, but it's a very good idea to train your own embedding model. The infrastructure requirements are minimal, the process is well-understood, and the improvements are substantial for domain-specific applications."
+
 ## Testing Different Approaches Systematically
 
 With your evaluation framework from Chapter 1 and your growing dataset of examples, you can now test various improvement approaches systematically. This experimental mindset is critical to making steady progress.
