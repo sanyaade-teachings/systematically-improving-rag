@@ -5,13 +5,11 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="Insights from Colin Flaherty on building autonomous coding agents and how agentic approaches reshape retrieval-augmented generation systems." name="description"/>
-<link href="https://567-labs.github.io/systematically-improving-rag/talks/colin-rag-agents/" rel="canonical"/>
-<link href="../rag-is-dead-cline-nik/" rel="prev"/>
-<link href="../reducto-docs-adit/" rel="next"/>
+<meta content="A deep dive into why multi-agent systems might not be the optimal approach for coding contexts, exploring context engineering, challenges of context passing between agents, and how single agents with proper context management can outperform multi-agent setups." name="description"/>
+<link href="https://567-labs.github.io/systematically-improving-rag/talks/walden-yan-cognition-multi-agents/" rel="canonical"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.14" name="generator"/>
-<title>Why Grep Beat Embeddings in Our SWE-Bench Agent (Lessons from Augment) - Systematically Improving RAG Applications</title>
+<title>Why Cognition does not use multi-agent systems - Systematically Improving RAG Applications</title>
 <link href="../../assets/stylesheets/main.342714a4.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -36,7 +34,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#why-grep-beat-embeddings-in-our-swe-bench-agent-lessons-from-augment">
+<a class="md-skip" href="#why-cognition-does-not-use-multi-agent-systems">
           Skip to content
         </a>
 </div>
@@ -72,7 +70,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Why Grep Beat Embeddings in Our SWE-Bench Agent (Lessons from Augment)
+              Why Cognition does not use multi-agent systems
             
           </span>
 </div>
@@ -162,7 +160,7 @@
 
       </a>
 </li>
-<li class="md-tabs__item md-tabs__item--active">
+<li class="md-tabs__item">
 <a class="md-tabs__link" href="../">
           
   
@@ -708,8 +706,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../">
 <span class="md-ellipsis">
@@ -717,19 +715,19 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
             Talks
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
+<label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
 <span class="md-ellipsis">
     Search / Indexing / Chunking
     
@@ -785,9 +783,9 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_3" type="checkbox"/>
-<label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="">
+<label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
 <span class="md-ellipsis">
     Finetuning
     
@@ -827,9 +825,9 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_4" type="checkbox"/>
-<label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="">
+<label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
 <span class="md-ellipsis">
     Monitoring
     
@@ -869,16 +867,16 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_4_5" type="checkbox"/>
-<label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
 <span class="md-ellipsis">
     Coding Agents
     
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_4_5_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_4_5_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_4_5">
 <span class="md-nav__icon md-icon"></span>
             Coding Agents
@@ -892,127 +890,20 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    Agentic RAG (Colin Flaherty)
-    
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../colin-rag-agents/">
 <span class="md-ellipsis">
     Agentic RAG (Colin Flaherty)
     
   </span>
 </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#do-agents-make-traditional-rag-obsolete">
-<span class="md-ellipsis">
-      Do agents make traditional RAG obsolete?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#why-arent-more-people-training-great-embedding-models">
-<span class="md-ellipsis">
-      Why aren't more people training great embedding models?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#what-is-agentic-retrieval-and-how-does-it-differ-from-traditional-rag">
-<span class="md-ellipsis">
-      What is agentic retrieval and how does it differ from traditional RAG?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#do-agents-make-traditional-rag-obsolete_1">
-<span class="md-ellipsis">
-      Do agents make traditional RAG obsolete?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#what-are-the-benefits-of-using-grep-and-find-tools-with-agents">
-<span class="md-ellipsis">
-      What are the benefits of using grep and find tools with agents?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#what-are-the-limitations-of-using-grep-and-find-for-retrieval">
-<span class="md-ellipsis">
-      What are the limitations of using grep and find for retrieval?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#whats-the-ideal-approach-to-retrieval-for-coding-agents">
-<span class="md-ellipsis">
-      What's the ideal approach to retrieval for coding agents?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#how-should-i-evaluate-agentic-retrieval-systems">
-<span class="md-ellipsis">
-      How should I evaluate agentic retrieval systems?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#i-already-built-a-retrieval-system-with-custom-trained-embedding-models-should-i-replace-it-with-agentic-retrieval">
-<span class="md-ellipsis">
-      I already built a retrieval system with custom-trained embedding models. Should I replace it with agentic retrieval?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#how-can-i-improve-my-agentic-retrieval-system">
-<span class="md-ellipsis">
-      How can I improve my agentic retrieval system?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#how-do-memories-work-with-agentic-retrieval-systems">
-<span class="md-ellipsis">
-      How do memories work with agentic retrieval systems?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#why-did-embedding-models-not-improve-performance-on-swe-bench">
-<span class="md-ellipsis">
-      Why did embedding models not improve performance on SWE-Bench?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#this-doesnt-mean-embedding-models-arent-valuablethey-become-essential-for-larger-codebases-less-structured-content-or-more-complex-retrieval-tasks">
-<span class="md-ellipsis">
-      This doesn't mean embedding models aren't valuable—they become essential for larger codebases, less structured content, or more complex retrieval tasks.
-    </span>
-</a>
 </li>
 </ul>
 </nav>
 </li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_6" type="checkbox"/>
-<label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="">
+<label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
 <span class="md-ellipsis">
     Document Processing
     
@@ -1112,93 +1003,156 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#do-agents-make-traditional-rag-obsolete">
+<a class="md-nav__link" href="#why-are-multi-agent-systems-problematic-for-coding-tasks">
 <span class="md-ellipsis">
-      Do agents make traditional RAG obsolete?
+      Why are multi-agent systems problematic for coding tasks?
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#why-arent-more-people-training-great-embedding-models">
+<a class="md-nav__link" href="#how-can-we-improve-context-passing-between-agents">
 <span class="md-ellipsis">
-      Why aren't more people training great embedding models?
+      How can we improve context passing between agents?
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#what-is-agentic-retrieval-and-how-does-it-differ-from-traditional-rag">
+<a class="md-nav__link" href="#what-are-the-limitations-of-simple-linear-agent-systems">
 <span class="md-ellipsis">
-      What is agentic retrieval and how does it differ from traditional RAG?
+      What are the limitations of simple linear agent systems?
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#do-agents-make-traditional-rag-obsolete_1">
+<a class="md-nav__link" href="#what-real-world-approaches-exist-for-managing-agent-context">
 <span class="md-ellipsis">
-      Do agents make traditional RAG obsolete?
+      What real-world approaches exist for managing agent context?
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#what-are-the-benefits-of-using-grep-and-find-tools-with-agents">
+<a class="md-nav__link" href="#why-should-systems-feel-like-a-single-agent-to-users">
 <span class="md-ellipsis">
-      What are the benefits of using grep and find tools with agents?
+      Why should systems feel like a single agent to users?
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#what-are-the-limitations-of-using-grep-and-find-for-retrieval">
+<a class="md-nav__link" href="#what-skills-are-current-agents-lacking-for-effective-collaboration">
 <span class="md-ellipsis">
-      What are the limitations of using grep and find for retrieval?
+      What skills are current agents lacking for effective collaboration?
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#whats-the-ideal-approach-to-retrieval-for-coding-agents">
+<a class="md-nav__link" href="#how-important-is-planning-in-agent-systems">
 <span class="md-ellipsis">
-      What's the ideal approach to retrieval for coding agents?
+      How important is planning in agent systems?
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#how-should-i-evaluate-agentic-retrieval-systems">
+<a class="md-nav__link" href="#what-frameworks-and-patterns-show-promise-for-agent-development">
 <span class="md-ellipsis">
-      How should I evaluate agentic retrieval systems?
+      What frameworks and patterns show promise for agent development?
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#i-already-built-a-retrieval-system-with-custom-trained-embedding-models-should-i-replace-it-with-agentic-retrieval">
+<a class="md-nav__link" href="#how-is-code-review-evolving-with-ai-agents">
 <span class="md-ellipsis">
-      I already built a retrieval system with custom-trained embedding models. Should I replace it with agentic retrieval?
+      How is code review evolving with AI agents?
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#how-can-i-improve-my-agentic-retrieval-system">
+<a class="md-nav__link" href="#what-exciting-developments-are-coming-for-developer-tools">
 <span class="md-ellipsis">
-      How can I improve my agentic retrieval system?
+      What exciting developments are coming for developer tools?
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#how-do-memories-work-with-agentic-retrieval-systems">
+<a class="md-nav__link" href="#final-thoughts-on-the-future-of-agent-development">
 <span class="md-ellipsis">
-      How do memories work with agentic retrieval systems?
+      Final thoughts on the future of agent development
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#why-did-embedding-models-not-improve-performance-on-swe-bench">
+<a class="md-nav__link" href="#faqs">
 <span class="md-ellipsis">
-      Why did embedding models not improve performance on SWE-Bench?
+      FAQs
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#this-doesnt-mean-embedding-models-arent-valuablethey-become-essential-for-larger-codebases-less-structured-content-or-more-complex-retrieval-tasks">
+<a class="md-nav__link" href="#what-are-the-main-issues-with-multi-agent-systems-in-coding">
 <span class="md-ellipsis">
-      This doesn't mean embedding models aren't valuable—they become essential for larger codebases, less structured content, or more complex retrieval tasks.
+      What are the main issues with multi-agent systems in coding?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-is-context-engineering-and-why-is-it-important">
+<span class="md-ellipsis">
+      What is context engineering and why is it important?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-are-the-two-core-design-principles-for-building-reliable-agent-systems">
+<span class="md-ellipsis">
+      What are the two core design principles for building reliable agent systems?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#how-can-context-overflow-be-managed-in-agent-systems">
+<span class="md-ellipsis">
+      How can context overflow be managed in agent systems?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-are-read-only-subagents-and-when-are-they-useful">
+<span class="md-ellipsis">
+      What are "read-only subagents" and when are they useful?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#why-might-a-single-agent-approach-be-more-reliable-than-multi-agent-systems">
+<span class="md-ellipsis">
+      Why might a single agent approach be more reliable than multi-agent systems?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#how-should-agents-handle-tasks-theyre-uncertain-about">
+<span class="md-ellipsis">
+      How should agents handle tasks they're uncertain about?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#whats-the-edit-apply-model-pattern-and-what-are-its-limitations">
+<span class="md-ellipsis">
+      What's the "edit-apply model" pattern and what are its limitations?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#why-are-current-frameworks-for-building-agents-considered-premature">
+<span class="md-ellipsis">
+      Why are current frameworks for building agents considered premature?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#how-might-agent-collaboration-evolve-in-the-future">
+<span class="md-ellipsis">
+      How might agent collaboration evolve in the future?
     </span>
 </a>
 </li>
@@ -1209,142 +1163,114 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="why-grep-beat-embeddings-in-our-swe-bench-agent-lessons-from-augment">Why Grep Beat Embeddings in Our SWE-Bench Agent (Lessons from Augment)</h1>
-<p>I hosted Colin Flaherty, previously a founding engineer at Augment and co-author of Meta's Cicero AI, to discuss autonomous coding agents and retrieval systems. This session explores how agentic approaches are transforming traditional RAG systems, what we can learn from state-of-the-art coding agents, and how these insights might apply to other domains.</p>
-<h2 id="do-agents-make-traditional-rag-obsolete">Do agents make traditional RAG obsolete?</h2>
-<p>Colin shared his experience building an agent for SWE-Bench Verified, a canonical AI coding evaluation where agents implement code changes based on problem descriptions. His team's agent reached the top of the leaderboard with a surprising discovery: embedding-based retrieval wasn't the bottleneck they expected.</p>
-<p>"We explored adding various embedding-based retrieval tools, but found that for SweeBench tasks this was not the bottleneck - grep and find were sufficient," Colin explained. This initially surprised him, as he expected embedding models to be significantly more powerful.</p>
-<p>The evolution of code retrieval complexity has followed a clear progression:</p>
-<ul>
-<li>2023 (Completions): Simple retrieval with low latency requirements</li>
-<li>2024 (Chatbots): More complex retrieval across multiple files</li>
-<li>2025 (Agents): Highly complex retrieval across many parts of codebases</li>
-</ul>
-<p>When examining how the agent solved problems, Colin observed it would use simple tools like grep and find persistently, trying different approaches until it found what it needed. The agent's persistence effectively compensated for less sophisticated tools.</p>
-<p><strong><em>Key Takeaway:</em></strong> Agents don't necessarily make traditional RAG obsolete, but they change how we should think about retrieval systems. The persistence and course-correction capabilities of agents can sometimes overcome limitations in the underlying retrieval tools.</p>
-<p><strong>Benefits of agentic retrieval with simple tools</strong>
-Agentic retrieval with grep and find offers several advantages:</p>
-<ol>
-<li>Iterative retrieval becomes much simpler - instead of complex multi-step embedding processes, agents can simply run multiple searches and refine as they go</li>
-<li>Token budget management is straightforward - when the agent hits token limits, it can simply truncate old tool calls and rerun them if needed</li>
-<li>Implementation is low-effort - no need to maintain vector databases, syncing mechanisms, or other infrastructure</li>
-<li>Course correction happens naturally - if one search approach fails, the agent tries another</li>
-</ol>
-<p>However, these simple approaches have clear limitations:</p>
-<ul>
-<li>They don't scale well to large codebases</li>
-<li>They struggle with unstructured natural language content</li>
-<li>They're relatively slow and expensive compared to optimized embedding lookups</li>
-</ul>
-<p>The best approach might be combining both worlds - an agentic loop with access to high-quality embedding models as tools.</p>
-<p><strong>How to architect retrieval systems for different needs</strong>
-When deciding between traditional RAG, agent+grep/find, or agent+embeddings, Colin recommends considering several factors:</p>
-<ul>
-<li>Quality: How good is the final output?</li>
-<li>Latency: How quickly does the system respond?</li>
-<li>Cost: What are the computational expenses?</li>
-<li>Reliability: Does the system correct itself when it fails?</li>
-<li>Scalability: How well does it handle large indices?</li>
-<li>Maintenance effort: How much engineering work is required?</li>
-</ul>
-<p>Traditional RAG offers decent quality with excellent speed, low cost, and high scalability, but lacks course correction. Agent+grep provides excellent quality and reliability but struggles with speed, cost, and scale. Agent+embeddings combines the best of both but remains slow and expensive.</p>
-<p><strong><em>Key Takeaway:</em></strong> Don't throw away your existing retrieval systems - instead, expose them as tools to agents. This gives you the benefits of both approaches while allowing you to optimize based on your specific constraints.</p>
-<p><strong>Evaluating agentic retrieval systems</strong>
-Colin emphasized a "vibe-first" approach to evaluation:</p>
-<p>"Start with 5-10 examples and do end-to-end vibe checks before moving to quantitative evaluation. With natural language systems, you can learn so much just from looking at a few examples."</p>
-<p>He noted that improving embedding models doesn't necessarily improve end-to-end performance because agents are persistent - they'll eventually find what they need even with suboptimal tools. This makes traditional embedding evaluation metrics less useful for agentic systems.</p>
-<p>For those starting from scratch, Colin recommends:</p>
-<ol>
-<li>Build the simplest possible retrieval tool</li>
-<li>Put an agent loop on top</li>
-<li>Iterate based on what causes the most pain for users</li>
-<li>Only move to quantitative evaluation once you've addressed obvious issues</li>
-</ol>
-<p>I found it refreshing that Colin focused on specific examples of queries rather than abstract discussions of model architectures. As he put it, "Being a researcher is actually very similar to being a product person - you're working backwards from use cases and examples."</p>
-<p><strong>When to use embedding models vs. simple search tools</strong>
-While grep and find worked well for SWE-Bench's relatively small codebases, Colin identified several scenarios where embedding models become essential:</p>
-<ol>
-<li>Searching large codebases</li>
-<li>Retrieving from unstructured content like Slack messages or documentation</li>
-<li>Searching across third-party code that models haven't memorized</li>
-<li>Retrieving from non-text media like video recordings of user sessions</li>
-</ol>
-<p>"If I was a human working on this use case, and I was a really persistent human that never got tired, would having this other search tool help me? If the answer is yes, then it's probably going to be useful for the agent."</p>
-<p>Colin noted that SWE-Bench is somewhat artificial - its repositories are smaller than real-world codebases, and 90% of its problems take less than an hour for a good engineer to solve. In more complex environments, embedding models become increasingly valuable.</p>
-<p><strong>Improving agentic retrieval systems</strong>
-To enhance agentic retrieval, Colin recommends:</p>
-<ol>
-<li>Adding re-rankers to embedding tools to improve precision and reduce token usage</li>
-<li>Training specialized embedding models for different tasks (e.g., one for code, another for Slack messages)</li>
-<li>Prompt-tuning tool schemas to guide agents toward efficient usage patterns</li>
-<li>Creating hierarchical retrieval systems that summarize files and directories</li>
-<li>Leveraging language server protocols as additional tools</li>
-</ol>
-<p>One particularly effective technique is asynchronous pre-processing: "I've taken songs and used an LLM to create a dossier about each one. This simple pre-processing step took a totally non-working search system and turned it into something that works really well."</p>
-<h2 id="why-arent-more-people-training-great-embedding-models">Why aren't more people training great embedding models?</h2>
-<p>When asked what question people aren't asking enough, Colin highlighted the lack of expertise in training embedding models: "Very few people understand how to build and train good retrieval systems. It just confuses me why no one knows how to fine-tune really good embedding models."</p>
-<p>He attributed this partly to the specialized nature of the skill and partly to data availability. For code, there's abundant data on GitHub, but most domains lack comparable resources. Additionally, the most talented engineers often prefer working on LLMs rather than embedding models.</p>
-<p><strong><em>Key Takeaway:</em></strong> As agents become more capable, the quality of their tools becomes increasingly important. Even though agents can compensate for suboptimal tools through persistence, providing them with better retrieval mechanisms significantly improves their efficiency and capabilities.</p>
-<p><strong>Final thoughts on the future of retrieval</strong>
-Colin believes we're entering an era where the boundaries between traditional RAG and agentic systems are blurring. The ideal approach combines the strengths of both: the speed and efficiency of well-tuned embedding models with the persistence and course-correction of agents.</p>
-<p>As these systems evolve, we'll likely see more specialized tools emerging for different retrieval contexts, along with more sophisticated pre-processing techniques that make retrieval more effective. The key is focusing on the specific problems you're trying to solve rather than getting caught up in architectural debates.</p>
-<p>"Agents are getting radically smarter, but even Einstein preferred writing on paper instead of a stone tablet," Colin noted. "Yes, these agents are persistent, but you should give them whatever you can to improve the odds that they find what they're looking for."</p>
+<h1 id="why-cognition-does-not-use-multi-agent-systems">Why Cognition does not use multi-agent systems</h1>
+<p>I hosted a session with Walden Yan, co-founder and CPO of Cognition, to explore why multi-agent systems might not be the optimal approach for coding contexts. We discussed the theory of context engineering, the challenges of context passing between agents, and how single agents with proper context management can often outperform multi-agent setups.</p>
+<h2 id="why-are-multi-agent-systems-problematic-for-coding-tasks">Why are multi-agent systems problematic for coding tasks?</h2>
+<p>The fundamental issue with multi-agent systems is context management. When you split a task between multiple agents, you're essentially playing a game of telephone where critical information can get lost in transmission.</p>
+<p>Consider a simple example: building a Flappy Bird clone. If you assign one agent to build the background with green pipes and hitboxes, and another agent to create the bird asset, they might develop completely incompatible components. The first agent might create something resembling 
+Mario's environment, while the second creates a bird from an entirely different game.</p>
+<p>This miscommunication happens because each agent only understands what it was told by the main agent. While this example might seem extreme, these issues compound dramatically when dealing with complex tasks at scale:</p>
+<p>"You're gonna find lots of places where miscommunications like this are just gonna get introduced in your system, especially as you as the when the user is talking with the system back and forth many times when these sub agents are getting more and more nuanced tasks, and you forget to pass some details through."</p>
+<p>The context isn't just the user's message but includes everything the agent has done - code files examined, questions asked, and answers received. These full agent traces should ideally be passed to all agents in the system.</p>
+<p>Key Takeaway: Multi-agent systems often break down due to context loss between agents. What seems like a minor miscommunication in simple examples becomes a significant problem at scale with complex tasks.</p>
+<h2 id="how-can-we-improve-context-passing-between-agents">How can we improve context passing between agents?</h2>
+<p>To minimize the "telephone game" problem, we need to ensure sub-agents have at least the same context as the main agent. This means:</p>
+<p>Sub-agents should see everything the main agent saw</p>
+<p>Sub-agents should have access to the full history of actions taken by the main agent</p>
+<p>The final agent should see everything from all previous agents</p>
+<p>Even with this improved context passing, problems still arise when sub-agents work in parallel. They can't communicate with each other, leading to conflicts in style, APIs used, or duplicated code. When sub-agent one commits to certain decisions and sub-agent two commits to different decisions, these conflicts create integration problems.</p>
+<p>"With any agentic system, lots of actions can basically carry these implicit decisions being made... anytime these decisions are made, you almost always have to actually make sure this decision is shared with everyone else, or else you might just get these conflicting decisions."</p>
+<p>A more reliable approach is a linear system where agents work sequentially. Sub-agent one completes its task, then sub-agent two works with full knowledge of what sub-agent one did, avoiding conflicts in decisions.</p>
+<p>Key Takeaway: Passing full context between agents helps but doesn't solve all problems. When agents work in parallel, they make conflicting implicit decisions that create integration challenges.</p>
+<h2 id="what-are-the-limitations-of-simple-linear-agent-systems">What are the limitations of simple linear agent systems?</h2>
+<p>While linear agent systems solve many coordination problems, they quickly run into context window limitations. As the task progresses, the context grows larger until it exceeds what the model can effectively process.</p>
+<p>"With the simple agent, you know, if you're just collecting everything that this agent's been doing, and especially for these longer tasks, you'll quickly run to context overflow issues, especially as you go down the line towards the end of your task."</p>
+<p>One solution is implementing a context compressor that intelligently selects what information to pass from one agent to the next. However, this adds complexity and requires careful engineering to ensure important details aren't lost.</p>
+<p>At Cognition, they trained a specialized model to identify and preserve critical information from earlier conversations. This approach requires significant investment but can be worthwhile for complex engineering tasks.</p>
+<p>"You have to think very carefully about. Are you willing to put in the work to kind of squeeze out this extra juice from your system. In our case it makes sense, because our entire goal is to make sure that we can take on harder and harder engineering tasks."</p>
+<p>Key Takeaway: Simple linear agent systems eventually hit context window limits. Context compression can help but adds complexity and requires careful engineering to avoid losing critical information.</p>
+<h2 id="what-real-world-approaches-exist-for-managing-agent-context">What real-world approaches exist for managing agent context?</h2>
+<p>Several practical approaches have emerged for managing context in agent systems:</p>
+<p>Read-only sub-agents: Both Claude Code and OpenCode use sub-agents that only read and don't make decisions. These agents perform tasks like listing project files, examining packages, or looking for imports, then report back to the main agent.</p>
+<p>"The designers of these systems of these agent builders are very careful to constrain their sub agents to only doing read-only tasks. I think if you read the cloud Sys prompt. If you read open code Sysprompt, you'll probably find stuff that's like you should only use subagents for things that involve reading code."</p>
+<p>Edit-apply models: Systems like Cursor and Windsurf use a two-stage approach where a smart coding model generates human-readable instructions for code changes, and a simpler "edit-apply" model implements those changes. This approach can be fragile if the instructions aren't perfectly clear.</p>
+<p>"When you see complaints online about, hey? Sometimes in these code editors the edit will be like wrong and or mess something up. It is often because of this that the smart coding agent left out some important detail, or wasn't specific enough about something."</p>
+<p>Even read-only sub-agents can create problems when they return conflicting information, leaving the main agent to resolve contradictions without full context.</p>
+<p>Key Takeaway: Read-only sub-agents and specialized edit-apply models can help manage context, but each approach has limitations and potential failure points.</p>
+<h2 id="why-should-systems-feel-like-a-single-agent-to-users">Why should systems feel like a single agent to users?</h2>
+<p>Even if your system has complex internal components, it should present itself to users as a single, coherent entity. This creates a more intuitive user experience and avoids confusion.</p>
+<p>"If you're abiding by like kind of principles of good context, engineering your system as a whole, even if it has like subparts and tasks. It kind of should feel to the user like a single agent, because the user has to feel like they're they're talking with one continuous decision maker, one continuous like consciousness."</p>
+<p>True multi-agent collaboration requires sophisticated capabilities that current models don't yet possess. Effective collaboration between humans requires mentally modeling what others know and don't know - a complex skill that LLMs haven't mastered.</p>
+<p>"It actually requires being very intelligent to be good at collaborating with other people like when when I'm working with another engineer on my team, if I am mentally modeling at the same time what they know, what they don't understand and what I have to tell them."</p>
+<p>The path forward likely involves making single agents smarter and more collaborative, which will eventually enable effective multi-agent systems.</p>
+<p>Key Takeaway: Systems should present as a single coherent entity to users. True multi-agent collaboration requires sophisticated capabilities that will emerge naturally as single agents become more intelligent.</p>
+<h2 id="what-skills-are-current-agents-lacking-for-effective-collaboration">What skills are current agents lacking for effective collaboration?</h2>
+<p>Current agents struggle with several key collaboration skills:</p>
+<p>Escalation awareness: Recognizing when they've reached the limits of their decision-making authority and need human input.</p>
+<p>"When can a system recognize when it reaches its own limits of the decisions it is allowed to make... </p>
+<p>How do you know, like a you should? Either way, you should notify the human that like, Hey, there's something weird that's happening here."</p>
+<p>Confidence assessment: Accurately evaluating and communicating their confidence in proposed solutions.</p>
+<p>"In Devin. One thing we do is when you collaborating with your agent, when you collaborate when you're collaborating with Devin, Devin will give you the how confident it is in its plan. And that way you, as a human, can say, like, okay, Devin is like 99% confident that this is going to work, you can roughly be hands off."</p>
+<p>Concise communication: Providing key information without overwhelming users with unnecessary details.</p>
+<p>"People hate how like, you know, Llms will just send you like a wall of text, and Markdown, a smart engineer will like manage to hone in on the key problems and the key things you have to think about with like minimal words, one sentence, 2 sentence of words."</p>
+<p>These skills are particularly important for human-agent collaboration, where the human should remain the ultimate decision-maker while the agent handles appropriate tasks autonomously.</p>
+<p>Key Takeaway: Effective collaboration requires agents to know when to escalate decisions, accurately assess their confidence, and communicate concisely - skills that current systems are still developing.</p>
+<h2 id="how-important-is-planning-in-agent-systems">How important is planning in agent systems?</h2>
+<p>Planning serves as a crucial form of context management in agent systems. By committing to a structure upfront, agents can avoid the constant recompression of information that happens in more dynamic approaches.</p>
+<p>"Planning is something that we do. And the context of planning emergency came up for us is actually a form of context management. Because, again, it's about avoiding this game of telephone where you you have to constantly recompress and the information that you're you're sending to your agent."</p>
+<p>At Cognition, Devin spends significant time reading code and generating a plan at the start of any task. This planning phase is one area where sub-agent-like components might be useful, though they're integrated in a way that still feels like a single system to the user.</p>
+<p>While detailed planning (like creating extensive plan.md files) can improve results, Walden believes these capabilities will eventually be built into the systems themselves:</p>
+<p>"You can be shown the plan. You can click this button to like view the full plan that the agent's working on. But the agent will work on this internally for its own sake. You know whether or not like you, tell it to or not."</p>
+<p>Key Takeaway: Planning is a powerful context management technique that helps agents maintain coherence throughout complex tasks. While users can create detailed plans, these capabilities are increasingly being built into agent systems.</p>
+<h2 id="what-frameworks-and-patterns-show-promise-for-agent-development">What frameworks and patterns show promise for agent development?</h2>
+<p>We're still in the early stages of agent development - comparable to the HTML/CSS/JavaScript era of web development before frameworks like React emerged. However, some promising patterns are emerging:</p>
+<p>Cache-aware frameworks: Systems that optimize for caching, even before API-level caching was available.</p>
+<p>"Our system has been built with caching kind of like being a very core condition. So even as you scale out and do these sub agents and things like that, having a system that still manages to like optimally cache work from before, I think is going to be important thing."</p>
+<p>Integrated evaluation systems: Frameworks that tightly couple agent code with evaluation systems.</p>
+<p>"We kind of like segment functionalities of our system into modules and these modules are tagged in such a way that not only are things that go through those modules, things that like we can track and feed into eval systems. When we change code inside these modules, we can then also back, run them against evals from before."</p>
+<p>Universal tools over specialized integrations: Providing agents with powerful general-purpose tools like shell access rather than numerous specialized integrations.</p>
+<p>"I personally like to just like, give our agent the most universal tools possible, and make sure there's very easy to use. So the shell command, like the the bash tool, for example, is so fucking powerful, it like literally, it means like anything you can do on a computer like your agent can do now."</p>
+<p>CLI tools can sometimes be more powerful than formal integrations because they can interact with the agent in sophisticated ways, almost becoming part of the agent system itself.</p>
+<p>Key Takeaway: While we're still early in agent framework development, patterns around caching, evaluation integration, and universal tools are showing promise for building robust systems.</p>
+<h2 id="how-is-code-review-evolving-with-ai-agents">How is code review evolving with AI agents?</h2>
+<p>As AI generates more code, the review process is evolving to minimize the work required to verify changes. Walden highlighted how they're leveraging existing tools like Vercel's preview links:</p>
+<p>"I tag Devin on slack. I go away. I do my thing. And 1st of all, I always tell Devin to send me a screenshot of the visual changes it makes, so I don't have to even leave slack. I will immediately see a screenshot of like, okay, is this even something reasonable that I want to review?"</p>
+<p>This approach allows for quick visual verification before diving into code details. Similar infrastructure for backend systems would be valuable but hasn't been heavily invested in yet.</p>
+<p>The future of code review likely involves more automated verification and visualization tools that help humans quickly understand and validate AI-generated changes.</p>
+<p>Key Takeaway: Code review is evolving to minimize human effort through screenshots, preview environments, and other tools that provide quick verification of AI-generated changes.</p>
+<h2 id="what-exciting-developments-are-coming-for-developer-tools">What exciting developments are coming for developer tools?</h2>
+<p>Walden is particularly excited about creating better synergies between local development environments and remote agents. One area with significant potential is improving code reading and understanding:</p>
+<p>"Actually reading code reading code, understanding code planning how you want to make changes. Because when you're an individual developer, you're actually oftentimes you're working a massive code based searching code that isn't yours. You're trying to understand it."</p>
+<p>While current AI tools can help with implementing specific tasks, there's a cap to what they can handle without proper planning. AI has a unique advantage in reading and understanding code much faster than humans, which could transform how developers approach large codebases.</p>
+<p>"The AI, even though it can like only edit code serially, it could read codes like so much faster than any of us can. And so I'm very excited about things we're going to be doing and just making that process and experience be a lot easier."</p>
+<p>Key Takeaway: The next frontier for developer tools involves better code reading, understanding, and planning capabilities that leverage AI's ability to process large codebases quickly.</p>
+<h2 id="final-thoughts-on-the-future-of-agent-development">Final thoughts on the future of agent development</h2>
+<p>Walden believes we're just beginning to develop the concepts and principles that will become fundamental to agent development. In the future, these ideas will likely be taught in entry-level college courses.</p>
+<p>The field is evolving rapidly, with practitioners discovering new patterns and approaches through experimentation. While multi-agent systems have captured popular imagination, the immediate future likely belongs to increasingly sophisticated single agents that can handle complex tasks with proper context management.</p>
+<p>As these systems mature, the principles of context engineering will become more formalized, eventually leading to frameworks that make building robust agent systems more accessible to developers without requiring deep expertise in prompt engineering or context management.</p>
+<p>Key Takeaway: We're in the early stages of developing fundamental concepts for agent systems. While multi-agent approaches capture imagination, near-term progress will come from improving single agents with better context management.</p>
 <hr/>
-<p><strong>FAQs</strong></p>
-<h2 id="what-is-agentic-retrieval-and-how-does-it-differ-from-traditional-rag">What is agentic retrieval and how does it differ from traditional RAG?</h2>
-<p>Agentic retrieval is an approach where AI agents use tools like grep, find, or embedding models to search through code and other content. Unlike traditional RAG (Retrieval-Augmented Generation), which typically uses embedding databases and vector searches, agentic retrieval gives the agent direct control over the search process. This allows the agent to be persistent, try multiple search strategies, and course-correct when initial attempts fail. Traditional RAG is more rigid but can be faster and more efficient for certain use cases.</p>
-<h2 id="do-agents-make-traditional-rag-obsolete_1">Do agents make traditional RAG obsolete?</h2>
-<p>No, agents don't make traditional RAG obsolete—they complement it. The best approach is often to build agentic retrieval on top of your existing retrieval system by exposing your embedding models and search capabilities as tools that an agent can use. This combines the strengths of both approaches: the persistence and flexibility of agents with the efficiency and scalability of well-tuned embedding models.</p>
-<h2 id="what-are-the-benefits-of-using-grep-and-find-tools-with-agents">What are the benefits of using grep and find tools with agents?</h2>
-<p>Using simple tools like grep and find with agents offers several advantages:</p>
-<ul>
-<li>Iterative retrieval becomes much easier as agents can refine searches based on previous results</li>
-<li>Token budget management is simpler since old tool calls can be truncated and rerun if needed</li>
-<li>The system is easier to build and maintain without complex vector database dependencies</li>
-<li>Agents can course-correct when searches don't yield useful results by trying different approaches</li>
-</ul>
-<h2 id="what-are-the-limitations-of-using-grep-and-find-for-retrieval">What are the limitations of using grep and find for retrieval?</h2>
-<p>While grep and find work well for certain scenarios, they have significant limitations:</p>
-<ul>
-<li>They don't scale well to very large codebases (millions of files)</li>
-<li>They're ineffective for searching through unstructured natural language content</li>
-<li>They work best with highly structured content like code that contains distinctive keywords</li>
-<li>They can be slower than optimized embedding-based searches for large datasets</li>
-</ul>
-<h2 id="whats-the-ideal-approach-to-retrieval-for-coding-agents">What's the ideal approach to retrieval for coding agents?</h2>
-<p>The best approach is often a hybrid system that combines:</p>
-<ol>
-<li>An agentic loop that gives the agent control over the search process</li>
-<li>Access to multiple search tools including grep, find, and embedding-based search</li>
-<li>The ability to choose the most appropriate tool based on the specific search task</li>
-<li>Course correction capabilities when initial searches don't yield useful results</li>
-</ol>
-<h2 id="how-should-i-evaluate-agentic-retrieval-systems">How should I evaluate agentic retrieval systems?</h2>
-<p>Start with a qualitative "vibe check" using 5-10 examples to understand how the system performs. Observe the agent's behavior, identify patterns in successes and failures, and develop an intuition for where improvements are needed. Only after this initial assessment should you move to quantitative end-to-end evaluations or specific evaluations of individual components like embedding tools. Remember that improving a single component (like an embedding model) may not necessarily improve the end-to-end performance if the agent is already persistent enough to overcome limitations.</p>
-<h2 id="i-already-built-a-retrieval-system-with-custom-trained-embedding-models-should-i-replace-it-with-agentic-retrieval">I already built a retrieval system with custom-trained embedding models. Should I replace it with agentic retrieval?</h2>
-<p>No, don't replace it—enhance it. Build agentic retrieval on top of your existing system by exposing your embedding models and search capabilities as tools that an agent can use. This gives you the best of both worlds: the quality and efficiency of your custom embeddings plus the persistence and flexibility of an agent.</p>
-<h2 id="how-can-i-improve-my-agentic-retrieval-system">How can I improve my agentic retrieval system?</h2>
-<p>Focus on building better tools for your agent:</p>
-<ul>
-<li>Add re-rankers to your embedding tools to improve precision and reduce token usage</li>
-<li>Train different embedding models for different specific tasks</li>
-<li>Prompt-tune your tool schemas to help the agent use them effectively</li>
-<li>Consider hierarchical retrieval approaches like creating summaries of files or directories</li>
-<li>Add specialized tools for specific retrieval tasks (like searching commit history)</li>
-</ul>
-<h2 id="how-do-memories-work-with-agentic-retrieval-systems">How do memories work with agentic retrieval systems?</h2>
-<p>Memories in agentic systems can be implemented by adding tools that save and read memories. These memories can serve as a semantic cache that speeds up future searches by storing information about the codebase structure, relevant interfaces, or other insights gained during previous searches. This can significantly improve performance on similar tasks in the future.</p>
-<h2 id="why-did-embedding-models-not-improve-performance-on-swe-bench">Why did embedding models not improve performance on SWE-Bench?</h2>
-<p>For the SWE-Bench coding evaluation, embedding models didn't significantly improve performance because:</p>
-<ol>
-<li>The repositories were relatively small, making grep and find sufficient</li>
-<li>The code was highly structured with distinctive keywords that made text-based search effective</li>
-<li>The agent's persistence compensated for less sophisticated search tools</li>
-<li>The tasks were relatively simple, typically solvable by a good engineer in under an hour</li>
-</ol>
-<h2 id="this-doesnt-mean-embedding-models-arent-valuablethey-become-essential-for-larger-codebases-less-structured-content-or-more-complex-retrieval-tasks">This doesn't mean embedding models aren't valuable—they become essential for larger codebases, less structured content, or more complex retrieval tasks.</h2>
-<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
-<script async="" data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
+<h2 id="faqs">FAQs</h2>
+<h2 id="what-are-the-main-issues-with-multi-agent-systems-in-coding">What are the main issues with multi-agent systems in coding?</h2>
+<p>Multi-agent systems often suffer from context loss and conflicting decisions. When multiple agents work in parallel, they may not share the same understanding of the original task or see each other's work, leading to inconsistencies. This creates a "telephone game" effect where important details get lost as information passes from one agent to another, resulting in incompatible outputs that don't work well together.</p>
+<h2 id="what-is-context-engineering-and-why-is-it-important">What is context engineering and why is it important?</h2>
+<p>Context engineering is the practice of carefully managing what information is available to AI agents at each step of their work. Unlike prompt engineering (which focuses on how you phrase instructions), context engineering focuses on ensuring agents have all the necessary background information and history they need to make good decisions. As models become more capable, the limiting factor is increasingly how much relevant context they have access to rather than how you phrase your prompts.</p>
+<h2 id="what-are-the-two-core-design-principles-for-building-reliable-agent-systems">What are the two core design principles for building reliable agent systems?</h2>
+<p>The two core principles are: 1) Always share full context and agent traces between components, ensuring each agent can see what happened before, and 2) Carefully track decisions to prevent agents from making conflicting choices. These principles help maintain consistency throughout the system and prevent the "telephone game" problem where important details get lost between agents.</p>
+<h2 id="how-can-context-overflow-be-managed-in-agent-systems">How can context overflow be managed in agent systems?</h2>
+<p>As agents work on longer tasks, they can quickly hit context window limits. One approach is using a "context compressor" that intelligently summarizes previous context before passing it to the next agent. This requires careful engineering to ensure important details aren't lost during compression. Another approach is designing systems that are inherently cache-aware, allowing for efficient reuse of previous computations without redundant processing.</p>
+<h2 id="what-are-read-only-subagents-and-when-are-they-useful">What are "read-only subagents" and when are they useful?</h2>
+<p>Read-only subagents are limited to gathering information without making decisions that affect the system. They're useful for tasks like searching code, listing files, or checking imports without introducing conflicts. Both Claude and other systems constrain their subagents to these read-only tasks specifically to avoid the problems that arise when multiple agents make independent decisions in parallel.</p>
+<h2 id="why-might-a-single-agent-approach-be-more-reliable-than-multi-agent-systems">Why might a single agent approach be more reliable than multi-agent systems?</h2>
+<p>Single agent systems avoid the problem of conflicting decisions and context loss between agents. They maintain a continuous "consciousness" with full access to previous context and actions. While they may be slower (lacking parallelism), they're typically more reliable because they don't suffer from coordination problems. A well-designed single agent can still use specialized components internally while presenting a unified interface to users.</p>
+<h2 id="how-should-agents-handle-tasks-theyre-uncertain-about">How should agents handle tasks they're uncertain about?</h2>
+<p>Agents should be designed to recognize their limitations and escalate decisions to humans when appropriate. This includes providing confidence scores with their plans and outputs, so users know when to pay closer attention. Unlike how models are typically trained (to always provide an answer), agents should be willing to say "I don't know" or "I need help" rather than guessing when they lack sufficient information or expertise.</p>
+<h2 id="whats-the-edit-apply-model-pattern-and-what-are-its-limitations">What's the "edit-apply model" pattern and what are its limitations?</h2>
+<p>The edit-apply model pattern uses two specialized components: a smart coding model that generates human-readable instructions for code changes, and a simpler, faster model that applies those changes to the code. This pattern can be efficient but introduces fragility because the edit-apply model lacks the full context and intelligence of the main model, making it vulnerable to misinterpreting instructions if they're not perfectly clear.</p>
+<h2 id="why-are-current-frameworks-for-building-agents-considered-premature">Why are current frameworks for building agents considered premature?</h2>
+<p>Current agent frameworks are considered premature because we're still discovering the fundamental principles and patterns for building reliable agent systems. Similar to web development before React, we're in an early phase where developers are still identifying best practices. Eventually, frameworks will emerge that codify these principles, but for now, it's important to focus on understanding the core concepts like context engineering.</p>
+<h2 id="how-might-agent-collaboration-evolve-in-the-future">How might agent collaboration evolve in the future?</h2>
+<p>While current multi-agent systems face significant challenges, future systems may enable more effective collaboration as models become more intelligent. The ability to model what other agents know and need is a sophisticated skill that requires advanced intelligence. As single agents become more capable, they'll naturally develop the ability to collaborate effectively with other agents, similar to how humans collaborate with teammates.</p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
@@ -1363,34 +1289,6 @@ Colin believes we're entering an era where the boundaries between traditional RA
 </button>
 </main>
 <footer class="md-footer">
-<nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Previous: Autonomous Coding Agents (Nik Pash, Cline)" class="md-footer__link md-footer__link--prev" href="../rag-is-dead-cline-nik/">
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
-</div>
-<div class="md-footer__title">
-<span class="md-footer__direction">
-                Previous
-              </span>
-<div class="md-ellipsis">
-                Autonomous Coding Agents (Nik Pash, Cline)
-              </div>
-</div>
-</a>
-<a aria-label="Next: Better RAG Through Better Data (Adit, Reducto)" class="md-footer__link md-footer__link--next" href="../reducto-docs-adit/">
-<div class="md-footer__title">
-<span class="md-footer__direction">
-                Next
-              </span>
-<div class="md-ellipsis">
-                Better RAG Through Better Data (Adit, Reducto)
-              </div>
-</div>
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
-</div>
-</a>
-</nav>
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-copyright">
