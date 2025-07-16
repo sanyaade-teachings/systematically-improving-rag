@@ -13,7 +13,7 @@ Study Notes:
 
 I hosted a session with Vitor from Zapier to discuss how they dramatically improved their feedback collection systems for AI products. This conversation reveals practical strategies for gathering, analyzing, and implementing user feedback to create a continuous improvement cycle for RAG systems and AI applications.
 
-**How did Zapier Central improve their feedback collection process?**
+## How did Zapier Central improve their feedback collection process?
 Zapier has been building numerous AI-powered features, with Zapier Central being their newest product - essentially an AI automation platform that connects with third-party apps and keeps data in sync. It functions as both a chat interface for your live data and an automation tool that can be controlled through natural language.
 
 Initially, they faced a common challenge with AI products: limited feedback. Despite having users actively engaging with the product, their feedback submission rates were "abysmally low" - around 10 submissions per day. Even worse, the feedback they did receive was almost exclusively negative, coming from frustrated users experiencing errors.
@@ -24,7 +24,7 @@ This simple change, combined with larger, more visible thumbs-up and thumbs-down
 
 ***Key Takeaway:*** The positioning, visibility, and wording of feedback requests dramatically impacts response rates. Being more direct and contextual with feedback requests can yield significantly more data, including the often-missing positive feedback that helps you understand what's working well.
 
-**What strategies can you use to mine implicit feedback from user behavior?**
+## What strategies can you use to mine implicit feedback from user behavior?
 Beyond explicit feedback buttons, Vitor shared several clever approaches for mining implicit feedback from user interactions:
 
 1. Workflow activation signals: When a user tests a workflow and then activates it, that's a strong positive signal that the system is working as expected.
@@ -36,7 +36,7 @@ The team implemented a nightly job that fetched runs from their database and ana
 
 ***Key Takeaway:*** Look beyond explicit feedback mechanisms and mine your application data for implicit signals. User behaviors like activating workflows, rephrasing questions, or abandoning sessions can provide valuable insights about system performance without requiring direct user input.
 
-**How did Zapier organize and scale their feedback analysis process?**
+## How did Zapier organize and scale their feedback analysis process?
 With feedback volumes increasing dramatically, the team needed a systematic approach to process and learn from this data. They built an internal feedback triaging system where all submissions would land by default, providing staff with an optimized view of each run's details.
 
 To scale beyond what one person could handle, they implemented "labeling parties" - weekly team meetings where everyone would review and categorize feedback submissions together. While initially slower than having one person process everything, these sessions built team members' confidence in labeling independently and fostered a "look at your data" mentality throughout the organization.
@@ -47,7 +47,7 @@ From the triaging interface, staff could label feedback with categories correspo
 
 ***Key Takeaway:*** Creating structured processes for feedback analysis and involving the entire team builds a data-driven culture. Regular "labeling parties" not only distribute the workload but also ensure everyone understands user pain points and the value of examining raw data.
 
-**How did feedback collection improve Zapier's product development process?**
+## How did feedback collection improve Zapier's product development process?
 The improved feedback system transformed Zapier's product development in several ways:
 
 1. Clearer prioritization: They could identify which capabilities were failing most frequently and cross-reference this with usage data to focus on high-traffic areas with low accuracy.
@@ -59,7 +59,7 @@ The team fed all their labeled data into their analytics platform (Databricks), 
 
 ***Key Takeaway:*** A robust feedback system creates a flywheel effect - more feedback leads to better understanding of user needs, which enables more targeted improvements, resulting in better user experiences and ultimately more positive feedback.
 
-**What were the key outcomes of Zapier's feedback improvement initiative?**
+## What were the key outcomes of Zapier's feedback improvement initiative?
 The initiative produced several valuable outcomes beyond just the immediate product improvements:
 
 1. Cultural shift: Everyone on the team now feels empowered to examine raw data and understands its value. Team discussions became more focused on improving specific capabilities rather than making vague statements about general improvements.
@@ -71,7 +71,7 @@ The team is now looking to further automate their labeling process, potentially 
 
 ***Key Takeaway:*** Investing in feedback systems pays dividends beyond immediate product improvements - it creates a data-driven culture, enables better decision-making, and ultimately drives business metrics like activation and retention.
 
-**How important is the specific wording of feedback requests?**
+## How important is the specific wording of feedback requests?
 Vitor emphasized that the wording of feedback requests significantly impacts the quality of responses. Initially, they considered using generic language like "How did we do?" but after consulting with Jason, they opted for more specific phrasing: "Did this run do what you expected it to do?"
 
 This specificity guided users toward providing feedback about the workflow's functionality rather than other aspects like speed or interface design. By focusing the question on their primary concern - whether the workflow performed the intended action - they received more actionable feedback.
@@ -80,7 +80,7 @@ Different contexts might require different feedback questions. For a RAG system 
 
 ***Key Takeaway:*** Craft feedback requests that specifically target the dimensions you care most about improving. Generic questions yield generic answers, while specific questions guide users toward providing the most valuable insights for your particular system.
 
-**What's the value of turning feedback into formal evaluations?**
+## What's the value of turning feedback into formal evaluations?
 Zapier emphasized the importance of converting user feedback into formal evaluations that could be run repeatedly. This approach provided several benefits:
 
 1. Reproducibility: They could reliably test the same scenarios across different model versions or system changes.
@@ -92,7 +92,7 @@ The team built tooling to easily create evaluations from feedback submissions, i
 
 ***Key Takeaway:*** Converting real-world feedback into formal evaluations creates a safety net for future development. This approach transforms one-time user experiences into persistent quality checks that protect against regressions and guide improvements.
 
-**How does feedback collection fit into the broader AI product development cycle?**
+## How does feedback collection fit into the broader AI product development cycle?
 Vitor described a virtuous cycle for AI product development:
 
 1. Start with a prototype using a strong foundational model

@@ -9,11 +9,9 @@ date: 2025-01-01
 
 # Query Routing - Anton (ChromaDB)
 
-Study Notes:
-
 I recently hosted a session featuring Anton Troynikov from ChromaDB who shared critical insights about organizing data for retrieval systems. This often-overlooked aspect of RAG implementation can significantly impact retrieval accuracy and overall system performance. Here's a breakdown of the key concepts and best practices for structuring your data to optimize query routing.
 
-**Why is data organization so critical for RAG systems?**
+## Why is data organization so critical for RAG systems?
 Anton emphasized that before doing anything else with your retrieval system, you need to look at two critical elements: your data and your queries. This fundamental step is often skipped, leading to suboptimal performance.
 
 "You need to look at your data. You need to look at what exactly is going into your vector database or your database. You need to actually see what's in there before you do literally anything else," Anton explained.
@@ -24,7 +22,7 @@ This initial examination forms the foundation for how you'll organize your data 
 
 ***Key Takeaway:*** Always examine both your data and user queries before setting up your retrieval pipeline. This fundamental step will inform your data organization strategy and significantly impact your system's performance.
 
-**What factors should you consider when organizing data for retrieval?**
+## What factors should you consider when organizing data for retrieval?
 When organizing data for retrieval, Anton highlighted three main considerations: user access patterns, data source characteristics, and query scope.
 
 For user access patterns, ask yourself:
@@ -88,7 +86,7 @@ For mapping users to indexes, Anton suggested simple solutions like keeping a re
 
 ***Key Takeaway:*** The denormalized approach of one index per user per data source offers better security, performance, and recall than the "big pile" approach, though it requires more sophisticated management of indexes and query routing.
 
-**How do you route queries to the right data sources?**
+## How do you route queries to the right data sources?
 With multiple indexes, routing queries becomes a critical challenge. Anton outlined two main approaches:
 
 1. Full multiplexing: Send the query to all applicable data sources and combine the results. This raises the question of how many results to return from each source. With longer context windows and lower per-token costs, you could simply send all results to the model and let it figure out what's relevant.
@@ -103,7 +101,7 @@ When using an LLM as a judge for routing, Anton emphasized the importance of cal
 
 ***Key Takeaway:*** Query routing can be handled through full multiplexing (sending queries to all relevant sources) or LLM routing (having a model decide which sources are relevant). Both approaches have merit, with re-ranking models being particularly valuable for combining results from multiple sources.
 
-**Why does filtering reduce recall in vector search?**
+## Why does filtering reduce recall in vector search?
 One of the most technical but important points Anton made was explaining why filtering reduces recall in vector search. This isn't immediately obvious to many practitioners.
 
 Vector search at scale uses approximate nearest neighbor (ANN) search rather than exact matching. As Anton explained:
@@ -121,7 +119,7 @@ Anton provided a geometric intuition: "Imagine you have red and green points in 
 
 ***Key Takeaway:*** Filtering in vector search inherently reduces recall due to the approximate nature of vector search algorithms. The more specific your filter, the worse this problem becomes, which is why organizing data into separate indexes can significantly improve performance.
 
-**Should you fine-tune embedding models for specific indexes?**
+## Should you fine-tune embedding models for specific indexes?
 On the topic of fine-tuning embedding models, Anton was enthusiastic: "It's cheap, and you should do it."
 
 He noted that many people get intimidated by fine-tuning because it seems like "big brain AI PhD land," but the reality is that "the hardest part of fine-tuning is creating a dataset and then benchmarking the results."
@@ -132,7 +130,7 @@ Using techniques like embedding adapters, you can fine-tune for different user g
 
 ***Key Takeaway:*** Fine-tuning embedding models for specific indexes or user groups is more accessible than many realize and can significantly improve retrieval performance. With separate indexes, this becomes even more practical and powerful.
 
-**How should you handle dynamic metadata filtering?**
+## How should you handle dynamic metadata filtering?
 For implementing dynamic metadata filtering, Anton shared examples from financial research and legal domains:
 
 In financial research, you might filter documents based on stock tickers. If a user asks about Uber, it's more effective to either filter against the Uber ticker or have a dedicated index for Uber-related documents.

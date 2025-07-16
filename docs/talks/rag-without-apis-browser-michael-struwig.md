@@ -11,7 +11,7 @@ date: 2025-01-01
 
 I hosted a session with Michael Struwig, Head of AI at OpenBB, who shared a fascinating approach to RAG systems that leverages the browser as a data layer. This conversation explored how financial data platforms can connect agents to sensitive data without traditional APIs, creating more secure and flexible AI-powered analysis tools.
 
-**Why is the browser the most natural system for connecting LLMs to data?**
+## Why is the browser the most natural system for connecting LLMs to data?
 
 Michael's core thesis is that in the age of web apps, the browser serves as the most natural intermediary for shuffling data between systems, particularly for LLMs. While this might seem counterintuitive at first, it elegantly solves several critical problems in the financial industry.
 
@@ -28,7 +28,7 @@ As Michael explained, "We don't want to distribute your data... there's a lot of
 
 ***Key Takeaway:*** Using the browser as a data layer creates a clean separation between data integration and agent functionality. Once data is integrated into the platform for human use, it's instantly available to AI agents without requiring separate API development or data redistribution.
 
-**How does OpenBB's agent protocol work?**
+## How does OpenBB's agent protocol work?
 
 OpenBB developed a protocol that allows agents to request data through the browser rather than directly accessing APIs. The workflow is elegantly simple:
 
@@ -54,7 +54,7 @@ I found it particularly interesting how they've created a system with minimal pr
 
 ***Key Takeaway:*** By creating a simple, stateless protocol that runs in the browser, OpenBB allows agents to access data that might otherwise be inaccessible due to network constraints or security concerns, all while maintaining a clean separation between data integration and agent functionality.
 
-**What is OpenBB Workspace and how does it leverage this approach?**
+## What is OpenBB Workspace and how does it leverage this approach?
 
 OpenBB Workspace is an AI-driven analysis tool primarily focused on financial data. It provides a dashboard interface where users can:
 
@@ -75,7 +75,7 @@ For enterprise customers, this approach is particularly valuable because they al
 
 ***Key Takeaway:*** OpenBB's approach creates a platform where data flows directly through the browser to both humans and AI agents, maintaining security while enabling powerful analysis capabilities without requiring data to be redistributed through third-party servers.
 
-**How does OpenBB handle state management and function execution?**
+## How does OpenBB handle state management and function execution?
 
 One of the most interesting aspects of OpenBB's approach is how they handle function execution. Michael described two types of functions:
 
@@ -91,7 +91,7 @@ Their architecture resembles a state machine model with a main execution loop th
 
 ***Key Takeaway:*** By using remotely executed functions and a stateless architecture, OpenBB creates a system that's easy to reason about while enabling powerful capabilities like accessing data that would otherwise be inaccessible to remote agents.
 
-**How does OpenBB handle error management and system improvement?**
+## How does OpenBB handle error management and system improvement?
 
 When I asked about their approach to error management and system improvement, Michael's answer was refreshingly straightforward: they look at the logs.
 
@@ -113,7 +113,7 @@ This approach reminded me of Toyota sending executives to Namibia to watch what 
 
 ***Key Takeaway:*** Sometimes the simplest approaches are most effective. Rather than building complex systems to analyze errors, directly examining logs and identifying patterns can provide the highest-quality information for improving your AI systems.
 
-**How does OpenBB manage latency expectations?**
+## How does OpenBB manage latency expectations?
 
 For managing user expectations around latency, OpenBB employs two key strategies:
 
@@ -125,7 +125,7 @@ These approaches keep users engaged and informed while minimizing perceived late
 
 I found his comment about anthropomorphizing LLMs particularly insightful: "Sometimes I think anthropomorphizing LLMs more is a good thing, not a bad thing." Good error messages help both humans and LLMs understand what went wrong, as models are trained on human data and respond well to the same clear communication that helps people.
 
-**What's the future of browser-based AI?**
+## What's the future of browser-based AI?
 
 Michael posed a fascinating question that he believes more people should be asking: "When will locally running language models be integrated into browsers, and when will a web standard be published that allows web apps and websites to interact with those language models in a native way?"
 
@@ -140,7 +140,7 @@ When I asked whether this would happen first on desktop or mobile, Michael was c
 
 ***Key Takeaway:*** The future may involve browsers with native LLM capabilities and standardized interfaces for web applications to leverage these models, creating a more accessible AI ecosystem that doesn't require users to install specialized software.
 
-**How does OpenBB approach testing and evaluation?**
+## How does OpenBB approach testing and evaluation?
 
 Evaluating AI systems in financial analysis presents unique challenges. Unlike code generation where you can run unit tests to verify correctness, financial analysis often involves subjective judgments without clear right or wrong answers.
 
@@ -163,7 +163,7 @@ For monitoring and tracing, they use two main tools:
 
 ***Key Takeaway:*** In domains where evaluation is subjective, combining user feedback with radical observability and direct examination of system behavior can be more effective than complex automated evaluation systems.
 
-**What are the limitations of frameworks like LangChain?**
+## What are the limitations of frameworks like LangChain?
 
 When I asked about his "God forbid" comment regarding LangChain, Michael clarified that while LangChain popularized the important concept of chaining LLM calls together, it has significant limitations:
 
@@ -195,15 +195,15 @@ ______________________________________________________________________
 
 FAQs:
 
-**What is the main concept behind OpenBB's approach to data integration?**
+## What is the main concept behind OpenBB's approach to data integration?
 
 The browser is the most natural system for shuffling data between different systems, particularly when working with Large Language Models (LLMs). Rather than using traditional APIs where an agent hits an endpoint to pull data from external services, OpenBB leverages the browser itself as a data layer. This approach allows you to connect data running on localhost or your local network to an agent running elsewhere, creating a more seamless integration experience.
 
-**What is OpenBB Workspace?**
+## What is OpenBB Workspace?
 
 OpenBB Workspace is an AI-driven analysis tool primarily focused on financial data. It features a series of dashboards with various data sources including news, watchlists, company information, and price targets. The platform includes OpenBB Copilot (an AI assistant) on the right side of the application that can answer questions, produce charts, and provide full citations for its responses. Users can create custom widgets, bring in their own data backends, and perform comprehensive analysis.
 
-**Why did OpenBB choose a browser-based approach instead of traditional APIs?**
+## Why did OpenBB choose a browser-based approach instead of traditional APIs?
 
 There are several key reasons:
 
@@ -213,11 +213,11 @@ There are several key reasons:
 - It provides excellent security since you must be on the same network as the data
 - It allows users to serve data directly from localhost, which is ideal for development
 
-**How does the browser-based data integration work technically?**
+## How does the browser-based data integration work technically?
 
 The system uses what OpenBB calls the "agent protocol." When a user makes a query, the front-end application sends a request to the agent with messages and information about available widgets containing data. If the agent needs specific information to answer the query, it submits a function call back to the front-end with parameters specifying which widget to access and which input arguments to use. A function-calling handler running in the browser locally interprets this call, executes it, fetches the data, and responds with the results back to the agent.
 
-**What are the benefits of this approach for developers?**
+## What are the benefits of this approach for developers?
 
 This approach offers several advantages:
 
@@ -228,11 +228,11 @@ This approach offers several advantages:
 - The protocol is stateless, making it easy to debug, test, and reason about
 - It uses familiar REST APIs and server-sent events, which are standard for web development
 
-**Is the agent protocol publicly available?**
+## Is the agent protocol publicly available?
 
 Yes, OpenBB has published the entire protocol on GitHub. It's called the "OpenBB Custom Agent SDK" and is pip-installable. This is the same protocol used for OpenBB's own copilot, and they encourage users to build their own agents with it.
 
-**What primitives does the agent protocol provide?**
+## What primitives does the agent protocol provide?
 
 The protocol includes several simple primitives:
 
@@ -242,7 +242,7 @@ The protocol includes several simple primitives:
 - Producing citations for information sources
 - Returning tables and various chart types (pie, line, bar, scatter)
 
-**How do you handle latency in complex workflows?**
+## How do you handle latency in complex workflows?
 
 OpenBB manages user expectations around latency in two main ways:
 
@@ -250,7 +250,7 @@ OpenBB manages user expectations around latency in two main ways:
 
 1. Parallelizing tasks when possible (e.g., summarizing multiple PDFs simultaneously rather than sequentially)
 
-**How does OpenBB approach error handling and system improvement?**
+## How does OpenBB approach error handling and system improvement?
 
 Rather than building complex self-improving systems, OpenBB focuses on:
 
@@ -259,7 +259,7 @@ Rather than building complex self-improving systems, OpenBB focuses on:
 - Having team members regularly review these logs to spot trends
 - Modifying the system to make errors less likely, rather than just changing prompts
 
-**What does OpenBB believe about the future of AI integration?**
+## What does OpenBB believe about the future of AI integration?
 
 OpenBB believes that human plus AI will be better than either human or AI alone. Their vision focuses on collaboration rather than replacement, with AI making humans better or offloading certain tasks. They maintain that anything the human can do, the AI must be able to do, and vice versa, creating a unified interface for both. Looking further ahead, they predict that locally-running language models will eventually be integrated directly into browsers as a web standard, particularly on mobile devices.
 

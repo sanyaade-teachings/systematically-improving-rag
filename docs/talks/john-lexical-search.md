@@ -13,7 +13,7 @@ Study Notes:
 
 I hosted a session featuring John Berryman, who shared his expertise on lexical search and its application in RAG systems. John, who previously worked at GitHub and co-authored books on prompt engineering and information retrieval, provided valuable insights on how traditional search techniques can complement modern vector-based approaches for more effective retrieval augmented generation.
 
-**Why is lexical search still relevant in the age of semantic search?**
+## Why is lexical search still relevant in the age of semantic search?
 
 While semantic search has become the default approach for RAG systems, John highlighted several limitations that make it problematic in certain scenarios. The primary issues include:
 
@@ -26,7 +26,7 @@ The filtering challenge is especially significant. With semantic search, you're 
 
 ***Key Takeaway:*** Semantic search excels at understanding meaning but struggles with exact matching, specialized terminology, and efficient filtering - all areas where lexical search has established strengths.
 
-**How does lexical search actually work?**
+## How does lexical search actually work?
 
 John provided a concise explanation of lexical search fundamentals, breaking it down into three components:
 
@@ -38,7 +38,7 @@ The key advantage is that lexical search can process filtering and relevance sco
 
 ***Key Takeaway:*** Lexical search's inverted index structure enables efficient simultaneous filtering and relevance scoring, with established relevance algorithms like TF-IDF and BM25 that have been refined over decades.
 
-**How can lexical search be applied in RAG applications?**
+## How can lexical search be applied in RAG applications?
 
 John demonstrated a practical application using the Wayfair Annotation Dataset (WANDs), containing about 43,000 e-commerce products. He showed how to:
 
@@ -58,7 +58,7 @@ In the demonstration, a user complaint about back pain led the assistant to sear
 
 ***Key Takeaway:*** Lexical search provides RAG systems with powerful filtering capabilities and metadata that allows LLMs to make more informed decisions about how to refine searches and present options to users.
 
-**What are the limitations of lexical search?**
+## What are the limitations of lexical search?
 
 Despite its strengths, John acknowledged several significant limitations:
 
@@ -72,7 +72,7 @@ These are precisely the areas where semantic search excels, suggesting that neit
 
 ***Key Takeaway:*** Lexical search's limitations around understanding meaning, context, and synonyms are the exact strengths of semantic search, pointing toward hybrid approaches as the optimal solution.
 
-**What hybrid search approaches show promise?**
+## What hybrid search approaches show promise?
 
 John explored several approaches to combining the strengths of lexical and semantic search:
 
@@ -85,7 +85,7 @@ John admitted that the ideal hybrid solution remains elusive, but the industry i
 
 ***Key Takeaway:*** The future likely belongs to hybrid approaches that combine lexical search's filtering capabilities with semantic search's understanding of meaning, though the ideal implementation is still evolving.
 
-**How do you optimize lexical search for specific domains?**
+## How do you optimize lexical search for specific domains?
 
 During the Q&A, John shared insights on improving search for domain-specific applications:
 

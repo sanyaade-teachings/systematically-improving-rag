@@ -11,7 +11,7 @@ date: 2025-01-01
 
 I hosted a lightning lesson featuring Ben from Raindrop and Sid from Oleve to discuss AI monitoring, production testing, and data analysis frameworks. This session explored how to effectively identify issues in AI systems, implement structured monitoring, and develop frameworks for improving AI products based on real user data.
 
-**What are the fundamentals of AI monitoring and why are traditional approaches insufficient?**
+## What are the fundamentals of AI monitoring and why are traditional approaches insufficient?
 
 The foundation of AI monitoring begins with evals, which function similarly to unit tests in traditional software development. An eval consists of an input (either a single message or conversation) and an expected output from the model.
 
@@ -29,7 +29,7 @@ I've seen this challenge firsthand with clients who implement sophisticated eval
 
 **Key Takeaway:** Traditional error monitoring tools like Sentry don't work for AI products because there's no explicit error message when an AI system fails. Instead, we need specialized approaches that can identify problematic patterns in model outputs and user interactions.
 
-**How do we effectively identify issues in AI systems?**
+## How do we effectively identify issues in AI systems?
 
 Ben introduced what he calls "the anatomy of an AI issue," which consists of two main components: signals and intents.
 
@@ -57,7 +57,7 @@ For smaller applications with fewer than 500 daily events, Ben recommends piping
 
 ***Key Takeaway:*** Effective AI monitoring requires tracking both implicit signals (patterns in user and model language that suggest problems) and explicit signals (user actions that indicate satisfaction or dissatisfaction), then exploring these signals to identify recurring issues.
 
-**What framework can help organize and prioritize AI improvements?**
+## What framework can help organize and prioritize AI improvements?
 
 Sid introduced the Trellis framework (Targeted Refinement of Emergent LLM Intelligence through Structured Segmentation), which his team at Oleve uses to manage AI products that reach millions of users within weeks of launch.
 
@@ -91,7 +91,7 @@ Instead, he suggests a formula: Volume × Negative Sentiment × Achievable Delta
 
 ***Key Takeaway:*** The Trellis framework provides a structured approach to taming the chaos of AI outputs by categorizing user intents, creating specialized workflows for each intent, and prioritizing improvements based on a combination of volume, sentiment, achievability, and strategic importance.
 
-**How can we fix issues once we've identified them?**
+## How can we fix issues once we've identified them?
 
 Once you've identified and categorized issues, Ben outlined several approaches to fixing them:
 
@@ -113,7 +113,7 @@ This case study demonstrates the value of having "self-contained, blameable piec
 
 ***Key Takeaway:*** Fixing AI issues requires a portfolio of approaches from simple prompt changes to sophisticated fine-tuning. The key is having a structured system that allows you to attribute problems to specific workflows and measure the impact of your improvements.
 
-**What are some notable examples of AI failures in production?**
+## What are some notable examples of AI failures in production?
 
 Ben shared several examples of high-profile AI failures that traditional testing might have missed:
 
@@ -128,7 +128,7 @@ These examples highlight why production monitoring is essential - the real world
 
 ***Key Takeaway:*** Even the largest AI companies with sophisticated testing infrastructure experience unexpected failures in production. This underscores the importance of robust monitoring systems that can detect novel issues as they emerge in real-world usage.
 
-**How long does it take to implement effective AI monitoring?**
+## How long does it take to implement effective AI monitoring?
 
 When I asked Sid about the timeline for implementing the Trellis framework, he described a gradual process that began before public launch:
 
@@ -142,7 +142,7 @@ Sid noted that they only reached stability about four months after launch: "We o
 
 ***Key Takeaway:*** Implementing effective AI monitoring is not a one-time setup but an iterative process that begins before launch and continues throughout a product's lifecycle. Even with sophisticated tools, the human element of analyzing data and refining systems remains essential.
 
-**What unexpected insights can emerge from AI monitoring?**
+## What unexpected insights can emerge from AI monitoring?
 
 One of the most valuable aspects of comprehensive monitoring is discovering unexpected user behaviors that wouldn't be apparent otherwise.
 
@@ -156,7 +156,7 @@ These types of insights are nearly impossible to anticipate through traditional 
 
 ***Key Takeaway:*** Comprehensive AI monitoring often reveals unexpected user behaviors and preferences that wouldn't be discovered through traditional testing. These insights can drive product improvements that better align with how users actually interact with your system.
 
-**How do we ultimately make AI products better?**
+## How do we ultimately make AI products better?
 
 When I asked what question we should have covered, Ben highlighted the fundamental challenge: "How do you actually make things better? Is it just changing a word in a prompt? Is it actually fine-tuning something? What is the actual tool that's going to make your product better?"
 
@@ -172,51 +172,51 @@ ______________________________________________________________________
 
 FAQs
 
-**What are evals in AI monitoring?**
+## What are evals in AI monitoring?
 
 Evals are similar to unit tests in traditional software engineering. They consist of an input (either a single message or an entire conversation) and an expected output from the model. Evals can provide a binary pass/fail result or a score, and they're primarily used for offline testing to iterate on prompts and ensure your AI system performs as expected.
 
-**How do offline evals differ from production monitoring?**
+## How do offline evals differ from production monitoring?
 
 Offline evals are run locally or in CI/CD pipelines to test specific scenarios and prevent regressions. They're useful for iterating on prompts and ensuring changes don't break existing functionality. Production monitoring, however, involves analyzing real user interactions to identify issues that may not have been anticipated during development, providing insights into how your AI system performs in the real world.
 
-**What are LLM judges and why should I be cautious about them?**
+## What are LLM judges and why should I be cautious about them?
 
 LLM judges are language models used to evaluate outputs from other models. While they can be useful for assessing subjective qualities (like whether a joke is funny), they can be misleading if not set up properly. The main concerns are that they're expensive to run at scale, difficult to configure accurately, and may not detect novel problems outside their evaluation criteria. It's best to use LLM judges sparingly and primarily for binary decisions with well-defined conditions.
 
-**What signals should I look for to identify AI issues in production?**
+## What signals should I look for to identify AI issues in production?
 
 There are two types of signals to monitor: implicit and explicit. Implicit signals come from the data itself, such as user frustration expressions, task failures, or NSFW content. Explicit signals are actions users take that indicate satisfaction or dissatisfaction, like thumbs up/down, regenerating responses, abandoning searches, or copying/sharing content. Both types of signals help identify patterns of issues in your AI system.
 
-**How can I effectively explore and categorize AI issues?**
+## How can I effectively explore and categorize AI issues?
 
 Start by breaking down issues by metadata (like browser type, model used, or user plan) to identify patterns. Analyze keywords associated with problematic interactions and examine the intersection of user intents and issue types. Use tools like semantic search to find similar issues and cluster them. This exploration helps you understand the scope and impact of different problems.
 
-**Why is it important to maintain a constant flow of production data?**
+## Why is it important to maintain a constant flow of production data?
 
 Without continuous monitoring of production data, you'll miss emerging issues and user frustration patterns. For high-volume applications, use tools that summarize patterns and notify you of significant issues. For lower-volume applications (less than 500 events daily), consider reviewing every user interaction to understand what's confusing about your product and what features users expect but don't yet exist.
 
-**What is the Trellis framework?**
+## What is the Trellis framework?
 
 Trellis (Targeted Refinement of Emergent LLM Intelligence through Structured Segmentation) is an operating framework for designing reliable AI experiences. It helps organize the "infinite chaos" of AI outputs into controllable, structured segments so you can prioritize engineering efforts on what matters most. The framework has three core axioms: discretization, prioritization, and recursive refinement.
 
-**How do I implement the Trellis framework?**
+## How do I implement the Trellis framework?
 
 Start by launching a minimal viable product to gather real user interactions. Cluster these interactions by intent, then convert the clusters into semi-deterministic workflows with an intent router that directs user requests to the appropriate workflow. Prioritize workflows based on metrics relevant to your business goals, then recursively analyze each workflow to identify sub-intents or misclassified intents that could become new workflows.
 
-**How should I prioritize which AI issues to fix first?**
+## How should I prioritize which AI issues to fix first?
 
 While volume (how many users experience an issue) is important, it shouldn't be your only consideration. A more effective approach is to multiply volume by negative sentiment score and then by an estimated achievable delta (how much you can realistically improve the experience). This helps you focus on issues that affect many users, cause significant frustration, and can be fixed relatively easily.
 
-**What are the main approaches to fixing issues in AI systems?**
+## What are the main approaches to fixing issues in AI systems?
 
 There are several approaches to improving AI performance: prompt changes (usually the first and simplest solution), offloading problematic intents to more capable models or specialized tools, improving your RAG (Retrieval-Augmented Generation) pipeline for memory-related issues, and fine-tuning models using supervised or reinforcement learning techniques based on the ground truth signals you've collected.
 
-**Why is it important to make AI improvements attributable and testable?**
+## Why is it important to make AI improvements attributable and testable?
 
 When building AI systems, you want your improvements to be engineered, repeatable, testable, and attributable—not accidental. By organizing your system into discrete workflows, you can identify exactly which component is causing an issue and fix it without affecting other parts of the system. This makes your improvements more reliable and your system easier to maintain.
 
-**How can I validate that my AI improvements are working?**
+## How can I validate that my AI improvements are working?
 
 Monitor your system before and after making changes to see if the frequency of related issues decreases. Look for positive user feedback that specifically mentions the improved experience. The most reliable validation comes from seeing a measurable reduction in the issues you were targeting, combined with positive user sentiment about the specific improvements you made.
 

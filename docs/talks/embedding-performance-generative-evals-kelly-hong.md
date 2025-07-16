@@ -142,47 +142,47 @@ ______________________________________________________________________
 
 FAQs
 
-**What is generative benchmarking?**
+## What is generative benchmarking?
 
 Generative benchmarking is a method to create custom evaluation sets from your own data to test AI retrieval systems. It involves generating realistic queries from your document corpus and using these query-document pairs to evaluate how well different embedding models and retrieval systems perform with your specific data. Unlike public benchmarks, this approach gives you insights directly relevant to your use case.
 
-**Why are custom benchmarks better than public benchmarks like MTEB?**
+## Why are custom benchmarks better than public benchmarks like MTEB?
 
 Custom benchmarks address several limitations of public benchmarks like MTEB (Massive Text Embedding Benchmark). While MTEB is widely used for comparing embedding models, it uses generic data that may not reflect your specific domain, contains artificially clean query-document pairs, and may have been seen by models during training. Good performance on MTEB doesn't guarantee good performance on your specific data and use case.
 
-**How does the generative benchmarking process work?**
+## How does the generative benchmarking process work?
 
 The process involves two main steps. First, chunk filtering identifies document chunks that users would realistically query about, filtering out irrelevant content. Second, query generation creates realistic user queries from these filtered chunks. The resulting query-document pairs form your evaluation set, which you can use to test different embedding models and retrieval components.
 
-**What's involved in the chunk filtering step?**
+## What's involved in the chunk filtering step?
 
 Chunk filtering uses an aligned LLM judge to identify document chunks that contain information users would actually query. This involves creating criteria for relevance, providing a small set of human-labeled examples, and iterating on the LLM judge to improve alignment with human judgment. This step helps filter out irrelevant content like news articles or marketing material that wouldn't be useful in a support context.
 
-**How do you generate realistic queries?**
+## How do you generate realistic queries?
 
 Query generation uses an LLM with specific context about your application and example queries. Providing this context helps the LLM focus on topics users would ask about, while example queries guide the style of generated queries. This approach creates more realistic, sometimes ambiguous queries that better reflect how users actually search, rather than perfectly formed questions that match document content exactly.
 
-**How do you evaluate retrieval performance with the generated benchmark?**
+## How do you evaluate retrieval performance with the generated benchmark?
 
 Once you have your evaluation set with query-document pairs, you can test different embedding models by embedding each document chunk, storing them in a vector database, and then embedding each query to retrieve the top K document chunks. If the matching document is in the top K results, that counts as a success. This gives you metrics like recall@K and NDCG that you can compare across different models and configurations.
 
-**What insights can generative benchmarking provide?**
+## What insights can generative benchmarking provide?
 
 Generative benchmarking can help you select the best embedding model for your specific data, identify irrelevant content in your document corpus, and evaluate changes to your retrieval pipeline like adding re-ranking or chunk rewriting. It can also reveal when public benchmark rankings don't align with performance on your data, as demonstrated in a case study where model rankings differed from MTEB rankings.
 
-**Do I need production data to use generative benchmarking?**
+## Do I need production data to use generative benchmarking?
 
 No, you can use generative benchmarking even if you don't have production data yet. All you need is a document corpus to generate an evaluation set. However, if you do have production queries, you can use them to further align your generated queries to real user behavior, identify knowledge gaps in your document corpus, and make your evaluation set even more representative.
 
-**Is generative benchmarking fully automated?**
+## Is generative benchmarking fully automated?
 
 No, generative benchmarking isn't 100% automated. It requires human involvement to get good results. You'll need to align your LLM judge, provide context and example queries to steer query generation, and manually review data throughout the process. The human-in-the-loop aspect is critical for creating evaluation sets that truly reflect your use case.
 
-**How can I try generative benchmarking on my own data?**
+## How can I try generative benchmarking on my own data?
 
 You can try generative benchmarking on your own data by using Chroma's open-source tools. The full technical report is available at research.trychroma.com, and you can run the process with just a few lines of code. Chroma Cloud is also available if you want to use their hosted vector database solution.
 
-**How does contextual chunk rewriting fit into retrieval evaluation?**
+## How does contextual chunk rewriting fit into retrieval evaluation?
 
 Contextual chunk rewriting involves adding context to document chunks to improve retrieval. While it can be effective, especially for content like tables or technical information that lacks context, it's also expensive since it requires running an LLM on every chunk. A more efficient approach might be to only rewrite chunks that need additional context, which you can identify during the filtering process. The value of this approach can be quantified through your evaluation metrics.
 

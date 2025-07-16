@@ -11,7 +11,7 @@ date: 2025-06-30
 
 I hosted Colin Flaherty, previously a founding engineer at Augment and co-author of Meta's Cicero AI, to discuss autonomous coding agents and retrieval systems. This session explores how agentic approaches are transforming traditional RAG systems, what we can learn from state-of-the-art coding agents, and how these insights might apply to other domains.
 
-**Do agents make traditional RAG obsolete?**
+## Do agents make traditional RAG obsolete?
 Colin shared his experience building an agent for SWE-Bench Verified, a canonical AI coding evaluation where agents implement code changes based on problem descriptions. His team's agent reached the top of the leaderboard with a surprising discovery: embedding-based retrieval wasn't the bottleneck they expected.
 
 "We explored adding various embedding-based retrieval tools, but found that for SweeBench tasks this was not the bottleneck - grep and find were sufficient," Colin explained. This initially surprised him, as he expected embedding models to be significantly more powerful.
@@ -95,7 +95,7 @@ To enhance agentic retrieval, Colin recommends:
 
 One particularly effective technique is asynchronous pre-processing: "I've taken songs and used an LLM to create a dossier about each one. This simple pre-processing step took a totally non-working search system and turned it into something that works really well."
 
-**Why aren't more people training great embedding models?**
+## Why aren't more people training great embedding models?
 When asked what question people aren't asking enough, Colin highlighted the lack of expertise in training embedding models: "Very few people understand how to build and train good retrieval systems. It just confuses me why no one knows how to fine-tune really good embedding models."
 
 He attributed this partly to the specialized nature of the skill and partly to data availability. For code, there's abundant data on GitHub, but most domains lack comparable resources. Additionally, the most talented engineers often prefer working on LLMs rather than embedding models.
@@ -113,15 +113,15 @@ As these systems evolve, we'll likely see more specialized tools emerging for di
 
 **FAQs**
 
-**What is agentic retrieval and how does it differ from traditional RAG?**
+## What is agentic retrieval and how does it differ from traditional RAG?
 
 Agentic retrieval is an approach where AI agents use tools like grep, find, or embedding models to search through code and other content. Unlike traditional RAG (Retrieval-Augmented Generation), which typically uses embedding databases and vector searches, agentic retrieval gives the agent direct control over the search process. This allows the agent to be persistent, try multiple search strategies, and course-correct when initial attempts fail. Traditional RAG is more rigid but can be faster and more efficient for certain use cases.
 
-**Do agents make traditional RAG obsolete?**
+## Do agents make traditional RAG obsolete?
 
 No, agents don't make traditional RAG obsolete—they complement it. The best approach is often to build agentic retrieval on top of your existing retrieval system by exposing your embedding models and search capabilities as tools that an agent can use. This combines the strengths of both approaches: the persistence and flexibility of agents with the efficiency and scalability of well-tuned embedding models.
 
-**What are the benefits of using grep and find tools with agents?**
+## What are the benefits of using grep and find tools with agents?
 
 Using simple tools like grep and find with agents offers several advantages:
 
@@ -130,7 +130,7 @@ Using simple tools like grep and find with agents offers several advantages:
 - The system is easier to build and maintain without complex vector database dependencies
 - Agents can course-correct when searches don't yield useful results by trying different approaches
 
-**What are the limitations of using grep and find for retrieval?**
+## What are the limitations of using grep and find for retrieval?
 
 While grep and find work well for certain scenarios, they have significant limitations:
 
@@ -139,7 +139,7 @@ While grep and find work well for certain scenarios, they have significant limit
 - They work best with highly structured content like code that contains distinctive keywords
 - They can be slower than optimized embedding-based searches for large datasets
 
-**What's the ideal approach to retrieval for coding agents?**
+## What's the ideal approach to retrieval for coding agents?
 
 The best approach is often a hybrid system that combines:
 
@@ -148,15 +148,15 @@ The best approach is often a hybrid system that combines:
 3. The ability to choose the most appropriate tool based on the specific search task
 4. Course correction capabilities when initial searches don't yield useful results
 
-**How should I evaluate agentic retrieval systems?**
+## How should I evaluate agentic retrieval systems?
 
 Start with a qualitative "vibe check" using 5-10 examples to understand how the system performs. Observe the agent's behavior, identify patterns in successes and failures, and develop an intuition for where improvements are needed. Only after this initial assessment should you move to quantitative end-to-end evaluations or specific evaluations of individual components like embedding tools. Remember that improving a single component (like an embedding model) may not necessarily improve the end-to-end performance if the agent is already persistent enough to overcome limitations.
 
-**I already built a retrieval system with custom-trained embedding models. Should I replace it with agentic retrieval?**
+## I already built a retrieval system with custom-trained embedding models. Should I replace it with agentic retrieval?
 
 No, don't replace it—enhance it. Build agentic retrieval on top of your existing system by exposing your embedding models and search capabilities as tools that an agent can use. This gives you the best of both worlds: the quality and efficiency of your custom embeddings plus the persistence and flexibility of an agent.
 
-**How can I improve my agentic retrieval system?**
+## How can I improve my agentic retrieval system?
 
 Focus on building better tools for your agent:
 
@@ -166,11 +166,11 @@ Focus on building better tools for your agent:
 - Consider hierarchical retrieval approaches like creating summaries of files or directories
 - Add specialized tools for specific retrieval tasks (like searching commit history)
 
-**How do memories work with agentic retrieval systems?**
+## How do memories work with agentic retrieval systems?
 
 Memories in agentic systems can be implemented by adding tools that save and read memories. These memories can serve as a semantic cache that speeds up future searches by storing information about the codebase structure, relevant interfaces, or other insights gained during previous searches. This can significantly improve performance on similar tasks in the future.
 
-**Why did embedding models not improve performance on SWE-Bench?**
+## Why did embedding models not improve performance on SWE-Bench?
 
 For the SWE-Bench coding evaluation, embedding models didn't significantly improve performance because:
 

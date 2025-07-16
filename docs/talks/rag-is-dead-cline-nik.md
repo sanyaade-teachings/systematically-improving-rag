@@ -173,27 +173,27 @@ These companies reported that Cline works well in their massive codebases using 
 
 ## FAQs
 
-**What is RAG and why was it initially popular?**
+## What is RAG and why was it initially popular?
 
 RAG (Retrieval-Augmented Generation) was initially promoted as a solution to give AI models "long-term memory" when context windows were very limited. Companies like Pinecone marketed embedding-based search as a way to ground AI responses in real documents, reduce hallucinations, and simulate infinite context windows. This approach gained significant investment from major venture capital firms and became a standard recommendation for many AI applications.
 
-**Why is RAG no longer recommended for coding agents?**
+## Why is RAG no longer recommended for coding agents?
 
 For coding agents specifically, RAG (particularly embedding-based search) has proven unnecessary and potentially counterproductive. Modern coding agents perform better when allowed to explore code bases naturally—reading files, using grep commands, and navigating directory structures—similar to how human engineers work. This approach maintains "narrative integrity" where the agent follows a logical thought process rather than jumping between disconnected code snippets surfaced by embedding search.
 
-**What alternatives work better than RAG for coding agents?**
+## What alternatives work better than RAG for coding agents?
 
 The most effective approach is giving coding agents access to basic tools like file reading, directory navigation, and terminal commands (grep, search). This allows agents to explore code bases organically, building understanding through a logical progression. Many leading coding agents like Cline and Cloud Code have adopted a "plan and act" paradigm where the agent first gathers information and creates a plan, then executes it—all without relying on embedding search.
 
-**Doesn't RAG help with large code bases?**
+## Doesn't RAG help with large code bases?
 
 Surprisingly, even with very large code bases, the agentic exploration approach works better than embedding search. Major enterprises with massive code bases have found that tools like Cline work effectively without RAG. The agent simply needs access to the file structure, basic search capabilities, and the ability to read files in context to navigate even complex code repositories.
 
-**What about hallucinations? Doesn't RAG help prevent those?**
+## What about hallucinations? Doesn't RAG help prevent those?
 
 For coding agents, hallucinations are rarely an issue when using the agentic approach. By reading files in full context and setting temperature to 0, modern models can maintain accuracy without embedding search. The hallucination concern is largely outdated with today's flagship models and their expanded context windows.
 
-**Are there any situations where RAG is still useful?**
+## Are there any situations where RAG is still useful?
 
 RAG can still be valuable in certain scenarios:
 
@@ -202,11 +202,11 @@ RAG can still be valuable in certain scenarios:
 - For human-readable documents like legal texts (though even here, agentic exploration is increasingly effective)
 - When building applications with tight budget constraints that need to optimize token usage
 
-**What is the "bitter lesson" regarding RAG and coding agents?**
+## What is the "bitter lesson" regarding RAG and coding agents?
 
 The "bitter lesson" refers to the realization that as AI models improve, many complex engineering solutions become unnecessary. For coding agents, this means that elaborate systems like embedding search, knowledge graphs, and complex indexing are being outperformed by simply letting the model do what it does best with minimal interference. The application layer is shrinking, and developers should focus on removing barriers rather than adding complexity.
 
-**How do coding agents maintain context in long-running tasks?**
+## How do coding agents maintain context in long-running tasks?
 
 Rather than using RAG for memory, effective coding agents use techniques like:
 
@@ -217,11 +217,11 @@ Rather than using RAG for memory, effective coding agents use techniques like:
 
 These approaches have proven more effective than embedding-based memory systems for maintaining context in extended coding sessions.
 
-**What about multi-agent systems? Are they better than single agents?**
+## What about multi-agent systems? Are they better than single agents?
 
 The evidence suggests that single, powerful agents often outperform multi-agent systems for coding tasks. Similar to the RAG situation, there's a tendency to add complexity (multiple specialized agents) when a single capable agent with the right tools can perform better. While the jury is still out, early indications suggest that maintaining "narrative integrity" with a single agent leads to more coherent and effective results.
 
-**How should tools be provided to coding agents?**
+## How should tools be provided to coding agents?
 
 There's a balance between providing specialized tools (read file, search directory) versus general-purpose tools (terminal access). Specialized tools offer better UX, permissions control, and error prevention, while general-purpose tools provide flexibility. Most successful coding agents offer both, with specialized tools for common operations and terminal access for everything else. As models improve, the need for specialized tools may diminish.
 

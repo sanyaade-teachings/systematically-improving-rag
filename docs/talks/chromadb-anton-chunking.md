@@ -11,7 +11,7 @@ date: 2025-01-01
 
 I hosted a special session with Anton from ChromaDB to discuss their latest technical research on text chunking for RAG applications. This session covers the fundamentals of chunking strategies, evaluation methods, and practical tips for improving retrieval performance in your AI systems.
 
-**What is chunking and why is it important for RAG systems?**
+## What is chunking and why is it important for RAG systems?
 Chunking is the process of splitting documents into smaller components to enable effective retrieval of relevant information. Despite what many believe, chunking remains critical even as LLM context windows grow larger.
 
 The fundamental purpose of chunking is to find the relevant text for a given query among all the divisions we've created from our documents. This becomes especially important when the information needed to answer a query spans multiple documents.
@@ -25,7 +25,7 @@ There are several compelling reasons why chunking matters regardless of context 
 
 ***Key Takeaway:*** Chunking will remain important regardless of how large context windows become because it addresses fundamental challenges in retrieval efficiency, accuracy, and cost management.
 
-**What approaches exist for text chunking?**
+## What approaches exist for text chunking?
 There are two broad categories of chunking approaches that are currently being used:
 
 Heuristic approaches rely on separator characters (like newlines, question marks, periods) to divide documents based on their existing structure. The most widely used implementation is the recursive character text splitter, which uses a hierarchy of splitting characters to subdivide documents into pieces not exceeding a specified maximum length.
@@ -38,7 +38,7 @@ What's particularly interesting is that you can use the same embedding model for
 
 ***Key Takeaway:*** While heuristic approaches like recursive character text splitters are most common today, semantic chunking methods that identify natural topic boundaries show promise for more robust performance across diverse document types.
 
-**Does chunking strategy actually matter for performance?**
+## Does chunking strategy actually matter for performance?
 According to Anton's research, chunking strategy matters tremendously. Their technical report demonstrates significant performance variations based solely on chunking approach, even when using the same embedding model and retrieval system.
 
 They discovered two fundamental rules of thumb that exist in tension with each other:
@@ -52,7 +52,7 @@ By looking at your actual chunks, you can develop intuition about how your chunk
 
 ***Key Takeaway:*** There's no one-size-fits-all chunking strategy. The best approach depends on your specific data and task, which is why examining your actual chunks is essential for diagnosing retrieval problems.
 
-**How should we evaluate chunking strategies?**
+## How should we evaluate chunking strategies?
 When evaluating chunking strategies, focus on the retriever itself rather than the generative output. This differs from traditional information retrieval benchmarks in several important ways:
 
 Recall is the single most important metric. Modern models are increasingly good at ignoring irrelevant information, but they cannot complete a task if you haven't retrieved all the relevant information in the first place.
@@ -65,7 +65,7 @@ The ChromaDB team has released code for their generative benchmark, which can he
 
 ***Key Takeaway:*** Focus on passage-level recall rather than document-level metrics or ranking-sensitive measures. The model can handle irrelevant information, but it can't work with information that wasn't retrieved.
 
-**What practical advice can improve our chunking implementation?**
+## What practical advice can improve our chunking implementation?
 The most emphatic advice from Anton was: "Always, always, always look at your data." This point was stressed repeatedly throughout the presentation.
 
 Many retrieval problems stem from poor chunking that isn't apparent until you actually examine the chunks being produced. Default settings in popular libraries often produce surprisingly poor results for specific datasets.
