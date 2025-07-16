@@ -168,7 +168,7 @@ This is why having a range of options - from lightweight models like MiniLM to m
 
 **Key Takeaway:** Model selection should be driven by your specific constraints and requirements, not just raw performance numbers. Consider the entire system when making these decisions.
 
-## FAQs:
+## FAQs
 
 ## What are re-rankers and why should I use them?
 Re-rankers are models that improve retrieval quality by reordering documents after they've been retrieved from a database. They fit into your pipeline after retrieval and before the context is provided to an LLM, helping to ensure the most relevant documents appear at the top. Re-rankers are particularly valuable because they don't disrupt your existing pipeline—you don't need to re-ingest your entire dataset, making them a low-hanging fruit for improving retrieval performance.

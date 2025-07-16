@@ -40,6 +40,31 @@ All talk titles follow a **catchy, conversational format** designed to grab atte
 - **Code examples**: Where applicable, include implementation details
 - **Performance metrics**: Specific numbers and improvements mentioned
 
+## Question Formatting Guidelines
+**Main Section Questions**: Use proper markdown headers for navigable sections:
+```markdown
+## Why is accurate document parsing so critical for AI applications?
+## How should you evaluate document parsing performance?
+## What are the most challenging document elements to parse correctly?
+```
+
+**FAQ Section Questions**: Use bold emphasis within FAQ content:
+```markdown
+## FAQs
+
+**What is document ingestion in the context of AI applications?**
+
+Document ingestion refers to the process of extracting...
+
+**Why is accurate document parsing so important for AI applications?**
+
+Accurate parsing is critical because...
+```
+
+**Key Distinction**: 
+- `## Question?` = Main section headers (navigable, structured content)
+- `**Question?**` = FAQ emphasis (within content sections only)
+
 ## Key Topics Covered
 - **"Why I Stopped Using RAG for Coding Agents (And You Should Too)"** - Nik Pash (Cline)
 - **"The RAG Mistakes That Are Killing Your AI (Lessons from Google & LinkedIn)"** - Skylar Payne
@@ -63,6 +88,8 @@ All talk titles follow a **catchy, conversational format** designed to grab atte
 ## Formatting Standards
 - **Consistent H1 titles**: Match YAML frontmatter exactly
 - **Proper markdown structure**: Use ## for main sections, ### for subsections
+- **Question headers**: Use `## Question?` format for main section questions (NOT `**Question?**`)
+- **FAQ sections**: Use `**Question?**` for emphasis within FAQ content sections
 - **Bold key takeaways**: `**Key Takeaway:**` format for main insights
 - **Blockquotes for quotes**: Use `>` for speaker quotes
 - **Bullet points**: Use `-` for lists with **bold** labels

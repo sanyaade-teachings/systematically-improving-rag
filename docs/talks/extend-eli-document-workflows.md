@@ -189,7 +189,7 @@ As AI capabilities continue to advance, the companies that will benefit most are
 
 ---
 
-# FAQs
+## FAQs
 
 ### What is document automation and why is it important?
 
