@@ -13,7 +13,7 @@
 Domain-specific summaries enable us to:
 
 1. **Capture exact features** users are working with (Artifacts, Configs, Reports)
-2. **Identify specific goals** and pain points rather than generic categories  
+2. **Identify specific goals** and pain points rather than generic categories
 3. **Reveal usage patterns** that generic summaries obscure
 4. **Create foundations** for more targeted system improvements
 
@@ -62,7 +62,6 @@ This approach generates summaries that are not only more informative but also mo
 
 Let's first start by loading in our conversations and parsing it into a list of `Conversation` objects that `Kura` can work with
 
-
 ```python
 from kura import CheckpointManager, Conversation
 
@@ -71,7 +70,6 @@ conversations = checkpoint_manager.load_checkpoint("conversations.jsonl", Conver
 ```
 
 Let's now try to see how our default summaries look like
-
 
 ```python
 from kura.summarisation import SummaryModel
@@ -84,8 +82,6 @@ for summary in summaries:
 ```
 
     Summarising 2 conversations: 100%|██████████| 2/2 [00:02<00:00,  1.03s/it]
-
-
 
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">ConversationSummary</span><span style="font-weight: bold">(</span>
     <span style="color: #808000; text-decoration-color: #808000">summary</span>=<span style="color: #008000; text-decoration-color: #008000">'The user is seeking information on how to track machine learning experiments using a specific tool, </span>
@@ -103,9 +99,6 @@ for summary in summaries:
     <span style="color: #808000; text-decoration-color: #808000">embedding</span>=<span style="color: #800080; text-decoration-color: #800080; font-style: italic">None</span>
 <span style="font-weight: bold">)</span>
 </pre>
-
-
-
 
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">ConversationSummary</span><span style="font-weight: bold">(</span>
     <span style="color: #808000; text-decoration-color: #808000">summary</span>=<span style="color: #008000; text-decoration-color: #008000">'Bayesian optimization is a hyperparameter tuning technique that uses a surrogate function for informed</span>
@@ -125,8 +118,6 @@ for summary in summaries:
 <span style="font-weight: bold">)</span>
 </pre>
 
-
-
 Looking at these default summaries, we can identify several key limitations that prevent them from being truly useful for clustering W&B-specific queries:
 
 **Problems with Default Summaries**
@@ -135,7 +126,7 @@ Looking at these default summaries, we can identify several key limitations that
 
 2. Missing Feature Details: Neither summary identifies which specific W&B features the users are interested in (experiment tracking, Bayesian optimization for hyperparameter tuning), which would be crucial for meaningful clustering.
 
-These generic summaries would lead to clusters based primarily on query structure ("users asking for information") rather than meaningful W&B feature categories or user goals. 
+These generic summaries would lead to clusters based primarily on query structure ("users asking for information") rather than meaningful W&B feature categories or user goals.
 
 By defining our own summarisation model, we can address these limitations and cluster our user queries based off the specific problems and features they are trying to use.
 
@@ -144,7 +135,6 @@ By defining our own summarisation model, we can address these limitations and cl
 Let's now define a new `WnBSummaryModel` which will help address the shortcomings of the default summarisation model.
 
 We'll do so by modifying the `summarise_conversation` method so that our summaries can become more precise and feature-focused. This allows us to better reflect how users interact with Weights and Biases and in turn translate to more representative clusters
-
 
 ```python
 from kura.types import Conversation, ConversationSummary
@@ -159,7 +149,7 @@ class WnBSummaryModel(SummaryModel):
     async def summarise_conversation(
         self, conversation: Conversation
     ) -> ConversationSummary:
-        
+
         client = instructor.from_provider("openai/gpt-4o-mini", async_client=True)
         async with self.semaphore:
             resp = await client.chat.completions.create(
@@ -214,7 +204,6 @@ Focus on technical specifics rather than general descriptions.
 
 We can now see the generated summaries by calling the `summarise` method below. We'll be using the same conversations above which we generated summaries for.
 
-
 ```python
 summaries = await WnBSummaryModel().summarise(conversations[:2])
 for summary in summaries:
@@ -223,8 +212,6 @@ for summary in summaries:
 ```
 
     Summarising 2 conversations: 100%|██████████| 2/2 [00:02<00:00,  1.44s/it]
-
-
 
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">ConversationSummary</span><span style="font-weight: bold">(</span>
     <span style="color: #808000; text-decoration-color: #808000">summary</span>=<span style="color: #008000; text-decoration-color: #008000">'User needs help with W&amp;B experiment tracking to record hyperparameters, log training metrics, and </span>
@@ -242,9 +229,6 @@ for summary in summaries:
 <span style="font-weight: bold">)</span>
 </pre>
 
-
-
-
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">ConversationSummary</span><span style="font-weight: bold">(</span>
     <span style="color: #808000; text-decoration-color: #808000">summary</span>=<span style="color: #008000; text-decoration-color: #008000">"User needs help with W&amp;B's hyperparameter optimization feature to implement Bayesian optimization for </span>
 <span style="color: #008000; text-decoration-color: #008000">tuning model hyperparameters, specifically setting up the search space, performance metric, and run limit."</span>,
@@ -261,22 +245,18 @@ for summary in summaries:
 <span style="font-weight: bold">)</span>
 </pre>
 
-
-
 ## Clustering with Enhanced Summaries
 
-Now that we've developed a more domain-specific summarization approach tailored to the Weights & Biases ecosystem, we can apply these improved summaries to our clustering process. 
+Now that we've developed a more domain-specific summarization approach tailored to the Weights & Biases ecosystem, we can apply these improved summaries to our clustering process.
 
 Our custom `WnBSummaryModel` captures the specific features, workflows, and user intentions that were missing in the default summaries, providing a stronger foundation for meaningful topic discovery.
 
 This will help us to reveal patterns in feature usage, common pain points and documentation gaps that might have been obscured in our analysis in our previous notebook. Let's see this in action below.
 
-
-
 ```python
 from kura import (
-    summarise_conversations, 
-    generate_base_clusters_from_conversation_summaries, 
+    summarise_conversations,
+    generate_base_clusters_from_conversation_summaries,
     reduce_clusters_from_base_clusters,
     reduce_dimensionality_from_clusters,
     CheckpointManager
@@ -293,39 +273,38 @@ async def analyze_conversations(conversations, checkpoint_manager):
     cluster_model = ClusterModel()
     meta_cluster_model = MetaClusterModel(max_clusters=4)
     dimensionality_model = HDBUMAP()
-    
+
     # Run pipeline steps
     summaries = await summarise_conversations(
-        conversations, 
-        model=summary_model, 
+        conversations,
+        model=summary_model,
         checkpoint_manager=checkpoint_manager
     )
-    
+
     clusters = await generate_base_clusters_from_conversation_summaries(
-        summaries, 
-        model=cluster_model, 
+        summaries,
+        model=cluster_model,
         checkpoint_manager=checkpoint_manager
     )
-    
+
     reduced_clusters = await reduce_clusters_from_base_clusters(
-        clusters, 
-        model=meta_cluster_model, 
+        clusters,
+        model=meta_cluster_model,
         checkpoint_manager=checkpoint_manager
     )
-    
+
     projected = await reduce_dimensionality_from_clusters(
-        reduced_clusters,   
-        model=dimensionality_model, 
+        reduced_clusters,
+        model=dimensionality_model,
         checkpoint_manager=checkpoint_manager
     )
-    
+
     return projected
 
 checkpoint_manager = CheckpointManager("./checkpoints_2", enabled=True)
 checkpoint_manager.save_checkpoint("conversations.jsonl", conversations)
 clusters = await analyze_conversations(conversations, checkpoint_manager=checkpoint_manager)
 ```
-
 
 ```python
 # Get top-level clusters (those without parents)
@@ -334,12 +313,12 @@ parent_clusters = [cluster for cluster in clusters if cluster.parent_id is None]
 # Format each cluster's info with name, description and number of chats
 formatted_clusters = []
 for parent in parent_clusters:
-    
+
     # Add parent cluster info
     cluster_info = (
         f"[bold]({parent.id}) {parent.name}[/bold] : {parent.description} : {len(parent.chat_ids)}\n"
     )
-    
+
     # Get and format child clusters
     child_clusters = [c for c in clusters if c.parent_id == parent.id]
     for child in child_clusters:
@@ -348,16 +327,15 @@ for parent in parent_clusters:
         for child_child in child_child_clusters:
             if child_child.parent_id == child.id:
                 cluster_info += f"\n    + [bold]{child_child.name}[/bold] : {child_child.description} : {len(child_child.chat_ids)}"
-        
+
         cluster_info += "\n\n"
-    
+
     formatted_clusters.append(cluster_info)
     formatted_clusters.append("\n====\n")
 
 # Join with newlines and print
 rprint("\n\n".join(formatted_clusters))
 ```
-
 
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(3943254bfb5a471385aeadcc745e478b) Manage audio files and dataset versioning</span> : Users organized audio files for 
 classification analysis and managed dataset versioning in W&amp;B. They focused on tasks such as loading metadata and 
@@ -468,8 +446,6 @@ such as access control, secure storage, and distinctions in user management acro
 ====
 
 </pre>
-
-
 
 ## Conclusion
 

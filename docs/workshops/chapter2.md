@@ -31,28 +31,22 @@ This chapter explores how to transform evaluation data into valuable training as
     **If you're not fine-tuning, you're Blockbuster, not Netflix.** The goal isn't to fine-tune language models (which are expensive and complex), but to fine-tune embedding models that move toward your specific data distributions and improve retrieval, not generation.
 
 !!! success "Fine-Tuning Cost Reality Check"
-    **Embedding Model Fine-Tuning:**
-    - Cost: ~$1.50 for 6,000 examples
-    - Time: 40 minutes on a laptop
-    - Infrastructure: Consumer GPU or cloud notebook
-    - Improvement: 6-10% better performance
-    
+**Embedding Model Fine-Tuning:** - Cost: ~$1.50 for 6,000 examples - Time: 40 minutes on a laptop - Infrastructure: Consumer GPU or cloud notebook - Improvement: 6-10% better performance
+
     **Language Model Fine-Tuning:**
     - Cost: $100-1000s depending on model size
     - Time: Hours to days
     - Infrastructure: Multiple GPUs or specialized services
     - Complexity: Requires ML expertise
-    
+
     This dramatic difference explains why embedding fine-tuning should be your first focus.
 
 ## Introduction
 
 In the previous chapter, we established our evaluation framework and generated synthetic data to benchmark our RAG system. Now we take the crucial next step in our improvement journey: transforming these evaluations into practical training assets that can significantly boost performance.
 
-!!! note "Prerequisites from Previous Chapters"
-    - **[Chapter 0](chapter0.md)**: Understanding the improvement flywheel concept
-    - **[Chapter 1](chapter1.md)**: Creating evaluation datasets with synthetic data
-    
+!!! note "Prerequisites from Previous Chapters" - **[Chapter 0](chapter0.md)**: Understanding the improvement flywheel concept - **[Chapter 1](chapter1.md)**: Creating evaluation datasets with synthetic data
+
     The evaluation examples from Chapter 1 become your training data in this chapter.
 
 This chapter bridges the gap between evaluation and production improvement, showing how the same datasets serve both purposes. The fundamental philosophy here is simple but powerful: **the data you collect for evaluation should never go to waste**. Every question, every relevance judgment, and every performance insight can—and should—be repurposed to train your system.
@@ -87,7 +81,7 @@ In e-commerce, what does it mean for two products to be similar? Are they simila
 
 For music recommendations, are songs similar because they share the same genre, appear in the same playlists, or appeal to the same listeners? For a "add more songs to this playlist" feature, similarity might mean stylistic consistency, but for a discovery feature like Spotify's Discovery Weekly, it could mean something entirely different.
 
-Perhaps the clearest example comes from dating apps. Should "I love coffee" and "I hate coffee" be considered similar or different? From a linguistic perspective, they're opposites. From a topic perspective, both profiles care enough about beverages to mention them prominently. 
+Perhaps the clearest example comes from dating apps. Should "I love coffee" and "I hate coffee" be considered similar or different? From a linguistic perspective, they're opposites. From a topic perspective, both profiles care enough about beverages to mention them prominently.
 
 But there are many other interpretations: Maybe they're different because coffee lovers wouldn't date coffee haters. Maybe they're similar because both indicate people with strong food preferences (foodies). Maybe they're complementary because as long as one loves tea and one loves coffee, they'll actually get along well.
 
@@ -280,26 +274,26 @@ Through many such examples, the model learns that queries about side effects sho
 The triplet example above introduces an important subtlety in contrastive learning. Notice that our negative example, "Medication X is used to treat high blood pressure," is still about the same medication—it's just not about side effects. This makes it what we call a "hard negative"—it's similar to what we're looking for in some ways (same medication) but different in crucial aspects (not about side effects).
 
 !!! example "Hard Negative Mining Strategies"
-    **Effective Approaches:**
-    
+**Effective Approaches:**
+
     1. **Semantic Similarity with Different Intent:**
        - "Software engineer" vs "Software engineering recruiter"
        - Both about software roles, but serving different user needs
-    
+
     2. **User Deletion Signals:**
        - Track which documents users actively remove from results
        - These are perfect hard negatives - retrieved but explicitly rejected
-    
+
     3. **Category Boundaries:**
        - Items from adjacent but different categories
        - Example: "Red running shoes" vs "Red dress shoes"
-    
+
     4. **Temporal Relevance:**
        - Outdated versions of correct information
        - Example: "2023 tax rates" when user needs "2024 tax rates"
 
 !!! quote "Agentic Retrieval Perspective"
-    Colin Flaherty's work on agentic coding systems reveals a surprising insight: "We found that for SweeBench tasks, embedding-based retrieval was not the bottleneck - grep and find were sufficient." The agent's persistence effectively compensated for less sophisticated tools. This suggests that while fine-tuning embeddings is valuable, the agent layer can sometimes overcome retrieval limitations through persistence. [Learn more about agentic approaches →](../talks/colin-rag-agents.md)
+Colin Flaherty's work on agentic coding systems reveals a surprising insight: "We found that for SweeBench tasks, embedding-based retrieval was not the bottleneck - grep and find were sufficient." The agent's persistence effectively compensated for less sophisticated tools. This suggests that while fine-tuning embeddings is valuable, the agent layer can sometimes overcome retrieval limitations through persistence. [Learn more about agentic approaches →](../talks/colin-rag-agents.md)
 
 !!! info "Value of Hard Negatives"
 Hard negatives are much more valuable for training than "easy negatives." If instead our negative example had been about car maintenance—completely unrelated to medications—the model wouldn't learn much from this contrast because it's already obvious that car maintenance isn't relevant to medication side effects.
@@ -379,7 +373,7 @@ Fine-tune your embedding models when:
 4. **Cost at scale** justifies maintaining your own infrastructure
 
 !!! tip "Production Insight"
-    From office hours: "With just 6,000 examples from your domain, you can train embedding models and cross-encoders that outperform general-purpose models on your specific tasks. This typically costs around $1.50 and takes about 40 minutes on a laptop."
+From office hours: "With just 6,000 examples from your domain, you can train embedding models and cross-encoders that outperform general-purpose models on your specific tasks. This typically costs around $1.50 and takes about 40 minutes on a laptop."
 
 ### The Fine-Tuning Process
 
@@ -392,7 +386,7 @@ Transform your evaluation data into training format:
 - **Validation set**: Hold out 20% for testing improvements
 
 !!! warning "Critical Success Factor"
-    The quality of your hard negatives determines the quality of your fine-tuned model. Documents that are topically similar but serve different intents make the best hard negatives.
+The quality of your hard negatives determines the quality of your fine-tuned model. Documents that are topically similar but serve different intents make the best hard negatives.
 
 #### Step 2: Model Selection
 
@@ -421,11 +415,7 @@ Track these metrics before and after fine-tuning:
 4. **Latency impact** if self-hosting
 
 !!! example "Real-World Results"
-    A healthcare company fine-tuned embeddings on medical abbreviations where generic models confused similar acronyms. Results:
-    - Recall@10 improved from 72% to 89%
-    - Reduced confusion between similar medical terms
-    - Cost: $1.50 in compute, 45 minutes of training
-    - ROI: Prevented multiple medical documentation errors
+A healthcare company fine-tuned embeddings on medical abbreviations where generic models confused similar acronyms. Results: - Recall@10 improved from 72% to 89% - Reduced confusion between similar medical terms - Cost: $1.50 in compute, 45 minutes of training - ROI: Prevented multiple medical documentation errors
 
 ### Common Pitfalls to Avoid
 
@@ -443,7 +433,7 @@ For detailed implementation guides:
 - [OpenAI's Fine-tuning Best Practices](https://platform.openai.com/docs/guides/fine-tuning)
 
 !!! quote "Key Takeaway"
-    "It's probably a bad idea to train your own language model, but it's a very good idea to train your own embedding model. The infrastructure requirements are minimal, the process is well-understood, and the improvements are substantial for domain-specific applications."
+"It's probably a bad idea to train your own language model, but it's a very good idea to train your own embedding model. The infrastructure requirements are minimal, the process is well-understood, and the improvements are substantial for domain-specific applications."
 
 ## Testing Different Approaches Systematically
 
@@ -497,30 +487,23 @@ In one project, we identified that implementing BM25 hybrid retrieval would be h
 Before diving into full fine-tuning, consider linear adapters - a technique that can deliver significant improvements at a fraction of the cost.
 
 !!! info "What Are Linear Adapters?"
-    Linear adapters add a small trainable layer on top of frozen embeddings:
-    - Train only a linear transformation matrix
-    - Keep the base embedding model unchanged
-    - Combine benefits of domain specificity with pre-trained knowledge
-    
+Linear adapters add a small trainable layer on top of frozen embeddings: - Train only a linear transformation matrix - Keep the base embedding model unchanged - Combine benefits of domain specificity with pre-trained knowledge
+
     **Cost Comparison:**
     - Full fine-tuning: $50-100 for meaningful datasets
     - Linear adapters: ~$12 for the same improvement
     - Training time: Minutes vs hours
 
 !!! example "When to Use Linear Adapters"
-    **Perfect for:**
-    - Domain-specific terminology mapping
-    - Multi-domain applications (train separate adapters)
-    - Rapid experimentation
-    - Limited computational resources
-    
+**Perfect for:** - Domain-specific terminology mapping - Multi-domain applications (train separate adapters) - Rapid experimentation - Limited computational resources
+
     **Implementation:**
     ```python
     # Simplified example
     base_embeddings = model.encode(texts)
     adapted_embeddings = linear_adapter(base_embeddings)
     ```
-    
+
     You can train different adapters for different query types or domains, switching between them based on query classification.
 
 ## Additional Resources
@@ -594,10 +577,7 @@ As we've seen, fine-tuning embedding models can dramatically improve the perform
 !!! tip "What's Coming Next"
 In [Chapter 3](chapter3-1.md), we'll dive into deployment strategies, user feedback collection methods, and how to use this feedback to further refine your RAG application. We'll explore practical techniques for gathering implicit and explicit feedback, designing effective user interfaces, and closing the loop between user interactions and system improvements.
 
-!!! info "Related Concepts in Other Chapters"
-    - **Query Segmentation** ([Chapter 4](chapter4-2.md)): Learn how to identify which queries benefit most from fine-tuning
-    - **Specialized Models** ([Chapter 5](chapter5-1.md)): See how fine-tuned embeddings power specialized retrievers
-    - **Router Optimization** ([Chapter 6](chapter6-2.md)): Understand how fine-tuning improves query routing
+!!! info "Related Concepts in Other Chapters" - **Query Segmentation** ([Chapter 4](chapter4-2.md)): Learn how to identify which queries benefit most from fine-tuning - **Specialized Models** ([Chapter 5](chapter5-1.md)): See how fine-tuned embeddings power specialized retrievers - **Router Optimization** ([Chapter 6](chapter6-2.md)): Understand how fine-tuning improves query routing
 
 ## Summary
 

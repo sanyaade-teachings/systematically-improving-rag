@@ -162,7 +162,7 @@ After completing this week's materials, you'll have:
 
 ## Additional Resources
 
-- [Information Retrieval Metrics](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval))
+- [Information Retrieval Metrics](<https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)>)
 - [Braintrust Documentation](https://www.braintrust.dev/docs)
 - [Modal Platform Guide](https://modal.com/docs/guide)
 - [Statistical Significance in ML](https://arxiv.org/abs/1904.10922)

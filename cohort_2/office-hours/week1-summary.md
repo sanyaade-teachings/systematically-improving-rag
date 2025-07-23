@@ -16,7 +16,7 @@ Another good use of DSpy is around using LLMs as judges. If you have a tonality 
 
 ## Is it useful to prompt language models with an understanding of structure and rationale for their actions?
 
-Yes, absolutely. Understanding structure and rationale is critical because your product includes the ways you collect feedback, set expectations in the UI, perform data extraction, and represent chunks in the context. 
+Yes, absolutely. Understanding structure and rationale is critical because your product includes the ways you collect feedback, set expectations in the UI, perform data extraction, and represent chunks in the context.
 
 It's not just about the prompt—it's a whole system. And if you can spend time looking at how the model makes mistakes and what users are asking for, you'll make much more progress in improving the product holistically.
 
@@ -35,6 +35,7 @@ The general idea is to use structured extraction to identify start and end dates
 In my 10 years of doing data science and machine learning, I generally stay away from any kind of graph modeling. The reason is that every time I've seen a company go into this graph-based world, within 4-5 years they decide to move back to a PostgreSQL database.
 
 There are several issues with graph databases:
+
 1. They're really hard to learn - it's much easier to hire talent that knows PostgreSQL than graph databases.
 2. Defining schemas in PostgreSQL and joins is well-defined, whereas in graph databases there's often too much debate and not enough best practices.
 3. Most cases don't require more than one or two traversals of your graph.
@@ -180,6 +181,7 @@ Another advantage is that LanceDB can be hosted on S3 and is easy to set up for 
 ## Which industry or application domain do you think is most difficult for LLMs?
 
 It's hard to say definitively, but generally:
+
 1. Tasks with complex images are difficult
 2. Highly regulated industries like legal and healthcare contexts present challenges
 3. Financial services, especially ratings agencies, face enormous regulatory hurdles
@@ -217,6 +219,7 @@ For visual content like photographs, CLIP embeddings work well since they're inh
 For instructional manuals with images, I'd pass the images to a language model and ask for a detailed summary of what the image shows, including all text in the image. Then embed that summary instead. This creates a text representation that points to the original image.
 
 The approach has two steps:
+
 1. Given an image, create a synthetic question that would retrieve it
 2. Create a summary that would be retrieved for that question
 
@@ -262,6 +265,7 @@ Over a 12-year career, we kept trying different technologies (Hadoop, Spark, etc
 Prompt caching is a technique where language models can avoid reprocessing the beginning of prompts that are often identical.
 
 Different providers handle this differently:
+
 - Anthropic caches prompts for 5 minutes; if you make the same request within that time, the entire message is cached
 - OpenAI figures out the optimal prefix to cache automatically
 
@@ -279,7 +283,7 @@ Reducto's performance comes from having people manually label thousands of PDFs,
 
 ## How does Brain Trust work with the notebooks in this course?
 
-Brain Trust just saves the results that your laptop is running locally. It's not executing anything or using a better database—it's more like an observability tool (similar to Datadog). 
+Brain Trust just saves the results that your laptop is running locally. It's not executing anything or using a better database—it's more like an observability tool (similar to Datadog).
 
 When we run the notebooks, everything is running on your laptop in LanceDB. The only thing Brain Trust sees is row IDs and scores. Think of it as a powerful UI over a database that's saving your logs, not as a computation service.
 
@@ -306,19 +310,19 @@ This is especially useful when you need embeddings to understand domain-specific
 
 ## How do you understand metrics like precision and recall in one-to-one answer scenarios?
 
-For questions with exactly one correct answer, these metrics behave somewhat differently. Recall will be either 0% or 100% depending on whether K is large enough to include the correct answer. 
+For questions with exactly one correct answer, these metrics behave somewhat differently. Recall will be either 0% or 100% depending on whether K is large enough to include the correct answer.
 
 For example, if we want to retrieve exactly one document and there's only one correct answer, precision could be either 0% or 100%, and the same for recall.
 
 The metrics become more meaningful when:
+
 1. There are multiple relevant documents
 2. We're analyzing trends across many queries
 3. We're comparing different retrieval methods
 
 Even with one-to-one mappings, MRR (Mean Reciprocal Rank) is still useful to see where the correct answer appears in your results.
 
-What really matters isn't the absolute number but whether we can move these metrics in a positive direction with our interventions. It's like weighing yourself—the absolute number may vary by scale, but if you've gained two pounds, you've definitely gained two pounds. 
----
+## What really matters isn't the absolute number but whether we can move these metrics in a positive direction with our interventions. It's like weighing yourself—the absolute number may vary by scale, but if you've gained two pounds, you've definitely gained two pounds.
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 

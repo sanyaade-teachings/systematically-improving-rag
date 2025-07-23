@@ -23,6 +23,7 @@ By the end of this week, you'll be able to:
 **Purpose**: Master the Jupyter Notebook environment for effective course participation
 
 **What You'll Learn**:
+
 - Running Python code in interactive cells
 - Executing shell commands within notebooks
 - Using magic commands for performance measurement
@@ -30,6 +31,7 @@ By the end of this week, you'll be able to:
 - Configuring autoreload for smooth development
 
 **What You'll Build**:
+
 - Interactive data visualizations with pandas and matplotlib
 - Performance benchmarks using `%%time` magic commands
 - A configured notebook environment for the course
@@ -39,6 +41,7 @@ By the end of this week, you'll be able to:
 **Purpose**: Implement and compare different retrieval strategies using LanceDB
 
 **What You'll Learn**:
+
 - Creating vector embeddings with OpenAI
 - Building inverted indices for full-text search
 - Implementing hybrid search combining multiple strategies
@@ -46,6 +49,7 @@ By the end of this week, you'll be able to:
 - When to use each search approach
 
 **What You'll Build**:
+
 - A LanceDB table with document embeddings
 - Three different search implementations (vector, full-text, hybrid)
 - A reranking pipeline using Cohere
@@ -56,6 +60,7 @@ By the end of this week, you'll be able to:
 **Purpose**: Establish systematic evaluation practices for AI systems
 
 **What You'll Learn**:
+
 - Configuring Logfire for result tracking
 - Creating evaluation datasets with test cases
 - Building custom evaluators for specific metrics
@@ -63,6 +68,7 @@ By the end of this week, you'll be able to:
 - Tracking performance over time
 
 **What You'll Build**:
+
 - An evaluation framework for LLM classification
 - Custom evaluators for your use case
 - A reusable evaluation dataset
@@ -79,11 +85,13 @@ By the end of this week, you'll be able to:
 ## Prerequisites
 
 ### Knowledge Requirements
+
 - Basic Python programming
 - Familiarity with pandas DataFrames
 - Understanding of embeddings concept (will be explained)
 
 ### Technical Requirements
+
 - Python packages: `jupyter`, `pandas`, `matplotlib`, `lancedb`, `openai`, `tantivy`, `cohere`, `pydantic-evals`
 - API keys: OpenAI (for embeddings), Cohere (for reranking), Logfire (for tracking)
 - Hardware: No special requirements
@@ -118,12 +126,15 @@ After completing this week's materials, you'll have:
 ## Common Issues and Solutions
 
 ### Issue 1: Kernel Selection Problems
+
 **Solution**: Check the kernel dropdown in Jupyter and ensure you're using the course virtual environment
 
 ### Issue 2: API Key Errors
+
 **Solution**: Verify your `.env` file is properly configured and loaded using `load_dotenv()`
 
 ### Issue 3: LanceDB Import Errors
+
 **Solution**: Ensure you've installed all requirements with `uv sync` or `pip install -e .`
 
 ## Next Steps
@@ -142,8 +153,7 @@ After completing this week's materials, you'll have:
 
 ---
 
-**Note**: This week's content is foundational. Take time to understand each concept thoroughly as they'll be used extensively throughout the course.
----
+## **Note**: This week's content is foundational. Take time to understand each concept thoroughly as they'll be used extensively throughout the course.
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 

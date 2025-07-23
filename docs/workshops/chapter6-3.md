@@ -81,11 +81,11 @@ Here's a code example for evaluating router performance:
 def evaluate_router(router_function, test_dataset):
     """
     Evaluate a routing function against a test dataset.
-    
+
     Args:
         router_function: Function that takes a query and returns tool selections
         test_dataset: List of {query, expected_tools} pairs
-        
+
     Returns:
         Dictionary of evaluation metrics
     """
@@ -93,31 +93,31 @@ def evaluate_router(router_function, test_dataset):
     tool_expected_count = {}
     tool_selected_count = {}
     tool_correct_count = {}
-    
+
     for test_case in test_dataset:
         query = test_case["query"]
         expected_tools = set(test_case["expected_tools"])
-        
+
         # Track expected tools
         for tool in expected_tools:
             tool_expected_count[tool] = tool_expected_count.get(tool, 0) + 1
-        
+
         # Get router predictions
         selected_tools = set(router_function(query))
-        
+
         # Track selected tools
         for tool in selected_tools:
             tool_selected_count[tool] = tool_selected_count.get(tool, 0) + 1
-        
+
         # Calculate precision and recall for this query
         correct_tools = expected_tools.intersection(selected_tools)
         for tool in correct_tools:
             tool_correct_count[tool] = tool_correct_count.get(tool, 0) + 1
-            
+
         precision = len(correct_tools) / len(selected_tools) if selected_tools else 1.0
         recall = len(correct_tools) / len(expected_tools) if expected_tools else 1.0
         f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
-        
+
         results.append({
             "query": query,
             "expected_tools": expected_tools,
@@ -126,12 +126,12 @@ def evaluate_router(router_function, test_dataset):
             "recall": recall,
             "f1": f1
         })
-    
+
     # Calculate overall metrics
     avg_precision = sum(r["precision"] for r in results) / len(results)
     avg_recall = sum(r["recall"] for r in results) / len(results)
     avg_f1 = sum(r["f1"] for r in results) / len(results)
-    
+
     # Calculate per-tool recall
     per_tool_recall = {}
     for tool in tool_expected_count:
@@ -139,7 +139,7 @@ def evaluate_router(router_function, test_dataset):
             per_tool_recall[tool] = tool_correct_count.get(tool, 0) / tool_expected_count[tool]
         else:
             per_tool_recall[tool] = 0
-    
+
     return {
         "detailed_results": results,
         "avg_precision": avg_precision,
@@ -177,19 +177,16 @@ This shows that SearchBlueprint is frequently mistaken for SearchText, indicatin
 Once you've identified specific weaknesses in your router, you can implement targeted improvements:
 
 1. **For low-recall tools**:
-
    - Add more few-shot examples for these tools
    - Improve tool descriptions to more clearly differentiate them
    - Consider whether these tools are truly distinct or should be merged
 
 1. **For commonly confused tools**:
-
    - Analyze failure cases to understand what's causing the confusion
    - Create "contrast examples" that explicitly show why similar queries go to different tools
    - Refine tool interfaces to have clearer boundaries
 
 1. **For overall improvement**:
-
    - Balance your few-shot examples across all tools
    - Include edge cases that test the boundaries between tools
    - Add multi-tool examples that show when multiple tools should be used together
@@ -259,23 +256,27 @@ Here's how specialized interfaces might look for our construction information sy
 ```html
 <form action="/search/blueprints" method="GET">
   <h2>Blueprint Search</h2>
-  
+
   <div class="form-group">
     <label for="description">Description:</label>
-    <input type="text" id="description" name="description" 
-           placeholder="e.g., residential building, hospital, school">
+    <input
+      type="text"
+      id="description"
+      name="description"
+      placeholder="e.g., residential building, hospital, school"
+    />
   </div>
-  
+
   <div class="form-group">
     <label for="start-date">Start Date:</label>
-    <input type="date" id="start-date" name="start_date">
+    <input type="date" id="start-date" name="start_date" />
   </div>
-  
+
   <div class="form-group">
     <label for="end-date">End Date:</label>
-    <input type="date" id="end-date" name="end_date">
+    <input type="date" id="end-date" name="end_date" />
   </div>
-  
+
   <button type="submit">Search Blueprints</button>
 </form>
 ```
@@ -285,13 +286,17 @@ Here's how specialized interfaces might look for our construction information sy
 ```html
 <form action="/search/documents" method="GET">
   <h2>Document Search</h2>
-  
+
   <div class="form-group">
     <label for="query">Search Terms:</label>
-    <input type="text" id="query" name="query" 
-           placeholder="e.g., Johnson project, HVAC specifications">
+    <input
+      type="text"
+      id="query"
+      name="query"
+      placeholder="e.g., Johnson project, HVAC specifications"
+    />
   </div>
-  
+
   <div class="form-group">
     <label for="document-type">Document Type:</label>
     <select id="document-type" name="document_type">
@@ -301,7 +306,7 @@ Here's how specialized interfaces might look for our construction information sy
       <option value="bid">Bids</option>
     </select>
   </div>
-  
+
   <button type="submit">Search Documents</button>
 </form>
 ```
@@ -350,7 +355,7 @@ Here's how you might implement a feedback collection and utilization system:
 def record_user_feedback(user_id, query, selected_tool, results, clicked_result_ids, explicit_rating=None):
     """
     Record user feedback for future training data collection.
-    
+
     Args:
         user_id: Identifier for the user
         query: The user's original query
@@ -368,10 +373,10 @@ def record_user_feedback(user_id, query, selected_tool, results, clicked_result_
         "clicked_result_ids": clicked_result_ids,
         "explicit_rating": explicit_rating,
     }
-    
+
     # Store feedback in database
     feedback_collection.insert_one(feedback_entry)
-    
+
     # If this was a highly-rated interaction, consider adding it to examples
     if explicit_rating and explicit_rating >= 4:
         consider_adding_to_examples(feedback_entry)
@@ -379,12 +384,12 @@ def record_user_feedback(user_id, query, selected_tool, results, clicked_result_
 def generate_training_data_from_feedback(min_clicks=1, min_rating=None, date_range=None):
     """
     Generate training data from collected user feedback.
-    
+
     Args:
         min_clicks: Minimum number of clicks a result must have received
         min_rating: Minimum explicit rating (if available)
         date_range: Optional date range to filter feedback
-        
+
     Returns:
         Dictionary with router_training_data and retrieval_training_data
     """
@@ -394,13 +399,13 @@ def generate_training_data_from_feedback(min_clicks=1, min_rating=None, date_ran
         conditions["explicit_rating"] = {"$gte": min_rating}
     if date_range:
         conditions["timestamp"] = {"$gte": date_range[0], "$lte": date_range[1]}
-    
+
     # Retrieve feedback entries
     feedback_entries = feedback_collection.find(conditions)
-    
+
     router_examples = []
     retrieval_examples = []
-    
+
     for entry in feedback_entries:
         # Generate router training examples
         if entry["selected_tool"] != "chat":
@@ -408,7 +413,7 @@ def generate_training_data_from_feedback(min_clicks=1, min_rating=None, date_ran
                 "query": entry["query"],
                 "tool": entry["selected_tool"]
             })
-        
+
         # Generate retrieval training examples
         for result_id in entry["clicked_result_ids"]:
             if len(entry["clicked_result_ids"]) >= min_clicks:
@@ -416,7 +421,7 @@ def generate_training_data_from_feedback(min_clicks=1, min_rating=None, date_ran
                     "query": entry["query"],
                     "relevant_doc_id": result_id
                 })
-    
+
     return {
         "router_training_data": router_examples,
         "retrieval_training_data": retrieval_examples
@@ -425,7 +430,7 @@ def generate_training_data_from_feedback(min_clicks=1, min_rating=None, date_ran
 def update_few_shot_examples(router_examples, max_examples_per_tool=5):
     """
     Update the few-shot examples used in the router based on user feedback.
-    
+
     Args:
         router_examples: Router examples generated from feedback
         max_examples_per_tool: Maximum number of examples to keep per tool
@@ -437,14 +442,14 @@ def update_few_shot_examples(router_examples, max_examples_per_tool=5):
         if tool not in examples_by_tool:
             examples_by_tool[tool] = []
         examples_by_tool[tool].append(example)
-    
+
     # Select the best examples for each tool
     selected_examples = []
     for tool, examples in examples_by_tool.items():
         # Sort by frequency or other quality metric
         sorted_examples = sort_examples_by_quality(examples)
         selected_examples.extend(sorted_examples[:max_examples_per_tool])
-    
+
     # Update the router's few-shot examples
     update_router_prompt(selected_examples)
 ```

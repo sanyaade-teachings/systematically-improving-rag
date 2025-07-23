@@ -1,6 +1,6 @@
 ---
 title: Week 5 - Office Hour 1
-date: '2024-06-17'
+date: "2024-06-17"
 cohort: 3
 week: 5
 session: 1
@@ -16,7 +16,7 @@ topics:
   - Document summarization
   - Automated price quote generation
   - Data formatting best practices
-  - Evaluation of complex RAG systems   
+  - Evaluation of complex RAG systems
 ---
 
 # Week 5, Office Hour 1 (June 17)
@@ -37,7 +37,7 @@ When determining how much data you need, I recommend experimenting with differen
 
 Different models will have different learning curves - a 1.3 billion parameter model might flatten out at 10,000 data points, while larger models might show different patterns. Adjusting learning rates can also affect these curves.
 
-***Key Takeaway:*** Fine-tuning can be remarkably effective for formatting tasks like citation, often requiring less data than you might expect. Start with small batches, measure performance, and increase data volume until you reach your desired accuracy level.
+**_Key Takeaway:_** Fine-tuning can be remarkably effective for formatting tasks like citation, often requiring less data than you might expect. Start with small batches, measure performance, and increase data volume until you reach your desired accuracy level.
 
 ## Should we shuffle citation sources during fine-tuning?
 
@@ -51,7 +51,7 @@ The need for shuffling may also depend on the context length of your model. With
 
 The real challenge that remains is reasoning over multiple "needles" of information scattered throughout a document - connecting facts from different sections remains difficult for most models.
 
-***Key Takeaway:*** Consider shuffling citation sources during fine-tuning if you want position-invariant citations, but if you're sorting by relevance, maintaining order may be beneficial. Newer models have better attention across their context window, reducing the need for this technique.
+**_Key Takeaway:_** Consider shuffling citation sources during fine-tuning if you want position-invariant citations, but if you're sorting by relevance, maintaining order may be beneficial. Newer models have better attention across their context window, reducing the need for this technique.
 
 ## How should we approach tool design for specialized retrieval tasks?
 
@@ -72,7 +72,7 @@ For evaluating tool selection, I recommend having the model "write a plan of all
 
 The naming of tools significantly impacts how models use them. In coding agents, for example, providing a specific "grep" tool versus just mentioning grep in the command line instructions can change execution patterns by 2% in evaluations.
 
-***Key Takeaway:*** Design a portfolio of specialized tools based on specific use cases rather than general data types. Focus on clear tool descriptions and evaluate how well the model selects the appropriate tools for different queries.
+**_Key Takeaway:_** Design a portfolio of specialized tools based on specific use cases rather than general data types. Focus on clear tool descriptions and evaluate how well the model selects the appropriate tools for different queries.
 
 ## How can we handle temporal reasoning in medical data?
 
@@ -96,7 +96,7 @@ For building better temporal reasoning capabilities, consider:
 
 4. Mining reasoning chains from expert users to create training data
 
-***Key Takeaway:*** For temporal reasoning, structure data chronologically in markdown tables and implement a two-stage approach where the model first extracts and organizes relevant timeline information before reasoning about it.
+**_Key Takeaway:_** For temporal reasoning, structure data chronologically in markdown tables and implement a two-stage approach where the model first extracts and organizes relevant timeline information before reasoning about it.
 
 ## What's the difference between multi-agent and single-agent approaches?
 
@@ -112,7 +112,7 @@ The primary benefit of multi-agent systems appears to be token efficiency - you 
 
 For medical data applications that are primarily read-only, a multi-agent approach might work, but the challenge remains in ensuring no context is missed when combining information from different agents.
 
-***Key Takeaway:*** Choose multi-agent approaches for read-only tasks where you need to process more tokens than a single context window allows. For tasks requiring coordination of changes, single-agent approaches remain more practical until better coordination mechanisms are developed.
+**_Key Takeaway:_** Choose multi-agent approaches for read-only tasks where you need to process more tokens than a single context window allows. For tasks requiring coordination of changes, single-agent approaches remain more practical until better coordination mechanisms are developed.
 
 ## How can we use document summarization to improve retrieval?
 
@@ -138,7 +138,7 @@ For implementation, you can:
 
 This approach works particularly well for documents like financial reports, where structured information can be extracted, or for multimedia content where describing images or videos in text makes them searchable.
 
-***Key Takeaway:*** Document summarization during ingestion creates valuable synthetic text chunks that can dramatically improve retrieval performance. Design summary prompts based on the specific information needs of your application and iterate based on evaluation results.
+**_Key Takeaway:_** Document summarization during ingestion creates valuable synthetic text chunks that can dramatically improve retrieval performance. Design summary prompts based on the specific information needs of your application and iterate based on evaluation results.
 
 ## How can we implement price quote generation using RAG?
 
@@ -164,7 +164,7 @@ Our evaluation method is simple but effective - we have salespeople review the g
 
 This approach of extracting variables, reasoning about them, and then generating output could be applied to medical data as well. For example, if a patient shows drowsiness, the system could first extract all timeline information about drowsiness, then reason about potential causes.
 
-***Key Takeaway:*** For complex reasoning tasks, implement a multi-step process where the model first extracts and organizes relevant information, then reasons about it, and finally generates output. This structured approach makes the reasoning more transparent and easier to evaluate.
+**_Key Takeaway:_** For complex reasoning tasks, implement a multi-step process where the model first extracts and organizes relevant information, then reasons about it, and finally generates output. This structured approach makes the reasoning more transparent and easier to evaluate.
 
 ## What's the best way to format data for language models?
 
@@ -210,7 +210,7 @@ In some domains like coding, the evaluation metrics are clearer - does the code 
 
 For systems like our price quote generator, we use a practical metric - do salespeople edit the generated emails before sending them? This real-world usage metric helps us identify where the system's reasoning falls short.
 
-***Key Takeaway:*** Break evaluation into component parts rather than relying solely on end-to-end metrics. Incorporate user feedback into your evaluation process, and track how often outputs require human editing or intervention.
+**_Key Takeaway:_** Break evaluation into component parts rather than relying solely on end-to-end metrics. Incorporate user feedback into your evaluation process, and track how often outputs require human editing or intervention.
 
 ## How does fine-tuning improve citation accuracy in LLMs?
 

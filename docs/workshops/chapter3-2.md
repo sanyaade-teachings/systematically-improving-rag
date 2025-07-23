@@ -1,5 +1,5 @@
 ---
-title: 'Chapter 3.2: Overcoming Latency'
+title: "Chapter 3.2: Overcoming Latency"
 description: Techniques for enhancing both actual and perceived performance in RAG applications
 author: Jason Liu
 ---
@@ -202,8 +202,6 @@ One unique advantage of streaming is the ability to show users not just the fina
 
 For example, you can stream the function calls and arguments that your RAG system is using:
 
-
-
 This approach gives users insight into how their query is being processed, creating engagement during what would otherwise be idle waiting time.
 
 ## Streaming Structured Data
@@ -216,7 +214,7 @@ Libraries like Instruct and modern LLM frameworks now support streaming structur
 ```
 - Stream citations with IDs and titles
 - Stream different response components in parallel
-- Stream function calls and their arguments 
+- Stream function calls and their arguments
 - Build dynamic UI that renders each component as it becomes available
 ```
 
@@ -306,8 +304,6 @@ For RAG applications, skeleton screens can be particularly effective when showin
 - Citation placeholders that will be filled
 - Follow-up question button outlines
 - Tool usage summaries that will appear
-
-
 
 !!! example "Meaningful vs. Generic Interstitials"
 **Generic Interstitial:** "Loading..."
@@ -419,8 +415,6 @@ Caching dramatically improves performance for repeated or similar queries:
 - **Result caching:** Store complete responses for common queries
 
 Here's a simple implementation of semantic caching:
-
-
 
 ### 3. Implement Progressive Loading
 

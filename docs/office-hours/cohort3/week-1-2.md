@@ -1,6 +1,6 @@
 ---
 title: Week 1 - Office Hour 2
-date: '2024-05-22'
+date: "2024-05-22"
 cohort: 3
 week: 1
 session: 2
@@ -34,7 +34,7 @@ This is why it's valuable to experiment with different retrieval settings: "For 
 
 Some people set thresholds based on re-ranker scores, but that can be dangerous since these scores aren't true probabilities. You can't just set 0.5 as a universal threshold - you need to understand the precision-recall tradeoffs for your specific application.
 
-***Key Takeaway:*** Models can be sensitive to low-precision context, where irrelevant information causes them to incorporate red herrings into answers. Testing different document count thresholds is more reliable than using arbitrary re-ranker score cutoffs.
+**_Key Takeaway:_** Models can be sensitive to low-precision context, where irrelevant information causes them to incorporate red herrings into answers. Testing different document count thresholds is more reliable than using arbitrary re-ranker score cutoffs.
 
 ## What role can small language models play in a RAG architecture?
 
@@ -60,7 +60,7 @@ For instance, with venture capital funding requests, we might extract 200 exampl
 
 The model we build with these rubrics typically extracts scores for 30+ criteria, with LLMs giving scores from 0-4, which then feed into a logistic regression model. This makes the evaluation somewhat explainable - if a candidate gets prioritized unexpectedly, we can see which features drove that decision.
 
-***Key Takeaway:*** For evaluating multi-turn conversations, combine state machines to enforce guardrails with human-labeled examples to create scoring rubrics. Using a simple model like logistic regression on top of LLM-generated feature scores maintains interpretability.
+**_Key Takeaway:_** For evaluating multi-turn conversations, combine state machines to enforce guardrails with human-labeled examples to create scoring rubrics. Using a simple model like logistic regression on top of LLM-generated feature scores maintains interpretability.
 
 ## How do you approach data analysis to find business value in AI applications?
 
@@ -78,7 +78,7 @@ The solution wasn't to improve the AI's core capabilities but to add a simple ch
 
 For me, the most enjoyable work is identifying these business opportunities that don't necessarily require complex AI improvements. Software engineers often aren't trained to think this way, but my background in data science makes this approach natural.
 
-***Key Takeaway:*** The biggest business value often comes from analyzing usage patterns to identify inventory gaps or missing capabilities, rather than improving core AI performance. Simple changes like adding missing data or implementing basic business rules can deliver millions in value.
+**_Key Takeaway:_** The biggest business value often comes from analyzing usage patterns to identify inventory gaps or missing capabilities, rather than improving core AI performance. Simple changes like adding missing data or implementing basic business rules can deliver millions in value.
 
 ## How do you balance technical implementation with business outcomes?
 
@@ -118,7 +118,7 @@ For those who need to build UIs but lack JavaScript skills, LLMs are remarkably 
 
 The software can be ephemeral enough that I don't worry about long-term maintenance. For more polished applications, I recommend checking out Lovable.dev - I've built about 20 apps with them that work quite well.
 
-***Key Takeaway:*** Focus on learning the concepts rather than specific implementation details. Modern LLMs can generate high-quality UI code, making it easier than ever to build functional applications without deep frontend expertise.
+**_Key Takeaway:_** Focus on learning the concepts rather than specific implementation details. Modern LLMs can generate high-quality UI code, making it easier than ever to build functional applications without deep frontend expertise.
 
 ## What's been your most rewarding project in the AI space?
 
@@ -140,7 +140,7 @@ As one participant noted, they've found at least one "golden nugget" from each s
 
 Remember that the AI field is moving incredibly quickly, and none of us can absorb everything. The goal isn't to become an expert on everything but to get really good at leveraging AI to stay ahead of everyone else.
 
-______________________________________________________________________
+---
 
 FAQs
 

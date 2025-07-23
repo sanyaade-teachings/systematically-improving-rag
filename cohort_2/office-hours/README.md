@@ -30,15 +30,18 @@ You can use Cursor's AI capabilities to generate summary files from the transcri
 
 4. **Use Cursor's AI composer (CTRL+K or CMD+K)**
    - In the composer, enter a prompt like:
+
    ```
    @[transcript-file-1] @[transcript-file-2] @[transcript-file-3]
-   
+
    Create a summary file that extracts all Q&A pairs from these transcripts in the same format as the existing summary files.
    ```
+
    - For example:
+
    ```
    @02-04-2025-1353-merged.txt @02-04-2025-1744-merged.txt @02-06-2025-1854-merged.txt
-   
+
    Create a summary file that extracts all Q&A pairs from these transcripts in the same format as week3-summary.md
    ```
 
@@ -65,12 +68,14 @@ MM-DD-YYYY-HHMM-type.ext
 ```
 
 Where:
+
 - `MM-DD-YYYY`: Month, day, and year of the session
 - `HHMM`: Hour and minute of the session (24-hour format)
 - `type`: Type of file (session, merged, chat)
 - `ext`: File extension (.vtt, .txt, etc.)
 
 Examples:
+
 - `02-04-2025-1353-session.vtt`: Transcript from February 4, 2025 at 1:53 PM
 - `02-18-2025-1349-merged.txt`: Merged transcript from February 18, 2025 at 1:49 PM
 - `02-20-2025-1857-session.txt`: Transcript from February 20, 2025 at 6:57 PM
@@ -99,6 +104,7 @@ python3 move-files.py
 ```
 
 The script will:
+
 - Show which files were found and where they were moved
 - Remove duplicate files
 - Print a summary of files in each week folder
@@ -112,9 +118,11 @@ When new transcripts are downloaded:
 3. The script will automatically organize and rename all new transcript files
 
 The script handles various transcript file formats and naming patterns, including:
+
 - Files with "transcript" in the name
 - Files with "recording" in the name (ending with .vtt, .txt, .srt)
-- Files starting with "GMT" followed by a date (ending with .vtt, .txt, .srt) 
+- Files starting with "GMT" followed by a date (ending with .vtt, .txt, .srt)
+
 ---
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to

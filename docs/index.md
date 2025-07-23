@@ -10,17 +10,17 @@ date: 2025-04-10
 
 ## Data-Driven Product Development for AI Applications
 
-*A systematic approach to building self-improving AI systems*
+_A systematic approach to building self-improving AI systems_
 
 !!! abstract "About This Book"
-    This book provides a structured approach to evolving Retrieval-Augmented Generation (RAG) from a technical implementation into a continuously improving product. You'll learn to combine product thinking with data science principles to create AI systems that deliver increasing value over time.
+This book provides a structured approach to evolving Retrieval-Augmented Generation (RAG) from a technical implementation into a continuously improving product. You'll learn to combine product thinking with data science principles to create AI systems that deliver increasing value over time.
 
 ## The RAG Improvement Flywheel
 
 At the core of this book is the RAG improvement flywheel - a continuous cycle that transforms user interactions into product enhancements.
 
 !!! tip "Beyond Technical Implementation"
-    This book goes beyond teaching you how to implement RAG. It shows you how to think about RAG as a product that continuously evolves to meet user needs and deliver business value.
+This book goes beyond teaching you how to implement RAG. It shows you how to think about RAG as a product that continuously evolves to meet user needs and deliver business value.
 
 ## Chapters
 
@@ -73,22 +73,22 @@ Explore insights from industry experts and practitioners through our collection 
 ## For Product Leaders, Engineers, and Data Scientists
 
 !!! info "What You'll Learn"
-    **For Product Leaders**
-    
+**For Product Leaders**
+
     - How to establish metrics that align with business outcomes
-    - Frameworks for prioritizing AI product improvements  
+    - Frameworks for prioritizing AI product improvements
     - Approaches to building product roadmaps for RAG applications
     - Methods for communicating AI improvements to stakeholders
-    
+
     **For Engineers**
-    
+
     - Implementation patterns that facilitate rapid iteration
     - Architectural decisions that enable continuous improvement
     - Techniques for building modular, specialized capabilities
     - Approaches to technical debt management in AI systems
-    
+
     **For Data Scientists**
-    
+
     - Methods for creating synthetic evaluation datasets
     - Techniques for segmenting and analyzing user queries
     - Frameworks for measuring retrieval effectiveness
@@ -98,47 +98,36 @@ Explore insights from industry experts and practitioners through our collection 
 
 Based on real-world implementations, here are proven improvements you can implement quickly:
 
-!!! success "Top 5 Quick Wins"
-    1. **Change Feedback Copy** 
-       - Replace "How did we do?" with "Did we answer your question?"
-       - **Impact**: 5x increase in feedback collection
-       - **Effort**: 1 hour
-    
+!!! success "Top 5 Quick Wins" 1. **Change Feedback Copy** - Replace "How did we do?" with "Did we answer your question?" - **Impact**: 5x increase in feedback collection - **Effort**: 1 hour
+
     2. **Use Markdown Tables**
        - Format structured data as markdown tables instead of JSON/CSV
        - If tables are complex, represent it in XML
        - **Impact**: 12% better lookup accuracy
        - **Effort**: 2-4 hours
-    
+
     3. **Add Streaming Progress**
        - Show "Searching... Analyzing... Generating..." with progress
        - Stream the response as it's being generated when possible
        - **Impact**: 45% reduction in perceived latency
        - **Effort**: 1 sprint
-    
+
     4. **Implement Page-Level Chunking**
        - For documentation, respect page boundaries, and use page-level chunking. Humans tend to create semantically coherent chunks at the page level.
        - **Impact**: 20-30% better retrieval for docs
        - **Effort**: 1 day
 
-!!! tip "Medium-Term Improvements (2-4 weeks)"
-    - **Fine-tune embeddings**: $1.50 and 40 minutes for 6-10% improvement
-    - **Add re-ranker**: 15-20% retrieval improvement
-    - **Build specialized tools**: 10x better for specific use cases
-    - **Implement contextual retrieval**: 30% better context understanding
-    - **Create Slack feedback integration**: 5x more enterprise feedback
+!!! tip "Medium-Term Improvements (2-4 weeks)" - **Fine-tune embeddings**: $1.50 and 40 minutes for 6-10% improvement - **Add re-ranker**: 15-20% retrieval improvement - **Build specialized tools**: 10x better for specific use cases - **Implement contextual retrieval**: 30% better context understanding - **Create Slack feedback integration**: 5x more enterprise feedback
 
 !!! info "Learn from the Experts"
-    Before implementing, learn from these practical talks:
-    - [**RAG Anti-patterns in the Wild**](talks/rag-antipatterns-skylar-payne.md) - Common mistakes across industries and how to fix them
-    - [**Document Ingestion Best Practices**](talks/reducto-docs-adit.md) - Production-ready parsing for tables, PDFs, and complex documents
+Before implementing, learn from these practical talks: - [**RAG Anti-patterns in the Wild**](talks/rag-antipatterns-skylar-payne.md) - Common mistakes across industries and how to fix them - [**Document Ingestion Best Practices**](talks/reducto-docs-adit.md) - Production-ready parsing for tables, PDFs, and complex documents
 
 ## About the Author
 
 Jason Liu brings practical experience from Facebook, Stitch Fix, and as a consultant for companies like HubSpot, Zapier, and many others. His background spans computer vision, recommendation systems, and RAG applications across diverse domains.
 
 !!! quote "Author's Philosophy"
-   "The most successful AI products aren't the ones with the most sophisticated models, but those built on disciplined processes for understanding users, measuring performance, and systematically improving. This book will show you how to create not just a RAG application, but a product that becomes more valuable with every interaction."
+"The most successful AI products aren't the ones with the most sophisticated models, but those built on disciplined processes for understanding users, measuring performance, and systematically improving. This book will show you how to create not just a RAG application, but a product that becomes more valuable with every interaction."
 
 ## Getting Started
 

@@ -31,12 +31,13 @@ docs/office-hours/
 ## Documentation Standards
 
 ### YAML Frontmatter Format
+
 All office hours files use consistent metadata:
 
 ```yaml
 ---
 title: Week X - Office Hour Y
-date: 'YYYY-MM-DD'
+date: "YYYY-MM-DD"
 cohort: X
 week: X
 session: X

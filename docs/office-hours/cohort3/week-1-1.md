@@ -1,6 +1,6 @@
 ---
 title: Week 1 - Office Hour 1
-date: '2024-05-20'
+date: "2024-05-20"
 cohort: 3
 week: 1
 session: 1
@@ -33,7 +33,7 @@ This is why it's valuable to experiment with different retrieval settings: "For 
 
 Some people set thresholds based on re-ranker scores, but that can be dangerous since these scores aren't true probabilities. You can't just set 0.5 as a universal threshold - you need to understand the precision-recall tradeoffs for your specific application.
 
-***Key Takeaway:*** Models can be sensitive to low-precision context, where irrelevant information causes them to incorporate red herrings into answers. Testing different document count thresholds is more reliable than using arbitrary re-ranker score cutoffs.
+**_Key Takeaway:_** Models can be sensitive to low-precision context, where irrelevant information causes them to incorporate red herrings into answers. Testing different document count thresholds is more reliable than using arbitrary re-ranker score cutoffs.
 
 ## What role can small language models play in a RAG architecture?
 
@@ -45,7 +45,7 @@ Second, small models can build better embedding spaces. Most current embedding m
 
 In this context, I think of "small" as meaning lower latency with less world knowledge - models that can perform specific tasks efficiently without needing to understand everything about the world.
 
-***Key Takeaway:*** Small language models can enhance RAG systems through query rewriting and improved embeddings, offering lower latency for specific tasks that don't require comprehensive world knowledge.
+**_Key Takeaway:_** Small language models can enhance RAG systems through query rewriting and improved embeddings, offering lower latency for specific tasks that don't require comprehensive world knowledge.
 
 ## How can we measure quality in multi-turn conversations?
 
@@ -61,7 +61,7 @@ For instance, with venture capital funding requests, we might extract 200 exampl
 
 The model we build with these rubrics typically extracts scores for 30+ criteria, with LLMs giving scores from 0-4, which then feed into a logistic regression model. This makes the evaluation somewhat explainable - if a candidate gets prioritized unexpectedly, we can see which features drove that decision.
 
-***Key Takeaway:*** For evaluating multi-turn conversations, combine state machines to enforce guardrails with human-labeled examples to create scoring rubrics. Using a simple model like logistic regression on top of LLM-generated feature scores maintains interpretability.
+**_Key Takeaway:_** For evaluating multi-turn conversations, combine state machines to enforce guardrails with human-labeled examples to create scoring rubrics. Using a simple model like logistic regression on top of LLM-generated feature scores maintains interpretability.
 
 ## How do you approach data analysis to find business value in AI applications?
 
@@ -79,7 +79,7 @@ The solution wasn't to improve the AI's core capabilities but to add a simple ch
 
 For me, the most enjoyable work is identifying these business opportunities that don't necessarily require complex AI improvements. Software engineers often aren't trained to think this way, but my background in data science makes this approach natural.
 
-***Key Takeaway:*** The biggest business value often comes from analyzing usage patterns to identify inventory gaps or missing capabilities, rather than improving core AI performance. Simple changes like adding missing data or implementing basic business rules can deliver millions in value.
+**_Key Takeaway:_** The biggest business value often comes from analyzing usage patterns to identify inventory gaps or missing capabilities, rather than improving core AI performance. Simple changes like adding missing data or implementing basic business rules can deliver millions in value.
 
 ## How do you balance technical implementation with business outcomes?
 
@@ -91,7 +91,7 @@ Similarly, with Netflix, if users search for "Oscar-nominated" movies but get re
 
 I'm constantly looking for these opportunities where a relatively simple technical solution can unlock significant business value. This approach has been much more impactful than pursuing technical sophistication for its own sake.
 
-***Key Takeaway:*** Focus on business outcomes over technical sophistication. Often the highest-value solutions involve simple changes that address real user needs rather than complex AI improvements.
+**_Key Takeaway:_** Focus on business outcomes over technical sophistication. Often the highest-value solutions involve simple changes that address real user needs rather than complex AI improvements.
 
 ## What are your thoughts on the latest AI developments like Claude 3?
 
@@ -101,7 +101,7 @@ Regarding the guest speakers we've had, I found the Chroma presentation particul
 
 I try to balance technical depth with accessibility in these sessions. When Nils gave his talk, it quickly became very technical with neural network diagrams and mathematical equations, and I could see people leaving the call. It's challenging to find the right balance between technical content and storytelling.
 
-***Key Takeaway:*** Balancing technical depth with accessibility is crucial when presenting AI concepts. Different audiences require different approaches to effectively communicate complex ideas.
+**_Key Takeaway:_** Balancing technical depth with accessibility is crucial when presenting AI concepts. Different audiences require different approaches to effectively communicate complex ideas.
 
 ## How should we approach building RAG applications for course materials?
 
@@ -113,7 +113,7 @@ You might also need to handle requests for information about guest speakers, lik
 
 For a dataset as small as course transcripts, long-context models like Claude 3 might work well without complex RAG. It's really the enterprise use cases with massive document collections that need sophisticated RAG approaches.
 
-***Key Takeaway:*** Even simple datasets like course transcripts reveal the importance of metadata and structured information for effective retrieval. Many issues are inventory problems rather than AI problems.
+**_Key Takeaway:_** Even simple datasets like course transcripts reveal the importance of metadata and structured information for effective retrieval. Many issues are inventory problems rather than AI problems.
 
 ## How do you handle UI/UX development for AI applications?
 
@@ -125,7 +125,7 @@ For those who need to build UIs but lack JavaScript skills, LLMs are remarkably 
 
 The software can be ephemeral enough that I don't worry about long-term maintenance. For more polished applications, I recommend checking out Lovable.dev - I've built about 20 apps with them that work quite well.
 
-***Key Takeaway:*** Focus on learning the concepts rather than specific implementation details. Modern LLMs can generate high-quality UI code, making it easier than ever to build functional applications without deep frontend expertise.
+**_Key Takeaway:_** Focus on learning the concepts rather than specific implementation details. Modern LLMs can generate high-quality UI code, making it easier than ever to build functional applications without deep frontend expertise.
 
 ## What's been your most rewarding project in the AI space?
 
@@ -137,7 +137,7 @@ I enjoy working with teams that have access to subject matter experts who can he
 
 This approach of combining data analysis with domain expertise has consistently led to high-impact solutions that address real business needs rather than just technical challenges.
 
-***Key Takeaway:*** The most rewarding AI projects combine data analysis with domain expertise to identify high-impact business opportunities rather than pursuing technical sophistication for its own sake.
+**_Key Takeaway:_** The most rewarding AI projects combine data analysis with domain expertise to identify high-impact business opportunities rather than pursuing technical sophistication for its own sake.
 
 ## Final thoughts on balancing course workload
 
@@ -149,9 +149,9 @@ As one participant noted, they've found at least one "golden nugget" from each s
 
 Remember that the AI field is moving incredibly quickly, and none of us can absorb everything. The goal isn't to become an expert on everything but to get really good at leveraging AI to stay ahead of everyone else.
 
-***Key Takeaway:*** Learning complex technical skills requires finding the right balance between depth of content and time for absorption. Focus on what's most relevant to your needs and remember that continuous learning is more important than perfect comprehension.
+**_Key Takeaway:_** Learning complex technical skills requires finding the right balance between depth of content and time for absorption. Focus on what's most relevant to your needs and remember that continuous learning is more important than perfect comprehension.
 
-______________________________________________________________________
+---
 
 FAQs
 

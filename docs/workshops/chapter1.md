@@ -184,12 +184,8 @@ When you focus on generation evaluations prematurely, factuality becomes subject
 Before diving into implementation, let's clarify what precision and recall actually mean in the context of RAG:
 
 !!! tip "Practical Guidance from Production Systems"
-    **Testing Different K Values:**
-    - Start with K=10 for initial testing
-    - Test K=3, 5, 10, 20 to understand your precision/recall tradeoffs
-    - Higher K improves recall but may hurt precision with simpler models
-    - Advanced models (GPT-4, Claude) handle irrelevant docs better, so favor higher K
-    
+**Testing Different K Values:** - Start with K=10 for initial testing - Test K=3, 5, 10, 20 to understand your precision/recall tradeoffs - Higher K improves recall but may hurt precision with simpler models - Advanced models (GPT-4, Claude) handle irrelevant docs better, so favor higher K
+
     **Why Embedding or Re-ranker Score Thresholds Are Dangerous:**
     - Score distributions vary dramatically by query type
     - A threshold that works for one category fails for others, for example average ada-002 score is .7 and .5 for ada-003
@@ -266,13 +262,13 @@ Another client needed to implement AI search for construction blueprints, allowi
 **Key Takeaway**: Testing specific subsystems independently enables rapid baseline improvements. Synthetic data generation for specific use cases can dramatically improve retrieval.
 
 !!! info "Chunk Size Best Practices"
-    Based on extensive testing across multiple domains and recommendations from Anthropic and OpenAI:
-    
+Based on extensive testing across multiple domains and recommendations from Anthropic and OpenAI:
+
     **Starting Point:** 800 tokens with 50% overlap
     - This configuration works well for most use cases
     - Provides good context while maintaining relevance
     - Overlap ensures important information isn't split
-    
+
     **Why Chunk Optimization Rarely Provides Big Wins:**
     - Changing chunk size typically yields <10% improvements
     - Time is better spent on:
@@ -280,7 +276,7 @@ Another client needed to implement AI search for construction blueprints, allowi
         - Metadata filtering
         - Contextual retrieval (adding document context to chunks)
         - Better embedding models
-    
+
     **When to Adjust Chunks:**
     - Legal/regulatory: Larger chunks (1500-2000 tokens) to preserve full clauses
     - Technical docs: Smaller chunks (400-600 tokens) for precise retrieval
@@ -362,16 +358,13 @@ Make evaluation a regular part of your development cycle:
 1. **Difficulty progression**: As scores improve, add more challenging test cases
 
 !!! example "Production Monitoring Insights"
-    **Track These Metrics Over Time:**
-    - Average cosine distance between queries and retrieved documents
-    - Percentage of queries with no results above threshold
-    - Distribution of retrieval scores (watch for bimodal distributions)
-    
+**Track These Metrics Over Time:** - Average cosine distance between queries and retrieved documents - Percentage of queries with no results above threshold - Distribution of retrieval scores (watch for bimodal distributions)
+
     **Segment Analysis by User Variables:**
     - New vs returning users often have different query patterns
     - Technical vs non-technical users may need different retrieval strategies
     - Time-based patterns (e.g., queries during product launches)
-    
+
     **Real Example:** A company noticed cosine distances spiked during their Super Bowl ad campaign. New users asked different questions than existing users, revealing gaps in their content coverage. This led to creating onboarding-specific content that improved new user retention by 25%.
 
 ### Integrating with Development Workflow
@@ -402,14 +395,14 @@ Before choosing a vector database, consider these key factors:
 
 ### Vector Database Comparison
 
-| Database | Best For | Pros | Cons | When to Use |
-|----------|----------|------|------|-------------|
-| **PostgreSQL + pgvector** | Teams with SQL expertise | • Familiar SQL interface<br>• Metadata filtering<br>• ACID compliance<br>• Single database for everything | • Not optimized for vector operations<br>• Limited to ~1M vectors for good performance<br>• No built-in hybrid search | When you need to combine vector search with complex SQL queries and already use PostgreSQL |
-| **LanceDB** | Experimentation & hybrid search | • One-line hybrid search<br>• Built-in re-ranking<br>• S3 storage support<br>• DuckDB for analytics | • Newer, less battle-tested<br>• Smaller community | When you want to quickly test lexical vs vector vs hybrid search approaches |
-| **Timescale pgvector_scale** | Large-scale exhaustive search | • Exhaustive search capability<br>• Better scaling than pgvector<br>• Time-series support | • Requires Timescale<br>• More complex setup | When you need guaranteed recall on large datasets with time-based queries |
-| **ChromaDB** | Simple prototypes | • Easy to get started<br>• Good Python API<br>• Local development friendly | • Performance issues at scale<br>• Limited production features | For POCs and demos under 100k documents |
-| **Turbopuffer** | High-performance search | • Very fast<br>• Good scaling<br>• Simple API | • Newer entrant<br>• Limited ecosystem | When raw performance is critical |
-| **Pinecone** | Managed solution | • Fully managed<br>• Good performance<br>• Reliable | • Expensive at scale<br>• Vendor lock-in | When you want zero infrastructure management |
+| Database                     | Best For                        | Pros                                                                                                      | Cons                                                                                                                  | When to Use                                                                                |
+| ---------------------------- | ------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| **PostgreSQL + pgvector**    | Teams with SQL expertise        | • Familiar SQL interface<br>• Metadata filtering<br>• ACID compliance<br>• Single database for everything | • Not optimized for vector operations<br>• Limited to ~1M vectors for good performance<br>• No built-in hybrid search | When you need to combine vector search with complex SQL queries and already use PostgreSQL |
+| **LanceDB**                  | Experimentation & hybrid search | • One-line hybrid search<br>• Built-in re-ranking<br>• S3 storage support<br>• DuckDB for analytics       | • Newer, less battle-tested<br>• Smaller community                                                                    | When you want to quickly test lexical vs vector vs hybrid search approaches                |
+| **Timescale pgvector_scale** | Large-scale exhaustive search   | • Exhaustive search capability<br>• Better scaling than pgvector<br>• Time-series support                 | • Requires Timescale<br>• More complex setup                                                                          | When you need guaranteed recall on large datasets with time-based queries                  |
+| **ChromaDB**                 | Simple prototypes               | • Easy to get started<br>• Good Python API<br>• Local development friendly                                | • Performance issues at scale<br>• Limited production features                                                        | For POCs and demos under 100k documents                                                    |
+| **Turbopuffer**              | High-performance search         | • Very fast<br>• Good scaling<br>• Simple API                                                             | • Newer entrant<br>• Limited ecosystem                                                                                | When raw performance is critical                                                           |
+| **Pinecone**                 | Managed solution                | • Fully managed<br>• Good performance<br>• Reliable                                                       | • Expensive at scale<br>• Vendor lock-in                                                                              | When you want zero infrastructure management                                               |
 
 ### Decision Framework
 
@@ -418,21 +411,21 @@ flowchart TD
     A[Start] --> B{Do you have<br>existing PostgreSQL?}
     B -->|Yes| C{Need exhaustive<br>search?}
     B -->|No| D{Want to experiment<br>with hybrid search?}
-    
+
     C -->|Yes| E[pgvector_scale]
     C -->|No| F{< 1M vectors?}
     F -->|Yes| G[pgvector]
     F -->|No| H[Consider migration]
-    
+
     D -->|Yes| I[LanceDB]
     D -->|No| J{Budget for<br>managed service?}
-    
+
     J -->|Yes| K[Pinecone]
     J -->|No| L{Team size?}
-    
+
     L -->|Small| M[ChromaDB]
     L -->|Large| N[LanceDB/Turbopuffer]
-    
+
     style E fill:#90EE90
     style G fill:#90EE90
     style I fill:#90EE90
@@ -490,14 +483,10 @@ If you're already using a vector database but experiencing issues:
 4. **Plan migration**: Consider dual-writing during transition
 
 !!! warning "Common Pitfall"
-    Don't choose a vector database based on hype or benchmarks. Choose based on:
-    - Your team's expertise
-    - Your specific query patterns
-    - Your scaling requirements
-    - Your budget constraints
+Don't choose a vector database based on hype or benchmarks. Choose based on: - Your team's expertise - Your specific query patterns - Your scaling requirements - Your budget constraints
 
 !!! tip "Production Insight"
-    From office hours: "We generally want to use SQL databases. If you use something like Timescale or PostgreSQL, there are many ways of doing time filtering... The general idea is to use structured extraction to identify start and end dates, prompt your language model with an understanding of what those dates are, and then use filtering."
+From office hours: "We generally want to use SQL databases. If you use something like Timescale or PostgreSQL, there are many ways of doing time filtering... The general idea is to use structured extraction to identify start and end dates, prompt your language model with an understanding of what those dates are, and then use filtering."
 
 ## Creating Synthetic Data for Evaluation
 
@@ -645,20 +634,20 @@ Your synthetic data can serve multiple purposes:
 By investing time in creating high-quality synthetic data upfront, you establish a foundation that accelerates every aspect of your RAG development process.
 
 !!! warning "Model Sensitivity Considerations"
-    **Key Discovery:** Models are often more sensitive to irrelevant information than we expect.
-    
+**Key Discovery:** Models are often more sensitive to irrelevant information than we expect.
+
     **Practical Implications:**
     - Even GPT-4 and Claude can be distracted by marginally relevant content
     - Precision matters more than you might think, especially for:
         - Multi-step reasoning tasks
         - Numerical calculations
         - Tasks requiring specific facts from specific documents
-    
+
     **Testing Approach:**
     1. Create test cases with varying amounts of irrelevant information
     2. Measure how performance degrades as noise increases
     3. Use this to set your precision/recall tradeoffs
-    
+
     **Example:** One team found that including 5 irrelevant documents (even when marked as "potentially less relevant") reduced their financial calculation accuracy by 30%. They adjusted their retrieval to favor precision for numerical queries.
 
 ## Additional Resources

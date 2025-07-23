@@ -84,7 +84,7 @@ Beyond the technical aspects, successful RAG products require the right organiza
 
 - **Document your journey**: Keep records of what you've tried, what worked, and what didn't. This institutional knowledge becomes invaluable as your team grows.
 
-______________________________________________________________________
+---
 
 Remember, this field is still young. The techniques we've covered are just the beginning. As you continue your journey, you'll discover new approaches and face unique challenges. But if you take these core principles to heart, you'll have the foundation to adapt and thrive regardless of how the technology evolves.
 

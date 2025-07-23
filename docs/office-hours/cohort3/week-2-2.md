@@ -1,6 +1,6 @@
 ---
 title: Week 2 - Office Hour 2
-date: '2024-05-29'
+date: "2024-05-29"
 cohort: 3
 week: 2
 session: 2
@@ -33,7 +33,7 @@ This is a common challenge when learning new technical skills alongside existing
 
 For those who need more immediate application, consider reaching out about a consulting engagement after the course. The reality is that deep implementation often requires dedicated time that's difficult to carve out while maintaining other responsibilities.
 
-***Key Takeaway:*** Learning and implementation often need to be sequenced rather than parallel when you have limited time. Focus on absorbing the knowledge first, then plan dedicated time for application afterward.
+**_Key Takeaway:_** Learning and implementation often need to be sequenced rather than parallel when you have limited time. Focus on absorbing the knowledge first, then plan dedicated time for application afterward.
 
 ## What happens to the community after the course ends?
 
@@ -43,7 +43,7 @@ The community's activity level will largely depend on participant engagement - "
 
 Many valuable interactions happen through direct messages rather than in public channels. For example, one participant is about to launch their own company, and we're jumping on calls to discuss their ideas and make introductions.
 
-***Key Takeaway:*** The community will continue beyond the formal course structure, but its value will depend on your active participation and willingness to engage with others.
+**_Key Takeaway:_** The community will continue beyond the formal course structure, but its value will depend on your active participation and willingness to engage with others.
 
 ## How should I handle irrelevant data being pushed into my vector database?
 
@@ -55,7 +55,7 @@ The real risk now is that low precision might hurt your language model's ability
 
 For example, in construction documentation, you might have an email saying a wall is yellow, an architect's note saying it's blue, and a text message claiming it's purple. In these cases, you need to establish authority hierarchies or time-based weighting to resolve conflicts.
 
-***Key Takeaway:*** The impact of irrelevant data depends on whether it's merely unnecessary or actively conflicting. Modern models are optimized for high recall but can be sensitive to precision issues, so conflicting information can be particularly problematic.
+**_Key Takeaway:_** The impact of irrelevant data depends on whether it's merely unnecessary or actively conflicting. Modern models are optimized for high recall but can be sensitive to precision issues, so conflicting information can be particularly problematic.
 
 ## What metrics should I monitor for retrieval quality in production?
 
@@ -65,7 +65,7 @@ Consider tracking the average cosine distance of your queries over time. If this
 
 You might also monitor average re-ranker scores and look for changes over time or across different user segments. These metrics are more valuable than arbitrary tests created by vector database providers.
 
-***Key Takeaway:*** Focus on monitoring changes in metrics like average cosine distance rather than absolute values, and segment your analysis by relevant variables to identify the root causes of any shifts.
+**_Key Takeaway:_** Focus on monitoring changes in metrics like average cosine distance rather than absolute values, and segment your analysis by relevant variables to identify the root causes of any shifts.
 
 ## What's the best approach for processing complex technical documentation?
 
@@ -77,7 +77,7 @@ For example, when working with Brazilian tax codes (400-page PDFs), we implement
 
 The key insight is that traversal is still a form of retrieval. As you collect traversal data, you can use it to improve your embedding models, potentially reducing the need for complex traversal in the future.
 
-***Key Takeaway:*** For complex technical documentation, consider combining semantic search with structural traversal. Use the document's inherent organization to guide your retrieval process, and collect this data to improve your embedding models over time.
+**_Key Takeaway:_** For complex technical documentation, consider combining semantic search with structural traversal. Use the document's inherent organization to guide your retrieval process, and collect this data to improve your embedding models over time.
 
 ## Should I build complex hierarchical structures for document retrieval?
 
@@ -107,7 +107,7 @@ These interactive sessions provide an opportunity to hear how others are applyin
 
 The conversations also help connect theoretical concepts to real-world applications, making the material more concrete and actionable. For example, our discussion about monitoring cosine distances in production systems provided a practical perspective on evaluation that complements the more structured content on evaluation frameworks.
 
-***Key Takeaway:*** Interactive learning formats like office hours provide valuable perspectives that complement structured course content, particularly for understanding how concepts apply to diverse real-world scenarios.
+**_Key Takeaway:_** Interactive learning formats like office hours provide valuable perspectives that complement structured course content, particularly for understanding how concepts apply to diverse real-world scenarios.
 
 ## How should we pace the course to maximize learning?
 
@@ -117,7 +117,7 @@ I noted that Week 3 is intentionally lighter, with only a 40-minute video and no
 
 The six-week format provides more depth than a one-week intensive course would allow, but it requires consistent engagement to get the full benefit. Finding the right balance between comprehensive coverage and manageable pacing remains a challenge.
 
-***Key Takeaway:*** Learning complex technical skills requires finding the right balance between depth of content and time for absorption and practice. Building explicit catch-up periods into courses can help participants manage their learning journey more effectively.
+**_Key Takeaway:_** Learning complex technical skills requires finding the right balance between depth of content and time for absorption and practice. Building explicit catch-up periods into courses can help participants manage their learning journey more effectively.
 
 ## What can we learn from leaked system prompts like Anthropic's Claude?
 
@@ -129,9 +129,9 @@ This reveals how much can be done through prompting without changing model weigh
 
 The existence of such extensive system prompts raises questions about where certain capabilities should reside - in the prompt or in the model weights. For example, if a fetch tool were baked into the model weights, what would happen if you named your custom tool "web_search" and the model tried to call a hardcoded "fetch" function?
 
-***Key Takeaway:*** Large system prompts demonstrate how much functionality can be implemented through instructions rather than model training. This creates flexibility but also raises important questions about the boundary between prompt engineering and model architecture.
+**_Key Takeaway:_** Large system prompts demonstrate how much functionality can be implemented through instructions rather than model training. This creates flexibility but also raises important questions about the boundary between prompt engineering and model architecture.
 
-______________________________________________________________________
+---
 
 FAQs
 

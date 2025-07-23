@@ -9,6 +9,7 @@ This project uses [uv](https://docs.astral.sh/uv/) for dependency management. Ma
 ## Installing with uv (Recommended)
 
 First, install uv if you haven't already:
+
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
@@ -31,6 +32,7 @@ uv sync
 ## Alternative: Installing with pip
 
 If you prefer to use pip, you can install the requirements with:
+
 ```bash
 pip install -e .
 ```

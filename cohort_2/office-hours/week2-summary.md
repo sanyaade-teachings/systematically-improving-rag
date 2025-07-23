@@ -110,6 +110,7 @@ Over a 12-year career, we kept trying different technologies (Hadoop, Spark, etc
 ## What have you learned about prompt caching?
 
 Prompt caching is a technique where language models can avoid reprocessing the beginning of prompts that are often identical:
+
 - Anthropic caches prompts for 5 minutes; if you make the same request within that time, the entire message is cached
 - OpenAI figures out the optimal prefix to cache automatically
 
@@ -184,11 +185,12 @@ If you can reorganize text chunks by clustering and bringing related information
 
 ## How do you understand metrics like precision and recall in one-to-one answer scenarios?
 
-For questions with exactly one correct answer, these metrics behave somewhat differently. Recall will be either 0% or 100% depending on whether K is large enough to include the correct answer. 
+For questions with exactly one correct answer, these metrics behave somewhat differently. Recall will be either 0% or 100% depending on whether K is large enough to include the correct answer.
 
 For example, if we want to retrieve exactly one document and there's only one correct answer, precision could be either 0% or 100%, and the same for recall.
 
 The metrics become more meaningful when:
+
 1. There are multiple relevant documents
 2. We're analyzing trends across many queries
 3. We're comparing different retrieval methods
@@ -326,7 +328,8 @@ This approach helps ensure reliability across different types of function callin
 
 9. **Research pragmatism**: Focus on solving specific problems with your data rather than chasing the latest research papers, which often reinvent existing techniques.
 
-10. **Cross-encoders vs. bi-encoders**: Cross-encoders (re-rankers) understand semantic distinctions better but are slower; bi-encoders (embedding models) are faster but less nuanced. Use both for optimal performance. 
+10. **Cross-encoders vs. bi-encoders**: Cross-encoders (re-rankers) understand semantic distinctions better but are slower; bi-encoders (embedding models) are faster but less nuanced. Use both for optimal performance.
+
 ---
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to

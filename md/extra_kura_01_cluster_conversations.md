@@ -72,6 +72,7 @@ In the context of RAG systems, topic modeling helps us understand what types of 
 To group similar texts together, we first need to convert them into a format computers can compare. **Embeddings** are numerical representations of text—think of them as coordinates in a high-dimensional space where similar meanings are positioned closer together.
 
 For example:
+
 - "How do I version my model?" and "What's the best way to track model versions?" would have similar embeddings despite using different words
 - These queries would be far from "How do I visualize training metrics?" in the embedding space
 
@@ -92,6 +93,7 @@ In this notebook, Kura handles these technical details for us, but understanding
 To follow along with this tutorial, you'll need to set up your environment and download the necessary data. For complete setup instructions and to understand how this dataset was created, see the [Getting Started Tutorial](https://0d156a8f.kura-4ma.pages.dev/getting-started/tutorial/).
 
 Quick setup:
+
 ```bash
 export OPENAI_API_KEY="your_api_key"
 git clone https://github.com/ivanleomk/kura.git
@@ -105,9 +107,9 @@ We're working with 560 real user queries from the Weights & Biases documentation
 
 By examining these query-document pairs, we gain valuable insights into:
 
-* What information users actively seek and how they phrase questions
-* Which documentation sections are most needed or confusing
-* How different query patterns cluster together, revealing common user challenges
+- What information users actively seek and how they phrase questions
+- Which documentation sections are most needed or confusing
+- How different query patterns cluster together, revealing common user challenges
 
 Topic modeling helps us identify semantically similar conversations, allowing us to group these queries into meaningful clusters that reveal broader patterns of user needs and pain points.
 
@@ -118,13 +120,13 @@ Without systematic analysis of such data, it's nearly impossible to identify pat
 ## Preparing Our Data
 
 Before using Kura for topic modeling, we need to prepare our dataset. Each entry contains:
+
 - `query`: The user's original question
 - `matching_document`: The relevant document manually matched to this query
 - `query_id`: Unique identifier for the query
 - `matching_document_document_id`: ID of the matching document
 
 Let's examine what this data looks like:
-
 
 ```python
 import json
@@ -135,18 +137,13 @@ with open("./data/conversations.json") as f:
 conversations_raw[0]
 ```
 
-
-
-
     {'query_id': '5e878c76-25c1-4bad-8cae-6a40ca4c8138',
      'query': 'experiment tracking',
      'matching_document': '## Track Experiments\n### How it works\nTrack a machine learning experiment with a few lines of code:\n1. Create a W&B run.\n2. Store a dictionary of hyperparameters, such as learning rate or model type, into your configuration (`wandb.config`).\n3. Log metrics (`wandb.log()`) over time in a training loop, such as accuracy and loss.\n4. Save outputs of a run, like the model weights or a table of predictions.  \n\nThe proceeding pseudocode demonstrates a common W&B Experiment tracking workflow:  \n\n```python showLineNumbers\n\n# 1. Start a W&B Run\n\nwandb.init(entity="", project="my-project-name")\n\n# 2. Save mode inputs and hyperparameters\n\nwandb.config.learning\\_rate = 0.01\n\n# Import model and data\n\nmodel, dataloader = get\\_model(), get\\_data()\n\n# Model training code goes here\n\n# 3. Log metrics over time to visualize performance\n\nwandb.log({"loss": loss})\n\n# 4. Log an artifact to W&B\n\nwandb.log\\_artifact(model)\n```',
      'matching_document_document_id': '1c7f8798-7b2a-4baa-9829-14ada61db6bc',
      'query_weight': 0.1}
 
-
-
-This raw format isn't immediately useful for topic modeling. We need to transform it into something that Kura can process effectively. 
+This raw format isn't immediately useful for topic modeling. We need to transform it into something that Kura can process effectively.
 
 To do so, we'll convert it to a `Conversation` class which `Kura` exposes. This format allows Kura to:
 
@@ -155,7 +152,6 @@ To do so, we'll convert it to a `Conversation` class which `Kura` exposes. This 
 3. Embed and cluster conversations based on content and structure
 
 We'll create a function to convert each query-document pair into a Kura Conversation object with a single user Message that combines both the query and retrieved document.
-
 
 ```python
 from kura.types import Message, Conversation
@@ -185,7 +181,6 @@ Retrieved Information : {obj['matching_document']}
 print(process_query_obj(conversations_raw[0]))
 ```
 
-
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">Conversation</span><span style="font-weight: bold">(</span>
     <span style="color: #808000; text-decoration-color: #808000">chat_id</span>=<span style="color: #008000; text-decoration-color: #008000">'5e878c76-25c1-4bad-8cae-6a40ca4c8138'</span>,
     <span style="color: #808000; text-decoration-color: #808000">created_at</span>=<span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">.datetime</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2025</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">29</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">22</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">41</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">92552</span><span style="font-weight: bold">)</span>,
@@ -209,16 +204,13 @@ print(process_query_obj(conversations_raw[0]))
 <span style="font-weight: bold">)</span>
 </pre>
 
-
-
-
 ```python
 conversations = [process_query_obj(obj) for obj in conversations_raw]
 ```
 
 Each individual `Conversation` object exposes a metadata field which allows us to provide additional context that can be valuable for analysis.
 
-In this case here, we add the Query ID to the metadata field so that we can preserve it for downstream processing. By properly structuring our data and enriching it with metadata, we're setting a strong foundation for the topic modeling work ahead. 
+In this case here, we add the Query ID to the metadata field so that we can preserve it for downstream processing. By properly structuring our data and enriching it with metadata, we're setting a strong foundation for the topic modeling work ahead.
 
 This careful preparation will pay off when we analyze the results and turn insights into actionable improvements
 
@@ -250,14 +242,13 @@ Kura's procedural design offers several advantages:
 
 By starting with many detailed clusters before gradually reducing them to more general topics, we preserve meaningful patterns while making results easy for humans to review.
 
-
 ```python
 from kura import CheckpointManager
 
 async def analyze_conversations(conversations, checkpoint_manager):
     from kura import (
-        summarise_conversations, 
-        generate_base_clusters_from_conversation_summaries, 
+        summarise_conversations,
+        generate_base_clusters_from_conversation_summaries,
         reduce_clusters_from_base_clusters,
         reduce_dimensionality_from_clusters
     )
@@ -265,38 +256,38 @@ async def analyze_conversations(conversations, checkpoint_manager):
     from kura.cluster import ClusterModel
     from kura.meta_cluster import MetaClusterModel
     from kura.dimensionality import HDBUMAP
-    
+
     # Set up models
     summary_model = SummaryModel()
     cluster_model = ClusterModel()
     meta_cluster_model = MetaClusterModel()
     dimensionality_model = HDBUMAP()
-    
+
     # Run pipeline steps
     summaries = await summarise_conversations(
-        conversations, 
-        model=summary_model, 
+        conversations,
+        model=summary_model,
         checkpoint_manager=checkpoint_manager
     )
-    
+
     clusters = await generate_base_clusters_from_conversation_summaries(
-        summaries, 
-        model=cluster_model, 
+        summaries,
+        model=cluster_model,
         checkpoint_manager=checkpoint_manager
     )
-    
+
     reduced_clusters = await reduce_clusters_from_base_clusters(
-        clusters, 
-        model=meta_cluster_model, 
+        clusters,
+        model=meta_cluster_model,
         checkpoint_manager=checkpoint_manager
     )
-    
+
     projected = await reduce_dimensionality_from_clusters(
-        reduced_clusters,   
-        model=dimensionality_model, 
+        reduced_clusters,
+        model=dimensionality_model,
         checkpoint_manager=checkpoint_manager
     )
-    
+
     return projected
 
 
@@ -307,10 +298,9 @@ clusters = await analyze_conversations(conversations, checkpoint_manager=checkpo
 
 In the output, we can see the consolidation process happening in real-time. Kura starts with 56 base clusters, then gradually merges them through multiple rounds until we reach 9 final top-level clusters. Each merge combines similar topics while preserving the essential distinctions between different conversation types.
 
-Now, let's examine these top-level clusters to understand the main themes in our data. 
+Now, let's examine these top-level clusters to understand the main themes in our data.
 
 By looking at the cluster names, descriptions, and sizes, we can quickly identify what users are discussing most frequently and how these topics relate to each other
-
 
 ```python
 # Get top-level clusters (those without parents)
@@ -327,7 +317,6 @@ for cluster in parent_clusters:
 # Join with newlines and print
 print("\n\n".join(formatted_clusters))
 ```
-
 
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Optimize security and management for data in AWS</span> : Users sought to improve security by clarifying IAM roles 
 specific to AWS SageMaker training and by exploring best practices for dataset versioning. They also aimed to 
@@ -359,8 +348,6 @@ machine learning experiments. They discussed techniques and specific tools like 
 tracking. : <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">123</span>
 </pre>
 
-
-
 ## Analysing Our Results
 
 ### Understanding Our Top-Level Clusters
@@ -368,6 +355,7 @@ tracking. : <span style="color: #008080; text-decoration-color: #008080; font-we
 Looking at the seven top-level clusters generated by Kura, we can identify clear patterns in how users are interacting with the documentation.
 
 The three largest clusters account for 69% of all queries:
+
 1. **Streamline ML logging and visualization enhancements** (178 conversations) - Users seeking guidance on integrating W&B for logging and customizing visualizations
 2. **Manage and log machine learning experiments efficiently** (123 conversations) - Focus on experiment management and tracking using tools like WandB
 3. **Guide me on machine learning and Markdown usage** (84 conversations) - Assistance with Markdown reports and troubleshooting ML tools
@@ -375,6 +363,7 @@ The three largest clusters account for 69% of all queries:
 What's particularly notable is that **logging and experiment management dominate user concerns**. The top two clusters alone represent 54% of all queries (301 out of 560), both focusing on different aspects of experiment tracking and logging.
 
 Additional significant themes include:
+
 - **AWS integration and security** (75 conversations) - IAM roles, SageMaker training, and data storage
 - **Team collaboration and data management** (67 conversations) - Table manipulation, collaboration metrics, and project management
 - **Model performance optimization** (28 conversations) - Hyperparameter tuning and evaluation
@@ -383,10 +372,9 @@ This clustering reveals that the majority of user questions center around **how 
 
 ### Analysing Our Summaries
 
-Let's now examine what are some of the summaries that were generated by Kura for our individual query document pairs. 
+Let's now examine what are some of the summaries that were generated by Kura for our individual query document pairs.
 
 To do so, we'll read in the list of conversations that we started with and then find their corresponding summary. This will allows us to then evaluate how representative the conversation summary is of the individual conversation.
-
 
 ```python
 from kura.types import ConversationSummary
@@ -408,13 +396,9 @@ for i in range(3):
     print(id_to_conversation[summaries[i].chat_id].messages[0].content)
 ```
 
-
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">The user is seeking guidance on tracking machine learning experiments using a specific tool, detailing the steps 
 and providing pseudocode for implementation.
 </pre>
-
-
-
 
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
 User Query: experiment tracking
@@ -456,15 +440,9 @@ wandb.log\<span style="color: #800080; text-decoration-color: #800080; font-weig
 
 </pre>
 
-
-
-
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Bayesian optimization is a hyperparameter tuning technique that uses a surrogate function for informed search, 
 contrasting with grid and random search methods.
 </pre>
-
-
-
 
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
 User Query: Bayesian optimization
@@ -498,15 +476,9 @@ optimization for hyperparameter tuning with W&amp;B.
 
 </pre>
 
-
-
-
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">The user seeks guidance on integrating a specific tool with a programming framework for tracking machine learning 
 experiments. The conversation includes pseudocode for implementation steps.
 </pre>
-
-
-
 
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
 User Query: How to integrate Weights &amp; Biases with PyTorch?
@@ -553,8 +525,6 @@ model.to\<span style="color: #800080; text-decoration-color: #800080; font-weigh
 
 </pre>
 
-
-
 ## Conclusion
 
 ### What You Learned
@@ -576,7 +546,7 @@ However, we also identified critical limitations in the default summarization ap
 While our clustering revealed valuable high-level patterns, the generic summaries limit our ability to understand specific user needs. In the next notebook, "Better Summaries", we'll address this limitation by building a custom summarization model that:
 
 - **Identifies specific W&B features** (Artifacts, Configs, Reports) mentioned in each query
-- **Captures precise user intent** rather than generic descriptions  
+- **Captures precise user intent** rather than generic descriptions
 - **Creates domain-specific summaries** tailored to W&B terminology and workflows
 
 By replacing vague summaries like "user seeks information about tracking" with precise descriptions like "user is managing W&B Artifacts for model versioning", we'll create clusters that better reflect real user needs and provide more targeted, actionable insights for system improvements.

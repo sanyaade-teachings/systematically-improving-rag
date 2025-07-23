@@ -28,11 +28,7 @@ This part explores the foundations of specialized retrieval and its importance:
 
 In our journey through systematically improving RAG applications, we've reached a pivotal moment. The previous sessions have equipped us with the fundamental building blocks: the RAG playbook, synthetic data generation, fine-tuning approaches, user experience design for data collection, and segmentation techniques. Now, in Session 5, we turn our attention to a concept that often separates basic implementations from truly exceptional ones—multimodal RAG and specialized search indices.
 
-!!! note "Building on the Foundation"
-    - **[Chapter 1](chapter1.md)**: Evaluation metrics for each specialized retriever
-    - **[Chapter 2](chapter2.md)**: Fine-tuning embeddings for specific domains
-    - **[Chapter 3](chapter3-1.md)**: Collecting feedback on retrieval quality
-    - **[Chapter 4](chapter4-2.md)**: Identifying which capabilities need specialization
+!!! note "Building on the Foundation" - **[Chapter 1](chapter1.md)**: Evaluation metrics for each specialized retriever - **[Chapter 2](chapter2.md)**: Fine-tuning embeddings for specific domains - **[Chapter 3](chapter3-1.md)**: Collecting feedback on retrieval quality - **[Chapter 4](chapter4-2.md)**: Identifying which capabilities need specialization
 
 !!! quote "Key Insight"
 The fundamental insight that drives this session is deceptively simple yet profound: _not all queries are created equal_. Different types of information require different approaches to retrieval. Just as you wouldn't use a hammer for every home repair task, you shouldn't rely on a single retrieval mechanism for every type of query your users might have.
@@ -128,7 +124,7 @@ class FinancialStatement(BaseModel):
     sector: Optional[str] = None
     currency: str = "USD"
     restated: bool = False  # Has this statement been restated?
-    
+
 def extract_financial_data(document_text: str) -> FinancialStatement:
     """
     Extract structured financial data from document text using LLM.
@@ -150,14 +146,14 @@ def extract_financial_data(document_text: str) -> FinancialStatement:
     - Earnings per share
     - Business sector
     - Whether this statement has been restated
-    
+
     Format your response as a JSON object with these fields.
     """
-    
+
     # Use LLM to extract the structured information
     # Implementation depends on your LLM framework
     extracted_json = call_llm(system_prompt, document_text)
-    
+
     # Parse the extracted JSON into our Pydantic model
     return FinancialStatement.parse_raw(extracted_json)
 ```
@@ -186,7 +182,7 @@ These synthetic chunks become intermediaries—easier to search than the origina
 When dealing with extremely long documents (1,500-2,000+ pages), traditional chunking strategies often fail to capture information that spans multiple sections. The RAPTOR (Recursive Abstractive Processing for Tree-Organized Retrieval) approach offers a sophisticated solution.
 
 !!! tip "Production Insight"
-    From office hours: "For documents with 1,500-2,000 pages, the RAPTOR approach with clustering and summarization shows significant promise. After chunking documents, recluster the chunks to identify concepts that span multiple pages, then summarize those clusters for retrieval."
+From office hours: "For documents with 1,500-2,000 pages, the RAPTOR approach with clustering and summarization shows significant promise. After chunking documents, recluster the chunks to identify concepts that span multiple pages, then summarize those clusters for retrieval."
 
 #### The RAPTOR Process
 
@@ -196,32 +192,25 @@ When dealing with extremely long documents (1,500-2,000+ pages), traditional chu
 4. **Tree Structure**: Build a retrieval tree from detailed chunks to high-level summaries
 
 !!! example "Legal Document Processing"
-    A tax law firm implemented RAPTOR for their regulatory documents:
-    - Laws on pages 1-30, exemptions scattered throughout pages 50-200
-    - Clustering identified related exemptions across different sections
-    - Summaries linked laws with all relevant exemptions
-    - One-time processing cost: $10 in LLM calls per document
-    - Result: 85% improvement in finding complete legal information
+A tax law firm implemented RAPTOR for their regulatory documents: - Laws on pages 1-30, exemptions scattered throughout pages 50-200 - Clustering identified related exemptions across different sections - Summaries linked laws with all relevant exemptions - One-time processing cost: $10 in LLM calls per document - Result: 85% improvement in finding complete legal information
 
 #### Implementation Considerations
 
 **When to Use RAPTOR:**
+
 - Documents where related information is scattered across many pages
 - Content with hierarchical structure (laws/exemptions, rules/exceptions)
 - Long-form documents that don't change frequently (worth the preprocessing cost)
 - Cases where missing related information has high consequences
 
 **Cost-Benefit Analysis:**
+
 - **Upfront Cost**: $5-20 in LLM calls per document for clustering and summarization
 - **Processing Time**: 10-30 minutes per document depending on length
 - **Benefit**: Dramatically improved recall for cross-document concepts
 - **ROI**: Justified for documents accessed frequently or with high-value queries
 
-!!! warning "Implementation Tips"
-    1. Test on a subset first to validate clustering quality
-    2. Store cluster relationships for explainability
-    3. Consider incremental updates for living documents
-    4. Monitor which summary levels get used most
+!!! warning "Implementation Tips" 1. Test on a subset first to validate clustering quality 2. Store cluster relationships for explainability 3. Consider incremental updates for living documents 4. Monitor which summary levels get used most
 
 #### Practical Example
 
@@ -230,7 +219,7 @@ For a construction company's specification documents:
 ```
 Original Structure:
 - General requirements (pages 1-50)
-- Specific materials (pages 51-300) 
+- Specific materials (pages 51-300)
 - Installation procedures (pages 301-500)
 - Exceptions and special cases (scattered throughout)
 
@@ -242,9 +231,10 @@ After RAPTOR Processing:
 ```
 
 !!! quote "Key Takeaway"
-    "RAPTOR transforms the challenging problem of long document retrieval into a more manageable hierarchical search problem. The upfront investment in processing pays dividends through dramatically improved retrieval accuracy for complex, multi-faceted queries."
+"RAPTOR transforms the challenging problem of long document retrieval into a more manageable hierarchical search problem. The upfront investment in processing pays dividends through dramatically improved retrieval accuracy for complex, multi-faceted queries."
 
 For implementation details, see:
+
 - [Original RAPTOR paper](https://arxiv.org/abs/2401.18059)
 - [LlamaIndex RAPTOR implementation](https://docs.llamaindex.ai/en/stable/examples/retrievers/raptor.html)
 
@@ -255,7 +245,7 @@ As we introduce specialized indices, our measurement framework expands to assess
 !!! info "Two-Level Measurement Framework"
 
 ```
-1. Are we selecting the right retrieval method for each query? 
+1. Are we selecting the right retrieval method for each query?
 2.  Is each retrieval method finding the right information?
 ```
 
@@ -272,7 +262,7 @@ If you find that your system correctly routes 95% of queries to the appropriate 
 This two-level evaluation framework ensures you invest your improvement efforts where they'll have the greatest impact.
 
 !!! tip "Next Steps"
-    In [Chapter 6](chapter6-1.md), we'll explore how to bring these specialized components together through intelligent routing, creating a unified system that seamlessly directs queries to the appropriate retrievers.
+In [Chapter 6](chapter6-1.md), we'll explore how to bring these specialized components together through intelligent routing, creating a unified system that seamlessly directs queries to the appropriate retrievers.
 
 ---
 

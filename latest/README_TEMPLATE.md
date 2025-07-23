@@ -20,11 +20,13 @@ By the end of this week, you'll be able to:
 **Purpose**: [One-line description of the notebook's goal]
 
 **What You'll Learn**:
+
 - [Key concept or technique 1]
 - [Key concept or technique 2]
 - [Key concept or technique 3]
 
 **What You'll Build**:
+
 - [Concrete output or system 1]
 - [Concrete output or system 2]
 
@@ -41,10 +43,12 @@ By the end of this week, you'll be able to:
 ## Prerequisites
 
 ### Knowledge Requirements
+
 - [Required concept/skill 1]
 - [Required concept/skill 2]
 
 ### Technical Requirements
+
 - Python packages: `package1`, `package2`, `package3`
 - API keys: [List required API keys]
 - Hardware: [GPU requirements if any]
@@ -80,9 +84,11 @@ After completing this week's materials, you'll have:
 ## Common Issues and Solutions
 
 ### Issue 1: [Problem Description]
+
 **Solution**: [How to fix it]
 
 ### Issue 2: [Problem Description]
+
 **Solution**: [How to fix it]
 
 ## Next Steps
@@ -99,8 +105,7 @@ After completing this week's materials, you'll have:
 
 ---
 
-**Note**: Ensure you've completed all prerequisites before starting these notebooks. Each notebook builds on previous concepts.
----
+## **Note**: Ensure you've completed all prerequisites before starting these notebooks. Each notebook builds on previous concepts.
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 

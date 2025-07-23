@@ -1,6 +1,6 @@
 ---
 title: Week 1 - Office Hours Summary
-date: '2024-01-15'
+date: "2024-01-15"
 cohort: 2
 week: 1
 session: 1

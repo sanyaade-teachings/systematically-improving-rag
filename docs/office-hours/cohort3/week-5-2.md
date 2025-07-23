@@ -1,6 +1,6 @@
 ---
 title: Week 5 - Office Hour 2
-date: '2024-06-19'
+date: "2024-06-19"
 cohort: 3
 week: 5
 session: 2
@@ -36,7 +36,7 @@ For cost estimation, I recommend calculating the token volume of your data. We h
 
 For specialized extraction tasks, consider using smaller, purpose-built models. At Stitch Fix, we built a suite of small models doing specific extractions. For example, we realized we were selling belts with pants that had no belt loops, so we created a simple computer vision model to detect belt loops. This approach was efficient and solved a specific business problem worth millions of dollars.
 
-***Key Takeaway:*** Calculate token volumes and costs before deciding on your extraction approach. Sometimes the cost difference between APIs and self-hosted models is smaller than expected, making the engineering effort to switch questionable. For specialized extractions, consider purpose-built models that solve specific business problems rather than trying to do everything with one large model.
+**_Key Takeaway:_** Calculate token volumes and costs before deciding on your extraction approach. Sometimes the cost difference between APIs and self-hosted models is smaller than expected, making the engineering effort to switch questionable. For specialized extractions, consider purpose-built models that solve specific business problems rather than trying to do everything with one large model.
 
 ## What are the challenges with extracting multiple attributes in a single API call?
 
@@ -44,7 +44,7 @@ When extracting multiple attributes from documents, be aware that prompts for so
 
 To address this, we split our extraction into separate jobs: one for action items and another for summary and memo generation. This separation gave us better control over each component. We made this approach cost-effective by leveraging prompt caching - the transcript only needed to be processed once, with multiple outputs generated from that single input.
 
-***Key Takeaway:*** Be cautious about extracting too many attributes in a single API call, as they can influence each other in unexpected ways. Consider splitting extractions into separate jobs with specific focuses, and use techniques like prompt caching to maintain cost efficiency.
+**_Key Takeaway:_** Be cautious about extracting too many attributes in a single API call, as they can influence each other in unexpected ways. Consider splitting extractions into separate jobs with specific focuses, and use techniques like prompt caching to maintain cost efficiency.
 
 ## How should I approach recommendation systems with LLMs?
 
@@ -58,7 +58,7 @@ One valuable application of LLMs is creating synthetic users to run simulations,
 
 We addressed this by building a "Tinder for clothes" where users could swipe left or right on clothing items. This generated 6,000 labels much faster than waiting for 400 actual shipments, as users would label 30 items a day versus receiving only 5 items a month.
 
-***Key Takeaway:*** Rather than using LLMs directly for recommendations, use them to generate better embeddings and synthetic data to address cold-start problems. Consider creative ways to gather user preferences at scale, as the velocity of data collection is often the limiting factor in recommendation quality.
+**_Key Takeaway:_** Rather than using LLMs directly for recommendations, use them to generate better embeddings and synthetic data to address cold-start problems. Consider creative ways to gather user preferences at scale, as the velocity of data collection is often the limiting factor in recommendation quality.
 
 ## How can I blend traditional ML with unstructured data from LLMs?
 
@@ -76,7 +76,7 @@ The workflow we found effective was:
 
 This approach recognizes that different models have different data efficiency profiles, and leveraging their strengths in combination yields better results than trying to solve everything with a single approach.
 
-***Key Takeaway:*** Blend traditional ML with LLMs by using LLMs for feature engineering and synthetic data generation. Build specialized, data-efficient models for specific attributes, then use these to feed larger models. This creates a virtuous cycle where each type of model enhances the capabilities of the others.
+**_Key Takeaway:_** Blend traditional ML with LLMs by using LLMs for feature engineering and synthetic data generation. Build specialized, data-efficient models for specific attributes, then use these to feed larger models. This creates a virtuous cycle where each type of model enhances the capabilities of the others.
 
 ## Are there good tools for data engineering in the LLM ecosystem?
 
@@ -90,7 +90,7 @@ This creates problems when metrics improve - does anyone trust the results? Was 
 
 At Facebook, defining a new table for newsfeed views would involve a data engineer interviewing 20 teams, designing columns to support various query patterns, and ensuring everyone could write consistent SQL queries against the database. This level of rigor is often missing in LLM evaluation setups.
 
-***Key Takeaway:*** The data engineering ecosystem for LLMs is still maturing. Pay special attention to how you organize evaluation datasets, as inconsistent approaches lead to unreliable metrics. Consider investing in proper data engineering for your evaluation pipeline, similar to how established companies handle critical data infrastructure.
+**_Key Takeaway:_** The data engineering ecosystem for LLMs is still maturing. Pay special attention to how you organize evaluation datasets, as inconsistent approaches lead to unreliable metrics. Consider investing in proper data engineering for your evaluation pipeline, similar to how established companies handle critical data infrastructure.
 
 ## What's your approach to topic modeling and specialized indices?
 
@@ -108,7 +108,7 @@ This is why we need to build a portfolio of tools rather than relying solely on 
 
 This is similar to how command-line tools interact with a file system - you have commands like "list directories" and "view files," but also more specialized commands like "list files sorted by last modified" or "list files by editor." A smart model can learn to use these various tools rather than trying to build one mega-search tool that works for all cases.
 
-***Key Takeaway:*** Don't rely solely on embeddings for complex information retrieval. Build a portfolio of specialized tools that can work with your data in different ways. This approach is gaining traction in code generation and will likely become standard across other domains as well.
+**_Key Takeaway:_** Don't rely solely on embeddings for complex information retrieval. Build a portfolio of specialized tools that can work with your data in different ways. This approach is gaining traction in code generation and will likely become standard across other domains as well.
 
 ## Will reasoning models eliminate the need for specialized indices?
 
@@ -120,7 +120,7 @@ The key insight is that tools aren't necessarily one-to-one with retrievers. You
 
 This is the direction that code generation tools are taking - they're finding that embedding your codebase isn't the right approach. Instead, they're building portfolios of tools, and I believe this pattern will spread to other domains as well.
 
-***Key Takeaway:*** Even with advanced reasoning capabilities, models benefit from having access to specialized tools rather than trying to do everything through a single approach. The future lies in building portfolios of tools that models can intelligently select and combine, not in creating a single universal solution.
+**_Key Takeaway:_** Even with advanced reasoning capabilities, models benefit from having access to specialized tools rather than trying to do everything through a single approach. The future lies in building portfolios of tools that models can intelligently select and combine, not in creating a single universal solution.
 
 ## How do you approach cost calculations for AI processing?
 
@@ -132,8 +132,7 @@ We had a surprising discovery when comparing OpenAI's API to open source models 
 
 These calculations help you make rational decisions about where to invest your engineering time. Sometimes the cost difference between approaches is so small that it's not worth optimizing further, especially when the absolute costs are already low.
 
-***Key Takeaway:*** Calculate token volumes and costs before investing in optimization. Modern AI models are often surprisingly affordable at scale, making some optimizations unnecessary. Focus your engineering efforts where they'll have meaningful impact rather than chasing small percentage improvements.
-
+**_Key Takeaway:_** Calculate token volumes and costs before investing in optimization. Modern AI models are often surprisingly affordable at scale, making some optimizations unnecessary. Focus your engineering efforts where they'll have meaningful impact rather than chasing small percentage improvements.
 
 ## How should I approach dynamically generating and handling metadata for documents?
 

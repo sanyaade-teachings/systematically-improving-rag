@@ -7,6 +7,7 @@ Segmentation really depends on who your customers are and what they're trying to
 For example, with a nutrition company chatbot, you might discover segments within product search – different capabilities around understanding deliveries, rescheduling, recurring orders, etc. Data analysis helps figure out what's important to build for the customer.
 
 In a construction context, we found segments around:
+
 - Users inputting specific project IDs (e.g., "Tell me about RFC 1257")
 - Questions about time windows ("What do I have due today?" or "What's happening this week?")
 - Counting items in documents
@@ -20,6 +21,7 @@ The key is to find external understanding of your data – what are you worried 
 If you have the compute resources, do similar classification and segmentation over your conversations. You'll uncover different insights beyond just tools.
 
 When analyzing queries alone, we're basically asking how well we can execute tools to answer in one generation. By analyzing conversations, we might find segments that tell us:
+
 - Users think the chatbot talks too much or not enough
 - Users are frustrated with responses
 - Common patterns in how conversations progress
@@ -35,6 +37,7 @@ I generally use what I call "old school" approaches – K-means and DBSCAN. I ty
 For example, I might take Ada 2 embeddings, use K-means to pick 10-30 clusters, and look at 100 questions per cluster. That might take 2-3 days but teaches you a lot about your data. It's rarely the case that you run topic models and can just use them directly in your business.
 
 When working with thinking models for clustering, I still do the initial clustering first because I might have 20 million questions to analyze. I'll cluster that data, find good and bad examples across clusters, and put that into Claude 3.7 or similar models, asking them to:
+
 - Name each cluster
 - Provide a short description
 - Give good examples of what belongs in the cluster
@@ -85,6 +88,7 @@ If you lack training data for certain languages, consider using synthetic data c
 Vision RAG isn't talked about as much because it's more expensive and most of the important data is typically in text. That said, there are valuable use cases – like a company that does RAG over video clips to help movie producers find content, using Gemini Flash to describe what's happening in scenes.
 
 For databases, I'd recommend looking at:
+
 - ChromaDB
 - LanceDB
 - TurboBuffer (used by Notion and Cursor)
@@ -99,6 +103,7 @@ In week 5, I'll talk more about this – there are many things you can't do with
 MCP is becoming increasingly important because it allows different systems to connect with each other. When you own all the code, you don't really need MCP since you can just use function calling. But the ability to connect different systems is very compelling.
 
 Some interesting examples of MCP usage:
+
 - Having an MCP server in Cursor to do image generation while building a video game
 - Creating an MCP server to access network logs for debugging web applications
 - Building MCP servers that connect to production databases so Cursor can understand your schema and write SQL
@@ -155,6 +160,7 @@ I've been using AI tools to build academic-style slides with LaTeX and Beamer. M
 5. Use a simple auto-compiler (built with Watchdog) that recompiles the PDF whenever the file changes
 
 The advantages of this approach:
+
 - You can create both slides and a detailed document from the same source
 - The LLM can generate diagrams using TikZ (a graphics creation library)
 - Everything is vector-based so it looks clean at any resolution
@@ -309,6 +315,7 @@ The protocol is still evolving but shows promise for creating more powerful AI s
 ## Key Takeaways and Additional Resources
 
 ### Key Takeaways:
+
 - The goal of segmentation is to understand customer needs and determine what tools to build next
 - Chunking strategy (800 tokens, 50% overlap) is rarely the bottleneck - focus on contextual retrieval instead
 - For topic modeling, start with BERTTopic defaults and then use thinking models to better understand clusters
@@ -326,6 +333,7 @@ The protocol is still evolving but shows promise for creating more powerful AI s
 - For response time, implement progressive rendering, caching, response type classification, contextual snippet generation, and parallel processing
 
 ### Additional Resources:
+
 - BERTTopic: https://maartengr.github.io/BERTopic/index.html
 - MCP Agent: https://github.com/lastmile-ai/mcp-agent
 - Claude Code: https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview

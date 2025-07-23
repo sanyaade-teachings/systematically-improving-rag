@@ -19,19 +19,20 @@ Just as Week 1 showed how synthetic data could improve retrieval, and Week 4 dem
 
 Through hands-on experimentation with a personal assistant chatbot, you'll discover how to:
 
-
 1. Leverage System Prompts
+
 - Write effective prompts that explain tool usage patterns
 - Help models understand user workflows and preferences
 - Validate prompt improvements with metrics
 
-2. Design Few-Shot Examples 
+2. Design Few-Shot Examples
+
 - Create examples that demonstrate correct tool combinations
 - Target specific failure modes identified in testing
 - Balance example diversity and relevance
 
-
 3. Measure Improvements
+
 - Compare performance before and after changes
 - Track precision and recall across different approaches
 - Make data-driven decisions about prompting strategies
@@ -44,15 +45,14 @@ By adding a system prompt for users to outline their specific workflow and tool 
 
 Let's see this in action below where we add the user provided system prompt to our prompt template.
 
-
 ```python
 import instructor
 from helpers import load_commands, load_queries, Command, SelectedCommands
 
 user_system_prompt = """
-I work as a software engineer at a company. When it comes to work, we normally track all outstanding tasks in Jira and handle the code review/discussions in github itself. 
+I work as a software engineer at a company. When it comes to work, we normally track all outstanding tasks in Jira and handle the code review/discussions in github itself.
 
-refer to jira to get ticket information and updates but github is where code reviews, discussions and any other specific code related updates are tracked. Use the recently updated issues command to get the latest updates over search. 
+refer to jira to get ticket information and updates but github is where code reviews, discussions and any other specific code related updates are tracked. Use the recently updated issues command to get the latest updates over search.
 
 for todos, i use a single note in apple notes for all my todos unless i say otherwise. Obsidian is where I store diagrams, charts and notes that I've taken down for things that I'm studying up on. Our company uses confluence for documentation, wikis, release reports, meeting notes etc that need to be shared with the rest of the team. Notion I use it for financial planning, tracking expenses and planning for trips. I always use databases in notion.
 
@@ -72,7 +72,7 @@ async def generate_commands_with_system_prompt(
                 "role": "system",
                 "content": """
                 You are a helpful assistant that can execute commands in response to a user query. You have access to the following commands:
-                
+
                 <commands>
                 {% for command in commands %}
                 - {{ command.key }} : {{ command.command_description }}
@@ -103,9 +103,7 @@ async def generate_commands_with_system_prompt(
     /Users/ivanleo/Documents/coding/systematically-improving-rag/cohort_2/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
       warnings.warn(
 
-
 Let's now run our evaluations again to see how it performs.
-
 
 ```python
 import instructor
@@ -122,13 +120,7 @@ await generate_commands_with_system_prompt(
 )
 ```
 
-
-
-
     [UserCommand(key='microsoft-teams.findChat', arguments=[UserCommandArgument(title='Chat or Channel Name', value='#engineering')])]
-
-
-
 
 ```python
 from braintrust import Score, EvalAsync
@@ -194,36 +186,34 @@ results = await EvalAsync(
       hooks.meta(
 
 
-    
+
     =========================SUMMARY=========================
     week-6-fixes-1741091518 compared to week-6-fixes-1741091506:
     54.25% (+00.47%) 'recall'    score	(5 improvements, 5 regressions)
     63.55% (+03.10%) 'precision' score	(8 improvements, 8 regressions)
-    
+
     1741091518.79s start
     1741091521.06s end
     2.27s (+14.47%) 'duration'	(24 improvements, 27 regressions)
-    
-    See results for week-6-fixes-1741091518 at https://www.braintrust.dev/app/567/p/function-calling/experiments/week-6-fixes-1741091518
 
+    See results for week-6-fixes-1741091518 at https://www.braintrust.dev/app/567/p/function-calling/experiments/week-6-fixes-1741091518
 
 Performance Improvement with System Prompt
 
-| Metric | Baseline | System Prompt |
-|--------|----------|--------------|
-| Precision | 0.45 | 0.64 (+42%) |
-| Recall | 0.40 | 0.54 (+35%) |
+| Metric    | Baseline | System Prompt |
+| --------- | -------- | ------------- |
+| Precision | 0.45     | 0.64 (+42%)   |
+| Recall    | 0.40     | 0.54 (+35%)   |
 
 By providing a system prompt, we saw a significant improvement in performance across both precision and recall metrics.
 
-This is a significant improvement and shows that providing a system prompt can help the model understand how the user uses each tool. 
+This is a significant improvement and shows that providing a system prompt can help the model understand how the user uses each tool.
 
-Better yet, using system prompts allow our model to be more flexible and handle a greater variety of users that may have different ways of interacting with the tools. 
+Better yet, using system prompts allow our model to be more flexible and handle a greater variety of users that may have different ways of interacting with the tools.
 
 ### Comparing System Prompts with Baseline
 
 Now that we've seen a overall improvement across the board, let's look at what specific queries our model is having issues with. Let's do so by computing the same metrics as we did in our previous notebook
-
 
 ```python
 import pandas as pd
@@ -248,9 +238,6 @@ df = calculate_precision_recall_for_queries(df)
 df.head(10)
 ```
 
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -264,6 +251,7 @@ df.head(10)
     .dataframe thead th {
         text-align: right;
     }
+
 </style>
 <table border="1" class="dataframe">
   <thead>
@@ -372,16 +360,10 @@ df.head(10)
 </table>
 </div>
 
-
-
-
 ```python
 df_per_tool = calculate_per_tool_recall(df)
 df_per_tool.sort_values(by="recall", ascending=True).head(20)
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -396,6 +378,7 @@ df_per_tool.sort_values(by="recall", ascending=True).head(20)
     .dataframe thead th {
         text-align: right;
     }
+
 </style>
 <table border="1" class="dataframe">
   <thead>
@@ -552,17 +535,13 @@ df_per_tool.sort_values(by="recall", ascending=True).head(20)
 </table>
 </div>
 
-
-
-From the table above, we can see that some potential function calls with a high discrepancy between the expected calls and actual calls are 
+From the table above, we can see that some potential function calls with a high discrepancy between the expected calls and actual calls are
 
 1. `microsoftTeams.sendMessage` and `imessage.sendMessage`
 2. `github.unreadNotifications`
 3. `discord.findChat` and `discord.sendMessage`
 
 We'll grab some of these examples where a specific tool call didn't get executed below
-
-
 
 ```python
 # Set display width to maximum
@@ -576,9 +555,6 @@ unread_notification_examples = get_mismatched_examples_for_tool(
 unread_notification_examples
 ```
 
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -592,6 +568,7 @@ unread_notification_examples
     .dataframe thead th {
         text-align: right;
     }
+
 </style>
 <table border="1" class="dataframe">
   <thead>
@@ -654,9 +631,6 @@ unread_notification_examples
   </tbody>
 </table>
 </div>
-
-
-
 
 ```python
 unread_notification_examples = get_mismatched_examples_for_tool(
@@ -665,9 +639,6 @@ unread_notification_examples = get_mismatched_examples_for_tool(
 unread_notification_examples
 ```
 
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -681,6 +652,7 @@ unread_notification_examples
     .dataframe thead th {
         text-align: right;
     }
+
 </style>
 <table border="1" class="dataframe">
   <thead>
@@ -744,18 +716,12 @@ unread_notification_examples
 </table>
 </div>
 
-
-
-
 ```python
 send_message_examples = get_mismatched_examples_for_tool(
     df, "imessage.sendMessage", num_examples=5
 )
 send_message_examples
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -770,6 +736,7 @@ send_message_examples
     .dataframe thead th {
         text-align: right;
     }
+
 </style>
 <table border="1" class="dataframe">
   <thead>
@@ -833,18 +800,12 @@ send_message_examples
 </table>
 </div>
 
-
-
-
 ```python
 send_message_examples = get_mismatched_examples_for_tool(
     df, "discord.sendMessage", num_examples=5
 )
 send_message_examples
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -859,6 +820,7 @@ send_message_examples
     .dataframe thead th {
         text-align: right;
     }
+
 </style>
 <table border="1" class="dataframe">
   <thead>
@@ -904,11 +866,9 @@ send_message_examples
 </table>
 </div>
 
-
-
 ### Few Shot Prompting
 
-Once we've identified potential problem areas - like the model failing to find findChat - few shot examples can explicitly demonstrate these commands used in context. 
+Once we've identified potential problem areas - like the model failing to find findChat - few shot examples can explicitly demonstrate these commands used in context.
 
 For instance, we can show a few examples of how to use the `findChat` command with a `sendMessage` command. A natural fit here could be to grab some content from an internal documentation site like `confluence` and then sending it over to a chat.
 
@@ -934,7 +894,6 @@ We could also be inventive and use the `searchMedia` command alongside a normal 
 
 Including these concrete examples in the prompt teaches the model the correct sequence of steps and drastically reduces the chances it calls the wrong command.”
 
-
 ```python
 async def generate_commands_with_prompt_and_examples(
     query: str,
@@ -947,7 +906,7 @@ async def generate_commands_with_prompt_and_examples(
             {
                 "role": "system",
                 "content": """
-You are a helpful assistant that can execute commands in response to a user query. Only choose from the commands listed below. 
+You are a helpful assistant that can execute commands in response to a user query. Only choose from the commands listed below.
 
 You have access to the following commands:
 
@@ -1010,7 +969,6 @@ Here are some past examples of queries that the user has asked in the past and t
     return response.selected_commands
 ```
 
-
 ```python
 def evaluate_braintrust(input, output, **kwargs):
     return [
@@ -1071,29 +1029,26 @@ results = await EvalAsync(
       hooks.meta(
 
 
-    
+
     =========================SUMMARY=========================
     week-6-fixes-1741092345 compared to week-6-fixes-1741092333:
     78.94% (+05.75%) 'recall'    score	(9 improvements, 7 regressions)
     83.96% (+08.14%) 'precision' score	(10 improvements, 7 regressions)
-    
+
     1741092344.94s start
     1741092347.20s end
     2.26s (-03.44%) 'duration'	(28 improvements, 23 regressions)
-    
-    See results for week-6-fixes-1741092345 at https://www.braintrust.dev/app/567/p/function-calling/experiments/week-6-fixes-1741092345
 
+    See results for week-6-fixes-1741092345 at https://www.braintrust.dev/app/567/p/function-calling/experiments/week-6-fixes-1741092345
 
 ## Conclusion
 
 In this notebook, we've shown how simple techniques like few-shot prompting and system prompts can significantly boost model performance in tool selection.
 
-| Metric | Baseline | System Prompt | System Prompt + Few Shot |
-|--------|----------|---------------|--------------------------|
-| Precision | 0.45 | 0.64 (+42%) | 0.79 (+76%) |
-| Recall | 0.40 | 0.54 (+35%) | 0.84 (+110%) |
-
-
+| Metric    | Baseline | System Prompt | System Prompt + Few Shot |
+| --------- | -------- | ------------- | ------------------------ |
+| Precision | 0.45     | 0.64 (+42%)   | 0.79 (+76%)              |
+| Recall    | 0.40     | 0.54 (+35%)   | 0.84 (+110%)             |
 
 These gains came from two key insights : clear system prompts help models understand tool usage patterns (like using Teams for work vs Discord for gaming), while targeted examples prevent common mistakes like forgetting to find a chat before sending a message.
 

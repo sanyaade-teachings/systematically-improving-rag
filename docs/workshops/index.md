@@ -10,6 +10,7 @@ This series of workshops guides you through the complete process of building, ev
 ## Detailed Table of Contents
 
 ### [Introduction: Beyond Implementation to Improvement](chapter0.md)
+
 **The Product Mindset for RAG Systems**
 
 - Shifting from technical implementation to product-focused continuous improvement
@@ -19,6 +20,7 @@ This series of workshops guides you through the complete process of building, ev
 - Case studies showing the difference between implementation and product mindsets
 
 ### [Chapter 1: Kickstarting the Data Flywheel with Synthetic Data](chapter1.md)
+
 **Establishing Evaluation Frameworks and Overcoming the Cold Start Problem**
 
 - Common pitfalls in AI development: reasoning fallacy, vague metrics, generic solutions
@@ -29,6 +31,7 @@ This series of workshops guides you through the complete process of building, ev
 - Case studies: improving recall from 50% to 90% through systematic evaluation
 
 ### [Chapter 2: Converting Evaluations into Training Data for Fine-Tuning](chapter2.md)
+
 **From Evaluation to Production Improvement**
 
 - Why generic embeddings fall short for specialized applications
@@ -41,6 +44,7 @@ This series of workshops guides you through the complete process of building, ev
 ### Chapter 3: User Experience and Feedback Collection
 
 #### [Chapter 3.1: Feedback Collection - Building Your Improvement Flywheel](chapter3-1.md)
+
 **Designing Feedback Mechanisms That Users Actually Use**
 
 - Making feedback visible and engaging: increasing rates from <1% to >30%
@@ -51,6 +55,7 @@ This series of workshops guides you through the complete process of building, ev
 - Enterprise feedback collection through Slack integrations
 
 #### [Chapter 3.2: Overcoming Latency - Streaming and Interstitials](chapter3-2.md)
+
 **Transforming Waiting Time into Engagement Opportunities**
 
 - Psychology of waiting: perceived vs. actual performance
@@ -61,6 +66,7 @@ This series of workshops guides you through the complete process of building, ev
 - Streaming function calls and reasoning processes
 
 #### [Chapter 3.3: Quality of Life Improvements](chapter3-3.md)
+
 **Citations, Chain of Thought, and Validation Patterns**
 
 - Interactive citations that build trust while collecting feedback
@@ -73,6 +79,7 @@ This series of workshops guides you through the complete process of building, ev
 ### Chapter 4: Understanding Your Users Through Data Analysis
 
 #### [Chapter 4.1: Topic Modeling and Analysis](chapter4-1.md)
+
 **Finding Patterns in User Feedback and Queries**
 
 - Moving from individual feedback to systematic pattern identification
@@ -82,6 +89,7 @@ This series of workshops guides you through the complete process of building, ev
 - Resource allocation frameworks for maximum impact improvements
 
 #### [Chapter 4.2: Prioritization and Roadmapping](chapter4-2.md)
+
 **From Insights to Strategic Action Plans**
 
 - Impact/effort prioritization using 2x2 frameworks
@@ -93,6 +101,7 @@ This series of workshops guides you through the complete process of building, ev
 ### Chapter 5: Building Specialized Retrieval Capabilities
 
 #### [Chapter 5.1: Understanding Specialized Retrieval](chapter5-1.md)
+
 **Beyond Basic RAG: The Power of Specialization**
 
 - Why monolithic approaches reach limits with diverse query types
@@ -102,6 +111,7 @@ This series of workshops guides you through the complete process of building, ev
 - Two-level measurement: router accuracy × retriever performance
 
 #### [Chapter 5.2: Implementing Multimodal Search](chapter5-2.md)
+
 **Practical Techniques for Documents, Images, Tables, and SQL**
 
 - Advanced document retrieval: contextual chunks, page-level strategies, hybrid signals
@@ -114,6 +124,7 @@ This series of workshops guides you through the complete process of building, ev
 ### Chapter 6: Unified Architecture and Intelligent Routing
 
 #### [Chapter 6.1: Query Routing Foundations](chapter6-1.md)
+
 **Building Cohesive Systems from Specialized Components**
 
 - The API mindset: treating retrievers as services for language models
@@ -123,6 +134,7 @@ This series of workshops guides you through the complete process of building, ev
 - Framework development perspective for distributed RAG systems
 
 #### [Chapter 6.2: Tool Interfaces and Implementation](chapter6-2.md)
+
 **Implementing Routing Layers and Tool Selection**
 
 - Designing tool interfaces with Pydantic models and comprehensive documentation
@@ -133,6 +145,7 @@ This series of workshops guides you through the complete process of building, ev
 - MCP (Model Context Protocol) as emerging standard
 
 #### [Chapter 6.3: Performance Measurement and Improvement](chapter6-3.md)
+
 **Building Learning Systems That Continuously Improve**
 
 - Measuring tool selection effectiveness: precision, recall, confusion matrices
@@ -149,20 +162,20 @@ Each workshop combines theoretical concepts with practical exercises that you ca
 The workshops follow a complete methodology:
 
 1. **Foundation** (Introduction & Chapter 1): Product mindset and evaluation frameworks
-2. **Improvement Mechanics** (Chapter 2): Converting evaluation into training data  
+2. **Improvement Mechanics** (Chapter 2): Converting evaluation into training data
 3. **User Experience** (Chapter 3): Feedback collection, streaming, and quality improvements
 4. **Analysis** (Chapter 4): Understanding user patterns and prioritizing improvements
 5. **Specialization** (Chapter 5): Building specialized capabilities for different content types
 6. **Unification** (Chapter 6): Intelligent routing and unified architecture
 
 !!! note "Prerequisites"
-    These workshops assume basic familiarity with RAG implementations and foundational AI concepts. If you're new to RAG, we recommend reviewing the [Introduction](chapter0.md) before diving into the other chapters.
+These workshops assume basic familiarity with RAG implementations and foundational AI concepts. If you're new to RAG, we recommend reviewing the [Introduction](chapter0.md) before diving into the other chapters.
 
 !!! success "What You'll Build"
-    By completing this workshop series, you'll have built a comprehensive RAG system that:
-    
+By completing this workshop series, you'll have built a comprehensive RAG system that:
+
     - Continuously improves through systematic feedback collection
-    - Routes queries intelligently to specialized retrieval components  
+    - Routes queries intelligently to specialized retrieval components
     - Provides engaging user experiences with streaming and transparency
     - Uses data-driven prioritization for enhancement decisions
     - Implements validation patterns and quality safeguards

@@ -1,6 +1,6 @@
 ---
 title: RAG Office Hours Q&A Summary - Week 6
-date: '2024-02-19'
+date: "2024-02-19"
 cohort: 2
 week: 6
 session: 1

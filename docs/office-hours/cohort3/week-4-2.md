@@ -1,6 +1,6 @@
 ---
 title: Week 4 - Office Hour 2
-date: '2024-06-12'
+date: "2024-06-12"
 cohort: 3
 week: 4
 session: 2
@@ -39,9 +39,8 @@ For standard data visualizations, most companies use JavaScript libraries like R
 
 The approach depends on whether your report format is flexible or fixed. If fixed, each header might have its own RAG workflow - for example, every competitor analysis might need a leadership team section, which triggers a subtask to find the leadership team of the target company.
 
-
-
 ## How can we handle styling challenges in professional reports?
+
 One of the biggest challenges in AI report generation is matching the exact styling expectations of professional reports. I work with companies that sell to consultants like McKinsey, and the hardest part isn't generating the content - it's making the slides and plots look exactly like McKinsey-branded material.
 
 While it's easy to plug in matplotlib or Recharts, it's extremely difficult to match the precise styling requirements of professional consulting firms. Some clients are literally saying, "We're not going to pay you any of that $80,000 unless you can make it look like we actually made this."
@@ -50,9 +49,10 @@ These firms often use specialized software from the early 2000s for plot generat
 
 I believe there's a significant market opportunity here - you could easily sell software that generates McKinsey-style plots for $100,000 to an analyst team. The last 5% of styling is what makes the difference between something that looks AI-generated versus professionally produced.
 
-***Key Takeaway:*** The styling challenge represents a major opportunity for AI tools that can match the exact visual requirements of professional consulting firms. The technical content generation is often easier than matching the precise styling expectations that make reports look professionally produced.
+**_Key Takeaway:_** The styling challenge represents a major opportunity for AI tools that can match the exact visual requirements of professional consulting firms. The technical content generation is often easier than matching the precise styling expectations that make reports look professionally produced.
 
 ## How should I approach analyzing unstructured customer feedback data?
+
 For a project like Netflix's customer feedback analysis, where you're collecting unstructured data through a "report a problem" feature, I recommend a hybrid approach combining semantic search with structured analysis.
 
 First, consider doing hierarchical clustering to build a taxonomy of error categories. This gives you a structured way to analyze the data beyond just semantic search. By tagging all feedback with these hierarchical categories, you can provide accurate counts and faceted navigation.
@@ -65,9 +65,10 @@ For quantitative questions like "How many audio sync issues were reported in Bra
 
 I worked with a company called Interpret that built something similar - a chatbot that could talk to customer feedback and give realistic counts by combining semantic understanding with structured analysis.
 
-***Key Takeaway:*** The most effective approach combines semantic search with structured analysis through hierarchical clustering and classification. This gives users both the flexibility to explore feedback semantically and the accuracy of structured data for quantitative questions.
+**_Key Takeaway:_** The most effective approach combines semantic search with structured analysis through hierarchical clustering and classification. This gives users both the flexibility to explore feedback semantically and the accuracy of structured data for quantitative questions.
 
 ## What's the best way to build fast classifiers for unstructured data?
+
 When you need to quickly classify unstructured data, there are several approaches depending on your requirements.
 
 One approach is using embedding-based classification. As Jan mentioned, OpenAI's documentation describes a simple technique where you embed category descriptions and then classify items by finding the closest category embedding. This works well for straightforward classification tasks and is extremely fast to implement.
@@ -78,7 +79,7 @@ For Netflix's feedback analysis, you might want to combine pre-defined categorie
 
 The key is building a system that can quickly create and apply these classifiers as new issues emerge. When a new feature launches, you want to detect feedback about it immediately, even if it wasn't in your training data.
 
-***Key Takeaway:*** Fast classifier development is essential for responsive feedback analysis. Combining embedding-based approaches with domain expertise allows you to quickly identify both known issues and emerging patterns in user feedback.
+**_Key Takeaway:_** Fast classifier development is essential for responsive feedback analysis. Combining embedding-based approaches with domain expertise allows you to quickly identify both known issues and emerging patterns in user feedback.
 
 ## How should we think about tool-based approaches versus semantic search?
 
@@ -92,9 +93,10 @@ You can implement this with simple tools like "ls" (list files), "read_file", an
 
 I'm curious if this approach would work for traversing complex documents like 1,000-page PDFs. Instead of embedding everything, you could provide tools like "list_table_of_contents", "grep", "show_page", and "show_page_as_image". The agent could navigate the document naturally, finding references and following them just as a human would.
 
-***Key Takeaway:*** Semantic search is most valuable when the producer and consumer of data don't share vocabulary. For structured data or documents with clear organization, a tool-based approach that mimics human navigation may be more effective and require less preprocessing.
+**_Key Takeaway:_** Semantic search is most valuable when the producer and consumer of data don't share vocabulary. For structured data or documents with clear organization, a tool-based approach that mimics human navigation may be more effective and require less preprocessing.
 
 ## What are you working on with your Cura project?
+
 We're making progress on building out Cura, which is an open-source project (not quite a product yet) focused on analyzing conversation data. In the next few days, we'll be benchmarking it on about a thousand conversations to see what patterns we discover.
 
 The core of the project involves hierarchical clustering, explaining clusters, and generating names for these clusters. We're planning to download every open-source chat conversation dataset and run our analysis on it to see what we find.
@@ -103,9 +105,10 @@ My philosophy with any product I build is that it should function as a sensor th
 
 We apply the same approach to citations in paragraphs - users can mouse over citations to see the source data and delete or regenerate citations they don't trust. This creates a feedback loop that continuously improves the system.
 
-***Key Takeaway:*** Building products that function as data collection sensors is a powerful approach. By giving users options and tracking their choices, you can gather valuable feedback that improves your system while providing a better user experience.
+**_Key Takeaway:_** Building products that function as data collection sensors is a powerful approach. By giving users options and tracking their choices, you can gather valuable feedback that improves your system while providing a better user experience.
 
 ## What upcoming content are you excited about in the course?
+
 I'm particularly excited about the second half of the course where we'll dive deeper into data analysis and explore the portfolio of tools approach.
 
 In the coming weeks, we'll have talks from Reducto, one of the best PDF parsing libraries available right now. They have contracts with companies like Vanta and government agencies and have achieved impressive results.
@@ -114,9 +117,7 @@ We'll also be inviting teams building coding agents, including the Augment team 
 
 Beyond the course, I'm organizing a speaker series with guests from OpenAI's memory team and possibly Claude Code. My goal is to bring in the most interesting speakers in the field to share their insights.
 
-***Key Takeaway:*** The future of RAG systems, especially for structured data like code, may involve less semantic search and more tool-based approaches where agents navigate information using a portfolio of tools to build context incrementally.
-
-
+**_Key Takeaway:_** The future of RAG systems, especially for structured data like code, may involve less semantic search and more tool-based approaches where agents navigate information using a portfolio of tools to build context incrementally.
 
 ---
 

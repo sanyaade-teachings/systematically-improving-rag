@@ -8,7 +8,7 @@ description: Comprehensive FAQ compiled from all office hours sessions across co
 This comprehensive FAQ is compiled from all office hours sessions across multiple cohorts.
 
 !!! tip "Quick Navigation"
-    Use your browser's search (Ctrl+F) to find specific terms or questions, or browse through the questions below.
+Use your browser's search (Ctrl+F) to find specific terms or questions, or browse through the questions below.
 
 ## What is your take on DSpy? Should we use it?
 
@@ -1078,7 +1078,7 @@ For example:
 
 Even systems like Deep Research might evolve to pull from sources you tend to agree with, or deliberately include sources that challenge your viewpoint. These personalized relevancy signals could dramatically improve RAG systems beyond simple semantic matching.
 
-______________________________________________________________________
+---
 
 ---
 
@@ -1393,14 +1393,12 @@ Remember that the goal isn't perfect retrieval but helping users find the inform
 For specific workflows with well-defined steps, DAGs (Directed Acyclic Graphs) often provide more reliable and predictable results than fully agentic approaches:
 
 1. **Use DAGs when**:
-
    - The workflow has clear, sequential steps
    - You know the process is correct and just need to choose the right workflow
    - You're implementing established protocols (like therapy approaches or compliance processes)
    - Predictability and consistency are critical
 
 1. **Use agentic approaches when**:
-
    - The problem space is exploratory
    - Tasks require adaptation to unpredictable user input
    - The workflow needs to evolve based on intermediate results
@@ -1451,20 +1449,17 @@ The key insight is to avoid an all-or-nothing approach to response generation. B
 MCP (Model Context Protocol) is becoming increasingly important as it allows different AI systems to connect with each other:
 
 1. **Key benefits**:
-
    - Standardizes integrations between AI systems
    - Reduces boilerplate code when connecting to different services
    - Allows models to access data and functionality they wouldn't normally have permission to use
 
 1. **Practical examples**:
-
    - Image generation servers in Cursor for creating assets while building applications
    - Servers that connect to network logs for debugging web applications
    - Connectors to production databases that help models understand schemas and write SQL
    - Automation tools that write conversation notes directly to Notion or other note-taking systems
 
 1. **Comparison to function calling**:
-
    - When you own all the code, function calling may be simpler
    - MCP becomes valuable when connecting separate systems with different permission models
    - Provides a standardized way to expose capabilities across different AI platforms
@@ -1962,10 +1957,10 @@ This is why it's valuable to experiment with different retrieval settings: "For 
 
 Some people set thresholds based on re-ranker scores, but that can be dangerous since these scores aren't true probabilities. You can't just set 0.5 as a universal threshold - you need to understand the precision-recall tradeoffs for your specific application.
 
-***Key Takeaway:*** Models can be sensitive to low-precision context, where irrelevant information causes them to incorporate red herrings into answers. Testing different document count thresholds is more reliable than using arbitrary re-ranker score cutoffs.
+**_Key Takeaway:_** Models can be sensitive to low-precision context, where irrelevant information causes them to incorporate red herrings into answers. Testing different document count thresholds is more reliable than using arbitrary re-ranker score cutoffs.
 
 !!! success "Key Takeaway"
-    Models can be sensitive to low-precision context, where irrelevant information causes them to incorporate red herrings into answers. Testing different document count thresholds is more reliable than using arbitrary re-ranker score cutoffs.
+Models can be sensitive to low-precision context, where irrelevant information causes them to incorporate red herrings into answers. Testing different document count thresholds is more reliable than using arbitrary re-ranker score cutoffs.
 
 ---
 
@@ -1979,10 +1974,10 @@ Second, small models can build better embedding spaces. Most current embedding m
 
 In this context, I think of "small" as meaning lower latency with less world knowledge - models that can perform specific tasks efficiently without needing to understand everything about the world.
 
-***Key Takeaway:*** Small language models can enhance RAG systems through query rewriting and improved embeddings, offering lower latency for specific tasks that don't require comprehensive world knowledge.
+**_Key Takeaway:_** Small language models can enhance RAG systems through query rewriting and improved embeddings, offering lower latency for specific tasks that don't require comprehensive world knowledge.
 
 !!! success "Key Takeaway"
-    Small language models can enhance RAG systems through query rewriting and improved embeddings, offering lower latency for specific tasks that don't require comprehensive world knowledge.
+Small language models can enhance RAG systems through query rewriting and improved embeddings, offering lower latency for specific tasks that don't require comprehensive world knowledge.
 
 ---
 
@@ -2000,10 +1995,10 @@ For instance, with venture capital funding requests, we might extract 200 exampl
 
 The model we build with these rubrics typically extracts scores for 30+ criteria, with LLMs giving scores from 0-4, which then feed into a logistic regression model. This makes the evaluation somewhat explainable - if a candidate gets prioritized unexpectedly, we can see which features drove that decision.
 
-***Key Takeaway:*** For evaluating multi-turn conversations, combine state machines to enforce guardrails with human-labeled examples to create scoring rubrics. Using a simple model like logistic regression on top of LLM-generated feature scores maintains interpretability.
+**_Key Takeaway:_** For evaluating multi-turn conversations, combine state machines to enforce guardrails with human-labeled examples to create scoring rubrics. Using a simple model like logistic regression on top of LLM-generated feature scores maintains interpretability.
 
 !!! success "Key Takeaway"
-    For evaluating multi-turn conversations, combine state machines to enforce guardrails with human-labeled examples to create scoring rubrics. Using a simple model like logistic regression on top of LLM-generated feature scores maintains interpretability.
+For evaluating multi-turn conversations, combine state machines to enforce guardrails with human-labeled examples to create scoring rubrics. Using a simple model like logistic regression on top of LLM-generated feature scores maintains interpretability.
 
 ---
 
@@ -2023,10 +2018,10 @@ The solution wasn't to improve the AI's core capabilities but to add a simple ch
 
 For me, the most enjoyable work is identifying these business opportunities that don't necessarily require complex AI improvements. Software engineers often aren't trained to think this way, but my background in data science makes this approach natural.
 
-***Key Takeaway:*** The biggest business value often comes from analyzing usage patterns to identify inventory gaps or missing capabilities, rather than improving core AI performance. Simple changes like adding missing data or implementing basic business rules can deliver millions in value.
+**_Key Takeaway:_** The biggest business value often comes from analyzing usage patterns to identify inventory gaps or missing capabilities, rather than improving core AI performance. Simple changes like adding missing data or implementing basic business rules can deliver millions in value.
 
 !!! success "Key Takeaway"
-    The biggest business value often comes from analyzing usage patterns to identify inventory gaps or missing capabilities, rather than improving core AI performance. Simple changes like adding missing data or implementing basic business rules can deliver millions in value.
+The biggest business value often comes from analyzing usage patterns to identify inventory gaps or missing capabilities, rather than improving core AI performance. Simple changes like adding missing data or implementing basic business rules can deliver millions in value.
 
 ---
 
@@ -2040,10 +2035,10 @@ Similarly, with Netflix, if users search for "Oscar-nominated" movies but get re
 
 I'm constantly looking for these opportunities where a relatively simple technical solution can unlock significant business value. This approach has been much more impactful than pursuing technical sophistication for its own sake.
 
-***Key Takeaway:*** Focus on business outcomes over technical sophistication. Often the highest-value solutions involve simple changes that address real user needs rather than complex AI improvements.
+**_Key Takeaway:_** Focus on business outcomes over technical sophistication. Often the highest-value solutions involve simple changes that address real user needs rather than complex AI improvements.
 
 !!! success "Key Takeaway"
-    Focus on business outcomes over technical sophistication. Often the highest-value solutions involve simple changes that address real user needs rather than complex AI improvements.
+Focus on business outcomes over technical sophistication. Often the highest-value solutions involve simple changes that address real user needs rather than complex AI improvements.
 
 ---
 
@@ -2055,10 +2050,10 @@ Regarding the guest speakers we've had, I found the Chroma presentation particul
 
 I try to balance technical depth with accessibility in these sessions. When Nils gave his talk, it quickly became very technical with neural network diagrams and mathematical equations, and I could see people leaving the call. It's challenging to find the right balance between technical content and storytelling.
 
-***Key Takeaway:*** Balancing technical depth with accessibility is crucial when presenting AI concepts. Different audiences require different approaches to effectively communicate complex ideas.
+**_Key Takeaway:_** Balancing technical depth with accessibility is crucial when presenting AI concepts. Different audiences require different approaches to effectively communicate complex ideas.
 
 !!! success "Key Takeaway"
-    Balancing technical depth with accessibility is crucial when presenting AI concepts. Different audiences require different approaches to effectively communicate complex ideas.
+Balancing technical depth with accessibility is crucial when presenting AI concepts. Different audiences require different approaches to effectively communicate complex ideas.
 
 ---
 
@@ -2072,10 +2067,10 @@ You might also need to handle requests for information about guest speakers, lik
 
 For a dataset as small as course transcripts, long-context models like Claude 3 might work well without complex RAG. It's really the enterprise use cases with massive document collections that need sophisticated RAG approaches.
 
-***Key Takeaway:*** Even simple datasets like course transcripts reveal the importance of metadata and structured information for effective retrieval. Many issues are inventory problems rather than AI problems.
+**_Key Takeaway:_** Even simple datasets like course transcripts reveal the importance of metadata and structured information for effective retrieval. Many issues are inventory problems rather than AI problems.
 
 !!! success "Key Takeaway"
-    Even simple datasets like course transcripts reveal the importance of metadata and structured information for effective retrieval. Many issues are inventory problems rather than AI problems.
+Even simple datasets like course transcripts reveal the importance of metadata and structured information for effective retrieval. Many issues are inventory problems rather than AI problems.
 
 ---
 
@@ -2089,10 +2084,10 @@ For those who need to build UIs but lack JavaScript skills, LLMs are remarkably 
 
 The software can be ephemeral enough that I don't worry about long-term maintenance. For more polished applications, I recommend checking out Lovable.dev - I've built about 20 apps with them that work quite well.
 
-***Key Takeaway:*** Focus on learning the concepts rather than specific implementation details. Modern LLMs can generate high-quality UI code, making it easier than ever to build functional applications without deep frontend expertise.
+**_Key Takeaway:_** Focus on learning the concepts rather than specific implementation details. Modern LLMs can generate high-quality UI code, making it easier than ever to build functional applications without deep frontend expertise.
 
 !!! success "Key Takeaway"
-    Focus on learning the concepts rather than specific implementation details. Modern LLMs can generate high-quality UI code, making it easier than ever to build functional applications without deep frontend expertise.
+Focus on learning the concepts rather than specific implementation details. Modern LLMs can generate high-quality UI code, making it easier than ever to build functional applications without deep frontend expertise.
 
 ---
 
@@ -2106,10 +2101,10 @@ I enjoy working with teams that have access to subject matter experts who can he
 
 This approach of combining data analysis with domain expertise has consistently led to high-impact solutions that address real business needs rather than just technical challenges.
 
-***Key Takeaway:*** The most rewarding AI projects combine data analysis with domain expertise to identify high-impact business opportunities rather than pursuing technical sophistication for its own sake.
+**_Key Takeaway:_** The most rewarding AI projects combine data analysis with domain expertise to identify high-impact business opportunities rather than pursuing technical sophistication for its own sake.
 
 !!! success "Key Takeaway"
-    The most rewarding AI projects combine data analysis with domain expertise to identify high-impact business opportunities rather than pursuing technical sophistication for its own sake.
+The most rewarding AI projects combine data analysis with domain expertise to identify high-impact business opportunities rather than pursuing technical sophistication for its own sake.
 
 ---
 
@@ -2123,14 +2118,14 @@ As one participant noted, they've found at least one "golden nugget" from each s
 
 Remember that the AI field is moving incredibly quickly, and none of us can absorb everything. The goal isn't to become an expert on everything but to get really good at leveraging AI to stay ahead of everyone else.
 
-***Key Takeaway:*** Learning complex technical skills requires finding the right balance between depth of content and time for absorption. Focus on what's most relevant to your needs and remember that continuous learning is more important than perfect comprehension.
+**_Key Takeaway:_** Learning complex technical skills requires finding the right balance between depth of content and time for absorption. Focus on what's most relevant to your needs and remember that continuous learning is more important than perfect comprehension.
 
-______________________________________________________________________
+---
 
 FAQs
 
 !!! success "Key Takeaway"
-    Learning complex technical skills requires finding the right balance between depth of content and time for absorption. Focus on what's most relevant to your needs and remember that continuous learning is more important than perfect comprehension.
+Learning complex technical skills requires finding the right balance between depth of content and time for absorption. Focus on what's most relevant to your needs and remember that continuous learning is more important than perfect comprehension.
 
 ---
 
@@ -2206,10 +2201,10 @@ This is why it's valuable to experiment with different retrieval settings: "For 
 
 Some people set thresholds based on re-ranker scores, but that can be dangerous since these scores aren't true probabilities. You can't just set 0.5 as a universal threshold - you need to understand the precision-recall tradeoffs for your specific application.
 
-***Key Takeaway:*** Models can be sensitive to low-precision context, where irrelevant information causes them to incorporate red herrings into answers. Testing different document count thresholds is more reliable than using arbitrary re-ranker score cutoffs.
+**_Key Takeaway:_** Models can be sensitive to low-precision context, where irrelevant information causes them to incorporate red herrings into answers. Testing different document count thresholds is more reliable than using arbitrary re-ranker score cutoffs.
 
 !!! success "Key Takeaway"
-    Models can be sensitive to low-precision context, where irrelevant information causes them to incorporate red herrings into answers. Testing different document count thresholds is more reliable than using arbitrary re-ranker score cutoffs.
+Models can be sensitive to low-precision context, where irrelevant information causes them to incorporate red herrings into answers. Testing different document count thresholds is more reliable than using arbitrary re-ranker score cutoffs.
 
 ---
 
@@ -2239,10 +2234,10 @@ For instance, with venture capital funding requests, we might extract 200 exampl
 
 The model we build with these rubrics typically extracts scores for 30+ criteria, with LLMs giving scores from 0-4, which then feed into a logistic regression model. This makes the evaluation somewhat explainable - if a candidate gets prioritized unexpectedly, we can see which features drove that decision.
 
-***Key Takeaway:*** For evaluating multi-turn conversations, combine state machines to enforce guardrails with human-labeled examples to create scoring rubrics. Using a simple model like logistic regression on top of LLM-generated feature scores maintains interpretability.
+**_Key Takeaway:_** For evaluating multi-turn conversations, combine state machines to enforce guardrails with human-labeled examples to create scoring rubrics. Using a simple model like logistic regression on top of LLM-generated feature scores maintains interpretability.
 
 !!! success "Key Takeaway"
-    For evaluating multi-turn conversations, combine state machines to enforce guardrails with human-labeled examples to create scoring rubrics. Using a simple model like logistic regression on top of LLM-generated feature scores maintains interpretability.
+For evaluating multi-turn conversations, combine state machines to enforce guardrails with human-labeled examples to create scoring rubrics. Using a simple model like logistic regression on top of LLM-generated feature scores maintains interpretability.
 
 ---
 
@@ -2262,10 +2257,10 @@ The solution wasn't to improve the AI's core capabilities but to add a simple ch
 
 For me, the most enjoyable work is identifying these business opportunities that don't necessarily require complex AI improvements. Software engineers often aren't trained to think this way, but my background in data science makes this approach natural.
 
-***Key Takeaway:*** The biggest business value often comes from analyzing usage patterns to identify inventory gaps or missing capabilities, rather than improving core AI performance. Simple changes like adding missing data or implementing basic business rules can deliver millions in value.
+**_Key Takeaway:_** The biggest business value often comes from analyzing usage patterns to identify inventory gaps or missing capabilities, rather than improving core AI performance. Simple changes like adding missing data or implementing basic business rules can deliver millions in value.
 
 !!! success "Key Takeaway"
-    The biggest business value often comes from analyzing usage patterns to identify inventory gaps or missing capabilities, rather than improving core AI performance. Simple changes like adding missing data or implementing basic business rules can deliver millions in value.
+The biggest business value often comes from analyzing usage patterns to identify inventory gaps or missing capabilities, rather than improving core AI performance. Simple changes like adding missing data or implementing basic business rules can deliver millions in value.
 
 ---
 
@@ -2313,10 +2308,10 @@ For those who need to build UIs but lack JavaScript skills, LLMs are remarkably 
 
 The software can be ephemeral enough that I don't worry about long-term maintenance. For more polished applications, I recommend checking out Lovable.dev - I've built about 20 apps with them that work quite well.
 
-***Key Takeaway:*** Focus on learning the concepts rather than specific implementation details. Modern LLMs can generate high-quality UI code, making it easier than ever to build functional applications without deep frontend expertise.
+**_Key Takeaway:_** Focus on learning the concepts rather than specific implementation details. Modern LLMs can generate high-quality UI code, making it easier than ever to build functional applications without deep frontend expertise.
 
 !!! success "Key Takeaway"
-    Focus on learning the concepts rather than specific implementation details. Modern LLMs can generate high-quality UI code, making it easier than ever to build functional applications without deep frontend expertise.
+Focus on learning the concepts rather than specific implementation details. Modern LLMs can generate high-quality UI code, making it easier than ever to build functional applications without deep frontend expertise.
 
 ---
 
@@ -2342,7 +2337,7 @@ As one participant noted, they've found at least one "golden nugget" from each s
 
 Remember that the AI field is moving incredibly quickly, and none of us can absorb everything. The goal isn't to become an expert on everything but to get really good at leveraging AI to stay ahead of everyone else.
 
-______________________________________________________________________
+---
 
 FAQs
 
@@ -2416,12 +2411,12 @@ I've found that building separate indices for different document categories is e
 
 Within each category, we extract specific data structures. For drill logs, we identify that some pages represent different days of logging, so we extract metadata like dates, drill IDs, and personnel information. This allows us to build specialized tools for querying each data type effectively.
 
-For medical history queries, you'd want to create structured data that can be queried directly - essentially turning it into a "SELECT * FROM medical_history WHERE client_id = X" type of operation rather than relying on semantic search across unstructured text.
+For medical history queries, you'd want to create structured data that can be queried directly - essentially turning it into a "SELECT \* FROM medical_history WHERE client_id = X" type of operation rather than relying on semantic search across unstructured text.
 
-***Key Takeaway:*** Don't try to build one universal RAG system. Instead, identify the categories of documents in your domain, extract relevant structured data from each category, and build specialized tools to query that structured data effectively.
+**_Key Takeaway:_** Don't try to build one universal RAG system. Instead, identify the categories of documents in your domain, extract relevant structured data from each category, and build specialized tools to query that structured data effectively.
 
 !!! success "Key Takeaway"
-    Don't try to build one universal RAG system. Instead, identify the categories of documents in your domain, extract relevant structured data from each category, and build specialized tools to query that structured data effectively.
+Don't try to build one universal RAG system. Instead, identify the categories of documents in your domain, extract relevant structured data from each category, and build specialized tools to query that structured data effectively.
 
 ---
 
@@ -2435,10 +2430,10 @@ To make this more precise, especially with longer contexts, include the first th
 
 This approach works well with fine-tuning. We implemented something similar in Instructor, where an answer is structured as a list of facts, each with a substring quote, ensuring alignment between facts and quotes to minimize hallucinations.
 
-***Key Takeaway:*** Structure your citations with explicit references to chunk IDs and text spans rather than relying on similarity matching. This approach can be implemented through fine-tuning and provides much more reliable attribution.
+**_Key Takeaway:_** Structure your citations with explicit references to chunk IDs and text spans rather than relying on similarity matching. This approach can be implemented through fine-tuning and provides much more reliable attribution.
 
 !!! success "Key Takeaway"
-    Structure your citations with explicit references to chunk IDs and text spans rather than relying on similarity matching. This approach can be implemented through fine-tuning and provides much more reliable attribution.
+Structure your citations with explicit references to chunk IDs and text spans rather than relying on similarity matching. This approach can be implemented through fine-tuning and provides much more reliable attribution.
 
 ---
 
@@ -2452,10 +2447,10 @@ For most use cases where you might consider a graph, you can achieve similar res
 
 Even Facebook, despite being fundamentally a social graph, uses a very large-scale MySQL instance rather than a dedicated graph database. If you only need one-way traversals, a standard relational database is typically sufficient.
 
-***Key Takeaway:*** Unless your use case requires complex multi-step graph traversals, you're likely better off using embeddings with SQL databases rather than implementing a graph-based RAG system. The taxonomy development often becomes more complex than the embedding approach you were trying to avoid.
+**_Key Takeaway:_** Unless your use case requires complex multi-step graph traversals, you're likely better off using embeddings with SQL databases rather than implementing a graph-based RAG system. The taxonomy development often becomes more complex than the embedding approach you were trying to avoid.
 
 !!! success "Key Takeaway"
-    Unless your use case requires complex multi-step graph traversals, you're likely better off using embeddings with SQL databases rather than implementing a graph-based RAG system. The taxonomy development often becomes more complex than the embedding approach you were trying to avoid.
+Unless your use case requires complex multi-step graph traversals, you're likely better off using embeddings with SQL databases rather than implementing a graph-based RAG system. The taxonomy development often becomes more complex than the embedding approach you were trying to avoid.
 
 ---
 
@@ -2475,10 +2470,10 @@ This approach gives you insights into what people are asking for, how big each c
 
 We're releasing a new version of Cura soon with better ergonomics and UI for exploration. This will be covered in more detail in Week 4 of the course.
 
-***Key Takeaway:*** Systematic analysis of user queries through summarization, extraction, embedding, and clustering helps identify patterns in how people use your system, allowing you to prioritize improvements where they'll have the most impact.
+**_Key Takeaway:_** Systematic analysis of user queries through summarization, extraction, embedding, and clustering helps identify patterns in how people use your system, allowing you to prioritize improvements where they'll have the most impact.
 
 !!! success "Key Takeaway"
-    Systematic analysis of user queries through summarization, extraction, embedding, and clustering helps identify patterns in how people use your system, allowing you to prioritize improvements where they'll have the most impact.
+Systematic analysis of user queries through summarization, extraction, embedding, and clustering helps identify patterns in how people use your system, allowing you to prioritize improvements where they'll have the most impact.
 
 ---
 
@@ -2490,10 +2485,10 @@ The right question to ask is "which page do I need to look on?" rather than tryi
 
 By combining semantic and lexical search and focusing on page-level retrieval, you can often get better results than with smaller chunks. This approach also respects the semantic boundaries that document authors typically maintain - they rarely split headers from content across pages or break logical sections in awkward places.
 
-***Key Takeaway:*** For documentation, consider using page-level chunking rather than arbitrary token-based chunking. This respects the document's inherent structure and works well when combined with both semantic and lexical search approaches.
+**_Key Takeaway:_** For documentation, consider using page-level chunking rather than arbitrary token-based chunking. This respects the document's inherent structure and works well when combined with both semantic and lexical search approaches.
 
 !!! success "Key Takeaway"
-    For documentation, consider using page-level chunking rather than arbitrary token-based chunking. This respects the document's inherent structure and works well when combined with both semantic and lexical search approaches.
+For documentation, consider using page-level chunking rather than arbitrary token-based chunking. This respects the document's inherent structure and works well when combined with both semantic and lexical search approaches.
 
 ---
 
@@ -2505,10 +2500,10 @@ If you're dealing with very large vector collections, consider Timescale's pgvec
 
 This combination of vector search and lexical search in a single database that also supports filtering by metadata (like dates or access permissions) is powerful for real-world applications.
 
-***Key Takeaway:*** Postgres with pgvector provides a good balance of functionality for most RAG applications, especially when combined with pg_search for lexical search. For very large datasets, consider specialized extensions like pgvector_scale.
+**_Key Takeaway:_** Postgres with pgvector provides a good balance of functionality for most RAG applications, especially when combined with pg_search for lexical search. For very large datasets, consider specialized extensions like pgvector_scale.
 
 !!! success "Key Takeaway"
-    Postgres with pgvector provides a good balance of functionality for most RAG applications, especially when combined with pg_search for lexical search. For very large datasets, consider specialized extensions like pgvector_scale.
+Postgres with pgvector provides a good balance of functionality for most RAG applications, especially when combined with pg_search for lexical search. For very large datasets, consider specialized extensions like pgvector_scale.
 
 ---
 
@@ -2522,10 +2517,10 @@ In another case, we built voice agents that call car owners to schedule maintena
 
 The most valuable systems help make better decisions, not just answer questions. If you're building a hiring assistant, don't just price based on tokens used - think about what a bad hire costs a company and how much value your system provides by helping them avoid that outcome.
 
-***Key Takeaway:*** Focus on building systems that drive economic value through better decision-making rather than just answering questions or saving time. Structure your pricing to align with the value you create, such as taking a percentage of revenue generated or costs avoided.
+**_Key Takeaway:_** Focus on building systems that drive economic value through better decision-making rather than just answering questions or saving time. Structure your pricing to align with the value you create, such as taking a percentage of revenue generated or costs avoided.
 
 !!! success "Key Takeaway"
-    Focus on building systems that drive economic value through better decision-making rather than just answering questions or saving time. Structure your pricing to align with the value you create, such as taking a percentage of revenue generated or costs avoided.
+Focus on building systems that drive economic value through better decision-making rather than just answering questions or saving time. Structure your pricing to align with the value you create, such as taking a percentage of revenue generated or costs avoided.
 
 ---
 
@@ -2539,10 +2534,10 @@ The challenge was proving that we needed to invest in these specialized models. 
 
 For specialized domains like blueprints, it's crucial to understand the specific queries users have and build structured data models that directly address those needs rather than relying on generic text embeddings.
 
-***Key Takeaway:*** For specialized visual content like blueprints, invest in extracting structured data that matches the way users think about and query the information. This often requires specialized models beyond general-purpose LLMs, but the investment pays off in much more effective retrieval.
+**_Key Takeaway:_** For specialized visual content like blueprints, invest in extracting structured data that matches the way users think about and query the information. This often requires specialized models beyond general-purpose LLMs, but the investment pays off in much more effective retrieval.
 
 !!! success "Key Takeaway"
-    For specialized visual content like blueprints, invest in extracting structured data that matches the way users think about and query the information. This often requires specialized models beyond general-purpose LLMs, but the investment pays off in much more effective retrieval.
+For specialized visual content like blueprints, invest in extracting structured data that matches the way users think about and query the information. This often requires specialized models beyond general-purpose LLMs, but the investment pays off in much more effective retrieval.
 
 ---
 
@@ -2558,7 +2553,7 @@ The most successful RAG implementations I've seen share a few common characteris
 
 As we continue to develop these systems, I expect to see more specialized, domain-specific implementations that go beyond generic question-answering to provide decision support and drive measurable business outcomes. The future of these agents will be selling work and outcomes, not just time and tokens.
 
-______________________________________________________________________
+---
 
 FAQs
 
@@ -2634,10 +2629,10 @@ This is a common challenge when learning new technical skills alongside existing
 
 For those who need more immediate application, consider reaching out about a consulting engagement after the course. The reality is that deep implementation often requires dedicated time that's difficult to carve out while maintaining other responsibilities.
 
-***Key Takeaway:*** Learning and implementation often need to be sequenced rather than parallel when you have limited time. Focus on absorbing the knowledge first, then plan dedicated time for application afterward.
+**_Key Takeaway:_** Learning and implementation often need to be sequenced rather than parallel when you have limited time. Focus on absorbing the knowledge first, then plan dedicated time for application afterward.
 
 !!! success "Key Takeaway"
-    Learning and implementation often need to be sequenced rather than parallel when you have limited time. Focus on absorbing the knowledge first, then plan dedicated time for application afterward.
+Learning and implementation often need to be sequenced rather than parallel when you have limited time. Focus on absorbing the knowledge first, then plan dedicated time for application afterward.
 
 ---
 
@@ -2649,10 +2644,10 @@ The community's activity level will largely depend on participant engagement - "
 
 Many valuable interactions happen through direct messages rather than in public channels. For example, one participant is about to launch their own company, and we're jumping on calls to discuss their ideas and make introductions.
 
-***Key Takeaway:*** The community will continue beyond the formal course structure, but its value will depend on your active participation and willingness to engage with others.
+**_Key Takeaway:_** The community will continue beyond the formal course structure, but its value will depend on your active participation and willingness to engage with others.
 
 !!! success "Key Takeaway"
-    The community will continue beyond the formal course structure, but its value will depend on your active participation and willingness to engage with others.
+The community will continue beyond the formal course structure, but its value will depend on your active participation and willingness to engage with others.
 
 ---
 
@@ -2666,10 +2661,10 @@ The real risk now is that low precision might hurt your language model's ability
 
 For example, in construction documentation, you might have an email saying a wall is yellow, an architect's note saying it's blue, and a text message claiming it's purple. In these cases, you need to establish authority hierarchies or time-based weighting to resolve conflicts.
 
-***Key Takeaway:*** The impact of irrelevant data depends on whether it's merely unnecessary or actively conflicting. Modern models are optimized for high recall but can be sensitive to precision issues, so conflicting information can be particularly problematic.
+**_Key Takeaway:_** The impact of irrelevant data depends on whether it's merely unnecessary or actively conflicting. Modern models are optimized for high recall but can be sensitive to precision issues, so conflicting information can be particularly problematic.
 
 !!! success "Key Takeaway"
-    The impact of irrelevant data depends on whether it's merely unnecessary or actively conflicting. Modern models are optimized for high recall but can be sensitive to precision issues, so conflicting information can be particularly problematic.
+The impact of irrelevant data depends on whether it's merely unnecessary or actively conflicting. Modern models are optimized for high recall but can be sensitive to precision issues, so conflicting information can be particularly problematic.
 
 ---
 
@@ -2681,10 +2676,10 @@ Consider tracking the average cosine distance of your queries over time. If this
 
 You might also monitor average re-ranker scores and look for changes over time or across different user segments. These metrics are more valuable than arbitrary tests created by vector database providers.
 
-***Key Takeaway:*** Focus on monitoring changes in metrics like average cosine distance rather than absolute values, and segment your analysis by relevant variables to identify the root causes of any shifts.
+**_Key Takeaway:_** Focus on monitoring changes in metrics like average cosine distance rather than absolute values, and segment your analysis by relevant variables to identify the root causes of any shifts.
 
 !!! success "Key Takeaway"
-    Focus on monitoring changes in metrics like average cosine distance rather than absolute values, and segment your analysis by relevant variables to identify the root causes of any shifts.
+Focus on monitoring changes in metrics like average cosine distance rather than absolute values, and segment your analysis by relevant variables to identify the root causes of any shifts.
 
 ---
 
@@ -2698,10 +2693,10 @@ For example, when working with Brazilian tax codes (400-page PDFs), we implement
 
 The key insight is that traversal is still a form of retrieval. As you collect traversal data, you can use it to improve your embedding models, potentially reducing the need for complex traversal in the future.
 
-***Key Takeaway:*** For complex technical documentation, consider combining semantic search with structural traversal. Use the document's inherent organization to guide your retrieval process, and collect this data to improve your embedding models over time.
+**_Key Takeaway:_** For complex technical documentation, consider combining semantic search with structural traversal. Use the document's inherent organization to guide your retrieval process, and collect this data to improve your embedding models over time.
 
 !!! success "Key Takeaway"
-    For complex technical documentation, consider combining semantic search with structural traversal. Use the document's inherent organization to guide your retrieval process, and collect this data to improve your embedding models over time.
+For complex technical documentation, consider combining semantic search with structural traversal. Use the document's inherent organization to guide your retrieval process, and collect this data to improve your embedding models over time.
 
 ---
 
@@ -2737,10 +2732,10 @@ These interactive sessions provide an opportunity to hear how others are applyin
 
 The conversations also help connect theoretical concepts to real-world applications, making the material more concrete and actionable. For example, our discussion about monitoring cosine distances in production systems provided a practical perspective on evaluation that complements the more structured content on evaluation frameworks.
 
-***Key Takeaway:*** Interactive learning formats like office hours provide valuable perspectives that complement structured course content, particularly for understanding how concepts apply to diverse real-world scenarios.
+**_Key Takeaway:_** Interactive learning formats like office hours provide valuable perspectives that complement structured course content, particularly for understanding how concepts apply to diverse real-world scenarios.
 
 !!! success "Key Takeaway"
-    Interactive learning formats like office hours provide valuable perspectives that complement structured course content, particularly for understanding how concepts apply to diverse real-world scenarios.
+Interactive learning formats like office hours provide valuable perspectives that complement structured course content, particularly for understanding how concepts apply to diverse real-world scenarios.
 
 ---
 
@@ -2752,10 +2747,10 @@ I noted that Week 3 is intentionally lighter, with only a 40-minute video and no
 
 The six-week format provides more depth than a one-week intensive course would allow, but it requires consistent engagement to get the full benefit. Finding the right balance between comprehensive coverage and manageable pacing remains a challenge.
 
-***Key Takeaway:*** Learning complex technical skills requires finding the right balance between depth of content and time for absorption and practice. Building explicit catch-up periods into courses can help participants manage their learning journey more effectively.
+**_Key Takeaway:_** Learning complex technical skills requires finding the right balance between depth of content and time for absorption and practice. Building explicit catch-up periods into courses can help participants manage their learning journey more effectively.
 
 !!! success "Key Takeaway"
-    Learning complex technical skills requires finding the right balance between depth of content and time for absorption and practice. Building explicit catch-up periods into courses can help participants manage their learning journey more effectively.
+Learning complex technical skills requires finding the right balance between depth of content and time for absorption and practice. Building explicit catch-up periods into courses can help participants manage their learning journey more effectively.
 
 ---
 
@@ -2769,14 +2764,14 @@ This reveals how much can be done through prompting without changing model weigh
 
 The existence of such extensive system prompts raises questions about where certain capabilities should reside - in the prompt or in the model weights. For example, if a fetch tool were baked into the model weights, what would happen if you named your custom tool "web_search" and the model tried to call a hardcoded "fetch" function?
 
-***Key Takeaway:*** Large system prompts demonstrate how much functionality can be implemented through instructions rather than model training. This creates flexibility but also raises important questions about the boundary between prompt engineering and model architecture.
+**_Key Takeaway:_** Large system prompts demonstrate how much functionality can be implemented through instructions rather than model training. This creates flexibility but also raises important questions about the boundary between prompt engineering and model architecture.
 
-______________________________________________________________________
+---
 
 FAQs
 
 !!! success "Key Takeaway"
-    Large system prompts demonstrate how much functionality can be implemented through instructions rather than model training. This creates flexibility but also raises important questions about the boundary between prompt engineering and model architecture.
+Large system prompts demonstrate how much functionality can be implemented through instructions rather than model training. This creates flexibility but also raises important questions about the boundary between prompt engineering and model architecture.
 
 ---
 
@@ -2853,10 +2848,10 @@ Your model selection should consider several factors:
 
 For on-premises medical applications requiring self-hosting, I'd recommend starting with the BGE models and systematically testing different configurations. The process is inherently experimental - you'll likely need to train numerous models with different parameters and dataset preparations before finding the optimal combination.
 
-***Key Takeaway:*** Don't get fixated on finding the "perfect" model architecture. Instead, create a systematic testing framework where you can evaluate multiple models against your specific constraints of latency, hosting requirements, and performance needs.
+**_Key Takeaway:_** Don't get fixated on finding the "perfect" model architecture. Instead, create a systematic testing framework where you can evaluate multiple models against your specific constraints of latency, hosting requirements, and performance needs.
 
 !!! success "Key Takeaway"
-    Don't get fixated on finding the "perfect" model architecture. Instead, create a systematic testing framework where you can evaluate multiple models against your specific constraints of latency, hosting requirements, and performance needs.
+Don't get fixated on finding the "perfect" model architecture. Instead, create a systematic testing framework where you can evaluate multiple models against your specific constraints of latency, hosting requirements, and performance needs.
 
 ---
 
@@ -2878,10 +2873,10 @@ In a financial context I worked with recently, we were distinguishing between "f
 
 This approach forces the model to learn the meaningful boundaries between similar but distinct concepts. For your medical data with abbreviations that have different meanings in different contexts, you could apply a similar strategy - finding examples where the same abbreviation appears in different contexts to create hard negatives.
 
-***Key Takeaway:*** Including well-crafted negative examples in your training data is crucial for model performance. Focus on creating "hard negatives" that challenge the model to learn subtle distinctions rather than obvious differences.
+**_Key Takeaway:_** Including well-crafted negative examples in your training data is crucial for model performance. Focus on creating "hard negatives" that challenge the model to learn subtle distinctions rather than obvious differences.
 
 !!! success "Key Takeaway"
-    Including well-crafted negative examples in your training data is crucial for model performance. Focus on creating "hard negatives" that challenge the model to learn subtle distinctions rather than obvious differences.
+Including well-crafted negative examples in your training data is crucial for model performance. Focus on creating "hard negatives" that challenge the model to learn subtle distinctions rather than obvious differences.
 
 ---
 
@@ -2907,10 +2902,10 @@ For your medical context, you might consider:
 
 The key insight is that these high-signal negative examples often come from cases where the system initially thought it was right but was ultimately wrong - these boundary cases are extremely valuable for training.
 
-***Key Takeaway:*** The most valuable negative examples often come from user interactions that indicate a mismatch between system predictions and actual relevance. Design your system to capture these signals and incorporate them into your training data.
+**_Key Takeaway:_** The most valuable negative examples often come from user interactions that indicate a mismatch between system predictions and actual relevance. Design your system to capture these signals and incorporate them into your training data.
 
 !!! success "Key Takeaway"
-    The most valuable negative examples often come from user interactions that indicate a mismatch between system predictions and actual relevance. Design your system to capture these signals and incorporate them into your training data.
+The most valuable negative examples often come from user interactions that indicate a mismatch between system predictions and actual relevance. Design your system to capture these signals and incorporate them into your training data.
 
 ---
 
@@ -2938,10 +2933,10 @@ For your medical application where the data is self-contained (not requiring ext
 
 The decision also relates to data normalization - do you want to denormalize data by including related information in each chunk (like adding phone numbers whenever a person is mentioned), or keep information separate and join it at retrieval time? The answer depends on your specific use case and resource constraints.
 
-***Key Takeaway:*** Frame your retrieval system design as a strategic decision about compute allocation. For medical applications with self-contained data and latency constraints, investing more compute at indexing time to create context-rich chunks will likely provide a better user experience.
+**_Key Takeaway:_** Frame your retrieval system design as a strategic decision about compute allocation. For medical applications with self-contained data and latency constraints, investing more compute at indexing time to create context-rich chunks will likely provide a better user experience.
 
 !!! success "Key Takeaway"
-    Frame your retrieval system design as a strategic decision about compute allocation. For medical applications with self-contained data and latency constraints, investing more compute at indexing time to create context-rich chunks will likely provide a better user experience.
+Frame your retrieval system design as a strategic decision about compute allocation. For medical applications with self-contained data and latency constraints, investing more compute at indexing time to create context-rich chunks will likely provide a better user experience.
 
 ---
 
@@ -2959,10 +2954,10 @@ The data volume determines what's feasible. If you told me you had a million exa
 
 This is why I'm skeptical when I see engineers celebrating 98% accuracy on their first model - it usually means they've created a test set that's too easy. As your model improves, you should be making your test data harder by finding more challenging examples. If your retrieval dashboard is showing 95% accuracy, that's a sign you need to create harder test cases.
 
-***Key Takeaway:*** Let your data volume guide your architectural decisions. With limited data, focus on targeted improvements to specific challenges rather than complex architectures. As your model improves, continuously create harder test cases to drive further improvement.
+**_Key Takeaway:_** Let your data volume guide your architectural decisions. With limited data, focus on targeted improvements to specific challenges rather than complex architectures. As your model improves, continuously create harder test cases to drive further improvement.
 
 !!! success "Key Takeaway"
-    Let your data volume guide your architectural decisions. With limited data, focus on targeted improvements to specific challenges rather than complex architectures. As your model improves, continuously create harder test cases to drive further improvement.
+Let your data volume guide your architectural decisions. With limited data, focus on targeted improvements to specific challenges rather than complex architectures. As your model improves, continuously create harder test cases to drive further improvement.
 
 ---
 
@@ -2982,14 +2977,14 @@ This approach lets you systematically address known challenges before deployment
 
 Remember that as your system improves, you need to continuously create harder test cases. If you're scoring 95% accuracy, it's not because your AI is exceptional - it's because your test data isn't challenging enough. The goal is to build a dataset that pushes the boundaries of what your system can handle.
 
-***Key Takeaway:*** Before having real users, leverage synthetic data generation and expert knowledge to create challenging test cases. Design your system to capture user feedback from the start, as this will become your most valuable source of training data once deployed.
+**_Key Takeaway:_** Before having real users, leverage synthetic data generation and expert knowledge to create challenging test cases. Design your system to capture user feedback from the start, as this will become your most valuable source of training data once deployed.
 
-______________________________________________________________________
+---
 
 FAQs
 
 !!! success "Key Takeaway"
-    Before having real users, leverage synthetic data generation and expert knowledge to create challenging test cases. Design your system to capture user feedback from the start, as this will become your most valuable source of training data once deployed.
+Before having real users, leverage synthetic data generation and expert knowledge to create challenging test cases. Design your system to capture user feedback from the start, as this will become your most valuable source of training data once deployed.
 
 ---
 
@@ -3066,10 +3061,10 @@ When Langsmith or similar tools create export difficulties, I recommend two alte
 
 This approach gives you direct access to your data without depending on third-party export functionality, which can be unreliable. It's like building your own analytics system rather than trying to export from something like Data Dog for analysis.
 
-***Key Takeaway:*** While tracing tools like Langsmith and Log Fire are valuable for telemetry, consider implementing your own database storage for evaluation data to avoid export headaches and gain more control over your analysis process.
+**_Key Takeaway:_** While tracing tools like Langsmith and Log Fire are valuable for telemetry, consider implementing your own database storage for evaluation data to avoid export headaches and gain more control over your analysis process.
 
 !!! success "Key Takeaway"
-    While tracing tools like Langsmith and Log Fire are valuable for telemetry, consider implementing your own database storage for evaluation data to avoid export headaches and gain more control over your analysis process.
+While tracing tools like Langsmith and Log Fire are valuable for telemetry, consider implementing your own database storage for evaluation data to avoid export headaches and gain more control over your analysis process.
 
 ---
 
@@ -3085,10 +3080,10 @@ Many developers are now using Gemini for RAG applications because its large cont
 
 The decision often comes down to the stakes involved rather than technical benchmarks. For example, when helping sales teams craft follow-up emails containing offers, we use GPT-4 because the potential revenue impact justifies the additional cost.
 
-***Key Takeaway:*** Model selection should be driven by business value rather than technical specifications alone. For high-stakes applications where even small improvements matter, use the most capable model available. For less critical applications, prioritize speed and cost-efficiency.
+**_Key Takeaway:_** Model selection should be driven by business value rather than technical specifications alone. For high-stakes applications where even small improvements matter, use the most capable model available. For less critical applications, prioritize speed and cost-efficiency.
 
 !!! success "Key Takeaway"
-    Model selection should be driven by business value rather than technical specifications alone. For high-stakes applications where even small improvements matter, use the most capable model available. For less critical applications, prioritize speed and cost-efficiency.
+Model selection should be driven by business value rather than technical specifications alone. For high-stakes applications where even small improvements matter, use the most capable model available. For less critical applications, prioritize speed and cost-efficiency.
 
 ---
 
@@ -3103,10 +3098,10 @@ For example, in a construction permitting application, this could mean automatic
 
 This approach dramatically increases the value of generated reports by combining visual and textual information, making complex issues immediately understandable to users.
 
-***Key Takeaway:*** The next frontier in RAG applications involves intelligently incorporating visual elements like diagrams and contextual images to enhance understanding and provide more comprehensive analysis.
+**_Key Takeaway:_** The next frontier in RAG applications involves intelligently incorporating visual elements like diagrams and contextual images to enhance understanding and provide more comprehensive analysis.
 
 !!! success "Key Takeaway"
-    The next frontier in RAG applications involves intelligently incorporating visual elements like diagrams and contextual images to enhance understanding and provide more comprehensive analysis.
+The next frontier in RAG applications involves intelligently incorporating visual elements like diagrams and contextual images to enhance understanding and provide more comprehensive analysis.
 
 ---
 
@@ -3120,10 +3115,10 @@ This aligns with my experience working with large enterprises, where much of my 
 
 The most effective approach is focusing on how AI can augment human decision-making rather than replace it. For example, having the LLM run simulations and help humans interpret the results is more realistic than promising fully autonomous systems.
 
-***Key Takeaway:*** Set clear boundaries around AI capabilities by positioning your system as a decision support tool rather than an autonomous decision-maker. Be explicit about where human judgment remains essential, especially in high-stakes domains like construction or finance.
+**_Key Takeaway:_** Set clear boundaries around AI capabilities by positioning your system as a decision support tool rather than an autonomous decision-maker. Be explicit about where human judgment remains essential, especially in high-stakes domains like construction or finance.
 
 !!! success "Key Takeaway"
-    Set clear boundaries around AI capabilities by positioning your system as a decision support tool rather than an autonomous decision-maker. Be explicit about where human judgment remains essential, especially in high-stakes domains like construction or finance.
+Set clear boundaries around AI capabilities by positioning your system as a decision support tool rather than an autonomous decision-maker. Be explicit about where human judgment remains essential, especially in high-stakes domains like construction or finance.
 
 ---
 
@@ -3139,10 +3134,10 @@ This model allows me to create a portfolio of small, useful tools without worryi
 
 This broader exposure helps me identify patterns across industries, like the common need for better report generation or specialized table parsing, which informs both my consulting work and open-source development.
 
-***Key Takeaway:*** By funding open-source development through consulting and courses rather than venture capital, I can focus on building genuinely useful tools without the pressure to monetize every component, leading to more sustainable and practical solutions.
+**_Key Takeaway:_** By funding open-source development through consulting and courses rather than venture capital, I can focus on building genuinely useful tools without the pressure to monetize every component, leading to more sustainable and practical solutions.
 
 !!! success "Key Takeaway"
-    By funding open-source development through consulting and courses rather than venture capital, I can focus on building genuinely useful tools without the pressure to monetize every component, leading to more sustainable and practical solutions.
+By funding open-source development through consulting and courses rather than venture capital, I can focus on building genuinely useful tools without the pressure to monetize every component, leading to more sustainable and practical solutions.
 
 ---
 
@@ -3158,10 +3153,10 @@ I shared an example of a company that uses voice AI to make calls to car owners 
 
 This shift changes the fundamental question from "How much am I willing to pay to process one PDF file?" (maybe 30 cents) to "Under what circumstances would I be willing to pay $20 to process a PDF?" The answer depends on the business value created.
 
-***Key Takeaway:*** The future of AI pricing will likely move from usage-based models (tokens, API calls) to outcome-based models where vendors are compensated based on the business value they create. This will drive investment in higher-quality systems that optimize for results rather than minimizing usage.
+**_Key Takeaway:_** The future of AI pricing will likely move from usage-based models (tokens, API calls) to outcome-based models where vendors are compensated based on the business value they create. This will drive investment in higher-quality systems that optimize for results rather than minimizing usage.
 
 !!! success "Key Takeaway"
-    The future of AI pricing will likely move from usage-based models (tokens, API calls) to outcome-based models where vendors are compensated based on the business value they create. This will drive investment in higher-quality systems that optimize for results rather than minimizing usage.
+The future of AI pricing will likely move from usage-based models (tokens, API calls) to outcome-based models where vendors are compensated based on the business value they create. This will drive investment in higher-quality systems that optimize for results rather than minimizing usage.
 
 ---
 
@@ -3179,10 +3174,10 @@ This is similar to how speech recognition evolved from complex phoneme-based sys
 
 "We had to build YouTube to produce enough data to get to a world where now we can train the GPT-4 model. So we still have to build these applications as sensors to create this data."
 
-***Key Takeaway:*** While AI capabilities will eventually be absorbed into platforms, we first need to build applications that generate the necessary training data. This creates a cycle where applications serve as data collection mechanisms that eventually enable more general-purpose AI systems.
+**_Key Takeaway:_** While AI capabilities will eventually be absorbed into platforms, we first need to build applications that generate the necessary training data. This creates a cycle where applications serve as data collection mechanisms that eventually enable more general-purpose AI systems.
 
 !!! success "Key Takeaway"
-    While AI capabilities will eventually be absorbed into platforms, we first need to build applications that generate the necessary training data. This creates a cycle where applications serve as data collection mechanisms that eventually enable more general-purpose AI systems.
+While AI capabilities will eventually be absorbed into platforms, we first need to build applications that generate the necessary training data. This creates a cycle where applications serve as data collection mechanisms that eventually enable more general-purpose AI systems.
 
 ---
 
@@ -3200,10 +3195,10 @@ While this approach means taking on additional complexity (like owning car mecha
 
 "If there was an agent that's like, 'We'll just take all your phone calls and turn them into blog posts, and we only get charged a commission of course sales,' I would probably be really happy with that."
 
-***Key Takeaway:*** AI may drive a shift from software companies selling tools to companies that own entire value chains and are compensated based on business outcomes. This will require building systems that connect previously separate data streams to create end-to-end accountability.
+**_Key Takeaway:_** AI may drive a shift from software companies selling tools to companies that own entire value chains and are compensated based on business outcomes. This will require building systems that connect previously separate data streams to create end-to-end accountability.
 
 !!! success "Key Takeaway"
-    AI may drive a shift from software companies selling tools to companies that own entire value chains and are compensated based on business outcomes. This will require building systems that connect previously separate data streams to create end-to-end accountability.
+AI may drive a shift from software companies selling tools to companies that own entire value chains and are compensated based on business outcomes. This will require building systems that connect previously separate data streams to create end-to-end accountability.
 
 ---
 
@@ -3223,14 +3218,14 @@ This is why I'm particularly interested in working with companies that have larg
 
 These unique datasets offer opportunities to create specialized tools that can extract insights that general models can't access without the proper context and structure.
 
-***Key Takeaway:*** The most valuable data is shifting from general internet content to human-AI interactions and eventually AI-to-AI interactions. Companies with large proprietary datasets in specialized domains are particularly well-positioned to create value with AI systems tailored to their unique information.
+**_Key Takeaway:_** The most valuable data is shifting from general internet content to human-AI interactions and eventually AI-to-AI interactions. Companies with large proprietary datasets in specialized domains are particularly well-positioned to create value with AI systems tailored to their unique information.
 
-______________________________________________________________________
+---
 
 FAQs
 
 !!! success "Key Takeaway"
-    The most valuable data is shifting from general internet content to human-AI interactions and eventually AI-to-AI interactions. Companies with large proprietary datasets in specialized domains are particularly well-positioned to create value with AI systems tailored to their unique information.
+The most valuable data is shifting from general internet content to human-AI interactions and eventually AI-to-AI interactions. Companies with large proprietary datasets in specialized domains are particularly well-positioned to create value with AI systems tailored to their unique information.
 
 ---
 
@@ -3310,10 +3305,10 @@ These firms often use specialized software from the early 2000s for plot generat
 
 I believe there's a significant market opportunity here - you could easily sell software that generates McKinsey-style plots for $100,000 to an analyst team. The last 5% of styling is what makes the difference between something that looks AI-generated versus professionally produced.
 
-***Key Takeaway:*** The styling challenge represents a major opportunity for AI tools that can match the exact visual requirements of professional consulting firms. The technical content generation is often easier than matching the precise styling expectations that make reports look professionally produced.
+**_Key Takeaway:_** The styling challenge represents a major opportunity for AI tools that can match the exact visual requirements of professional consulting firms. The technical content generation is often easier than matching the precise styling expectations that make reports look professionally produced.
 
 !!! success "Key Takeaway"
-    The styling challenge represents a major opportunity for AI tools that can match the exact visual requirements of professional consulting firms. The technical content generation is often easier than matching the precise styling expectations that make reports look professionally produced.
+The styling challenge represents a major opportunity for AI tools that can match the exact visual requirements of professional consulting firms. The technical content generation is often easier than matching the precise styling expectations that make reports look professionally produced.
 
 ---
 
@@ -3331,10 +3326,10 @@ For quantitative questions like "How many audio sync issues were reported in Bra
 
 I worked with a company called Interpret that built something similar - a chatbot that could talk to customer feedback and give realistic counts by combining semantic understanding with structured analysis.
 
-***Key Takeaway:*** The most effective approach combines semantic search with structured analysis through hierarchical clustering and classification. This gives users both the flexibility to explore feedback semantically and the accuracy of structured data for quantitative questions.
+**_Key Takeaway:_** The most effective approach combines semantic search with structured analysis through hierarchical clustering and classification. This gives users both the flexibility to explore feedback semantically and the accuracy of structured data for quantitative questions.
 
 !!! success "Key Takeaway"
-    The most effective approach combines semantic search with structured analysis through hierarchical clustering and classification. This gives users both the flexibility to explore feedback semantically and the accuracy of structured data for quantitative questions.
+The most effective approach combines semantic search with structured analysis through hierarchical clustering and classification. This gives users both the flexibility to explore feedback semantically and the accuracy of structured data for quantitative questions.
 
 ---
 
@@ -3350,10 +3345,10 @@ For Netflix's feedback analysis, you might want to combine pre-defined categorie
 
 The key is building a system that can quickly create and apply these classifiers as new issues emerge. When a new feature launches, you want to detect feedback about it immediately, even if it wasn't in your training data.
 
-***Key Takeaway:*** Fast classifier development is essential for responsive feedback analysis. Combining embedding-based approaches with domain expertise allows you to quickly identify both known issues and emerging patterns in user feedback.
+**_Key Takeaway:_** Fast classifier development is essential for responsive feedback analysis. Combining embedding-based approaches with domain expertise allows you to quickly identify both known issues and emerging patterns in user feedback.
 
 !!! success "Key Takeaway"
-    Fast classifier development is essential for responsive feedback analysis. Combining embedding-based approaches with domain expertise allows you to quickly identify both known issues and emerging patterns in user feedback.
+Fast classifier development is essential for responsive feedback analysis. Combining embedding-based approaches with domain expertise allows you to quickly identify both known issues and emerging patterns in user feedback.
 
 ---
 
@@ -3369,10 +3364,10 @@ You can implement this with simple tools like "ls" (list files), "read_file", an
 
 I'm curious if this approach would work for traversing complex documents like 1,000-page PDFs. Instead of embedding everything, you could provide tools like "list_table_of_contents", "grep", "show_page", and "show_page_as_image". The agent could navigate the document naturally, finding references and following them just as a human would.
 
-***Key Takeaway:*** Semantic search is most valuable when the producer and consumer of data don't share vocabulary. For structured data or documents with clear organization, a tool-based approach that mimics human navigation may be more effective and require less preprocessing.
+**_Key Takeaway:_** Semantic search is most valuable when the producer and consumer of data don't share vocabulary. For structured data or documents with clear organization, a tool-based approach that mimics human navigation may be more effective and require less preprocessing.
 
 !!! success "Key Takeaway"
-    Semantic search is most valuable when the producer and consumer of data don't share vocabulary. For structured data or documents with clear organization, a tool-based approach that mimics human navigation may be more effective and require less preprocessing.
+Semantic search is most valuable when the producer and consumer of data don't share vocabulary. For structured data or documents with clear organization, a tool-based approach that mimics human navigation may be more effective and require less preprocessing.
 
 ---
 
@@ -3386,10 +3381,10 @@ My philosophy with any product I build is that it should function as a sensor th
 
 We apply the same approach to citations in paragraphs - users can mouse over citations to see the source data and delete or regenerate citations they don't trust. This creates a feedback loop that continuously improves the system.
 
-***Key Takeaway:*** Building products that function as data collection sensors is a powerful approach. By giving users options and tracking their choices, you can gather valuable feedback that improves your system while providing a better user experience.
+**_Key Takeaway:_** Building products that function as data collection sensors is a powerful approach. By giving users options and tracking their choices, you can gather valuable feedback that improves your system while providing a better user experience.
 
 !!! success "Key Takeaway"
-    Building products that function as data collection sensors is a powerful approach. By giving users options and tracking their choices, you can gather valuable feedback that improves your system while providing a better user experience.
+Building products that function as data collection sensors is a powerful approach. By giving users options and tracking their choices, you can gather valuable feedback that improves your system while providing a better user experience.
 
 ---
 
@@ -3403,9 +3398,7 @@ We'll also be inviting teams building coding agents, including the Augment team 
 
 Beyond the course, I'm organizing a speaker series with guests from OpenAI's memory team and possibly Claude Code. My goal is to bring in the most interesting speakers in the field to share their insights.
 
-***Key Takeaway:*** The future of RAG systems, especially for structured data like code, may involve less semantic search and more tool-based approaches where agents navigate information using a portfolio of tools to build context incrementally.
-
-
+**_Key Takeaway:_** The future of RAG systems, especially for structured data like code, may involve less semantic search and more tool-based approaches where agents navigate information using a portfolio of tools to build context incrementally.
 
 ---
 
@@ -3414,7 +3407,7 @@ IF you want to get discounts and 6 day email source on the topic make sure to su
 <script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 !!! success "Key Takeaway"
-    The future of RAG systems, especially for structured data like code, may involve less semantic search and more tool-based approaches where agents navigate information using a portfolio of tools to build context incrementally.
+The future of RAG systems, especially for structured data like code, may involve less semantic search and more tool-based approaches where agents navigate information using a portfolio of tools to build context incrementally.
 
 ---
 
@@ -3432,10 +3425,10 @@ When determining how much data you need, I recommend experimenting with differen
 
 Different models will have different learning curves - a 1.3 billion parameter model might flatten out at 10,000 data points, while larger models might show different patterns. Adjusting learning rates can also affect these curves.
 
-***Key Takeaway:*** Fine-tuning can be remarkably effective for formatting tasks like citation, often requiring less data than you might expect. Start with small batches, measure performance, and increase data volume until you reach your desired accuracy level.
+**_Key Takeaway:_** Fine-tuning can be remarkably effective for formatting tasks like citation, often requiring less data than you might expect. Start with small batches, measure performance, and increase data volume until you reach your desired accuracy level.
 
 !!! success "Key Takeaway"
-    Fine-tuning can be remarkably effective for formatting tasks like citation, often requiring less data than you might expect. Start with small batches, measure performance, and increase data volume until you reach your desired accuracy level.
+Fine-tuning can be remarkably effective for formatting tasks like citation, often requiring less data than you might expect. Start with small batches, measure performance, and increase data volume until you reach your desired accuracy level.
 
 ---
 
@@ -3451,10 +3444,10 @@ The need for shuffling may also depend on the context length of your model. With
 
 The real challenge that remains is reasoning over multiple "needles" of information scattered throughout a document - connecting facts from different sections remains difficult for most models.
 
-***Key Takeaway:*** Consider shuffling citation sources during fine-tuning if you want position-invariant citations, but if you're sorting by relevance, maintaining order may be beneficial. Newer models have better attention across their context window, reducing the need for this technique.
+**_Key Takeaway:_** Consider shuffling citation sources during fine-tuning if you want position-invariant citations, but if you're sorting by relevance, maintaining order may be beneficial. Newer models have better attention across their context window, reducing the need for this technique.
 
 !!! success "Key Takeaway"
-    Consider shuffling citation sources during fine-tuning if you want position-invariant citations, but if you're sorting by relevance, maintaining order may be beneficial. Newer models have better attention across their context window, reducing the need for this technique.
+Consider shuffling citation sources during fine-tuning if you want position-invariant citations, but if you're sorting by relevance, maintaining order may be beneficial. Newer models have better attention across their context window, reducing the need for this technique.
 
 ---
 
@@ -3477,10 +3470,10 @@ For evaluating tool selection, I recommend having the model "write a plan of all
 
 The naming of tools significantly impacts how models use them. In coding agents, for example, providing a specific "grep" tool versus just mentioning grep in the command line instructions can change execution patterns by 2% in evaluations.
 
-***Key Takeaway:*** Design a portfolio of specialized tools based on specific use cases rather than general data types. Focus on clear tool descriptions and evaluate how well the model selects the appropriate tools for different queries.
+**_Key Takeaway:_** Design a portfolio of specialized tools based on specific use cases rather than general data types. Focus on clear tool descriptions and evaluate how well the model selects the appropriate tools for different queries.
 
 !!! success "Key Takeaway"
-    Design a portfolio of specialized tools based on specific use cases rather than general data types. Focus on clear tool descriptions and evaluate how well the model selects the appropriate tools for different queries.
+Design a portfolio of specialized tools based on specific use cases rather than general data types. Focus on clear tool descriptions and evaluate how well the model selects the appropriate tools for different queries.
 
 ---
 
@@ -3506,10 +3499,10 @@ For building better temporal reasoning capabilities, consider:
 
 4. Mining reasoning chains from expert users to create training data
 
-***Key Takeaway:*** For temporal reasoning, structure data chronologically in markdown tables and implement a two-stage approach where the model first extracts and organizes relevant timeline information before reasoning about it.
+**_Key Takeaway:_** For temporal reasoning, structure data chronologically in markdown tables and implement a two-stage approach where the model first extracts and organizes relevant timeline information before reasoning about it.
 
 !!! success "Key Takeaway"
-    For temporal reasoning, structure data chronologically in markdown tables and implement a two-stage approach where the model first extracts and organizes relevant timeline information before reasoning about it.
+For temporal reasoning, structure data chronologically in markdown tables and implement a two-stage approach where the model first extracts and organizes relevant timeline information before reasoning about it.
 
 ---
 
@@ -3527,10 +3520,10 @@ The primary benefit of multi-agent systems appears to be token efficiency - you 
 
 For medical data applications that are primarily read-only, a multi-agent approach might work, but the challenge remains in ensuring no context is missed when combining information from different agents.
 
-***Key Takeaway:*** Choose multi-agent approaches for read-only tasks where you need to process more tokens than a single context window allows. For tasks requiring coordination of changes, single-agent approaches remain more practical until better coordination mechanisms are developed.
+**_Key Takeaway:_** Choose multi-agent approaches for read-only tasks where you need to process more tokens than a single context window allows. For tasks requiring coordination of changes, single-agent approaches remain more practical until better coordination mechanisms are developed.
 
 !!! success "Key Takeaway"
-    Choose multi-agent approaches for read-only tasks where you need to process more tokens than a single context window allows. For tasks requiring coordination of changes, single-agent approaches remain more practical until better coordination mechanisms are developed.
+Choose multi-agent approaches for read-only tasks where you need to process more tokens than a single context window allows. For tasks requiring coordination of changes, single-agent approaches remain more practical until better coordination mechanisms are developed.
 
 ---
 
@@ -3558,10 +3551,10 @@ For implementation, you can:
 
 This approach works particularly well for documents like financial reports, where structured information can be extracted, or for multimedia content where describing images or videos in text makes them searchable.
 
-***Key Takeaway:*** Document summarization during ingestion creates valuable synthetic text chunks that can dramatically improve retrieval performance. Design summary prompts based on the specific information needs of your application and iterate based on evaluation results.
+**_Key Takeaway:_** Document summarization during ingestion creates valuable synthetic text chunks that can dramatically improve retrieval performance. Design summary prompts based on the specific information needs of your application and iterate based on evaluation results.
 
 !!! success "Key Takeaway"
-    Document summarization during ingestion creates valuable synthetic text chunks that can dramatically improve retrieval performance. Design summary prompts based on the specific information needs of your application and iterate based on evaluation results.
+Document summarization during ingestion creates valuable synthetic text chunks that can dramatically improve retrieval performance. Design summary prompts based on the specific information needs of your application and iterate based on evaluation results.
 
 ---
 
@@ -3589,10 +3582,10 @@ Our evaluation method is simple but effective - we have salespeople review the g
 
 This approach of extracting variables, reasoning about them, and then generating output could be applied to medical data as well. For example, if a patient shows drowsiness, the system could first extract all timeline information about drowsiness, then reason about potential causes.
 
-***Key Takeaway:*** For complex reasoning tasks, implement a multi-step process where the model first extracts and organizes relevant information, then reasons about it, and finally generates output. This structured approach makes the reasoning more transparent and easier to evaluate.
+**_Key Takeaway:_** For complex reasoning tasks, implement a multi-step process where the model first extracts and organizes relevant information, then reasons about it, and finally generates output. This structured approach makes the reasoning more transparent and easier to evaluate.
 
 !!! success "Key Takeaway"
-    For complex reasoning tasks, implement a multi-step process where the model first extracts and organizes relevant information, then reasons about it, and finally generates output. This structured approach makes the reasoning more transparent and easier to evaluate.
+For complex reasoning tasks, implement a multi-step process where the model first extracts and organizes relevant information, then reasons about it, and finally generates output. This structured approach makes the reasoning more transparent and easier to evaluate.
 
 ---
 
@@ -3642,10 +3635,10 @@ In some domains like coding, the evaluation metrics are clearer - does the code 
 
 For systems like our price quote generator, we use a practical metric - do salespeople edit the generated emails before sending them? This real-world usage metric helps us identify where the system's reasoning falls short.
 
-***Key Takeaway:*** Break evaluation into component parts rather than relying solely on end-to-end metrics. Incorporate user feedback into your evaluation process, and track how often outputs require human editing or intervention.
+**_Key Takeaway:_** Break evaluation into component parts rather than relying solely on end-to-end metrics. Incorporate user feedback into your evaluation process, and track how often outputs require human editing or intervention.
 
 !!! success "Key Takeaway"
-    Break evaluation into component parts rather than relying solely on end-to-end metrics. Incorporate user feedback into your evaluation process, and track how often outputs require human editing or intervention.
+Break evaluation into component parts rather than relying solely on end-to-end metrics. Incorporate user feedback into your evaluation process, and track how often outputs require human editing or intervention.
 
 ---
 
@@ -3739,10 +3732,10 @@ For cost estimation, I recommend calculating the token volume of your data. We h
 
 For specialized extraction tasks, consider using smaller, purpose-built models. At Stitch Fix, we built a suite of small models doing specific extractions. For example, we realized we were selling belts with pants that had no belt loops, so we created a simple computer vision model to detect belt loops. This approach was efficient and solved a specific business problem worth millions of dollars.
 
-***Key Takeaway:*** Calculate token volumes and costs before deciding on your extraction approach. Sometimes the cost difference between APIs and self-hosted models is smaller than expected, making the engineering effort to switch questionable. For specialized extractions, consider purpose-built models that solve specific business problems rather than trying to do everything with one large model.
+**_Key Takeaway:_** Calculate token volumes and costs before deciding on your extraction approach. Sometimes the cost difference between APIs and self-hosted models is smaller than expected, making the engineering effort to switch questionable. For specialized extractions, consider purpose-built models that solve specific business problems rather than trying to do everything with one large model.
 
 !!! success "Key Takeaway"
-    Calculate token volumes and costs before deciding on your extraction approach. Sometimes the cost difference between APIs and self-hosted models is smaller than expected, making the engineering effort to switch questionable. For specialized extractions, consider purpose-built models that solve specific business problems rather than trying to do everything with one large model.
+Calculate token volumes and costs before deciding on your extraction approach. Sometimes the cost difference between APIs and self-hosted models is smaller than expected, making the engineering effort to switch questionable. For specialized extractions, consider purpose-built models that solve specific business problems rather than trying to do everything with one large model.
 
 ---
 
@@ -3752,10 +3745,10 @@ When extracting multiple attributes from documents, be aware that prompts for so
 
 To address this, we split our extraction into separate jobs: one for action items and another for summary and memo generation. This separation gave us better control over each component. We made this approach cost-effective by leveraging prompt caching - the transcript only needed to be processed once, with multiple outputs generated from that single input.
 
-***Key Takeaway:*** Be cautious about extracting too many attributes in a single API call, as they can influence each other in unexpected ways. Consider splitting extractions into separate jobs with specific focuses, and use techniques like prompt caching to maintain cost efficiency.
+**_Key Takeaway:_** Be cautious about extracting too many attributes in a single API call, as they can influence each other in unexpected ways. Consider splitting extractions into separate jobs with specific focuses, and use techniques like prompt caching to maintain cost efficiency.
 
 !!! success "Key Takeaway"
-    Be cautious about extracting too many attributes in a single API call, as they can influence each other in unexpected ways. Consider splitting extractions into separate jobs with specific focuses, and use techniques like prompt caching to maintain cost efficiency.
+Be cautious about extracting too many attributes in a single API call, as they can influence each other in unexpected ways. Consider splitting extractions into separate jobs with specific focuses, and use techniques like prompt caching to maintain cost efficiency.
 
 ---
 
@@ -3771,10 +3764,10 @@ One valuable application of LLMs is creating synthetic users to run simulations,
 
 We addressed this by building a "Tinder for clothes" where users could swipe left or right on clothing items. This generated 6,000 labels much faster than waiting for 400 actual shipments, as users would label 30 items a day versus receiving only 5 items a month.
 
-***Key Takeaway:*** Rather than using LLMs directly for recommendations, use them to generate better embeddings and synthetic data to address cold-start problems. Consider creative ways to gather user preferences at scale, as the velocity of data collection is often the limiting factor in recommendation quality.
+**_Key Takeaway:_** Rather than using LLMs directly for recommendations, use them to generate better embeddings and synthetic data to address cold-start problems. Consider creative ways to gather user preferences at scale, as the velocity of data collection is often the limiting factor in recommendation quality.
 
 !!! success "Key Takeaway"
-    Rather than using LLMs directly for recommendations, use them to generate better embeddings and synthetic data to address cold-start problems. Consider creative ways to gather user preferences at scale, as the velocity of data collection is often the limiting factor in recommendation quality.
+Rather than using LLMs directly for recommendations, use them to generate better embeddings and synthetic data to address cold-start problems. Consider creative ways to gather user preferences at scale, as the velocity of data collection is often the limiting factor in recommendation quality.
 
 ---
 
@@ -3794,10 +3787,10 @@ The workflow we found effective was:
 
 This approach recognizes that different models have different data efficiency profiles, and leveraging their strengths in combination yields better results than trying to solve everything with a single approach.
 
-***Key Takeaway:*** Blend traditional ML with LLMs by using LLMs for feature engineering and synthetic data generation. Build specialized, data-efficient models for specific attributes, then use these to feed larger models. This creates a virtuous cycle where each type of model enhances the capabilities of the others.
+**_Key Takeaway:_** Blend traditional ML with LLMs by using LLMs for feature engineering and synthetic data generation. Build specialized, data-efficient models for specific attributes, then use these to feed larger models. This creates a virtuous cycle where each type of model enhances the capabilities of the others.
 
 !!! success "Key Takeaway"
-    Blend traditional ML with LLMs by using LLMs for feature engineering and synthetic data generation. Build specialized, data-efficient models for specific attributes, then use these to feed larger models. This creates a virtuous cycle where each type of model enhances the capabilities of the others.
+Blend traditional ML with LLMs by using LLMs for feature engineering and synthetic data generation. Build specialized, data-efficient models for specific attributes, then use these to feed larger models. This creates a virtuous cycle where each type of model enhances the capabilities of the others.
 
 ---
 
@@ -3813,10 +3806,10 @@ This creates problems when metrics improve - does anyone trust the results? Was 
 
 At Facebook, defining a new table for newsfeed views would involve a data engineer interviewing 20 teams, designing columns to support various query patterns, and ensuring everyone could write consistent SQL queries against the database. This level of rigor is often missing in LLM evaluation setups.
 
-***Key Takeaway:*** The data engineering ecosystem for LLMs is still maturing. Pay special attention to how you organize evaluation datasets, as inconsistent approaches lead to unreliable metrics. Consider investing in proper data engineering for your evaluation pipeline, similar to how established companies handle critical data infrastructure.
+**_Key Takeaway:_** The data engineering ecosystem for LLMs is still maturing. Pay special attention to how you organize evaluation datasets, as inconsistent approaches lead to unreliable metrics. Consider investing in proper data engineering for your evaluation pipeline, similar to how established companies handle critical data infrastructure.
 
 !!! success "Key Takeaway"
-    The data engineering ecosystem for LLMs is still maturing. Pay special attention to how you organize evaluation datasets, as inconsistent approaches lead to unreliable metrics. Consider investing in proper data engineering for your evaluation pipeline, similar to how established companies handle critical data infrastructure.
+The data engineering ecosystem for LLMs is still maturing. Pay special attention to how you organize evaluation datasets, as inconsistent approaches lead to unreliable metrics. Consider investing in proper data engineering for your evaluation pipeline, similar to how established companies handle critical data infrastructure.
 
 ---
 
@@ -3836,10 +3829,10 @@ This is why we need to build a portfolio of tools rather than relying solely on 
 
 This is similar to how command-line tools interact with a file system - you have commands like "list directories" and "view files," but also more specialized commands like "list files sorted by last modified" or "list files by editor." A smart model can learn to use these various tools rather than trying to build one mega-search tool that works for all cases.
 
-***Key Takeaway:*** Don't rely solely on embeddings for complex information retrieval. Build a portfolio of specialized tools that can work with your data in different ways. This approach is gaining traction in code generation and will likely become standard across other domains as well.
+**_Key Takeaway:_** Don't rely solely on embeddings for complex information retrieval. Build a portfolio of specialized tools that can work with your data in different ways. This approach is gaining traction in code generation and will likely become standard across other domains as well.
 
 !!! success "Key Takeaway"
-    Don't rely solely on embeddings for complex information retrieval. Build a portfolio of specialized tools that can work with your data in different ways. This approach is gaining traction in code generation and will likely become standard across other domains as well.
+Don't rely solely on embeddings for complex information retrieval. Build a portfolio of specialized tools that can work with your data in different ways. This approach is gaining traction in code generation and will likely become standard across other domains as well.
 
 ---
 
@@ -3853,10 +3846,10 @@ The key insight is that tools aren't necessarily one-to-one with retrievers. You
 
 This is the direction that code generation tools are taking - they're finding that embedding your codebase isn't the right approach. Instead, they're building portfolios of tools, and I believe this pattern will spread to other domains as well.
 
-***Key Takeaway:*** Even with advanced reasoning capabilities, models benefit from having access to specialized tools rather than trying to do everything through a single approach. The future lies in building portfolios of tools that models can intelligently select and combine, not in creating a single universal solution.
+**_Key Takeaway:_** Even with advanced reasoning capabilities, models benefit from having access to specialized tools rather than trying to do everything through a single approach. The future lies in building portfolios of tools that models can intelligently select and combine, not in creating a single universal solution.
 
 !!! success "Key Takeaway"
-    Even with advanced reasoning capabilities, models benefit from having access to specialized tools rather than trying to do everything through a single approach. The future lies in building portfolios of tools that models can intelligently select and combine, not in creating a single universal solution.
+Even with advanced reasoning capabilities, models benefit from having access to specialized tools rather than trying to do everything through a single approach. The future lies in building portfolios of tools that models can intelligently select and combine, not in creating a single universal solution.
 
 ---
 
@@ -3870,10 +3863,10 @@ We had a surprising discovery when comparing OpenAI's API to open source models 
 
 These calculations help you make rational decisions about where to invest your engineering time. Sometimes the cost difference between approaches is so small that it's not worth optimizing further, especially when the absolute costs are already low.
 
-***Key Takeaway:*** Calculate token volumes and costs before investing in optimization. Modern AI models are often surprisingly affordable at scale, making some optimizations unnecessary. Focus your engineering efforts where they'll have meaningful impact rather than chasing small percentage improvements.
+**_Key Takeaway:_** Calculate token volumes and costs before investing in optimization. Modern AI models are often surprisingly affordable at scale, making some optimizations unnecessary. Focus your engineering efforts where they'll have meaningful impact rather than chasing small percentage improvements.
 
 !!! success "Key Takeaway"
-    Calculate token volumes and costs before investing in optimization. Modern AI models are often surprisingly affordable at scale, making some optimizations unnecessary. Focus your engineering efforts where they'll have meaningful impact rather than chasing small percentage improvements.
+Calculate token volumes and costs before investing in optimization. Modern AI models are often surprisingly affordable at scale, making some optimizations unnecessary. Focus your engineering efforts where they'll have meaningful impact rather than chasing small percentage improvements.
 
 ---
 
@@ -3951,7 +3944,6 @@ IF you want to get discounts and 6 day email source on the topic make sure to su
 <script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 ---
-
 
 ## Additional Resources
 

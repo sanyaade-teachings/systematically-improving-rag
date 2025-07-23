@@ -1,6 +1,6 @@
 ---
 title: Week 3 - Office Hour
-date: '2024-06-05'
+date: "2024-06-05"
 cohort: 3
 week: 3
 session: 1
@@ -39,7 +39,7 @@ Your model selection should consider several factors:
 
 For on-premises medical applications requiring self-hosting, I'd recommend starting with the BGE models and systematically testing different configurations. The process is inherently experimental - you'll likely need to train numerous models with different parameters and dataset preparations before finding the optimal combination.
 
-***Key Takeaway:*** Don't get fixated on finding the "perfect" model architecture. Instead, create a systematic testing framework where you can evaluate multiple models against your specific constraints of latency, hosting requirements, and performance needs.
+**_Key Takeaway:_** Don't get fixated on finding the "perfect" model architecture. Instead, create a systematic testing framework where you can evaluate multiple models against your specific constraints of latency, hosting requirements, and performance needs.
 
 ## How should I approach creating training datasets for embedding models versus re-rankers?
 
@@ -59,7 +59,7 @@ In a financial context I worked with recently, we were distinguishing between "f
 
 This approach forces the model to learn the meaningful boundaries between similar but distinct concepts. For your medical data with abbreviations that have different meanings in different contexts, you could apply a similar strategy - finding examples where the same abbreviation appears in different contexts to create hard negatives.
 
-***Key Takeaway:*** Including well-crafted negative examples in your training data is crucial for model performance. Focus on creating "hard negatives" that challenge the model to learn subtle distinctions rather than obvious differences.
+**_Key Takeaway:_** Including well-crafted negative examples in your training data is crucial for model performance. Focus on creating "hard negatives" that challenge the model to learn subtle distinctions rather than obvious differences.
 
 ## What are effective sources of negative examples for training data?
 
@@ -83,7 +83,7 @@ For your medical context, you might consider:
 
 The key insight is that these high-signal negative examples often come from cases where the system initially thought it was right but was ultimately wrong - these boundary cases are extremely valuable for training.
 
-***Key Takeaway:*** The most valuable negative examples often come from user interactions that indicate a mismatch between system predictions and actual relevance. Design your system to capture these signals and incorporate them into your training data.
+**_Key Takeaway:_** The most valuable negative examples often come from user interactions that indicate a mismatch between system predictions and actual relevance. Design your system to capture these signals and incorporate them into your training data.
 
 ## How should I think about compute allocation in retrieval systems?
 
@@ -109,7 +109,7 @@ For your medical application where the data is self-contained (not requiring ext
 
 The decision also relates to data normalization - do you want to denormalize data by including related information in each chunk (like adding phone numbers whenever a person is mentioned), or keep information separate and join it at retrieval time? The answer depends on your specific use case and resource constraints.
 
-***Key Takeaway:*** Frame your retrieval system design as a strategic decision about compute allocation. For medical applications with self-contained data and latency constraints, investing more compute at indexing time to create context-rich chunks will likely provide a better user experience.
+**_Key Takeaway:_** Frame your retrieval system design as a strategic decision about compute allocation. For medical applications with self-contained data and latency constraints, investing more compute at indexing time to create context-rich chunks will likely provide a better user experience.
 
 ## What determines the complexity of the architecture I should use?
 
@@ -125,7 +125,7 @@ The data volume determines what's feasible. If you told me you had a million exa
 
 This is why I'm skeptical when I see engineers celebrating 98% accuracy on their first model - it usually means they've created a test set that's too easy. As your model improves, you should be making your test data harder by finding more challenging examples. If your retrieval dashboard is showing 95% accuracy, that's a sign you need to create harder test cases.
 
-***Key Takeaway:*** Let your data volume guide your architectural decisions. With limited data, focus on targeted improvements to specific challenges rather than complex architectures. As your model improves, continuously create harder test cases to drive further improvement.
+**_Key Takeaway:_** Let your data volume guide your architectural decisions. With limited data, focus on targeted improvements to specific challenges rather than complex architectures. As your model improves, continuously create harder test cases to drive further improvement.
 
 ## How can I improve my system when I don't yet have real user feedback?
 
@@ -143,9 +143,9 @@ This approach lets you systematically address known challenges before deployment
 
 Remember that as your system improves, you need to continuously create harder test cases. If you're scoring 95% accuracy, it's not because your AI is exceptional - it's because your test data isn't challenging enough. The goal is to build a dataset that pushes the boundaries of what your system can handle.
 
-***Key Takeaway:*** Before having real users, leverage synthetic data generation and expert knowledge to create challenging test cases. Design your system to capture user feedback from the start, as this will become your most valuable source of training data once deployed.
+**_Key Takeaway:_** Before having real users, leverage synthetic data generation and expert knowledge to create challenging test cases. Design your system to capture user feedback from the start, as this will become your most valuable source of training data once deployed.
 
-______________________________________________________________________
+---
 
 FAQs
 

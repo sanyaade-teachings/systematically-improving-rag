@@ -1,4 +1,5 @@
 # systematically-improving-rag
+
 ---
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to

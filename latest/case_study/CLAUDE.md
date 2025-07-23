@@ -7,12 +7,14 @@ This case study demonstrates how to systematically identify and solve alignment 
 ## Goals and Objectives
 
 ### Primary Goals
+
 1. **Demonstrate the Alignment Problem**: Show how misalignment between queries and embeddings causes RAG systems to fail
 2. **Test Solutions Systematically**: Evaluate multiple approaches (summaries, full conversations) to solve alignment issues
 3. **Provide Reproducible Results**: Create a framework others can use to diagnose and fix their own RAG systems
 4. **Illustrate the Improvement Flywheel**: Show how synthetic data → evaluation → improvement creates better systems
 
 ### Key Learnings
+
 - Why pattern-focused queries fail when searching content-focused embeddings (50% performance gap)
 - How different summary techniques can bridge the alignment gap
 - The power of iterative prompt engineering (achieving 358% improvement)
@@ -21,6 +23,7 @@ This case study demonstrates how to systematically identify and solve alignment 
 ## Quick Start Commands
 
 ### Initial Setup
+
 ```bash
 # Install dependencies
 uv pip install -e .
@@ -35,6 +38,7 @@ uv run ruff format .
 ```
 
 ### Generate Synthetic Queries
+
 ```bash
 # Generate v1 queries (content-focused: "What is X?")
 uv run python main.py generate-questions --version v1 --limit 100
@@ -44,6 +48,7 @@ uv run python main.py generate-questions --version v2 --limit 100
 ```
 
 ### Create Embeddings
+
 ```bash
 # Embed conversation first messages
 uv run python main.py embed-conversations --embedding-model text-embedding-3-small
@@ -53,6 +58,7 @@ uv run python main.py embed-summaries --technique v5 --embedding-model text-embe
 ```
 
 ### Run Evaluations
+
 ```bash
 # Evaluate v1 queries against conversations
 uv run python main.py evaluate --question-version v1 --embedding-model text-embedding-3-small
@@ -73,6 +79,7 @@ uv run python main.py stats
 ## Pipeline Commands (Recommended Workflow)
 
 ### Part 02: Discover the Alignment Problem
+
 ```bash
 # Full pipeline for 100 conversations
 uv run python pipelines/setup.py populate --limit 100
@@ -84,6 +91,7 @@ uv run python pipelines/evaluation.py evaluate --question-version v2 --embedding
 ```
 
 ### Part 03: Test Summary Solutions
+
 ```bash
 # Generate different summary types
 uv run python pipelines/generation.py summarize --technique v1 --limit 100  # Search-optimized
@@ -97,6 +105,7 @@ uv run python pipelines/evaluation.py evaluate-summary --question-version v2 --s
 ```
 
 ### Part 04: Test Reranking Solutions
+
 ```bash
 # Baseline evaluation (no reranking)
 uv run python main.py evaluate \
@@ -145,6 +154,7 @@ uv run python main.py evaluate \
 ```
 
 ### v5 Optimization Workflow (Iterative Improvement)
+
 ```bash
 # 1. Modify v5 prompt in core/summarization.py
 # 2. Generate new summaries
@@ -168,6 +178,7 @@ cat data/results/eval_v2_summary_v5_text-embedding-3-small.json | jq '.detailed_
 ## Data Analysis Commands
 
 ### Check Database Status
+
 ```bash
 # Summary counts by technique
 sqlite3 data/rag_study.db "SELECT technique, COUNT(*) FROM summaries GROUP BY technique;"
@@ -180,16 +191,17 @@ sqlite3 data/rag_study.db "SELECT question_version, embeddings_type, embedding_m
 ```
 
 ### Analyze Failure Patterns
+
 ```bash
 # Find consistently failing conversations
 sqlite3 data/rag_study.db <<EOF
-SELECT 
+SELECT
   q.conversation_hash,
   COUNT(DISTINCT e.id) as failure_count,
   GROUP_CONCAT(DISTINCT q.text, ' | ') as failed_queries
 FROM evaluations e
 JOIN questions q ON e.question_id = q.id
-WHERE e.found = 0 
+WHERE e.found = 0
   AND e.embeddings_type = 'summaries'
   AND e.target_technique = 'v5'
 GROUP BY q.conversation_hash
@@ -199,6 +211,7 @@ EOF
 ```
 
 ### Quick Performance Matrix
+
 ```bash
 # Create performance comparison
 for v in v1 v3 v4 v5; do
@@ -213,12 +226,14 @@ done
 ## Troubleshooting
 
 ### Clear ChromaDB Cache
+
 ```bash
 # If embeddings seem stale or wrong
 rm -rf data/embeddings/chromadb/
 ```
 
 ### Reset Database
+
 ```bash
 # Start fresh (warning: deletes all data)
 rm -rf data/
@@ -226,6 +241,7 @@ uv run python main.py load-wildchat --limit 100
 ```
 
 ### Check Embedding Status
+
 ```bash
 # See what embeddings exist
 ls -la data/embeddings/summaries/
@@ -259,17 +275,20 @@ case_study/
 ## Expected Results
 
 ### Part 02: The Alignment Problem
+
 - **v1 queries**: ~55-62% Recall@1 (good performance)
 - **v2 queries**: ~11-12% Recall@1 (terrible performance)
 - **Gap**: 44-50% performance difference
 
 ### Part 03: Summary Solutions
+
 - **v1 summaries**: 60.7% v1, 17.1% v2 (content-focused)
 - **v3 summaries**: 61.9% v1, 21.0% v2 (balanced)
 - **v4 summaries**: 45.7% v1, 24.9% v2 (pattern-focused)
 - **v5 summaries**: 82.0% v1, 55.0% v2 (optimized hybrid - best!)
 
 ### Part 04: Reranking Solutions
+
 - **Baseline (no reranking)**: 12.0% Recall@1, 41.0% Recall@30
 - **Cohere + 60 docs**: 11.0% Recall@1, 48.0% Recall@30 (modest improvement)
 - **Cohere + 100 docs**: 11.0% Recall@1, 50.0% Recall@30 (diminishing returns)
@@ -287,6 +306,7 @@ case_study/
 ## Connection to Workshops
 
 This case study demonstrates key concepts from the workshop series:
+
 - **Chapter 0**: The improvement flywheel in action
 - **Chapter 1**: Synthetic data for cold-start evaluation
 - **Chapter 2**: Converting evaluation insights into improvements
@@ -300,8 +320,7 @@ This case study demonstrates key concepts from the workshop series:
 4. **Test HyDE**: Implement query-time optimization as an alternative
 5. **Production Deploy**: Use these insights to improve your RAG system
 
-Remember: The goal isn't perfect recall, but understanding and solving alignment problems systematically.
----
+## Remember: The goal isn't perfect recall, but understanding and solving alignment problems systematically.
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 

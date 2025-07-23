@@ -1,6 +1,6 @@
 ---
 title: Week 3 - Office Hours Summary
-date: '2024-01-29'
+date: "2024-01-29"
 cohort: 2
 week: 3
 session: 1
@@ -252,7 +252,7 @@ For example:
 
 Even systems like Deep Research might evolve to pull from sources you tend to agree with, or deliberately include sources that challenge your viewpoint. These personalized relevancy signals could dramatically improve RAG systems beyond simple semantic matching.
 
-______________________________________________________________________
+---
 
 ## Key Takeaways and Additional Resources
 
