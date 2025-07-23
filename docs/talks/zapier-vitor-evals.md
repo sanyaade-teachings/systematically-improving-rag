@@ -1,5 +1,5 @@
 ---
-title: "Building Feedback Systems for AI Products"
+title: "How Zapier 4x'd Their AI Feedback Collection (Vitor)"
 speaker: Vitor
 cohort: 3
 description: "Vitor from Zapier shares how they dramatically improved their feedback collection systems for AI products through strategic UX changes and systematic analysis"
@@ -7,11 +7,13 @@ tags: [feedback systems, evaluation, user feedback, AI products, Zapier]
 date: 2025-01-01
 ---
 
-# Building Feedback Systems for AI Products
-
-Study Notes:
+# How Zapier 4x'd Their AI Feedback Collection (Vitor)
 
 I hosted a session with Vitor from Zapier to discuss how they dramatically improved their feedback collection systems for AI products. This conversation reveals practical strategies for gathering, analyzing, and implementing user feedback to create a continuous improvement cycle for RAG systems and AI applications.
+
+[▶️ See How Zapier 4x'd Their Feedback](https://maven.com/p/ec1439){: .md-button .md-button--primary}
+
+Study Notes:
 
 ## How did Zapier Central improve their feedback collection process?
 Zapier has been building numerous AI-powered features, with Zapier Central being their newest product - essentially an AI automation platform that connects with third-party apps and keeps data in sync. It functions as both a chat interface for your live data and an automation tool that can be controlled through natural language.

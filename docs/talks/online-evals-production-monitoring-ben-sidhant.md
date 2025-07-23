@@ -1,5 +1,5 @@
 ---
-title: Why Your AI Is Failing in Production (Lessons from Raindrop & Oleve)
+title: Why Your AI Is Failing in Production (Ben & Sidhant)
 speakers: [Ben Hylak, Sidhant Bendre]
 cohort: 3
 description: AI monitoring, production testing, and data analysis frameworks for identifying issues in AI systems and implementing structured monitoring.
@@ -7,9 +7,11 @@ tags: [monitoring, evaluation, production, AI systems, debugging]
 date: 2025-01-01
 ---
 
-# Why Your AI Is Failing in Production (Lessons from Raindrop & Oleve)
+# Why Your AI Is Failing in Production (Ben & Sidhant)
 
 I hosted a lightning lesson featuring Ben from Raindrop and Sid from Oleve to discuss AI monitoring, production testing, and data analysis frameworks. This session explored how to effectively identify issues in AI systems, implement structured monitoring, and develop frameworks for improving AI products based on real user data.
+
+[▶️ Get the Production Monitoring Playbook](https://maven.com/p/285276){: .md-button .md-button--primary}
 
 ## What are the fundamentals of AI monitoring and why are traditional approaches insufficient?
 

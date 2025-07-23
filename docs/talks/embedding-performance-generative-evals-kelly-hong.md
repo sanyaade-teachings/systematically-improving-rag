@@ -1,5 +1,5 @@
 ---
-title: Stop Trusting MTEB Rankings - Here's How Chroma Actually Tests Embeddings
+title: Stop Trusting MTEB Rankings (Kelly Hong, Chroma)
 speaker: Kelly Hong
 cohort: 3
 description: A deep dive into generative benchmarking - creating custom evaluation sets from your own data to better assess embedding model performance.
@@ -7,9 +7,11 @@ tags: [embeddings, evaluation, benchmarking, generative evals, Chroma]
 date: 2025-01-01
 ---
 
-# Stop Trusting MTEB Rankings - Here's How Chroma Actually Tests Embeddings
+# Stop Trusting MTEB Rankings (Kelly Hong, Chroma)
 
 I hosted a session with Kelly Hong from Chroma, who presented her research on generative benchmarking for retrieval systems. She explained how to create custom evaluation sets from your own data to better test embedding models and retrieval pipelines, addressing the limitations of standard benchmarks like MTEB.
+
+[▶️ See Chroma's Testing Framework in Action](https://maven.com/p/30886a){: .md-button .md-button--primary}
 
 **Why public benchmarks like MTEB don't reflect real-world performance**
 

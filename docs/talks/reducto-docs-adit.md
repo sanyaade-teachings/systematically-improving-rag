@@ -1,5 +1,5 @@
 ---
-title: Why Most Document Parsing Sucks (And How Reducto Fixed It)
+title: Why Most Document Parsing Sucks (Adit, Reducto)
 speaker: Adit
 cohort: 3
 description: A conversation with Adit, CEO of Reducto, covering challenges of document ingestion, parsing tables and forms, hybrid CV + VLM pipelines, and optimizing representations for reliable AI systems.
@@ -7,9 +7,11 @@ tags: [document parsing, ingestion, Reducto, computer vision, VLM]
 date: 2025-06-28
 ---
 
-# Why Most Document Parsing Sucks (And How Reducto Fixed It)
+# Why Most Document Parsing Sucks (Adit, Reducto)
 
 I hosted a session with Adit, CEO of Reducto, to explore the challenges and solutions in document ingestion for AI systems. This conversation covered parsing complex documents, handling tables and forms, optimizing data representation for language models, and addressing the long tail of edge cases that make production-ready AI systems difficult to build.
+
+[▶️ Discover Reducto's Document Parsing Secrets](https://maven.com/p/662e5f){: .md-button .md-button--primary}
 
 ## Why is accurate document parsing so critical for AI applications?
 The fundamental challenge with document parsing isn't just extracting text - it's about providing high-quality inputs that enable language models to reason effectively. As Adit explained, "Models today, especially reasoning models, are incredible with reasoning on good data. What really ends up causing accuracy drifts is the long tail of cases."

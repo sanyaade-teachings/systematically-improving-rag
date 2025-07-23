@@ -1,5 +1,5 @@
 ---
-title: Why Google Search Sucks for AI (And How Exa Is Building Something Better)
+title: Why Google Search Sucks for AI (Will Bryk, Exa)
 speaker: Will Bryk
 cohort: 3
 description: How AI is changing search requirements and the technical challenges of building a semantic search engine designed for AI applications rather than human users.
@@ -7,9 +7,11 @@ tags: [semantic search, AI search, embeddings, web search, Exa]
 date: 2025-01-01
 ---
 
-# Why Google Search Sucks for AI (And How Exa Is Building Something Better)
+# Why Google Search Sucks for AI (Will Bryk, Exa)
 
 I hosted a session with Will Bryk from Exa who shared insights about the evolution of search technology, how AI is changing search requirements, and the technical challenges of building a semantic search engine. This session explores how traditional search engines like Google differ from next-generation semantic search systems designed for AI applications rather than human users.
+
+[▶️ Watch How Exa Rebuilt Search for AI](https://maven.com/p/18711e){: .md-button .md-button--primary}
 
 ## Why is traditional search inadequate for the AI era?
 

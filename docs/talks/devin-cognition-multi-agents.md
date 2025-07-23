@@ -11,6 +11,8 @@ date: 2025-01-01
 
 I hosted a session with Walden Yan, co-founder and CPO of Cognition, to explore why multi-agent systems might not be the optimal approach for coding contexts. We discussed the theory of context engineering, the challenges of context passing between agents, and how single agents with proper context management can often outperform multi-agent setups.
 
+[▶️ Learn Why Devin Chose Single Agents](https://maven.com/p/446ea1){: .md-button .md-button--primary}
+
 ## Why are multi-agent systems problematic for coding tasks?
 
 The fundamental issue with multi-agent systems is context management. When you split a task between multiple agents, you're essentially playing a game of telephone where critical information can get lost in transmission.

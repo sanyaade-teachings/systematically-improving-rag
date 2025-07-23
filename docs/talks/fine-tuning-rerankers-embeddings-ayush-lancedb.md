@@ -1,5 +1,5 @@
 ---
-title: The 12% RAG Performance Boost You're Missing (LanceDB's Re-ranking Secrets)
+title: The 12% RAG Performance Boost You're Missing (Ayush, LanceDB)
 speaker: Ayush
 cohort: 3
 description: Practical approaches to enhancing retrieval quality through fine-tuning, re-ranking, and understanding trade-offs in RAG systems
@@ -7,9 +7,11 @@ tags: [fine-tuning, re-rankers, embedding models, LanceDB, RAG performance]
 date: 2025-01-01
 ---
 
-# The 12% RAG Performance Boost You're Missing (LanceDB's Re-ranking Secrets)
+# The 12% RAG Performance Boost You're Missing (Ayush, LanceDB)
 
 I hosted a session with Ayush, an ML Engineer at LanceDB, to explore how fine-tuning re-rankers and embedding models can significantly improve retrieval performance in RAG systems. We discussed practical approaches to enhancing retrieval quality, the trade-offs involved, and when these techniques make the most business sense.
+
+[▶️ Get the 12% Performance Boost Technique](https://maven.com/p/935d62){: .md-button .md-button--primary}
 
 ## What are re-rankers and why should we use them in RAG systems?
 

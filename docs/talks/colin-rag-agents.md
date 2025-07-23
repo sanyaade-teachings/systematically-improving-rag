@@ -11,6 +11,8 @@ date: 2025-06-30
 
 I hosted Colin Flaherty, previously a founding engineer at Augment and co-author of Meta's Cicero AI, to discuss autonomous coding agents and retrieval systems. This session explores how agentic approaches are transforming traditional RAG systems, what we can learn from state-of-the-art coding agents, and how these insights might apply to other domains.
 
+[▶️ See How Grep Beat Complex Embeddings](https://maven.com/p/5f4d74){: .md-button .md-button--primary}
+
 ## Do agents make traditional RAG obsolete?
 Colin shared his experience building an agent for SWE-Bench Verified, a canonical AI coding evaluation where agents implement code changes based on problem descriptions. His team's agent reached the top of the leaderboard with a surprising discovery: embedding-based retrieval wasn't the bottleneck they expected.
 

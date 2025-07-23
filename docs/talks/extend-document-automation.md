@@ -11,6 +11,8 @@ date: 2025-07-10
 
 I hosted a special session with Eli Badgio, CTO of Extend, to discuss AI-native document processing in the cloud. Extend helps companies achieve 95%+ extraction accuracy for customers like Brex and other Fortune 500s. This session covered mapping document workflows, building task-specific evaluations, and implementing partial automation with human-in-the-loop approaches.
 
+[▶️ Learn How Extend Hits 95%+ Accuracy](https://maven.com/p/da0487){: .md-button .md-button--primary}
+
 ## What are the key challenges in document automation?
 
 Document processing is an incredibly broad field, from ingestion (RAG context for agents, data mining) to back-office processing (where documents are systems of record) to in-product experiences (traditional OCR).

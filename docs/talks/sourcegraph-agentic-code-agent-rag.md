@@ -15,6 +15,8 @@ date: 2025-01-15
 
 I hosted a session with Beyang Liu, CTO of Sourcegraph, to explore how the evolution of AI models has fundamentally changed how we should approach building agent systems. This discussion revealed why many best practices from the chat LLM era are becoming obsolete, and how the architecture of effective agents requires rethinking context management, tool design, and model selection from first principles.
 
+[▶️ See Sourcegraph's Agent Architecture Revolution](https://maven.com/p/be969c){: .md-button .md-button--primary}
+
 ## Why are we rethinking agent architecture from first principles?
 
 The evolution of AI has progressed through three distinct eras, each requiring different application architectures. We started with the autocomplete era (GPT-3), moved to the RAG chat era (ChatGPT, GPT-3.5/4), and now we're in the agentic era (GPT-3.7, Claude Sonnet, Claude 4).

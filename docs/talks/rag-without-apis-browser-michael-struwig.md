@@ -1,5 +1,5 @@
 ---
-title: 'How OpenBB Ditched APIs and Put RAG in the Browser Instead'
+title: 'How OpenBB Ditched APIs and Put RAG in the Browser (Michael Struwig)'
 speaker: Michael Struwig
 cohort: 3
 description: A novel approach to RAG systems that leverages the browser as a data layer, connecting agents to sensitive data without traditional APIs.
@@ -7,9 +7,11 @@ tags: [RAG, browser, function calling, data security, OpenBB]
 date: 2025-01-01
 ---
 
-# How OpenBB Ditched APIs and Put RAG in the Browser Instead
+# How OpenBB Ditched APIs and Put RAG in the Browser (Michael Struwig)
 
 I hosted a session with Michael Struwig, Head of AI at OpenBB, who shared a fascinating approach to RAG systems that leverages the browser as a data layer. This conversation explored how financial data platforms can connect agents to sensitive data without traditional APIs, creating more secure and flexible AI-powered analysis tools.
+
+[▶️ See OpenBB's Browser-First RAG Architecture](https://maven.com/p/18bf94){: .md-button .md-button--primary}
 
 ## Why is the browser the most natural system for connecting LLMs to data?
 

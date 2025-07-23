@@ -11,6 +11,8 @@ date: 2025-01-01
 
 I hosted Manav from Glean for a guest lecture on enterprise search and fine-tuning embedding models. This session revealed a surprisingly underutilized approach that can dramatically improve RAG system performance - building custom embedding models for each customer rather than using generic solutions.
 
+[▶️ Learn Glean's Custom Model Strategy](https://maven.com/p/1ea9c9){: .md-button .md-button--primary}
+
 ## What is Glean and why does their approach to enterprise search matter?
 
 Glean has built a comprehensive Work AI platform that unifies enterprise data across various applications (Google Drive, GitHub, Jira, Confluence) into a single system. Their flagship product, the Glean Assistant, leverages this unified data model to generate relevant answers to user questions and automate workflows.
