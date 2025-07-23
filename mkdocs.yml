@@ -89,23 +89,23 @@ nav:
           - "Text Chunking Strategies (Anton, ChromaDB)": "talks/chromadb-anton-chunking.md"
           - "Lexical Search in RAG Applications (John Berryman)": "talks/john-lexical-search.md"
           - "Query Routing for RAG Systems (Anton, ChromaDB)": "talks/query-routing-anton.md"
-          - "Semantic Search Over the Web with Exa (Will Bryk, Exa)": "talks/semantic-search-exa-will-bryk.md"
-          - "RAG Without APIs: Browser-Based Retrieval (Michael, OpenBB)": "talks/rag-without-apis-browser-michael-struwig.md"
+          - "Why Google Search Sucks for AI (Will Bryk, Exa)": "talks/semantic-search-exa-will-bryk.md"
+          - "How OpenBB Ditched APIs and Put RAG in the Browser (Michael Struwig)": "talks/rag-without-apis-browser-michael-struwig.md"
       - "Finetuning":
           - "Building Custom Embedding Models Per Customer (Manav, Glean)": "talks/glean-manav.md"
-          - "Fine-tuning Re-rankers and Embedding Models (Ayush, LanceDB)": "talks/fine-tuning-rerankers-embeddings-ayush-lancedb.md"
-          - "Understanding Embedding Performance through Generative Evals (Kelly Hong)": "talks/embedding-performance-generative-evals-kelly-hong.md"
+          - "The 12% RAG Performance Boost You're Missing (Ayush, LanceDB)": "talks/fine-tuning-rerankers-embeddings-ayush-lancedb.md"
+          - "Stop Trusting MTEB Rankings (Kelly Hong, Chroma)": "talks/embedding-performance-generative-evals-kelly-hong.md"
       - "Monitoring":
-          - "Online Evals and Production Monitoring (Ben & Sidhant)": "talks/online-evals-production-monitoring-ben-sidhant.md"
-          - "RAG Anti-patterns in the Wild (Skylar Payne)": "talks/rag-antipatterns-skylar-payne.md"
-          - "Building Feedback Systems for AI Products (Vitor, Zapier)": "talks/zapier-vitor-evals.md"
+          - "Why Your AI Is Failing in Production (Ben & Sidhant)": "talks/online-evals-production-monitoring-ben-sidhant.md"
+          - "The RAG Mistakes That Are Killing Your AI (Skylar Payne)": "talks/rag-antipatterns-skylar-payne.md"
+          - "How Zapier 4x'd Their AI Feedback Collection (Vitor)": "talks/zapier-vitor-evals.md"
       - "Coding Agents":
           - "Why Cline Ditched RAG for Direct Code Reading (Nik Pash)": "talks/rag-is-dead-cline-nik.md"
           - "Grep Beat Embeddings on SWE-Bench (Colin Flaherty, Augment)": "talks/colin-rag-agents.md"
           - "Agentic RAG from first principles (Beyang Liu, Sourcegraph)": "talks/sourcegraph-agentic-code-agent-rag.md"
           - "Why Devin does not use multi-agents (Walden Yan)": "talks/devin-cognition-multi-agents.md"
       - "Document Processing":
-          - "Better RAG Through Better Data (Adit, Reducto)": "talks/reducto-docs-adit.md"
+          - "Why Most Document Parsing Sucks (Adit, Reducto)": "talks/reducto-docs-adit.md"
           - "Encoder Stacking and Multi-Modal Retrieval (Daniel, Superlinked)": "talks/superlinked-encoder-stacking.md"
           - "How Extend Achieves 95%+ Document Automation (Eli Badgio)": "talks/extend-document-automation.md"
 
