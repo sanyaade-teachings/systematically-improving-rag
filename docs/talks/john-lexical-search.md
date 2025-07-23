@@ -3,7 +3,15 @@ title: "Lexical Search in RAG Applications"
 speaker: John Berryman
 cohort: 3
 description: "Guest lecture with John Berryman on traditional search techniques, their application in RAG systems, and how lexical search complements semantic search"
-tags: [lexical search, traditional search, hybrid search, information retrieval, TF-IDF, filtering]
+tags:
+  [
+    lexical search,
+    traditional search,
+    hybrid search,
+    information retrieval,
+    TF-IDF,
+    filtering,
+  ]
 date: 2025-01-01
 ---
 
@@ -24,7 +32,7 @@ While semantic search has become the default approach for RAG systems, John high
 
 The filtering challenge is especially significant. With semantic search, you're forced into suboptimal approaches: either search first and then filter (risking empty results if filters are strict), or filter first and then semantically re-rank (which can be computationally expensive for large datasets).
 
-***Key Takeaway:*** Semantic search excels at understanding meaning but struggles with exact matching, specialized terminology, and efficient filtering - all areas where lexical search has established strengths.
+**_Key Takeaway:_** Semantic search excels at understanding meaning but struggles with exact matching, specialized terminology, and efficient filtering - all areas where lexical search has established strengths.
 
 ## How does lexical search actually work?
 
@@ -36,7 +44,7 @@ John provided a concise explanation of lexical search fundamentals, breaking it 
 
 The key advantage is that lexical search can process filtering and relevance scoring simultaneously, unlike the sequential approach required in semantic search.
 
-***Key Takeaway:*** Lexical search's inverted index structure enables efficient simultaneous filtering and relevance scoring, with established relevance algorithms like TF-IDF and BM25 that have been refined over decades.
+**_Key Takeaway:_** Lexical search's inverted index structure enables efficient simultaneous filtering and relevance scoring, with established relevance algorithms like TF-IDF and BM25 that have been refined over decades.
 
 ## How can lexical search be applied in RAG applications?
 
@@ -56,7 +64,7 @@ When integrated into a RAG application, this approach allows the LLM to:
 
 In the demonstration, a user complaint about back pain led the assistant to search for both ergonomic chairs and standing desks, then refine based on the facet data to focus on adjustable standing desks specifically.
 
-***Key Takeaway:*** Lexical search provides RAG systems with powerful filtering capabilities and metadata that allows LLMs to make more informed decisions about how to refine searches and present options to users.
+**_Key Takeaway:_** Lexical search provides RAG systems with powerful filtering capabilities and metadata that allows LLMs to make more informed decisions about how to refine searches and present options to users.
 
 ## What are the limitations of lexical search?
 
@@ -70,7 +78,7 @@ Despite its strengths, John acknowledged several significant limitations:
 
 These are precisely the areas where semantic search excels, suggesting that neither approach is sufficient on its own.
 
-***Key Takeaway:*** Lexical search's limitations around understanding meaning, context, and synonyms are the exact strengths of semantic search, pointing toward hybrid approaches as the optimal solution.
+**_Key Takeaway:_** Lexical search's limitations around understanding meaning, context, and synonyms are the exact strengths of semantic search, pointing toward hybrid approaches as the optimal solution.
 
 ## What hybrid search approaches show promise?
 
@@ -83,7 +91,7 @@ John explored several approaches to combining the strengths of lexical and seman
 
 John admitted that the ideal hybrid solution remains elusive, but the industry is actively working on approaches that combine the filtering power of lexical search with the semantic understanding of vector-based methods.
 
-***Key Takeaway:*** The future likely belongs to hybrid approaches that combine lexical search's filtering capabilities with semantic search's understanding of meaning, though the ideal implementation is still evolving.
+**_Key Takeaway:_** The future likely belongs to hybrid approaches that combine lexical search's filtering capabilities with semantic search's understanding of meaning, though the ideal implementation is still evolving.
 
 ## How do you optimize lexical search for specific domains?
 
@@ -97,7 +105,7 @@ During the Q&A, John shared insights on improving search for domain-specific app
 
 For hybrid approaches, he suggested getting the top 100-1000 results from lexical search, then using a feature store to retrieve additional information (including embeddings) for re-ranking with models like LambdaMart or XGBoost.
 
-***Key Takeaway:*** Optimizing search requires a combination of data analysis, human expertise, and appropriate algorithms. The most effective approach often involves using lexical search for initial filtering and retrieval, then applying more sophisticated ranking methods.
+**_Key Takeaway:_** Optimizing search requires a combination of data analysis, human expertise, and appropriate algorithms. The most effective approach often involves using lexical search for initial filtering and retrieval, then applying more sophisticated ranking methods.
 
 **Final thoughts on the lexical versus semantic debate**
 
@@ -105,8 +113,7 @@ While John humorously admitted his bias toward lexical search ("lexical search i
 
 The most promising direction appears to be hybrid approaches that leverage the strengths of both methods, though implementing these effectively remains challenging. As LLMs become more capable, they may also play a role in dynamically adjusting search parameters based on user needs, further blurring the line between lexical and semantic approaches.
 
-***Key Takeaway:*** The debate isn't really about lexical versus semantic search, but rather how to effectively combine them to create retrieval systems that are both precise and understanding - offering both the filtering power of traditional search and the semantic comprehension of modern embedding-based approaches.
----
+## **_Key Takeaway:_** The debate isn't really about lexical versus semantic search, but rather how to effectively combine them to create retrieval systems that are both precise and understanding - offering both the filtering power of traditional search and the semantic comprehension of modern embedding-based approaches.
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 

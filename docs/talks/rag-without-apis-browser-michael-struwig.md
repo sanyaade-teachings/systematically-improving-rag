@@ -1,5 +1,5 @@
 ---
-title: 'How OpenBB Ditched APIs and Put RAG in the Browser (Michael Struwig)'
+title: "How OpenBB Ditched APIs and Put RAG in the Browser (Michael Struwig)"
 speaker: Michael Struwig
 cohort: 3
 description: A novel approach to RAG systems that leverages the browser as a data layer, connecting agents to sensitive data without traditional APIs.
@@ -28,7 +28,7 @@ This browser-first approach provides significant advantages:
 
 As Michael explained, "We don't want to distribute your data... there's a lot of legal fuzziness around what counts as distribution. If you've purchased a data license somewhere, are you allowed to distribute it in this way?"
 
-***Key Takeaway:*** Using the browser as a data layer creates a clean separation between data integration and agent functionality. Once data is integrated into the platform for human use, it's instantly available to AI agents without requiring separate API development or data redistribution.
+**_Key Takeaway:_** Using the browser as a data layer creates a clean separation between data integration and agent functionality. Once data is integrated into the platform for human use, it's instantly available to AI agents without requiring separate API development or data redistribution.
 
 ## How does OpenBB's agent protocol work?
 
@@ -54,7 +54,7 @@ The resulting API is stateless (the agent doesn't handle state), uses REST (fami
 
 I found it particularly interesting how they've created a system with minimal primitives that handle all essential functions - yielding message chunks, reasoning steps, widget data requests, citations, and charts - all through simple yield statements in the execution loop.
 
-***Key Takeaway:*** By creating a simple, stateless protocol that runs in the browser, OpenBB allows agents to access data that might otherwise be inaccessible due to network constraints or security concerns, all while maintaining a clean separation between data integration and agent functionality.
+**_Key Takeaway:_** By creating a simple, stateless protocol that runs in the browser, OpenBB allows agents to access data that might otherwise be inaccessible due to network constraints or security concerns, all while maintaining a clean separation between data integration and agent functionality.
 
 ## What is OpenBB Workspace and how does it leverage this approach?
 
@@ -75,7 +75,7 @@ Michael emphasized their philosophy that "anything the human can do, the AI must
 
 For enterprise customers, this approach is particularly valuable because they already have their data and don't want data provisioning - they just want a way to analyze it effectively with AI assistance.
 
-***Key Takeaway:*** OpenBB's approach creates a platform where data flows directly through the browser to both humans and AI agents, maintaining security while enabling powerful analysis capabilities without requiring data to be redistributed through third-party servers.
+**_Key Takeaway:_** OpenBB's approach creates a platform where data flows directly through the browser to both humans and AI agents, maintaining security while enabling powerful analysis capabilities without requiring data to be redistributed through third-party servers.
 
 ## How does OpenBB handle state management and function execution?
 
@@ -91,7 +91,7 @@ For state management, OpenBB takes a stateless approach where the workspace hand
 
 Their architecture resembles a state machine model with a main execution loop that can drop into sub-modules for specific tasks. For example, when analyzing a PDF, the main agent might recognize it's a PDF and call a sub-agent with its own execution loop specifically designed for PDF analysis. These sub-agents can yield events back up to the main loop, which then yields them to the client.
 
-***Key Takeaway:*** By using remotely executed functions and a stateless architecture, OpenBB creates a system that's easy to reason about while enabling powerful capabilities like accessing data that would otherwise be inaccessible to remote agents.
+**_Key Takeaway:_** By using remotely executed functions and a stateless architecture, OpenBB creates a system that's easy to reason about while enabling powerful capabilities like accessing data that would otherwise be inaccessible to remote agents.
 
 ## How does OpenBB handle error management and system improvement?
 
@@ -113,7 +113,7 @@ He shared an example where they noticed their agent was consistently generating 
 
 This approach reminded me of Toyota sending executives to Namibia to watch what breaks on their vehicles in harsh conditions. As Michael noted, "That is surprisingly effective. You don't need workflows. You don't need crazy tooling. Sometimes, just putting your boots on the ground and looking at what's going wrong - that's the highest information signal you can get."
 
-***Key Takeaway:*** Sometimes the simplest approaches are most effective. Rather than building complex systems to analyze errors, directly examining logs and identifying patterns can provide the highest-quality information for improving your AI systems.
+**_Key Takeaway:_** Sometimes the simplest approaches are most effective. Rather than building complex systems to analyze errors, directly examining logs and identifying patterns can provide the highest-quality information for improving your AI systems.
 
 ## How does OpenBB manage latency expectations?
 
@@ -140,7 +140,7 @@ He predicts that browsers will eventually have built-in LLMs, with standardized 
 
 When I asked whether this would happen first on desktop or mobile, Michael was confident: "Mobile, almost certainly mobile." The challenge remains monetization - how do big tech companies justify the investment in building these capabilities if they can't generate revenue from them?
 
-***Key Takeaway:*** The future may involve browsers with native LLM capabilities and standardized interfaces for web applications to leverage these models, creating a more accessible AI ecosystem that doesn't require users to install specialized software.
+**_Key Takeaway:_** The future may involve browsers with native LLM capabilities and standardized interfaces for web applications to leverage these models, creating a more accessible AI ecosystem that doesn't require users to install specialized software.
 
 ## How does OpenBB approach testing and evaluation?
 
@@ -163,7 +163,7 @@ For monitoring and tracing, they use two main tools:
 - Magnetic (by Jack Collins) - A minimal LLM framework that provides the right abstraction level
 - Logfire - For fast tracing with a good UI and OpenTelemetry compatibility
 
-***Key Takeaway:*** In domains where evaluation is subjective, combining user feedback with radical observability and direct examination of system behavior can be more effective than complex automated evaluation systems.
+**_Key Takeaway:_** In domains where evaluation is subjective, combining user feedback with radical observability and direct examination of system behavior can be more effective than complex automated evaluation systems.
 
 ## What are the limitations of frameworks like LangChain?
 
@@ -175,7 +175,7 @@ He explained that LangChain works well for "Hello World" examples, but as soon a
 
 Instead, OpenBB prefers more minimal abstractions that give them greater control over execution flow. They've found that a state machine model with execution loops works better for their needs, allowing them to drop into specialized sub-modules for specific tasks while maintaining a clean overall architecture.
 
-***Key Takeaway:*** While frameworks like LangChain can help with initial development, they often become limiting when building production systems that require custom functionality. More minimal abstractions that give you direct control over execution flow can be more effective for complex applications.
+**_Key Takeaway:_** While frameworks like LangChain can help with initial development, they often become limiting when building production systems that require custom functionality. More minimal abstractions that give you direct control over execution flow can be more effective for complex applications.
 
 **Final thoughts on browser-based RAG**
 
@@ -193,7 +193,7 @@ This approach represents a pragmatic solution to real-world constraints around d
 
 As AI becomes more integrated into our daily tools, approaches like this that leverage existing infrastructure rather than building entirely new systems may prove to be the most sustainable path forward.
 
-______________________________________________________________________
+---
 
 FAQs:
 

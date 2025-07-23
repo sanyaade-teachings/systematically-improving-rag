@@ -3,7 +3,15 @@ title: "How Extend Achieves 95%+ Document Automation (Lessons from Eli Badgio)"
 speaker: Eli Badgio, Extend
 cohort: 3
 description: Insights from Eli Badgio, CTO of Extend, on mapping document workflows, building task-specific evaluations, and implementing partial automation with human-in-the-loop approaches for 95%+ extraction accuracy.
-tags: [document automation, extraction, human-in-the-loop, evaluation, Extend, workflow]
+tags:
+  [
+    document automation,
+    extraction,
+    human-in-the-loop,
+    evaluation,
+    Extend,
+    workflow,
+  ]
 date: 2025-07-10
 ---
 
@@ -30,6 +38,7 @@ This one-shot approach sets unrealistic expectations for business stakeholders a
 The first critical step is developing a deep understanding of both your documents and the existing manual processes around them. In most companies, there's an enormous amount of tacit knowledge hidden in people's heads—whether in engineering, operations, or domain experts.
 
 One client Extend worked with took a fascinating approach to this challenge. They were trying to automate software contract ingestion but initially struggled with accuracy issues. Their solution was four-fold:
+
 - Implemented a human-in-the-loop flow where AI-processed documents were still routed to humans for verification, allowing them to collect robust production data
 - Brought in domain experts from within the company who had previously done this work manually
 - Created a series of extractors that characterized normalized attributes (supplier, layout type, pricing terminology) rather than trying to extract actionable data
@@ -60,6 +69,7 @@ This approach created a competitive advantage—proprietary evaluation data that
 Rather than aiming for 100% automation from the start, successful companies focus on what Eli called "true automation rate"—how high of an accuracy can you get where the end-to-end pipeline works 100% of the time, and inaccuracies are caught 100% of the time?
 
 A dental billing automation company took this approach when processing explanation of benefits (EOB) documents. They implemented:
+
 - A multi-step process that segmented the problem, limiting what each module needed to handle
 - Configuration workflows for different providers with known edge cases
 - Data validations and guardrails that could declaratively identify when a document needed human review
@@ -75,6 +85,7 @@ This approach recognized that 85% true automation (where you know with certainty
 Rather than trying to replicate existing manual processes with automation, successful implementations rethink the entire workflow with automation in mind.
 
 This might involve:
+
 - Breaking document processing into multiple pipeline steps (parsing, classification, splitting, extraction, semantic chunking)
 - Creating declarative validation rules to identify when automation might fail
 - Designing human-in-the-loop workflows that efficiently handle exceptions
@@ -90,6 +101,7 @@ When working with clients, Extend often starts by asking them to walk through th
 Document processing involves multiple trade-offs between cost, speed, and accuracy. For back-office workflows, accuracy should generally take priority over speed.
 
 Eli recommended several approaches to manage these trade-offs:
+
 - Use model distillation to create smaller, faster models for specific tasks like chunking
 - Implement pre-filtering steps with lightweight classifiers to avoid running expensive operations on all documents
 - For back-office flows, design processes that remove latency as a consideration
@@ -111,6 +123,7 @@ Eli emphasized that involving these experts early in the process creates a signi
 > "If you're an engineer and you're tasked with this kind of problem... and you don't feel like you actually understand this process, someone on your team has to. If you're doing this currently and you're in industry, someone understands this." — Eli Badgio
 
 The most successful implementations Extend has seen involve close collaboration between AI engineers and domain experts to:
+
 - Design appropriate schemas and extraction rules
 - Create comprehensive evaluation datasets
 - Develop validation rules to identify edge cases
@@ -125,6 +138,7 @@ Implementing document automation requires careful change management. Eli recomme
 > "Most companies are much more willing to roll something out and deal with the change management if you focus on augmentation at start and then turn augmentation into automation." — Eli Badgio
 
 When working with clients, Extend often leads with building a human-in-the-loop system first, allowing companies to:
+
 - Collect real-world data about their documents
 - Build confidence in the system gradually
 - Identify edge cases and failure modes
@@ -137,6 +151,7 @@ This approach aligns with their mantra: "Automate when possible, augment otherwi
 ## Final thoughts on document automation
 
 Document automation is a complex field that requires deep understanding of both technical capabilities and domain-specific knowledge. The most successful implementations I've seen follow these principles:
+
 - Understand your data and existing manual processes thoroughly
 - Invest early in tailored evaluations specific to your domain
 - Break processing into multiple pipeline steps
@@ -156,6 +171,7 @@ Document automation uses AI to process and extract information from documents, r
 **What are the main types of document processing use cases?**
 
 There are three broad categories of document processing:
+
 - Ingestion: Including RAG context for agents and data mining
 - Back office processing: When documents serve as systems of record (contracts, deeds, etc.)
 - In-product experiences: Traditional OCR use cases like uploading an invoice to extract data
@@ -187,6 +203,7 @@ For example, a system with 85% true automation rate where you can reliably ident
 **How should I think about redesigning processes for automation?**
 
 Rather than trying to create a one-to-one replacement of an existing manual process, rethink the process from scratch with automation in mind. This might involve:
+
 - Breaking complex workflows into multiple steps
 - Creating deterministic routing based on document classifications
 - Implementing validation checks and guardrails
@@ -197,6 +214,7 @@ When possible, design the process around asynchronous processing rather than opt
 **How can I reduce costs for document processing?**
 
 Several strategies can help manage costs:
+
 - Use model distillation to create smaller, faster models for specific tasks
 - Implement lightweight classifiers as an initial step to route documents appropriately
 - Use pre-filtering to only apply expensive processing (like semantic chunking) to documents that require it
@@ -207,6 +225,7 @@ For back-office workflows, prioritize accuracy over latency and design processes
 **How should I involve domain experts in document automation?**
 
 Domain experts are crucial for successful document automation. Involve them in:
+
 - Tailoring classifications and schema design to match industry jargon
 - Building comprehensive evaluation sets
 - Optimizing extraction rules to properly interpret domain-specific terminology
@@ -219,6 +238,7 @@ Teams that effectively incorporate domain experts gain a significant competitive
 Start by identifying a single, high-priority use case rather than attempting to automate multiple workflows simultaneously. Focus on understanding the data and existing process thoroughly before designing automation.
 
 Consider these steps:
+
 - Implement a human-in-the-loop flow to collect production data
 - Involve domain experts to understand tacit knowledge
 - Create robust evaluation sets for each step in the process
@@ -226,12 +246,6 @@ Consider these steps:
 - Design the process around automation rather than trying to replicate the manual process
 
 This approach delivers business value faster while building organizational comfort with automation.
-
-
-
-
-
-
 
 ---
 

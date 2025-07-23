@@ -14,6 +14,7 @@ I hosted Colin Flaherty, previously a founding engineer at Augment and co-author
 [▶️ See How Grep Beat Complex Embeddings](https://maven.com/p/5f4d74){: .md-button .md-button--primary}
 
 ## Do agents make traditional RAG obsolete?
+
 Colin shared his experience building an agent for SWE-Bench Verified, a canonical AI coding evaluation where agents implement code changes based on problem descriptions. His team's agent reached the top of the leaderboard with a surprising discovery: embedding-based retrieval wasn't the bottleneck they expected.
 
 "We explored adding various embedding-based retrieval tools, but found that for SweeBench tasks this was not the bottleneck - grep and find were sufficient," Colin explained. This initially surprised him, as he expected embedding models to be significantly more powerful.
@@ -26,7 +27,7 @@ The evolution of code retrieval complexity has followed a clear progression:
 
 When examining how the agent solved problems, Colin observed it would use simple tools like grep and find persistently, trying different approaches until it found what it needed. The agent's persistence effectively compensated for less sophisticated tools.
 
-***Key Takeaway:*** Agents don't necessarily make traditional RAG obsolete, but they change how we should think about retrieval systems. The persistence and course-correction capabilities of agents can sometimes overcome limitations in the underlying retrieval tools.
+**_Key Takeaway:_** Agents don't necessarily make traditional RAG obsolete, but they change how we should think about retrieval systems. The persistence and course-correction capabilities of agents can sometimes overcome limitations in the underlying retrieval tools.
 
 **Benefits of agentic retrieval with simple tools**
 Agentic retrieval with grep and find offers several advantages:
@@ -56,7 +57,7 @@ When deciding between traditional RAG, agent+grep/find, or agent+embeddings, Col
 
 Traditional RAG offers decent quality with excellent speed, low cost, and high scalability, but lacks course correction. Agent+grep provides excellent quality and reliability but struggles with speed, cost, and scale. Agent+embeddings combines the best of both but remains slow and expensive.
 
-***Key Takeaway:*** Don't throw away your existing retrieval systems - instead, expose them as tools to agents. This gives you the benefits of both approaches while allowing you to optimize based on your specific constraints.
+**_Key Takeaway:_** Don't throw away your existing retrieval systems - instead, expose them as tools to agents. This gives you the benefits of both approaches while allowing you to optimize based on your specific constraints.
 
 **Evaluating agentic retrieval systems**
 Colin emphasized a "vibe-first" approach to evaluation:
@@ -98,11 +99,12 @@ To enhance agentic retrieval, Colin recommends:
 One particularly effective technique is asynchronous pre-processing: "I've taken songs and used an LLM to create a dossier about each one. This simple pre-processing step took a totally non-working search system and turned it into something that works really well."
 
 ## Why aren't more people training great embedding models?
+
 When asked what question people aren't asking enough, Colin highlighted the lack of expertise in training embedding models: "Very few people understand how to build and train good retrieval systems. It just confuses me why no one knows how to fine-tune really good embedding models."
 
 He attributed this partly to the specialized nature of the skill and partly to data availability. For code, there's abundant data on GitHub, but most domains lack comparable resources. Additionally, the most talented engineers often prefer working on LLMs rather than embedding models.
 
-***Key Takeaway:*** As agents become more capable, the quality of their tools becomes increasingly important. Even though agents can compensate for suboptimal tools through persistence, providing them with better retrieval mechanisms significantly improves their efficiency and capabilities.
+**_Key Takeaway:_** As agents become more capable, the quality of their tools becomes increasingly important. Even though agents can compensate for suboptimal tools through persistence, providing them with better retrieval mechanisms significantly improves their efficiency and capabilities.
 
 **Final thoughts on the future of retrieval**
 Colin believes we're entering an era where the boundaries between traditional RAG and agentic systems are blurring. The ideal approach combines the strengths of both: the speed and efficiency of well-tuned embedding models with the persistence and course-correction of agents.
@@ -181,8 +183,7 @@ For the SWE-Bench coding evaluation, embedding models didn't significantly impro
 3. The agent's persistence compensated for less sophisticated search tools
 4. The tasks were relatively simple, typically solvable by a good engineer in under an hour
 
-This doesn't mean embedding models aren't valuable—they become essential for larger codebases, less structured content, or more complex retrieval tasks.
----
+## This doesn't mean embedding models aren't valuable—they become essential for larger codebases, less structured content, or more complex retrieval tasks.
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 

@@ -14,6 +14,7 @@ I hosted a Lightning Lesson with Skylar Payne, an experienced AI practitioner wh
 [▶️ Avoid These Critical RAG Mistakes](https://maven.com/p/35585d){: .md-button .md-button--primary}
 
 ## What are the most common RAG anti-patterns across different industries?
+
 Skylar has worked with various use cases including customer support knowledge bases, medical advice chatbots, financial news summarization, academic research assistants, and e-commerce product comparison tools. Across these diverse applications, he's consistently observed similar problems that prevent RAG systems from performing optimally.
 
 The fundamental issue that keeps appearing is insufficient attention to data quality and evaluation. As Skylar emphasized, "Look at your data. You really need to start from your user, understand what they want, work backwards. And then you need to look at your data at every step." This approach of continuous data inspection throughout the pipeline is critical for success.
@@ -29,9 +30,10 @@ When breaking down the RAG pipeline into its component parts, problems can emerg
 
 Each of these stages presents unique challenges that can significantly impact the overall performance of your RAG system.
 
-***Key Takeaway:*** The teams who can iterate quickly through the cycle of examining data, getting ideas, and adapting their system are invariably the ones who succeed. This process of continuous improvement based on data insights is the foundation of effective RAG implementation.
+**_Key Takeaway:_** The teams who can iterate quickly through the cycle of examining data, getting ideas, and adapting their system are invariably the ones who succeed. This process of continuous improvement based on data insights is the foundation of effective RAG implementation.
 
 ## What problems occur during data collection and curation?
+
 Two major issues frequently arise during the initial data collection phase:
 
 Documents with varied encodings or formats often cause silent failures. In one medical chatbot project, 21% of the document corpus was silently dropped because the system assumed all documents were UTF-8 when many were actually Latin-1 encoded. This kind of silent failure is particularly dangerous because your index shrinks without your knowledge, leading to degraded answers and lost user trust.
@@ -48,9 +50,10 @@ To address these issues, Skylar recommends:
 - Using metadata tagging to filter documents for specific query types
 - Analyzing query logs to refine filters over time
 
-***Key Takeaway:*** Silent failures in data processing can dramatically reduce the quality of your RAG system without any obvious errors. Implement robust monitoring and be intentional about which documents you include in your index.
+**_Key Takeaway:_** Silent failures in data processing can dramatically reduce the quality of your RAG system without any obvious errors. Implement robust monitoring and be intentional about which documents you include in your index.
 
 ## What challenges exist in extraction and enrichment?
+
 Information extraction from complex documents presents significant challenges, particularly with PDFs and tables. For an academic research assistant project, extracting tables from research papers was critical but difficult with standard tools.
 
 Many off-the-shelf PDF extraction tools perform poorly on table extraction, leading to missing or malformed data. This affects the quality of information that can be retrieved and presented to users.
@@ -67,9 +70,10 @@ In an e-commerce product comparison project, spec sheets were split into such sm
 
 Similarly, keeping low-value chunks like copyright footers or boilerplate text creates noise in your retrieval system. These chunks rarely contain useful information but can be retrieved if they happen to match a query, crowding out more relevant content.
 
-***Key Takeaway:*** Don't blindly follow chunking strategies from tutorials - examine your specific use case to determine the optimal chunk size, and be sure to filter out low-value content that adds noise to your retrieval system.
+**_Key Takeaway:_** Don't blindly follow chunking strategies from tutorials - examine your specific use case to determine the optimal chunk size, and be sure to filter out low-value content that adds noise to your retrieval system.
 
 ## What issues arise in indexing and storage?
+
 Naive embedding usage is a common problem. Most embeddings are trained for semantic similarity (matching synonyms and similar meanings) but are often used to compare document chunks with questions, which typically have different forms and structures.
 
 Several techniques can help bridge this gap:
@@ -80,9 +84,10 @@ Several techniques can help bridge this gap:
 
 Another critical issue is failing to check for index staleness. In the financial news summarization case, the index hadn't been refreshed for two weeks, causing the system to return outdated earnings data when users asked for the "latest" information. For time-sensitive applications, monitoring index freshness is essential, and you may want to filter out documents based on their age.
 
-***Key Takeaway:*** The mismatch between query form and document form is a fundamental challenge in RAG systems. Address this through query expansion, document modification techniques, or embedding fine-tuning, and always monitor index freshness for time-sensitive applications.
+**_Key Takeaway:_** The mismatch between query form and document form is a fundamental challenge in RAG systems. Address this through query expansion, document modification techniques, or embedding fine-tuning, and always monitor index freshness for time-sensitive applications.
 
 ## What problems occur during retrieval?
+
 Accepting vague queries like "health tips" forces RAG systems to retrieve broadly, making it difficult to provide focused, helpful answers. Similarly, accepting off-topic queries (like "write a poem about unicorns" in a product comparison tool) can lead to bizarre outputs that damage user trust.
 
 To address these issues:
@@ -95,9 +100,10 @@ To address these issues:
 
 Another common mistake is failing to break down complex tasks. For example, a customer support system was using the full RAG pipeline to answer "What is my billing date?" when a simple metadata lookup would be faster, cheaper, and more reliable. Identifying common query patterns and routing them to specialized handlers can significantly improve performance.
 
-***Key Takeaway:*** Not every query needs the full RAG treatment. Implement intent classification to route simple queries to specialized handlers and reject off-topic requests that your system isn't designed to handle.
+**_Key Takeaway:_** Not every query needs the full RAG treatment. Implement intent classification to route simple queries to specialized handlers and reject off-topic requests that your system isn't designed to handle.
 
 ## How should we approach evaluation of RAG systems?
+
 Many teams evaluate only the documents they retrieve, missing critical insights about false negatives. This is like "looking for your keys under the lamppost because that's where the light is" - you're only examining a small portion of the potential solution space.
 
 For comprehensive evaluation:
@@ -110,9 +116,10 @@ Creating a quadrant analysis of correct/incorrect answers versus sufficient/insu
 
 Another common mistake is increasing system complexity without proper evaluation. Skylar has seen many clients implement sophisticated retrieval and re-ranking systems without first establishing whether they actually improve performance. In over 90% of these cases, the new system performed worse when properly evaluated.
 
-***Key Takeaway:*** Always implement evaluations before increasing system complexity. It's easy to fool yourself into thinking you know what the problem is, but data-driven evaluation provides essential guardrails.
+**_Key Takeaway:_** Always implement evaluations before increasing system complexity. It's easy to fool yourself into thinking you know what the problem is, but data-driven evaluation provides essential guardrails.
 
 ## What re-ranking challenges do RAG systems face?
+
 Overusing boosting rules can make systems difficult to understand and maintain. While boosting (adjusting ranking scores based on specific criteria) can be a useful hack to improve relevance, adding too many rules creates complexity. In the financial news example, boosting semiconductor-related content, recent articles, and earnings-related terms created a system that was hard to debug and understand.
 
 Another issue is allowing "facepalm results" - outputs that are so obviously wrong that users lose trust in the system. These often occur because lower layers of retrieval optimize for high recall (getting anything potentially relevant), and the re-ranking layer fails to filter out inappropriate content.
@@ -126,9 +133,10 @@ To prevent these issues:
 - Remove low-value chunks from your index
 - Monitor your system with test queries that have previously produced bad results
 
-***Key Takeaway:*** Re-ranking is your last line of defense against irrelevant content. Invest in robust filtering and monitoring to prevent embarrassing outputs that damage user trust.
+**_Key Takeaway:_** Re-ranking is your last line of defense against irrelevant content. Invest in robust filtering and monitoring to prevent embarrassing outputs that damage user trust.
 
 ## What generation-phase problems affect RAG systems?
+
 Simple RAG systems often struggle with reasoning-based queries that require connecting information from multiple sources. For example, an academic research assistant needed to understand relationships between papers, which required multiple retrieval steps to connect the dots.
 
 For these complex use cases, consider:
@@ -145,9 +153,10 @@ The most effective approach to reducing hallucination in RAG systems is:
 - Validate that each citation exists in the retrieved documents
 - Semantically validate that each citation actually supports the claimed content
 
-***Key Takeaway:*** For complex reasoning tasks, simple RAG may not be sufficient. Consider more sophisticated approaches like agentic workflows or knowledge graphs, and always implement citation validation to prevent hallucination in sensitive domains.
+**_Key Takeaway:_** For complex reasoning tasks, simple RAG may not be sufficient. Consider more sophisticated approaches like agentic workflows or knowledge graphs, and always implement citation validation to prevent hallucination in sensitive domains.
 
 ## How important is metadata tagging in practice?
+
 According to Skylar, about 40% of clients have indexes so small that metadata tagging doesn't provide significant benefits. Many B2B companies have segregated data by customer, further reducing the need for complex tagging within each customer's dataset.
 
 The value of metadata tagging increases with:
@@ -157,9 +166,10 @@ The value of metadata tagging increases with:
 
 For specific use cases like legal documents, metadata about authorship, ownership, and modification history can be crucial. By embedding these tags into the text chunks themselves (rather than just using them as filter properties), you can answer questions about document history and changes.
 
-***Key Takeaway:*** The value of metadata tagging depends on your data scale and query diversity. For smaller datasets or narrowly focused applications, extensive tagging may not be necessary, but for complex domains like legal documents, rich metadata can significantly enhance retrieval capabilities.
+**_Key Takeaway:_** The value of metadata tagging depends on your data scale and query diversity. For smaller datasets or narrowly focused applications, extensive tagging may not be necessary, but for complex domains like legal documents, rich metadata can significantly enhance retrieval capabilities.
 
 ## What's the most important thing to remember when implementing RAG?
+
 The most critical principle is to continuously examine your data at every stage of the pipeline. This means:
 
 1. Starting with user needs and working backward
@@ -171,7 +181,7 @@ As Skylar emphasized throughout the session, "The teams who can make that loop g
 
 By focusing on data quality, implementing proper evaluation, and iterating quickly based on real insights rather than assumptions, you can avoid the common anti-patterns that plague RAG implementations and build systems that truly deliver value to users.
 
-______________________________________________________________________
+---
 
 FAQs
 

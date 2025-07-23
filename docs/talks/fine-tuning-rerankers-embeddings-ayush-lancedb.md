@@ -48,7 +48,7 @@ This approach allows for more nuanced matching than standard bi-encoders while b
 
 The key advantage of ColBERT is that it still attends to token-level features but does so in two stages - the part that can be calculated offline is saved in a vector database, and at query time, it performs a maximum operation on token-level similarities to find the best match.
 
-## Should I fine-tune an existing re-ranker or train one from scratch? 
+## Should I fine-tune an existing re-ranker or train one from scratch?
 
 When deciding whether to train a re-ranker from scratch or fine-tune an existing one, consider these factors:
 
@@ -173,23 +173,29 @@ This is why having a range of options - from lightweight models like MiniLM to m
 ## FAQs
 
 ## What are re-rankers and why should I use them?
+
 Re-rankers are models that improve retrieval quality by reordering documents after they've been retrieved from a database. They fit into your pipeline after retrieval and before the context is provided to an LLM, helping to ensure the most relevant documents appear at the top. Re-rankers are particularly valuable because they don't disrupt your existing pipeline—you don't need to re-ingest your entire dataset, making them a low-hanging fruit for improving retrieval performance.
 
 ## How do re-rankers work compared to embedding models?
+
 While embedding models (bi-encoders) calculate embeddings for documents and queries independently, re-rankers (cross-encoders) process document-query pairs together, allowing them to calculate cross-attention between both inputs. This enables re-rankers to better understand the relevance between a query and document, resulting in more accurate rankings. However, this power comes with higher computational costs, which is why re-rankers are typically used only on a small subset of already retrieved documents.
 
 ## What performance improvements can I expect from re-rankers?
+
 Based on extensive benchmarking, re-rankers typically improve retrieval performance by 10-20% depending on the algorithm used. In the experiments presented, vector search results improved by 12% for top-5 retrieval and 6% for top-10 retrieval. Full-text search saw even more dramatic improvements, with some models showing up to 20% better performance.
 
 ## What are the trade-offs when using re-rankers?
+
 The main trade-off is latency. Re-rankers add processing time after retrieval, typically in the range of tens of milliseconds when using a GPU. On CPUs, the latency penalty is higher, potentially 3-4x the baseline retrieval time. For most applications, this additional latency is acceptable, but if your use case is extremely latency-sensitive (where even 10ms matters), you might want to consider other approaches.
 
 ## What re-ranker architectures are available?
+
 There are two main re-ranker architectures:
 Cross-encoders: These process the query and document together, allowing for maximum interaction but requiring more computation.
 ColBERT: This "late interaction" architecture calculates document embeddings offline and compares token-level embeddings with the query at retrieval time, offering a balance between performance and speed.
 
 ## When should I train a re-ranker from scratch versus fine-tuning an existing one?
+
 Train a re-ranker from scratch when:
 There are no re-rankers available for your preferred base model
 Your dataset has become highly specialized or has drifted significantly from general data
@@ -199,26 +205,31 @@ You have a specialized dataset but don't want to risk catastrophic forgetting
 Remember that fine-tuning typically converges much faster since the weights aren't random, but training for too long on low-quality data can lead to performance degradation.
 
 ## How do I train a re-ranker?
+
 To train a re-ranker, you need query-context pairs with positive (relevant) and negative (irrelevant) examples. The most effective approach is to mine "hard negatives"—documents that are semantically similar to the query but aren't actually relevant answers. This challenges the model to learn nuanced distinctions. Tools like sentence-transformers provide frameworks for training re-rankers with appropriate loss functions.
 
 ## Should I fine-tune my embedding models as well?
+
 Fine-tuning embedding models can also improve retrieval performance by 8-10%, but it's more disruptive to your pipeline since it requires re-embedding your entire dataset. Consider fine-tuning your embedding model when:
 Your data has a different distribution than what the model was originally trained on
 You have a sufficiently large dataset (tens of thousands of examples)
 Your data is domain-specific (like legal or medical content)
 
 ## Can I combine re-ranking with fine-tuned embedding models?
+
 Yes, and this approach can yield even better results. In the experiments presented, combining the best fine-tuned embedding model with the best re-ranker improved performance from a baseline of 48% to 64% for top-5 retrieval, and from 60% to 71% for top-10 retrieval. This gives you flexibility to choose the approach that best fits your latency and performance requirements.
 
 ## What about data augmentation and synthetic data generation?
+
 Be cautious with synthetic data generation. While it might seem like a solution for limited data, LLMs can hallucinate up to 70% of the time when generating synthetic query-context pairs. Data augmentation works best when you already have a good dataset and want to prevent overfitting, not as a solution for poor-quality data.
 
 ## How do I evaluate if re-ranking will help my specific use case?
+
 Start with a small experiment using a lightweight model that you can train quickly (like MiniLM). If you see improvements with this simple approach, it's a strong signal that investing in more sophisticated re-ranking will yield even better results. This allows you to validate the approach before committing significant resources.
 
 ## What's the future of retrieval improvement beyond re-ranking?
-Multimodal retrieval is likely the next frontier. While much work has been done on text retrieval, there's still significant room for improvement in retrieving and ranking content across different modalities like images, audio, and video. Building better benchmarks and baselines for multimodal RAG systems represents an important area for future development.
----
+
+## Multimodal retrieval is likely the next frontier. While much work has been done on text retrieval, there's still significant room for improvement in retrieving and ranking content across different modalities like images, audio, and video. Building better benchmarks and baselines for multimodal RAG systems represents an important area for future development.
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 

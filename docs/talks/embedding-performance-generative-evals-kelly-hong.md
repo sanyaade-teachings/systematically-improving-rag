@@ -25,7 +25,7 @@ There's significant risk of data contamination since embedding models may have s
 
 As Kelly put it: "If you have really good performance on a public benchmark for a given embedding model, that doesn't necessarily guarantee that you'll also get that good performance for your specific production pipeline."
 
-***Key Takeaway:*** Good performance on public benchmarks doesn't translate to good performance in your specific application. You need to evaluate embedding models on your own data to get meaningful results.
+**_Key Takeaway:_** Good performance on public benchmarks doesn't translate to good performance in your specific application. You need to evaluate embedding models on your own data to get meaningful results.
 
 **The generative benchmarking approach**
 
@@ -140,7 +140,7 @@ As Kelly put it: "I think the main takeaway from this entire talk is that if you
 
 For those interested in trying generative benchmarking, Kelly mentioned that Chroma has made their tools available, and I noted they're offering $1,000 in API credits for participants in the cohort.
 
-______________________________________________________________________
+---
 
 FAQs
 

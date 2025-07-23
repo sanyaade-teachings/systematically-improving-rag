@@ -3,7 +3,15 @@ title: "Why Glean Builds Custom Embedding Models for Every Customer"
 speaker: Manav, Glean
 cohort: 3
 description: How Glean achieves 20% search performance improvements through customer-specific embedding models, unified data architecture, and smart feedback loops that most enterprise AI companies are missing.
-tags: [enterprise search, embedding models, fine-tuning, RAG optimization, Glean, custom models]
+tags:
+  [
+    enterprise search,
+    embedding models,
+    fine-tuning,
+    RAG optimization,
+    Glean,
+    custom models,
+  ]
 date: 2025-01-01
 ---
 
@@ -40,6 +48,7 @@ This diversity requires a robust, generalized unified data model that can handle
 One of the most fascinating aspects of Glean's approach is that they build custom embedding models for each customer. While many companies focus on using large, general-purpose embedding models, Glean has found that smaller, fine-tuned models often perform better for specific enterprise contexts.
 
 ### Glean's Custom Model Process:
+
 1. **Start with a high-performance base model** (typically BERT-based)
 2. **Perform continued pre-training** on company data using masked language modeling
 3. **Convert the language model** into an embedding model through various training techniques
@@ -58,6 +67,7 @@ Manav emphasized the power of smaller, specialized models:
 Creating effective training data for fine-tuning embedding models is challenging, especially with enterprise privacy constraints. Glean uses several creative approaches:
 
 ### Training Data Sources:
+
 - **Title-body pairs:** Mapping document titles to passages from the document body
 - **Anchor data:** Using documents that reference other documents to create relevance pairs
 - **Co-access data:** Identifying documents accessed together by users in short time periods
@@ -77,9 +87,11 @@ This understanding of how different applications work leads to much higher quali
 Once users start interacting with their products, Glean incorporates those signals to further improve their models:
 
 ### Search Product Feedback:
+
 - **Query-click pairs:** Direct signals of relevance from user interactions
 
 ### RAG Assistant Feedback (More Challenging):
+
 For RAG-only settings like their Assistant product, where users don't explicitly click on documents, they face a more challenging problem:
 
 - **Upvote/downvote systems** (though these tend to get sparse usage)
@@ -107,6 +119,7 @@ Evaluating embedding models in enterprise settings is particularly challenging b
 Glean's solution is to build "unit tests" for their models - targeted evaluations for specific behaviors they want their models to exhibit. For example, they test how well models understand paraphrases of the same query.
 
 This approach allows them to:
+
 - **Set performance targets** for each customer's model
 - **Identify underperforming models** before customers experience issues
 - **Focus optimization efforts** on specific areas
@@ -136,6 +149,7 @@ This aligns with practical experience - getting 80% of the way there with full-t
 One interesting question addressed how Glean handles outdated documents that have been superseded by newer information. Their approach centers around a concept they call "authoritativeness," which incorporates:
 
 ### Authoritativeness Factors:
+
 - **Recency:** Newer documents are generally more relevant
 - **Reference patterns:** Documents that continue to be linked to or accessed remain authoritative
 - **User satisfaction signals:** Documents that consistently satisfy user queries maintain relevance
@@ -153,6 +167,7 @@ This multi-faceted approach to document authority is more sophisticated than sim
 Manav concluded with several key insights for building effective enterprise search systems:
 
 ### Core Principles:
+
 - **Unified data model** is critical for handling heterogeneous enterprise data
 - **Company-specific language** matters tremendously for search quality
 - **Fine-tuned smaller models** often outperform generic large models for specific tasks
@@ -167,7 +182,7 @@ Glean's approach is refreshingly pragmatic. They've learned that the path to hig
 The emphasis on company-specific language models is particularly noteworthy - this is an area where many companies struggle when they try to apply generic embedding models to their unique terminology and document structures.
 
 **Key Takeaway:** Successful enterprise search requires a pragmatic approach that combines custom embedding models, unified data architecture, hybrid search techniques, and continuous learning from user feedback rather than relying solely on off-the-shelf solutions.
-  
+
 ## If you want to get discounts and 6 day email source on the topic make sure to subscribe to
 
 <script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

@@ -23,7 +23,7 @@ AI systems, by contrast, can instantly generate complex, precise queries that sp
 
 As Will explained: "It would kind of be insane if the same search engine that was optimal for humans would also be optimal for this very different creature." This insight is still not widely understood in the industry, even as everyone recognizes that combining search with LLMs is powerful.
 
-***Key Takeaway:*** Traditional search engines were optimized for human behavior patterns (simple keywords, few results), while AI systems need search engines that can handle complex queries and return comprehensive, precisely targeted information.
+**_Key Takeaway:_** Traditional search engines were optimized for human behavior patterns (simple keywords, few results), while AI systems need search engines that can handle complex queries and return comprehensive, precisely targeted information.
 
 ## How do AI search needs differ from human search needs?
 
@@ -37,7 +37,7 @@ AI systems have several distinct requirements that traditional search engines we
 
 Will used a powerful visual metaphor, showing the space of possible search queries as a vast gray zone, with traditional search engines only covering a small blue bubble within it. As he explained: "Google has trained us to only think about this keyword bubble... But there's actually many different types of queries that people might want to make that go way beyond what Google can handle."
 
-***Key Takeaway:*** AI systems need search engines that can handle precise queries, incorporate rich context, and deliver comprehensive results - capabilities that fall outside the design parameters of traditional search engines built for humans.
+**_Key Takeaway:_** AI systems need search engines that can handle precise queries, incorporate rich context, and deliver comprehensive results - capabilities that fall outside the design parameters of traditional search engines built for humans.
 
 ## How does Exa's approach to search differ from traditional search engines?
 
@@ -55,7 +55,7 @@ Will emphasized that Exa's philosophy is to give users complete control over the
 
 This approach reflects a deeper philosophical stance: "If you give full control to the user to specify what they want, you are freeing them from whatever ideology that previous search engines had."
 
-***Key Takeaway:*** Exa uses neural embedding technology rather than keywords to understand query meaning, enabling it to handle complex, contextual searches that traditional engines can't process. Their philosophy emphasizes giving users complete control over their search parameters.
+**_Key Takeaway:_** Exa uses neural embedding technology rather than keywords to understand query meaning, enabling it to handle complex, contextual searches that traditional engines can't process. Their philosophy emphasizes giving users complete control over their search parameters.
 
 ## What technical challenges arise when building a semantic search engine?
 
@@ -92,7 +92,7 @@ The business model also creates different incentives compared to traditional sea
 
 This creates what Will calls "pristine incentives" where Exa's mission aligns with its financial interests: "Because we have these very pristine incentives, our mission is very aligned with our financial incentives. So it's a very beautiful thing."
 
-***Key Takeaway:*** Exa positions itself as search infrastructure optimized for AI applications rather than human users, with a business model based on query volume rather than advertising, creating incentives aligned with delivering high-quality search results.
+**_Key Takeaway:_** Exa positions itself as search infrastructure optimized for AI applications rather than human users, with a business model based on query volume rather than advertising, creating incentives aligned with delivering high-quality search results.
 
 ## What does "perfect search" look like?
 
@@ -112,7 +112,7 @@ However, he acknowledges that achieving this vision will take time: "I would say
 
 Like AI itself, search is a domain where there's always room for improvement: "No matter how good your LLM is, you could always do better. I think similarly, no matter how good your search is, you could always do better."
 
-***Key Takeaway:*** Perfect search would enable queries that most people don't even consider trying today, fundamentally transforming our access to information. While significant progress will be made in the coming years, search will remain an open-ended problem with continuous room for improvement.
+**_Key Takeaway:_** Perfect search would enable queries that most people don't even consider trying today, fundamentally transforming our access to information. While significant progress will be made in the coming years, search will remain an open-ended problem with continuous room for improvement.
 
 ## How can developers build effective search systems for specific domains?
 
@@ -128,7 +128,7 @@ When building these systems, developers should focus on understanding what their
 
 For teams with limited resources (3-6 months to build something), Will suggested focusing on hybrid approaches that combine the strengths of keyword and embedding-based systems, as this provides a good balance of capabilities without requiring the development of custom models.
 
-***Key Takeaway:*** Domain-specific search systems can use simpler approaches than web-scale engines, with hybrid keyword and embedding methods working well for most applications. Understanding your users' query patterns should guide your technical approach.
+**_Key Takeaway:_** Domain-specific search systems can use simpler approaches than web-scale engines, with hybrid keyword and embedding methods working well for most applications. Understanding your users' query patterns should guide your technical approach.
 
 ## How will search evolve in the coming years?
 
@@ -148,9 +148,9 @@ Will sees the search market fragmenting rather than being dominated by a single 
 
 This creates opportunities for specialized search providers focused on particular capabilities or domains: "I think the search space is big enough where there are lots of winners."
 
-***Key Takeaway:*** Search is undergoing a fundamental transformation driven by AI capabilities, with the market likely to fragment into specialized providers rather than being dominated by a single approach. Future search will handle query types and modalities that we can't even imagine today.
+**_Key Takeaway:_** Search is undergoing a fundamental transformation driven by AI capabilities, with the market likely to fragment into specialized providers rather than being dominated by a single approach. Future search will handle query types and modalities that we can't even imagine today.
 
-______________________________________________________________________
+---
 
 FAQs:
 

@@ -57,7 +57,7 @@ Signals come in two varieties:
 
 For smaller applications with fewer than 500 daily events, Ben recommends piping every user interaction into a Slack channel where you can manually review them. This helps you discover not just where the model is wrong, but what's confusing about your product and what features users expect but don't yet exist.
 
-***Key Takeaway:*** Effective AI monitoring requires tracking both implicit signals (patterns in user and model language that suggest problems) and explicit signals (user actions that indicate satisfaction or dissatisfaction), then exploring these signals to identify recurring issues.
+**_Key Takeaway:_** Effective AI monitoring requires tracking both implicit signals (patterns in user and model language that suggest problems) and explicit signals (user actions that indicate satisfaction or dissatisfaction), then exploring these signals to identify recurring issues.
 
 ## What framework can help organize and prioritize AI improvements?
 
@@ -91,7 +91,7 @@ For prioritization, Sid recommends going beyond simple volume metrics: "A very n
 
 Instead, he suggests a formula: Volume × Negative Sentiment × Achievable Delta × Strategic Relevance. This helps identify areas where improvements will have the greatest impact with reasonable effort.
 
-***Key Takeaway:*** The Trellis framework provides a structured approach to taming the chaos of AI outputs by categorizing user intents, creating specialized workflows for each intent, and prioritizing improvements based on a combination of volume, sentiment, achievability, and strategic importance.
+**_Key Takeaway:_** The Trellis framework provides a structured approach to taming the chaos of AI outputs by categorizing user intents, creating specialized workflows for each intent, and prioritizing improvements based on a combination of volume, sentiment, achievability, and strategic importance.
 
 ## How can we fix issues once we've identified them?
 
@@ -113,7 +113,7 @@ After implementing changes, they saw an immediate decrease in alerts and receive
 
 This case study demonstrates the value of having "self-contained, blameable pieces of your infrastructure" that allow you to identify, isolate, and fix specific issues without affecting the entire system.
 
-***Key Takeaway:*** Fixing AI issues requires a portfolio of approaches from simple prompt changes to sophisticated fine-tuning. The key is having a structured system that allows you to attribute problems to specific workflows and measure the impact of your improvements.
+**_Key Takeaway:_** Fixing AI issues requires a portfolio of approaches from simple prompt changes to sophisticated fine-tuning. The key is having a structured system that allows you to attribute problems to specific workflows and measure the impact of your improvements.
 
 ## What are some notable examples of AI failures in production?
 
@@ -128,7 +128,7 @@ What's particularly telling is OpenAI's admission that "our evals didn't catch i
 
 These examples highlight why production monitoring is essential - the real world introduces edge cases and user behaviors that even the most comprehensive testing regimes will miss.
 
-***Key Takeaway:*** Even the largest AI companies with sophisticated testing infrastructure experience unexpected failures in production. This underscores the importance of robust monitoring systems that can detect novel issues as they emerge in real-world usage.
+**_Key Takeaway:_** Even the largest AI companies with sophisticated testing infrastructure experience unexpected failures in production. This underscores the importance of robust monitoring systems that can detect novel issues as they emerge in real-world usage.
 
 ## How long does it take to implement effective AI monitoring?
 
@@ -142,7 +142,7 @@ The process of refining their workflows and monitoring was continuous: "For thos
 
 Sid noted that they only reached stability about four months after launch: "We only really started hitting stability towards December. But it was a continuous loop in terms of looking at data, trying things out, looking at data, trying things out."
 
-***Key Takeaway:*** Implementing effective AI monitoring is not a one-time setup but an iterative process that begins before launch and continues throughout a product's lifecycle. Even with sophisticated tools, the human element of analyzing data and refining systems remains essential.
+**_Key Takeaway:_** Implementing effective AI monitoring is not a one-time setup but an iterative process that begins before launch and continues throughout a product's lifecycle. Even with sophisticated tools, the human element of analyzing data and refining systems remains essential.
 
 ## What unexpected insights can emerge from AI monitoring?
 
@@ -156,7 +156,7 @@ I've had similar experiences with clients whose products suddenly went viral in 
 
 These types of insights are nearly impossible to anticipate through traditional testing but become immediately apparent with proper monitoring systems.
 
-***Key Takeaway:*** Comprehensive AI monitoring often reveals unexpected user behaviors and preferences that wouldn't be discovered through traditional testing. These insights can drive product improvements that better align with how users actually interact with your system.
+**_Key Takeaway:_** Comprehensive AI monitoring often reveals unexpected user behaviors and preferences that wouldn't be discovered through traditional testing. These insights can drive product improvements that better align with how users actually interact with your system.
 
 ## How do we ultimately make AI products better?
 
@@ -170,7 +170,7 @@ Effective monitoring and analysis frameworks like those presented by Ben and Sid
 
 **Key Takeaway:** There's no one-size-fits-all solution for improving AI products. Success requires a diverse toolkit of approaches, from prompt engineering to fine-tuning, combined with monitoring systems that help you determine which tools will have the greatest impact on your specific challenges.
 
-______________________________________________________________________
+---
 
 FAQs
 

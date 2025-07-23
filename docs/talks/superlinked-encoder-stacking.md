@@ -3,7 +3,15 @@ title: "Encoder Stacking and Multi-Modal Retrieval (Daniel, Superlinked)"
 speaker: Daniel
 cohort: 3
 description: "Guest lecture with Daniel from Superlinked on improving retrieval systems using specialized encoders for different data types, moving beyond text-only embeddings"
-tags: [encoder stacking, multi-modal retrieval, specialized encoders, Superlinked, recommender systems, data types]
+tags:
+  [
+    encoder stacking,
+    multi-modal retrieval,
+    specialized encoders,
+    Superlinked,
+    recommender systems,
+    data types,
+  ]
 date: 2025-01-01
 ---
 
@@ -29,20 +37,20 @@ Each component of this query represents either a bias (steering results toward c
 
 If your toolkit is just a text embedding model, it simply can't understand these different data types effectively. The current approach using text-to-SQL or similar query generation has significant limitations in latency, reliability, and handling non-textual inputs like user clicks or contextual parameters.
 
-***Key Takeaway:*** Complex queries contain multiple data types that text embedding models alone can't properly understand. We need specialized approaches for handling numerical, categorical, location, and other non-textual data.
+**_Key Takeaway:_** Complex queries contain multiple data types that text embedding models alone can't properly understand. We need specialized approaches for handling numerical, categorical, location, and other non-textual data.
 
 **Three fundamental problems with current search systems**
 
 I've observed that even if you generate the perfect query, today's search systems have three fundamental flaws:
 
 1. Overuse of filters instead of biases
-When users say "near Manhattan midtown," they don't mean "exactly within X kilometers" - they have a preference that gradually decreases with distance. But systems typically implement this as a hard Boolean filter (a step function) rather than a smooth bias (a sigmoid function), creating an artificial cutoff that excludes potentially excellent results.
+   When users say "near Manhattan midtown," they don't mean "exactly within X kilometers" - they have a preference that gradually decreases with distance. But systems typically implement this as a hard Boolean filter (a step function) rather than a smooth bias (a sigmoid function), creating an artificial cutoff that excludes potentially excellent results.
 2. Reliance on re-ranking as a hack
-Re-ranking exists because our underlying retrieval is inadequate. If retrieval worked properly, you wouldn't need to shuffle results afterward. The problem is that re-ranking only applies to a tiny fraction of your database (typically less than 1%), so whatever you miss in candidate selection can't be fixed through re-ranking.
+   Re-ranking exists because our underlying retrieval is inadequate. If retrieval worked properly, you wouldn't need to shuffle results afterward. The problem is that re-ranking only applies to a tiny fraction of your database (typically less than 1%), so whatever you miss in candidate selection can't be fixed through re-ranking.
 3. Misuse of text embeddings for non-textual data
-People try to stringify everything (JSON objects, numbers, etc.) and feed it to text embedding models. This fundamentally doesn't work because these models understand numbers through co-occurrence in training data, not as actual numerical values. If you stringify integers and calculate similarities between their embeddings, there's no concept that "49 is one less than 50" in the latent space.
+   People try to stringify everything (JSON objects, numbers, etc.) and feed it to text embedding models. This fundamentally doesn't work because these models understand numbers through co-occurrence in training data, not as actual numerical values. If you stringify integers and calculate similarities between their embeddings, there's no concept that "49 is one less than 50" in the latent space.
 
-***Key Takeaway:*** Current systems rely too heavily on Boolean filters instead of smooth biases, use re-ranking to compensate for poor retrieval, and misapply text embeddings to non-textual data. These fundamental issues limit search quality regardless of prompt engineering.
+**_Key Takeaway:_** Current systems rely too heavily on Boolean filters instead of smooth biases, use re-ranking to compensate for poor retrieval, and misapply text embeddings to non-textual data. These fundamental issues limit search quality regardless of prompt engineering.
 
 **A better approach: Mixture of encoders**
 
@@ -50,10 +58,10 @@ Instead of forcing everything through text embeddings, we should use specialized
 
 1. Break down the query into components using a DSPy-style optimized prompt
 2. Feed each component to the appropriate specialized encoder:
-    - Text to a text encoder
-    - Numbers to a numerical encoder
-    - Locations to a location encoder
-    - User interactions to a graph encoder
+   - Text to a text encoder
+   - Numbers to a numerical encoder
+   - Locations to a location encoder
+   - User interactions to a graph encoder
 3. Each encoder produces an embedding that natively understands its data type
 4. Combine these embeddings with appropriate weights to create a final query vector
 5. Add any necessary filter predicates for binary conditions
@@ -61,7 +69,7 @@ Instead of forcing everything through text embeddings, we should use specialized
 
 This approach compresses all biases into a single embedding while maintaining the ability to filter when absolutely necessary. The result is more accurate retrieval without needing extensive re-ranking or complex boosting logic.
 
-***Key Takeaway:*** By using specialized encoders for different data types rather than forcing everything through text embeddings, we can create retrieval systems that better understand user intent and produce higher quality results.
+**_Key Takeaway:_** By using specialized encoders for different data types rather than forcing everything through text embeddings, we can create retrieval systems that better understand user intent and produce higher quality results.
 
 **The pilot that sees the world as strings**
 
@@ -71,37 +79,37 @@ Consider how LLMs handle numbers - they don't truly understand numerical relatio
 
 This limitation extends to graph-based approaches too. If you're using an LLM to navigate a graph where nodes have non-textual metadata, you're still forcing that data through a text-based understanding that fundamentally misrepresents its nature.
 
-***Key Takeaway:*** Language models fundamentally see everything as text, which creates inherent limitations when dealing with numerical data, location data, or other non-textual information. This "world as strings" problem requires specialized solutions.
+**_Key Takeaway:_** Language models fundamentally see everything as text, which creates inherent limitations when dealing with numerical data, location data, or other non-textual information. This "world as strings" problem requires specialized solutions.
 
 **Practical implementation considerations**
 
 When implementing these systems in production, several practical considerations emerge:
 
 1. Refreshing embedding models
-With traditional approaches, distribution drift on any property forces you to retrain the entire model. With a mixture of encoders, you can selectively update individual components as needed, making maintenance more manageable.
+   With traditional approaches, distribution drift on any property forces you to retrain the entire model. With a mixture of encoders, you can selectively update individual components as needed, making maintenance more manageable.
 2. Handling data updates
-If a hotel's popularity changes but its description doesn't, you don't need to re-encode the entire entity - just update the specific embedding signal for popularity and recombine it with the rest.
+   If a hotel's popularity changes but its description doesn't, you don't need to re-encode the entire entity - just update the specific embedding signal for popularity and recombine it with the rest.
 3. Sparse vs. dense representations
-The more efficient and dense your encoders, the worse they respond to aggregation. If you average several dense embeddings together, you often destroy information. More sparse encoders (closer to bag-of-words) handle aggregation better because they represent a union of features rather than a point in a compressed space.
+   The more efficient and dense your encoders, the worse they respond to aggregation. If you average several dense embeddings together, you often destroy information. More sparse encoders (closer to bag-of-words) handle aggregation better because they represent a union of features rather than a point in a compressed space.
 4. Keyword-heavy queries
-For exact matches, you can either treat these as part of the filtering system or incorporate sparse representations alongside dense ones, depending on your vector database capabilities.
+   For exact matches, you can either treat these as part of the filtering system or incorporate sparse representations alongside dense ones, depending on your vector database capabilities.
 
-***Key Takeaway:*** A modular approach with specialized encoders makes systems more maintainable, allowing selective updates to components affected by data drift rather than requiring complete retraining.
+**_Key Takeaway:_** A modular approach with specialized encoders makes systems more maintainable, allowing selective updates to components affected by data drift rather than requiring complete retraining.
 
 **What we're not asking about retrieval systems**
 
 There are several critical issues that aren't getting enough attention in discussions about retrieval:
 
 1. We need to look at the world through lenses beyond text tokenization
-Text is just one data type among many, and forcing everything through text encoders fundamentally limits what we can achieve.
+   Text is just one data type among many, and forcing everything through text encoders fundamentally limits what we can achieve.
 2. Re-ranking is overused and often masks deeper problems
-Rather than fixing poor retrieval with re-ranking, we should improve the underlying retrieval to make re-ranking less necessary.
+   Rather than fixing poor retrieval with re-ranking, we should improve the underlying retrieval to make re-ranking less necessary.
 3. Boolean filters are poor approximations of user preferences
-Most user preferences are gradual rather than binary, but we implement them as hard filters that exclude potentially valuable results.
+   Most user preferences are gradual rather than binary, but we implement them as hard filters that exclude potentially valuable results.
 
 The future likely involves more sophisticated encoders that can handle diverse data types natively, but until then, we need to combine specialized encoders for different data types to get the maximum signal and control over our results.
 
-***Key Takeaway:*** The field needs to move beyond text-centric approaches, reduce reliance on re-ranking, and replace hard Boolean filters with smooth biases that better represent user preferences. This requires fundamentally rethinking how we encode and retrieve information.
+**_Key Takeaway:_** The field needs to move beyond text-centric approaches, reduce reliance on re-ranking, and replace hard Boolean filters with smooth biases that better represent user preferences. This requires fundamentally rethinking how we encode and retrieve information.
 
 ---
 
@@ -165,8 +173,7 @@ While large companies with massive data might be able to train transformers that
 
 ## What should we be focusing on to improve search systems?
 
-We should focus on three key areas: 1) Looking at the world through lenses beyond text tokenization, 2) Reducing our reliance on re-ranking by improving initial retrieval, and 3) Using smooth bias functions instead of rigid Boolean filters. These approaches will lead to more accurate, efficient, and controllable search systems.
----
+## We should focus on three key areas: 1) Looking at the world through lenses beyond text tokenization, 2) Reducing our reliance on re-ranking by improving initial retrieval, and 3) Using smooth bias functions instead of rigid Boolean filters. These approaches will lead to more accurate, efficient, and controllable search systems.
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 

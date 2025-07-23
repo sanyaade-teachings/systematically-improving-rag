@@ -17,7 +17,7 @@ I hosted a session with Walden Yan, co-founder and CPO of Cognition, to explore 
 
 The fundamental issue with multi-agent systems is context management. When you split a task between multiple agents, you're essentially playing a game of telephone where critical information can get lost in transmission.
 
-Consider a simple example: building a Flappy Bird clone. If you assign one agent to build the background with green pipes and hitboxes, and another agent to create the bird asset, they might develop completely incompatible components. The first agent might create something resembling 
+Consider a simple example: building a Flappy Bird clone. If you assign one agent to build the background with green pipes and hitboxes, and another agent to create the bird asset, they might develop completely incompatible components. The first agent might create something resembling
 Mario's environment, while the second creates a bird from an entirely different game.
 
 This miscommunication happens because each agent only understands what it was told by the main agent. While this example might seem extreme, these issues compound dramatically when dealing with complex tasks at scale:
@@ -77,6 +77,7 @@ Even read-only sub-agents can create problems when they return conflicting infor
 Key Takeaway: Read-only sub-agents and specialized edit-apply models can help manage context, but each approach has limitations and potential failure points.
 
 ## Why should systems feel like a single agent to users?
+
 Even if your system has complex internal components, it should present itself to users as a single, coherent entity. This creates a more intuitive user experience and avoids confusion.
 
 "If you're abiding by like kind of principles of good context, engineering your system as a whole, even if it has like subparts and tasks. It kind of should feel to the user like a single agent, because the user has to feel like they're they're talking with one continuous decision maker, one continuous like consciousness."
@@ -90,11 +91,12 @@ The path forward likely involves making single agents smarter and more collabora
 Key Takeaway: Systems should present as a single coherent entity to users. True multi-agent collaboration requires sophisticated capabilities that will emerge naturally as single agents become more intelligent.
 
 ## What skills are current agents lacking for effective collaboration?
+
 Current agents struggle with several key collaboration skills:
 
 Escalation awareness: Recognizing when they've reached the limits of their decision-making authority and need human input.
 
-"When can a system recognize when it reaches its own limits of the decisions it is allowed to make... 
+"When can a system recognize when it reaches its own limits of the decisions it is allowed to make...
 
 How do you know, like a you should? Either way, you should notify the human that like, Hey, there's something weird that's happening here."
 
@@ -111,6 +113,7 @@ These skills are particularly important for human-agent collaboration, where the
 Key Takeaway: Effective collaboration requires agents to know when to escalate decisions, accurately assess their confidence, and communicate concisely - skills that current systems are still developing.
 
 ## How important is planning in agent systems?
+
 Planning serves as a crucial form of context management in agent systems. By committing to a structure upfront, agents can avoid the constant recompression of information that happens in more dynamic approaches.
 
 "Planning is something that we do. And the context of planning emergency came up for us is actually a form of context management. Because, again, it's about avoiding this game of telephone where you you have to constantly recompress and the information that you're you're sending to your agent."
@@ -124,6 +127,7 @@ While detailed planning (like creating extensive plan.md files) can improve resu
 Key Takeaway: Planning is a powerful context management technique that helps agents maintain coherence throughout complex tasks. While users can create detailed plans, these capabilities are increasingly being built into agent systems.
 
 ## What frameworks and patterns show promise for agent development?
+
 We're still in the early stages of agent development - comparable to the HTML/CSS/JavaScript era of web development before frameworks like React emerged. However, some promising patterns are emerging:
 
 Cache-aware frameworks: Systems that optimize for caching, even before API-level caching was available.
@@ -143,6 +147,7 @@ CLI tools can sometimes be more powerful than formal integrations because they c
 Key Takeaway: While we're still early in agent framework development, patterns around caching, evaluation integration, and universal tools are showing promise for building robust systems.
 
 ## How is code review evolving with AI agents?
+
 As AI generates more code, the review process is evolving to minimize the work required to verify changes. Walden highlighted how they're leveraging existing tools like Vercel's preview links:
 
 "I tag Devin on slack. I go away. I do my thing. And 1st of all, I always tell Devin to send me a screenshot of the visual changes it makes, so I don't have to even leave slack. I will immediately see a screenshot of like, okay, is this even something reasonable that I want to review?"
@@ -154,6 +159,7 @@ The future of code review likely involves more automated verification and visual
 Key Takeaway: Code review is evolving to minimize human effort through screenshots, preview environments, and other tools that provide quick verification of AI-generated changes.
 
 ## What exciting developments are coming for developer tools?
+
 Walden is particularly excited about creating better synergies between local development environments and remote agents. One area with significant potential is improving code reading and understanding:
 
 "Actually reading code reading code, understanding code planning how you want to make changes. Because when you're an individual developer, you're actually oftentimes you're working a massive code based searching code that isn't yours. You're trying to understand it."
@@ -165,6 +171,7 @@ While current AI tools can help with implementing specific tasks, there's a cap 
 Key Takeaway: The next frontier for developer tools involves better code reading, understanding, and planning capabilities that leverage AI's ability to process large codebases quickly.
 
 ## Final thoughts on the future of agent development
+
 Walden believes we're just beginning to develop the concepts and principles that will become fundamental to agent development. In the future, these ideas will likely be taught in entry-level college courses.
 
 The field is evolving rapidly, with practitioners discovering new patterns and approaches through experimentation. While multi-agent systems have captured popular imagination, the immediate future likely belongs to increasingly sophisticated single agents that can handle complex tasks with proper context management.
@@ -173,7 +180,7 @@ As these systems mature, the principles of context engineering will become more 
 
 Key Takeaway: We're in the early stages of developing fundamental concepts for agent systems. While multi-agent approaches capture imagination, near-term progress will come from improving single agents with better context management.
 
-______________________________________________________________________
+---
 
 ## FAQs
 

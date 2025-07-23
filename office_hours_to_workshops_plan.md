@@ -10,7 +10,8 @@ This document maps frequently asked questions from office hours to specific work
 
 **Question**: "How do I choose between different vector databases like PostgreSQL with pgvector, LanceDB, ChromaDB, and Turbopuffer?"
 
-**Answer Summary**: 
+**Answer Summary**:
+
 - PostgreSQL with pgvector: Good for combining vector search with SQL queries and metadata filtering
 - LanceDB: Excellent for experimenting with hybrid search (lexical + vector + re-ranker)
 - Timescale pgvector_scale: Better for exhaustive search on large datasets
@@ -19,6 +20,7 @@ This document maps frequently asked questions from office hours to specific work
 **Target Chapter**: Chapter 1 (Kickstarting the Data Flywheel)
 
 **What to Add**:
+
 - New section after "Evaluation Tools" called "Vector Database Selection"
 - Include comparison table with pros/cons
 - Code examples showing LanceDB hybrid search implementation
@@ -35,6 +37,7 @@ This document maps frequently asked questions from office hours to specific work
 **Question**: "What's the best approach for parsing visual documents like quarterly reports with tables, images, and graphs?"
 
 **Answer Summary**:
+
 - Dockling: Free library, ~11 seconds per PDF
 - Claude Sonnet: Good for extraction
 - Reducto: 0.9 ± 0.1 accuracy vs Gemini's 0.84 ± 0.16
@@ -43,6 +46,7 @@ This document maps frequently asked questions from office hours to specific work
 **Target Chapter**: Chapter 5.2 (Implementing Multimodal Search)
 
 **What to Add**:
+
 - New subsection "Document Parsing Tool Comparison"
 - Performance benchmarks for each tool
 - Code example using Dockling
@@ -59,6 +63,7 @@ This document maps frequently asked questions from office hours to specific work
 **Question**: "How do you approach chunking very long documents (1,500-2,000 pages)?"
 
 **Answer Summary**:
+
 - Start with page-level approach
 - Use RAPTOR: cluster chunks, summarize clusters, use summaries for retrieval
 - For legal docs, preprocess to colocate related content (laws with exemptions)
@@ -67,6 +72,7 @@ This document maps frequently asked questions from office hours to specific work
 **Target Chapter**: Chapter 5.1 (Understanding Specialized Retrieval)
 
 **What to Add**:
+
 - New section "Handling Long Documents with RAPTOR"
 - Step-by-step RAPTOR implementation
 - Code for clustering and summarization
@@ -83,6 +89,7 @@ This document maps frequently asked questions from office hours to specific work
 **Question**: "What's the process for fine-tuning embedding models?"
 
 **Answer Summary**:
+
 - Good idea to train your own embedding model (not LLM)
 - Costs ~$1.50 and 40 minutes on laptop
 - 6,000 examples typically outperform closed-source models
@@ -91,6 +98,7 @@ This document maps frequently asked questions from office hours to specific work
 **Target Chapter**: Chapter 2 (Converting Evaluations into Training Data)
 
 **What to Add**:
+
 - Detailed fine-tuning workflow with Sentence Transformers
 - Cost and time benchmarks
 - Example notebook for fine-tuning process
@@ -107,6 +115,7 @@ This document maps frequently asked questions from office hours to specific work
 **Question**: "How can we generate reliable citations and reduce error rates?"
 
 **Answer Summary**:
+
 - XML-based approaches with chunk IDs and text spans
 - Fine-tuning can reduce errors from 4% to 0% with ~1,000 examples
 - Handle medical abbreviations with hard negatives
@@ -114,6 +123,7 @@ This document maps frequently asked questions from office hours to specific work
 **Target Chapter**: Chapter 3.3 (Quality of Life Improvements)
 
 **What to Add**:
+
 - Expand "Interactive Citations" with XML implementation
 - Fine-tuning workflow for citation accuracy
 - Code for chunk ID management
@@ -130,6 +140,7 @@ This document maps frequently asked questions from office hours to specific work
 **Question**: "What is your experience using reasoning models as the answer generator model?"
 
 **Answer Summary**:
+
 - Use O1/DeepSeek unless latency is a concern
 - Stream thinking tokens to improve perceived latency
 - "Think harder" button for user control
@@ -138,6 +149,7 @@ This document maps frequently asked questions from office hours to specific work
 **Target Chapter**: Chapter 3.2 (Overcoming Latency)
 
 **What to Add**:
+
 - New section "Integrating Reasoning Models"
 - Streaming thinking tokens implementation
 - UI patterns for reasoning models
@@ -154,6 +166,7 @@ This document maps frequently asked questions from office hours to specific work
 **Question**: "How do we optimize costs while maintaining quality?"
 
 **Answer Summary**:
+
 - Token calculation before choosing approach
 - Open source only 8x cheaper, may not justify engineering
 - Focus on business value, not just cost savings
@@ -162,6 +175,7 @@ This document maps frequently asked questions from office hours to specific work
 **Target Chapter**: New Chapter 7 (Production Considerations)
 
 **What to Add**:
+
 - Cost calculation framework
 - Token optimization strategies
 - Prompt caching implementation (Anthropic vs OpenAI)
@@ -178,6 +192,7 @@ This document maps frequently asked questions from office hours to specific work
 **Question**: "When should we use multi-agent vs single-agent architectures?"
 
 **Answer Summary**:
+
 - Multi-agent works for read-only tasks
 - Single-agent better when coordination needed
 - Planning before execution improves reliability
@@ -186,6 +201,7 @@ This document maps frequently asked questions from office hours to specific work
 **Target Chapter**: Chapter 6.2 (Tool Interfaces and Implementation)
 
 **What to Add**:
+
 - Expanded section on architecture decisions
 - State machine implementation example
 - Planning patterns for complex workflows
@@ -202,6 +218,7 @@ This document maps frequently asked questions from office hours to specific work
 **Question**: "How do we collect and validate negative feedback when documents aren't found?"
 
 **Answer Summary**:
+
 - Use flags when LLM can't find relevant documents
 - Sample 1% of traffic for manual review
 - Build Streamlit UI for labeling
@@ -210,6 +227,7 @@ This document maps frequently asked questions from office hours to specific work
 **Target Chapter**: Chapter 3.1 (Feedback Collection)
 
 **What to Add**:
+
 - Negative feedback detection implementation
 - Streamlit labeling UI example
 - Sampling strategies for review
@@ -226,6 +244,7 @@ This document maps frequently asked questions from office hours to specific work
 **Question**: "How do you handle multilingual RAG?"
 
 **Answer Summary**:
+
 - Cohere has best multilingual support
 - Create synthetic questions in multiple languages
 - Check recall rates across languages
@@ -234,6 +253,7 @@ This document maps frequently asked questions from office hours to specific work
 **Target Chapter**: Chapter 5.2 (Implementing Multimodal Search)
 
 **What to Add**:
+
 - New section "Multilingual Search Strategies"
 - Language detection and routing
 - Multilingual evaluation framework

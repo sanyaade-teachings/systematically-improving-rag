@@ -3,7 +3,15 @@ title: "Data Organization and Query Routing for RAG Systems"
 speaker: Anton
 cohort: 3
 description: "Guest lecture with Anton Troynikov from ChromaDB on organizing data for retrieval systems, query routing strategies, and optimizing vector search performance"
-tags: [data organization, query routing, vector search, ChromaDB, retrieval optimization, filtering]
+tags:
+  [
+    data organization,
+    query routing,
+    vector search,
+    ChromaDB,
+    retrieval optimization,
+    filtering,
+  ]
 date: 2025-01-01
 ---
 
@@ -12,6 +20,7 @@ date: 2025-01-01
 I recently hosted a session featuring Anton Troynikov from ChromaDB who shared critical insights about organizing data for retrieval systems. This often-overlooked aspect of RAG implementation can significantly impact retrieval accuracy and overall system performance. Here's a breakdown of the key concepts and best practices for structuring your data to optimize query routing.
 
 ## Why is data organization so critical for RAG systems?
+
 Anton emphasized that before doing anything else with your retrieval system, you need to look at two critical elements: your data and your queries. This fundamental step is often skipped, leading to suboptimal performance.
 
 "You need to look at your data. You need to look at what exactly is going into your vector database or your database. You need to actually see what's in there before you do literally anything else," Anton explained.
@@ -20,9 +29,10 @@ Beyond just examining your data, you should also analyze what your users are act
 
 This initial examination forms the foundation for how you'll organize your data for effective retrieval. Without this understanding, you're essentially building on unstable ground.
 
-***Key Takeaway:*** Always examine both your data and user queries before setting up your retrieval pipeline. This fundamental step will inform your data organization strategy and significantly impact your system's performance.
+**_Key Takeaway:_** Always examine both your data and user queries before setting up your retrieval pipeline. This fundamental step will inform your data organization strategy and significantly impact your system's performance.
 
 ## What factors should you consider when organizing data for retrieval?
+
 When organizing data for retrieval, Anton highlighted three main considerations: user access patterns, data source characteristics, and query scope.
 
 For user access patterns, ask yourself:
@@ -62,7 +72,7 @@ When filtering, you're essentially wasting part of your compute budget on irrele
 1. Performance issues: Writing to an already giant index is more expensive than writing to smaller, dedicated indexes.
 2. Commingled data types: Different types of data (like code vs. documentation) may require different embedding models for optimal performance, but a single index forces you to use a general embedding model.
 
-***Key Takeaway:*** The "big pile of records" approach is simple but comes with significant drawbacks in security, performance, and recall. It's suitable for simple use cases like searching Wikipedia, but problematic for complex applications with multiple users and data sources.
+**_Key Takeaway:_** The "big pile of records" approach is simple but comes with significant drawbacks in security, performance, and recall. It's suitable for simple use cases like searching Wikipedia, but problematic for complex applications with multiple users and data sources.
 
 The denormalized approach: One index per user per data source
 As an alternative to the "big pile" approach, Anton proposed what he calls the "fully denormalized" approach: creating one index per user per data source.
@@ -84,9 +94,10 @@ The main challenges with this approach include:
 
 For mapping users to indexes, Anton suggested simple solutions like keeping a relational table of which data source goes to which user. This approach also moves access control out of the vector database itself, which may not have robust controls for compliance.
 
-***Key Takeaway:*** The denormalized approach of one index per user per data source offers better security, performance, and recall than the "big pile" approach, though it requires more sophisticated management of indexes and query routing.
+**_Key Takeaway:_** The denormalized approach of one index per user per data source offers better security, performance, and recall than the "big pile" approach, though it requires more sophisticated management of indexes and query routing.
 
 ## How do you route queries to the right data sources?
+
 With multiple indexes, routing queries becomes a critical challenge. Anton outlined two main approaches:
 
 1. Full multiplexing: Send the query to all applicable data sources and combine the results. This raises the question of how many results to return from each source. With longer context windows and lower per-token costs, you could simply send all results to the model and let it figure out what's relevant.
@@ -99,9 +110,10 @@ Re-ranking models can be particularly effective here: "I think re-ranking models
 
 When using an LLM as a judge for routing, Anton emphasized the importance of calibration: "Go back and look at your data, go and see what the LLM is actually really doing and see what you as a human would do."
 
-***Key Takeaway:*** Query routing can be handled through full multiplexing (sending queries to all relevant sources) or LLM routing (having a model decide which sources are relevant). Both approaches have merit, with re-ranking models being particularly valuable for combining results from multiple sources.
+**_Key Takeaway:_** Query routing can be handled through full multiplexing (sending queries to all relevant sources) or LLM routing (having a model decide which sources are relevant). Both approaches have merit, with re-ranking models being particularly valuable for combining results from multiple sources.
 
 ## Why does filtering reduce recall in vector search?
+
 One of the most technical but important points Anton made was explaining why filtering reduces recall in vector search. This isn't immediately obvious to many practitioners.
 
 Vector search at scale uses approximate nearest neighbor (ANN) search rather than exact matching. As Anton explained:
@@ -117,9 +129,10 @@ When filtering is applied in this context, there are two approaches:
 
 Anton provided a geometric intuition: "Imagine you have red and green points in space, and you're looking for green points. If there's roughly 50-50 red and green points and you draw a circle around them, you're going to have a good chance of getting the number of green points that you're looking for. However, if there are 10 times more red points than green points, and you're selecting 100 points, you're only going to get one-tenth of all the ones that you're looking for."
 
-***Key Takeaway:*** Filtering in vector search inherently reduces recall due to the approximate nature of vector search algorithms. The more specific your filter, the worse this problem becomes, which is why organizing data into separate indexes can significantly improve performance.
+**_Key Takeaway:_** Filtering in vector search inherently reduces recall due to the approximate nature of vector search algorithms. The more specific your filter, the worse this problem becomes, which is why organizing data into separate indexes can significantly improve performance.
 
 ## Should you fine-tune embedding models for specific indexes?
+
 On the topic of fine-tuning embedding models, Anton was enthusiastic: "It's cheap, and you should do it."
 
 He noted that many people get intimidated by fine-tuning because it seems like "big brain AI PhD land," but the reality is that "the hardest part of fine-tuning is creating a dataset and then benchmarking the results."
@@ -128,9 +141,10 @@ With separate indexes for different users or data sources, fine-tuning becomes e
 
 Using techniques like embedding adapters, you can fine-tune for different user groups without even needing to re-embed your data, making it a very cost-effective approach.
 
-***Key Takeaway:*** Fine-tuning embedding models for specific indexes or user groups is more accessible than many realize and can significantly improve retrieval performance. With separate indexes, this becomes even more practical and powerful.
+**_Key Takeaway:_** Fine-tuning embedding models for specific indexes or user groups is more accessible than many realize and can significantly improve retrieval performance. With separate indexes, this becomes even more practical and powerful.
 
 ## How should you handle dynamic metadata filtering?
+
 For implementing dynamic metadata filtering, Anton shared examples from financial research and legal domains:
 
 In financial research, you might filter documents based on stock tickers. If a user asks about Uber, it's more effective to either filter against the Uber ticker or have a dedicated index for Uber-related documents.
@@ -139,7 +153,7 @@ In the legal domain, you might have different collections for court decisions, b
 
 The key is understanding the natural categories in your domain and creating either separate indexes or robust metadata filtering based on those categories.
 
-***Key Takeaway:*** Dynamic metadata filtering should be based on natural categories in your domain and user query patterns. This can be implemented through dedicated indexes or metadata filters, with the choice depending on your specific requirements for recall, performance, and security.
+**_Key Takeaway:_** Dynamic metadata filtering should be based on natural categories in your domain and user query patterns. This can be implemented through dedicated indexes or metadata filters, with the choice depending on your specific requirements for recall, performance, and security.
 
 **Final thoughts on data organization for RAG**
 Anton emphasized that many of the best practices for organizing data in retrieval systems are still evolving. The field of AI application development is relatively young, and many current approaches still carry conceptual baggage from traditional search technologies.
@@ -150,8 +164,7 @@ As we continue to develop best practices for RAG and retrieval systems, we need 
 
 The key message throughout Anton's presentation was that data organization isn't just a technical implementation detail - it's a fundamental design decision that impacts security, performance, and most importantly, the quality of results your system can deliver.
 
-***Key Takeaway:*** Data organization for RAG systems requires thinking beyond traditional search paradigms. By carefully considering user access patterns, data source characteristics, and query requirements, you can design a system that delivers better results while maintaining security and performance.
----
+## **_Key Takeaway:_** Data organization for RAG systems requires thinking beyond traditional search paradigms. By carefully considering user access patterns, data source characteristics, and query requirements, you can design a system that delivers better results while maintaining security and performance.
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 

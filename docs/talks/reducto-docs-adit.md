@@ -14,6 +14,7 @@ I hosted a session with Adit, CEO of Reducto, to explore the challenges and solu
 [▶️ Discover Reducto's Document Parsing Secrets](https://maven.com/p/662e5f){: .md-button .md-button--primary}
 
 ## Why is accurate document parsing so critical for AI applications?
+
 The fundamental challenge with document parsing isn't just extracting text - it's about providing high-quality inputs that enable language models to reason effectively. As Adit explained, "Models today, especially reasoning models, are incredible with reasoning on good data. What really ends up causing accuracy drifts is the long tail of cases."
 
 When you pass documents directly to vision language models like GPT-4, they can fail in surprising ways - misreading tables, hallucinating content, or dropping information. These aren't necessarily model problems but input quality issues. The same models that struggle with raw documents can perform exceptionally well when given properly structured representations.
@@ -23,6 +24,7 @@ I've seen this pattern repeatedly in my consulting work - clients focus heavily 
 **Key Takeaway:** Even the most advanced language models will produce unreliable outputs when given poor-quality inputs. Investing in robust document parsing is essential for production AI systems, especially in domains where accuracy is critical.
 
 ## What are the most challenging document elements to parse correctly?
+
 Through their work with financial, legal, healthcare, and enterprise clients, Reducto has identified several consistently problematic document elements:
 
 Hard tables - Especially those with merged cells, complex layouts, or that span multiple pages
@@ -37,6 +39,7 @@ What's particularly concerning is how these errors can be difficult to detect in
 **Key Takeaway:** The most challenging parsing problems involve understanding document structure rather than just text extraction. Tables, forms, and complex layouts require specialized approaches beyond what general-purpose vision models can reliably handle.
 
 ## When should you use vision language models versus traditional computer vision?
+
 I found Adit's perspective on this particularly interesting because it challenges the "just throw it all into a VLM" approach I've seen many teams adopt. Reducto has found that a hybrid approach works best:
 
 Traditional CV excels at:
@@ -60,6 +63,7 @@ Their most effective approach uses a multi-pass system: traditional CV for the i
 **Key Takeaway:** Rather than choosing between traditional CV and VLMs, build a pipeline that leverages the strengths of each approach. Use traditional CV for structured content and VLMs for visually complex elements, with a multi-pass system to catch and correct errors.
 
 ## How should you evaluate document parsing performance?
+
 Evaluation emerged as a critical but often overlooked aspect of building document processing systems. Adit emphasized that the biggest mistake teams make is conducting "back of the napkin" tests with just a few hard documents before moving to production.
 
 This approach is dangerous because ingestion errors get magnified downstream in retrieval and inference steps. Without thorough evaluation of each component, it becomes impossible to isolate where problems originate.
@@ -75,6 +79,7 @@ What struck me is how this evaluation process isn't just about measuring perform
 **Key Takeaway:** Invest in rigorous evaluation of your document processing pipeline using representative examples from your domain. Test each component separately to isolate errors, and focus on understanding failure modes rather than just overall accuracy.
 
 ## What's the best way to represent document data for language models?
+
 The ideal output structure depends heavily on the type of document you're processing. For simple content, Markdown provides a clean, token-efficient representation. But for complex structures like tables with merged cells, HTML often works better despite being more verbose.
 
 Reducto has developed specific heuristics based on document complexity:
@@ -90,6 +95,7 @@ I've seen similar issues in my consulting work - teams often standardize on a si
 **Key Takeaway:** Choose representation formats based on document complexity rather than standardizing on a single approach. Consider token efficiency, structural fidelity, and how well the format preserves the information needed for reasoning.
 
 ## How should you approach chunking documents for retrieval?
+
 While chunking has become less critical as context windows have expanded, it remains important for efficient retrieval across large document collections. Adit shared several principles that have proven effective:
 
 1. Never split individual blocks of information (keep paragraphs, tables, and other logical units intact)
@@ -103,6 +109,7 @@ This insight aligns with my experience - document authors naturally organize rel
 **Key Takeaway:** Develop a chunking strategy that preserves logical document units and leverages both semantic and structural signals. Position within the document often provides valuable information about content relationships.
 
 ## How do you optimize document data for retrieval?
+
 One of the most valuable insights from our conversation was recognizing that embedding models and LLMs have different limitations that your ingestion pipeline should account for.
 
 While LLMs can reason effectively with dense HTML structures, embedding models often struggle with them. As Adit explained, "If you had a table that contains revenue over time, your end user is probably going to say something like, 'How did revenue change over time?' They're probably not going to phrase the question as 'In fiscal year 14, how did the number change from 210 to something else?'"
@@ -118,6 +125,7 @@ I've seen similar approaches work well in my consulting projects - creating "ret
 **Key Takeaway:** Create separate representations optimized for embedding models and LLMs. For complex elements like tables, generate natural language summaries that describe the content in ways that align with likely user queries.
 
 ## What are the unique challenges of processing Excel files?
+
 While much of the discussion focused on PDFs, Adit shared fascinating insights about Excel processing that I hadn't considered before. The challenges are quite different from PDFs:
 
 1. Scale issues - Spreadsheets can contain hundreds of thousands of rows, easily exceeding model context windows
@@ -133,6 +141,7 @@ This highlights how specialized the solutions need to be for different document 
 **Key Takeaway:** Excel processing requires specialized approaches that address scale challenges and information clustering. Consider using visual representations to identify logical groupings within spreadsheets rather than relying solely on cell-based analysis.
 
 ## What surprising edge cases have emerged in document processing?
+
 Some of the most interesting insights came from discussing unexpected challenges that only became apparent through extensive production experience:
 
 - Minor skews (1-2 degrees) can dramatically impact extraction quality, even with VLMs
@@ -148,6 +157,7 @@ These edge cases highlight the gap between demo-quality and production-quality s
 **Key Takeaway:** Production document processing systems need to address a long tail of edge cases that aren't apparent in initial testing. Invest in preprocessing, confidence scoring, and fallback mechanisms to handle these challenging scenarios.
 
 ## How is document processing evolving with newer AI capabilities?
+
 Throughout our conversation, Adit shared perspectives on how document processing is likely to evolve:
 
 - VLMs will continue improving but aren't yet reliable enough for sensitive use cases without additional safeguards
@@ -162,6 +172,7 @@ This aligns with my experience - as we move beyond simple question-answering to 
 **Key Takeaway:** Document processing is evolving toward more intelligent, multi-stage pipelines that combine traditional methods with AI reasoning. While VLMs will continue improving, hybrid approaches that leverage the strengths of different techniques will likely remain dominant for production systems.
 
 ## How should teams approach building document processing systems?
+
 Based on our conversation, I'd recommend several principles for teams building document processing systems:
 
 1. Use a hybrid approach combining traditional CV and VLMs based on document characteristics

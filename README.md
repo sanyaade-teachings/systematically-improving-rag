@@ -4,7 +4,7 @@ A comprehensive course teaching data-driven approaches to building and improving
 
 ## 🎓 Take the Course
 
-All of this material is supported by the **Systematically Improving RAG Course**. 
+All of this material is supported by the **Systematically Improving RAG Course**.
 
 [**Click here to get 20% off →**](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK)
 
@@ -54,7 +54,7 @@ The course follows a 6-week structure where each week corresponds to specific wo
 ### Week 1: Starting the Flywheel
 
 - **Book Coverage**: Chapter 0 (Introduction) + Chapter 1 (Starting the Flywheel with Data)
-- **Topics**: 
+- **Topics**:
   - Shifting from static implementations to continuously improving products
   - Overcoming the cold-start problem through synthetic data generation
   - Establishing meaningful metrics aligned with business goals

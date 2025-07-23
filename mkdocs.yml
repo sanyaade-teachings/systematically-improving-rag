@@ -118,13 +118,13 @@ nav:
 # --- Recommended Plugins ---
 plugins:
   - search
-  - awesome-pages           # For easy page ordering and structure via .pages files
-  - git-revision-date-localized  # Show last updated date on each page
-  - minify                  # Minify HTML output for faster load times
-  - redirects               # Avoid broken links when renaming/moving pages
-  - section-index           # Index pages for sections, improves navigation
-  - glightbox               # Beautiful image lightboxes
-  - mermaid2                # Enhanced Mermaid diagram support
+  - awesome-pages # For easy page ordering and structure via .pages files
+  - git-revision-date-localized # Show last updated date on each page
+  - minify # Minify HTML output for faster load times
+  - redirects # Avoid broken links when renaming/moving pages
+  - section-index # Index pages for sections, improves navigation
+  - glightbox # Beautiful image lightboxes
+  - mermaid2 # Enhanced Mermaid diagram support
   # - sitemap               # Uncomment for better SEO
   # - mike                  # Uncomment for versioned docs if needed
 
@@ -132,9 +132,9 @@ plugins:
 markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences
-  - pymdownx.caret          # Insertions, deletions, highlights
-  - pymdownx.snippets       # Reusable markdown snippets
-  - pymdownx.inlinehilite   # Inline code highlighting
+  - pymdownx.caret # Insertions, deletions, highlights
+  - pymdownx.snippets # Reusable markdown snippets
+  - pymdownx.inlinehilite # Inline code highlighting
   # - pymdownx.emoji        # Emoji shortcodes (optional)
   - admonition
   - pymdownx.details

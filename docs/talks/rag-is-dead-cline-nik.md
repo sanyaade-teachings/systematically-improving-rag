@@ -225,7 +225,6 @@ The evidence suggests that single, powerful agents often outperform multi-agent 
 
 There's a balance between providing specialized tools (read file, search directory) versus general-purpose tools (terminal access). Specialized tools offer better UX, permissions control, and error prevention, while general-purpose tools provide flexibility. Most successful coding agents offer both, with specialized tools for common operations and terminal access for everything else. As models improve, the need for specialized tools may diminish.
 
-
 ---
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to

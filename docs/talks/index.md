@@ -78,7 +78,7 @@ Why semantic search struggles with exact matching, product IDs, and specialized 
 
 Cutting-edge approaches and innovative techniques.
 
-**[RAG is Dead - Long Live Agentic Code Exploration](rag-is-dead-cline-nik.md)** - Nik Pash (Cline)  
+**[RAG is Dead - Long Live Agentic Code Exploration](rag-is-dead-cline-nik.md)** - Nik Pash (Cline)
 
 Why leading coding agent companies are abandoning embedding-based RAG in favor of direct code exploration. Surprising insight: even massive enterprise codebases work better with agentic exploration than vector search. Key finding: "narrative integrity" - agents need coherent thought processes, not disconnected code snippets from similarity search.
 
@@ -86,7 +86,7 @@ Why leading coding agent companies are abandoning embedding-based RAG in favor o
 Why AI systems need fundamentally different search engines than humans. Vision for "perfect search" includes test-time compute where complex queries may take hours or days. Prediction: search market will fragment into specialized providers rather than one-size-fits-all solutions.
 
 **[RAG Without APIs: Browser-Based Retrieval](rag-without-apis-browser-michael-struwig.md)** - Michael (OpenBB)  
-Browser-as-data-layer for secure financial data access without traditional API redistribution. Innovation: stateless agent protocol enables remote function execution in browser, solving compliance and security issues. Philosophy: anything humans can do, AI must be able to do.  
+Browser-as-data-layer for secure financial data access without traditional API redistribution. Innovation: stateless agent protocol enables remote function execution in browser, solving compliance and security issues. Philosophy: anything humans can do, AI must be able to do.
 
 ## Overarching Themes
 
