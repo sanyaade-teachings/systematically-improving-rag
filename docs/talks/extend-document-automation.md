@@ -147,11 +147,11 @@ As AI capabilities continue to advance, the companies that will benefit most are
 
 ## FAQs
 
-## What is document automation and why is it important?
+**What is document automation and why is it important?**
 
 Document automation uses AI to process and extract information from documents, reducing manual effort and errors. This is particularly crucial for enterprises where manual document workflows consume significant resources. For example, a single building construction project can require processing a million documents. Effective document automation can achieve 95%+ extraction accuracy, streamlining operations across industries from finance to healthcare.
 
-## What are the main types of document processing use cases?
+**What are the main types of document processing use cases?**
 
 There are three broad categories of document processing:
 - Ingestion: Including RAG context for agents and data mining
@@ -160,29 +160,29 @@ There are three broad categories of document processing:
 
 The most challenging and often overlooked category is back office processing, where documents serve as critical systems of record with zero tolerance for errors.
 
-## What's the most common mistake when implementing document automation?
+**What's the most common mistake when implementing document automation?**
 
 The most common failure is attempting to "one-shot" the automation—trying to replace an entire manual process with automation in a single step. This approach almost never works, even for relatively simple use cases. It sets unrealistic expectations and doesn't account for the complex change management required when transitioning from manual to automated processes.
 
-## How should I approach understanding my document data?
+**How should I approach understanding my document data?**
 
 Take time to thoroughly understand both your documents and the existing manual processes around them. Many companies have enormous amounts of tacit knowledge hidden in people's heads—whether in engineering, operations, or domain experts. This knowledge is critical for successful automation.
 
 One effective approach is to implement a human-in-the-loop flow where AI-processed documents are still routed to humans for review. This helps collect robust production data separate from your evaluation sets. Also consider creating extractors that characterize normalized attributes of your documents (supplier types, layout patterns, terminology variations) to help cluster and understand your document landscape.
 
-## Why are tailored evaluations so important for document automation?
+**Why are tailored evaluations so important for document automation?**
 
 Generic benchmarks don't translate well to specific document automation tasks. You need evaluations tailored to your domain, data, and processes. Invest early in creating comprehensive, fine-grained evaluation sets across a variety of document examples.
 
 The best approach is to involve domain experts (like nurses for healthcare documents or billing specialists for financial documents) to help build robust evaluation sets and optimize extraction schemas. This creates a competitive advantage as you can quickly test and confidently roll out improvements when new models become available.
 
-## Should I aim for 100% automation from the start?
+**Should I aim for 100% automation from the start?**
 
 No. It's much more effective to start with partial automation and gradually increase automation rates. Focus on what's called the "true automation rate"—not just accuracy on extracted data, but how often the end-to-end pipeline works perfectly and you can catch errors 100% of the time.
 
 For example, a system with 85% true automation rate where you can reliably identify the 15% that needs human review is far better than a system with 98% accuracy but no way to identify which 2% contains errors.
 
-## How should I think about redesigning processes for automation?
+**How should I think about redesigning processes for automation?**
 
 Rather than trying to create a one-to-one replacement of an existing manual process, rethink the process from scratch with automation in mind. This might involve:
 - Breaking complex workflows into multiple steps
@@ -192,7 +192,7 @@ Rather than trying to create a one-to-one replacement of an existing manual proc
 
 When possible, design the process around asynchronous processing rather than optimizing for latency, especially for back-office workflows where accuracy is more important than speed.
 
-## How can I reduce costs for document processing?
+**How can I reduce costs for document processing?**
 
 Several strategies can help manage costs:
 - Use model distillation to create smaller, faster models for specific tasks
@@ -202,7 +202,7 @@ Several strategies can help manage costs:
 
 For back-office workflows, prioritize accuracy over latency and design processes that accommodate asynchronous processing.
 
-## How should I involve domain experts in document automation?
+**How should I involve domain experts in document automation?**
 
 Domain experts are crucial for successful document automation. Involve them in:
 - Tailoring classifications and schema design to match industry jargon
@@ -212,7 +212,7 @@ Domain experts are crucial for successful document automation. Involve them in:
 
 Teams that effectively incorporate domain experts gain a significant competitive advantage in document automation.
 
-## What's the best way to start automating a document workflow?
+**What's the best way to start automating a document workflow?**
 
 Start by identifying a single, high-priority use case rather than attempting to automate multiple workflows simultaneously. Focus on understanding the data and existing process thoroughly before designing automation.
 

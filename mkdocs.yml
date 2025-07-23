@@ -92,7 +92,7 @@ nav:
           - "Semantic Search Over the Web with Exa (Will Bryk, Exa)": "talks/semantic-search-exa-will-bryk.md"
           - "RAG Without APIs: Browser-Based Retrieval (Michael, OpenBB)": "talks/rag-without-apis-browser-michael-struwig.md"
       - "Finetuning":
-          - "Enterprise Search and Fine-tuning Embedding Models (Manav, Glean)": "talks/glean-manav.md"
+          - "Building Custom Embedding Models Per Customer (Manav, Glean)": "talks/glean-manav.md"
           - "Fine-tuning Re-rankers and Embedding Models (Ayush, LanceDB)": "talks/fine-tuning-rerankers-embeddings-ayush-lancedb.md"
           - "Understanding Embedding Performance through Generative Evals (Kelly Hong)": "talks/embedding-performance-generative-evals-kelly-hong.md"
       - "Monitoring":
@@ -100,16 +100,14 @@ nav:
           - "RAG Anti-patterns in the Wild (Skylar Payne)": "talks/rag-antipatterns-skylar-payne.md"
           - "Building Feedback Systems for AI Products (Vitor, Zapier)": "talks/zapier-vitor-evals.md"
       - "Coding Agents":
-          - "Autonomous Coding Agents (Nik Pash, Cline)": "talks/rag-is-dead-cline-nik.md"
-          - "Agentic RAG (Colin Flaherty)": "talks/colin-rag-agents.md"
+          - "Why Cline Ditched RAG for Direct Code Reading (Nik Pash)": "talks/rag-is-dead-cline-nik.md"
+          - "Grep Beat Embeddings on SWE-Bench (Colin Flaherty, Augment)": "talks/colin-rag-agents.md"
+          - "Agentic RAG from first principles (Beyang Liu, Sourcegraph)": "talks/sourcegraph-agentic-code-agent-rag.md"
+          - "Why Devin does not use multi-agents (Walden Yan)": "talks/devin-cognition-multi-agents.md"
       - "Document Processing":
           - "Better RAG Through Better Data (Adit, Reducto)": "talks/reducto-docs-adit.md"
           - "Encoder Stacking and Multi-Modal Retrieval (Daniel, Superlinked)": "talks/superlinked-encoder-stacking.md"
-  - "Resources":
-      - "Learning Goals": "misc/learning-goals.md"
-      - "Key Takeaways": "misc/what-i-want-you-to-takeaway.md"
-      - "Introduction": "misc/introduction.md"
-      - "Landing Page": "misc/landingpage.md"
+          - "How Extend Achieves 95%+ Document Automation (Eli Badgio)": "talks/extend-document-automation.md"
 
 # --- Enhancements for mkdocs.yml ---
 # 1. Add recommended plugins for better UX, SEO, and maintainability

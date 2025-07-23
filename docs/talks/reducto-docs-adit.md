@@ -180,15 +180,15 @@ As Adit summarized: "Accurate parsing is really critical. You should try to use 
 
 ## FAQs
 
-### What is document ingestion in the context of AI applications?
+**What is document ingestion in the context of AI applications?**
 
 Document ingestion refers to the process of extracting, processing, and structuring data from various document formats (like PDFs, Excel files, images) so they can be effectively used by AI models. This includes parsing text, understanding document structure, recognizing tables, and preparing the data in a format that language models can reason with accurately.
 
-### Why is accurate document parsing so important for AI applications?
+**Why is accurate document parsing so important for AI applications?**
 
 Accurate parsing is critical because even the most advanced AI reasoning models can only provide quality outputs when given quality inputs. Inaccurate parsing leads to hallucinations, missing information, or incorrect interpretations. In sensitive industries like healthcare, finance, and legal, even minor errors in document parsing can have significant consequences, potentially impacting decisions worth millions of dollars.
 
-### What are the main challenges in document parsing?
+**What are the main challenges in document parsing?**
 
 The most common challenges include:
 
@@ -201,11 +201,11 @@ The most common challenges include:
 - Managing document skew and rotation
 - Working with multilingual documents that have different reading directions
 
-### How do Vision Language Models (VLMs) compare to traditional OCR for document parsing?
+**How do Vision Language Models (VLMs) compare to traditional OCR for document parsing?**
 
 VLMs excel at tasks that traditional OCR struggles with, such as handwriting recognition and chart extraction. However, they can sometimes hallucinate content or drop information in structured formats like tables. The most effective approach is often a hybrid one, using traditional computer vision models for clean structured content and VLMs for more complex visual elements like figures, handwriting, and charts.
 
-### What's the best approach for handling tables in documents?
+**What's the best approach for handling tables in documents?**
 
 Tables require special attention because they associate data in two dimensions. The most effective approach involves:
 
@@ -219,7 +219,7 @@ Tables require special attention because they associate data in two dimensions. 
 
 5. Creating natural language summaries of tables to improve retrieval
 
-### How should document data be represented for language models?
+**How should document data be represented for language models?**
 
 The ideal representation depends on the content:
 
@@ -229,7 +229,7 @@ The ideal representation depends on the content:
 - Images and figures are sometimes best left as cropped images passed directly to the model
 - For forms, it's important to pair keys with their values
 
-### What are best practices for chunking documents?
+**What are best practices for chunking documents?**
 
 Effective chunking strategies include:
 
@@ -239,7 +239,7 @@ Effective chunking strategies include:
 - Dynamically adjusting chunk size based on content type rather than using fixed sizes
 - Preserving document structure and hierarchy
 
-### How can document ingestion be optimized for retrieval?
+**How can document ingestion be optimized for retrieval?**
 
 To improve retrieval performance:
 
@@ -249,11 +249,11 @@ To improve retrieval performance:
 - Include metadata that helps tie document data to potential user queries
 - Consider how users actually phrase their questions rather than just the literal content
 
-### Why do embedding models and language models need different optimizations?
+**Why do embedding models and language models need different optimizations?**
 
 Embedding models and language models have different limitations. While language models can reason through complex HTML structures, embedding models may struggle with matching user queries to content that contains mostly HTML tags and numbers. Creating natural language descriptions of structured content helps bridge this gap and improves retrieval performance.
 
-### How should document parsing quality be evaluated?
+**How should document parsing quality be evaluated?**
 
 Evaluation should be thorough and context-dependent:
 
@@ -263,7 +263,7 @@ Evaluation should be thorough and context-dependent:
 - Test each component of your pipeline separately to isolate issues
 - Consider edge cases specific to your document types
 
-### What are common failure modes in document parsing?
+**What are common failure modes in document parsing?**
 
 Common failures include:
 
@@ -275,7 +275,7 @@ Common failures include:
 - Model refusals when content appears to violate safety guidelines
 - Watermarks interfering with text extraction
 
-### How should Excel files be handled differently from PDFs?
+**How should Excel files be handled differently from PDFs?**
 
 Excel files present unique challenges:
 
@@ -287,7 +287,7 @@ Excel files present unique challenges:
 - Using visual information to detect natural clusters of data
 - Analyzing data density to identify separate information regions
 
-### How can handwritten documents be processed effectively?
+**How can handwritten documents be processed effectively?**
 
 Handwritten documents are best processed using VLMs, which perform much better than traditional OCR for this task. For particularly difficult cases, a multi-pass approach works well:
 
@@ -299,11 +299,11 @@ Handwritten documents are best processed using VLMs, which perform much better t
 
 This approach significantly improves accuracy for handwritten content.
 
-### How much data is needed to fine-tune models for document extraction?
+**How much data is needed to fine-tune models for document extraction?**
 
 Fine-tuning VLMs for document extraction tasks can be effective with hundreds to perhaps a thousand examples. However, the quality of the training data is far more important than quantity. Even minor issues in labels can be amplified during fine-tuning, so it's critical to have genuinely perfect inputs rather than a large volume of imperfect data.
 
-### What's the role of "agentic RAG" in document processing?
+**What's the role of "agentic RAG" in document processing?**
 
 Agentic RAG involves adding reasoning capabilities to determine what information to pass to the final inference step. This approach is particularly valuable when answers need to be composed from multiple different sources. Rather than relying solely on similarity-based retrieval, an agent can identify which specific snippets are most relevant to answering a particular question.
 
