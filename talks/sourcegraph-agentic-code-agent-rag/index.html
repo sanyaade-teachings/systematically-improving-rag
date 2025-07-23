@@ -5,11 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="Insights from Eli Badgio (CTO of Extend) on practical, stepwise approaches to AI-native document automation, evaluation, and human-in-the-loop workflows." name="description"/>
-<link href="https://567-labs.github.io/systematically-improving-rag/talks/extend-eli-document-workflows/" rel="canonical"/>
+<link href="https://567-labs.github.io/systematically-improving-rag/talks/sourcegraph-agentic-code-agent-rag/" rel="canonical"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.14" name="generator"/>
-<title>Building Trust in Document Automation: Insights from Extend’s CTO - Systematically Improving RAG Applications</title>
+<title>Sourcegraph agentic code agent rag - Systematically Improving RAG Applications</title>
 <link href="../../assets/stylesheets/main.342714a4.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -34,7 +33,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#building-trust-in-document-automation-insights-from-extends-cto">
+<a class="md-skip" href="#rethinking-rag-architecture-for-the-age-of-agents-beyang-liu-sourcegraph">
           Skip to content
         </a>
 </div>
@@ -70,7 +69,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Building Trust in Document Automation: Insights from Extend’s CTO
+              Sourcegraph agentic code agent rag
             
           </span>
 </div>
@@ -1003,65 +1002,9 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#what-are-the-key-challenges-in-document-automation">
+<a class="md-nav__link" href="#why-are-we-rethinking-agent-architecture-from-first-principles">
 <span class="md-ellipsis">
-      What are the key challenges in document automation?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#how-should-companies-approach-understanding-their-document-data">
-<span class="md-ellipsis">
-      How should companies approach understanding their document data?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#why-are-task-specific-evaluations-critical-for-document-automation">
-<span class="md-ellipsis">
-      Why are task-specific evaluations critical for document automation?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#how-should-companies-think-about-partial-automation-versus-full-automation">
-<span class="md-ellipsis">
-      How should companies think about partial automation versus full automation?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#how-should-companies-redesign-processes-around-automation">
-<span class="md-ellipsis">
-      How should companies redesign processes around automation?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#how-should-companies-balance-cost-speed-and-accuracy-in-document-processing">
-<span class="md-ellipsis">
-      How should companies balance cost, speed, and accuracy in document processing?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#what-role-should-domain-experts-play-in-document-automation">
-<span class="md-ellipsis">
-      What role should domain experts play in document automation?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#how-should-companies-approach-change-management-for-document-automation">
-<span class="md-ellipsis">
-      How should companies approach change management for document automation?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#final-thoughts-on-document-automation">
-<span class="md-ellipsis">
-      Final thoughts on document automation
+      Why are we rethinking agent architecture from first principles?
     </span>
 </a>
 </li>
@@ -1072,212 +1015,128 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="building-trust-in-document-automation-insights-from-extends-cto">Building Trust in Document Automation: Insights from Extend’s CTO</h1>
-<p>I hosted a special session with Eli Badgio, CTO of Extend, to discuss AI-native document processing in the cloud. Extend helps companies achieve 95%+ extraction accuracy for customers like Brex and other Fortune 500s. This session covered mapping document workflows, building task-specific evaluations, and implementing partial automation with human-in-the-loop approaches.</p>
 <hr/>
-<h2 id="what-are-the-key-challenges-in-document-automation">What are the key challenges in document automation?</h2>
-<p>Document processing is an incredibly broad field encompassing everything from ingestion (RAG context for agents, data mining) to back-office processing (where documents serve as systems of record) to in-product experiences (traditional OCR).</p>
-<blockquote>
-<p>The most common failure case I've observed is companies trying to "one-shot" automation - attempting to replace an entire manual process with AI in a single step. This approach almost never works, even when the extraction accuracy seems high in initial tests.</p>
-</blockquote>
-<p>As Eli explained:</p>
-<blockquote>
-<p>"In practice, it will never work, even if the use case is not that complex and the accuracy on the extraction is going to be close to perfect. It's extraordinarily difficult to just swap out a manual process for an automated process."</p>
-</blockquote>
-<p>This one-shot approach sets unrealistic expectations for business stakeholders and product teams. Instead, successful document automation requires a more methodical, step-by-step approach.</p>
-<p><strong>Key Takeaway:</strong></p>
-<blockquote>
-<p>Don't try to replace entire document workflows in one go. Start with partial automation and gradually expand as you build confidence in the system and gain stakeholder buy-in.</p>
-</blockquote>
+<p>title: "Rethinking RAG Architecture for the Age of Agents"
+author:
+  name: Beyang Liu
+  company: Sourcegraph
+  title: CTO
+cohort: 3
+description: "CTO of Sourcegraph explores how the evolution of AI models has fundamentally changed agent architecture, requiring a complete rethinking of context management, tool design, and model selection"
+tags: [agents, RAG architecture, coding agents, context management, tool design, model selection]
+date: 2025-01-15</p>
 <hr/>
-<h2 id="how-should-companies-approach-understanding-their-document-data">How should companies approach understanding their document data?</h2>
-<p>The first critical step is developing a deep understanding of both your documents and the existing manual processes around them. In most companies, there's an enormous amount of tacit knowledge hidden in people's heads—whether in engineering, operations, or domain experts.</p>
-<p>One client Extend worked with took a fascinating approach to this challenge. They were trying to automate software contract ingestion but initially struggled with accuracy issues. Their solution was four-fold:</p>
-<ol>
-<li>Implemented a human-in-the-loop flow where AI-processed documents were still routed to humans for verification, allowing them to collect robust production data.</li>
-<li>Brought in domain experts from within the company who had previously done this work manually.</li>
-<li>Created a series of extractors that characterized normalized attributes (supplier, layout type, pricing terminology) rather than trying to extract actionable data.</li>
-<li>Ran this workflow on approximately 150,000-200,000 documents (nearly a million pages) to develop an accurate representation of their historical data.</li>
-</ol>
-<p>This approach allowed them to identify blind spots in their understanding—problematic suppliers, pricing terms not being extracted correctly, and document types they weren't properly accounting for.</p>
-<p>As Eli noted:</p>
-<blockquote>
-<p>"Take some kind of initial first pass that is entirely focused on understanding the data, not actually trying to get the data out."</p>
-</blockquote>
-<p><strong>Key Takeaway:</strong></p>
-<blockquote>
-<p>Invest time in understanding your documents and existing processes before attempting automation. Consider running a data characterization phase where you classify document attributes to identify patterns and edge cases.</p>
-</blockquote>
-<hr/>
-<h2 id="why-are-task-specific-evaluations-critical-for-document-automation">Why are task-specific evaluations critical for document automation?</h2>
-<p>Generic benchmarks like "Gemini Flash is better than GPT-X" aren't particularly useful for document automation. What matters is how well a system performs on your specific documents and use cases.</p>
-<p>A healthcare vertical AI team Extend worked with discovered this when automating EHR entry of referral orders. They were dealing with 100+ page scanned PDFs containing multiple referrals mixed with patient history and provider notes.</p>
-<p>Their solution:
-- AI engineers collaborated directly with in-house nurses and medical technicians to build comprehensive, fine-grained evaluation sets across a variety of document examples.
-- Domain experts helped optimize schemas and extraction rules to properly interpret medical jargon.</p>
-<p>This approach created a competitive advantage—proprietary evaluation data that allowed them to quickly test new models and capabilities against their specific needs. They maintained this advantage by continuing to review a percentage of documents to understand how real-world production data changes over time.</p>
-<p>As Eli emphasized:</p>
-<blockquote>
-<p>"You really need to invest the evals at every step of a flow when you're trying to automate an end-to-end document process."</p>
-</blockquote>
-<p><strong>Key Takeaway:</strong></p>
-<blockquote>
-<p>Create detailed, domain-specific evaluation sets with help from subject matter experts. These evaluations should test each step of your pipeline and reflect the real-world complexity of your documents.</p>
-</blockquote>
-<hr/>
-<h2 id="how-should-companies-think-about-partial-automation-versus-full-automation">How should companies think about partial automation versus full automation?</h2>
-<p>Rather than aiming for 100% automation from the start, successful companies focus on what Eli called "true automation rate"—how high of an accuracy can you get where the end-to-end pipeline works 100% of the time, and inaccuracies are caught 100% of the time?</p>
-<p>A dental billing automation company took this approach when processing explanation of benefits (EOB) documents. They implemented:
-- A multi-step process that segmented the problem, limiting what each module needed to handle
-- Configuration workflows for different providers with known edge cases
-- Data validations and guardrails that could declaratively identify when a document needed human review</p>
-<p>This approach recognized that 85% true automation (where you know with certainty which 15% need human review) is more valuable than 98% accuracy where you can't identify the problematic 2%.</p>
-<p>As Eli explained:</p>
-<blockquote>
-<p>"In most cases, for these critical systems of records ingestion use cases, that's strictly worse than if you can get to like 85% true automation rate, where the 15% of the time that's not going to properly handle the document, you can catch that declaratively."</p>
-</blockquote>
-<p><strong>Key Takeaway:</strong></p>
-<blockquote>
-<p>Focus on "automate when possible, augment otherwise" rather than full automation. Design systems that can confidently identify which documents need human review rather than trying to automate everything.</p>
-</blockquote>
-<hr/>
-<h2 id="how-should-companies-redesign-processes-around-automation">How should companies redesign processes around automation?</h2>
-<p>Rather than trying to replicate existing manual processes with automation, successful implementations rethink the entire workflow with automation in mind.</p>
-<p>This might involve:
-- Breaking document processing into multiple pipeline steps (parsing, classification, splitting, extraction, semantic chunking)
-- Creating declarative validation rules to identify when automation might fail
-- Designing human-in-the-loop workflows that efficiently handle exceptions</p>
-<p>When working with clients, Extend often starts by asking them to walk through their current process end-to-end. This helps identify opportunities to redesign workflows rather than simply automating existing inefficient processes.</p>
-<p>As Eli noted:</p>
-<blockquote>
-<p>"It can be very difficult to just full swap out something that's been done over many years among many different stakeholders and just make that automated as opposed to really understanding as an engineer what is the end-to-end process."</p>
-</blockquote>
-<p><strong>Key Takeaway:</strong></p>
-<blockquote>
-<p>Don't try to replicate manual processes with automation. Instead, redesign workflows from first principles with automation in mind, focusing on validation and exception handling.</p>
-</blockquote>
-<hr/>
-<h2 id="how-should-companies-balance-cost-speed-and-accuracy-in-document-processing">How should companies balance cost, speed, and accuracy in document processing?</h2>
-<p>Document processing involves multiple trade-offs between cost, speed, and accuracy. For back-office workflows, accuracy should generally take priority over speed.</p>
-<p>Eli recommended several approaches to manage these trade-offs:
-- Use model distillation to create smaller, faster models for specific tasks like chunking
-- Implement pre-filtering steps with lightweight classifiers to avoid running expensive operations on all documents
-- For back-office flows, design processes that remove latency as a consideration</p>
-<p>As Eli advised:</p>
-<blockquote>
-<p>"If it's a back-office flow, I would encourage everyone not to think about latency as a problem. In fact, you should think about designing a process where you can effectively remove latency as being a consideration."</p>
-</blockquote>
-<p>He also noted:</p>
-<blockquote>
-<p>"If you can solve it with code... you should do the code-based approach because then you can actually guarantee it's going to behave how you want."</p>
-</blockquote>
-<p><strong>Key Takeaway:</strong></p>
-<blockquote>
-<p>For back-office document processing, prioritize accuracy over speed. Use lightweight models for initial classification and filtering, and consider deterministic code-based approaches where possible to reduce uncertainty.</p>
-</blockquote>
-<hr/>
-<h2 id="what-role-should-domain-experts-play-in-document-automation">What role should domain experts play in document automation?</h2>
-<p>One of the most overlooked aspects of document automation is the critical role of domain experts. These are the people who understand the tacit knowledge embedded in documents and processes—nurses who know how to interpret medical terminology, financial analysts who understand billing codes, or operations staff who have been processing these documents manually.</p>
-<p>Eli emphasized:</p>
-<blockquote>
-<p>"If you're an engineer and you're tasked with this kind of problem... and you don't feel like you actually understand this process, someone on your team has to. If you're doing this currently and you're in industry, someone understands this."</p>
-</blockquote>
-<p>The most successful implementations Extend has seen involve close collaboration between AI engineers and domain experts to:
-- Design appropriate schemas and extraction rules
-- Create comprehensive evaluation datasets
-- Develop validation rules to identify edge cases
-- Interpret domain-specific terminology and formats</p>
-<p><strong>Key Takeaway:</strong></p>
-<blockquote>
-<p>Involve domain experts early in your document automation projects. Their tacit knowledge is essential for understanding document semantics, designing appropriate schemas, and creating effective evaluation datasets.</p>
-</blockquote>
-<hr/>
-<h2 id="how-should-companies-approach-change-management-for-document-automation">How should companies approach change management for document automation?</h2>
-<p>Implementing document automation requires careful change management. Eli recommends starting with augmentation rather than full automation:</p>
-<blockquote>
-<p>"Most companies are much more willing to roll something out and deal with the change management if you focus on augmentation at start and then turn augmentation into automation."</p>
-</blockquote>
-<p>When working with clients, Extend often leads with building a human-loop system first, allowing companies to:
-- Collect real-world data about their documents
-- Build confidence in the system gradually
-- Identify edge cases and failure modes
-- Manage stakeholder expectations</p>
-<p>This approach aligns with their mantra:</p>
-<blockquote>
-<p>"Automate when possible, augment otherwise."</p>
-</blockquote>
-<p><strong>Key Takeaway:</strong></p>
-<blockquote>
-<p>Start with augmentation rather than full automation to ease change management. Build human-loop systems that gradually increase automation levels as confidence grows.</p>
-</blockquote>
-<hr/>
-<h2 id="final-thoughts-on-document-automation">Final thoughts on document automation</h2>
-<p>Document automation is a complex field that requires deep understanding of both technical capabilities and domain-specific knowledge. The most successful implementations I've seen follow these principles:</p>
-<ul>
-<li>Understand your data and existing manual processes thoroughly</li>
-<li>Invest early in tailored evaluations specific to your domain</li>
-<li>Break processing into multiple pipeline steps</li>
-<li>Don't aim for 100% automation initially</li>
-<li>Redesign processes around automation rather than trying to replicate manual workflows</li>
-</ul>
-<p>As AI capabilities continue to advance, the companies that will benefit most are those that take a thoughtful, systematic approach to document automation rather than rushing to replace human processes overnight.</p>
-<hr/>
-<h1 id="faqs">FAQs</h1>
-<h3 id="what-is-document-automation-and-why-is-it-important">What is document automation and why is it important?</h3>
-<p>Document automation uses AI to process and extract information from documents, reducing manual effort and errors. This is particularly crucial for enterprises where manual document workflows consume significant resources. For example, a single building construction project can require processing a million documents. Effective document automation can achieve 95%+ extraction accuracy, streamlining operations across industries from finance to healthcare.</p>
-<h3 id="what-are-the-main-types-of-document-processing-use-cases">What are the main types of document processing use cases?</h3>
-<p>There are three broad categories of document processing:
-- <strong>Ingestion:</strong> Including RAG context for agents and data mining
-- <strong>Back office processing:</strong> When documents serve as systems of record (contracts, deeds, etc.)
-- <strong>In-product experiences:</strong> Traditional OCR use cases like uploading an invoice to extract data</p>
-<p>The most challenging and often overlooked category is back office processing, where documents serve as critical systems of record with zero tolerance for errors.</p>
-<h3 id="whats-the-most-common-mistake-when-implementing-document-automation">What's the most common mistake when implementing document automation?</h3>
-<p>The most common failure is attempting to "one-shot" the automation—trying to replace an entire manual process with automation in a single step. This approach almost never works, even for relatively simple use cases. It sets unrealistic expectations and doesn't account for the complex change management required when transitioning from manual to automated processes.</p>
-<h3 id="how-should-i-approach-understanding-my-document-data">How should I approach understanding my document data?</h3>
-<p>Take time to thoroughly understand both your documents and the existing manual processes around them. Many companies have enormous amounts of tacit knowledge hidden in people's heads—whether in engineering, operations, or domain experts. This knowledge is critical for successful automation.</p>
-<p>One effective approach is to implement a human-in-the-loop flow where AI-processed documents are still routed to humans for review. This helps collect robust production data separate from your evaluation sets. Also consider creating extractors that characterize normalized attributes of your documents (supplier types, layout patterns, terminology variations) to help cluster and understand your document landscape.</p>
-<h3 id="why-are-tailored-evaluations-so-important-for-document-automation">Why are tailored evaluations so important for document automation?</h3>
-<p>Generic benchmarks don't translate well to specific document automation tasks. You need evaluations tailored to your domain, data, and processes. Invest early in creating comprehensive, fine-grained evaluation sets across a variety of document examples.</p>
-<p>The best approach is to involve domain experts (like nurses for healthcare documents or billing specialists for financial documents) to help build robust evaluation sets and optimize extraction schemas. This creates a competitive advantage as you can quickly test and confidently roll out improvements when new models become available.</p>
-<h3 id="should-i-aim-for-100-automation-from-the-start">Should I aim for 100% automation from the start?</h3>
-<p>No. It's much more effective to start with partial automation and gradually increase automation rates. Focus on what's called the "true automation rate"—not just accuracy on extracted data, but how often the end-to-end pipeline works perfectly and you can catch errors 100% of the time.</p>
-<p>For example, a system with 85% true automation rate where you can reliably identify the 15% that needs human review is far better than a system with 98% accuracy but no way to identify which 2% contains errors.</p>
-<h3 id="how-should-i-think-about-redesigning-processes-for-automation">How should I think about redesigning processes for automation?</h3>
-<p>Rather than trying to create a one-to-one replacement of an existing manual process, rethink the process from scratch with automation in mind. This might involve:
-- Breaking complex workflows into multiple steps
-- Creating deterministic routing based on document classifications
-- Implementing validation checks and guardrails
-- Designing human review processes for edge cases</p>
-<p>When possible, design the process around asynchronous processing rather than optimizing for latency, especially for back-office workflows where accuracy is more important than speed.</p>
-<h3 id="how-can-i-reduce-costs-for-document-processing">How can I reduce costs for document processing?</h3>
-<p>Several strategies can help manage costs:
-- Use model distillation to create smaller, faster models for specific tasks
-- Implement lightweight classifiers as an initial step to route documents appropriately
-- Use pre-filtering to only apply expensive processing (like semantic chunking) to documents that require it
-- Break processing into multiple steps with specialized models for each task
-- For back-office workflows, prioritize accuracy over latency and design processes that accommodate asynchronous processing.</p>
-<h3 id="how-should-i-involve-domain-experts-in-document-automation">How should I involve domain experts in document automation?</h3>
-<p>Domain experts are crucial for successful document automation. Involve them in:
-- Tailoring classifications and schema design to match industry jargon
-- Building comprehensive evaluation sets
-- Optimizing extraction rules to properly interpret domain-specific terminology
-- Designing validation checks based on their knowledge of the data</p>
-<p>Teams that effectively incorporate domain experts gain a significant competitive advantage in document automation.</p>
-<h3 id="whats-the-best-way-to-start-automating-a-document-workflow">What's the best way to start automating a document workflow?</h3>
-<p>Start by identifying a single, high-priority use case rather than attempting to automate multiple workflows simultaneously. Focus on understanding the data and existing process thoroughly before designing automation.</p>
-<p>Consider these steps:
-1. Implement a human-in-the-loop flow to collect production data
-2. Involve domain experts to understand tacit knowledge
-3. Create robust evaluation sets for each step in the process
-4. Start with augmentation before moving to automation
-5. Design the process around automation rather than trying to replicate the manual process</p>
-<p>This approach delivers business value faster while building organizational comfort with automation.</p>
+<h1 id="rethinking-rag-architecture-for-the-age-of-agents-beyang-liu-sourcegraph">Rethinking RAG Architecture for the Age of Agents - Beyang Liu (Sourcegraph)</h1>
+<p>I hosted a session with Beyang Liu, CTO of Sourcegraph, to explore how the evolution of AI models has fundamentally changed how we should approach building agent systems. This discussion revealed why many best practices from the chat LLM era are becoming obsolete, and how the architecture of effective agents requires rethinking context management, tool design, and model selection from first principles.</p>
+<h2 id="why-are-we-rethinking-agent-architecture-from-first-principles">Why are we rethinking agent architecture from first principles?</h2>
+<p>The evolution of AI has progressed through three distinct eras, each requiring different application architectures. We started with the autocomplete era (GPT-3), moved to the RAG chat era (ChatGPT, GPT-3.5/4), and now we're in the agentic era (GPT-3.7, Claude Sonnet, Claude 4).</p>
+<p>The fundamental shift between the RAG chat era and the agentic era is the inversion of context fetching. In the RAG chat era, a monolithic context engine would fetch relevant snippets before sending them to the LLM. With agents, the model itself decides which tools to invoke to fetch appropriate context.</p>
+<p>This seemingly minor change has profound implications for user experience and system architecture. As Beyang explained, "It seems like a minor change - in the picture just moving the green box down to the bottom. But it actually has some pretty big implications for what the user experience is and what the architecture is."</p>
+<p><strong><em>Key Takeaway:</em></strong> The shift from RAG chat to agentic architecture isn't just a technical implementation detail - it represents a fundamental inversion of control that changes how we should design AI systems from the ground up.</p>
+<p>How does this architectural shift change the user experience? 
+The dominant interaction paradigm has completely transformed. In the chat world, humans were deeply involved in the inner loop of model interaction - checking output after every LLM turn, refining it, and manually applying changes. This created a lot of "ping pong" with the model just to make one atomic change.</p>
+<p>In the agentic world, users can articulate what they want upfront and have the agent do extensive work on its own - reading files, editing files, searching for related information, executing commands, and checking outputs. This dramatically reduces the need for human babysitting and allows for much faster completion of complex tasks.</p>
+<p>Beyang's team at Sourcegraph made several controversial design decisions for their Amp coding agent that reflect this paradigm shift:</p>
+<p>Minimal UI with focus on agent design and feedback loops rather than complex interfaces for selecting context</p>
+<p>Bias toward action - the agent often edits files without asking permission first</p>
+<p>No model selector - intentional coupling between models and tools</p>
+<p>Unix philosophy of composability rather than vertically integrated thick clients</p>
+<p>Usage-based pricing to avoid perverse incentives that would lead to "dumbing down" agent capabilities</p>
+<p>"We're really focusing on the design of the agent and feedback loops rather than a complex graphical user interface for selecting context," Beyang noted. This approach has received positive feedback from users who find it more effective than both traditional AI IDEs and other coding agents.</p>
+<p>Key Takeaway: The agentic paradigm allows for much more autonomous work with less human intervention, but requires rethinking interface design to focus on agent capabilities rather than human context selection.</p>
+<p>What does RAG look like in the era of agents? 
+The traditional RAG engine from the chat era was typically a monolithic system with keyword indexes, embedding models, domain-specific chunkers, and re-rankers. In contrast, many popular agents today rely on much simpler retrieval tools like grep.</p>
+<p>This doesn't mean retrieval is unimportant - rather, the approach to retrieval has fundamentally changed. Beyang suggests thinking about agent design in three main categories:</p>
+<p>Tool selection - beyond just retrieval tools, consider feedback tools and planning tools</p>
+<p>Context window management - how to keep the context window focused and avoid tool overload</p>
+<p>Model choices - tight coupling between models and tools requires intentional model selection</p>
+<p>"RAG is not strictly about retrieval anymore," Beyang explained. "It's really about molding the underlying model to be able to do what you need it to do in a particular application setting or for a specific set of workflows."</p>
+<p>For Amp, the tool panel includes multiple simple tools rather than one monolithic RAG engine. These include grep and glob for basic searches, a search sub-agent that performs multiple queries and refinements, web documentation tools, and specialized services.</p>
+<p>Key Takeaway: Instead of building complex monolithic RAG engines, focus on providing agents with a thoughtfully designed portfolio of simple tools that can be composed to solve complex problems.</p>
+<p>How do sub-agents extend agent capabilities? 
+One of the most important innovations in agent architecture is the use of sub-agents to extend the effective context window. While techniques like compaction (summarizing previous interactions) can help, they're lossy and often lose important details.</p>
+<p>Sub-agents provide a more intentional approach to managing context. Amp implements several types of sub-agents:</p>
+<p>Code-based search sub-agent - handles exploration and query refinement to find relevant code snippets</p>
+<p>Generic sub-agent - allows the main agent to invoke itself to perform tasks in parallel</p>
+<p>"Oracle" sub-agent - uses a different model (Claude 3) that's better at nuanced thinking about complex code</p>
+<p>The search sub-agent is particularly valuable because it can use a significant portion of its context window for exploration without consuming the main agent's context. "All the exploration it does when refining different queries and trying different things to find what the user is looking for - that eats up context window. But because the sub-agent, once it's found the right snippets and returned them to the main agent, you can essentially throw away the context that was used for the sub-agent," Beyang explained.</p>
+<p>This approach allows for much more complex workflows than would be possible with a single agent constrained by context window limitations.</p>
+<p>Key Takeaway: Sub-agents are a powerful technique for extending agent capabilities beyond context window limitations, allowing specialized models to handle specific tasks while preserving the main agent's context for core reasoning.</p>
+<p>Why is model selection no longer agnostic? 
+In the chat LLM era, the coupling between retrieval mechanisms and models was loose, making it easy to swap models. The flow was simple: user message → retrieve context → put in LLM → generate response.</p>
+<p>With agents, the flow is much more complex. The agent LLM uses various tools, each tool description becomes part of the effective prompt, and some tools are agents themselves with their own models. This creates tight coupling between models and tools.</p>
+<p>"If we were to offer up to end users a way to easily swap out any of these LLMs for another model that's not been tuned to those tool descriptions, or has other tool use capabilities or characteristics, it's just a recipe for a bad user experience," Beyang argued.</p>
+<p>Instead of model agnosticism, Amp takes an intentional approach to model selection, using different models for different purposes. The "Oracle" sub-agent, for example, uses Claude 3 specifically because it's better at nuanced thinking about complex code.</p>
+<p>Key Takeaway: The era of model-agnostic architectures is ending. Effective agent design requires intentional selection of models based on their specific capabilities and how they interact with your tools.</p>
+<p>How do agents change the ceiling of what's possible? 
+Chat-based applications were constrained by the tree retrieval engine model - essentially "search plus plus" that could only go so far. Agents have a much higher ceiling but require users to get better at prompting to unlock their full potential.</p>
+<p>Amp includes a built-in collaboration mechanism where users can see threads their teammates are having with the agent. "I've learned so much just from watching how other people on the team are doing prompts," Beyang shared. "There's some people who write paragraph, essay-long prompts, and are able to get enough context in there to get the agent to do much, much more."</p>
+<p>This highlights an important tension in agent design: making tools accessible to new users versus preserving power and composability for advanced users. Beyang argues that we should be careful not to artificially limit agent capabilities just to make them seem more magical for beginners.</p>
+<p>Key Takeaway: Agents have a much higher ceiling than chat-based applications, but unlocking their full potential requires thoughtful prompting and a willingness to learn from how others use them effectively.</p>
+<p>How well do these principles generalize beyond coding? 
+While Amp is focused on coding, many of the architectural principles apply to other domains. Beyang has observed users applying Amp to various non-coding tasks like research and troubleshooting.</p>
+<p>The workflows that generalize best are those that can be done using tools similar to what you have in a development environment - basic search, execution, and document retrieval. "There's a whole bunch of knowledge work that falls under the umbrella of like, as long as you have some tools that look like that, you as a human can get it done, and therefore the agent could probably do a pretty good job as well," Beyang explained.</p>
+<p>However, some specialized domains may require different approaches. The key insight is that workflows that can be captured by the reinforcement learning environment of the models will become increasingly automated, while the remaining workflows will expand to take up more of people's time "because that's where the interesting alpha remains."</p>
+<p>Key Takeaway: The principles of agent architecture generalize well to many knowledge work domains, particularly those involving search, retrieval, and execution of commands, but specialized domains may require domain-specific tools and approaches.</p>
+<p>What should we question when building agents? 
+Beyang suggests asking three key questions when building agents:</p>
+<p>What are you cargo culting from the Chat LLM era? Have you actually thought about whether that's the best construction for building an agent?</p>
+<p>Are you treating context not just as a retrieval exercise, but as a broader set of things that provide relevant information for the context window?</p>
+<p>Are you thinking about how to unlock the ceiling of what agents can do?</p>
+<p>"A lot of the best practices that people developed during the chat LLM era are no longer relevant at best, and in the worst case, actually run in direct tension with what the emerging best practices for building agents are," Beyang warned.</p>
+<p>The future of agent development likely lies in composable, Unix-like tools rather than vertically integrated solutions. While vertically integrated approaches might create snazzier demos in the short term, they tend to be brittle when faced with the diversity of real-world codebases and workflows.</p>
+<p>Key Takeaway: Question your assumptions from the chat LLM era, focus on composability over vertical integration, and design intentionally to preserve the power and flexibility that makes agents truly transformative.</p>
+<p>How should we evaluate agent performance? 
+Traditional RAG evaluation metrics like recall percentages become less relevant in the agentic paradigm. If an agent gets 62% recall instead of 72%, it might just take a few more searches to achieve the same result.</p>
+<p>Beyang suggests that evaluation should be motivated by actual pain points experienced as a user rather than abstract metrics. "All new things, in my view, are motivated by vibes. That thing was painful, I want it to be better."</p>
+<p>Evaluations should function more like unit tests or smoke tests - ensuring that workflows that currently work well continue to work well even as you make changes to improve other aspects of the system.</p>
+<p>"You should never use evals as a way to guide your product development because evals are always kind of downstream of the vibes," Beyang explained. "Evals are in some sense an attempt to quantify the vibes."</p>
+<p>Key Takeaway: Focus evaluation on real user pain points rather than abstract metrics, and use evals as guardrails to prevent regression rather than as primary guides for product development.</p>
+<p>Final thoughts on building effective agents 
+The shift from chat LLMs to agents represents a fundamental change in how we should approach AI system design. By inverting the context fetching process, agents can achieve much more autonomous and powerful workflows, but this requires rethinking many assumptions from the previous era.</p>
+<p>Effective agent design involves thoughtful tool selection, context window management, intentional model choices, and the strategic use of sub-agents. Rather than building monolithic RAG engines, focus on providing a portfolio of simple, composable tools that agents can use to solve complex problems.</p>
+<p>As Beyang summarized, "The potential here is far greater for agents to be able to automate and accelerate much more of knowledge work, but it does require thinking about how you design intentionally for that rather than just how do I provide the smoothest ladder for newbie users into this product experience."</p>
+<p>By questioning our assumptions and designing from first principles, we can build agents that truly transform how we work with AI systems across domains.</p>
+<p>FAQs:</p>
+<p>What is the key difference between chat-based LLMs and coding agents?</p>
+<p>The fundamental difference lies in how context is managed. In chat-based systems, a monolithic context engine fetches relevant snippets before sending them to the language model. With agents, this process is inverted—the model decides which tools to invoke to fetch appropriate context based on the user's request. This seemingly minor change has significant implications for user experience and system architecture.</p>
+<p>How have AI systems evolved over time?</p>
+<p>AI systems have progressed through three distinct phases. First was the autocomplete era with GPT-3, where applications were limited to text completion. Next came the RAG chat era with ChatGPT and GPT-3.5/4, enabling instruction following and reasoning about factual information. Now we're in the agent era with models like GPT-3.7, Sonnet, and Claude 4, which can perform complex sequences of actions autonomously.</p>
+<p>What are the key design principles behind modern coding agents like Amp?</p>
+<p>Modern coding agents like Amp focus on simplicity and effectiveness rather than complex interfaces. They're designed to take action without excessive user confirmation, don't include model selectors, follow a Unix philosophy of composability, and typically use usage-based pricing to align incentives. These design choices enable agents to accomplish more complex tasks with less human intervention.</p>
+<p>How does the user interaction paradigm differ with agents?</p>
+<p>In the chat-based paradigm, humans were deeply involved in the interaction loop, checking and refining output after every model turn. With agents, users can articulate what they want upfront and let the agent handle multiple steps autonomously—reading files, editing code, searching for related information, and validating changes—without constant supervision.</p>
+<p>What tools do effective coding agents use?</p>
+<p>Rather than relying on complex monolithic retrieval engines, effective coding agents use a portfolio of simpler tools including:</p>
+<p>Context retrieval tools (like grep, glob, and search)</p>
+<p>Feedback tools (bash commands for testing, editor diagnostics, screenshots)</p>
+<p>Planning tools (to structure longer sequences of actions)</p>
+<p>Sub-agents (specialized agents for specific tasks)</p>
+<p>What are sub-agents and why are they important?</p>
+<p>Sub-agents are specialized agents that can be invoked by the main agent to perform specific tasks. They're crucial for extending the effective context window of the main agent. For example, a search sub-agent can explore and refine queries to find relevant code snippets without consuming the main agent's context window. Other examples include parallel task sub-agents and specialized "oracle" sub-agents that excel at deep thinking about complex problems.</p>
+<p>Why is model selection less important in the agent era?</p>
+<p>Unlike chat-based systems where models could be easily swapped, agents have tighter coupling between the model and its tools. Different models have varying capabilities for tool use, and tool descriptions are often tuned for specific models. Swapping models can lead to poor user experiences as the new model may not effectively utilize the tools provided.</p>
+<p>How should developers approach context window management in agents?</p>
+<p>As agents perform longer sequences of actions, context window management becomes critical. Strategies include:</p>
+<p>Keeping the context window focused on relevant information</p>
+<p>Avoiding tool overload by carefully selecting which tools to expose</p>
+<p>Using context compaction to summarize previous interactions</p>
+<p>Leveraging sub-agents to perform tasks that would otherwise consume the main agent's context</p>
+<p>What's the future of RAG (Retrieval-Augmented Generation) in the agent era?</p>
+<p>Traditional RAG is evolving beyond simple retrieval. In the agent era, it encompasses three main considerations:</p>
+<p>A broader set of tools beyond just retrieval (including feedback and planning tools)</p>
+<p>Sophisticated context window management</p>
+<p>Strategic use of sub-agents to extend capabilities</p>
+<p>How can developers start building their own agents?</p>
+<p>Building a basic agent is simpler than many people think—it's essentially "invoking the model in a for loop," with sub-agents being like nested loops. Developers can start with a simple CLI-based agent with basic tools, then iterate based on user feedback. The blog post "How to Build an Agent" provides a starting point, and interestingly, you can even have an existing agent read the blog post and generate an agent for you.</p>
+<p>What lessons from coding agents might apply to other domains?</p>
+<p>Many principles from coding agents can generalize to other knowledge work domains, particularly workflows that involve search, document retrieval, and structured execution. The key is identifying which tools and feedback mechanisms are most relevant to your specific domain. Coding agents provide a glimpse into how AI systems will evolve across all regulated domains.</p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 13, 2025 16:22:32 UTC">July 13, 2025</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 23, 2025 04:22:58 UTC">July 23, 2025</span>
 </span>
 </aside>
 </article>

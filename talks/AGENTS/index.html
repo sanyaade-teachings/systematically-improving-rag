@@ -1048,6 +1048,13 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#question-formatting-guidelines">
+<span class="md-ellipsis">
+      Question Formatting Guidelines
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#key-topics-covered">
 <span class="md-ellipsis">
       Key Topics Covered
@@ -1124,6 +1131,26 @@ To install all dependencies and extras for building and working with this docume
 <li><strong>Code examples</strong>: Where applicable, include implementation details</li>
 <li><strong>Performance metrics</strong>: Specific numbers and improvements mentioned</li>
 </ul>
+<h2 id="question-formatting-guidelines">Question Formatting Guidelines</h2>
+<p><strong>Main Section Questions</strong>: Use proper markdown headers for navigable sections:
+<div class="highlight"><pre><span></span><code><span class="gu">## Why is accurate document parsing so critical for AI applications?</span>
+<span class="gu">## How should you evaluate document parsing performance?</span>
+<span class="gu">## What are the most challenging document elements to parse correctly?</span>
+</code></pre></div></p>
+<p><strong>FAQ Section Questions</strong>: Use bold emphasis within FAQ content:
+<div class="highlight"><pre><span></span><code><span class="gu">## FAQs</span>
+
+<span class="gs">**What is document ingestion in the context of AI applications?**</span>
+
+Document ingestion refers to the process of extracting...
+
+<span class="gs">**Why is accurate document parsing so important for AI applications?**</span>
+
+Accurate parsing is critical because...
+</code></pre></div></p>
+<p><strong>Key Distinction</strong>: 
+- <code>## Question?</code> = Main section headers (navigable, structured content)
+- <code>**Question?**</code> = FAQ emphasis (within content sections only)</p>
 <h2 id="key-topics-covered">Key Topics Covered</h2>
 <ul>
 <li><strong>"Why I Stopped Using RAG for Coding Agents (And You Should Too)"</strong> - Nik Pash (Cline)</li>
@@ -1150,6 +1177,8 @@ To install all dependencies and extras for building and working with this docume
 <ul>
 <li><strong>Consistent H1 titles</strong>: Match YAML frontmatter exactly</li>
 <li><strong>Proper markdown structure</strong>: Use ## for main sections, ### for subsections</li>
+<li><strong>Question headers</strong>: Use <code>## Question?</code> format for main section questions (NOT <code>**Question?**</code>)</li>
+<li><strong>FAQ sections</strong>: Use <code>**Question?**</code> for emphasis within FAQ content sections</li>
 <li><strong>Bold key takeaways</strong>: <code>**Key Takeaway:**</code> format for main insights</li>
 <li><strong>Blockquotes for quotes</strong>: Use <code>&gt;</code> for speaker quotes</li>
 <li><strong>Bullet points</strong>: Use <code>-</code> for lists with <strong>bold</strong> labels</li>
@@ -1165,7 +1194,7 @@ To install all dependencies and extras for building and working with this docume
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 9, 2025 22:12:55 UTC">July 9, 2025</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 16, 2025 17:12:40 UTC">July 16, 2025</span>
 </span>
 </aside>
 </article>
