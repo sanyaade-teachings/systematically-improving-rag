@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A novel approach to RAG systems that leverages the browser as a data layer, connecting agents to sensitive data without traditional APIs.">
+        <meta name="description" content="A deep dive into why multi-agent systems might not be the optimal approach for coding contexts, exploring context engineering, challenges of context passing between agents, and how single agents with proper context management can outperform multi-agent setups.">
       
       
       
-        <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/talks/rag-without-apis-browser-michael-struwig/">
+        <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/talks/devin-cognition-multi-agents/">
       
       
-        <link rel="prev" href="../semantic-search-exa-will-bryk/">
+        <link rel="prev" href="../sourcegraph-agentic-code-agent-rag/">
       
       
-        <link rel="next" href="../glean-manav/">
+        <link rel="next" href="../reducto-docs-adit/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>How OpenBB Ditched APIs and Put RAG in the Browser (Michael Struwig) - Systematically Improving RAG Applications</title>
+        <title>Why Cognition does not use multi-agent systems - Systematically Improving RAG Applications</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#how-openbb-ditched-apis-and-put-rag-in-the-browser-michael-struwig" class="md-skip">
+        <a href="#why-cognition-does-not-use-multi-agent-systems" class="md-skip">
           Skip to content
         </a>
       
@@ -142,7 +142,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              How OpenBB Ditched APIs and Put RAG in the Browser (Michael Struwig)
+              Why Cognition does not use multi-agent systems
             
           </span>
         </div>
@@ -2029,8 +2029,6 @@
                 
   
   
-    
-  
   
   
     
@@ -2058,11 +2056,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
         
           
           <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
@@ -2078,7 +2078,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_2">
             <span class="md-nav__icon md-icon"></span>
             Search / Indexing / Chunking
@@ -2181,32 +2181,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    How OpenBB Ditched APIs and Put RAG in the Browser (Michael Struwig)
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../rag-without-apis-browser-michael-struwig/" class="md-nav__link">
         
   
   
@@ -2217,197 +2195,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#why-is-the-browser-the-most-natural-system-for-connecting-llms-to-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why is the browser the most natural system for connecting LLMs to data?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-does-openbbs-agent-protocol-work" class="md-nav__link">
-    <span class="md-ellipsis">
-      How does OpenBB's agent protocol work?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-is-openbb-workspace-and-how-does-it-leverage-this-approach" class="md-nav__link">
-    <span class="md-ellipsis">
-      What is OpenBB Workspace and how does it leverage this approach?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-does-openbb-handle-state-management-and-function-execution" class="md-nav__link">
-    <span class="md-ellipsis">
-      How does OpenBB handle state management and function execution?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-does-openbb-handle-error-management-and-system-improvement" class="md-nav__link">
-    <span class="md-ellipsis">
-      How does OpenBB handle error management and system improvement?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-does-openbb-manage-latency-expectations" class="md-nav__link">
-    <span class="md-ellipsis">
-      How does OpenBB manage latency expectations?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-the-future-of-browser-based-ai" class="md-nav__link">
-    <span class="md-ellipsis">
-      What's the future of browser-based AI?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-does-openbb-approach-testing-and-evaluation" class="md-nav__link">
-    <span class="md-ellipsis">
-      How does OpenBB approach testing and evaluation?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-are-the-limitations-of-frameworks-like-langchain" class="md-nav__link">
-    <span class="md-ellipsis">
-      What are the limitations of frameworks like LangChain?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-is-the-main-concept-behind-openbbs-approach-to-data-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      What is the main concept behind OpenBB's approach to data integration?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-is-openbb-workspace" class="md-nav__link">
-    <span class="md-ellipsis">
-      What is OpenBB Workspace?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-did-openbb-choose-a-browser-based-approach-instead-of-traditional-apis" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why did OpenBB choose a browser-based approach instead of traditional APIs?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-does-the-browser-based-data-integration-work-technically" class="md-nav__link">
-    <span class="md-ellipsis">
-      How does the browser-based data integration work technically?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-are-the-benefits-of-this-approach-for-developers" class="md-nav__link">
-    <span class="md-ellipsis">
-      What are the benefits of this approach for developers?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#is-the-agent-protocol-publicly-available" class="md-nav__link">
-    <span class="md-ellipsis">
-      Is the agent protocol publicly available?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-primitives-does-the-agent-protocol-provide" class="md-nav__link">
-    <span class="md-ellipsis">
-      What primitives does the agent protocol provide?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-do-you-handle-latency-in-complex-workflows" class="md-nav__link">
-    <span class="md-ellipsis">
-      How do you handle latency in complex workflows?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-does-openbb-approach-error-handling-and-system-improvement" class="md-nav__link">
-    <span class="md-ellipsis">
-      How does OpenBB approach error handling and system improvement?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-does-openbb-believe-about-the-future-of-ai-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      What does OpenBB believe about the future of AI integration?
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2691,8 +2478,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -2716,13 +2505,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" checked>
         
           
           <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="">
@@ -2738,7 +2525,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_5">
             <span class="md-nav__icon md-icon"></span>
             Coding Agents
@@ -2818,10 +2605,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../devin-cognition-multi-agents/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Why Devin does not use multi-agents (Walden Yan)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2832,6 +2641,224 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-are-multi-agent-systems-problematic-for-coding-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why are multi-agent systems problematic for coding tasks?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-we-improve-context-passing-between-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can we improve context passing between agents?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-the-limitations-of-simple-linear-agent-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the limitations of simple linear agent systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-real-world-approaches-exist-for-managing-agent-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      What real-world approaches exist for managing agent context?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-should-systems-feel-like-a-single-agent-to-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why should systems feel like a single agent to users?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-skills-are-current-agents-lacking-for-effective-collaboration" class="md-nav__link">
+    <span class="md-ellipsis">
+      What skills are current agents lacking for effective collaboration?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-important-is-planning-in-agent-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      How important is planning in agent systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-frameworks-and-patterns-show-promise-for-agent-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      What frameworks and patterns show promise for agent development?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-is-code-review-evolving-with-ai-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      How is code review evolving with AI agents?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-exciting-developments-are-coming-for-developer-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      What exciting developments are coming for developer tools?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-thoughts-on-the-future-of-agent-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Final thoughts on the future of agent development
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      FAQs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-the-main-issues-with-multi-agent-systems-in-coding" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the main issues with multi-agent systems in coding?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-context-engineering-and-why-is-it-important" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is context engineering and why is it important?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-the-two-core-design-principles-for-building-reliable-agent-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the two core design principles for building reliable agent systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-context-overflow-be-managed-in-agent-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can context overflow be managed in agent systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-read-only-subagents-and-when-are-they-useful" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are "read-only subagents" and when are they useful?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-might-a-single-agent-approach-be-more-reliable-than-multi-agent-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why might a single agent approach be more reliable than multi-agent systems?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-should-agents-handle-tasks-theyre-uncertain-about" class="md-nav__link">
+    <span class="md-ellipsis">
+      How should agents handle tasks they're uncertain about?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-the-edit-apply-model-pattern-and-what-are-its-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the "edit-apply model" pattern and what are its limitations?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-are-current-frameworks-for-building-agents-considered-premature" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why are current frameworks for building agents considered premature?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-might-agent-collaboration-evolve-in-the-future" class="md-nav__link">
+    <span class="md-ellipsis">
+      How might agent collaboration evolve in the future?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3012,171 +3039,198 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#why-is-the-browser-the-most-natural-system-for-connecting-llms-to-data" class="md-nav__link">
+  <a href="#why-are-multi-agent-systems-problematic-for-coding-tasks" class="md-nav__link">
     <span class="md-ellipsis">
-      Why is the browser the most natural system for connecting LLMs to data?
+      Why are multi-agent systems problematic for coding tasks?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-does-openbbs-agent-protocol-work" class="md-nav__link">
+  <a href="#how-can-we-improve-context-passing-between-agents" class="md-nav__link">
     <span class="md-ellipsis">
-      How does OpenBB's agent protocol work?
+      How can we improve context passing between agents?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-is-openbb-workspace-and-how-does-it-leverage-this-approach" class="md-nav__link">
+  <a href="#what-are-the-limitations-of-simple-linear-agent-systems" class="md-nav__link">
     <span class="md-ellipsis">
-      What is OpenBB Workspace and how does it leverage this approach?
+      What are the limitations of simple linear agent systems?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-does-openbb-handle-state-management-and-function-execution" class="md-nav__link">
+  <a href="#what-real-world-approaches-exist-for-managing-agent-context" class="md-nav__link">
     <span class="md-ellipsis">
-      How does OpenBB handle state management and function execution?
+      What real-world approaches exist for managing agent context?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-does-openbb-handle-error-management-and-system-improvement" class="md-nav__link">
+  <a href="#why-should-systems-feel-like-a-single-agent-to-users" class="md-nav__link">
     <span class="md-ellipsis">
-      How does OpenBB handle error management and system improvement?
+      Why should systems feel like a single agent to users?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-does-openbb-manage-latency-expectations" class="md-nav__link">
+  <a href="#what-skills-are-current-agents-lacking-for-effective-collaboration" class="md-nav__link">
     <span class="md-ellipsis">
-      How does OpenBB manage latency expectations?
+      What skills are current agents lacking for effective collaboration?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#whats-the-future-of-browser-based-ai" class="md-nav__link">
+  <a href="#how-important-is-planning-in-agent-systems" class="md-nav__link">
     <span class="md-ellipsis">
-      What's the future of browser-based AI?
+      How important is planning in agent systems?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-does-openbb-approach-testing-and-evaluation" class="md-nav__link">
+  <a href="#what-frameworks-and-patterns-show-promise-for-agent-development" class="md-nav__link">
     <span class="md-ellipsis">
-      How does OpenBB approach testing and evaluation?
+      What frameworks and patterns show promise for agent development?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-are-the-limitations-of-frameworks-like-langchain" class="md-nav__link">
+  <a href="#how-is-code-review-evolving-with-ai-agents" class="md-nav__link">
     <span class="md-ellipsis">
-      What are the limitations of frameworks like LangChain?
+      How is code review evolving with AI agents?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-is-the-main-concept-behind-openbbs-approach-to-data-integration" class="md-nav__link">
+  <a href="#what-exciting-developments-are-coming-for-developer-tools" class="md-nav__link">
     <span class="md-ellipsis">
-      What is the main concept behind OpenBB's approach to data integration?
+      What exciting developments are coming for developer tools?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-is-openbb-workspace" class="md-nav__link">
+  <a href="#final-thoughts-on-the-future-of-agent-development" class="md-nav__link">
     <span class="md-ellipsis">
-      What is OpenBB Workspace?
+      Final thoughts on the future of agent development
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-did-openbb-choose-a-browser-based-approach-instead-of-traditional-apis" class="md-nav__link">
+  <a href="#faqs" class="md-nav__link">
     <span class="md-ellipsis">
-      Why did OpenBB choose a browser-based approach instead of traditional APIs?
+      FAQs
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-does-the-browser-based-data-integration-work-technically" class="md-nav__link">
+  <a href="#what-are-the-main-issues-with-multi-agent-systems-in-coding" class="md-nav__link">
     <span class="md-ellipsis">
-      How does the browser-based data integration work technically?
+      What are the main issues with multi-agent systems in coding?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-are-the-benefits-of-this-approach-for-developers" class="md-nav__link">
+  <a href="#what-is-context-engineering-and-why-is-it-important" class="md-nav__link">
     <span class="md-ellipsis">
-      What are the benefits of this approach for developers?
+      What is context engineering and why is it important?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#is-the-agent-protocol-publicly-available" class="md-nav__link">
+  <a href="#what-are-the-two-core-design-principles-for-building-reliable-agent-systems" class="md-nav__link">
     <span class="md-ellipsis">
-      Is the agent protocol publicly available?
+      What are the two core design principles for building reliable agent systems?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-primitives-does-the-agent-protocol-provide" class="md-nav__link">
+  <a href="#how-can-context-overflow-be-managed-in-agent-systems" class="md-nav__link">
     <span class="md-ellipsis">
-      What primitives does the agent protocol provide?
+      How can context overflow be managed in agent systems?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-do-you-handle-latency-in-complex-workflows" class="md-nav__link">
+  <a href="#what-are-read-only-subagents-and-when-are-they-useful" class="md-nav__link">
     <span class="md-ellipsis">
-      How do you handle latency in complex workflows?
+      What are "read-only subagents" and when are they useful?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-does-openbb-approach-error-handling-and-system-improvement" class="md-nav__link">
+  <a href="#why-might-a-single-agent-approach-be-more-reliable-than-multi-agent-systems" class="md-nav__link">
     <span class="md-ellipsis">
-      How does OpenBB approach error handling and system improvement?
+      Why might a single agent approach be more reliable than multi-agent systems?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-does-openbb-believe-about-the-future-of-ai-integration" class="md-nav__link">
+  <a href="#how-should-agents-handle-tasks-theyre-uncertain-about" class="md-nav__link">
     <span class="md-ellipsis">
-      What does OpenBB believe about the future of AI integration?
+      How should agents handle tasks they're uncertain about?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-the-edit-apply-model-pattern-and-what-are-its-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the "edit-apply model" pattern and what are its limitations?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-are-current-frameworks-for-building-agents-considered-premature" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why are current frameworks for building agents considered premature?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-might-agent-collaboration-evolve-in-the-future" class="md-nav__link">
+    <span class="md-ellipsis">
+      How might agent collaboration evolve in the future?
     </span>
   </a>
   
@@ -3198,231 +3252,115 @@
 
 
 
-<h1 id="how-openbb-ditched-apis-and-put-rag-in-the-browser-michael-struwig">How OpenBB Ditched APIs and Put RAG in the Browser (Michael Struwig)</h1>
-<p>I hosted a session with Michael Struwig, Head of AI at OpenBB, who shared a fascinating approach to RAG systems that leverages the browser as a data layer. This conversation explored how financial data platforms can connect agents to sensitive data without traditional APIs, creating more secure and flexible AI-powered analysis tools.</p>
-<p><a class="md-button md-button--primary" href="https://maven.com/p/18bf94">▶️ See OpenBB's Browser-First RAG Architecture</a></p>
-<h2 id="why-is-the-browser-the-most-natural-system-for-connecting-llms-to-data">Why is the browser the most natural system for connecting LLMs to data?</h2>
-<p>Michael's core thesis is that in the age of web apps, the browser serves as the most natural intermediary for shuffling data between systems, particularly for LLMs. While this might seem counterintuitive at first, it elegantly solves several critical problems in the financial industry.</p>
-<p>The traditional approach to RAG involves building APIs that allow agents to pull data from external services. OpenBB takes a different path - they use the browser itself as the data layer, allowing their workspace application to connect directly to data sources without requiring data to flow through backend servers.</p>
-<p>This browser-first approach provides significant advantages:</p>
-<ul>
-<li>You don't have to distribute sensitive financial data through your servers</li>
-<li>It creates excellent security since you must be on the same network as the data</li>
-<li>You can serve data directly from localhost, which is fantastic for development</li>
-<li>It eliminates legal concerns around data distribution licenses</li>
-</ul>
-<p>As Michael explained, "We don't want to distribute your data... there's a lot of legal fuzziness around what counts as distribution. If you've purchased a data license somewhere, are you allowed to distribute it in this way?"</p>
-<p><strong><em>Key Takeaway:</em></strong> Using the browser as a data layer creates a clean separation between data integration and agent functionality. Once data is integrated into the platform for human use, it's instantly available to AI agents without requiring separate API development or data redistribution.</p>
-<h2 id="how-does-openbbs-agent-protocol-work">How does OpenBB's agent protocol work?</h2>
-<p>OpenBB developed a protocol that allows agents to request data through the browser rather than directly accessing APIs. The workflow is elegantly simple:</p>
-<ol>
-<li>
-<p>The frontend application makes a query request to the agent, specifying available widgets containing data, their descriptions, and parameters</p>
-</li>
-<li>
-<p>If the agent needs specific information, it submits a function call back to the frontend</p>
-</li>
-<li>
-<p>A function calling handler running in the browser locally interprets this call, executes it, and fetches the data</p>
-</li>
-<li>
-<p>The handler responds with a follow-up query containing both the original messages and the results</p>
-</li>
-</ol>
-<p>This creates a powerful separation of concerns - you integrate data once, and your agent doesn't need to know anything about how to access it. The agent simply specifies which widget and input arguments it wants, using a unified interface.</p>
-<p>When designing this protocol, Michael emphasized several priorities:</p>
-<ul>
-<li>It must be easy to debug, test, and reason about</li>
-<li>It should use standards people are already familiar with</li>
-<li>It should avoid being overly clever or complex</li>
-</ul>
-<p>The resulting API is stateless (the agent doesn't handle state), uses REST (familiar to all web developers), and employs server-sent events (the standard for LLM communication). They've published the entire protocol on GitHub as the "OpenBB custom agent SDK."</p>
-<p>I found it particularly interesting how they've created a system with minimal primitives that handle all essential functions - yielding message chunks, reasoning steps, widget data requests, citations, and charts - all through simple yield statements in the execution loop.</p>
-<p><strong><em>Key Takeaway:</em></strong> By creating a simple, stateless protocol that runs in the browser, OpenBB allows agents to access data that might otherwise be inaccessible due to network constraints or security concerns, all while maintaining a clean separation between data integration and agent functionality.</p>
-<h2 id="what-is-openbb-workspace-and-how-does-it-leverage-this-approach">What is OpenBB Workspace and how does it leverage this approach?</h2>
-<p>OpenBB Workspace is an AI-driven analysis tool primarily focused on financial data. It provides a dashboard interface where users can:</p>
-<ul>
-<li>View various data sources like news, watchlists, and company information</li>
-<li>Ask questions to an AI copilot that can access all visible data</li>
-<li>Create charts and visualizations based on analysis</li>
-<li>Bring in custom data backends and write custom widgets</li>
-</ul>
-<p>The platform treats the browser as a data layer, allowing users to connect to data sources running on localhost or available via their network. This creates a powerful environment where:</p>
-<ul>
-<li>Users can bring their own data without it flowing through OpenBB's servers</li>
-<li>The AI agent can access this data through the browser</li>
-<li>Everything the human can do, the agent can do as well</li>
-</ul>
-<p>Michael emphasized their philosophy that "anything the human can do, the AI must be able to do, and vice versa." This creates a unified interface where humans and AI can collaborate effectively, with the AI leveraging the same tools and data access that humans have.</p>
-<p>For enterprise customers, this approach is particularly valuable because they already have their data and don't want data provisioning - they just want a way to analyze it effectively with AI assistance.</p>
-<p><strong><em>Key Takeaway:</em></strong> OpenBB's approach creates a platform where data flows directly through the browser to both humans and AI agents, maintaining security while enabling powerful analysis capabilities without requiring data to be redistributed through third-party servers.</p>
-<h2 id="how-does-openbb-handle-state-management-and-function-execution">How does OpenBB handle state management and function execution?</h2>
-<p>One of the most interesting aspects of OpenBB's approach is how they handle function execution. Michael described two types of functions:</p>
-<ol>
-<li>
-<p>Locally executed functions - The traditional approach where functions run in the same environment where they're called</p>
-</li>
-<li>
-<p>Remotely executed functions - A novel approach where functions are executed in the browser through a mini-interpreter</p>
-</li>
-</ol>
-<p>This remote execution model allows the agent to request data from widgets in the browser without needing direct API access to the data sources. As Michael explained, "Nobody said anything about where the function call needs to be executed."</p>
-<p>For state management, OpenBB takes a stateless approach where the workspace handles all state, not the agent. This makes debugging easier, creates reproducible behavior, and simplifies testing since you can hit an endpoint with a payload and get a predictable response without managing complex state.</p>
-<p>Their architecture resembles a state machine model with a main execution loop that can drop into sub-modules for specific tasks. For example, when analyzing a PDF, the main agent might recognize it's a PDF and call a sub-agent with its own execution loop specifically designed for PDF analysis. These sub-agents can yield events back up to the main loop, which then yields them to the client.</p>
-<p><strong><em>Key Takeaway:</em></strong> By using remotely executed functions and a stateless architecture, OpenBB creates a system that's easy to reason about while enabling powerful capabilities like accessing data that would otherwise be inaccessible to remote agents.</p>
-<h2 id="how-does-openbb-handle-error-management-and-system-improvement">How does OpenBB handle error management and system improvement?</h2>
-<p>When I asked about their approach to error management and system improvement, Michael's answer was refreshingly straightforward: they look at the logs.</p>
-<p>Rather than building complex systems to analyze errors, they:</p>
-<ol>
-<li>
-<p>Ensure they have good error messages that help the model try again</p>
-</li>
-<li>
-<p>Keep detailed logs of what goes wrong</p>
-</li>
-<li>
-<p>Look for patterns in those logs</p>
-</li>
-<li>
-<p>Fix the system to make errors less likely</p>
-</li>
-</ol>
-<p>As Michael put it, "It's astounding how just looking at logs... we don't do any crazy, smart stuff. We're a small team. We want to move fast, and we want our systems to be reliable. No, we just go look."</p>
-<p>He shared an example where they noticed their agent was consistently generating input arguments for a particular data source even when instructed not to. By identifying this pattern, they realized they needed to make certain input arguments optional, fixing the system rather than trying to improve the prompting.</p>
-<p>This approach reminded me of Toyota sending executives to Namibia to watch what breaks on their vehicles in harsh conditions. As Michael noted, "That is surprisingly effective. You don't need workflows. You don't need crazy tooling. Sometimes, just putting your boots on the ground and looking at what's going wrong - that's the highest information signal you can get."</p>
-<p><strong><em>Key Takeaway:</em></strong> Sometimes the simplest approaches are most effective. Rather than building complex systems to analyze errors, directly examining logs and identifying patterns can provide the highest-quality information for improving your AI systems.</p>
-<h2 id="how-does-openbb-manage-latency-expectations">How does OpenBB manage latency expectations?</h2>
-<p>For managing user expectations around latency, OpenBB employs two key strategies:</p>
-<ol>
-<li>
-<p>Providing continuous status updates - Similar to how ChatGPT shows "searching the web" indicators, OpenBB shows step-by-step reasoning as the agent works. This includes information about which widgets are being accessed, what queries are being made, and what the agent is thinking. As Michael noted, "One of the things you don't want is to have a user sit there wondering what's happening."</p>
-</li>
-<li>
-<p>Parallelizing independent tasks - When querying multiple data sources that don't need to interact, they split the work into parallel processes. For example, when summarizing 10 PDFs, they'll summarize them simultaneously and combine the results rather than processing them sequentially.</p>
-</li>
-</ol>
-<p>These approaches keep users engaged and informed while minimizing perceived latency. As Michael observed, "Users don't seem to complain. You can only read so fast, anyway."</p>
-<p>I found his comment about anthropomorphizing LLMs particularly insightful: "Sometimes I think anthropomorphizing LLMs more is a good thing, not a bad thing." Good error messages help both humans and LLMs understand what went wrong, as models are trained on human data and respond well to the same clear communication that helps people.</p>
-<h2 id="whats-the-future-of-browser-based-ai">What's the future of browser-based AI?</h2>
-<p>Michael posed a fascinating question that he believes more people should be asking: "When will locally running language models be integrated into browsers, and when will a web standard be published that allows web apps and websites to interact with those language models in a native way?"</p>
-<p>He predicts that browsers will eventually have built-in LLMs, with standardized interfaces for web applications to leverage these models. This makes sense because:</p>
-<ul>
-<li>The browser is the most important application on most computers</li>
-<li>The web is effectively "the operating system of the world" now</li>
-<li>Most users won't install specialized AI software, but they already use browsers</li>
-<li>Edge computing for AI is becoming increasingly feasible</li>
-</ul>
-<p>When I asked whether this would happen first on desktop or mobile, Michael was confident: "Mobile, almost certainly mobile." The challenge remains monetization - how do big tech companies justify the investment in building these capabilities if they can't generate revenue from them?</p>
-<p><strong><em>Key Takeaway:</em></strong> The future may involve browsers with native LLM capabilities and standardized interfaces for web applications to leverage these models, creating a more accessible AI ecosystem that doesn't require users to install specialized software.</p>
-<h2 id="how-does-openbb-approach-testing-and-evaluation">How does OpenBB approach testing and evaluation?</h2>
-<p>Evaluating AI systems in financial analysis presents unique challenges. Unlike code generation where you can run unit tests to verify correctness, financial analysis often involves subjective judgments without clear right or wrong answers.</p>
-<p>OpenBB takes a multi-faceted approach to evaluation:</p>
-<ol>
-<li>
-<p>User feedback through thumbs up/down ratings (though only about 1% of users provide this)</p>
-</li>
-<li>
-<p>"Radical observability" - providing full citation traces for every answer</p>
-</li>
-<li>
-<p>Direct observation of user interactions and "vibe checks"</p>
-</li>
-<li>
-<p>Detailed logging and pattern recognition</p>
-</li>
-</ol>
-<p>Michael emphasized that "vibe checks" provide surprisingly high-quality information. By examining what the agent saw and the answer it provided, they can identify and fix issues more effectively than through automated systems.</p>
-<p>For monitoring and tracing, they use two main tools:</p>
-<ul>
-<li>Magnetic (by Jack Collins) - A minimal LLM framework that provides the right abstraction level</li>
-<li>Logfire - For fast tracing with a good UI and OpenTelemetry compatibility</li>
-</ul>
-<p><strong><em>Key Takeaway:</em></strong> In domains where evaluation is subjective, combining user feedback with radical observability and direct examination of system behavior can be more effective than complex automated evaluation systems.</p>
-<h2 id="what-are-the-limitations-of-frameworks-like-langchain">What are the limitations of frameworks like LangChain?</h2>
-<p>When I asked about his "God forbid" comment regarding LangChain, Michael clarified that while LangChain popularized the important concept of chaining LLM calls together, it has significant limitations:</p>
-<p>"It's heavily abstracted. It makes a lot of strong assumptions about how your business logic should work, and it ends up solving the average of a lot of problems. And the issue with solving the average of a lot of problems is... you solve no one's problem."</p>
-<p>He explained that LangChain works well for "Hello World" examples, but as soon as you need custom functionality, you find yourself fighting the framework. This has been his experience and that of many others who have tried to build production systems with it.</p>
-<p>Instead, OpenBB prefers more minimal abstractions that give them greater control over execution flow. They've found that a state machine model with execution loops works better for their needs, allowing them to drop into specialized sub-modules for specific tasks while maintaining a clean overall architecture.</p>
-<p><strong><em>Key Takeaway:</em></strong> While frameworks like LangChain can help with initial development, they often become limiting when building production systems that require custom functionality. More minimal abstractions that give you direct control over execution flow can be more effective for complex applications.</p>
-<p><strong>Final thoughts on browser-based RAG</strong></p>
-<p>The browser-as-data-layer approach that OpenBB has developed offers a compelling alternative to traditional API-based RAG systems, particularly for sensitive data in regulated industries. By leveraging the browser's existing capabilities and security model, they've created a system that:</p>
-<ol>
-<li>
-<p>Keeps data secure and compliant with licensing requirements</p>
-</li>
-<li>
-<p>Simplifies development by eliminating the need for separate API integration</p>
-</li>
-<li>
-<p>Creates a unified interface for both humans and AI</p>
-</li>
-<li>
-<p>Enables access to data that might otherwise be inaccessible to remote agents</p>
-</li>
-</ol>
-<p>This approach represents a pragmatic solution to real-world constraints around data access and security, demonstrating that sometimes the most elegant solutions come from rethinking fundamental assumptions rather than adding more complexity.</p>
-<p>As AI becomes more integrated into our daily tools, approaches like this that leverage existing infrastructure rather than building entirely new systems may prove to be the most sustainable path forward.</p>
+<h1 id="why-cognition-does-not-use-multi-agent-systems">Why Cognition does not use multi-agent systems</h1>
+<p>I hosted a session with Walden Yan, co-founder and CPO of Cognition, to explore why multi-agent systems might not be the optimal approach for coding contexts. We discussed the theory of context engineering, the challenges of context passing between agents, and how single agents with proper context management can often outperform multi-agent setups.</p>
+<p><a class="md-button md-button--primary" href="https://maven.com/p/446ea1">▶️ Learn Why Devin Chose Single Agents</a></p>
+<h2 id="why-are-multi-agent-systems-problematic-for-coding-tasks">Why are multi-agent systems problematic for coding tasks?</h2>
+<p>The fundamental issue with multi-agent systems is context management. When you split a task between multiple agents, you're essentially playing a game of telephone where critical information can get lost in transmission.</p>
+<p>Consider a simple example: building a Flappy Bird clone. If you assign one agent to build the background with green pipes and hitboxes, and another agent to create the bird asset, they might develop completely incompatible components. The first agent might create something resembling
+Mario's environment, while the second creates a bird from an entirely different game.</p>
+<p>This miscommunication happens because each agent only understands what it was told by the main agent. While this example might seem extreme, these issues compound dramatically when dealing with complex tasks at scale:</p>
+<p>"You're gonna find lots of places where miscommunications like this are just gonna get introduced in your system, especially as you as the when the user is talking with the system back and forth many times when these sub agents are getting more and more nuanced tasks, and you forget to pass some details through."</p>
+<p>The context isn't just the user's message but includes everything the agent has done - code files examined, questions asked, and answers received. These full agent traces should ideally be passed to all agents in the system.</p>
+<p>Key Takeaway: Multi-agent systems often break down due to context loss between agents. What seems like a minor miscommunication in simple examples becomes a significant problem at scale with complex tasks.</p>
+<h2 id="how-can-we-improve-context-passing-between-agents">How can we improve context passing between agents?</h2>
+<p>To minimize the "telephone game" problem, we need to ensure sub-agents have at least the same context as the main agent. This means:</p>
+<p>Sub-agents should see everything the main agent saw</p>
+<p>Sub-agents should have access to the full history of actions taken by the main agent</p>
+<p>The final agent should see everything from all previous agents</p>
+<p>Even with this improved context passing, problems still arise when sub-agents work in parallel. They can't communicate with each other, leading to conflicts in style, APIs used, or duplicated code. When sub-agent one commits to certain decisions and sub-agent two commits to different decisions, these conflicts create integration problems.</p>
+<p>"With any agentic system, lots of actions can basically carry these implicit decisions being made... anytime these decisions are made, you almost always have to actually make sure this decision is shared with everyone else, or else you might just get these conflicting decisions."</p>
+<p>A more reliable approach is a linear system where agents work sequentially. Sub-agent one completes its task, then sub-agent two works with full knowledge of what sub-agent one did, avoiding conflicts in decisions.</p>
+<p>Key Takeaway: Passing full context between agents helps but doesn't solve all problems. When agents work in parallel, they make conflicting implicit decisions that create integration challenges.</p>
+<h2 id="what-are-the-limitations-of-simple-linear-agent-systems">What are the limitations of simple linear agent systems?</h2>
+<p>While linear agent systems solve many coordination problems, they quickly run into context window limitations. As the task progresses, the context grows larger until it exceeds what the model can effectively process.</p>
+<p>"With the simple agent, you know, if you're just collecting everything that this agent's been doing, and especially for these longer tasks, you'll quickly run to context overflow issues, especially as you go down the line towards the end of your task."</p>
+<p>One solution is implementing a context compressor that intelligently selects what information to pass from one agent to the next. However, this adds complexity and requires careful engineering to ensure important details aren't lost.</p>
+<p>At Cognition, they trained a specialized model to identify and preserve critical information from earlier conversations. This approach requires significant investment but can be worthwhile for complex engineering tasks.</p>
+<p>"You have to think very carefully about. Are you willing to put in the work to kind of squeeze out this extra juice from your system. In our case it makes sense, because our entire goal is to make sure that we can take on harder and harder engineering tasks."</p>
+<p>Key Takeaway: Simple linear agent systems eventually hit context window limits. Context compression can help but adds complexity and requires careful engineering to avoid losing critical information.</p>
+<h2 id="what-real-world-approaches-exist-for-managing-agent-context">What real-world approaches exist for managing agent context?</h2>
+<p>Several practical approaches have emerged for managing context in agent systems:</p>
+<p>Read-only sub-agents: Both Claude Code and OpenCode use sub-agents that only read and don't make decisions. These agents perform tasks like listing project files, examining packages, or looking for imports, then report back to the main agent.</p>
+<p>"The designers of these systems of these agent builders are very careful to constrain their sub agents to only doing read-only tasks. I think if you read the cloud Sys prompt. If you read open code Sysprompt, you'll probably find stuff that's like you should only use subagents for things that involve reading code."</p>
+<p>Edit-apply models: Systems like Cursor and Windsurf use a two-stage approach where a smart coding model generates human-readable instructions for code changes, and a simpler "edit-apply" model implements those changes. This approach can be fragile if the instructions aren't perfectly clear.</p>
+<p>"When you see complaints online about, hey? Sometimes in these code editors the edit will be like wrong and or mess something up. It is often because of this that the smart coding agent left out some important detail, or wasn't specific enough about something."</p>
+<p>Even read-only sub-agents can create problems when they return conflicting information, leaving the main agent to resolve contradictions without full context.</p>
+<p>Key Takeaway: Read-only sub-agents and specialized edit-apply models can help manage context, but each approach has limitations and potential failure points.</p>
+<h2 id="why-should-systems-feel-like-a-single-agent-to-users">Why should systems feel like a single agent to users?</h2>
+<p>Even if your system has complex internal components, it should present itself to users as a single, coherent entity. This creates a more intuitive user experience and avoids confusion.</p>
+<p>"If you're abiding by like kind of principles of good context, engineering your system as a whole, even if it has like subparts and tasks. It kind of should feel to the user like a single agent, because the user has to feel like they're they're talking with one continuous decision maker, one continuous like consciousness."</p>
+<p>True multi-agent collaboration requires sophisticated capabilities that current models don't yet possess. Effective collaboration between humans requires mentally modeling what others know and don't know - a complex skill that LLMs haven't mastered.</p>
+<p>"It actually requires being very intelligent to be good at collaborating with other people like when when I'm working with another engineer on my team, if I am mentally modeling at the same time what they know, what they don't understand and what I have to tell them."</p>
+<p>The path forward likely involves making single agents smarter and more collaborative, which will eventually enable effective multi-agent systems.</p>
+<p>Key Takeaway: Systems should present as a single coherent entity to users. True multi-agent collaboration requires sophisticated capabilities that will emerge naturally as single agents become more intelligent.</p>
+<h2 id="what-skills-are-current-agents-lacking-for-effective-collaboration">What skills are current agents lacking for effective collaboration?</h2>
+<p>Current agents struggle with several key collaboration skills:</p>
+<p>Escalation awareness: Recognizing when they've reached the limits of their decision-making authority and need human input.</p>
+<p>"When can a system recognize when it reaches its own limits of the decisions it is allowed to make...</p>
+<p>How do you know, like a you should? Either way, you should notify the human that like, Hey, there's something weird that's happening here."</p>
+<p>Confidence assessment: Accurately evaluating and communicating their confidence in proposed solutions.</p>
+<p>"In Devin. One thing we do is when you collaborating with your agent, when you collaborate when you're collaborating with Devin, Devin will give you the how confident it is in its plan. And that way you, as a human, can say, like, okay, Devin is like 99% confident that this is going to work, you can roughly be hands off."</p>
+<p>Concise communication: Providing key information without overwhelming users with unnecessary details.</p>
+<p>"People hate how like, you know, Llms will just send you like a wall of text, and Markdown, a smart engineer will like manage to hone in on the key problems and the key things you have to think about with like minimal words, one sentence, 2 sentence of words."</p>
+<p>These skills are particularly important for human-agent collaboration, where the human should remain the ultimate decision-maker while the agent handles appropriate tasks autonomously.</p>
+<p>Key Takeaway: Effective collaboration requires agents to know when to escalate decisions, accurately assess their confidence, and communicate concisely - skills that current systems are still developing.</p>
+<h2 id="how-important-is-planning-in-agent-systems">How important is planning in agent systems?</h2>
+<p>Planning serves as a crucial form of context management in agent systems. By committing to a structure upfront, agents can avoid the constant recompression of information that happens in more dynamic approaches.</p>
+<p>"Planning is something that we do. And the context of planning emergency came up for us is actually a form of context management. Because, again, it's about avoiding this game of telephone where you you have to constantly recompress and the information that you're you're sending to your agent."</p>
+<p>At Cognition, Devin spends significant time reading code and generating a plan at the start of any task. This planning phase is one area where sub-agent-like components might be useful, though they're integrated in a way that still feels like a single system to the user.</p>
+<p>While detailed planning (like creating extensive plan.md files) can improve results, Walden believes these capabilities will eventually be built into the systems themselves:</p>
+<p>"You can be shown the plan. You can click this button to like view the full plan that the agent's working on. But the agent will work on this internally for its own sake. You know whether or not like you, tell it to or not."</p>
+<p>Key Takeaway: Planning is a powerful context management technique that helps agents maintain coherence throughout complex tasks. While users can create detailed plans, these capabilities are increasingly being built into agent systems.</p>
+<h2 id="what-frameworks-and-patterns-show-promise-for-agent-development">What frameworks and patterns show promise for agent development?</h2>
+<p>We're still in the early stages of agent development - comparable to the HTML/CSS/JavaScript era of web development before frameworks like React emerged. However, some promising patterns are emerging:</p>
+<p>Cache-aware frameworks: Systems that optimize for caching, even before API-level caching was available.</p>
+<p>"Our system has been built with caching kind of like being a very core condition. So even as you scale out and do these sub agents and things like that, having a system that still manages to like optimally cache work from before, I think is going to be important thing."</p>
+<p>Integrated evaluation systems: Frameworks that tightly couple agent code with evaluation systems.</p>
+<p>"We kind of like segment functionalities of our system into modules and these modules are tagged in such a way that not only are things that go through those modules, things that like we can track and feed into eval systems. When we change code inside these modules, we can then also back, run them against evals from before."</p>
+<p>Universal tools over specialized integrations: Providing agents with powerful general-purpose tools like shell access rather than numerous specialized integrations.</p>
+<p>"I personally like to just like, give our agent the most universal tools possible, and make sure there's very easy to use. So the shell command, like the the bash tool, for example, is so fucking powerful, it like literally, it means like anything you can do on a computer like your agent can do now."</p>
+<p>CLI tools can sometimes be more powerful than formal integrations because they can interact with the agent in sophisticated ways, almost becoming part of the agent system itself.</p>
+<p>Key Takeaway: While we're still early in agent framework development, patterns around caching, evaluation integration, and universal tools are showing promise for building robust systems.</p>
+<h2 id="how-is-code-review-evolving-with-ai-agents">How is code review evolving with AI agents?</h2>
+<p>As AI generates more code, the review process is evolving to minimize the work required to verify changes. Walden highlighted how they're leveraging existing tools like Vercel's preview links:</p>
+<p>"I tag Devin on slack. I go away. I do my thing. And 1st of all, I always tell Devin to send me a screenshot of the visual changes it makes, so I don't have to even leave slack. I will immediately see a screenshot of like, okay, is this even something reasonable that I want to review?"</p>
+<p>This approach allows for quick visual verification before diving into code details. Similar infrastructure for backend systems would be valuable but hasn't been heavily invested in yet.</p>
+<p>The future of code review likely involves more automated verification and visualization tools that help humans quickly understand and validate AI-generated changes.</p>
+<p>Key Takeaway: Code review is evolving to minimize human effort through screenshots, preview environments, and other tools that provide quick verification of AI-generated changes.</p>
+<h2 id="what-exciting-developments-are-coming-for-developer-tools">What exciting developments are coming for developer tools?</h2>
+<p>Walden is particularly excited about creating better synergies between local development environments and remote agents. One area with significant potential is improving code reading and understanding:</p>
+<p>"Actually reading code reading code, understanding code planning how you want to make changes. Because when you're an individual developer, you're actually oftentimes you're working a massive code based searching code that isn't yours. You're trying to understand it."</p>
+<p>While current AI tools can help with implementing specific tasks, there's a cap to what they can handle without proper planning. AI has a unique advantage in reading and understanding code much faster than humans, which could transform how developers approach large codebases.</p>
+<p>"The AI, even though it can like only edit code serially, it could read codes like so much faster than any of us can. And so I'm very excited about things we're going to be doing and just making that process and experience be a lot easier."</p>
+<p>Key Takeaway: The next frontier for developer tools involves better code reading, understanding, and planning capabilities that leverage AI's ability to process large codebases quickly.</p>
+<h2 id="final-thoughts-on-the-future-of-agent-development">Final thoughts on the future of agent development</h2>
+<p>Walden believes we're just beginning to develop the concepts and principles that will become fundamental to agent development. In the future, these ideas will likely be taught in entry-level college courses.</p>
+<p>The field is evolving rapidly, with practitioners discovering new patterns and approaches through experimentation. While multi-agent systems have captured popular imagination, the immediate future likely belongs to increasingly sophisticated single agents that can handle complex tasks with proper context management.</p>
+<p>As these systems mature, the principles of context engineering will become more formalized, eventually leading to frameworks that make building robust agent systems more accessible to developers without requiring deep expertise in prompt engineering or context management.</p>
+<p>Key Takeaway: We're in the early stages of developing fundamental concepts for agent systems. While multi-agent approaches capture imagination, near-term progress will come from improving single agents with better context management.</p>
 <hr />
-<p>FAQs:</p>
-<h2 id="what-is-the-main-concept-behind-openbbs-approach-to-data-integration">What is the main concept behind OpenBB's approach to data integration?</h2>
-<p>The browser is the most natural system for shuffling data between different systems, particularly when working with Large Language Models (LLMs). Rather than using traditional APIs where an agent hits an endpoint to pull data from external services, OpenBB leverages the browser itself as a data layer. This approach allows you to connect data running on localhost or your local network to an agent running elsewhere, creating a more seamless integration experience.</p>
-<h2 id="what-is-openbb-workspace">What is OpenBB Workspace?</h2>
-<p>OpenBB Workspace is an AI-driven analysis tool primarily focused on financial data. It features a series of dashboards with various data sources including news, watchlists, company information, and price targets. The platform includes OpenBB Copilot (an AI assistant) on the right side of the application that can answer questions, produce charts, and provide full citations for its responses. Users can create custom widgets, bring in their own data backends, and perform comprehensive analysis.</p>
-<h2 id="why-did-openbb-choose-a-browser-based-approach-instead-of-traditional-apis">Why did OpenBB choose a browser-based approach instead of traditional APIs?</h2>
-<p>There are several key reasons:</p>
-<ul>
-<li>It eliminates the need to distribute user data through OpenBB's systems, which is resource-intensive and costly</li>
-<li>It avoids legal complications around data distribution, especially with licensed financial data</li>
-<li>It removes the requirement for data to be reachable over a public network</li>
-<li>It provides excellent security since you must be on the same network as the data</li>
-<li>It allows users to serve data directly from localhost, which is ideal for development</li>
-</ul>
-<h2 id="how-does-the-browser-based-data-integration-work-technically">How does the browser-based data integration work technically?</h2>
-<p>The system uses what OpenBB calls the "agent protocol." When a user makes a query, the front-end application sends a request to the agent with messages and information about available widgets containing data. If the agent needs specific information to answer the query, it submits a function call back to the front-end with parameters specifying which widget to access and which input arguments to use. A function-calling handler running in the browser locally interprets this call, executes it, fetches the data, and responds with the results back to the agent.</p>
-<h2 id="what-are-the-benefits-of-this-approach-for-developers">What are the benefits of this approach for developers?</h2>
-<p>This approach offers several advantages:</p>
-<ul>
-<li>You only need to integrate your data once into OpenBB Workspace</li>
-<li>The agent doesn't need to know how to access the data directly</li>
-<li>There's a clear separation of concerns between data integration and agent functionality</li>
-<li>The system works with any AI system (OpenAI, Anthropic, Google, etc.)</li>
-<li>The protocol is stateless, making it easy to debug, test, and reason about</li>
-<li>It uses familiar REST APIs and server-sent events, which are standard for web development</li>
-</ul>
-<h2 id="is-the-agent-protocol-publicly-available">Is the agent protocol publicly available?</h2>
-<p>Yes, OpenBB has published the entire protocol on GitHub. It's called the "OpenBB Custom Agent SDK" and is pip-installable. This is the same protocol used for OpenBB's own copilot, and they encourage users to build their own agents with it.</p>
-<h2 id="what-primitives-does-the-agent-protocol-provide">What primitives does the agent protocol provide?</h2>
-<p>The protocol includes several simple primitives:</p>
-<ul>
-<li>Yielding message chunks to stream text back to the front-end</li>
-<li>Yielding reasoning steps to provide status updates about what the agent is doing</li>
-<li>Fetching widget data from OpenBB Workspace</li>
-<li>Producing citations for information sources</li>
-<li>Returning tables and various chart types (pie, line, bar, scatter)</li>
-</ul>
-<h2 id="how-do-you-handle-latency-in-complex-workflows">How do you handle latency in complex workflows?</h2>
-<p>OpenBB manages user expectations around latency in two main ways:</p>
-<ol>
-<li>
-<p>Providing continuous feedback through status updates that show what the model is doing (querying widgets, writing SQL, analyzing data)</p>
-</li>
-<li>
-<p>Parallelizing tasks when possible (e.g., summarizing multiple PDFs simultaneously rather than sequentially)</p>
-</li>
-</ol>
-<h2 id="how-does-openbb-approach-error-handling-and-system-improvement">How does OpenBB approach error handling and system improvement?</h2>
-<p>Rather than building complex self-improving systems, OpenBB focuses on:</p>
-<ul>
-<li>Creating clear, informative error messages that help the model try again</li>
-<li>Maintaining detailed logs of errors and identifying common patterns</li>
-<li>Having team members regularly review these logs to spot trends</li>
-<li>Modifying the system to make errors less likely, rather than just changing prompts</li>
-</ul>
-<h2 id="what-does-openbb-believe-about-the-future-of-ai-integration">What does OpenBB believe about the future of AI integration?</h2>
-<p>OpenBB believes that human plus AI will be better than either human or AI alone. Their vision focuses on collaboration rather than replacement, with AI making humans better or offloading certain tasks. They maintain that anything the human can do, the AI must be able to do, and vice versa, creating a unified interface for both. Looking further ahead, they predict that locally-running language models will eventually be integrated directly into browsers as a web standard, particularly on mobile devices.</p>
-<hr />
-<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
+<h2 id="faqs">FAQs</h2>
+<h2 id="what-are-the-main-issues-with-multi-agent-systems-in-coding">What are the main issues with multi-agent systems in coding?</h2>
+<p>Multi-agent systems often suffer from context loss and conflicting decisions. When multiple agents work in parallel, they may not share the same understanding of the original task or see each other's work, leading to inconsistencies. This creates a "telephone game" effect where important details get lost as information passes from one agent to another, resulting in incompatible outputs that don't work well together.</p>
+<h2 id="what-is-context-engineering-and-why-is-it-important">What is context engineering and why is it important?</h2>
+<p>Context engineering is the practice of carefully managing what information is available to AI agents at each step of their work. Unlike prompt engineering (which focuses on how you phrase instructions), context engineering focuses on ensuring agents have all the necessary background information and history they need to make good decisions. As models become more capable, the limiting factor is increasingly how much relevant context they have access to rather than how you phrase your prompts.</p>
+<h2 id="what-are-the-two-core-design-principles-for-building-reliable-agent-systems">What are the two core design principles for building reliable agent systems?</h2>
+<p>The two core principles are: 1) Always share full context and agent traces between components, ensuring each agent can see what happened before, and 2) Carefully track decisions to prevent agents from making conflicting choices. These principles help maintain consistency throughout the system and prevent the "telephone game" problem where important details get lost between agents.</p>
+<h2 id="how-can-context-overflow-be-managed-in-agent-systems">How can context overflow be managed in agent systems?</h2>
+<p>As agents work on longer tasks, they can quickly hit context window limits. One approach is using a "context compressor" that intelligently summarizes previous context before passing it to the next agent. This requires careful engineering to ensure important details aren't lost during compression. Another approach is designing systems that are inherently cache-aware, allowing for efficient reuse of previous computations without redundant processing.</p>
+<h2 id="what-are-read-only-subagents-and-when-are-they-useful">What are "read-only subagents" and when are they useful?</h2>
+<p>Read-only subagents are limited to gathering information without making decisions that affect the system. They're useful for tasks like searching code, listing files, or checking imports without introducing conflicts. Both Claude and other systems constrain their subagents to these read-only tasks specifically to avoid the problems that arise when multiple agents make independent decisions in parallel.</p>
+<h2 id="why-might-a-single-agent-approach-be-more-reliable-than-multi-agent-systems">Why might a single agent approach be more reliable than multi-agent systems?</h2>
+<p>Single agent systems avoid the problem of conflicting decisions and context loss between agents. They maintain a continuous "consciousness" with full access to previous context and actions. While they may be slower (lacking parallelism), they're typically more reliable because they don't suffer from coordination problems. A well-designed single agent can still use specialized components internally while presenting a unified interface to users.</p>
+<h2 id="how-should-agents-handle-tasks-theyre-uncertain-about">How should agents handle tasks they're uncertain about?</h2>
+<p>Agents should be designed to recognize their limitations and escalate decisions to humans when appropriate. This includes providing confidence scores with their plans and outputs, so users know when to pay closer attention. Unlike how models are typically trained (to always provide an answer), agents should be willing to say "I don't know" or "I need help" rather than guessing when they lack sufficient information or expertise.</p>
+<h2 id="whats-the-edit-apply-model-pattern-and-what-are-its-limitations">What's the "edit-apply model" pattern and what are its limitations?</h2>
+<p>The edit-apply model pattern uses two specialized components: a smart coding model that generates human-readable instructions for code changes, and a simpler, faster model that applies those changes to the code. This pattern can be efficient but introduces fragility because the edit-apply model lacks the full context and intelligence of the main model, making it vulnerable to misinterpreting instructions if they're not perfectly clear.</p>
+<h2 id="why-are-current-frameworks-for-building-agents-considered-premature">Why are current frameworks for building agents considered premature?</h2>
+<p>Current agent frameworks are considered premature because we're still discovering the fundamental principles and patterns for building reliable agent systems. Similar to web development before React, we're in an early phase where developers are still identifying best practices. Eventually, frameworks will emerge that codify these principles, but for now, it's important to focus on understanding the core concepts like context engineering.</p>
+<h2 id="how-might-agent-collaboration-evolve-in-the-future">How might agent collaboration evolve in the future?</h2>
+<p>While current multi-agent systems face significant challenges, future systems may enable more effective collaboration as models become more intelligent. The ability to model what other agents know and need is a sophisticated skill that requires advanced intelligence. As single agents become more capable, they'll naturally develop the ability to collaborate effectively with other agents, similar to how humans collaborate with teammates.</p>
 
 
 
@@ -3463,7 +3401,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../semantic-search-exa-will-bryk/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Why Google Search Sucks for AI (Will Bryk, Exa)">
+          <a href="../sourcegraph-agentic-code-agent-rag/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Agentic RAG from first principles (Beyang Liu, Sourcegraph)">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -3473,20 +3411,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Why Google Search Sucks for AI (Will Bryk, Exa)
+                Agentic RAG from first principles (Beyang Liu, Sourcegraph)
               </div>
             </div>
           </a>
         
         
           
-          <a href="../glean-manav/" class="md-footer__link md-footer__link--next" aria-label="Next: Building Custom Embedding Models Per Customer (Manav, Glean)">
+          <a href="../reducto-docs-adit/" class="md-footer__link md-footer__link--next" aria-label="Next: Why Most Document Parsing Sucks (Adit, Reducto)">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Building Custom Embedding Models Per Customer (Manav, Glean)
+                Why Most Document Parsing Sucks (Adit, Reducto)
               </div>
             </div>
             <div class="md-footer__button md-icon">
