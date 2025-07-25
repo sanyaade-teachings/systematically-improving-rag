@@ -233,13 +233,13 @@ Common improvements that can be implemented quickly:
 - For documentation, chunk by page boundaries rather than arbitrary text length
 - Pages often contain semantically coherent units
 
-!!! tip "Medium-Term Improvements (2-4 weeks)"
+**Medium-Term Improvements (2-4 weeks)**
 
-   - **Fine-tune embeddings**: $1.50 and 40 minutes for 6-10% improvement 
-   - **Add re-ranker**: 15-20% retrieval improvement 
-   - **Build specialized tools**: 10x better for specific use cases
-   - **Implement contextual retrieval**: 30% better context understanding 
-   - **Create Slack feedback integration**: 5x more enterprise feedback
+- **Fine-tune embeddings**: Cost-effective way to improve domain-specific performance
+- **Add re-ranker**: Secondary ranking step that improves retrieval relevance
+- **Build specialized tools**: Domain-specific retrievers for documents, code, or structured data
+- **Implement contextual retrieval**: Better understanding of query context
+- **Create Slack feedback integration**: Collect feedback directly in enterprise workflows
 
 !!! info "Learn from the Experts"
 
@@ -249,10 +249,7 @@ Common improvements that can be implemented quickly:
 
 ## About the Author
 
-Jason Liu brings practical experience from Facebook, Stitch Fix, and as a consultant for companies like HubSpot, Zapier, and many others. His background spans computer vision, recommendation systems, and RAG applications across diverse domains.
-
-!!! quote "Author's Philosophy"
-    "The most successful AI products aren't the ones with the most sophisticated models, but those built on disciplined processes for understanding users, measuring performance, and systematically improving. This book will show you how to create not just a RAG application, but a product that becomes more valuable with every interaction."
+Jason Liu is a machine learning engineer with experience at Facebook and Stitch Fix, and has consulted for companies like HubSpot and Zapier on RAG implementations. His background includes computer vision, recommendation systems, and retrieval applications across various domains.
 
 ## Getting Started
 
