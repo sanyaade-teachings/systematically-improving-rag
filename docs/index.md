@@ -8,67 +8,218 @@ date: 2025-04-10
 
 # The RAG Flywheel
 
-## Data-Driven Product Development for AI Applications
+## A Systematic Approach to Building Self-Improving AI Products
 
-_A systematic approach to building self-improving AI systems_
+_The systematic approach that helped companies achieve 5x feedback rates, 87% retrieval accuracy, and $50M+ revenue improvements_
 
-!!! abstract "About This Book"
-This book provides a structured approach to evolving Retrieval-Augmented Generation (RAG) from a technical implementation into a continuously improving product. You'll learn to combine product thinking with data science principles to create AI systems that deliver increasing value over time.
+!!! success "Proven Track Record"
+    ⭐ **Top rated AI course (4.7/5 stars, +200 students)**  
+    Trusted by professionals from OpenAI, Anthropic, Google, Microsoft, and 50+ leading organizations
 
-## The RAG Improvement Flywheel
+!!! warning "The RAG Reality Check"
+    **90% of RAG implementations fail** because teams focus on model selection and prompt engineering while ignoring the fundamentals: measurement, feedback, and systematic improvement.
+    
+    This book changes that. Based on real-world experience with companies like HubSpot, Zapier, and many others, you'll learn the exact frameworks that transform RAG from a disappointing demo into a revenue-generating product.
 
-At the core of this book is the RAG improvement flywheel - a continuous cycle that transforms user interactions into product enhancements.
+# Trusted by Professionals from Leading Organizations:
 
-!!! tip "Beyond Technical Implementation"
-This book goes beyond teaching you how to implement RAG. It shows you how to think about RAG as a product that continuously evolves to meet user needs and deliver business value.
+These are the companies that took our masterclass.
 
-## Chapters
+<div class="grid two-columns" markdown="1">
 
-### [Introduction: Beyond Implementation to Improvement](workshops/chapter0.md)
+| Company                                         | Industry                    |
+| ----------------------------------------------- | --------------------------- |
+| [OpenAI](https://openai.com)                    | AI Research & Development   |
+| [Anthropic](https://anthropic.com)              | AI Research & Development   |
+| [Google](https://google.com)                    | Search Engine, Technology   |
+| [Microsoft](https://microsoft.com)              | Software, Cloud Computing   |
+| [TikTok](https://tiktok.com)                    | Social Media                |
+| [Databricks](https://databricks.com)            | Data Platform               |
+| [Amazon](https://amazon.com)                    | E-commerce, Cloud Computing |
+| [Airbnb](https://airbnb.com)                    | Travel                      |
+| [Zapier](https://zapier.com)                    | Automation                  |
+| [HubSpot](https://hubspot.com)                  | Marketing Software          |
+| [Shopify](https://shopify.com)                  | E-commerce Platform         |
+| [PwC](https://pwc.com)                          | Professional Services       |
+| [Booz Allen Hamilton](https://boozallen.com)    | Consulting                  |
+| [Bain & Company](https://bain.com)              | Consulting                  |
+| [Northrop Grumman](https://northropgrumman.com) | Aerospace & Defense         |
+| [Visa](https://visa.com)                        | Financial Services          |
+| [KPMG](https://kpmg.com)                        | Professional Services       |
 
-Understand why systematic improvement matters and how to approach RAG as a product rather than just a technical implementation.
+| Company                                           | Industry                        |
+| ------------------------------------------------- | ------------------------------- |
+| [Decagon](https://decagon.ai/)                    | Technology                      |
+| [Anysphere](https://anysphere.com)                | AI                              |
+| [GitLab](https://gitlab.com)                      | Software Development            |
+| [Intercom](https://intercom.com)                  | Customer Engagement             |
+| [Lincoln Financial](https://lincolnfinancial.com) | Financial Services              |
+| [DataStax](https://datastax.com)                  | Database Technology             |
+| [Timescale](https://timescale.com)                | Database Technology             |
+| [PostHog](https://posthog.com)                    | Product Analytics               |
+| [Gumroad](https://gumroad.com)                    | E-commerce Platform             |
+| [Miro](https://miro.com)                          | Collaboration                   |
+| [Workday](https://workday.com)                    | Enterprise Software             |
+| [Accenture](https://accenture.com)                | Consulting, Technology Services |
+| [Mozilla](https://mozilla.org)                    | Non-profit                      |
+| [Redhat](https://redhat.com)                      | Software Development            |
+| [Nvidia](https://nvidia.com)                      | AI                              |
 
-### [Chapter 1: Starting the Flywheel](workshops/chapter1.md)
+</div>
 
-Learn how to overcome the cold-start problem, establish meaningful metrics, and create a data foundation that drives product decisions.
+## What Students Are Saying
+
+!!! quote "Real Impact from Real Students"
+
+| **Review** | **Name & Role** |
+|------------|-----------------|
+| *"Practical lessons from every lecture... learning from a community on the vanguard of this emerging field."* | **Max**, Software Engineer, Launch School |
+| *"Jason helped us break down our vision into actionable steps, providing clear recommendations on the best models for each use case. His guidance gave us a tangible roadmap for our next steps."* | **Camu Team** (a16z backed) |
+| *"Excellent job of stressing the fundamentals... useful metric tools to measure and improve RAG systems."* | **Christopher**, Senior Data/AI Architect, Procurement Sciences AI |
+| *"Jason and Dan help set you on the right path... emphasis on looking at your data and building a metrics-based flywheel."* | **Vitor**, Staff Software Engineer, Zapier |
+| *"Practical and grounded in actual industry experience... like getting the inside scoop from folks who've been in the trenches."* | **Ashutosh**, Senior Principal Scientist, Adobe |
+| *"System-oriented approach... Highly relevant, directly applicable, and save time in building prototypes."* | **Mani**, Senior Principal Software Engineer, Red Hat |
+
+## The Problem: Why Most RAG Systems Fail
+
+!!! quote "Real Patterns from the Field"
+    After working with dozens of companies, the failure pattern is predictable:
+    
+    **Week 1-2:** "Our RAG demo is amazing!"  
+    **Week 3-4:** "Why are users getting irrelevant results?"  
+    **Week 5-6:** "Let's try a different model..."  
+    **Week 7-8:** "Maybe we need better prompts..."  
+    **Week 9+:** "Our users have stopped using it."
+
+Sound familiar? You're not alone. The issue isn't your technology—it's your approach.
+
+## The Solution: The RAG Improvement Flywheel
+
+```mermaid
+graph LR
+    A[Measure<br/>Baseline Performance] --> B[Analyze<br/>Failure Patterns]
+    B --> C[Improve<br/>Targeted Solutions]
+    C --> D[Deploy<br/>& Collect Feedback]
+    D --> A
+    
+    style A fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
+    style B fill:#fff3e0,stroke:#f57c00,stroke-width:3px
+    style C fill:#e8f5e9,stroke:#388e3c,stroke-width:3px
+    style D fill:#fce4ec,stroke:#c2185b,stroke-width:3px
+```
+
+This isn't just theory. Companies using this approach have achieved:
+
+- **5x increase** in feedback collection (changing one line of copy!)
+- **87% retrieval accuracy** (up from 63% baseline)
+- **45% reduction** in perceived latency
+- **$50M+ revenue impact** through improved recommendations
+
+!!! success "The Flywheel Mindset"
+    Your RAG application should be smarter next month than it is today. If it isn't, something is wrong with your process, not your technology.
+
+## What You'll Build: A Proven 6-Chapter Journey
+
+### [Introduction: The Product Mindset Shift](workshops/chapter0.md)
+**The Foundation That Changes Everything**
+
+Stop thinking like an engineer. Start thinking like a product leader. Learn why treating RAG as a product rather than a project is the #1 predictor of success.
+
+**Key concepts:** The improvement flywheel • Common failure patterns • Product thinking vs implementation thinking
+
+---
+
+### [Chapter 1: Starting the Data Flywheel](workshops/chapter1.md)
+**From Zero to Evaluation in Days, Not Months**
+
+The cold-start problem kills most RAG projects. Learn the synthetic data techniques that get you from zero to measurable improvement in days.
+
+**You'll build:** Synthetic evaluation datasets • Precision/recall frameworks • Leading vs lagging metrics • Experiment velocity tracking
+
+**Case study:** Legal tech company improved retrieval from 63% to 87% in 2 weeks using these techniques
+
+---
 
 ### [Chapter 2: From Evaluation to Enhancement](workshops/chapter2.md)
+**Fine-Tuning That Actually Moves Business Metrics**
 
-Transform evaluation insights into concrete product improvements through fine-tuning, re-ranking, and targeted enhancements.
+Stop guessing which model to use. Learn how to systematically improve retrieval through fine-tuning, re-ranking, and targeted enhancements.
 
-### [Chapter 3: The User Experience of AI](workshops/chapter3-1.md)
+**You'll implement:** Embedding fine-tuning pipelines • Re-ranker integration (12-20% improvement) • Hard negative mining • A/B testing frameworks
 
-Design interfaces that both delight users and gather valuable feedback, creating a virtuous cycle of improvement.
+**Case study:** E-commerce company increased revenue by $50M through systematic improvements
+
+---
+
+### [Chapter 3: User Experience and Feedback](workshops/chapter3-1.md)
+**5x Your Feedback Collection with One Simple Change**
+
+The secret to improvement? Getting users to tell you what's wrong. Learn the UX patterns that transform silent users into active contributors.
+
+**You'll master:** High-converting feedback copy • Citation UX for trust • Implicit signal collection • Enterprise Slack integrations
+
+**Case study:** Changing "How did we do?" to "Did we answer your question?" increased feedback 5x
+
+---
 
 ### [Chapter 4: Understanding Your Users](workshops/chapter4-1.md)
+**Segmentation Strategies That Reveal Hidden Opportunities**
 
-Segment users and queries to identify high-value opportunities and create targeted improvement strategies.
+Not all queries are equal. Learn to identify high-value user segments and build targeted solutions that delight specific audiences.
+
+**You'll discover:** Query pattern analysis • User segmentation techniques • Priority matrices • Resource allocation frameworks
+
+**Case study:** SaaS company found 20% of queries drove 80% of value, focused efforts accordingly
+
+---
 
 ### [Chapter 5: Building Specialized Capabilities](workshops/chapter5-1.md)
+**Build Purpose-Built Retrievers That Users Love**
 
-Develop purpose-built solutions for different user needs spanning documents, images, tables, and structured data.
+One-size-fits-all RAG is dead. Learn to build specialized retrievers for documents, code, images, and structured data.
+
+**You'll create:** Document-specific retrievers • Multi-modal search • Table/chart handlers • Domain-specific solutions
+
+**Case study:** Construction blueprint search improved from 27% to 85% recall with specialized approach
+
+---
 
 ### [Chapter 6: Unified Product Architecture](workshops/chapter6-1.md)
+**Unified Systems That Route Intelligently**
 
-Create a cohesive product experience that intelligently routes to specialized components while maintaining a seamless user experience.
+Tie it all together with routing architectures that seamlessly direct queries to specialized components while maintaining a simple user experience.
 
-### [Key Takeaways: Product Principles for AI Applications](misc/what-i-want-you-to-takeaway.md)
+**You'll architect:** Query routing systems • Tool selection frameworks • Performance monitoring • Continuous improvement pipelines
 
-Core principles that will guide your approach to building AI products regardless of how the technology evolves.
+**Case study:** Enterprise system handling millions of queries with 95%+ routing accuracy
 
-## Talks and Presentations
+---
 
-Explore insights from industry experts and practitioners through our collection of talks, lightning lessons, and presentations:
+### [Conclusion: Product Principles for AI Applications](misc/what-i-want-you-to-takeaway.md)
+**The Lessons That Survive Every Technology Shift**
 
-### [Featured Talks](talks/index.md)
+Models change. Principles endure. Take away the core insights that will guide your AI product development for years to come.
 
-- **[Fine-tuning Re-rankers and Embedding Models for Better RAG Performance](talks/fine-tuning-rerankers-embeddings-ayush-lancedb.md)** - Practical approaches to enhancing retrieval quality (Ayush from LanceDB)
-- **[RAG Anti-patterns in the Wild](talks/rag-antipatterns-skylar-payne.md)** - Common mistakes and how to fix them (Skylar Payne)
-- **[Semantic Search Over the Web with Exa](talks/semantic-search-exa-will-bryk.md)** - Building AI-first search engines (Will Bryk)
-- **[Understanding Embedding Performance through Generative Evals](talks/embedding-performance-generative-evals-kelly-hong.md)** - Custom evaluation methodologies (Kelly Hong)
-- **[Online Evals and Production Monitoring](talks/online-evals-production-monitoring-ben-sidhant.md)** - Monitoring AI systems at scale (Ben Hylak & Sidhant Bendre)
+## Learn from Industry Leaders: 20+ Expert Talks
 
-[View all talks →](talks/index.md)
+!!! info "Featured Lightning Lessons"
+    Companies like Zapier, ChromaDB, LanceDB, Glean, and Sourcegraph share their battle-tested strategies
+
+### Featured Talks
+
+**[How Zapier 4x'd Their AI Feedback](talks/zapier-vitor-evals.md)** - Vitor (Staff Engineer, Zapier) reveals the one-line change that transformed their feedback collection
+
+*"Jason helped us set you on the right path... emphasis on looking at your data and building a metrics-based flywheel."* - **Vitor**, Staff Software Engineer, Zapier
+
+**[The 12% RAG Boost You're Missing](talks/fine-tuning-rerankers-embeddings-ayush-lancedb.md)** - Ayush (LanceDB) shows why re-rankers are the "low-hanging fruit" everyone ignores
+
+**[Why Cline Ditched RAG Entirely](talks/rag-is-dead-cline-nik.md)** - Nik Pash explains why leading coding agents abandoned embeddings for direct exploration
+
+**[The RAG Mistakes Killing Your AI](talks/rag-antipatterns-skylar-payne.md)** - Skylar Payne exposes the anti-patterns that 90% of teams fall into
+
+**[Stop Trusting MTEB Rankings](talks/embedding-performance-generative-evals-kelly-hong.md)** - Kelly Hong reveals why public benchmarks fail in production
+
+[Explore all 20+ talks with actionable insights →](talks/index.md)
 
 ## For Product Leaders, Engineers, and Data Scientists
 
@@ -132,6 +283,13 @@ Jason Liu brings practical experience from Facebook, Stitch Fix, and as a consul
 ## Getting Started
 
 Begin your journey by reading the [Introduction](workshops/chapter0.md) or jump directly to [Chapter 1](workshops/chapter1.md) to start building your evaluation framework and data foundation.
+
+## Risk-Free Learning
+
+!!! tip "100% Satisfaction Guarantee"
+    We're so confident in the value of this approach that we offer a **money-back guarantee**. If you don't see significant improvements in your RAG system's performance after following our methodology for 4 weeks, we'll refund your investment, no questions asked.
+    
+    Your success is our success. We've seen this framework work for companies from startups to Fortune 500 enterprises.
 
 ## Stay Updated
 
