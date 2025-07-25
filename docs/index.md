@@ -268,17 +268,25 @@ Based on real-world implementations, here are proven improvements you can implem
        - **Impact**: 20-30% better retrieval for docs
        - **Effort**: 1 day
 
-!!! tip "Medium-Term Improvements (2-4 weeks)" - **Fine-tune embeddings**: $1.50 and 40 minutes for 6-10% improvement - **Add re-ranker**: 15-20% retrieval improvement - **Build specialized tools**: 10x better for specific use cases - **Implement contextual retrieval**: 30% better context understanding - **Create Slack feedback integration**: 5x more enterprise feedback
+!!! tip "Medium-Term Improvements (2-4 weeks)"
+   - **Fine-tune embeddings**: $1.50 and 40 minutes for 6-10% improvement 
+   - **Add re-ranker**: 15-20% retrieval improvement 
+   - **Build specialized tools**: 10x better for specific use cases
+   - **Implement contextual retrieval**: 30% better context understanding 
+   - **Create Slack feedback integration**: 5x more enterprise feedback
 
 !!! info "Learn from the Experts"
-Before implementing, learn from these practical talks: - [**RAG Anti-patterns in the Wild**](talks/rag-antipatterns-skylar-payne.md) - Common mistakes across industries and how to fix them - [**Document Ingestion Best Practices**](talks/reducto-docs-adit.md) - Production-ready parsing for tables, PDFs, and complex documents
+
+    Before implementing, learn from these practical talks: 
+    - [**RAG Anti-patterns in the Wild**](talks/rag-antipatterns-skylar-payne.md) 
+    - [**Document Ingestion Best Practices**](talks/reducto-docs-adit.md) 
 
 ## About the Author
 
 Jason Liu brings practical experience from Facebook, Stitch Fix, and as a consultant for companies like HubSpot, Zapier, and many others. His background spans computer vision, recommendation systems, and RAG applications across diverse domains.
 
 !!! quote "Author's Philosophy"
-"The most successful AI products aren't the ones with the most sophisticated models, but those built on disciplined processes for understanding users, measuring performance, and systematically improving. This book will show you how to create not just a RAG application, but a product that becomes more valuable with every interaction."
+    "The most successful AI products aren't the ones with the most sophisticated models, but those built on disciplined processes for understanding users, measuring performance, and systematically improving. This book will show you how to create not just a RAG application, but a product that becomes more valuable with every interaction."
 
 ## Getting Started
 

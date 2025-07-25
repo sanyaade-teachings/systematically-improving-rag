@@ -118,15 +118,6 @@ nav:
 # --- Recommended Plugins ---
 plugins:
   - search
-  - awesome-pages # For easy page ordering and structure via .pages files
-  - git-revision-date-localized # Show last updated date on each page
-  - minify # Minify HTML output for faster load times
-  - redirects # Avoid broken links when renaming/moving pages
-  - section-index # Index pages for sections, improves navigation
-  - glightbox # Beautiful image lightboxes
-  - mermaid2 # Enhanced Mermaid diagram support
-  # - sitemap               # Uncomment for better SEO
-  # - mike                  # Uncomment for versioned docs if needed
 
 # --- Markdown Extensions ---
 markdown_extensions:
@@ -168,7 +159,6 @@ markdown_extensions:
 # --- End Enhancements ---
 
 extra_javascript:
-  - https://unpkg.com/mermaid/dist/mermaid.min.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - javascripts/mathjax.js
@@ -179,7 +169,7 @@ extra_css:
 extra:
   social:
     - icon: fontawesome/brands/twitter
-      link: https://twitter.com/jxnlco
+      link: https://x.com/jxnlco
   analytics:
     provider: google
     property: !ENV GOOGLE_ANALYTICS_KEY
