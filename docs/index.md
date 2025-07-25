@@ -259,9 +259,8 @@ Jason Liu brings practical experience from Facebook, Stitch Fix, and as a consul
 
 Begin your journey by reading the [Introduction](workshops/chapter0.md) or jump directly to [Chapter 1](workshops/chapter1.md) to start building your evaluation framework and data foundation.
 
-## Risk-Free Learning
+## Subscribe for Updates
 
-!!! tip "100% Satisfaction Guarantee"
-    We're so confident in the value of this approach that we offer a **money-back guarantee**. If you don't see significant improvements in your RAG system's performance after following our methodology for 4 weeks, we'll refund your investment, no questions asked.
-    
-    Your success is our success. We've seen this framework work for companies from startups to Fortune 500 enterprises.
+Get notified about new content and frameworks:
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
