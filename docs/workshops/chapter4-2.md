@@ -13,66 +13,32 @@ tags:
 
 # Prioritization and Roadmapping: From Insights to Action
 
-!!! abstract "Chapter Overview"
-This chapter explores how to turn query pattern insights into strategic action plans:
 
-```
-- Identifying high-value, high-impact opportunities
-- Applying prioritization frameworks to improvement decisions
-- Creating a strategic roadmap for RAG enhancement
-- Analyzing failure modes and root causes
-- Building systems that continuously improve
-```
+## Topics vs Capabilities: Two Ways to Slice Your Data
 
-## Understanding Topics and Capabilities
+You need to understand the difference between topics and capabilities before you can prioritize anything. Most teams mix these up and end up wasting time.
 
-Before diving into prioritization techniques, let's clarify two key concepts: topics and capabilities.
+**Topics** = What users ask about (account management, pricing, technical specs)
 
-!!! note "Foundations from Earlier Chapters" - **[Chapter 1](chapter1.md)**: The evaluation metrics help identify performance by topic - **[Chapter 3](chapter3-1.md)**: Feedback collection provides the raw data for analysis
+**Capabilities** = What they want the system to do (summarize, compare, explain step-by-step)
 
-    This chapter shows you how to turn that data into actionable insights.
+Most teams only look at topics. That's a mistake. You need both dimensions to understand what's actually broken.
 
-### Topics vs. Capabilities
+Example from a healthcare company I worked with: They were categorizing everything by medical condition. Seemed logical, right? But when we added capability analysis, we found:
+- Common conditions (diabetes, hypertension): Users mostly wanted comparisons between treatments
+- Rare conditions: Users needed comprehensive summaries of all options
 
-!!! info "Key Definitions"
-\- **Topics**: Subject matter domains in your content (e.g., "account management," "pricing," "technical specifications")
-\- **Capabilities**: Functional abilities your system should have (e.g., "summarization," "comparison," "step-by-step instructions")
+Same topic dimension, completely different capability needs. This changed everything about what we built next.
 
-These concepts provide two complementary lenses for analyzing user needs. When I work with teams to improve their RAG systems, I often find they conflate these two dimensions, leading to unfocused efforts. A topic tells you what users are asking about, while a capability tells you what they want the system to do with that information.
+Here's what this looks like in practice:
 
-```mermaid
-graph LR
-    A[User Queries] --> B[Topic Analysis]
-    A --> C[Capability Analysis]
+"How do I reset my password?" → Topic: Account security, Capability: Step-by-step instructions
 
-    B --> D[What users ask about]
-    C --> E[What users want the system to do]
+"Compare the Pro and Basic plans" → Topic: Pricing, Capability: Comparison
 
-    D --> F[Content Coverage Improvements]
-    E --> G[Functional Improvements]
+"Summarize the latest release notes" → Topic: Product updates, Capability: Summarization
 
-    F --> H[System Enhancements]
-    G --> H
-```
-
-I remember working with a healthcare company whose initial analysis simply categorized queries by medical conditions. While helpful, this one-dimensional view missed critical patterns. When we added capability analysis, we discovered that queries about common conditions like diabetes primarily needed comparison capabilities ("How does medication A compare to B?"), while queries about rare conditions needed comprehensive summarization ("Give me an overview of treatment options for X"). This insight completely changed their improvement priorities.
-
-!!! example "Topics vs. Capabilities Example"
-Consider these user queries in a product support RAG:
-
-```
-- "How do I reset my password?"
-  - **Topic**: Account security
-  - **Capability**: Step-by-step instructions
-
-- "Compare the Pro and Basic plans"
-  - **Topic**: Pricing/Plans
-  - **Capability**: Comparison
-
-- "Summarize the latest product release notes"
-  - **Topic**: Product updates
-  - **Capability**: Summarization
-```
+See how the same capability (like comparison) can apply to different topics? And the same topic can need different capabilities? That's why you need both.
 
 ---
 

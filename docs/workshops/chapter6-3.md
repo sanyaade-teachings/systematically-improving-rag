@@ -472,25 +472,24 @@ To mitigate these biases:
 - Complement implicit feedback with explicit ratings
 ```
 
-## The Combined Success Formula
+## Success Formula
 
-Throughout this book, we've focused on a data-driven approach to systematic improvement. In the context of unified architecture, we can express the overall success probability of our system with a simple formula:
+System success depends on two factors:
 
 $$
 P(\\text{success}) = P(\\text{find right document} \\mid \\text{right tool}) \\times P(\\text{right tool})
 $$
 
-This formula highlights that our system's performance depends on both:
+This means:
+1. Each retriever must work well when selected
+2. The router must select the right retriever
 
-1. How well each retriever works when used correctly
-1. How often we select the right retriever for the query
+### Diagnostic Framework
 
-### A Diagnostic Framework for Improvement
+This formula helps diagnose problems:
 
-This seemingly simple formula provides a powerful diagnostic framework. When your RAG system isn't performing well, it helps pinpoint exactly where the problem lies and what type of solution to pursue:
-
-- If tool selection recall is low, focus on improving the routing layer
-- If retrieval recall is low (given the right tool), focus on improving that specific retriever
+- Low tool selection recall → improve routing
+- Low retrieval recall → improve specific retriever
 
 **Example:** Imagine users report that when asking about blueprints, they only get satisfactory answers 40% of the time. There are two very different scenarios that could cause this:
 
@@ -522,14 +521,13 @@ Same 40% success rate, but completely different problems requiring different sol
 - Add user feedback from successful interactions into your examples
 - Consider UI changes to help users explicitly request blueprints
 
-### Measuring Components Independently
+### Independent Measurement
 
-To apply this framework effectively, you need to measure both components independently:
+Measure separately:
+- **Per-tool recall**: Retriever success rate when used
+- **Tool selection accuracy**: Router success rate
 
-1. **Per-tool recall:** How often each retriever finds the right information when used
-1. **Tool selection accuracy:** How often the router selects the right tool(s) for each query
-
-A simple dashboard showing these metrics gives you immediate insight into where to focus your improvement efforts.
+A dashboard with both metrics shows where to focus.
 
 ### From Metrics to Roadmap
 
@@ -542,33 +540,30 @@ This formula provides a clear framework for planning both product and research e
 | **High**                 | **Low**                | Focus on improving router or exposing tools directly |
 | **Low**                  | **Low**                | Consider whether this query type is worth supporting |
 
-By systematically measuring and improving these components, you create a continuous improvement flywheel for your unified RAG architecture.
+Systematic measurement and improvement of both components creates a continuous improvement cycle.
 
-## Conclusion: The End of the Beginning
+## Summary
 
-Throughout this book, we've explored how to systematically improve RAG applications by treating them as continuously evolving products rather than static implementations. We've covered:
+This book covered systematic RAG improvement:
 
-1. Starting the flywheel with synthetic data generation for evaluation
-1. Converting evaluations into training data for improvement
-1. Building feedback collection mechanisms through user experience design
-1. Understanding users through segmentation and capability analysis
-1. Creating specialized retrieval capabilities for different content types
-1. Unifying these capabilities into a cohesive architecture with intelligent routing
+1. Synthetic data for evaluation
+2. Converting evaluations to training data
+3. Feedback collection through UX
+4. User segmentation and analysis
+5. Specialized retrieval capabilities
+6. Unified architecture with routing
 
-This unified architecture approach represents the culmination of our improvement flywheel—a system that not only retrieves the right information but knows which specialized capability to use for each user need.
+The result: a system that retrieves the right information using the right specialized capabilities.
 
-!!! quote "Framework Development Perspective"
-"The fundamental building blocks of creating good and successful machine learning products are synthetic data and customer feedback. This is the bedrock—everything else is implementation details that will change as technology evolves."
+**Core principle**: Synthetic data and customer feedback are the fundamental building blocks. Everything else is implementation details that will evolve.
 
-### The Systematic Improvement Process
+### The Improvement Process
 
-The core insight that runs through every chapter of this book is that RAG improvement follows a repeatable pattern:
+1. **Measure** performance by component
+2. **Identify** limiting factors
+3. **Generate** synthetic test data
+4. **Implement** targeted improvements
+5. **Collect** user feedback
+6. **Repeat** continuously
 
-1. **Measure current performance** with precise metrics that separate different system components
-1. **Identify limiting factors** by distinguishing between router accuracy and retriever quality
-1. **Generate synthetic data** to test hypotheses and establish baselines
-1. **Implement targeted improvements** to the specific components that need enhancement
-1. **Collect user feedback** that serves as training data for the next iteration
-1. **Repeat** with increasingly sophisticated capabilities
-
-This process applies equally well whether you're building your first RAG application or enhancing your tenth specialized retriever. The tools and models will change, but the systematic approach remains constant.
+This process works for first-time builders and experienced teams alike. Tools change; the process remains.

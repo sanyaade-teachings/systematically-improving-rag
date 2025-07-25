@@ -5,184 +5,98 @@ description: Hands-on workshops for building self-improving RAG systems
 
 # Workshops
 
-This series of workshops guides you through the complete process of building, evaluating, and continuously improving RAG systems. Learn how to transform your RAG implementation from a static technical deployment into a continuously evolving product that systematically improves through user feedback and data-driven enhancement.
+These workshops walk you through building RAG systems that actually get better over time. If you're tired of deploying a RAG system only to watch it stagnate while users complain, this is for you.
 
-## Detailed Table of Contents
+## What's Covered
 
 ### [Introduction: Beyond Implementation to Improvement](chapter0.md)
 
-**The Product Mindset for RAG Systems**
+Why most RAG systems fail after deployment and how to build ones that improve instead. Covers thinking about RAG as a recommendation engine, setting up feedback loops, and moving from random tweaks to data-driven improvements.
 
-- Shifting from technical implementation to product-focused continuous improvement
-- Understanding RAG as a recommendation engine wrapped around language models
-- The improvement flywheel: transforming user interactions into system enhancements
-- Moving from ad-hoc tweaking to systematic, data-driven improvement
-- Case studies showing the difference between implementation and product mindsets
+### [Chapter 1: Getting Started with Synthetic Data](chapter1.md)
 
-### [Chapter 1: Kickstarting the Data Flywheel with Synthetic Data](chapter1.md)
+How to evaluate your RAG system before you have real users. Learn to avoid common mistakes (vague metrics, generic solutions), generate synthetic evaluation data, and set up continuous evaluation pipelines. Real examples of improving recall from 50% to 90%.
 
-**Establishing Evaluation Frameworks and Overcoming the Cold Start Problem**
+### [Chapter 2: From Evaluation to Better Models](chapter2.md)
 
-- Common pitfalls in AI development: reasoning fallacy, vague metrics, generic solutions
-- Leading vs. lagging metrics: focusing on controllable inputs like experiment velocity
-- Understanding precision and recall for retrieval evaluation
-- Synthetic data generation techniques using chain-of-thought and few-shot prompting
-- Building evaluation pipelines that run continuously
-- Case studies: improving recall from 50% to 90% through systematic evaluation
+Turn your evaluation data into actual improvements. Covers when generic embeddings fail, how to create training data from evaluations, fine-tuning strategies, and cost-effective alternatives like re-rankers.
 
-### [Chapter 2: Converting Evaluations into Training Data for Fine-Tuning](chapter2.md)
+### Chapter 3: Getting Users to Actually Give Feedback
 
-**From Evaluation to Production Improvement**
+#### [Chapter 3.1: Feedback Collection That Works](chapter3-1.md)
 
-- Why generic embeddings fall short for specialized applications
-- Converting evaluation examples into effective few-shot prompts
-- Understanding contrastive learning and hard negative mining
-- Fine-tuning embedding models vs. language models: cost, complexity, and benefits
-- Building training datasets from user interactions and feedback
-- Re-rankers and linear adapters as cost-effective enhancement strategies
+How to get feedback rates above 30% (most systems get <1%). Includes specific copy that works, UI patterns, mining implicit signals, and Slack integration examples.
 
-### Chapter 3: User Experience and Feedback Collection
+#### [Chapter 3.2: Making RAG Feel Fast](chapter3-2.md)
 
-#### [Chapter 3.1: Feedback Collection - Building Your Improvement Flywheel](chapter3-1.md)
+Streaming techniques that make your system feel faster and increase feedback by 30-40%. Covers Server-Sent Events, skeleton screens, and platform-specific tricks for Slack and web.
 
-**Designing Feedback Mechanisms That Users Actually Use**
+#### [Chapter 3.3: Small Changes, Big Impact](chapter3-3.md)
 
-- Making feedback visible and engaging: increasing rates from <1% to >30%
-- Proven copy patterns: "Did we answer your question?" vs. generic feedback
-- Segmented feedback targeting specific pipeline components
-- Mining implicit feedback: query refinements, engagement time, citation clicks
-- Creative UI patterns for collecting hard negatives
-- Enterprise feedback collection through Slack integrations
+Practical improvements that users love: interactive citations, chain of thought (8-15% accuracy boost), validation patterns (80% error reduction), and knowing when to say no.
 
-#### [Chapter 3.2: Overcoming Latency - Streaming and Interstitials](chapter3-2.md)
+### Chapter 4: Learning from User Behavior
 
-**Transforming Waiting Time into Engagement Opportunities**
+#### [Chapter 4.1: Finding Patterns in User Data](chapter4-1.md)
 
-- Psychology of waiting: perceived vs. actual performance
-- Implementing streaming responses for 30-40% higher feedback collection
-- Skeleton screens and meaningful interstitials
-- Platform-specific implementations: Slack bots, web interfaces
-- Technical implementation: Server-Sent Events, structured data streaming
-- Streaming function calls and reasoning processes
+How to turn vague feedback into actionable improvements. Learn the difference between topics (what users ask about) and capabilities (what they want done), plus practical clustering techniques.
 
-#### [Chapter 3.3: Quality of Life Improvements](chapter3-3.md)
+#### [Chapter 4.2: Deciding What to Build Next](chapter4-2.md)
 
-**Citations, Chain of Thought, and Validation Patterns**
+Practical prioritization using 2x2 frameworks, failure analysis, and user behavior. Real examples of how query analysis changes what you build.
 
-- Interactive citations that build trust while collecting feedback
-- Chain of thought reasoning for 8-15% accuracy improvements
-- Monologues for better comprehension in complex contexts
-- Validation patterns as safety nets: reducing errors by 80%
-- Strategic rejection of work to set appropriate expectations
-- Showcasing capabilities to guide users toward successful interactions
+### Chapter 5: Specialized Retrieval That Actually Works
 
-### Chapter 4: Understanding Your Users Through Data Analysis
+#### [Chapter 5.1: When One Size Doesn't Fit All](chapter5-1.md)
 
-#### [Chapter 4.1: Topic Modeling and Analysis](chapter4-1.md)
+Why generic RAG hits limits and how specialized retrievers solve it. Covers metadata extraction vs. synthetic text strategies and how to measure two-level systems.
 
-**Finding Patterns in User Feedback and Queries**
+#### [Chapter 5.2: Search Beyond Text](chapter5-2.md)
 
-- Moving from individual feedback to systematic pattern identification
-- Topics vs. capabilities: understanding what users ask about vs. what they want the system to do
-- Clustering and classification techniques for query segmentation
-- Transforming "make the AI better" into specific, actionable priorities
-- Resource allocation frameworks for maximum impact improvements
+Practical implementations for documents, images, tables, and SQL. Real performance numbers: 40% better image retrieval, 85% table accuracy. Includes RAPTOR and other advanced techniques.
 
-#### [Chapter 4.2: Prioritization and Roadmapping](chapter4-2.md)
+### Chapter 6: Making It All Work Together
 
-**From Insights to Strategic Action Plans**
+#### [Chapter 6.1: Query Routing Basics](chapter6-1.md)
 
-- Impact/effort prioritization using 2x2 frameworks
-- Failure mode analysis: identifying root causes vs. symptoms
-- Building strategic roadmaps based on user behavior patterns
-- Continuous improvement systems that scale with usage
-- Case studies: how query analysis changes development priorities
+How to build systems where specialized components work together. Covers team structure, the API mindset, and the math behind routing performance.
 
-### Chapter 5: Building Specialized Retrieval Capabilities
+#### [Chapter 6.2: Building the Router](chapter6-2.md)
 
-#### [Chapter 5.1: Understanding Specialized Retrieval](chapter5-1.md)
+Practical implementation of routing layers. Includes Pydantic interfaces, structured outputs, dynamic examples, and when to use multi-agent vs. single-agent designs.
 
-**Beyond Basic RAG: The Power of Specialization**
+#### [Chapter 6.3: Measuring and Improving Routers](chapter6-3.md)
 
-- Why monolithic approaches reach limits with diverse query types
-- Two complementary strategies: extracting metadata vs. creating synthetic text
-- Mathematics of specialization: local models outperforming global approaches
-- Organizational benefits: division of labor and incremental improvement
-- Two-level measurement: router accuracy × retriever performance
+How to know if your router works and make it better. Covers metrics, dual-mode UIs, diagnostic frameworks, and setting up improvement loops.
 
-#### [Chapter 5.2: Implementing Multimodal Search](chapter5-2.md)
+## How These Workshops Work
 
-**Practical Techniques for Documents, Images, Tables, and SQL**
+Each chapter includes practical exercises you can apply to your own RAG system. They build on each other, so start from the beginning unless you know what you're doing.
 
-- Advanced document retrieval: contextual chunks, page-level strategies, hybrid signals
-- Image search challenges: bridging visual and textual understanding with rich descriptions
-- Table search dual approach: tables as documents vs. queryable databases
-- SQL generation using RAG playbook: inventory → exemplars → business context
-- RAPTOR hierarchical summarization for complex documents
-- Performance improvements: 40% better image retrieval, 85% table lookup accuracy
+The progression:
+1. **Getting Started** (Intro & Ch 1): Think like a product, set up evaluation
+2. **Making It Better** (Ch 2): Turn evaluation into improvements
+3. **User Experience** (Ch 3): Get feedback, feel fast, don't break
+4. **Learn from Users** (Ch 4): Find patterns, pick what to build
+5. **Go Deep** (Ch 5): Build specialized tools that excel
+6. **Tie It Together** (Ch 6): Make everything work as one system
 
-### Chapter 6: Unified Architecture and Intelligent Routing
+## Prerequisites
 
-#### [Chapter 6.1: Query Routing Foundations](chapter6-1.md)
+You should know what RAG is and have at least played with it. If you're totally new, start with the [Introduction](chapter0.md).
 
-**Building Cohesive Systems from Specialized Components**
+## What You'll Have When Done
 
-- The API mindset: treating retrievers as services for language models
-- Organizational structure: interface, implementation, router, and evaluation teams
-- Evolution from monolithic to modular architecture
-- Performance formula: P(success) = P(right tool) × P(right document | right tool)
-- Framework development perspective for distributed RAG systems
-
-#### [Chapter 6.2: Tool Interfaces and Implementation](chapter6-2.md)
-
-**Implementing Routing Layers and Tool Selection**
-
-- Designing tool interfaces with Pydantic models and comprehensive documentation
-- Router implementation using structured outputs and few-shot examples
-- Dynamic example selection based on query similarity
-- Multi-agent vs. single-agent architecture decisions
-- Tool portfolio design: multiple access patterns for same data
-- MCP (Model Context Protocol) as emerging standard
-
-#### [Chapter 6.3: Performance Measurement and Improvement](chapter6-3.md)
-
-**Building Learning Systems That Continuously Improve**
-
-- Measuring tool selection effectiveness: precision, recall, confusion matrices
-- Dual-mode UI: chat interface + direct tool access
-- User feedback as high-quality training data
-- Diagnostic frameworks for identifying routing vs. retrieval problems
-- Automated evaluation pipelines and continuous monitoring
-- Creating improvement flywheel: interactions → data → better routing → higher satisfaction
-
-## Workshop Structure
-
-Each workshop combines theoretical concepts with practical exercises that you can apply directly to your own RAG implementations. Workshops are designed to be completed sequentially, as each one builds on concepts from previous sessions.
-
-The workshops follow a complete methodology:
-
-1. **Foundation** (Introduction & Chapter 1): Product mindset and evaluation frameworks
-2. **Improvement Mechanics** (Chapter 2): Converting evaluation into training data
-3. **User Experience** (Chapter 3): Feedback collection, streaming, and quality improvements
-4. **Analysis** (Chapter 4): Understanding user patterns and prioritizing improvements
-5. **Specialization** (Chapter 5): Building specialized capabilities for different content types
-6. **Unification** (Chapter 6): Intelligent routing and unified architecture
-
-!!! note "Prerequisites"
-These workshops assume basic familiarity with RAG implementations and foundational AI concepts. If you're new to RAG, we recommend reviewing the [Introduction](chapter0.md) before diving into the other chapters.
-
-!!! success "What You'll Build"
-By completing this workshop series, you'll have built a comprehensive RAG system that:
-
-    - Continuously improves through systematic feedback collection
-    - Routes queries intelligently to specialized retrieval components
-    - Provides engaging user experiences with streaming and transparency
-    - Uses data-driven prioritization for enhancement decisions
-    - Implements validation patterns and quality safeguards
-    - Scales across teams and complexity levels
+A RAG system that:
+- Gets better from user feedback
+- Routes queries to the right specialized tools
+- Feels fast and responsive
+- Makes improvement decisions based on data
+- Doesn't break in weird ways
+- Works for teams, not just demos
 
 ## Stay Updated
 
-Get access to exclusive discounts and our free 6-day email course on RAG improvement:
+Get access to exclusive discounts and our free 6-day email course on RAG improvement
 
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
+[Subscribe for updates](https://himprovingrag.com){ .md-button .md-button--primary }
