@@ -211,28 +211,27 @@ Models change. Principles endure. Take away the core insights that will guide yo
     - Frameworks for measuring retrieval effectiveness
     - Approaches to continuous learning from user interactions
 
-## Quick Wins: High-Impact RAG Improvements
+## Quick Improvements
 
-Based on real-world implementations, here are proven improvements you can implement quickly:
+Common improvements that can be implemented quickly:
 
-!!! success "Top 5 Quick Wins" 1. **Change Feedback Copy** - Replace "How did we do?" with "Did we answer your question?" - **Impact**: 5x increase in feedback collection - **Effort**: 1 hour
+**1. Improve Feedback Collection**
+- Replace "How did we do?" with "Did we answer your question?"
+- More specific questions get better response rates
 
-    2. **Use Markdown Tables**
-       - Format structured data as markdown tables instead of JSON/CSV
-       - If tables are complex, represent it in XML
-       - **Impact**: 12% better lookup accuracy
-       - **Effort**: 2-4 hours
+**2. Better Data Formatting**
+- Format structured data as markdown tables instead of JSON/CSV
+- Use XML for complex tables
+- Improves lookup accuracy for structured information
 
-    3. **Add Streaming Progress**
-       - Show "Searching... Analyzing... Generating..." with progress
-       - Stream the response as it's being generated when possible
-       - **Impact**: 45% reduction in perceived latency
-       - **Effort**: 1 sprint
+**3. Show Progress to Users**
+- Display "Searching... Analyzing... Generating..." with progress indicators
+- Stream responses as they're generated
+- Reduces perceived latency
 
-    4. **Implement Page-Level Chunking**
-       - For documentation, respect page boundaries, and use page-level chunking. Humans tend to create semantically coherent chunks at the page level.
-       - **Impact**: 20-30% better retrieval for docs
-       - **Effort**: 1 day
+**4. Page-Level Chunking**
+- For documentation, chunk by page boundaries rather than arbitrary text length
+- Pages often contain semantically coherent units
 
 !!! tip "Medium-Term Improvements (2-4 weeks)"
 
@@ -258,9 +257,3 @@ Jason Liu brings practical experience from Facebook, Stitch Fix, and as a consul
 ## Getting Started
 
 Begin your journey by reading the [Introduction](workshops/chapter0.md) or jump directly to [Chapter 1](workshops/chapter1.md) to start building your evaluation framework and data foundation.
-
-## Subscribe for Updates
-
-Get notified about new content and frameworks:
-
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
