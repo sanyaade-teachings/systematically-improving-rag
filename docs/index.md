@@ -95,31 +95,6 @@ Sound familiar? You're not alone. The issue isn't your technology—it's your ap
 
 ## The Solution: The RAG Improvement Flywheel
 
-```mermaid
-graph LR
-    A[Measure<br/>Baseline Performance] --> B[Analyze<br/>Failure Patterns]
-    B --> C[Improve<br/>Targeted Solutions]
-    C --> D[Deploy<br/>& Collect Feedback]
-    D --> A
-    
-    style A fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
-    style B fill:#fff3e0,stroke:#f57c00,stroke-width:3px
-    style C fill:#e8f5e9,stroke:#388e3c,stroke-width:3px
-    style D fill:#fce4ec,stroke:#c2185b,stroke-width:3px
-```
-
-This isn't just theory. Companies using this approach have achieved:
-
-- **5x increase** in feedback collection (changing one line of copy!)
-- **87% retrieval accuracy** (up from 63% baseline)
-- **45% reduction** in perceived latency
-- **$50M+ revenue impact** through improved recommendations
-
-!!! success "The Flywheel Mindset"
-    Your RAG application should be smarter next month than it is today. If it isn't, something is wrong with your process, not your technology.
-
-## What You'll Build: A Proven 6-Chapter Journey
-
 ### [Introduction: The Product Mindset Shift](workshops/chapter0.md)
 **The Foundation That Changes Everything**
 
