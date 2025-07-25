@@ -10,16 +10,11 @@ date: 2025-04-10
 
 ## A Systematic Approach to Building Self-Improving AI Products
 
-_The systematic approach that helped companies achieve 5x feedback rates, 87% retrieval accuracy, and $50M+ revenue improvements_
+_Practical frameworks for building RAG systems that improve through user feedback and measurement_
 
-!!! success "Proven Track Record"
-    ⭐ **Top rated AI course (4.7/5 stars, +200 students)**  
-    Trusted by professionals from OpenAI, Anthropic, Google, Microsoft, and 50+ leading organizations
+Most RAG implementations struggle in production because teams focus on model selection and prompt engineering while overlooking the fundamentals: measurement, feedback, and systematic improvement.
 
-!!! warning "The RAG Reality Check"
-    **90% of RAG implementations fail** because teams focus on model selection and prompt engineering while ignoring the fundamentals: measurement, feedback, and systematic improvement.
-    
-    This book changes that. Based on real-world experience with companies like HubSpot, Zapier, and many others, you'll learn the exact frameworks that transform RAG from a disappointing demo into a revenue-generating product.
+This guide presents frameworks developed through real-world experience with companies like HubSpot, Zapier, and others to help you build RAG systems that become more valuable over time.
 
 # Trusted by Professionals from Leading Organizations:
 
@@ -67,18 +62,9 @@ These are the companies that took our masterclass.
 
 </div>
 
-## What Students Are Saying
+## Who Uses This Approach
 
-!!! quote "Real Impact from Real Students"
-
-| **Review** | **Name & Role** |
-|------------|-----------------|
-| *"Practical lessons from every lecture... learning from a community on the vanguard of this emerging field."* | **Max**, Software Engineer, Launch School |
-| *"Jason helped us break down our vision into actionable steps, providing clear recommendations on the best models for each use case. His guidance gave us a tangible roadmap for our next steps."* | **Camu Team** (a16z backed) |
-| *"Excellent job of stressing the fundamentals... useful metric tools to measure and improve RAG systems."* | **Christopher**, Senior Data/AI Architect, Procurement Sciences AI |
-| *"Jason and Dan help set you on the right path... emphasis on looking at your data and building a metrics-based flywheel."* | **Vitor**, Staff Software Engineer, Zapier |
-| *"Practical and grounded in actual industry experience... like getting the inside scoop from folks who've been in the trenches."* | **Ashutosh**, Senior Principal Scientist, Adobe |
-| *"System-oriented approach... Highly relevant, directly applicable, and save time in building prototypes."* | **Mani**, Senior Principal Software Engineer, Red Hat |
+This methodology has been used by engineers and data scientists at companies including Zapier, Adobe, Red Hat, and others to build production RAG systems with measurable improvements in user satisfaction and business outcomes.
 
 ## The Problem: Why Most RAG Systems Fail
 
@@ -92,6 +78,11 @@ These are the companies that took our masterclass.
     **Week 9+:** "Our users have stopped using it."
 
 Sound familiar? You're not alone. The issue isn't your technology—it's your approach.
+
+!!! info "Get Updates"
+    Subscribe for updates on new content and frameworks:
+    
+    <script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 ## The Solution: The RAG Improvement Flywheel
 
@@ -194,7 +185,7 @@ Models change. Principles endure. Take away the core insights that will guide yo
 
 **[Stop Trusting MTEB Rankings](talks/embedding-performance-generative-evals-kelly-hong.md)** - Kelly Hong reveals why public benchmarks fail in production
 
-[Explore all 20+ talks with actionable insights →](talks/index.md)
+[Explore all 20+ talks →](talks/index.md)
 
 ## For Product Leaders, Engineers, and Data Scientists
 
@@ -244,6 +235,7 @@ Based on real-world implementations, here are proven improvements you can implem
        - **Effort**: 1 day
 
 !!! tip "Medium-Term Improvements (2-4 weeks)"
+
    - **Fine-tune embeddings**: $1.50 and 40 minutes for 6-10% improvement 
    - **Add re-ranker**: 15-20% retrieval improvement 
    - **Build specialized tools**: 10x better for specific use cases
@@ -273,9 +265,3 @@ Begin your journey by reading the [Introduction](workshops/chapter0.md) or jump 
     We're so confident in the value of this approach that we offer a **money-back guarantee**. If you don't see significant improvements in your RAG system's performance after following our methodology for 4 weeks, we'll refund your investment, no questions asked.
     
     Your success is our success. We've seen this framework work for companies from startups to Fortune 500 enterprises.
-
-## Stay Updated
-
-Get access to exclusive discounts and our free 6-day email course on RAG improvement:
-
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
