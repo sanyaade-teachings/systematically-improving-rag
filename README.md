@@ -34,14 +34,20 @@ The core philosophy centers around the "RAG Flywheel" - a continuous improvement
 ├── cohort_1/        # First cohort materials (6 weeks)
 ├── cohort_2/        # Second cohort materials (weeks 0-6)
 ├── latest/          # Current course version with latest updates
-│   ├── week_0/      # Getting started with Jupyter, LanceDB, and evals
-│   ├── week_1/      # RAG evaluation foundations
-│   ├── week_2/      # Embedding fine-tuning
-│   ├── week_4/      # Query understanding and routing
-│   ├── week_5/      # Structured data and metadata
-│   ├── week_6/      # Tool selection and product integration
-│   └── capstone/    # Comprehensive WildChat project
-├── docs/            # MkDocs book content
+│   ├── week0/       # Getting started with Jupyter, LanceDB, and evals
+│   ├── week1/       # RAG evaluation foundations
+│   ├── week2/       # Embedding fine-tuning
+│   ├── week4/       # Query understanding and routing
+│   ├── week5/       # Structured data and metadata
+│   ├── week6/       # Tool selection and product integration
+│   ├── case_study/  # Comprehensive WildChat project
+│   └── extra_kura/  # Advanced notebooks on clustering and classifiers
+├── docs/            # MkDocs documentation source
+│   ├── workshops/   # Detailed chapter guides (0-7) aligned with course weeks
+│   ├── talks/       # Industry expert presentations and case studies
+│   ├── office-hours/# Q&A summaries from cohorts 2 and 3
+│   ├── assets/      # Images and diagrams for documentation
+│   └── misc/        # Additional learning resources
 ├── data/            # CSV files from industry talks
 ├── md/              # Markdown conversions of notebooks
 └── mkdocs.yml       # Documentation configuration
@@ -126,9 +132,11 @@ A comprehensive project using the WildChat dataset that covers:
 - **Vector Databases**: LanceDB, ChromaDB, Turbopuffer
 - **ML/AI Frameworks**: Sentence-transformers, BERTopic, Transformers
 - **Evaluation Tools**: Braintrust, Pydantic-evals
-- **Monitoring**: Logfire
-- **Data Processing**: Pandas, NumPy, BeautifulSoup
+- **Monitoring**: Logfire, production monitoring strategies
+- **Data Processing**: Pandas, NumPy, BeautifulSoup, SQLModel
 - **Visualization**: Matplotlib, Seaborn, Streamlit
+- **CLI Framework**: Typer + Rich for interactive command-line tools
+- **Document Processing**: Docling for PDF parsing and analysis
 
 ## Course Book & Documentation
 
@@ -154,19 +162,45 @@ The `/docs` directory contains a comprehensive book built with MkDocs that serve
 4. **User-Centered Design**: Focusing on user value and experience, not just technical capabilities
 5. **Continuous Learning**: Building systems that improve with every interaction
 
-To build and view the documentation locally:
+To build and view the documentation:
 
 ```bash
+# Serve documentation locally (live reload)
 mkdocs serve
+
+# Build static documentation
+mkdocs build
 ```
 
 ## Getting Started
 
+### Prerequisites
+- Python 3.11 (required - the project uses specific features from this version)
+- `uv` package manager (recommended) or `pip`
+
+### Installation
+
 1. Clone the repository
-2. Install dependencies: `pip install -e .`
-3. Start with `/latest/week_0/` for the most up-to-date content
+2. Install dependencies:
+   ```bash
+   # Using uv (recommended)
+   uv install
+   
+   # Or using pip
+   pip install -e .
+   ```
+3. Start with `/latest/week0/` for the most up-to-date content
 4. Follow the notebooks in sequential order within each week
 5. Reference the corresponding book chapters in `/docs` for deeper understanding
+
+### Code Quality
+
+Before committing changes, run:
+```bash
+# Format and fix code issues
+uv run ruff check --fix --unsafe-fixes .
+uv run ruff format .
+```
 
 ## Philosophy
 
@@ -182,7 +216,8 @@ This course emphasizes:
 
 - Industry talk transcripts in `/data/`
 - Office hours recordings summaries in `/docs/office_hours/`
-- Advanced "Kura" notebooks in `/latest/kura/` for specialized topics
+- Advanced notebooks in `/latest/extra_kura/` for clustering and classification topics
+- Complete case study implementation in `/latest/case_study/`
 
 ## License
 
