@@ -944,6 +944,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#monologue-in-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monologue in Action
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3228,6 +3237,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#monologue-in-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monologue in Action
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3361,10 +3379,9 @@
 <h2 id="introduction-building-better-user-experience">Introduction: Building Better User Experience</h2>
 <p>In the previous chapters, we covered feedback collection (Chapter 3.1) and techniques to overcome latency (Chapter 3.2). Now we'll address practical improvements that significantly enhance user experience.</p>
 <p>These "quality of life" improvements often make the difference between systems that are occasionally useful and those that become daily tools. They build trust through transparency, improve reasoning through explicit thinking processes, and prevent errors before they reach users.</p>
-<div class="admonition quote">
-<p class="admonition-title">Industry Insight</p>
-</div>
-<p>"These quality of life improvements represent significant missed opportunities for many RAG teams. Implementing chain of thought in ways that matter to your business has been one of the highest-impact changes we've seen, consistently producing a 10% bump in performance. That's often the difference between something that's usable and something that's impossible to deploy in production."</p>
+<blockquote>
+<p><strong>Industry Insight:</strong> "These quality of life improvements represent significant missed opportunities for many RAG teams. Implementing chain of thought in ways that matter to your business has been one of the highest-impact changes we've seen, consistently producing a 10% bump in performance. That's often the difference between something that's usable and something that's impossible to deploy in production."</p>
+</blockquote>
 <p>In this chapter, we'll explore three categories of improvements:</p>
 <ol>
 <li><strong>Citations</strong>: How to turn static references into interactive elements that build trust while providing valuable feedback signals</li>
@@ -3372,10 +3389,7 @@
 <li><strong>Validation</strong>: Methods to catch errors before they reach users, creating more reliable experiences</li>
 </ol>
 <p>Each of these approaches not only enhances immediate user experience but also strengthens the feedback flywheel we've been building throughout these chapters. By implementing these techniques, you'll create a RAG system that users not only tolerate but genuinely enjoy using—a system that explains its reasoning, justifies its answers, and catches its own mistakes.</p>
-<div class="admonition example">
-<p class="admonition-title">Real-world Impact</p>
-</div>
-<p>One healthcare company implementing the techniques in this chapter saw their user satisfaction scores increase by 34% in just six weeks. More importantly, their user trust metrics—measuring how much users believed and acted on the system's recommendations—increased by 62%. This wasn't just about making users happy; it fundamentally changed how their system influenced real-world decisions.</p>
+<p><strong>Real-world Impact:</strong> One healthcare company implementing the techniques in this chapter saw their user satisfaction scores increase by 34% in just six weeks. More importantly, their user trust metrics—measuring how much users believed and acted on the system's recommendations—increased by 62%. This wasn't just about making users happy; it fundamentally changed how their system influenced real-world decisions.</p>
 <h2 id="beyond-the-basics-practical-improvements">Beyond the Basics: Practical Improvements</h2>
 <p>Retrieving the right information and generating coherent answers is just the starting point. Effective RAG applications need to build trust, show their reasoning, and prevent errors.</p>
 <p>These "quality of life improvements" turn a technically sound RAG system into a practical tool. While they don't necessarily improve retrieval or generation fundamentally, they significantly enhance how users interact with your system. Many of these techniques also create opportunities for additional feedback collection.</p>
@@ -3402,10 +3416,7 @@
 </code></pre></div>
 <p>A legal research team implemented this approach for their in-house attorneys. Each response included interactive citations linked to specific case law or statutes. Attorneys could click to see full context and mark citations as relevant or irrelevant. When marked irrelevant, the system would regenerate without that source.</p>
 <p>This improved the user experience by removing unhelpful information and generated training data for the retrieval system. Each marked citation became labeled data for fine-tuning embedding models. Within three months, they collected over 50,000 labeled examples.</p>
-<div class="admonition tip">
-<p class="admonition-title">Citations as UI Elements</p>
-</div>
-<p>Design citations as interactive UI elements. When users can explore, evaluate, and modify citations, they help improve your system while getting better answers.</p>
+<p><strong>Tip:</strong> Design citations as interactive UI elements. When users can explore, evaluate, and modify citations, they help improve your system while getting better answers.</p>
 <h3 id="crafting-citation-rich-responses">Crafting Citation-Rich Responses</h3>
 <p>Creating effective citations begins with how you prompt your language model. Instead of treating citations as an afterthought, build them into your response generation process from the ground up.</p>
 <p>Here's a prompt template that encourages detailed, well-structured citations:</p>
@@ -3446,12 +3457,9 @@
     <span class="k">return</span> <span class="n">prompt</span>
 </code></pre></div>
 <p>On the frontend, you can turn these citations into interactive elements:</p>
-<div class="admonition example">
-<p class="admonition-title">Interactive Citations Rendering</p>
-</div>
-<p><img alt="Example of JavaScript code for rendering interactive citations in responses" src="../../assets/images/interactive-citations-rendering.png" /></p>
-<div class="highlight"><pre><span></span><code>*This code turns a response with citation markers into an interactive UI where citations are clickable elements, and sources can be rated for relevance.*
-</code></pre></div>
+<p><strong>Interactive Citations Rendering:</strong>
+<img alt="Example of JavaScript code for rendering interactive citations in responses" src="../../assets/images/interactive-citations-rendering.png" /></p>
+<p><em>This code turns a response with citation markers into an interactive UI where citations are clickable elements, and sources can be rated for relevance.</em></p>
 <p>This creates an interactive experience where citations are visually distinct, clickable elements. When users engage with these elements, you can collect valuable feedback while enhancing their understanding of the response.</p>
 <h3 id="advanced-citation-implementation">Advanced Citation Implementation</h3>
 <p>Based on extensive office hours discussions, here are production-tested approaches for implementing reliable citations that scale.</p>
@@ -3465,8 +3473,8 @@
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Production Insight</p>
-</div>
 <p>From office hours: "XML-based approaches with chunk IDs and text span references are most reliable. Fine-tuning can reduce citation error rates from 4% to nearly 0% with ~10,000 examples." This data is easy to synthetically generate.</p>
+</div>
 <p><strong>Key Implementation Details:</strong></p>
 <ol>
 <li><strong>Chunk ID Management</strong>: Assign unique IDs to each document chunk during indexing</li>
@@ -3480,10 +3488,11 @@
 <li><strong>Error Patterns</strong>: Focus on common failure modes (wrong chunk, hallucinated citations)</li>
 <li><strong>Validation</strong>: Always validate citations against source documents before display</li>
 </ul>
-<div class="admonition example">
-<p class="admonition-title">Real-World Results</p>
-</div>
-<p>A healthcare documentation system reduced citation errors from 4% to 0.1% through: - Fine-tuning on 1,200 validated citation examples - XML-based citation format with chunk IDs - Post-generation validation against source documents - Special handling for medical abbreviations</p>
+<p><strong>Real-World Results:</strong> A healthcare documentation system reduced citation errors from 4% to 0.1% through:
+- Fine-tuning on 1,200 validated citation examples
+- XML-based citation format with chunk IDs
+- Post-generation validation against source documents
+- Special handling for medical abbreviations</p>
 <h4 id="implementation-best-practices">Implementation Best Practices</h4>
 <ol>
 <li><strong>Citation Format</strong>: Use structured formats that are easy to parse and validate</li>
@@ -3496,22 +3505,17 @@
 <li><a href="https://www.anthropic.com/news/constitutional-ai-harmlessness-from-ai-feedback">Anthropic's Constitutional AI approach to citations</a></li>
 <li><a href="https://platform.openai.com/docs/guides/prompt-engineering">OpenAI's best practices for reliable citations</a></li>
 </ul>
-<div class="admonition quote">
-<p class="admonition-title">Key Takeaway</p>
-</div>
-<p>"The combination of XML-based formatting, fine-tuning on domain-specific examples, and post-generation validation creates a citation system users can trust. This trust is essential for deployment in regulated industries like healthcare and legal services."</p>
+<blockquote>
+<p><strong>Key Takeaway:</strong> "The combination of XML-based formatting, fine-tuning on domain-specific examples, and post-generation validation creates a citation system users can trust. This trust is essential for deployment in regulated industries like healthcare and legal services."</p>
+</blockquote>
 <h2 id="chain-of-thought-making-thinking-visible">Chain of Thought: Making Thinking Visible</h2>
 <h3 id="a-simple-but-effective-technique">A Simple but Effective Technique</h3>
 <p>Chain of thought prompting—asking the model to reason step by step before providing its final answer—typically provides a 10% performance improvement for classification and reasoning tasks. This improvement often makes the difference between a system that's occasionally helpful and one that's consistently reliable.</p>
-<div class="admonition quote">
-<p class="admonition-title">Expert Insight</p>
-</div>
-<p>"Chain of thought is a significant missed opportunity for many RAG teams. With models like Claude 3 Opus and GPT-4o, this approach improves performance considerably. Even without these advanced models, implementing chain of thought in ways that matter to your business has consistently been one of the highest-impact improvements."</p>
+<blockquote>
+<p><strong>Expert Insight:</strong> "Chain of thought is a significant missed opportunity for many RAG teams. With models like Claude 3 Opus and GPT-4o, this approach improves performance considerably. Even without these advanced models, implementing chain of thought in ways that matter to your business has consistently been one of the highest-impact improvements."</p>
+</blockquote>
 <p>I've found chain of thought particularly valuable for complex retrieval tasks where multiple documents need to be synthesized or where subtle judgments about relevance are required. By making the reasoning explicit, you can identify where things might be going wrong and provide more targeted guidance.</p>
-<div class="admonition note">
-<p class="admonition-title">Performance Impact</p>
-</div>
-<p>Testing across multiple domains shows chain of thought prompting improves answer accuracy by 8-15%, with the biggest gains in complex reasoning scenarios like multi-hop questions and comparative analyses. This improvement often determines whether a system meets production quality thresholds.</p>
+<p><strong>Performance Impact:</strong> Testing across multiple domains shows chain of thought prompting improves answer accuracy by 8-15%, with the biggest gains in complex reasoning scenarios like multi-hop questions and comparative analyses. This improvement often determines whether a system meets production quality thresholds.</p>
 <p>When implementing chain of thought, structure it clearly to separate the thinking process from the final response. XML tags work well for this purpose, creating distinct sections that can be processed differently by your application.</p>
 <p>Chain of thought also serves another purpose: it can become an engaging loading interstitial. By streaming the reasoning process, you turn waiting time into a transparent window into how the system is working through the problem, building both engagement and trust.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">chain_of_thought_prompt</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">documents</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
@@ -3550,12 +3554,9 @@
     <span class="k">return</span> <span class="n">prompt</span>
 </code></pre></div>
 <p>Taking this a step further, you can stream the thinking process as a separate UI component or interstitial. This serves two purposes: it makes the waiting time more engaging by showing users that complex reasoning is happening, and it allows users to intervene if they notice the reasoning going astray.</p>
-<div class="admonition example">
-<p class="admonition-title">Chain of Thought Streaming Implementation</p>
-</div>
-<p><img alt="Example of JavaScript code for processing and displaying streamed chain of thought" src="../../assets/images/chain-of-thought-streaming.png" /></p>
-<div class="highlight"><pre><span></span><code>*This code processes streamed tokens containing XML-tagged thinking and answer sections, rendering them in separate UI components. This makes the reasoning process transparent and engaging for users.*
-</code></pre></div>
+<p><strong>Chain of Thought Streaming Implementation:</strong>
+<img alt="Example of JavaScript code for processing and displaying streamed chain of thought" src="../../assets/images/chain-of-thought-streaming.png" /></p>
+<p><em>This code processes streamed tokens containing XML-tagged thinking and answer sections, rendering them in separate UI components. This makes the reasoning process transparent and engaging for users.</em></p>
 <p>A financial advisory firm implemented this approach for their investment recommendation system. As the model reasoned through market conditions, client preferences, and portfolio considerations, this thinking was streamed to the advisor in a separate panel. If the advisor noticed a misunderstanding, they could pause generation and refine their query before the final recommendation.</p>
 <p>This interactive approach improved recommendation quality and created a feedback loop where advisors could correct misunderstandings early. Each correction became training data.</p>
 <p>On the frontend, you can implement this with an expandable "See reasoning" section that users can toggle to view the model's step-by-step analysis. This transparency builds trust by demystifying the AI process and gives users insight into how conclusions were reached.</p>
@@ -3564,10 +3565,7 @@
 <h3 id="reasoning-in-limited-windows">Reasoning in Limited Windows</h3>
 <p>As context windows grow larger, one might think that managing complex information would become easier. Counterintuitively, though, larger context windows often create new challenges for language models, which can struggle to attend to the most relevant information among thousands of tokens.</p>
 <p>Monologuing—having the model explicitly reiterate key information before generating a response—has emerged as an effective technique to enhance reasoning and quality, especially with large contexts and complex documents.</p>
-<div class="admonition example">
-<p class="admonition-title">Key Insight</p>
-</div>
-<p>When dealing with long contexts, language models often struggle with recall and processing all instructions. Having the model monologue - explicitly reiterate key information before answering - reorganizes the context to allow effective "re-reading" of the prompt, improving reasoning without complex architectural changes.</p>
+<p><strong>Key Insight:</strong> When dealing with long contexts, language models often struggle with recall and processing all instructions. Having the model monologue - explicitly reiterate key information before answering - reorganizes the context to allow effective "re-reading" of the prompt, improving reasoning without complex architectural changes.</p>
 <p>The process is simple: ask the model to "think out loud" about what information is relevant before generating the final answer. This serves several purposes:</p>
 <ol>
 <li>It helps the model re-read and reinforce important context</li>
@@ -3615,10 +3613,7 @@
     <span class="k">return</span> <span class="n">prompt</span>
 </code></pre></div>
 <p>Here's a case study showing monologues in practice. A SaaS company needed to generate pricing quotes based on sales call transcripts and a complex pricing document. The initial approach—providing the transcript and pricing document as context—resulted in inconsistent quotes that missed key information.</p>
-<div class="admonition example">
-<p class="admonition-title">Monologue Implementation</p>
-</div>
-<p>Rather than building a multi-stage agent, it was more effective to cache-prompt the pricing data and inject a single call transcript with specific monologue instructions.</p>
+<p><strong>Monologue Implementation:</strong> Rather than building a multi-stage agent, it was more effective to cache-prompt the pricing data and inject a single call transcript with specific monologue instructions.</p>
 <p>We implemented a monologue-based approach that instructed the model to:</p>
 <ol>
 <li>First reiterate the variables that determine pricing options</li>
@@ -3627,34 +3622,26 @@
 <li>Finally generate the actual quote with justification</li>
 </ol>
 <p>Quote accuracy improved from 62% to 94%, and sales representatives reported greater confidence in the system's recommendations. The monologue approach helped the model connect scattered information from the transcript with the rules in the pricing document.</p>
-<div class="admonition success">
-<p class="admonition-title">Business Impact</p>
-</div>
-<p>After implementing this approach, 90% of the follow-up emails were accepted by sales reps without any edits. This generated a wealth of training data that we used to fine-tune a smaller, more efficient model. Eventually, the fine-tuned model achieved similar accuracy without needing the explicit monologue step, demonstrating how monologues can be used as a stepping stone to more efficient solutions.</p>
-<div class="admonition example">
-<p class="admonition-title">Monologue in Action</p>
-</div>
+<p><strong>Business Impact:</strong> After implementing this approach, 90% of the follow-up emails were accepted by sales reps without any edits. This generated a wealth of training data that we used to fine-tune a smaller, more efficient model. Eventually, the fine-tuned model achieved similar accuracy without needing the explicit monologue step, demonstrating how monologues can be used as a stepping stone to more efficient solutions.</p>
+<h3 id="monologue-in-action">Monologue in Action</h3>
 <p><strong>Query:</strong> What pricing should we offer based on this call transcript?</p>
-<div class="highlight"><pre><span></span><code>**Monologue:**
+<p><strong>Monologue:</strong>
 Let me identify the key pricing variables from our documentation:
 1. Number of users (determines tier)
 2. Required features (basic, professional, enterprise)
 3. Length of contract commitment (monthly vs. annual)
-4. Add-on options (API access, premium support)
-
-From the transcript, I can see:
-- The customer mentioned needing &quot;around 50 user seats&quot; (line 127)
-- They specifically asked about the &quot;workflow automation feature&quot; (line 213)
-- They stated &quot;we&#39;re looking for an annual commitment&quot; (line 289)
-- They expressed interest in &quot;API access for integration&quot; (line 342)
-
-According to our pricing documentation:
+4. Add-on options (API access, premium support)</p>
+<p>From the transcript, I can see:
+- The customer mentioned needing "around 50 user seats" (line 127)
+- They specifically asked about the "workflow automation feature" (line 213)
+- They stated "we're looking for an annual commitment" (line 289)
+- They expressed interest in "API access for integration" (line 342)</p>
+<p>According to our pricing documentation:
 - 50 users falls into the Medium Business tier ($30/user/month)
 - Workflow automation is part of the Professional plan
-- Annual commitment provides a 20% discount
-- API access is a $500/month add-on
-
-**Answer:**
+    - Annual commitment provides a 20% discount
+    - API access is a $500/month add-on</p>
+<div class="highlight"><pre><span></span><code>**Answer:**
 Based on the call transcript, I recommend offering the Professional plan with API access add-on:
 - 50 users × $30/user/month = $1,500/month
 - API access add-on: $500/month
@@ -3668,23 +3655,20 @@ This aligns with their needs for workflow automation and API access while provid
 <h2 id="validation-patterns-practical-error-prevention">Validation Patterns: Practical Error Prevention</h2>
 <h3 id="catching-errors-before-they-reach-users">Catching Errors Before They Reach Users</h3>
 <p>Early RAG systems often sent language model responses directly to users without checks. As stakes have increased, validation layers that catch issues before they reach users have become essential.</p>
-<div class="admonition quote">
-<p class="admonition-title">Industry Perspective</p>
-</div>
-<p>"As language models get more sophisticated, we're finding that a single well-designed prompt combined with simple validation often outperforms complex multi-stage agent behaviors. I recommend implementing validation patterns before building elaborate agent architectures - they're simpler to deploy, easier to debug, and frequently just as effective."</p>
+<blockquote>
+<p><strong>Industry Perspective:</strong> "As language models get more sophisticated, we're finding that a single well-designed prompt combined with simple validation often outperforms complex multi-stage agent behaviors. I recommend implementing validation patterns before building elaborate agent architectures - they're simpler to deploy, easier to debug, and frequently just as effective."</p>
+</blockquote>
 <p>Validation patterns act as safety nets for your RAG system. With validation checks in place, you can be more confident that errors will be caught before reaching users.</p>
 <p>Before implementing complex agent systems or multi-step pipelines, consider adding simple validation patterns to your RAG application. For latency-insensitive applications—where an extra second or two of processing won't harm the user experience—validators can significantly increase trust and satisfaction by ensuring responses meet quality standards.</p>
-<div class="admonition tip">
-<p class="admonition-title">When to Use Validators</p>
-</div>
+<p><strong>When to Use Validators:</strong></p>
 <p>Validators are particularly valuable in:</p>
-<div class="highlight"><pre><span></span><code>1. High-stakes domains where errors could have significant consequences
-2. Applications where users make important decisions based on system output
-3. Scenarios where specific constraints must be enforced (like valid URLs or specific data formats)
-4. Cases where you need to increase user trust in system outputs
-
-The slight latency increase is often well worth the improved reliability and user confidence.
-</code></pre></div>
+<ol>
+<li>High-stakes domains where errors could have significant consequences</li>
+<li>Applications where users make important decisions based on system output</li>
+<li>Scenarios where specific constraints must be enforced (like valid URLs or specific data formats)</li>
+<li>Cases where you need to increase user trust in system outputs</li>
+</ol>
+<p>The slight latency increase is often well worth the improved reliability and user confidence.</p>
 <div class="highlight"><pre><span></span><code>sequenceDiagram
     participant User
     participant RAG as RAG System
@@ -3779,24 +3763,17 @@ The slight latency increase is often well worth the improved reliability and use
     <span class="k">return</span> <span class="n">regenerated_email</span>
 </code></pre></div>
 <p>After implementing this validator, the error rate dropped from 4% to 0% after just one retry.</p>
-<div class="admonition success">
-<p class="admonition-title">Beyond Validation: Fine-tuning from Corrections</p>
-</div>
+<p><strong>Beyond Validation: Fine-tuning from Corrections</strong></p>
 <p>Even more interestingly, we took the validation process a step further. After collecting sufficient examples of corrections, we fine-tuned our model (distilling GPT-4 into a smaller model) using this dataset of corrected responses. The result was astonishing - the base error rate before validation dropped to nearly zero. The model had effectively learned from its corrections, internalizing the patterns of valid URLs and avoiding problematic ones altogether.</p>
-<div class="highlight"><pre><span></span><code>This entire validation and fine-tuning process took just three days to implement and resulted in a much faster application since we no longer needed the retry loop. The model now produces valid URLs in a single pass.
-</code></pre></div>
+<p>This entire validation and fine-tuning process took just three days to implement and resulted in a much faster application since we no longer needed the retry loop. The model now produces valid URLs in a single pass.</p>
 <p>This shows how validation both catches errors and creates training data. Each correction becomes a learning opportunity, gradually reducing the need for validation.</p>
-<div class="admonition warning">
-<p class="admonition-title">Persistent Challenges</p>
-</div>
-<p>It's worth noting that even in early 2025, even the most advanced models can still produce hallucinated URLs when given the opportunity. Simple validators remain valuable safeguards even as models continue to improve.</p>
+<p><strong>Persistent Challenges:</strong> It's worth noting that even in early 2025, even the most advanced models can still produce hallucinated URLs when given the opportunity. Simple validators remain valuable safeguards even as models continue to improve.</p>
 <h2 id="strategic-rejection-of-work">Strategic Rejection of Work</h2>
 <h3 id="when-i-dont-know-is-the-right-answer">When "I Don't Know" is the Right Answer</h3>
 <p>One of the most overlooked strategies for improving RAG application reliability is knowing when to reject work. Rather than delaying deployment until all edge cases are solved, implement strategic rejection for scenarios where your system isn't yet strong enough. This allows you to deploy sooner while collecting data to improve problematic segments.</p>
-<div class="admonition quote">
-<p class="admonition-title">Industry Insight</p>
-</div>
-<p>"One of the things you'll realize as you analyze your RAG system's performance is that oftentimes you can make your application much more reliable just by rejecting certain types of work. This is an underutilized strategy - many teams try to handle every query thrown at them rather than focusing on what they can reliably deliver."</p>
+<blockquote>
+<p><strong>Industry Insight:</strong> "One of the things you'll realize as you analyze your RAG system's performance is that oftentimes you can make your application much more reliable just by rejecting certain types of work. This is an underutilized strategy - many teams try to handle every query thrown at them rather than focusing on what they can reliably deliver."</p>
+</blockquote>
 <p>The approach is straightforward:</p>
 <ol>
 <li>Identify segments where performance is consistently poor</li>
@@ -3805,14 +3782,11 @@ The slight latency increase is often well worth the improved reliability and use
 <li>Give users the option to proceed with caution if they wish</li>
 </ol>
 <p>This pattern works particularly well for specialized domains where some questions might require expertise your system hasn't yet developed. By acknowledging limitations transparently, you build trust while focusing on the areas where you can deliver value reliably.</p>
-<div class="admonition example">
-<p class="admonition-title">Rejection in Practice</p>
-</div>
-<p>One enterprise RAG application we built for legal research would explicitly reject certain types of complex regulatory analysis questions with a message like:</p>
-<div class="highlight"><pre><span></span><code>&quot;I notice you&#39;re asking about cross-jurisdictional implications of regulation X. Currently, I&#39;m not confident in my ability to analyze multi-jurisdictional regulatory conflicts accurately. Would you like me to instead focus on the requirements within your primary jurisdiction, or connect you with a regulatory specialist?&quot;
-
-This approach was far better received than attempting answers that might contain subtle but critical errors.
-</code></pre></div>
+<p><strong>Rejection in Practice:</strong> One enterprise RAG application we built for legal research would explicitly reject certain types of complex regulatory analysis questions with a message like:</p>
+<blockquote>
+<p>"I notice you're asking about cross-jurisdictional implications of regulation X. Currently, I'm not confident in my ability to analyze multi-jurisdictional regulatory conflicts accurately. Would you like me to instead focus on the requirements within your primary jurisdiction, or connect you with a regulatory specialist?"</p>
+</blockquote>
+<p>This approach was far better received than attempting answers that might contain subtle but critical errors.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">should_reject_query</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">confidence_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.85</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Determine if a query should be politely rejected.</span>
@@ -3864,10 +3838,9 @@ This approach was far better received than attempting answers that might contain
 <h2 id="showcasing-capabilities">Showcasing Capabilities</h2>
 <h3 id="guide-users-to-what-you-do-well">Guide Users to What You Do Well</h3>
 <p>While RAG systems can theoretically answer a wide range of questions, most excel at particular types of queries. Explicitly highlighting what your system does well guides user behavior toward successful interactions.</p>
-<div class="admonition quote">
-<p class="admonition-title">UX Design Insight</p>
-</div>
-<p>"Not all prompting should be for the language model - we should also prompt the user. People are generally lazy and often don't know exactly what they want. By giving them examples early on, you make their lives easier while showcasing capabilities they might not have known were possible."</p>
+<blockquote>
+<p><strong>UX Design Insight:</strong> "Not all prompting should be for the language model - we should also prompt the user. People are generally lazy and often don't know exactly what they want. By giving them examples early on, you make their lives easier while showcasing capabilities they might not have known were possible."</p>
+</blockquote>
 <p>Implement these strategies to showcase your system's strengths:</p>
 <ul>
 <li>Show suggested query types that leverage your strengths</li>
@@ -3876,10 +3849,7 @@ This approach was far better received than attempting answers that might contain
 <li>Use white space to create different blocks showcasing specialized capabilities</li>
 </ul>
 <p>Perplexity provides a good example of this approach. Their interface shows different capabilities (web search, academic papers, math equations) with specific UI elements, guiding users toward interactions that will be successful.</p>
-<div class="admonition example">
-<p class="admonition-title">Capability Demonstration</p>
-</div>
-<p>When Perplexity added their "Social" search capability, many users didn't even know this was possible. By prominently featuring this option in the interface, they not only educated users about a new capability but also increased engagement with a feature they wanted to promote.</p>
+<p><strong>Capability Demonstration:</strong> When Perplexity added their "Social" search capability, many users didn't even know this was possible. By prominently featuring this option in the interface, they not only educated users about a new capability but also increased engagement with a feature they wanted to promote.</p>
 <p>By highlighting certain capabilities, you not only improve user satisfaction by focusing on strengths, but you also set appropriate expectations about what the system doesn't handle well. This creates a more predictable experience where users know what to expect.</p>
 <p>This approach also complements the strategic rejection strategy - when users are guided toward your strengths, they're less likely to attempt queries that would trigger rejection responses.</p>
 <h2 id="putting-it-all-together-the-complete-experience">Putting It All Together: The Complete Experience</h2>
@@ -3918,10 +3888,9 @@ This approach was far better received than attempting answers that might contain
 <p><strong>Capability showcasing guides users effectively</strong> - Explicitly highlighting your system's strengths improves user satisfaction and engagement while setting appropriate expectations.</p>
 </li>
 </ol>
-<div class="admonition quote">
-<p class="admonition-title">Practical Implementation Strategy</p>
-</div>
-<p>"When implementing these improvements, I recommend starting with citations and validation patterns, as they provide the most immediate reliability gains. Then add chain of thought for complex reasoning scenarios, followed by strategic rejection for edge cases. These foundational elements will deliver the most value for your development time while setting the stage for more advanced techniques."</p>
+<blockquote>
+<p><strong>Practical Implementation Strategy:</strong> "When implementing these improvements, I recommend starting with citations and validation patterns, as they provide the most immediate reliability gains. Then add chain of thought for complex reasoning scenarios, followed by strategic rejection for edge cases. These foundational elements will deliver the most value for your development time while setting the stage for more advanced techniques."</p>
+</blockquote>
 <p>These improvements work in concert with the feedback mechanisms from Chapter 3.1 and the streaming techniques from Chapter 3.2 to create a comprehensive, user-centered RAG experience. Each element reinforces the others: citations provide opportunities for feedback, streaming makes the thinking process engaging, and validation ensures that what users see is reliable.</p>
 <p>This completes our exploration of deployment and feedback collection. We've now built a robust system that not only delivers accurate information but does so in a way that users find trustworthy, engaging, and helpful. The system collects feedback naturally, feels responsive despite complex processing, and provides transparency into its reasoning and sources.</p>
 <p>In Chapter 4, we'll shift our focus to analyzing the wealth of data you're now collecting. Through topic modeling and clustering techniques, you'll learn to identify patterns in user queries and system performance, revealing focused opportunities for improvement. This marks an exciting transition from building a great system to understanding how it's being used in the real world and systematically enhancing its capabilities based on that understanding.</p>

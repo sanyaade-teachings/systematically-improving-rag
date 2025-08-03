@@ -3020,44 +3020,32 @@
 <li><strong>Hybrid Signals</strong>: Mix semantic similarity with recency, authority, citation counts. Don't rely on embeddings alone.</li>
 <li><strong>Multi-stage Retrieval</strong>: Start cheap and fast, then get more sophisticated. Filter garbage early.</li>
 </ul>
-<div class="admonition example">
-<p class="admonition-title">Contextual Retrieval Implementation</p>
-</div>
-<p><strong>The Power of Context-Aware Chunks:</strong></p>
-<div class="highlight"><pre><span></span><code>Original chunk: &quot;Jason the doctor is unhappy with Patient X&quot;
-
-Without context, this is ambiguous:
+<p><strong>The Power of Context-Aware Chunks</strong></p>
+<p>Original chunk: "Jason the doctor is unhappy with Patient X"</p>
+<p>Without context, this is ambiguous:
 - Is Jason a medical doctor unhappy with a patient?
 - Is a doctor named Jason unhappy?
-- Is someone consulting Dr. Jason about Patient X?
+- Is someone consulting Dr. Jason about Patient X?</p>
+<p><strong>Solution: Rewrite chunks with full document context:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">create_contextual_chunk</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">document</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Rewrite chunk with document context.&quot;&quot;&quot;</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Document context: </span><span class="si">{</span><span class="n">document</span><span class="o">.</span><span class="n">title</span><span class="si">}</span>
+<span class="s2">    Section: </span><span class="si">{</span><span class="n">chunk</span><span class="o">.</span><span class="n">section</span><span class="si">}</span>
 
-**Solution: Rewrite chunks with full document context:**
+<span class="s2">    Original chunk: </span><span class="si">{</span><span class="n">chunk</span><span class="o">.</span><span class="n">text</span><span class="si">}</span>
 
-```python
-def create_contextual_chunk(chunk, document):
-    &quot;&quot;&quot;Rewrite chunk with document context.&quot;&quot;&quot;
-    prompt = f&quot;&quot;&quot;
-    Document context: {document.title}
-    Section: {chunk.section}
+<span class="s2">    Rewrite this chunk to include necessary context</span>
+<span class="s2">    so it can be understood in isolation.</span>
+<span class="s2">    &quot;&quot;&quot;</span>
 
-    Original chunk: {chunk.text}
-
-    Rewrite this chunk to include necessary context
-    so it can be understood in isolation.
-    &quot;&quot;&quot;
-
-    return llm.complete(prompt)
-```
-
-Result: &quot;In this employee feedback document, Jason (the medical doctor
-on our staff) expressed dissatisfaction with the Patient X project
-management software due to frequent crashes.&quot;
-
-**Key Decision: Compute at write-time vs read-time**
+    <span class="k">return</span> <span class="n">llm</span><span class="o">.</span><span class="n">complete</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+</code></pre></div>
+<p>Result: "In this employee feedback document, Jason (the medical doctor on our staff) expressed dissatisfaction with the Patient X project management software due to frequent crashes."</p>
+<p><strong>Key Decision: Compute at write-time vs read-time</strong>
 - Write-time: Higher storage cost, faster retrieval
 - Read-time: Lower storage cost, slower retrieval
-- Most teams should compute at write-time for production
-</code></pre></div>
+- Most teams should compute at write-time for production</p>
 <div class="highlight"><pre><span></span><code>flowchart LR
     A[Query] --&gt; B[Initial Retrieval]
     B --&gt; C[Candidate Chunks]
@@ -3070,9 +3058,7 @@ management software due to frequent crashes.&quot;
 - Full documents when context matters
 - Specific chunks for precise information</p>
 <p>The system adapts to what the query actually needs.</p>
-<div class="admonition example">
-<p class="admonition-title">Document Processor with Contextual Retrieval</p>
-</div>
+<p><strong>Document Processor with Contextual Retrieval</strong></p>
 <div class="highlight"><pre><span></span><code>```python
 from typing import List, Dict, Any
 import re
@@ -3148,14 +3134,9 @@ def contextual_retrieval(query: str, document_store: List[Dict[str, Any]]) -&gt;
 <p class="admonition-title">Embedding Spaces Mismatch</p>
 </div>
 <p>The naive approach—applying the same embedding strategy used for text—often fails because question embeddings and image caption embeddings exist in fundamentally different semantic spaces. Simply embedding captions like "two people" will not retrieve well when users search for "business meeting" or "team collaboration."</p>
-<div class="admonition tip">
-<p class="admonition-title">When to Use Vision Language Models</p>
-</div>
-<p>According to Adit from Reducto, VLMs excel at "things that traditional OCR has always been horrible at" - handwriting, charts, figures, and diagrams. However, for clean structured information, traditional CV provides better precision and token efficiency. <a href="../../talks/reducto-docs-adit/">Learn about their hybrid approach →</a></p>
+<p><strong>When to Use Vision Language Models</strong>: According to Adit from Reducto, VLMs excel at "things that traditional OCR has always been horrible at" - handwriting, charts, figures, and diagrams. However, for clean structured information, traditional CV provides better precision and token efficiency. <a href="../../talks/reducto-docs-adit/">Learn about their hybrid approach →</a></p>
 <p>Here's how to make image search actually work:</p>
-<div class="admonition example">
-<p class="admonition-title">Advanced Image Description Techniques</p>
-</div>
+<p><strong>Advanced Image Description Techniques</strong></p>
 <p><strong>Rich Prompting</strong>: Move beyond simple "what's in this image?" prompts to detailed instructions that anticipate likely queries. Compare:</p>
 <div class="highlight"><pre><span></span><code>*Basic*: &quot;Describe this image.&quot;
 → Result: &quot;Two people at a table.&quot;
@@ -3167,22 +3148,21 @@ def contextual_retrieval(query: str, document_store: List[Dict[str, Any]]) -&gt;
 → Result: &quot;This dramatic image shows two business professionals in a tense negotiation across a polished conference table in a corporate boardroom with floor-to-ceiling windows overlooking a city skyline. The older man in a gray suit appears frustrated, gesturing emphatically with papers in hand, while the younger woman in a black blazer maintains a composed but firm expression. Multiple financial reports and what appears to be a contract are spread across the table. The scene is captured in natural lighting with dramatic shadows, suggesting a high-stakes discussion or disagreement over business terms.&quot;
 </code></pre></div>
 <p>In practice, the difference between basic and good image descriptions meant 40% better retrieval rates. The trick was figuring out how users actually describe what they're looking for.</p>
-<div class="admonition info">
-<p class="admonition-title">Additional Image Enhancement Approaches</p>
-</div>
-<p>- <strong>Contextual Enrichment</strong>: Incorporate surrounding text, OCR results from the image, and metadata about the image's source and purpose. For example, if an image appears in a product manual, include the product name and function in the description.</p>
-<div class="highlight"><pre><span></span><code>- **Visual Reasoning**: Use chain-of-thought prompting to guide the model through a reasoning process about the image content, resulting in more comprehensive descriptions. For example: &quot;First identify all objects in the image. Then consider how they relate to each other. Finally, determine what activity or process is being depicted.&quot;
-
-- **Bounding Boxes and Visual Grounding**: For applications where precise location or counting is important, supplement descriptions with information about the spatial arrangement of elements. This is particularly valuable in construction, manufacturing, and retail contexts where users often need to locate or count specific items.
-</code></pre></div>
-<div class="admonition example">
-<p class="admonition-title">Construction Site Image Analysis</p>
-</div>
-<p>For a construction company's image database, users frequently needed to count specific items ("How many support beams are installed?") or locate defects ("Show me images of cracked foundations"). By implementing bounding box detection alongside rich descriptions, retrieval accuracy for these queries improved by 65% compared to using only semantic descriptions.</p>
-<div class="admonition example">
-<p class="admonition-title">Rich Image Description Prompt</p>
-</div>
-<p>```python
+<p><strong>Additional Image Enhancement Approaches</strong></p>
+<ul>
+<li>
+<p><strong>Contextual Enrichment</strong>: Incorporate surrounding text, OCR results from the image, and metadata about the image's source and purpose. For example, if an image appears in a product manual, include the product name and function in the description.</p>
+</li>
+<li>
+<p><strong>Visual Reasoning</strong>: Use chain-of-thought prompting to guide the model through a reasoning process about the image content, resulting in more comprehensive descriptions. For example: "First identify all objects in the image. Then consider how they relate to each other. Finally, determine what activity or process is being depicted."</p>
+</li>
+<li>
+<p><strong>Bounding Boxes and Visual Grounding</strong>: For applications where precise location or counting is important, supplement descriptions with information about the spatial arrangement of elements. This is particularly valuable in construction, manufacturing, and retail contexts where users often need to locate or count specific items.</p>
+</li>
+</ul>
+<p><strong>Construction Site Image Analysis Example</strong>: For a construction company's image database, users frequently needed to count specific items ("How many support beams are installed?") or locate defects ("Show me images of cracked foundations"). By implementing bounding box detection alongside rich descriptions, retrieval accuracy for these queries improved by 65% compared to using only semantic descriptions.</p>
+<p><strong>Rich Image Description Prompt</strong>
+```python
 def generate_rich_image_description(image, ocr_text=None, surrounding_text=None):
 """
 Generate a comprehensive description optimized for retrieval.</p>
@@ -3226,12 +3206,11 @@ Generate a comprehensive description optimized for retrieval.</p>
 <p>The enhanced description dramatically improves retrieval capability when troubleshooting specific defects or components.</p>
 <h3 id="table-search-structured-data-in-context">Table Search: Structured Data in Context</h3>
 <p>Tables are weird—they're structured data living in unstructured documents. Here's what works:</p>
-<div class="admonition quote">
-<p class="admonition-title">Expert Insight: Document Parsing Challenges</p>
-</div>
-<p>Adit from Reducto emphasizes that tables are particularly challenging: "Tables are particularly challenging because they represent two-dimensional associations of data that can be formatted in countless ways. The failures are often subtle - a model might extract what appears to be a valid table but silently drop rows, columns, or individual values."</p>
-<div class="highlight"><pre><span></span><code>For production-ready table extraction, consider specialized tools. [Learn more about document ingestion best practices →](../talks/reducto-docs-adit.md)
-</code></pre></div>
+<blockquote>
+<p>"Tables are particularly challenging because they represent two-dimensional associations of data that can be formatted in countless ways. The failures are often subtle - a model might extract what appears to be a valid table but silently drop rows, columns, or individual values."
+— Adit from Reducto</p>
+</blockquote>
+<p>For production-ready table extraction, consider specialized tools. <a href="../../talks/reducto-docs-adit/">Learn more about document ingestion best practices →</a></p>
 <p>Turns out markdown tables work best for LLM lookup:
 - Markdown: 85% accuracy
 - CSV: 73% accuracy<br />
@@ -3245,23 +3224,18 @@ Generate a comprehensive description optimized for retrieval.</p>
 | SKU-003    | Widget Premium | $49.99 | 75    |
 </code></pre></div>
 <p>Watch out for number formatting: <code>1 234 567</code> tokenizes as three separate numbers. Use <code>1234567</code> or <code>1,234,567</code> instead.</p>
-<div class="highlight"><pre><span></span><code>!!! info &quot;Production Table Extraction&quot;
-    Reducto&#39;s approach to complex tables includes:
-    - Using HTML for tables with 3+ merged cells
-    - Traditional CV for initial extraction, VLMs for correction
-    - Creating natural language summaries for better retrieval
-
-    See their [complete document parsing methodology](../talks/reducto-docs-adit.md) for handling PDFs, Excel files, and complex layouts.
-</code></pre></div>
+<p><strong>Production Table Extraction</strong>: Reducto's approach to complex tables includes:
+- Using HTML for tables with 3+ merged cells
+- Traditional CV for initial extraction, VLMs for correction
+- Creating natural language summaries for better retrieval</p>
+<p>See their <a href="../../talks/reducto-docs-adit/">complete document parsing methodology</a> for handling PDFs, Excel files, and complex layouts.</p>
 <p>Two ways to handle table retrieval:</p>
 <p><strong>Approach 1: Table as Document</strong>
 Chunk the table (keep headers!) and use semantic search. Add summaries about what the table contains. Good for questions like "Which product had the highest Q3 sales?"</p>
 <p><strong>Approach 2: Table as Database</strong><br />
 Treat tables as mini-databases. The challenge is figuring out which table has the answer. Create schema descriptions and sample queries, then search against those.</p>
-<div class="admonition example">
-<p class="admonition-title">Table Processor Implementation</p>
-</div>
-<p>```python
+<p><strong>Table Processor Implementation</strong>
+```python
 from typing import List, Dict, Any, Optional
 import pandas as pd</p>
 <div class="highlight"><pre><span></span><code>class TableProcessor:
@@ -3352,53 +3326,48 @@ import pandas as pd</p>
 - Custom business rules (fiscal calendars, revenue recognition)
 - Performance requirements that need specific query patterns</p>
 <p>We wasted months trying to fine-tune SQL generation models. Then we started retrieving similar queries from our analytics repository instead. Accuracy jumped 30% immediately.</p>
-<div class="admonition example">
-<p class="admonition-title">RAPTOR: Recursive Summarization for Long Documents</p>
-</div>
-<p><strong>The RAPTOR Approach:</strong></p>
-<div class="highlight"><pre><span></span><code>When dealing with concepts that span multiple pages or sections:
+<p><strong>RAPTOR: Recursive Summarization for Long Documents</strong></p>
+<p>When dealing with concepts that span multiple pages or sections:</p>
+<ol>
+<li>
+<p><strong>Cluster Related Chunks:</strong>
+   <div class="highlight"><pre><span></span><code><span class="c1"># Embed all chunks</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="p">[</span><span class="n">embed</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">]</span>
 
-1. **Cluster Related Chunks:**
-   ```python
-   # Embed all chunks
-   embeddings = [embed(chunk) for chunk in chunks]
-
-   # Cluster similar chunks
-   clusters = cluster_embeddings(embeddings,
-                               method=&#39;hierarchical&#39;,
-                               threshold=0.8)
-   ```
-
-2. **Summarize Each Cluster:**
-   ```python
-   for cluster in clusters:
-       summary = summarize_chunks(cluster.chunks)
-       cluster.summary = summary
-   ```
-
-3. **Build Hierarchical Index:**
-   - Leaf nodes: Original chunks
-   - Internal nodes: Cluster summaries
-   - Root node: Document summary
-
-4. **Multi-Level Retrieval:**
-   - Start with high-level summaries
-   - Drill down to specific chunks as needed
-
-**Use Cases:**
+<span class="c1"># Cluster similar chunks</span>
+<span class="n">clusters</span> <span class="o">=</span> <span class="n">cluster_embeddings</span><span class="p">(</span><span class="n">embeddings</span><span class="p">,</span>
+                            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;hierarchical&#39;</span><span class="p">,</span>
+                            <span class="n">threshold</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Summarize Each Cluster:</strong>
+   <div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="n">summarize_chunks</span><span class="p">(</span><span class="n">cluster</span><span class="o">.</span><span class="n">chunks</span><span class="p">)</span>
+    <span class="n">cluster</span><span class="o">.</span><span class="n">summary</span> <span class="o">=</span> <span class="n">summary</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Build Hierarchical Index:</strong></p>
+</li>
+<li>Leaf nodes: Original chunks</li>
+<li>Internal nodes: Cluster summaries</li>
+<li>
+<p>Root node: Document summary</p>
+</li>
+<li>
+<p><strong>Multi-Level Retrieval:</strong></p>
+</li>
+<li>Start with high-level summaries</li>
+<li>Drill down to specific chunks as needed</li>
+</ol>
+<p><strong>Use Cases:</strong>
 - Academic papers (methodology across sections)
 - Legal documents (related clauses)
 - Technical documentation (feature descriptions)
-- Books and long-form content
-
-This approach handles the &quot;information spread&quot; problem where relevant content is distributed across multiple non-contiguous sections.
-</code></pre></div>
-<div class="admonition info">
-<p class="admonition-title">When Simple Tools Beat Embeddings</p>
-</div>
-<p>Colin Flaherty's experience building top-performing coding agents reveals that sometimes simple tools like grep and find can outperform embedding-based retrieval: "The agent's persistence compensated for less sophisticated tools." However, he notes this works best for: - Highly structured content like code - Small to medium-sized repositories - When distinctive keywords exist</p>
-<div class="highlight"><pre><span></span><code>For larger codebases or unstructured content, embeddings become essential. [Explore agentic retrieval patterns →](../talks/colin-rag-agents.md)
-</code></pre></div>
+- Books and long-form content</p>
+<p>This approach handles the "information spread" problem where relevant content is distributed across multiple non-contiguous sections.</p>
+<p><strong>When Simple Tools Beat Embeddings</strong>: Colin Flaherty's experience building top-performing coding agents reveals that sometimes simple tools like grep and find can outperform embedding-based retrieval: "The agent's persistence compensated for less sophisticated tools." However, he notes this works best for highly structured content like code, small to medium-sized repositories, and when distinctive keywords exist. For larger codebases or unstructured content, embeddings become essential. <a href="../../talks/colin-rag-agents/">Explore agentic retrieval patterns →</a></p>
 <p>Here's what actually works for SQL generation:</p>
 <ol>
 <li>Document all your tables with good descriptions and sample data</li>
@@ -3414,10 +3383,8 @@ This approach handles the &quot;information spread&quot; problem where relevant 
 - All revenue or just recurring?
 - Same day comparison or month-end?
 - What about partial months?</p>
-<div class="admonition example">
-<p class="admonition-title">Subjective Query Interpretations</p>
-</div>
-<p>| Question | Possible Interpretation 1 | Possible Interpretation 2 | Possible Interpretation 3 |
+<p><strong>Subjective Query Interpretations</strong>
+| Question | Possible Interpretation 1 | Possible Interpretation 2 | Possible Interpretation 3 |
 |----------|---------------------------|---------------------------|---------------------------|
 | "Monthly active users" | Users who logged in during calendar month | Users who performed an action in last 30 days | Users who made a purchase in billing cycle |
 | "Revenue by region" | Geographic sales regions | Product categories | Customer segments |
@@ -3442,38 +3409,31 @@ This approach handles the &quot;information spread&quot; problem where relevant 
 <p><strong>It's also about org structure</strong>: Specialized indices let teams work independently and improve their piece without breaking everything.</p>
 </li>
 </ol>
-<div class="admonition tip">
-<p class="admonition-title">Combining Lexical and Semantic Search</p>
-</div>
-<p><strong>The Power of Hybrid Search:</strong></p>
-<div class="highlight"><pre><span></span><code>Don&#39;t abandon lexical search! It excels at:
+<p><strong>Combining Lexical and Semantic Search</strong></p>
+<p>Don't abandon lexical search! It excels at:
 - Exact matches (product codes, names)
 - Technical terms and abbreviations
-- Queries with specific keywords
+- Queries with specific keywords</p>
+<p><strong>Implementation Strategy:</strong>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">hybrid_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="c1"># Get results from both systems</span>
+    <span class="n">semantic_results</span> <span class="o">=</span> <span class="n">semantic_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">lexical_results</span> <span class="o">=</span> <span class="n">bm25_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
 
-**Implementation Strategy:**
-```python
-def hybrid_search(query, k=10):
-    # Get results from both systems
-    semantic_results = semantic_search(query, k=k*2)
-    lexical_results = bm25_search(query, k=k*2)
+    <span class="c1"># Combine with weighted scores</span>
+    <span class="n">combined</span> <span class="o">=</span> <span class="n">merge_results</span><span class="p">(</span>
+        <span class="n">semantic_results</span><span class="p">,</span>
+        <span class="n">lexical_results</span><span class="p">,</span>
+        <span class="n">semantic_weight</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+        <span class="n">lexical_weight</span><span class="o">=</span><span class="mf">0.3</span>
+    <span class="p">)</span>
 
-    # Combine with weighted scores
-    combined = merge_results(
-        semantic_results,
-        lexical_results,
-        semantic_weight=0.7,
-        lexical_weight=0.3
-    )
-
-    return combined[:k]
-```
-
-**Pro Tip:** Adjust weights based on query type:
+    <span class="k">return</span> <span class="n">combined</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span>
+</code></pre></div></p>
+<p><strong>Pro Tip:</strong> Adjust weights based on query type:
 - Technical queries: Increase lexical weight
 - Conceptual queries: Increase semantic weight
-- Let user behavior guide the optimization
-</code></pre></div>
+- Let user behavior guide the optimization</p>
 <div class="highlight"><pre><span></span><code>flowchart TD
     A[User Query] --&gt; B[Query Analyzer]
     B --&gt; C[Query Router]
@@ -3499,10 +3459,7 @@ def hybrid_search(query, k=10):
 4. Keep improving based on what users actually search for
 5. Make sure your synthetic text matches how people really ask questions</p>
 <p>Remember: even as AI gets better, you're still responsible for retrieval. Knowing what to retrieve and how to find it is the hard part, not generating the final answer.</p>
-<div class="admonition tip">
-<p class="admonition-title">Cross-Reference</p>
-</div>
-<p>In <a href="../chapter6-1/">Chapter 6</a>, we'll explore how to bring these specialized components together through effective routing strategies, creating a unified system that seamlessly directs users to the appropriate retrievers based on their queries.</p>
+<p><strong>Cross-Reference</strong>: In <a href="../chapter6-1/">Chapter 6</a>, we'll explore how to bring these specialized components together through effective routing strategies, creating a unified system that seamlessly directs users to the appropriate retrievers based on their queries.</p>
 <hr />
 <p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
 <script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

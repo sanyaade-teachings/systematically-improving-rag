@@ -1158,6 +1158,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#chapter-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chapter Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#testing-query-routing-effectiveness" class="md-nav__link">
     <span class="md-ellipsis">
       Testing Query Routing Effectiveness
@@ -1195,6 +1204,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#confusion-matrix-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Confusion Matrix Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#targeted-improvement-strategy" class="md-nav__link">
     <span class="md-ellipsis">
       Targeted Improvement Strategy
@@ -1217,6 +1235,15 @@
   
     <nav class="md-nav" aria-label="User Interfaces: Direct Tool Access">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dual-mode-ui-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dual-Mode UI Example
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#specialized-interface-examples" class="md-nav__link">
@@ -1265,6 +1292,15 @@
   
     <nav class="md-nav" aria-label="User Feedback as Training Data">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-feedback-collection-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Feedback Collection Mechanisms
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#implementing-a-feedback-loop" class="md-nav__link">
@@ -3033,6 +3069,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#chapter-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chapter Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#testing-query-routing-effectiveness" class="md-nav__link">
     <span class="md-ellipsis">
       Testing Query Routing Effectiveness
@@ -3070,6 +3115,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#confusion-matrix-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Confusion Matrix Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#targeted-improvement-strategy" class="md-nav__link">
     <span class="md-ellipsis">
       Targeted Improvement Strategy
@@ -3092,6 +3146,15 @@
   
     <nav class="md-nav" aria-label="User Interfaces: Direct Tool Access">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dual-mode-ui-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dual-Mode UI Example
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#specialized-interface-examples" class="md-nav__link">
@@ -3140,6 +3203,15 @@
   
     <nav class="md-nav" aria-label="User Feedback as Training Data">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-feedback-collection-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Feedback Collection Mechanisms
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#implementing-a-feedback-loop" class="md-nav__link">
@@ -3238,16 +3310,14 @@
 
 
 <h1 id="performance-measurement-and-improvement-building-learning-systems">Performance Measurement and Improvement: Building Learning Systems</h1>
-<div class="admonition abstract">
-<p class="admonition-title">Chapter Overview</p>
-</div>
-<div class="highlight"><pre><span></span><code>This part explores how to measure, test, and continuously improve a unified RAG system:
-
-- Testing and measuring performance of both retrieval and routing components
-- Creating user interfaces that leverage both AI and direct tool access
-- Building systems that scale across teams and complexity levels
-- Creating continuous improvement cycles through user feedback
-</code></pre></div>
+<h2 id="chapter-overview">Chapter Overview</h2>
+<p>This part explores how to measure, test, and continuously improve a unified RAG system:</p>
+<ul>
+<li>Testing and measuring performance of both retrieval and routing components</li>
+<li>Creating user interfaces that leverage both AI and direct tool access</li>
+<li>Building systems that scale across teams and complexity levels</li>
+<li>Creating continuous improvement cycles through user feedback</li>
+</ul>
 <h2 id="testing-query-routing-effectiveness">Testing Query Routing Effectiveness</h2>
 <p>Just as we need metrics for retrieval quality, we need metrics for routing quality. The fundamental question is: are we selecting the right tools for each query?</p>
 <h3 id="tool-selection-metrics">Tool Selection Metrics</h3>
@@ -3483,19 +3553,39 @@
 <h3 id="analyzing-tool-selection-failures">Analyzing Tool Selection Failures</h3>
 <p>When tool selection fails, we need to understand why. A confusion matrix is particularly useful here, showing which tools are being confused with one another.</p>
 <p>For example, if we find that the <code>SearchBlueprint</code> tool is never being selected even when it should be, we might need to improve its description or add more examples to the system prompt.</p>
-<div class="admonition example">
-<p class="admonition-title">Confusion Matrix Analysis</p>
-</div>
-<div class="highlight"><pre><span></span><code>Imagine our evaluation produces this confusion matrix:
-
-| Expected\Selected | SearchText | SearchBlueprint | SearchSchedule |
-| ----------------- | ---------- | --------------- | -------------- |
-| SearchText        | 85         | 5               | 10             |
-| SearchBlueprint   | 40         | 50              | 10             |
-| SearchSchedule    | 15         | 5               | 80             |
-
-This shows that SearchBlueprint is frequently mistaken for SearchText, indicating that we need to better differentiate these tools.
-</code></pre></div>
+<h3 id="confusion-matrix-analysis">Confusion Matrix Analysis</h3>
+<p>Imagine our evaluation produces this confusion matrix:</p>
+<table>
+<thead>
+<tr>
+<th>Expected\Selected</th>
+<th>SearchText</th>
+<th>SearchBlueprint</th>
+<th>SearchSchedule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SearchText</td>
+<td>85</td>
+<td>5</td>
+<td>10</td>
+</tr>
+<tr>
+<td>SearchBlueprint</td>
+<td>40</td>
+<td>50</td>
+<td>10</td>
+</tr>
+<tr>
+<td>SearchSchedule</td>
+<td>15</td>
+<td>5</td>
+<td>80</td>
+</tr>
+</tbody>
+</table>
+<p>This shows that SearchBlueprint is frequently mistaken for SearchText, indicating that we need to better differentiate these tools.</p>
 <h3 id="targeted-improvement-strategy">Targeted Improvement Strategy</h3>
 <p>Once you've identified specific weaknesses in your router, you can implement targeted improvements:</p>
 <ol>
@@ -3520,40 +3610,35 @@ This shows that SearchBlueprint is frequently mistaken for SearchText, indicatin
 <li>Include edge cases that test the boundaries between tools</li>
 <li>Add multi-tool examples that show when multiple tools should be used together</li>
 </ol>
-<div class="admonition tip">
-<p class="admonition-title">Synthetic Data Generation for Router Testing</p>
-</div>
+<p><strong>Synthetic Data Generation for Router Testing:</strong></p>
 <p>You can use synthetic data techniques to create comprehensive test cases for your router:</p>
-<div class="highlight"><pre><span></span><code>1. Start with clear definitions of each tool&#39;s purpose
-2. Use an LLM to generate diverse queries that should trigger each tool
-3. Include variants of each query with slightly different wording
-4. Generate ambiguous queries that could reasonably go to multiple tools
-5. Create a balanced dataset that covers all tools proportionally
-
-This approach ensures comprehensive coverage of your router&#39;s decision space without requiring extensive manual labeling.
-</code></pre></div>
+<ol>
+<li>Start with clear definitions of each tool's purpose</li>
+<li>Use an LLM to generate diverse queries that should trigger each tool</li>
+<li>Include variants of each query with slightly different wording</li>
+<li>Generate ambiguous queries that could reasonably go to multiple tools</li>
+<li>Create a balanced dataset that covers all tools proportionally</li>
+</ol>
+<p>This approach ensures comprehensive coverage of your router's decision space without requiring extensive manual labeling.</p>
 <h2 id="user-interfaces-direct-tool-access">User Interfaces: Direct Tool Access</h2>
 <p>One powerful insight from the routing architecture is that tools designed for language models can often be exposed directly to users as well. Just as Google offers specialized interfaces like Google Maps, YouTube, and Google Images alongside its main search, your RAG application can offer both:</p>
 <ol>
 <li>A natural language interface using the router</li>
 <li>Direct access to specialized tools for specific needs</li>
 </ol>
-<div class="admonition quote">
-<p class="admonition-title">Expert User Perspective</p>
-</div>
-<p>"When I know exactly what I need, a specialized tool is much faster than explaining it to a chatbot. But when I'm exploring new areas or have complex needs, the chat interface helps me discover what's possible."</p>
-<div class="admonition example">
-<p class="admonition-title">Dual-Mode UI</p>
-</div>
+<blockquote>
+<p><strong>Expert User Perspective:</strong> "When I know exactly what I need, a specialized tool is much faster than explaining it to a chatbot. But when I'm exploring new areas or have complex needs, the chat interface helps me discover what's possible."</p>
+</blockquote>
+<h3 id="dual-mode-ui-example">Dual-Mode UI Example</h3>
 <p>Imagine a construction information system that offers:</p>
-<div class="highlight"><pre><span></span><code>- A chat interface for general questions
-- A blueprint search interface with date filters
-- A document search interface with type filters
-- A schedule search with timeline visualization
-- A permit lookup tool with status tracking
-
-These specialized interfaces map directly to the specialized retrievers we&#39;ve built.
-</code></pre></div>
+<ul>
+<li>A chat interface for general questions</li>
+<li>A blueprint search interface with date filters</li>
+<li>A document search interface with type filters</li>
+<li>A schedule search with timeline visualization</li>
+<li>A permit lookup tool with status tracking</li>
+</ul>
+<p>These specialized interfaces map directly to the specialized retrievers we've built.</p>
 <p>This dual-mode interface has several advantages:</p>
 <ol>
 <li><strong>Expert users</strong> can go directly to the tool they need</li>
@@ -3563,16 +3648,15 @@ These specialized interfaces map directly to the specialized retrievers we&#39;v
 <li><strong>Control and transparency</strong> give users confidence in the results</li>
 <li><strong>Performance optimization</strong> for common, well-defined tasks</li>
 </ol>
-<div class="admonition tip">
-<p class="admonition-title">UI Implementation Strategy</p>
-</div>
+<p><strong>UI Implementation Strategy:</strong></p>
 <p>When implementing a dual-mode interface:</p>
-<div class="highlight"><pre><span></span><code>1. Design specialized interfaces that match your existing tools&#39; parameters
-2. Create a unified entry point that offers both chat and specialized tool options
-3. Add suggestions in chat responses that link to relevant specialized tools
-4. Maintain consistent terminology between chat responses and tool interfaces
-5. Track which interface users prefer for different query types
-</code></pre></div>
+<ol>
+<li>Design specialized interfaces that match your existing tools' parameters</li>
+<li>Create a unified entry point that offers both chat and specialized tool options</li>
+<li>Add suggestions in chat responses that link to relevant specialized tools</li>
+<li>Maintain consistent terminology between chat responses and tool interfaces</li>
+<li>Track which interface users prefer for different query types</li>
+</ol>
 <h3 id="specialized-interface-examples">Specialized Interface Examples</h3>
 <p>Here's how specialized interfaces might look for our construction information system:</p>
 <h4 id="blueprint-search-interface">Blueprint Search Interface</h4>
@@ -3631,9 +3715,7 @@ These specialized interfaces map directly to the specialized retrievers we&#39;v
 </code></pre></div>
 <p>These interfaces directly map to the tool interfaces we defined earlier, providing users with a clear, structured way to access the same capabilities available to the language model.</p>
 <p>The key insight is that RAG isn't just about adding chat to your product—it's about building a comprehensive information discovery system where chat is just one interface option among many specialized tools that help users access information efficiently.</p>
-<div class="admonition note">
-<p class="admonition-title">Beyond Simple Forms</p>
-</div>
+<p><strong>Beyond Simple Forms:</strong></p>
 <p>These specialized interfaces don't have to be simple forms. They can include rich visualizations, interactive elements, and specialized displays for different content types. For example, a blueprint search might display results on a timeline or a map, while a document search might offer faceted filters and previews. The key is that they map directly to your underlying retrieval tools.</p>
 <h2 id="user-feedback-as-training-data">User Feedback as Training Data</h2>
 <p>A particularly valuable aspect of direct tool access is that user interactions can provide high-quality training data for improving both retrieval and routing:</p>
@@ -3643,17 +3725,16 @@ These specialized interfaces map directly to the specialized retrievers we&#39;v
 <li>When users refine their search, that's a signal about what was missing</li>
 <li>When users explicitly rate or save results, that's direct feedback on quality</li>
 </ol>
-<div class="admonition example">
-<p class="admonition-title">User Feedback Collection Mechanisms</p>
-</div>
+<h3 id="user-feedback-collection-mechanisms">User Feedback Collection Mechanisms</h3>
 <p>To maximize the value of user feedback, consider implementing:</p>
-<div class="highlight"><pre><span></span><code>- **Tool Selection Tracking**: Record which specialized tool a user chooses for each query
-- **Click Tracking**: Monitor which search results users engage with
-- **Query Refinement Analysis**: Capture how users modify queries that didn&#39;t yield useful results
-- **Explicit Feedback Buttons**: Add &quot;Was this helpful?&quot; buttons to results
-- **Result Saving**: Allow users to save or bookmark useful results
-- **Session Analysis**: Examine session patterns to identify successful vs. unsuccessful paths
-</code></pre></div>
+<ul>
+<li><strong>Tool Selection Tracking</strong>: Record which specialized tool a user chooses for each query</li>
+<li><strong>Click Tracking</strong>: Monitor which search results users engage with</li>
+<li><strong>Query Refinement Analysis</strong>: Capture how users modify queries that didn't yield useful results</li>
+<li><strong>Explicit Feedback Buttons</strong>: Add "Was this helpful?" buttons to results</li>
+<li><strong>Result Saving</strong>: Allow users to save or bookmark useful results</li>
+<li><strong>Session Analysis</strong>: Examine session patterns to identify successful vs. unsuccessful paths</li>
+</ul>
 <p>These interactions can be logged and used to:</p>
 <ul>
 <li>Fine-tune embedding models with user-confirmed relevant documents</li>

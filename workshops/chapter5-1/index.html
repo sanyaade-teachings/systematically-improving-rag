@@ -3114,20 +3114,22 @@
 <h1 id="understanding-specialized-retrieval-beyond-basic-rag">Understanding Specialized Retrieval: Beyond Basic RAG</h1>
 <h2 id="introduction">Introduction</h2>
 <p>We've covered the basics: the RAG playbook, synthetic data generation, fine-tuning, user feedback collection, and segmentation. Now let's talk about something that actually makes a big difference in production systems—building specialized search indices for different types of content.</p>
-<p>!!! note "Building on the Foundation" - <strong><a href="../chapter1/">Chapter 1</a></strong>: Evaluation metrics for each specialized retriever - <strong><a href="../chapter2/">Chapter 2</a></strong>: Fine-tuning embeddings for specific domains - <strong><a href="../chapter3-1/">Chapter 3</a></strong>: Collecting feedback on retrieval quality - <strong><a href="../chapter4-2/">Chapter 4</a></strong>: Identifying which capabilities need specialization</p>
+<p><strong>Building on the Foundation</strong>
+- <strong><a href="../chapter1/">Chapter 1</a></strong>: Evaluation metrics for each specialized retriever
+- <strong><a href="../chapter2/">Chapter 2</a></strong>: Fine-tuning embeddings for specific domains
+- <strong><a href="../chapter3-1/">Chapter 3</a></strong>: Collecting feedback on retrieval quality
+- <strong><a href="../chapter4-2/">Chapter 4</a></strong>: Identifying which capabilities need specialization</p>
 <p>The basic idea is straightforward: different types of queries need different retrieval approaches. A search for a specific product number works differently than a search for "durable power tools" or "items under 50 pounds". Once you accept this, the path forward becomes clearer.</p>
 <h2 id="why-specialization-works">Why Specialization Works</h2>
 <h3 id="beyond-the-monolithic-approach">Beyond the Monolithic Approach</h3>
 <p>Most RAG systems start with one big index that tries to handle everything. This works until it doesn't—usually when you realize your users are asking wildly different types of questions that need different handling.</p>
-<div class="admonition example">
-<p class="admonition-title">Diverse Query Needs</p>
-</div>
+<p><strong>Diverse Query Needs</strong></p>
 <p>Consider a hardware store's knowledge base. A customer searching for a specific product by model number requires a fundamentally different search approach than someone asking about the durability of various power tools, or another customer trying to find items within a specific weight range. The first query is best served by lexical search matching exact strings, the second by semantic search understanding concepts and opinions, and the third by structured data queries.</p>
 <p>Look at how Google evolved: they built Maps for location queries, Photos for visual search, YouTube for video. The real win came when they figured out how to automatically route queries to the right tool. We can apply the same thinking to RAG systems.</p>
-<div class="admonition quote">
-<p class="admonition-title">From Previous Cohort</p>
-</div>
-<p>"I've been building separate indices for years without realizing that's what I was doing. This framework just helps me do it more systematically."</p>
+<blockquote>
+<p>"I've been building separate indices for years without realizing that's what I was doing. This framework just helps me do it more systematically."
+— Previous Cohort Participant</p>
+</blockquote>
 <h3 id="the-mathematics-of-specialization">The Mathematics of Specialization</h3>
 <p>The math backs this up: when you have distinct query types, specialized models beat general-purpose ones. You see this pattern everywhere in ML—mixture of experts, task decomposition, modular systems. It's not just theory; it's how things actually work better.</p>
 <div class="highlight"><pre><span></span><code>graph TD
@@ -3147,88 +3149,76 @@
 - Teams can work on specific problems without breaking everything else
 - You can add new capabilities without rebuilding the whole system<br />
 - Different teams can optimize their piece without coordination overhead</p>
-<div class="admonition quote">
-<p class="admonition-title">Industry Perspective</p>
-</div>
+<blockquote>
 <p>"Building specialized indices isn't just about performance—it's about creating a sustainable path for continuous improvement."</p>
+</blockquote>
 <h2 id="two-paths-to-better-retrieval">Two Paths to Better Retrieval</h2>
 <p>When improving retrieval capabilities for RAG applications, two complementary strategies emerge. Think of them as opposite sides of the same coin—one extracting structure from the unstructured, the other creating retrieval-optimized representations of structured data.</p>
 <p>Here's the core idea: both strategies create AI-processed views of your data—either by extracting structure from text or by rewriting structured data as searchable text.</p>
 <h3 id="strategy-1-extracting-metadata">Strategy 1: Extracting Metadata</h3>
 <p>First approach: pull structured data out of your text. Instead of treating everything as a blob of text, identify the structured information hiding in there that would make search work better.</p>
-<div class="admonition example">
-<p class="admonition-title">Metadata Extraction Examples</p>
-</div>
-<p>- In finance applications, distinguishing between fiscal years and calendar years
+<p><strong>Metadata Extraction Examples</strong>
+- In finance applications, distinguishing between fiscal years and calendar years
 - For legal document systems, classifying contracts as signed or unsigned and extracting payment dates and terms
 - When processing call transcripts, categorizing them by type (job interviews, stand-ups, design reviews)
 - For product documentation, identifying specifications, compatibility information, and warranty details</p>
 <p>Ask yourself: what structured data is buried in this text that users actually want to filter by? Once you extract it, you can use regular databases for filtering—way more powerful than vector search alone.</p>
-<div class="admonition tip">
-<p class="admonition-title">Practical Application</p>
-</div>
-<p>When consulting with financial clients, we discovered that simply being able to distinguish between fiscal years and calendar years dramatically improved search accuracy for financial metrics. Similarly, for legal teams, identifying whether a contract was signed or unsigned allowed for immediate filtering that saved hours of manual review.</p>
-<div class="admonition example">
-<p class="admonition-title">Financial Metadata Model</p>
-</div>
-<div class="highlight"><pre><span></span><code>```python
-from pydantic import BaseModel
-from datetime import date
-from typing import Optional, List
+<p><strong>Practical Application</strong>: When consulting with financial clients, we discovered that simply being able to distinguish between fiscal years and calendar years dramatically improved search accuracy for financial metrics. Similarly, for legal teams, identifying whether a contract was signed or unsigned allowed for immediate filtering that saved hours of manual review.</p>
+<p><strong>Financial Metadata Model</strong>
+    <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span>
 
-class FinancialStatement(BaseModel):
-    &quot;&quot;&quot;Structured representation of a financial statement document.&quot;&quot;&quot;
-    company: str
-    period_ending: date
-    revenue: float
-    net_income: float
-    earnings_per_share: float
-    fiscal_year: bool = True  # Is this fiscal year (vs calendar year)?
-    # Additional fields that might be valuable:
-    sector: Optional[str] = None
-    currency: str = &quot;USD&quot;
-    restated: bool = False  # Has this statement been restated?
+<span class="k">class</span> <span class="nc">FinancialStatement</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Structured representation of a financial statement document.&quot;&quot;&quot;</span>
+    <span class="n">company</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">period_ending</span><span class="p">:</span> <span class="n">date</span>
+    <span class="n">revenue</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">net_income</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">earnings_per_share</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">fiscal_year</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Is this fiscal year (vs calendar year)?</span>
+    <span class="c1"># Additional fields that might be valuable:</span>
+    <span class="n">sector</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">currency</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;USD&quot;</span>
+    <span class="n">restated</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Has this statement been restated?</span>
 
-def extract_financial_data(document_text: str) -&gt; FinancialStatement:
-    &quot;&quot;&quot;
-    Extract structured financial data from document text using LLM.
+<span class="k">def</span> <span class="nf">extract_financial_data</span><span class="p">(</span><span class="n">document_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FinancialStatement</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract structured financial data from document text using LLM.</span>
 
-    Args:
-        document_text: Raw text from financial document
+<span class="sd">    Args:</span>
+<span class="sd">        document_text: Raw text from financial document</span>
 
-    Returns:
-        Structured FinancialStatement object with extracted data
-    &quot;&quot;&quot;
-    # Define a structured extraction prompt
-    system_prompt = &quot;&quot;&quot;
-    Extract the following financial information from the document:
-    - Company name
-    - Period end date
-    - Whether this is a fiscal year report (vs calendar year)
-    - Revenue amount (with currency)
-    - Net income amount
-    - Earnings per share
-    - Business sector
-    - Whether this statement has been restated
+<span class="sd">    Returns:</span>
+<span class="sd">        Structured FinancialStatement object with extracted data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Define a structured extraction prompt</span>
+    <span class="n">system_prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Extract the following financial information from the document:</span>
+<span class="s2">    - Company name</span>
+<span class="s2">    - Period end date</span>
+<span class="s2">    - Whether this is a fiscal year report (vs calendar year)</span>
+<span class="s2">    - Revenue amount (with currency)</span>
+<span class="s2">    - Net income amount</span>
+<span class="s2">    - Earnings per share</span>
+<span class="s2">    - Business sector</span>
+<span class="s2">    - Whether this statement has been restated</span>
 
-    Format your response as a JSON object with these fields.
-    &quot;&quot;&quot;
+<span class="s2">    Format your response as a JSON object with these fields.</span>
+<span class="s2">    &quot;&quot;&quot;</span>
 
-    # Use LLM to extract the structured information
-    # Implementation depends on your LLM framework
-    extracted_json = call_llm(system_prompt, document_text)
+    <span class="c1"># Use LLM to extract the structured information</span>
+    <span class="c1"># Implementation depends on your LLM framework</span>
+    <span class="n">extracted_json</span> <span class="o">=</span> <span class="n">call_llm</span><span class="p">(</span><span class="n">system_prompt</span><span class="p">,</span> <span class="n">document_text</span><span class="p">)</span>
 
-    # Parse the extracted JSON into our Pydantic model
-    return FinancialStatement.parse_raw(extracted_json)
-```
-</code></pre></div>
+    <span class="c1"># Parse the extracted JSON into our Pydantic model</span>
+    <span class="k">return</span> <span class="n">FinancialStatement</span><span class="o">.</span><span class="n">parse_raw</span><span class="p">(</span><span class="n">extracted_json</span><span class="p">)</span>
+</code></pre></div></p>
 <p>By extracting these structured elements from quarterly reports, organizations can enable precise filtering and comparison that would have been impossible with text-only search. For instance, you can easily query "Show me all companies in the tech sector with revenue growth over 10% in fiscal year 2024" or "Find all restated financial statements from the last quarter."</p>
 <h3 id="strategy-2-building-synthetic-text-chunks">Strategy 2: Building Synthetic Text Chunks</h3>
 <p>Second approach: take your data (structured or not) and generate text chunks specifically designed to match how people search. These synthetic chunks act as better search targets that point back to your original content.</p>
-<div class="admonition tip">
-<p class="admonition-title">Synthetic Text Applications</p>
-</div>
-<p>- For image collections: Generate detailed descriptions capturing searchable aspects
+<p><strong>Synthetic Text Applications</strong>
+- For image collections: Generate detailed descriptions capturing searchable aspects
 - For research interviews: Extract common questions and answers to form an easily searchable FAQ
 - For numerical data: Create natural language descriptions of key trends and outliers
 - For product documentation: Generate comprehensive feature summaries that anticipate user queries
@@ -3236,10 +3226,7 @@ def extract_financial_data(document_text: str) -&gt; FinancialStatement:
 <p>The synthetic chunks work as a bridge—they're easier to search than your original content but point back to the source when you need the full details. Done right, you get better search without losing information.</p>
 <h3 id="strategy-3-raptor-for-long-documents">Strategy 3: RAPTOR for Long Documents</h3>
 <p>When dealing with extremely long documents (1,500-2,000+ pages), traditional chunking strategies often fail to capture information that spans multiple sections. The RAPTOR (Recursive Abstractive Processing for Tree-Organized Retrieval) approach offers a sophisticated solution.</p>
-<div class="admonition tip">
-<p class="admonition-title">Production Insight</p>
-</div>
-<p>From office hours: "For documents with 1,500-2,000 pages, the RAPTOR approach with clustering and summarization shows significant promise. After chunking documents, recluster the chunks to identify concepts that span multiple pages, then summarize those clusters for retrieval."</p>
+<p><strong>Production Insight</strong>: From office hours: "For documents with 1,500-2,000 pages, the RAPTOR approach with clustering and summarization shows significant promise. After chunking documents, recluster the chunks to identify concepts that span multiple pages, then summarize those clusters for retrieval."</p>
 <h4 id="the-raptor-process">The RAPTOR Process</h4>
 <ol>
 <li><strong>Initial Chunking</strong>: Start with page-level or section-level chunks</li>
@@ -3247,10 +3234,13 @@ def extract_financial_data(document_text: str) -&gt; FinancialStatement:
 <li><strong>Hierarchical Summarization</strong>: Create summaries at multiple levels of abstraction</li>
 <li><strong>Tree Structure</strong>: Build a retrieval tree from detailed chunks to high-level summaries</li>
 </ol>
-<div class="admonition example">
-<p class="admonition-title">Legal Document Processing</p>
-</div>
-<p>A tax law firm implemented RAPTOR for their regulatory documents: - Laws on pages 1-30, exemptions scattered throughout pages 50-200 - Clustering identified related exemptions across different sections - Summaries linked laws with all relevant exemptions - One-time processing cost: $10 in LLM calls per document - Result: 85% improvement in finding complete legal information</p>
+<p><strong>Legal Document Processing Example</strong></p>
+<p>A tax law firm implemented RAPTOR for their regulatory documents:
+- Laws on pages 1-30, exemptions scattered throughout pages 50-200
+- Clustering identified related exemptions across different sections
+- Summaries linked laws with all relevant exemptions
+- One-time processing cost: $10 in LLM calls per document
+- Result: 85% improvement in finding complete legal information</p>
 <h4 id="implementation-considerations">Implementation Considerations</h4>
 <p><strong>When to Use RAPTOR:</strong></p>
 <ul>
@@ -3266,7 +3256,15 @@ def extract_financial_data(document_text: str) -&gt; FinancialStatement:
 <li><strong>Benefit</strong>: Dramatically improved recall for cross-document concepts</li>
 <li><strong>ROI</strong>: Justified for documents accessed frequently or with high-value queries</li>
 </ul>
-<p>!!! warning "Implementation Tips" 1. Test on a subset first to validate clustering quality 2. Store cluster relationships for explainability 3. Consider incremental updates for living documents 4. Monitor which summary levels get used most</p>
+<div class="admonition warning">
+<p class="admonition-title">Implementation Tips</p>
+<ol>
+<li>Test on a subset first to validate clustering quality</li>
+<li>Store cluster relationships for explainability</li>
+<li>Consider incremental updates for living documents</li>
+<li>Monitor which summary levels get used most</li>
+</ol>
+</div>
 <h4 id="practical-example">Practical Example</h4>
 <p>For a construction company's specification documents:</p>
 <div class="highlight"><pre><span></span><code>Original Structure:
@@ -3289,27 +3287,16 @@ After RAPTOR Processing:
 </ul>
 <h2 id="measuring-what-matters">Measuring What Matters</h2>
 <p>With specialized indices, you need to measure two things:</p>
-<div class="admonition info">
-<p class="admonition-title">Two-Level Measurement Framework</p>
-</div>
-<div class="highlight"><pre><span></span><code>1. Are we selecting the right retrieval method for each query?
-2.  Is each retrieval method finding the right information?
-</code></pre></div>
+<p><strong>Two-Level Measurement Framework</strong>
+1. Are we selecting the right retrieval method for each query?
+2. Is each retrieval method finding the right information?</p>
 <p>Your overall success rate is just multiplication:</p>
-<div class="admonition example">
-<p class="admonition-title">Performance Formula</p>
-</div>
+<p><strong>Performance Formula</strong></p>
 <p>P(finding correct data) = P(selecting correct retriever) × P(finding correct data | correct retriever)</p>
 <p>This formula is actually useful for debugging. When things aren't working, you can figure out if the problem is picking the wrong retriever or if the retriever itself is broken.</p>
-<div class="admonition tip">
-<p class="admonition-title">Diagnostic Example</p>
-</div>
-<p>If you find that your system correctly routes 95% of queries to the appropriate retriever, but those retrievers only find relevant information 60% of the time, your priority should be improving retrieval quality rather than router accuracy.</p>
+<p><strong>Diagnostic Example</strong>: If you find that your system correctly routes 95% of queries to the appropriate retriever, but those retrievers only find relevant information 60% of the time, your priority should be improving retrieval quality rather than router accuracy.</p>
 <p>Measuring both levels tells you where to focus your efforts.</p>
-<div class="admonition tip">
-<p class="admonition-title">Next Steps</p>
-</div>
-<p>In <a href="../chapter6-1/">Chapter 6</a>, we'll explore how to bring these specialized components together through intelligent routing, creating a unified system that seamlessly directs queries to the appropriate retrievers.</p>
+<p><strong>Next Steps</strong>: In <a href="../chapter6-1/">Chapter 6</a>, we'll explore how to bring these specialized components together through intelligent routing, creating a unified system that seamlessly directs queries to the appropriate retrievers.</p>
 <hr />
 <p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
 <script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

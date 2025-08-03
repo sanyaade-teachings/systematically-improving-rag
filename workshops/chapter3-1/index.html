@@ -3278,27 +3278,31 @@
 <h1 id="feedback-collection-building-your-improvement-flywheel">Feedback Collection: Building Your Improvement Flywheel</h1>
 <h2 id="introduction">Introduction</h2>
 <p>RAG systems improve most when they collect feedback effectively. Many implementations focus exclusively on the technical details of retrieval and generation while neglecting the infrastructure needed to collect and utilize user feedback.</p>
-<p>!!! note "Building on Previous Chapters" - <strong><a href="../chapter1/">Chapter 1</a></strong>: The evaluation framework you built provides the baseline - <strong><a href="../chapter2/">Chapter 2</a></strong>: The fine-tuning techniques need feedback data to be effective</p>
-<div class="highlight"><pre><span></span><code>This chapter shows you how to collect the data that powers continuous improvement.
-</code></pre></div>
+<p><strong>Building on Previous Chapters:</strong>
+- <strong><a href="../chapter1/">Chapter 1</a></strong>: The evaluation framework you built provides the baseline
+- <strong><a href="../chapter2/">Chapter 2</a></strong>: The fine-tuning techniques need feedback data to be effective</p>
+<p>This chapter shows you how to collect the data that powers continuous improvement.</p>
 <p>In this chapter, we'll explore how to build effective feedback mechanisms that turn your RAG application from a static implementation into a continuously improving system. This approach creates a feedback loop where user interactions provide the data needed to make the system better.</p>
 <div class="admonition warning">
 <p class="admonition-title">The Invisible Feedback Problem</p>
-</div>
 <p>Many RAG implementations hide feedback mechanisms in obscure UI locations or use generic "thumbs up/down" buttons that provide minimal insight. Users interact with these minimal feedback options less than 0.1% of the time, providing insufficient data for meaningful improvements.</p>
+</div>
 <p>In my consulting practice, I've seen that simply changing the copy from generic "How did we do?" to specific "Did we answer your question?" can increase feedback rates by <strong>5x</strong>. Well-designed feedback mechanisms don't just collect more data—they accelerate your entire improvement cycle, allowing you to fine-tune 5x faster and deploy with greater confidence.</p>
 <div class="admonition success">
 <p class="admonition-title">Effective Feedback Copy</p>
+<p><strong>5x Better Feedback Rates:</strong>
+- ✅ "Did we answer your question?"
+- ✅ "Was this information helpful?"
+- ✅ "Did we take the correct actions?" (for action-oriented systems)
+- ❌ "How did we do?"
+- ❌ "Rate your experience"</p>
+<p><strong>Context-Specific Examples:</strong>
+- For coding assistants: "Did this code solve your problem?"
+- For customer support: "Did we resolve your issue?"
+- For research tools: "Did you find what you were looking for?"
+- For data analysis: "Were these insights useful?"</p>
+<p>The key is focusing on the core value proposition rather than generic satisfaction.</p>
 </div>
-<p><strong>5x Better Feedback Rates:</strong> - ✅ "Did we answer your question?" - ✅ "Was this information helpful?" - ✅ "Did we take the correct actions?" (for action-oriented systems) - ❌ "How did we do?" - ❌ "Rate your experience"</p>
-<div class="highlight"><pre><span></span><code>**Context-Specific Examples:**
-- For coding assistants: &quot;Did this code solve your problem?&quot;
-- For customer support: &quot;Did we resolve your issue?&quot;
-- For research tools: &quot;Did you find what you were looking for?&quot;
-- For data analysis: &quot;Were these insights useful?&quot;
-
-The key is focusing on the core value proposition rather than generic satisfaction.
-</code></pre></div>
 <p>Feedback collection is the lifeblood of systematic RAG improvement. Without it, you're flying blind—unable to identify which aspects of your system are performing well and which need enhancement. Robust feedback mechanisms tell you:</p>
 <ul>
 <li>Which queries your retrieval system handles poorly</li>
@@ -3310,8 +3314,8 @@ The key is focusing on the core value proposition rather than generic satisfacti
 <p>The first principle of effective feedback collection is visibility. Your feedback mechanisms should be prominent and engaging, not hidden in dropdown menus or settings pages. Users should encounter feedback options naturally as part of their interaction flow.</p>
 <div class="admonition example">
 <p class="admonition-title">High-Visibility Feedback UI</p>
-</div>
 <p>Consider the difference between these two approaches:</p>
+</div>
 <div class="highlight"><pre><span></span><code>**Low Visibility:** A small thumbs up/down icon in the corner of the response
 
 **High Visibility:**
@@ -3339,9 +3343,7 @@ If they click &quot;Somewhat&quot; or &quot;No&quot;:
 <li><strong>Email Follow-ups:</strong> Send follow-up emails asking for feedback on recent sessions</li>
 </ol>
 <p>Each approach has advantages for different use cases. The key is to make feedback collection a natural part of the user experience rather than an afterthought.</p>
-<div class="admonition tip">
-<p class="admonition-title">Streaming and Perceived Performance</p>
-</div>
+<p><strong>Streaming and Perceived Performance:</strong></p>
 <p><strong>The Claude Progress Counter Effect:</strong></p>
 <div class="highlight"><pre><span></span><code>Claude&#39;s implementation of progress counters during response generation serves multiple purposes:
 - Shows &quot;thinking&quot; progress (e.g., &quot;Analyzing document 3 of 5...&quot;)
@@ -3373,9 +3375,7 @@ This pattern makes feedback feel like a natural continuation of the interaction 
 <li>Report back on improvements during regular sync meetings</li>
 </ol>
 <p>This approach creates transparency and builds trust by showing customers that their feedback drives real improvements. This method typically increases feedback by 5x compared to traditional forms, while also improving customer retention.</p>
-<div class="admonition example">
-<p class="admonition-title">Enterprise Feedback Pattern</p>
-</div>
+<p><strong>Enterprise Feedback Pattern:</strong></p>
 <p><strong>The Most Effective B2B Feedback Flow:</strong></p>
 <div class="highlight"><pre><span></span><code>1. **In-App Collection:**
    - Binary feedback (thumbs up/down) for quick signals
@@ -3400,24 +3400,24 @@ This pattern makes feedback feel like a natural continuation of the interaction 
 
 This pattern has helped teams achieve 30-40% feedback rates in enterprise settings.
 </code></pre></div>
-<div class="admonition example">
-<p class="admonition-title">Slack Webhook Integration Code</p>
-</div>
-<p><img alt="Example of Slack feedback integration showing code that posts negative feedback to a Slack channel" src="../../assets/images/slack-feedback-code.png" /></p>
+<p><strong>Slack Webhook Integration Code:</strong>
+<img alt="Example of Slack feedback integration showing code that posts negative feedback to a Slack channel" src="../../assets/images/slack-feedback-code.png" /></p>
 <div class="highlight"><pre><span></span><code>*This code integrates feedback collection with Slack, automatically posting negative feedback to a shared channel for immediate visibility and follow-up.*
 </code></pre></div>
-<div class="admonition example">
-<p class="admonition-title">Feedback UI Implementation</p>
-</div>
-<p><img alt="Example of feedback UI implementation showing a Python function that generates HTML with feedback buttons" src="../../assets/images/feedback-ui-code.png" /></p>
+<p><strong>Feedback UI Implementation:</strong>
+<img alt="Example of feedback UI implementation showing a Python function that generates HTML with feedback buttons" src="../../assets/images/feedback-ui-code.png" /></p>
 <div class="highlight"><pre><span></span><code>*This code renders a response with prominent feedback options, automatically showing a more detailed form if the user indicates the response wasn&#39;t fully helpful.*
 </code></pre></div>
 <h2 id="segmented-feedback-make-it-actionable">Segmented Feedback: Make It Actionable</h2>
 <p>Generic feedback like thumbs up/down provides minimal insight for improvement. To make feedback truly actionable, segment it into specific aspects of your RAG pipeline.</p>
 <div class="admonition warning">
 <p class="admonition-title">The Problem with Generic Feedback</p>
+<p>A simple "thumbs down" could mean many things:
+- The retrieval system found irrelevant documents
+- The generation step produced inaccurate information
+- The answer was technically correct but poorly formatted
+- The answer was too brief or too verbose</p>
 </div>
-<p>A simple "thumbs down" could mean many things: - The retrieval system found irrelevant documents - The generation step produced inaccurate information - The answer was technically correct but poorly formatted - The answer was too brief or too verbose</p>
 <div class="highlight"><pre><span></span><code>Without knowing which aspect failed, you can&#39;t target improvements effectively.
 </code></pre></div>
 <p>Segmented feedback isolates specific parts of your RAG pipeline, helping you identify exactly where issues occur. Instead of asking "Was this helpful?" consider questions like:</p>
@@ -3449,10 +3449,8 @@ This pattern has helped teams achieve 30-40% feedback rates in enterprise settin
 <li><strong>Scrolling behavior:</strong> Whether users read the entire response or just skim</li>
 </ul>
 <p>By tracking these behaviors, you can identify patterns that indicate success or failure even when users don't provide explicit feedback.</p>
-<div class="admonition example">
-<p class="admonition-title">Implicit Feedback Collection</p>
-</div>
-<p><img alt="Example of JavaScript code for tracking implicit feedback signals" src="../../assets/images/implicit-feedback-code.png" /></p>
+<p><strong>Implicit Feedback Collection:</strong>
+<img alt="Example of JavaScript code for tracking implicit feedback signals" src="../../assets/images/implicit-feedback-code.png" /></p>
 <div class="highlight"><pre><span></span><code>*This code tracks key implicit feedback signals including query refinements, citation clicks, and engagement time, providing valuable data even when users don&#39;t explicitly rate responses.*
 </code></pre></div>
 <h3 id="mining-hard-negatives-from-user-behavior">Mining Hard Negatives from User Behavior</h3>
@@ -3475,10 +3473,8 @@ This pattern has helped teams achieve 30-40% feedback rates in enterprise settin
 <p><strong>Regeneration After Removal</strong>: Allow users to remove citation sources and then regenerate the answer. Documents removed before regeneration become strong hard negative candidates for that query.</p>
 </li>
 </ol>
-<div class="admonition example">
-<p class="admonition-title">Interactive Citations UI</p>
-</div>
-<p><img alt="Example of interactive citations UI with buttons to mark sources as relevant or irrelevant" src="../../assets/images/interactive-citations-ui.png" /></p>
+<p><strong>Interactive Citations UI:</strong>
+<img alt="Example of interactive citations UI with buttons to mark sources as relevant or irrelevant" src="../../assets/images/interactive-citations-ui.png" /></p>
 <div class="highlight"><pre><span></span><code>*This UI allows users to mark specific citations as relevant or irrelevant and regenerate answers, creating valuable training data for improving retrieval quality.*
 
 Remember: Hard negatives are the most valuable training examples for improving retrieval quality through embedding model fine-tuning. While standard negatives (completely unrelated documents) are easy to find, hard negatives (seemingly relevant but actually unhelpful documents) are rare and therefore extremely valuable for training.
@@ -3501,10 +3497,8 @@ Remember: Hard negatives are the most valuable training examples for improving r
 <li><strong>Inline highlights</strong>: Highlighting portions of text with the source documents they came from</li>
 <li><strong>Visual PDF overlays</strong>: For document-based applications, highlighting the exact location in a PDF</li>
 </ol>
-<div class="admonition example">
-<p class="admonition-title">Markdown-based Citation Implementation</p>
-</div>
-<p><img alt="Example of JavaScript code for implementing markdown-based citations with feedback options" src="../../assets/images/citations-implementation.png" /></p>
+<p><strong>Markdown-based Citation Implementation:</strong>
+<img alt="Example of JavaScript code for implementing markdown-based citations with feedback options" src="../../assets/images/citations-implementation.png" /></p>
 <div class="highlight"><pre><span></span><code>*This code formats responses with clickable citations and builds a reference list that includes feedback options for each source, helping collect document-level relevance signals.*
 </code></pre></div>
 <h3 id="advanced-visualization-with-bounding-boxes">Advanced Visualization with Bounding Boxes</h3>
@@ -3517,15 +3511,12 @@ Remember: Hard negatives are the most valuable training examples for improving r
 </ol>
 <p>This approach is particularly valuable for PDF-heavy domains like legal, medical, or technical documentation where source verification is critical.</p>
 <h3 id="citation-implementation-patterns">Citation Implementation Patterns</h3>
-<div class="admonition quote">
-<p class="admonition-title">Preventing Hallucinations</p>
-</div>
-<p>Skylar Payne emphasizes that hallucination remains a critical challenge, especially in sensitive domains. His most effective approach: "Force the LLM to provide inline citations, validate that each citation exists in the retrieved documents, and semantically validate that each citation actually supports the claimed content."</p>
+<blockquote>
+<p><strong>Preventing Hallucinations:</strong> Skylar Payne emphasizes that hallucination remains a critical challenge, especially in sensitive domains. His most effective approach: "Force the LLM to provide inline citations, validate that each citation exists in the retrieved documents, and semantically validate that each citation actually supports the claimed content."</p>
+</blockquote>
 <div class="highlight"><pre><span></span><code>This is particularly critical for healthcare, legal, and financial applications. [See more anti-patterns to avoid →](../talks/rag-antipatterns-skylar-payne.md)
 </code></pre></div>
-<div class="admonition info">
-<p class="admonition-title">XML-Based Citation Pattern</p>
-</div>
+<p><strong>XML-Based Citation Pattern:</strong></p>
 <p><strong>The Most Robust Approach:</strong></p>
 <div class="highlight"><pre><span></span><code>Instead of relying on markdown links or footnotes, use XML tags with start/end word anchoring:
 
@@ -3548,9 +3539,7 @@ includes a penalty fee of $10,000&lt;/cite&gt;.
 </code></pre></div>
 <h2 id="building-a-feedback-driven-roadmap">Building a Feedback-Driven Roadmap</h2>
 <p>The ultimate goal of feedback collection is to guide your improvement roadmap. Rather than making enhancement decisions based on intuition or technical interest, you can prioritize based on user needs revealed through feedback.</p>
-<div class="admonition info">
-<p class="admonition-title">Production Monitoring: Beyond Basic Feedback</p>
-</div>
+<p><strong>Production Monitoring: Beyond Basic Feedback</strong></p>
 <p>Ben Hylak and Sidhant Bendre highlight a critical insight: "There's no exception being thrown when something goes wrong - the model simply produces an inadequate response." Their approach combines implicit signals (user frustration, task failures) with explicit signals (ratings, regenerations) to identify issues that traditional monitoring misses. The Trellis framework they present helps organize the "infinite chaos" of AI outputs into controllable segments. <a href="../../talks/online-evals-production-monitoring-ben-sidhant/">Learn about production monitoring strategies →</a></p>
 <p>A feedback-driven roadmap:</p>
 <ol>
@@ -3573,7 +3562,10 @@ includes a penalty fee of $10,000&lt;/cite&gt;.
 </ol>
 <p>Remember that small UX changes can make enormous differences in feedback collection rates. The most successful RAG applications aren't always those with the most sophisticated technology—they're the ones that most effectively learn from their users.</p>
 <p>In the next chapter, we'll explore how to reduce perceived latency through streaming and progressive responses, building on the feedback foundation to create a more engaging user experience.</p>
-<p>!!! info "How This Chapter Connects Forward" - <strong><a href="../chapter4-2/">Chapter 4</a></strong>: The feedback you collect enables query segmentation and analysis - <strong><a href="../chapter5-1/">Chapter 5</a></strong>: User behavior patterns reveal which specialized retrievers to build - <strong><a href="../chapter6-2/">Chapter 6</a></strong>: Feedback on router decisions improves tool selection</p>
+<p><strong>How This Chapter Connects Forward:</strong>
+- <strong><a href="../chapter4-2/">Chapter 4</a></strong>: The feedback you collect enables query segmentation and analysis
+- <strong><a href="../chapter5-1/">Chapter 5</a></strong>: User behavior patterns reveal which specialized retrievers to build
+- <strong><a href="../chapter6-2/">Chapter 6</a></strong>: Feedback on router decisions improves tool selection</p>
 <h2 id="reflection-questions">Reflection Questions</h2>
 <ol>
 <li>
@@ -3617,16 +3609,16 @@ includes a penalty fee of $10,000&lt;/cite&gt;.
 </ol>
 <div class="admonition success">
 <p class="admonition-title">Quick Implementation Wins</p>
-</div>
 <p><strong>Start with these patterns:</strong></p>
-<div class="highlight"><pre><span></span><code>1. **Change your feedback copy** to &quot;Did we answer your question?&quot; (immediate 5x improvement)
-2. **Add streaming progress indicators** to reduce perceived latency by 45%
-3. **Implement XML-based citations** for robust source tracking
-4. **Set up Slack webhooks** for enterprise customers
-5. **Track query refinements** as implicit negative signals
-
-These changes can typically be implemented in 1-2 sprints and deliver immediate, measurable improvements.
-</code></pre></div>
+<ol>
+<li><strong>Change your feedback copy</strong> to "Did we answer your question?" (immediate 5x improvement)</li>
+<li><strong>Add streaming progress indicators</strong> to reduce perceived latency by 45%</li>
+<li><strong>Implement XML-based citations</strong> for robust source tracking</li>
+<li><strong>Set up Slack webhooks</strong> for enterprise customers</li>
+<li><strong>Track query refinements</strong> as implicit negative signals</li>
+</ol>
+<p>These changes can typically be implemented in 1-2 sprints and deliver immediate, measurable improvements.</p>
+</div>
 <h2 id="additional-resources">Additional Resources</h2>
 <ol>
 <li>
