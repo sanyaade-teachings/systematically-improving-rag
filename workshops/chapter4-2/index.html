@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
     
     
       
@@ -917,26 +917,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#understanding-topics-and-capabilities" class="md-nav__link">
+  <a href="#topics-vs-capabilities-two-ways-to-slice-your-data" class="md-nav__link">
     <span class="md-ellipsis">
-      Understanding Topics and Capabilities
+      Topics vs Capabilities: Two Ways to Slice Your Data
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Understanding Topics and Capabilities">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#topics-vs-capabilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      Topics vs. Capabilities
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2868,26 +2853,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#understanding-topics-and-capabilities" class="md-nav__link">
+  <a href="#topics-vs-capabilities-two-ways-to-slice-your-data" class="md-nav__link">
     <span class="md-ellipsis">
-      Understanding Topics and Capabilities
+      Topics vs Capabilities: Two Ways to Slice Your Data
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Understanding Topics and Capabilities">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#topics-vs-capabilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      Topics vs. Capabilities
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2908,58 +2878,20 @@
 
 
 <h1 id="prioritization-and-roadmapping-from-insights-to-action">Prioritization and Roadmapping: From Insights to Action</h1>
-<div class="admonition abstract">
-<p class="admonition-title">Chapter Overview</p>
-</div>
-<p>This chapter explores how to turn query pattern insights into strategic action plans:</p>
-<div class="highlight"><pre><span></span><code>- Identifying high-value, high-impact opportunities
-- Applying prioritization frameworks to improvement decisions
-- Creating a strategic roadmap for RAG enhancement
-- Analyzing failure modes and root causes
-- Building systems that continuously improve
-</code></pre></div>
-<h2 id="understanding-topics-and-capabilities">Understanding Topics and Capabilities</h2>
-<p>Before diving into prioritization techniques, let's clarify two key concepts: topics and capabilities.</p>
-<p>!!! note "Foundations from Earlier Chapters" - <strong><a href="../chapter1/">Chapter 1</a></strong>: The evaluation metrics help identify performance by topic - <strong><a href="../chapter3-1/">Chapter 3</a></strong>: Feedback collection provides the raw data for analysis</p>
-<div class="highlight"><pre><span></span><code>This chapter shows you how to turn that data into actionable insights.
-</code></pre></div>
-<h3 id="topics-vs-capabilities">Topics vs. Capabilities</h3>
-<div class="admonition info">
-<p class="admonition-title">Key Definitions</p>
-</div>
-<p>- <strong>Topics</strong>: Subject matter domains in your content (e.g., "account management," "pricing," "technical specifications")
-- <strong>Capabilities</strong>: Functional abilities your system should have (e.g., "summarization," "comparison," "step-by-step instructions")</p>
-<p>These concepts provide two complementary lenses for analyzing user needs. When I work with teams to improve their RAG systems, I often find they conflate these two dimensions, leading to unfocused efforts. A topic tells you what users are asking about, while a capability tells you what they want the system to do with that information.</p>
-<div class="highlight"><pre><span></span><code>graph LR
-    A[User Queries] --&gt; B[Topic Analysis]
-    A --&gt; C[Capability Analysis]
-
-    B --&gt; D[What users ask about]
-    C --&gt; E[What users want the system to do]
-
-    D --&gt; F[Content Coverage Improvements]
-    E --&gt; G[Functional Improvements]
-
-    F --&gt; H[System Enhancements]
-    G --&gt; H
-</code></pre></div>
-<p>I remember working with a healthcare company whose initial analysis simply categorized queries by medical conditions. While helpful, this one-dimensional view missed critical patterns. When we added capability analysis, we discovered that queries about common conditions like diabetes primarily needed comparison capabilities ("How does medication A compare to B?"), while queries about rare conditions needed comprehensive summarization ("Give me an overview of treatment options for X"). This insight completely changed their improvement priorities.</p>
-<div class="admonition example">
-<p class="admonition-title">Topics vs. Capabilities Example</p>
-</div>
-<p>Consider these user queries in a product support RAG:</p>
-<div class="highlight"><pre><span></span><code>- &quot;How do I reset my password?&quot;
-  - **Topic**: Account security
-  - **Capability**: Step-by-step instructions
-
-- &quot;Compare the Pro and Basic plans&quot;
-  - **Topic**: Pricing/Plans
-  - **Capability**: Comparison
-
-- &quot;Summarize the latest product release notes&quot;
-  - **Topic**: Product updates
-  - **Capability**: Summarization
-</code></pre></div>
+<h2 id="topics-vs-capabilities-two-ways-to-slice-your-data">Topics vs Capabilities: Two Ways to Slice Your Data</h2>
+<p>You need to understand the difference between topics and capabilities before you can prioritize anything. Most teams mix these up and end up wasting time.</p>
+<p><strong>Topics</strong> = What users ask about (account management, pricing, technical specs)</p>
+<p><strong>Capabilities</strong> = What they want the system to do (summarize, compare, explain step-by-step)</p>
+<p>Most teams only look at topics. That's a mistake. You need both dimensions to understand what's actually broken.</p>
+<p>Example from a healthcare company I worked with: They were categorizing everything by medical condition. Seemed logical, right? But when we added capability analysis, we found:
+- Common conditions (diabetes, hypertension): Users mostly wanted comparisons between treatments
+- Rare conditions: Users needed comprehensive summaries of all options</p>
+<p>Same topic dimension, completely different capability needs. This changed everything about what we built next.</p>
+<p>Here's what this looks like in practice:</p>
+<p>"How do I reset my password?" → Topic: Account security, Capability: Step-by-step instructions</p>
+<p>"Compare the Pro and Basic plans" → Topic: Pricing, Capability: Comparison</p>
+<p>"Summarize the latest release notes" → Topic: Product updates, Capability: Summarization</p>
+<p>See how the same capability (like comparison) can apply to different topics? And the same topic can need different capabilities? That's why you need both.</p>
 <hr />
 <p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
 <script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
@@ -3080,7 +3012,7 @@
       <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       

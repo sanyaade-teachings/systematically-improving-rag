@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
     
     
       
@@ -3442,18 +3442,6 @@
 
 
 <h1 id="converting-evaluations-into-training-data-for-fine-tuning">Converting Evaluations into Training Data for Fine-Tuning</h1>
-<div class="admonition abstract">
-<p class="admonition-title">Chapter Overview</p>
-</div>
-<div class="highlight"><pre><span></span><code>This chapter explores how to transform evaluation data into valuable training assets:
-
-- Converting evaluation examples into few-shot prompts
-- Understanding the limitations of generic embeddings
-- Creating datasets for fine-tuning retrieval models
-- Learning how contrastive learning improves embeddings
-- Testing approaches systematically
-- Building a roadmap for continuous improvement
-</code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Key Insight</p>
 <p><strong>If you're not fine-tuning, you're Blockbuster, not Netflix.</strong> The goal isn't to fine-tune language models (which are expensive and complex), but to fine-tune embedding models that move toward your specific data distributions and improve retrieval, not generation.</p>
@@ -3471,80 +3459,76 @@
 This dramatic difference explains why embedding fine-tuning should be your first focus.
 </code></pre></div>
 <h2 id="introduction">Introduction</h2>
-<p>In the previous chapter, we established our evaluation framework and generated synthetic data to benchmark our RAG system. Now we take the crucial next step in our improvement journey: transforming these evaluations into practical training assets that can significantly boost performance.</p>
+<p>In the previous chapter, we set up evaluation and generated synthetic data to benchmark our RAG system. Now let's talk about how to actually use that data to improve things.</p>
 <p>!!! note "Prerequisites from Previous Chapters" - <strong><a href="../chapter0/">Chapter 0</a></strong>: Understanding the improvement flywheel concept - <strong><a href="../chapter1/">Chapter 1</a></strong>: Creating evaluation datasets with synthetic data</p>
 <div class="highlight"><pre><span></span><code>The evaluation examples from Chapter 1 become your training data in this chapter.
 </code></pre></div>
-<p>This chapter bridges the gap between evaluation and production improvement, showing how the same datasets serve both purposes. The fundamental philosophy here is simple but powerful: <strong>the data you collect for evaluation should never go to waste</strong>. Every question, every relevance judgment, and every performance insight can—and should—be repurposed to train your system.</p>
+<p>Here's the thing: the data you collect for evaluation shouldn't just sit there. Every question, every relevance judgment, every piece of feedback—it can all be used to improve your system. That's what we'll cover here.</p>
 <div class="admonition quote">
 <p class="admonition-title">Key Philosophy</p>
 </div>
 <p>"Every evaluation example is a potential training example. The data flywheel transforms what begins as a handful of evaluation examples into few-shot prompts, then into training datasets for fine-tuning embedding models and re-rankers."</p>
-<p>As we'll explore, this transformation process follows a natural progression. What begins as a handful of evaluation examples can evolve into few-shot prompts, then into training datasets for fine-tuning embedding models and re-rankers. This is the essence of the RAG improvement flywheel—data collected for one purpose fuels improvements across your entire system.</p>
+<p>The process is straightforward: you start with evaluation examples, turn them into few-shot prompts, then eventually use them to fine-tune your embedding models and re-rankers. Each step builds on the last.</p>
 <h2 id="why-generic-embeddings-fall-short">Why Generic Embeddings Fall Short</h2>
-<p>Before we dive into the transformation process, we need to understand a fundamental challenge in RAG applications: generic embeddings from third-party providers often fall short for specialized applications. This isn't because they're poorly designed—in fact, models like OpenAI's embeddings are remarkably capable. The issue is that they're designed to serve every possible use case, which means they serve no specific use case perfectly.</p>
+<p>Let me start with something that trips up a lot of teams: generic embeddings from providers like OpenAI often don't work great for specialized applications. They're good models, don't get me wrong. But they're built to handle everything, which means they don't handle your specific thing particularly well.</p>
 <div class="admonition warning">
 <p class="admonition-title">Limitation of Generic Models</p>
 </div>
-<p>Generic embedding models inherit assumptions about what "similarity" means—assumptions that may not align with your specific needs. They don't know:</p>
-<div class="highlight"><pre><span></span><code>1. The specific datasets they were trained on
-2. The objective function that defined success during training
-3. The weighting given to different types of similarity
-4. The trade-offs made to accommodate diverse use cases
-</code></pre></div>
+<p>Generic embedding models come with built-in assumptions about what "similarity" means. You don't know:</p>
+<ul>
+<li>What data they were trained on</li>
+<li>How they defined "success" during training</li>
+<li>How they weighted different types of similarity</li>
+<li>What trade-offs they made to work for everyone</li>
+</ul>
 <h3 id="the-elusive-nature-of-similarity">The Elusive Nature of "Similarity"</h3>
-<p>At the heart of embedding models is a deceptively simple concept: they convert text (or other data) into numerical vectors that capture semantic meaning. The assumption is that items with similar meanings will have vectors that are close to each other when measured by cosine similarity or other distance metrics.</p>
+<p>Embedding models seem simple enough: they turn text into numbers, and similar text should end up with similar numbers. Measure the distance between vectors and you know how similar things are.</p>
 <div class="admonition example">
 <p class="admonition-title">Domain-Specific Similarity</p>
 </div>
-<div class="highlight"><pre><span></span><code>In e-commerce, what does it mean for two products to be similar? Are they similar because they&#39;re substitutes (different brands of red shirts) or complements (a shirt and matching pants)?
-
-For music recommendations, are songs similar because they share the same genre, appear in the same playlists, or appeal to the same listeners? For a &quot;add more songs to this playlist&quot; feature, similarity might mean stylistic consistency, but for a discovery feature like Spotify&#39;s Discovery Weekly, it could mean something entirely different.
-
-Perhaps the clearest example comes from dating apps. Should &quot;I love coffee&quot; and &quot;I hate coffee&quot; be considered similar or different? From a linguistic perspective, they&#39;re opposites. From a topic perspective, both profiles care enough about beverages to mention them prominently.
-
-But there are many other interpretations: Maybe they&#39;re different because coffee lovers wouldn&#39;t date coffee haters. Maybe they&#39;re similar because both indicate people with strong food preferences (foodies). Maybe they&#39;re complementary because as long as one loves tea and one loves coffee, they&#39;ll actually get along well.
-
-The key insight: **What matters for a dating app isn&#39;t textual similarity at all—it&#39;s whether two profiles predict if users will like each other.** This relationship isn&#39;t captured in generic embedding models trained on web text.
-</code></pre></div>
-<p>But here's the problem: "similarity" is poorly defined when we move beyond general language understanding. The correct answer isn't universal—it depends entirely on your application's objectives.</p>
+<p>In e-commerce, what makes two products "similar"? Are they substitutes (different brands of red shirts) or complements (a shirt and matching pants)? Depends on what you're trying to do.</p>
+<p>Take music recommendations. Songs might be similar because they're the same genre, or because they show up in the same playlists, or because the same people like them. If you're adding songs to a playlist, you want one kind of similarity. If you're building Spotify's Discovery Weekly, you want something else entirely.</p>
+<p>My favorite example is from dating apps. Should "I love coffee" and "I hate coffee" be similar? Linguistically, they're opposites. But both people care about coffee enough to mention it. Maybe opposites don't attract when it comes to beverages. Or maybe they do if one person likes tea and the other likes coffee.</p>
+<p>Here's the thing: <strong>What actually matters for a dating app is whether two people will like each other</strong>, not whether their profiles use similar words. Generic embeddings trained on web text have no idea about this.</p>
+<p>The problem is that "similarity" means different things in different contexts. There's no universal right answer—it depends on what you're trying to do.</p>
 <h3 id="the-hidden-assumptions-in-provider-models">The Hidden Assumptions in Provider Models</h3>
-<p>When you use embedding models from providers like OpenAI, Cohere, or others, you're inheriting a set of assumptions about what "similarity" means—assumptions that may not align with your specific needs.</p>
+<p>When you use OpenAI or Cohere's embeddings, you're stuck with their definition of similarity. It might not match what you need.</p>
 <div class="admonition example">
 <p class="admonition-title">Legal Document Search Failure</p>
 </div>
 <p>One memorable case involved a legal document search application. The generic embeddings performed reasonably well for finding factual information but struggled with procedural questions. The embeddings didn't adequately capture the relationships between legal procedures and their applications—a specific type of similarity vital to legal professionals but not emphasized in general-purpose training data.</p>
-<p>The key insight here isn't that provider embeddings are bad—they're actually remarkable technical achievements. It's that their definition of similarity is generic, while your application needs are specific. And as we'll see, fine-tuning with your own data bridges this gap.</p>
+<p>Provider embeddings aren't bad—they're great for general use. But your application probably isn't general. Fine-tuning with your own data fixes this mismatch.</p>
 <h2 id="from-evaluation-to-few-shot-examples">From Evaluation to Few-Shot Examples</h2>
-<p>While fine-tuning embedding models can dramatically improve retrieval, we can often make significant improvements using a simpler approach: few-shot examples. Let's explore how to transform evaluation examples into effective few-shot prompts.</p>
+<p>Before jumping into fine-tuning, there's something simpler you can try: few-shot examples. Let's talk about turning your evaluation data into prompts that actually work.</p>
 <h3 id="the-power-of-examples-in-context">The Power of Examples in Context</h3>
-<p>Few-shot learning has emerged as one of the most powerful techniques for guiding language model behavior. Rather than fine-tuning the model itself (which requires specialized infrastructure and significant data), few-shot learning simply includes examples within the prompt.</p>
+<p>Few-shot learning is pretty straightforward: instead of retraining the model, you just show it some examples in the prompt. No special infrastructure needed.</p>
 <div class="admonition info">
 <p class="admonition-title">How Few-Shot Learning Works</p>
 </div>
 <p>When you provide a language model with examples of how to respond to similar queries, you activate its ability to recognize patterns and apply them to new inputs. It's like showing a human a few examples of a task before asking them to perform it themselves—no specialized training required, just clear demonstrations.</p>
-<p>This approach is particularly powerful for RAG applications because different query types often need different retrieval and response strategies. A few well-chosen examples can help the model recognize the current query type and apply the appropriate strategy.</p>
+<p>This works especially well for RAG because different types of questions need different approaches. Show the model a few examples and it figures out what kind of question it's dealing with.</p>
 <h3 id="selecting-the-right-examples">Selecting the Right Examples</h3>
-<p>Not all evaluation examples make good few-shot prompts. I've seen teams simply grab random examples from their evaluation set, only to find the model's performance actually decreased. The problem wasn't the model—it was the examples.</p>
+<p>Don't just grab random examples from your evaluation set. I've watched teams do this and make their model worse. You need to pick the right examples.</p>
 <div class="admonition tip">
 <p class="admonition-title">Characteristics of Good Examples</p>
 </div>
-<p>The best examples for few-shot learning share several characteristics:</p>
-<div class="highlight"><pre><span></span><code>1. They represent common query patterns your users actually use
-2. They demonstrate clear, step-by-step reasoning paths
-3. They cover a diverse range of topics or question types
-4. They avoid being too specific or unusual
-</code></pre></div>
+<p>Good few-shot examples:</p>
+<ul>
+<li>Match the queries your users actually ask</li>
+<li>Show clear reasoning steps</li>
+<li>Cover different types of questions</li>
+<li>Aren't too weird or specific</li>
+</ul>
 <p>Remember the synthetic data generation techniques we explored in Chapter 1? You can use those same methods to generate examples specifically for few-shot learning. The key difference is that for few-shot examples, you need not just questions and answers, but also the reasoning process that connects them.</p>
 <h3 id="building-your-few-shot-library">Building Your Few-Shot Library</h3>
-<p>Creating a comprehensive few-shot example library is a strategic investment that pays dividends across your entire RAG application. I recommend organizing your examples into a structured library:</p>
+<p>Build yourself a library of few-shot examples. Here's how I do it:</p>
 <ol>
-<li>Start by filtering your evaluation data for the highest-quality examples</li>
-<li>Group them by query type or intent (factual questions, how-to guides, comparisons, etc.)</li>
-<li>Select representative examples from each group</li>
-<li>Format them consistently for inclusion in prompts</li>
-<li>Test their effectiveness with your RAG pipeline</li>
-<li>Iterate and refine based on performance</li>
+<li>Filter your evaluation data for the best examples</li>
+<li>Group them by type (factual questions, how-to guides, comparisons)</li>
+<li>Pick representative examples from each group</li>
+<li>Format them consistently</li>
+<li>Test them with your actual pipeline</li>
+<li>Keep the ones that work, toss the ones that don't</li>
 </ol>
 <div class="admonition example">
 <p class="admonition-title">Structured Few-Shot Prompt</p>
@@ -3565,33 +3549,33 @@ The key insight: **What matters for a dating app isn&#39;t textual similarity at
     Question: [Actual User Query]
     ```
 
-This organized approach helps you maintain and evolve your example library as your application grows. You can track which examples work best for different situations, rotate examples to prevent overfitting, and continuously refine based on user interactions.
+Having an organized library means you can track what works, swap out examples that get stale, and keep improving based on what your users actually do.
 
 ## Practical Implementation: Building the Data Flywheel for Fine-Tuning
 
-While few-shot learning is powerful, fine-tuning your embedding models can create even more dramatic improvements in retrieval quality. The challenge is getting enough high-quality data to make fine-tuning worthwhile. This is where the concept of the data flywheel becomes crucial.
+Few-shot examples are great, but fine-tuning your embeddings is where you see real improvements. The trick is getting enough good data to make it worth doing.
 
 ### Starting the Flywheel
 
-I often tell teams that building a RAG application is like practicing martial arts—there&#39;s a &quot;wax on, wax off&quot; aspect to it. You start with a small set of examples that serve as your evaluation benchmarks. As you collect more data, those examples become few-shot prompts. And as your dataset grows further, it becomes training data for fine-tuning.
+Building a RAG system is iterative. You start with a few examples for evaluation. Those become few-shot prompts. Eventually you have enough for fine-tuning. Each stage builds on the last.
 
 !!! info &quot;Data Collection Milestones&quot; - With 20 examples, you can build basic evaluation benchmarks - With 30 examples, you can create effective few-shot prompts - With 1000+ examples, you can fine-tune your retrieval models
 
-The beauty of this approach is that you&#39;re continuously repurposing the same data for increasingly sophisticated improvements. Each stage builds on the previous one, creating a virtuous cycle of enhancement.
+What&#39;s nice is you&#39;re not throwing away data—you&#39;re using it differently as you get more of it.
 
 !!! warning &quot;Start Collecting Now&quot;
 You need to start collecting the right data now, even if you&#39;re not ready to fine-tune yet. The sooner you start logging relevant user interactions, the sooner you&#39;ll reach the critical mass needed for fine-tuning.
 
 ### What Data Should You Log?
 
-For RAG applications, the most valuable data points to collect include:
+For RAG, here&#39;s what you should be logging:
 
-1. The actual queries users make
-2. Which retrieved chunks were cited in the final responses
-3. Which responses received positive feedback (and which didn&#39;t)
-4. Which queries required refinement or follow-up
+1. What users actually ask
+2. Which chunks got used in responses
+3. Which responses users liked (or didn&#39;t)
+4. Which queries needed follow-ups
 
-These signals help you understand which documents are truly relevant to which queries—the fundamental relationship you&#39;re trying to capture in fine-tuned embeddings.
+This tells you what&#39;s actually relevant to what—which is exactly what you need for fine-tuning.
 
 !!! example &quot;Domain-Specific Relevance Signals&quot;
 For other applications, the relevance signals will differ:
@@ -3607,18 +3591,18 @@ I&#39;ve seen numerous companies hire machine learning engineers to fine-tune em
 
 **The most important action you can take today is to start logging relevance data**, even if you&#39;re not ready to hire ML specialists or begin fine-tuning. Save the top 20-40 chunks for each query and use an LLM to mark relevance if human annotation isn&#39;t feasible. This data will be invaluable when you&#39;re ready to improve your models.
 
-I worked with one team that built a beautiful RAG application for internal documents but failed to implement any feedback collection mechanisms. Six months later, when they wanted to fine-tune their embeddings, they had to start from scratch with synthetic data because they had no record of which retrieved documents had actually been helpful to users. Don&#39;t make this mistake—plan your data collection from day one.
+I watched a team build a great RAG app for internal docs. Six months later they wanted to fine-tune embeddings but had zero data because they never set up logging. Had to start from scratch with synthetic data. Don&#39;t do this.
 
 !!! success &quot;Small Datasets Can Make Big Differences&quot;
 The team at Sentence Transformers has demonstrated that even with just 6,000 examples, you can achieve 6-10% better performance. With 40 minutes of fine-tuning on a laptop, you can create significant lifetime value for your application. This makes fine-tuning embedding models accessible even to teams without massive datasets or specialized infrastructure.
 
 ## Understanding Contrastive Learning for Embeddings
 
-To understand how fine-tuning works for embedding models, we need to explore contrastive learning—the technique that powers most modern embedding fine-tuning approaches.
+Let&#39;s talk about how fine-tuning actually works. Most approaches use something called contrastive learning.
 
 ### Learning Through Contrasts
 
-Contrastive learning is based on a simple but powerful idea: learning what things are similar by understanding what things are different. Rather than trying to predict absolute values, contrastive learning focuses on relative relationships.
+Contrastive learning is simple: you teach the model what&#39;s similar by showing it what&#39;s different. It&#39;s all about relationships, not absolute values.
 
 !!! info &quot;Triplet Structure&quot;
 The most common implementation uses a structure called a triplet, which consists of:
@@ -3636,7 +3620,7 @@ graph LR
     P -.- |&quot;Pull Closer&quot;| A
     N -.- |&quot;Push Away&quot;| A
 </code></pre></div>
-<p>This approach is particularly effective for embedding models because it directly optimizes for the distance relationships we care about in retrieval tasks.</p>
+<p>This works great for embeddings because you're directly optimizing the distance relationships that matter for retrieval.</p>
 <h3 id="creating-effective-triplets-for-rag">Creating Effective Triplets for RAG</h3>
 <p>For RAG applications, there are several natural ways to create triplet datasets:</p>
 <ul>
@@ -3672,7 +3656,7 @@ If Document A is cited in the response while Document B isn&#39;t, we can create
 </code></pre></div>
 <p>Through many such examples, the model learns that queries about side effects should be closer to texts describing adverse reactions than to texts describing indications or administration instructions.</p>
 <h3 id="the-challenge-of-hard-negatives-and-how-ux-can-help">The Challenge of Hard Negatives and How UX Can Help</h3>
-<p>The triplet example above introduces an important subtlety in contrastive learning. Notice that our negative example, "Medication X is used to treat high blood pressure," is still about the same medication—it's just not about side effects. This makes it what we call a "hard negative"—it's similar to what we're looking for in some ways (same medication) but different in crucial aspects (not about side effects).</p>
+<p>Notice something subtle in that example? The negative document is still about the same medication—just not about side effects. That's a "hard negative": similar in some ways, different in the ways that matter.</p>
 <div class="admonition example">
 <p class="admonition-title">Hard Negative Mining Strategies</p>
 </div>
@@ -3700,10 +3684,9 @@ If Document A is cited in the response while Document B isn&#39;t, we can create
 <div class="admonition info">
 <p class="admonition-title">Value of Hard Negatives</p>
 </div>
-<p>Hard negatives are much more valuable for training than "easy negatives." If instead our negative example had been about car maintenance—completely unrelated to medications—the model wouldn't learn much from this contrast because it's already obvious that car maintenance isn't relevant to medication side effects.</p>
-<div class="highlight"><pre><span></span><code>The truly challenging distinction—and the one that will improve our retrieval quality the most—is teaching the model to distinguish between different aspects of related topics.
-</code></pre></div>
-<p>This is where hard negative mining becomes crucial. Hard negative mining is the process of finding negative examples that are challenging but instructive for the model.</p>
+<p>Hard negatives are way more valuable than easy ones. If your negative example was about car maintenance instead of medications, the model learns nothing—it already knows car maintenance isn't relevant to medication side effects.</p>
+<p>The real challenge is teaching the model to distinguish between different aspects of the same topic. That's where you get actual improvements.</p>
+<p>That's why hard negative mining matters—finding examples that are tricky but teachable.</p>
 <div class="admonition tip">
 <p class="admonition-title">Designing UX for Better Training Data</p>
 </div>
@@ -3718,11 +3701,11 @@ If Document A is cited in the response while Document B isn&#39;t, we can create
 
 5. **Query reformulation tracking**: When a user modifies their query slightly and gets better results, you can pair the original query with documents from the improved results to create training pairs
 </code></pre></div>
-<p>One particularly effective approach I've seen involved a "more like this" button next to helpful documents. This not only improved the immediate user experience but also created clear signals about which documents were semantically related in the users' mental models—relationships that might not be obvious from text content alone.</p>
+<p>One team I worked with added a "more like this" button next to helpful documents. Users loved it, and it gave us perfect training data about what users actually consider similar—which often wasn't what we expected from just reading the text.</p>
 <h2 id="the-power-of-re-rankers-in-rag-systems">The Power of Re-Rankers in RAG Systems</h2>
-<p>While embedding models are the workhorses of retrieval, re-rankers provide an additional layer of refinement that can significantly improve results. Where embedding models (also called bi-encoders) encode queries and documents separately, re-rankers (cross-encoders) process them together to make more nuanced relevance judgments.</p>
+<p>Embeddings do the heavy lifting in retrieval, but re-rankers add polish. The difference: embeddings process queries and documents separately, while re-rankers look at them together and can make smarter decisions.</p>
 <h3 id="bi-encoders-vs-cross-encoders-understanding-the-trade-offs">Bi-Encoders vs. Cross-Encoders: Understanding the Trade-offs</h3>
-<p>The fundamental trade-off between embedding models and re-rankers is between speed and accuracy:</p>
+<p>Here's the trade-off: embeddings are fast, re-rankers are accurate.</p>
 <div class="admonition info">
 <p class="admonition-title">Model Comparison</p>
 </div>
@@ -3734,25 +3717,25 @@ If Document A is cited in the response while Document B isn&#39;t, we can create
 - Work best for re-ranking a smaller set of candidates
 - Examples include Cohere Rerank, monoT5
 </code></pre></div>
-<p>This complementary relationship makes them perfect partners in a two-stage retrieval process: use embeddings to quickly find candidate documents, then use a re-ranker to sort them more accurately.</p>
+<p>Use them together: embeddings grab candidates quickly, re-ranker sorts them properly.</p>
 <div class="admonition example">
 <p class="admonition-title">Re-Ranker Success Story</p>
 </div>
 <p>One team I worked with was debating whether to invest in fine-tuning their embeddings or implementing a re-ranker. When they tested both approaches, they found that fine-tuning embeddings improved recall from 65% to 78%, while adding a re-ranker (even without fine-tuning) improved it to 82%. Combining both approaches pushed performance to 91%—a transformative improvement from where they started.</p>
 <h3 id="creating-training-data-for-re-rankers">Creating Training Data for Re-Rankers</h3>
-<p>Re-rankers benefit from more nuanced training data than binary relevant/not-relevant labels. While you can start with the same data you use for embedding fine-tuning, consider enriching it with graded relevance scores:</p>
+<p>Re-rankers work better with graded relevance scores instead of just yes/no labels. Try this:</p>
 <ol>
-<li>Create pairs of (query, document) with relevance scores on a scale (often 0-5)</li>
-<li>Include a range of scores to help the model learn gradations of relevance</li>
-<li>Train the model to predict these more nuanced relevance scores</li>
+<li>Score query-document pairs on a scale (like 0-5)</li>
+<li>Include the full range of scores</li>
+<li>Train the model to predict these scores</li>
 </ol>
 <div class="admonition example">
 <p class="admonition-title">Graded Relevance Example</p>
 </div>
 <p><code>json     {       "query": "How do I reset my password?",       "documents": [         {"text": "Step-by-step password reset guide", "score": 5},         {"text": "General account management information", "score": 3},         {"text": "Creating a strong password", "score": 2},         {"text": "About our company", "score": 0}       ]     }</code></p>
-<p>This richer data helps the re-ranker understand not just what's relevant versus irrelevant, but also what's highly relevant versus somewhat relevant—a distinction that can significantly improve user experience.</p>
+<p>This helps the re-ranker understand degrees of relevance, not just binary yes/no. Users notice the difference.</p>
 <h2 id="practical-fine-tuning-workflow">Practical Fine-Tuning Workflow</h2>
-<p>Based on extensive office hours discussions, here's a practical workflow for fine-tuning embedding models that consistently delivers results.</p>
+<p>Here's a workflow that actually works, based on what I've seen teams do successfully.</p>
 <h3 id="when-to-fine-tune-embeddings">When to Fine-Tune Embeddings</h3>
 <p>Fine-tune your embedding models when:</p>
 <ol>
@@ -3823,42 +3806,44 @@ If Document A is cited in the response while Document B isn&#39;t, we can create
 </div>
 <p>"It's probably a bad idea to train your own language model, but it's a very good idea to train your own embedding model. The infrastructure requirements are minimal, the process is well-understood, and the improvements are substantial for domain-specific applications."</p>
 <h2 id="testing-different-approaches-systematically">Testing Different Approaches Systematically</h2>
-<p>With your evaluation framework from Chapter 1 and your growing dataset of examples, you can now test various improvement approaches systematically. This experimental mindset is critical to making steady progress.</p>
+<p>Now that you have evaluation data from Chapter 1, you can start testing different approaches. You need to be systematic about this.</p>
 <div class="admonition tip">
 <p class="admonition-title">Good Experimentation Practices</p>
 </div>
-<p>Good experimentation requires discipline and structure. For each test:</p>
-<div class="highlight"><pre><span></span><code>1. Form a clear hypothesis: &quot;Implementing a re-ranker will improve recall@10 by at least 15%&quot;
-2. Define success criteria before running the experiment
-3. Isolate a single variable whenever possible
-4. Measure impact on your established metrics
-5. Document both successful and unsuccessful experiments
-</code></pre></div>
-<p>Common experiments worth running include:</p>
+<p>For each experiment:</p>
 <ol>
-<li><strong>Embedding model comparisons</strong>: Test different models (OpenAI, Cohere, open-source alternatives)</li>
-<li><strong>Chunking strategy variations</strong>: Try different chunk sizes and overlap percentages</li>
-<li><strong>Retrieval method comparisons</strong>: Compare lexical, semantic, and hybrid approaches</li>
-<li><strong>Re-ranking impact assessment</strong>: Measure the effect of adding a re-ranker</li>
-<li><strong>Few-shot prompt variations</strong>: Test different examples and formats</li>
+<li>Have a clear hypothesis ("Re-ranker will improve recall@10 by 15%")</li>
+<li>Define success before you start</li>
+<li>Change one thing at a time</li>
+<li>Measure using your established metrics</li>
+<li>Document what worked AND what didn't</li>
+</ol>
+<p>Experiments worth trying:</p>
+<ol>
+<li>Different embedding models (OpenAI vs Cohere vs open-source)</li>
+<li>Chunk sizes and overlaps</li>
+<li>Lexical vs semantic vs hybrid retrieval</li>
+<li>Adding a re-ranker</li>
+<li>Different few-shot examples</li>
 </ol>
 <div class="admonition example">
 <p class="admonition-title">Debate Resolved Through Data</p>
 </div>
 <p>One team I worked with spent weeks debating which embedding model to use, with different team members advocating for their preferred option. Instead of continuing the debate, they implemented a simple experiment: they indexed their documents with three different embedding models and measured recall on their evaluation set. The results settled the debate in hours, not weeks, and the team moved forward with data-backed confidence.</p>
-<p>This cyclical process creates a data-driven improvement flywheel that continuously enhances your system's performance.</p>
+<p>Keep running experiments, measuring results, and iterating. That's how you get better.</p>
 <h2 id="building-a-roadmap-for-continuous-improvement">Building a Roadmap for Continuous Improvement</h2>
-<p>Based on your experimental results, you can now build a roadmap for ongoing improvements. This isn't just about technical enhancements—it's about creating a systematic process for evolution.</p>
+<p>Once you've run some experiments, you can plan what to do next. It's not just about adding features—it's about having a process.</p>
 <div class="admonition tip">
 <p class="admonition-title">Prioritization Framework</p>
 </div>
-<p>When deciding what to improve next, consider multiple factors:</p>
-<div class="highlight"><pre><span></span><code>1. **Impact**: Which changes will most dramatically improve key metrics?
-2. **Effort**: How much work is required to implement each change?
-3. **Dependencies**: Which improvements depend on others being completed first?
-4. **Risk**: What is the chance of negative side effects or regressions?
-</code></pre></div>
-<p>I've found that impact/effort prioritization works particularly well for RAG improvements. Plot potential enhancements on a simple 2x2 grid with impact on one axis and effort on the other, then focus on high-impact, low-effort improvements first. These "quick wins" build momentum and demonstrate value while you prepare for more complex enhancements.</p>
+<p>When deciding what to work on:</p>
+<ul>
+<li><strong>Impact</strong>: What will move the needle most?</li>
+<li><strong>Effort</strong>: How much work is it?</li>
+<li><strong>Dependencies</strong>: What needs to be done first?</li>
+<li><strong>Risk</strong>: What could break?</li>
+</ul>
+<p>I like using a simple impact/effort grid. High impact, low effort goes first—those quick wins build momentum while you're working on the harder stuff.</p>
 <div class="admonition example">
 <p class="admonition-title">Prioritization in Action</p>
 </div>
@@ -3934,33 +3919,33 @@ For large datasets or production workloads:
 5. What experiments could you run to test your hypotheses about improving retrieval quality?
 </code></pre></div>
 <h2 id="conclusion-and-next-steps">Conclusion and Next Steps</h2>
-<p>In this chapter, we've explored how to transform evaluation data into valuable training assets:</p>
+<p>We covered a lot:</p>
 <ol>
-<li>Converting evaluation examples into few-shot prompts</li>
-<li>Understanding the limitations of generic embeddings</li>
-<li>Creating datasets for fine-tuning retrieval models</li>
-<li>Learning how contrastive learning improves embeddings</li>
-<li>Testing approaches systematically</li>
-<li>Building a roadmap for continuous improvement</li>
+<li>Turning evaluation examples into few-shot prompts</li>
+<li>Why generic embeddings often aren't good enough</li>
+<li>Building datasets for fine-tuning</li>
+<li>How contrastive learning works</li>
+<li>Running systematic experiments</li>
+<li>Planning improvements</li>
 </ol>
-<p>The key insight to take away is that data collection and repurposing form the foundation of systematic RAG improvement. Every question, every piece of feedback, and every evaluation can fuel your improvement flywheel if properly captured and utilized.</p>
-<p>As we've seen, fine-tuning embedding models can dramatically improve the performance of your RAG application. Unlike fine-tuning large language models (which requires significant expertise and resources), embedding model fine-tuning is accessible to teams of all sizes, with demonstrated benefits from as few as 6,000 examples.</p>
+<p>The main takeaway: don't waste your data. Every question, every bit of feedback, every evaluation—it can all make your system better if you capture and use it.</p>
+<p>Fine-tuning embeddings really works, and unlike fine-tuning LLMs, it's actually doable. You can see real improvements with just 6,000 examples.</p>
 <div class="admonition tip">
 <p class="admonition-title">What's Coming Next</p>
 </div>
 <p>In <a href="../chapter3-1/">Chapter 3</a>, we'll dive into deployment strategies, user feedback collection methods, and how to use this feedback to further refine your RAG application. We'll explore practical techniques for gathering implicit and explicit feedback, designing effective user interfaces, and closing the loop between user interactions and system improvements.</p>
 <p>!!! info "Related Concepts in Other Chapters" - <strong>Query Segmentation</strong> (<a href="../chapter4-2/">Chapter 4</a>): Learn how to identify which queries benefit most from fine-tuning - <strong>Specialized Models</strong> (<a href="../chapter5-1/">Chapter 5</a>): See how fine-tuned embeddings power specialized retrievers - <strong>Router Optimization</strong> (<a href="../chapter6-2/">Chapter 6</a>): Understand how fine-tuning improves query routing</p>
 <h2 id="summary">Summary</h2>
-<p>The data flywheel approach transforms what begins as evaluation into training assets that continuously improve your RAG system. By understanding the limitations of generic models, implementing few-shot examples, and preparing for fine-tuning, you create a foundation for ongoing enhancement.</p>
-<p>The most critical actions to take immediately are:</p>
+<p>Start with evaluation, add few-shot examples, work up to fine-tuning. Each step makes the next one better.</p>
+<p>Do these things now:</p>
 <ol>
-<li><strong>Start logging relevancy data today</strong> - Even if you're not ready to fine-tune yet</li>
-<li><strong>Define similarity for your domain</strong> - What makes two items "similar" in your specific context?</li>
-<li><strong>Implement feedback mechanisms</strong> - Design your UX to collect the signals you'll need later</li>
-<li><strong>Build your few-shot library</strong> - Begin transforming evaluation data into prompt examples</li>
-<li><strong>Test domain-specific models</strong> - Explore fine-tuned models for your specific application area</li>
+<li><strong>Start logging data</strong> - Even if you're not ready to use it</li>
+<li><strong>Define what "similar" means for you</strong> - It's different for every application</li>
+<li><strong>Add feedback mechanisms</strong> - You'll need the data later</li>
+<li><strong>Build your few-shot library</strong> - Start small, grow over time</li>
+<li><strong>Try domain-specific models</strong> - They might already solve your problem</li>
 </ol>
-<p>This systematic approach ensures that every piece of data you collect contributes to a cycle of improvement that makes your application increasingly effective for your specific use case. When done properly, this flywheel effect touches every part of your system—improving clustering, topic modeling, and all other aspects we'll explore in the coming weeks.</p>
+<p>If you do this right, every piece of data makes your system better. The improvements compound over time and affect everything—clustering, topic modeling, all of it.</p>
 <hr />
 <p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
 <script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
@@ -4081,7 +4066,7 @@ For large datasets or production workloads:
       <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       

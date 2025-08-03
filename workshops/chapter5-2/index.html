@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
     
     
       
@@ -1025,13 +1025,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#specialized-approaches-for-different-modalities" class="md-nav__link">
+  <a href="#handling-different-content-types" class="md-nav__link">
     <span class="md-ellipsis">
-      Specialized Approaches for Different Modalities
+      Handling Different Content Types
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Specialized Approaches for Different Modalities">
+    <nav class="md-nav" aria-label="Handling Different Content Types">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1079,6 +1079,15 @@
   <a href="#bringing-it-all-together" class="md-nav__link">
     <span class="md-ellipsis">
       Bringing It All Together
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Points
     </span>
   </a>
   
@@ -2904,13 +2913,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#specialized-approaches-for-different-modalities" class="md-nav__link">
+  <a href="#handling-different-content-types" class="md-nav__link">
     <span class="md-ellipsis">
-      Specialized Approaches for Different Modalities
+      Handling Different Content Types
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Specialized Approaches for Different Modalities">
+    <nav class="md-nav" aria-label="Handling Different Content Types">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2963,6 +2972,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#key-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Points
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2980,48 +2998,28 @@
 
 
 <h1 id="implementing-multimodal-search-specialized-retrieval-techniques">Implementing Multimodal Search: Specialized Retrieval Techniques</h1>
-<div class="admonition abstract">
-<p class="admonition-title">Chapter Overview</p>
-</div>
-<div class="highlight"><pre><span></span><code>This part explores the practical implementation of specialized retrieval techniques:
-
-- Implementing strategies for document, image, and table retrieval
-- Building effective SQL generation capabilities
-- Creating rich descriptions for non-text content
-- Combining specialized retrievers into a cohesive system
-</code></pre></div>
-<h2 id="specialized-approaches-for-different-modalities">Specialized Approaches for Different Modalities</h2>
-<p>Different types of content demand different retrieval strategies. Let's explore approaches for three common modalities: documents, images, and tables.</p>
+<h2 id="handling-different-content-types">Handling Different Content Types</h2>
+<p>Let's get into the specifics of how to handle documents, images, and tables. Each needs its own approach.</p>
 <h3 id="document-search-beyond-basic-chunking">Document Search: Beyond Basic Chunking</h3>
-<p>For document retrieval, the foundation remains chunking documents with appropriate metadata and applying both lexical and semantic search techniques. However, several refinements can dramatically improve performance:</p>
-<div class="admonition tip">
-<p class="admonition-title">Page-Level Chunking for Documentation</p>
-</div>
-<p><strong>When to Use Page-Level Chunks:</strong> - Documentation websites (respect page boundaries) - User manuals (preserve context) - Legal documents (maintain clause integrity) - Academic papers (keep sections together)</p>
-<div class="highlight"><pre><span></span><code>**Why It Works:**
-- Documentation is carefully organized by authors
-- Semantic boundaries align with page/section breaks
-- Users expect complete answers from single pages
-- Reduces context fragmentation
+<p>Document retrieval still relies on chunking and search, but here are some tweaks that actually help:</p>
+<p><strong>Page-Level Chunking</strong></p>
+<p>For documentation, respect the original page boundaries. The authors already organized the content logically—don't break it up arbitrarily.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Instead of arbitrary chunking:</span>
+<span class="n">chunks</span> <span class="o">=</span> <span class="n">chunk_by_tokens</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
 
-**Implementation:**
-```python
-# Instead of arbitrary chunking:
-chunks = chunk_by_tokens(doc, size=800)
-
-# Use page-aware chunking:
-chunks = chunk_by_pages(doc,
-                      respect_sections=True,
-                      min_size=200,
-                      max_size=2000)
-```
+<span class="c1"># Use page-aware chunking:</span>
+<span class="n">chunks</span> <span class="o">=</span> <span class="n">chunk_by_pages</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span>
+                      <span class="n">respect_sections</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                      <span class="n">min_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+                      <span class="n">max_size</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
 </code></pre></div>
-<div class="admonition info">
-<p class="admonition-title">Advanced Document Retrieval Techniques</p>
-</div>
-<p>- <strong>Contextual Retrieval</strong>: Rather than using fixed chunks, dynamically rewrite or expand chunks based on the query context. This creates "query-aware" text representations that better match user intent.</p>
-<p>- <strong>Hybrid Retrieval Signals</strong>: Combine semantic similarity with other signals like recency, authority, and citation frequency to create a more nuanced ranking function.</p>
-<p>- <strong>Multi-stage Retrieval</strong>: Implement a cascade of increasingly sophisticated (and computationally expensive) retrieval and ranking steps, filtering out irrelevant content at each stage.</p>
+<p>This works especially well for documentation sites, user manuals, legal documents, and academic papers where context matters.</p>
+<p>Some other document retrieval techniques that work:</p>
+<ul>
+<li><strong>Contextual Retrieval</strong>: Rewrite chunks to include context from the full document. Makes isolated chunks understandable.</li>
+<li><strong>Hybrid Signals</strong>: Mix semantic similarity with recency, authority, citation counts. Don't rely on embeddings alone.</li>
+<li><strong>Multi-stage Retrieval</strong>: Start cheap and fast, then get more sophisticated. Filter garbage early.</li>
+</ul>
 <div class="admonition example">
 <p class="admonition-title">Contextual Retrieval Implementation</p>
 </div>
@@ -3067,13 +3065,11 @@ management software due to frequent crashes.&quot;
     D --&gt; E[Dynamic Expansion]
     E --&gt; F[Final Context]
 </code></pre></div>
-<p>The result is a document retrieval system that might return different types of content depending on the query:</p>
-<ul>
-<li>For some queries, concise summaries of key information</li>
-<li>For others, entire documents leveraging long-context models</li>
-<li>For yet others, specific text chunks or structured data extracts</li>
-</ul>
-<p>This flexibility allows the system to balance precision, recall, and presentation based on what best serves each query.</p>
+<p>Your document retrieval ends up returning different things for different queries:
+- Quick summaries for overview questions
+- Full documents when context matters
+- Specific chunks for precise information</p>
+<p>The system adapts to what the query actually needs.</p>
 <div class="admonition example">
 <p class="admonition-title">Document Processor with Contextual Retrieval</p>
 </div>
@@ -3147,7 +3143,7 @@ def contextual_retrieval(query: str, document_store: List[Dict[str, Any]]) -&gt;
 ```
 </code></pre></div>
 <h3 id="image-search-bridging-visual-and-textual-understanding">Image Search: Bridging Visual and Textual Understanding</h3>
-<p>Image search presents unique challenges. Visual language models were trained primarily on captioning data, creating a potential mismatch between how queries are phrased and how images are represented.</p>
+<p>Image search is tricky because vision models were trained on captions, but people don't search using caption-style language.</p>
 <div class="admonition warning">
 <p class="admonition-title">Embedding Spaces Mismatch</p>
 </div>
@@ -3156,7 +3152,7 @@ def contextual_retrieval(query: str, document_store: List[Dict[str, Any]]) -&gt;
 <p class="admonition-title">When to Use Vision Language Models</p>
 </div>
 <p>According to Adit from Reducto, VLMs excel at "things that traditional OCR has always been horrible at" - handwriting, charts, figures, and diagrams. However, for clean structured information, traditional CV provides better precision and token efficiency. <a href="../../talks/reducto-docs-adit/">Learn about their hybrid approach →</a></p>
-<p>To bridge this gap, more sophisticated image summarization techniques are essential:</p>
+<p>Here's how to make image search actually work:</p>
 <div class="admonition example">
 <p class="admonition-title">Advanced Image Description Techniques</p>
 </div>
@@ -3170,10 +3166,7 @@ def contextual_retrieval(query: str, document_store: List[Dict[str, Any]]) -&gt;
 *Optimal*: &quot;Analyze this image comprehensively as if you were making it searchable in a database. Include details about the people, their emotions, the environment, lighting, objects, potential context, and any visible text. Consider how someone might search for this specific image.&quot;
 → Result: &quot;This dramatic image shows two business professionals in a tense negotiation across a polished conference table in a corporate boardroom with floor-to-ceiling windows overlooking a city skyline. The older man in a gray suit appears frustrated, gesturing emphatically with papers in hand, while the younger woman in a black blazer maintains a composed but firm expression. Multiple financial reports and what appears to be a contract are spread across the table. The scene is captured in natural lighting with dramatic shadows, suggesting a high-stakes discussion or disagreement over business terms.&quot;
 </code></pre></div>
-<div class="admonition quote">
-<p class="admonition-title">From Industry Experience</p>
-</div>
-<p>"We found that the difference between basic image descriptions and optimized ones led to a 40% increase in successful retrievals. The key was training our team to create prompts that anticipated the vocabulary users would actually employ in their searches."</p>
+<p>In practice, the difference between basic and good image descriptions meant 40% better retrieval rates. The trick was figuring out how users actually describe what they're looking for.</p>
 <div class="admonition info">
 <p class="admonition-title">Additional Image Enhancement Approaches</p>
 </div>
@@ -3232,38 +3225,27 @@ Generate a comprehensive description optimized for retrieval.</p>
 </code></pre></div>
 <p>The enhanced description dramatically improves retrieval capability when troubleshooting specific defects or components.</p>
 <h3 id="table-search-structured-data-in-context">Table Search: Structured Data in Context</h3>
-<p>Tables present a dual challenge: they contain structured data but exist within unstructured contexts. Two main approaches prove effective:</p>
+<p>Tables are weird—they're structured data living in unstructured documents. Here's what works:</p>
 <div class="admonition quote">
 <p class="admonition-title">Expert Insight: Document Parsing Challenges</p>
 </div>
 <p>Adit from Reducto emphasizes that tables are particularly challenging: "Tables are particularly challenging because they represent two-dimensional associations of data that can be formatted in countless ways. The failures are often subtle - a model might extract what appears to be a valid table but silently drop rows, columns, or individual values."</p>
 <div class="highlight"><pre><span></span><code>For production-ready table extraction, consider specialized tools. [Learn more about document ingestion best practices →](../talks/reducto-docs-adit.md)
 </code></pre></div>
-<div class="admonition success">
-<p class="admonition-title">Markdown Tables: The Surprising Winner</p>
-</div>
-<p><strong>Performance Comparison for Table Lookups:</strong> - Markdown tables: 85% accuracy - CSV format: 73% accuracy - JSON format: 71% accuracy<br />
- - YAML format: 69% accuracy</p>
-<div class="highlight"><pre><span></span><code>**Why Markdown Tables Win:**
-- Visual structure helps LLMs understand relationships
-- Column alignment provides natural grouping
-- Headers are clearly distinguished
-- Less token overhead than JSON/YAML
-
-**Best Practices:**
-```markdown
-| Product ID | Name           | Price  | Stock |
+<p>Turns out markdown tables work best for LLM lookup:
+- Markdown: 85% accuracy
+- CSV: 73% accuracy<br />
+- JSON: 71% accuracy
+- YAML: 69% accuracy</p>
+<p>Why? The visual structure helps LLMs understand relationships better than nested JSON.</p>
+<div class="highlight"><pre><span></span><code>| Product ID | Name           | Price  | Stock |
 |------------|----------------|--------|-------|
 | SKU-001    | Widget Pro     | $29.99 | 150   |
 | SKU-002    | Widget Basic   | $19.99 | 0     |
 | SKU-003    | Widget Premium | $49.99 | 75    |
-```
-
-**Pro Tip:** For financial data, beware of spacing in numbers!
-- Bad: `1 234 567` (tokenizes as three separate numbers)
-- Good: `1234567` or `1,234,567`
-
-!!! info &quot;Production Table Extraction&quot;
+</code></pre></div>
+<p>Watch out for number formatting: <code>1 234 567</code> tokenizes as three separate numbers. Use <code>1234567</code> or <code>1,234,567</code> instead.</p>
+<div class="highlight"><pre><span></span><code>!!! info &quot;Production Table Extraction&quot;
     Reducto&#39;s approach to complex tables includes:
     - Using HTML for tables with 3+ merged cells
     - Traditional CV for initial extraction, VLMs for correction
@@ -3271,20 +3253,11 @@ Generate a comprehensive description optimized for retrieval.</p>
 
     See their [complete document parsing methodology](../talks/reducto-docs-adit.md) for handling PDFs, Excel files, and complex layouts.
 </code></pre></div>
-<div class="admonition info">
-<p class="admonition-title">Table Retrieval Approaches</p>
-</div>
-<p><strong>Approach 1: Table as Document</strong></p>
-<div class="highlight"><pre><span></span><code>For finding specific rows or comparing data across tables, chunk the table (preserving headers) and apply semantic search techniques. Generate summaries that capture the table&#39;s purpose and key insights to improve retrieval.
-
-This works well for questions like &quot;Which product had the highest Q3 sales?&quot; or &quot;Show me all tables with warranty information.&quot;
-
-**Approach 2: Table as Database**
-
-For detailed data analysis, treat tables as queryable databases. The key challenge becomes identifying which table(s) to query for a given question.
-
-Standardize schemas using CREATE TABLE statements or table descriptions, then build semantic search against these table representations. Include sample data when possible to help clarify the table&#39;s contents.
-</code></pre></div>
+<p>Two ways to handle table retrieval:</p>
+<p><strong>Approach 1: Table as Document</strong>
+Chunk the table (keep headers!) and use semantic search. Add summaries about what the table contains. Good for questions like "Which product had the highest Q3 sales?"</p>
+<p><strong>Approach 2: Table as Database</strong><br />
+Treat tables as mini-databases. The challenge is figuring out which table has the answer. Create schema descriptions and sample queries, then search against those.</p>
 <div class="admonition example">
 <p class="admonition-title">Table Processor Implementation</p>
 </div>
@@ -3372,20 +3345,13 @@ import pandas as pd</p>
 <li>Generate SQL queries or pandas code for more complex analysis</li>
 </ul>
 <h2 id="sql-query-generation-a-case-study-in-capability-building">SQL Query Generation: A Case Study in Capability Building</h2>
-<p>SQL query generation exemplifies many of the principles we've discussed. It involves both an inventory challenge (finding the right tables) and a capability challenge (writing effective queries).</p>
-<div class="admonition warning">
-<p class="admonition-title">Limitations of Direct Translation</p>
-</div>
-<p>The classical approach—training a model to translate natural language directly to SQL—often struggles with complex schemas and business-specific query patterns. The limitations become especially apparent with:</p>
-<div class="highlight"><pre><span></span><code>- Complex schemas with dozens or hundreds of tables
-- Business-specific definitions of common terms like &quot;active user&quot; or &quot;revenue&quot;
-- SQL patterns that require specific business rules like fiscal calendars
-- Performance considerations that require specific optimization techniques
-</code></pre></div>
-<div class="admonition quote">
-<p class="admonition-title">Data Science Experience</p>
-</div>
-<p>"We spent months trying to fine-tune models for SQL generation with limited success. Once we switched to retrieving exemplar queries from our analytics repository, accuracy jumped by 30% overnight."</p>
+<p>SQL generation shows all these principles in action. You need to find the right tables AND write good queries.</p>
+<p>The old approach of "just translate natural language to SQL" breaks down fast when you have:
+- Schemas with hundreds of tables
+- Business-specific definitions (what's an "active user" anyway?)
+- Custom business rules (fiscal calendars, revenue recognition)
+- Performance requirements that need specific query patterns</p>
+<p>We wasted months trying to fine-tune SQL generation models. Then we started retrieving similar queries from our analytics repository instead. Accuracy jumped 30% immediately.</p>
 <div class="admonition example">
 <p class="admonition-title">RAPTOR: Recursive Summarization for Long Documents</p>
 </div>
@@ -3433,25 +3399,21 @@ This approach handles the &quot;information spread&quot; problem where relevant 
 <p>Colin Flaherty's experience building top-performing coding agents reveals that sometimes simple tools like grep and find can outperform embedding-based retrieval: "The agent's persistence compensated for less sophisticated tools." However, he notes this works best for: - Highly structured content like code - Small to medium-sized repositories - When distinctive keywords exist</p>
 <div class="highlight"><pre><span></span><code>For larger codebases or unstructured content, embeddings become essential. [Explore agentic retrieval patterns →](../talks/colin-rag-agents.md)
 </code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">RAG Playbook for SQL Generation</p>
-</div>
-<p>A more effective strategy applies our RAG playbook:</p>
-<div class="highlight"><pre><span></span><code>1. **Build an inventory of tables and their descriptions** - Create detailed schema documentation including sample data
-2. **Create synthetic questions targeting this inventory** - Generate diverse questions that test different joining patterns
-3. **Measure retrieval performance for table selection** - Evaluate if the right tables are being identified
-4. **Collect exemplar SQL queries demonstrating important capabilities** - Curate a library of well-written, optimized queries
-5. **Include these exemplars when generating new queries** - Dynamically retrieve and include relevant examples
-</code></pre></div>
-<p>This approach addresses a fundamental challenge in SQL generation: the same question can be interpreted in multiple valid ways. Consider "Show me month-over-month revenue growth":</p>
-<ul>
-<li>Does "month" mean calendar month or a 28-day period?</li>
-<li>Should weekends be excluded for B2B applications?</li>
-<li>Is "growth" absolute or percentage?</li>
-<li>Should the calculation include or exclude certain revenue types?</li>
-<li>Should the comparison use the same day of month or the last day of each month?</li>
-<li>How should partial months be handled when the current month isn't complete?</li>
-</ul>
+<p>Here's what actually works for SQL generation:</p>
+<ol>
+<li>Document all your tables with good descriptions and sample data</li>
+<li>Generate test questions for different query patterns</li>
+<li>Check if you're finding the right tables</li>
+<li>Build a library of good SQL queries that work</li>
+<li>Retrieve and include relevant examples when generating new queries</li>
+</ol>
+<p>The same question can mean different things. Take "Show me month-over-month revenue growth":
+- Calendar month or 28-day period?
+- Include weekends or not?
+- Absolute dollars or percentage?
+- All revenue or just recurring?
+- Same day comparison or month-end?
+- What about partial months?</p>
 <div class="admonition example">
 <p class="admonition-title">Subjective Query Interpretations</p>
 </div>
@@ -3460,17 +3422,26 @@ This approach handles the &quot;information spread&quot; problem where relevant 
 | "Monthly active users" | Users who logged in during calendar month | Users who performed an action in last 30 days | Users who made a purchase in billing cycle |
 | "Revenue by region" | Geographic sales regions | Product categories | Customer segments |
 | "Top performing products" | Highest revenue | Highest profit margin | Highest growth rate |</p>
-<p>Without business context, even the most advanced models can only guess. By including relevant exemplars that demonstrate how your organization typically answers such questions, you guide the model toward your preferred interpretations.</p>
+<p>Models can't read your mind about business logic. But if you show them examples of how your company calculates these things, they'll follow that pattern.</p>
 <h2 id="bringing-it-all-together">Bringing It All Together</h2>
-<p>As we prepare for our final session on routing and unified systems, let's solidify the key insights from today's exploration of multimodal RAG:</p>
-<div class="admonition abstract">
-<p class="admonition-title">Key Takeaways</p>
-</div>
-<p>1. <strong>The power of specialization</strong>: Building dedicated retrieval mechanisms for different content types and query patterns consistently outperforms monolithic approaches. Specialized models solving specific problems will outperform general-purpose solutions.</p>
-<p>2. <strong>Two complementary strategies</strong>: Extract structured data from unstructured content, or create synthetic text chunks that point to source data—both serve as AI-powered materialized views that optimize retrievability.</p>
-<p>3. <strong>Measurement drives improvement</strong>: Use precision and recall at both the router and retriever levels to identify your system's limiting factors using the formula: P(finding correct data) = P(selecting correct retriever) × P(finding correct data | correct retriever).</p>
-<p>4. <strong>Modality-specific optimizations</strong>: Each content type requires tailored approaches, from contextual retrieval for documents to rich descriptions for images to exemplar-based generation for SQL.</p>
-<p>5. <strong>Organizational benefits</strong>: Beyond performance, specialized indices enable division of labor, incremental improvement, and targeted innovation without disrupting the entire system.</p>
+<h2 id="key-points">Key Points</h2>
+<ol>
+<li>
+<p><strong>Specialized beats general</strong>: Different content types need different retrieval approaches. One-size-fits-all doesn't work.</p>
+</li>
+<li>
+<p><strong>Two main strategies</strong>: Extract structure from text, or create searchable text from structured data. Both are just AI-processed views of your data.</p>
+</li>
+<li>
+<p><strong>Measure both levels</strong>: Track if you're picking the right retriever AND if that retriever works well. The formula helps debug problems.</p>
+</li>
+<li>
+<p><strong>Each type is different</strong>: Documents need context, images need rich descriptions, tables need schema understanding, SQL needs examples.</p>
+</li>
+<li>
+<p><strong>It's also about org structure</strong>: Specialized indices let teams work independently and improve their piece without breaking everything.</p>
+</li>
+</ol>
 <div class="admonition tip">
 <p class="admonition-title">Combining Lexical and Semantic Search</p>
 </div>
@@ -3520,19 +3491,14 @@ def hybrid_search(query, k=10):
     H --&gt; I[Response Generator]
     I --&gt; J[User Response]
 </code></pre></div>
-<p>The beauty of this framework is its recursive nature. The same playbook—synthetic data generation, segmentation, capability identification—applies whether you're building your first retrieval system or your fifth specialized index.</p>
-<div class="admonition tip">
-<p class="admonition-title">Implementation Strategy</p>
-</div>
-<p>1. <strong>Start small</strong>: Begin with one or two specialized retrievers for your highest-impact query types
-2. <strong>Measure relentlessly</strong>: Track performance metrics for each retriever and overall system
-3. <strong>Expand incrementally</strong>: Add new retrievers as you identify segments that would benefit
-4. <strong>Refine continuously</strong>: Use user feedback to improve both routing and retrieval quality
-5. <strong>Optimize alignment</strong>: Ensure that your synthetic text and metadata extraction aligns with actual user query patterns</p>
-<div class="admonition quote">
-<p class="admonition-title">Engineering Insight</p>
-</div>
-<p>"No matter how much better AI gets, you'll always be responsible for retrieval. Understanding what to retrieve and how to retrieve it remains the core challenge even as models become more capable."</p>
+<p>The nice thing is this approach scales. The same process—generate test data, segment queries, identify capabilities—works whether you're building your first retriever or your tenth.</p>
+<p><strong>How to actually do this:</strong>
+1. Start with one or two specialized retrievers for your most common queries
+2. Measure everything—individual retriever performance and overall success
+3. Add new retrievers when you find query types that aren't working well
+4. Keep improving based on what users actually search for
+5. Make sure your synthetic text matches how people really ask questions</p>
+<p>Remember: even as AI gets better, you're still responsible for retrieval. Knowing what to retrieve and how to find it is the hard part, not generating the final answer.</p>
 <div class="admonition tip">
 <p class="admonition-title">Cross-Reference</p>
 </div>
@@ -3657,7 +3623,7 @@ def hybrid_search(query, k=10):
       <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
