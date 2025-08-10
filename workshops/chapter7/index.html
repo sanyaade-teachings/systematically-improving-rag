@@ -16,11 +16,11 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>Production Considerations - Systematically Improving RAG Applications</title>
+        <title>7. Production Considerations - Systematically Improving RAG Applications</title>
       
     
     
@@ -75,7 +75,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#production-considerations" class="md-skip">
+        <a href="#production-considerations-making-it-real" class="md-skip">
           Skip to content
         </a>
       
@@ -138,7 +138,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Production Considerations
+              7. Production Considerations
             
           </span>
         </div>
@@ -151,9 +151,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
@@ -161,9 +161,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
@@ -2775,82 +2775,64 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-this-chapter-covers" class="md-nav__link">
+  <a href="#prerequisites-and-context" class="md-nav__link">
     <span class="md-ellipsis">
-      What This Chapter Covers
+      Prerequisites and context
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
+  <a href="#learning-objectives" class="md-nav__link">
     <span class="md-ellipsis">
-      Introduction
+      Learning objectives
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#cost-optimization-strategies" class="md-nav__link">
+  <a href="#the-gap-between-demo-and-production" class="md-nav__link">
     <span class="md-ellipsis">
-      Cost Optimization Strategies
+      The Gap Between Demo and Production
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Cost Optimization Strategies">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cost-optimization-the-numbers-nobody-talks-about" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cost Optimization: The Numbers Nobody Talks About
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cost Optimization: The Numbers Nobody Talks About">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#understanding-token-economics" class="md-nav__link">
+  <a href="#the-token-economics-lesson" class="md-nav__link">
     <span class="md-ellipsis">
-      Understanding Token Economics
+      The Token Economics Lesson
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#typical-cost-breakdown" class="md-nav__link">
+  <a href="#the-prompt-caching-goldmine" class="md-nav__link">
     <span class="md-ellipsis">
-      Typical Cost Breakdown
+      The Prompt Caching Goldmine
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#token-calculation-framework" class="md-nav__link">
+  <a href="#open-source-vs-api-the-real-math" class="md-nav__link">
     <span class="md-ellipsis">
-      Token Calculation Framework
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#prompt-caching-implementation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prompt Caching Implementation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#open-source-vs-api-trade-offs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Open Source vs API Trade-offs
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#hidden-self-hosting-costs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Hidden Self-Hosting Costs
+      Open Source vs API: The Real Math
     </span>
   </a>
   
@@ -2862,13 +2844,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#infrastructure-decisions" class="md-nav__link">
+  <a href="#infrastructure-decisions-that-actually-matter" class="md-nav__link">
     <span class="md-ellipsis">
-      Infrastructure Decisions
+      Infrastructure Decisions That Actually Matter
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Infrastructure Decisions">
+    <nav class="md-nav" aria-label="Infrastructure Decisions That Actually Matter">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2881,36 +2863,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#write-time-vs-read-time-trade-offs" class="md-nav__link">
+  <a href="#the-caching-strategy-that-saved-our-bacon" class="md-nav__link">
     <span class="md-ellipsis">
-      Write-Time vs Read-Time Trade-offs
+      The Caching Strategy That Saved Our Bacon
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#caching-strategies" class="md-nav__link">
+  <a href="#database-reality-check" class="md-nav__link">
     <span class="md-ellipsis">
-      Caching Strategies
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#database-selection-for-scale" class="md-nav__link">
-    <span class="md-ellipsis">
-      Database Selection for Scale
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#database-scale-considerations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Database Scale Considerations
+      Database Reality Check
     </span>
   </a>
   
@@ -2922,37 +2886,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#monitoring-and-observability" class="md-nav__link">
+  <a href="#monitoring-what-to-track-when-everythings-on-fire" class="md-nav__link">
     <span class="md-ellipsis">
-      Monitoring and Observability
+      Monitoring: What to Track When Everything's on Fire
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Monitoring and Observability">
+    <nav class="md-nav" aria-label="Monitoring: What to Track When Everything&#39;s on Fire">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#key-metrics-to-track" class="md-nav__link">
+  <a href="#the-metrics-that-actually-matter" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Metrics to Track
+      The Metrics That Actually Matter
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#key-metrics-to-track_1" class="md-nav__link">
+  <a href="#the-degradation-strategy-nobody-implements-until-its-too-late" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Metrics to Track
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#error-handling-and-degradation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Error Handling and Degradation
+      The Degradation Strategy Nobody Implements (Until It's Too Late)
     </span>
   </a>
   
@@ -2964,37 +2919,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#security-and-compliance" class="md-nav__link">
+  <a href="#security-the-stuff-that-keeps-lawyers-happy" class="md-nav__link">
     <span class="md-ellipsis">
-      Security and Compliance
+      Security: The Stuff That Keeps Lawyers Happy
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Security and Compliance">
+    <nav class="md-nav" aria-label="Security: The Stuff That Keeps Lawyers Happy">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#data-privacy-considerations" class="md-nav__link">
+  <a href="#the-security-checklist-thats-actually-useful" class="md-nav__link">
     <span class="md-ellipsis">
-      Data Privacy Considerations
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#security-checklist" class="md-nav__link">
-    <span class="md-ellipsis">
-      Security Checklist
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#compliance-strategies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Compliance Strategies
+      The Security Checklist That's Actually Useful
     </span>
   </a>
   
@@ -3006,37 +2943,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scaling-strategies" class="md-nav__link">
+  <a href="#scaling-from-hundreds-to-millions" class="md-nav__link">
     <span class="md-ellipsis">
-      Scaling Strategies
+      Scaling: From Hundreds to Millions
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Scaling Strategies">
+    <nav class="md-nav" aria-label="Scaling: From Hundreds to Millions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#horizontal-scaling-patterns" class="md-nav__link">
+  <a href="#the-scaling-stages" class="md-nav__link">
     <span class="md-ellipsis">
-      Horizontal Scaling Patterns
+      The Scaling Stages
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#cost-effective-growth" class="md-nav__link">
+  <a href="#the-sharding-strategy-that-works" class="md-nav__link">
     <span class="md-ellipsis">
-      Cost-Effective Growth
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scaling-economics" class="md-nav__link">
-    <span class="md-ellipsis">
-      Scaling Economics
+      The Sharding Strategy That Works
     </span>
   </a>
   
@@ -3048,28 +2976,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#maintenance-and-evolution" class="md-nav__link">
+  <a href="#maintenance-the-daily-reality" class="md-nav__link">
     <span class="md-ellipsis">
-      Maintenance and Evolution
+      Maintenance: The Daily Reality
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Maintenance and Evolution">
+    <nav class="md-nav" aria-label="Maintenance: The Daily Reality">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#continuous-improvement" class="md-nav__link">
+  <a href="#the-weekly-ritual" class="md-nav__link">
     <span class="md-ellipsis">
-      Continuous Improvement
+      The Weekly Ritual
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#team-structure" class="md-nav__link">
+  <a href="#the-monthly-deep-dive" class="md-nav__link">
     <span class="md-ellipsis">
-      Team Structure
+      The Monthly Deep Dive
     </span>
   </a>
   
@@ -3081,36 +3009,45 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#team-structure-for-sanity" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Takeaways
+      Team Structure for Sanity
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-principles" class="md-nav__link">
+  <a href="#the-hard-truths-about-production-rag" class="md-nav__link">
     <span class="md-ellipsis">
-      Production Principles
+      The Hard Truths About Production RAG
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
+  <a href="#your-production-checklist" class="md-nav__link">
     <span class="md-ellipsis">
-      Next Steps
+      Your Production Checklist
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#additional-resources" class="md-nav__link">
+  <a href="#the-path-to-production-success" class="md-nav__link">
     <span class="md-ellipsis">
-      Additional Resources
+      The Path to Production Success
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
     </span>
   </a>
   
@@ -3132,253 +3069,326 @@
 
 
 
-<h1 id="production-considerations">Production Considerations</h1>
-<h2 id="what-this-chapter-covers">What This Chapter Covers</h2>
+<h1 id="production-considerations-making-it-real">Production Considerations: Making It Real</h1>
+<p>Alright, let's talk about what happens after the demo. You know, when real users show up, costs become real, and "it works on my machine" isn't good enough anymore.</p>
+<p>This chapter is everything I wish someone had told me before my first production RAG deployment. Spoiler: the technical challenges are the easy part.</p>
+<h2 id="prerequisites-and-context">Prerequisites and context</h2>
 <ul>
-<li>Cost optimization and token economics</li>
-<li>Infrastructure decisions and trade-offs</li>
-<li>Monitoring and maintenance</li>
-<li>Security and compliance</li>
-<li>Scaling strategies</li>
+<li>Read: <a href="../chapter6-3/">6.3 Performance Measurement and Improvement</a></li>
+<li>You’re preparing to run at production scale with real users and costs</li>
 </ul>
-<h2 id="introduction">Introduction</h2>
-<p>The gap between a working prototype and a production system is significant. Production systems need reliability, cost-effectiveness, and maintainability at scale.</p>
-<p><strong>Key difference</strong>: A system that works for 10 queries might fail at 10,000. Features matter less than operational excellence.</p>
-<h2 id="cost-optimization-strategies">Cost Optimization Strategies</h2>
-<h3 id="understanding-token-economics">Understanding Token Economics</h3>
-<p>Before optimizing costs, you need to understand where money goes in a RAG system:</p>
-<h3 id="typical-cost-breakdown">Typical Cost Breakdown</h3>
+<h2 id="learning-objectives">Learning objectives</h2>
 <ul>
-<li><strong>Embedding generation</strong>: 5-10% of costs</li>
-<li><strong>Retrieval infrastructure</strong>: 10-20% of costs</li>
-<li><strong>LLM generation</strong>: 60-75% of costs</li>
-<li><strong>Logging/monitoring</strong>: 5-10% of costs</li>
+<li>Estimate and manage costs (tokens, DB, rerankers, monitoring)</li>
+<li>Design caching and degradation strategies for reliability</li>
+<li>Define monitoring with business, latency, and cost metrics</li>
 </ul>
-<h3 id="token-calculation-framework">Token Calculation Framework</h3>
-<p>Always calculate expected costs before choosing an approach:</p>
-<p><strong>Key insight</strong>: Always calculate expected costs before choosing an approach. Open source is often only 8x cheaper than APIs - the absolute cost difference may not justify the engineering effort.</p>
-<p><strong>Cost Calculation Template:</strong></p>
-<ol>
-<li><strong>Document Processing</strong>:</li>
-<li>Number of documents × Average tokens per document × Embedding cost</li>
-<li>
-<p>One-time cost (unless documents change frequently)</p>
-</li>
-<li>
-<p><strong>Query Processing</strong>:</p>
-</li>
-<li>Expected queries/day × (Retrieval tokens + Generation tokens) × Token cost</li>
-<li>
-<p>Recurring cost that scales with usage</p>
-</li>
-<li>
-<p><strong>Hidden Costs</strong>:</p>
-</li>
-<li>Re-ranking API calls</li>
-<li>Failed requests requiring retries</li>
-<li>Development and maintenance time</li>
-</ol>
-<p><strong>Example</strong>: E-commerce search (50K queries/day)
-- <strong>API-based</strong>: <span class="arithmatex"><span class="MathJax_Preview">180/day (</span><script type="math/tex">180/day (</script></span>5,400/month)
-- <strong>Self-hosted</strong>: $23/day + $3,000/month engineer
-- <strong>Hybrid</strong>: $65/day (self-host embeddings, API for generation)
-- <strong>Result</strong>: Chose hybrid for balance</p>
-<h3 id="prompt-caching-implementation">Prompt Caching Implementation</h3>
-<p>Dramatic cost reductions through intelligent caching:</p>
-<p><strong>Caching impact</strong>: With 50+ examples in prompts, caching can reduce costs by 70-90% for repeat queries.</p>
-<p><strong>Provider Comparison:</strong></p>
+<h2 id="the-gap-between-demo-and-production">The Gap Between Demo and Production</h2>
+<p>I'll never forget my first production RAG system. The demo was flawless. Investors loved it. Then we went live.</p>
+<p>Day 1: System crashed from 100 concurrent users (demo only had 1)
+Day 3: $8,000 OpenAI bill (nobody calculated costs at scale)
+Day 7: Redis out of memory (who knew embeddings were so big?)
+Day 14: Complete rebuild</p>
+<p>The gap between "it works" and "it works in production" is massive. Here's what actually matters.</p>
+<h2 id="cost-optimization-the-numbers-nobody-talks-about">Cost Optimization: The Numbers Nobody Talks About</h2>
+<p>Let me show you a real cost breakdown from a system serving 50,000 queries/day:</p>
 <ul>
-<li><strong>Anthropic</strong>: Caches prompts for 5 minutes, automatic on repeat queries</li>
-<li><strong>OpenAI</strong>: Automatically identifies optimal prefix to cache</li>
-<li><strong>Self-hosted</strong>: Implement Redis-based caching for embeddings</li>
+<li><strong>LLM generation</strong>: $162/day (68%)</li>
+<li><strong>Embeddings</strong>: $23/day (10%)</li>
+<li><strong>Vector database</strong>: $36/day (15%)</li>
+<li><strong>Reranking</strong>: $12/day (5%)</li>
+<li><strong>Monitoring</strong>: $5/day (2%)</li>
 </ul>
-<h3 id="open-source-vs-api-trade-offs">Open Source vs API Trade-offs</h3>
-<p>Making informed decisions about infrastructure:</p>
-<table>
-<thead>
-<tr>
-<th>Factor</th>
-<th>Open Source</th>
-<th>API Services</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Initial Cost</strong></td>
-<td>Low (just compute)</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>Operational Cost</strong></td>
-<td>Engineer time + infrastructure</td>
-<td>Per-token pricing</td>
-</tr>
-<tr>
-<td><strong>Scalability</strong></td>
-<td>Manual scaling required</td>
-<td>Automatic</td>
-</tr>
-<tr>
-<td><strong>Latency</strong></td>
-<td>Can optimize locally</td>
-<td>Network dependent</td>
-</tr>
-<tr>
-<td><strong>Reliability</strong></td>
-<td>Your responsibility</td>
-<td>SLA guaranteed</td>
-</tr>
-</tbody>
-</table>
-<h3 id="hidden-self-hosting-costs">Hidden Self-Hosting Costs</h3>
+<p>Total: <span class="arithmatex"><span class="MathJax_Preview">238/day or ~</span><script type="math/tex">238/day or ~</script></span>7,000/month</p>
+<p>The shocker? We were a "cost-conscious" team. I've seen teams burning $50k/month without realizing it.</p>
+<h3 id="the-token-economics-lesson">The Token Economics Lesson</h3>
+<p>Here's what changed everything for us: understanding token economics.</p>
+<p><strong>Bad approach</strong>: "Let's use GPT-4 for everything!"
+<strong>Reality check</strong>: GPT-4 costs 30x more than GPT-4o-mini</p>
+<p><strong>Better approach</strong>: Route by complexity</p>
 <ul>
-<li>CUDA driver compatibility issues</li>
-<li>Model version management</li>
-<li>Scaling infrastructure</li>
-<li>24/7 on-call requirements</li>
+<li>Simple factual queries → GPT-4o-mini</li>
+<li>Complex reasoning → GPT-4</li>
+<li>Extraction tasks → Specialized models</li>
 </ul>
-<h2 id="infrastructure-decisions">Infrastructure Decisions</h2>
+<p>This one change cut costs by 70% with no quality loss.</p>
+<h3 id="the-prompt-caching-goldmine">The Prompt Caching Goldmine</h3>
+<p>I was skeptical about prompt caching until I saw the numbers:</p>
+<p><strong>Before caching</strong>:</p>
+<ul>
+<li>50k queries/day</li>
+<li>Average 2,000 tokens/query</li>
+<li>Cost: $5,000/month</li>
+</ul>
+<p><strong>After caching</strong>:</p>
+<ul>
+<li>Same queries</li>
+<li>80% cache hits</li>
+<li>Cost: $1,500/month</li>
+</ul>
+<p>The catch? You need consistent prompt prefixes. We rewrote our prompts to maximize caching. Ugly? Yes. Worth it? Absolutely.</p>
+<h3 id="open-source-vs-api-the-real-math">Open Source vs API: The Real Math</h3>
+<p>Everyone wants to self-host to "save money." Here's what they don't calculate:</p>
+<p><strong>Self-hosted embeddings</strong>:</p>
+<ul>
+<li>GPU server: $500/month</li>
+<li>DevOps time: $3,000/month (0.2 FTE)</li>
+<li>Downtime costs: $???</li>
+<li>Total: ~$4,000/month</li>
+</ul>
+<p><strong>API embeddings</strong>:</p>
+<ul>
+<li>OpenAI: $500/month</li>
+<li>Zero maintenance</li>
+<li>99.9% uptime</li>
+<li>Total: $500/month</li>
+</ul>
+<p>We self-host when we need control or have massive scale. For most teams? APIs are cheaper.</p>
+<h2 id="infrastructure-decisions-that-actually-matter">Infrastructure Decisions That Actually Matter</h2>
+<p>After deploying dozens of RAG systems, here are the decisions that make or break production deployments.</p>
 <h3 id="write-time-vs-read-time-computation">Write-Time vs Read-Time Computation</h3>
-<p>A fundamental architectural decision:</p>
-<h3 id="write-time-vs-read-time-trade-offs">Write-Time vs Read-Time Trade-offs</h3>
-<p><strong>Write-time computation</strong> (preprocessing):
-- Higher storage costs
-- Better query latency
-- Good for stable content</p>
-<p><strong>Read-time computation</strong> (on-demand):
-- Lower storage costs
-- Higher query latency
-- Good for dynamic content</p>
-<h3 id="caching-strategies">Caching Strategies</h3>
-<p>Multi-level caching for production systems:</p>
-<ol>
-<li><strong>Embedding Cache</strong>: Store computed embeddings (Redis/Memcached)</li>
-<li><strong>Result Cache</strong>: Cache full responses for common queries</li>
-<li><strong>Semantic Cache</strong>: Cache similar queries (requires similarity threshold)</li>
-</ol>
-<p><strong>Example</strong>: Customer support semantic caching
-- 30% of queries were semantically similar
-- Used 0.95 similarity threshold
-- Reduced LLM calls by 28% ($8,000/month saved)</p>
-<h3 id="database-selection-for-scale">Database Selection for Scale</h3>
-<p>Moving beyond prototypes requires careful database selection:</p>
-<h3 id="database-scale-considerations">Database Scale Considerations</h3>
-<p>Graph databases are hard to manage at scale. Most companies get better results with SQL databases - better performance, easier maintenance, familiar tooling. Only use graphs when you have specific graph traversal needs (like LinkedIn's connection calculations).</p>
-<p><strong>Production Database Recommendations:</strong></p>
-<ol>
+<p>This decision affects everything:</p>
+<p><strong>Write-time</strong> (preprocess everything):</p>
+<div class="highlight"><pre><span></span><code>Document → Chunk → Embed → Store
+Pros: Fast queries, predictable latency
+Cons: Storage costs, update complexity
+When: Stable content, latency-sensitive
+</code></pre></div>
+<p><strong>Read-time</strong> (process on demand):</p>
+<div class="highlight"><pre><span></span><code>Query → Process → Embed → Search
+Pros: Fresh data, lower storage
+Cons: Slow queries, unpredictable costs
+When: Dynamic content, cost-sensitive
+</code></pre></div>
+<p>We use write-time for 90% of cases. Users won't wait.</p>
+<h3 id="the-caching-strategy-that-saved-our-bacon">The Caching Strategy That Saved Our Bacon</h3>
+<p>Three levels of caching, in order of impact:</p>
+<p><strong>1. Result Cache</strong> (80% hit rate)</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Cache full responses for common queries</span>
+<span class="n">cache_key</span> <span class="o">=</span> <span class="nb">hash</span><span class="p">(</span><span class="n">query</span> <span class="o">+</span> <span class="n">tool</span> <span class="o">+</span> <span class="n">date</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">cached</span> <span class="o">:=</span> <span class="n">redis</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cache_key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cached</span>
+</code></pre></div>
+<p><strong>2. Embedding Cache</strong> (60% hit rate)</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Cache computed embeddings</span>
+<span class="n">embed_key</span> <span class="o">=</span> <span class="nb">hash</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">embedded</span> <span class="o">:=</span> <span class="n">redis</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">embed_key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">embedded</span>
+</code></pre></div>
+<p><strong>3. Semantic Cache</strong> (30% hit rate)</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Cache similar queries</span>
+<span class="n">similar</span> <span class="o">=</span> <span class="n">find_similar_cached</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">similar</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">similar</span><span class="o">.</span><span class="n">result</span>
+</code></pre></div>
+<p>This stack handles 90% of queries from cache. Response time: 50ms instead of 2s.</p>
+<h3 id="database-reality-check">Database Reality Check</h3>
+<p>Here's my controversial take: <strong>Graph databases are usually the wrong choice.</strong></p>
+<p>I've seen teams spend months building graph-based RAG systems. They demo beautifully - "Look how we traverse relationships!" Then they hit production scale and everything falls apart.</p>
+<p>My rules:</p>
+<ul>
 <li><strong>&lt; 1M documents</strong>: PostgreSQL with pgvector</li>
-<li><strong>1M - 10M documents</strong>: Dedicated vector database (Pinecone, Weaviate)</li>
-<li><strong>&gt; 10M documents</strong>: Distributed solutions (Elasticsearch with vector support)</li>
-</ol>
-<h2 id="monitoring-and-observability">Monitoring and Observability</h2>
-<h3 id="key-metrics-to-track">Key Metrics to Track</h3>
-<p>Essential metrics for production RAG systems:</p>
-<h3 id="key-metrics-to-track_1">Key Metrics to Track</h3>
-<p><strong>Performance Metrics:</strong>
-- Query latency (p50, p95, p99)
-- Retrieval recall and precision
-- Token usage per query
-- Cache hit rates</p>
-<p><strong>Business Metrics:</strong>
-- User satisfaction scores
-- Query success rates
-- Cost per query
-- Feature adoption rates</p>
-<h3 id="error-handling-and-degradation">Error Handling and Degradation</h3>
-<p>Graceful degradation strategies:</p>
-<ol>
-<li><strong>Fallback Retrievers</strong>: If primary fails, use simpler backup</li>
-<li><strong>Cached Responses</strong>: Serve stale cache vs. errors</li>
-<li><strong>Reduced Functionality</strong>: Disable advanced features under load</li>
-<li><strong>Circuit Breakers</strong>: Prevent cascade failures</li>
-</ol>
-<p><strong>Example</strong>: Financial advisory degradation
-- Primary: Complex multi-index RAG
-- Fallback 1: Single-index semantic search
-- Fallback 2: Pre-computed FAQ responses
-- Result: 99.9% availability</p>
-<h2 id="security-and-compliance">Security and Compliance</h2>
-<h3 id="data-privacy-considerations">Data Privacy Considerations</h3>
-<p>Critical for production deployments:</p>
-<h3 id="security-checklist">Security Checklist</h3>
-<ul>
-<li>PII detection and masking</li>
-<li>Audit logging for all queries</li>
-<li>Role-based access control</li>
-<li>Data retention policies</li>
-<li>Encryption at rest and in transit</li>
+<li><strong>1M - 10M documents</strong>: Pinecone or Weaviate</li>
+<li><strong>&gt; 10M documents</strong>: Elasticsearch with vector support</li>
+<li><strong>Graph databases</strong>: Only when you NEED graph traversal (rare)</li>
 </ul>
-<h3 id="compliance-strategies">Compliance Strategies</h3>
-<p>Industry-specific requirements:</p>
+<p>PostgreSQL with pgvector handles 90% of use cases. Boring? Yes. Works? Absolutely.</p>
+<h2 id="monitoring-what-to-track-when-everythings-on-fire">Monitoring: What to Track When Everything's on Fire</h2>
+<p>3 AM. Your phone rings. "The RAG system is down." What do you check first?</p>
+<h3 id="the-metrics-that-actually-matter">The Metrics That Actually Matter</h3>
+<p>Forget vanity metrics. Here's what wakes me up at night:</p>
+<p><strong>Performance</strong>:</p>
 <ul>
-<li><strong>Healthcare</strong>: HIPAA compliance, patient data isolation</li>
-<li><strong>Financial</strong>: SOC2 compliance, transaction auditing</li>
-<li><strong>Legal</strong>: Privilege preservation, citation accuracy</li>
+<li>p50 latency: Should be &lt; 200ms</li>
+<li>p95 latency: Should be &lt; 2s</li>
+<li>p99 latency: This is where problems hide</li>
 </ul>
-<p><strong>Reality check</strong>: In regulated industries, technical implementation is 20% of the work. The other 80% is compliance, audit trails, and governance.</p>
-<h2 id="scaling-strategies">Scaling Strategies</h2>
-<h3 id="horizontal-scaling-patterns">Horizontal Scaling Patterns</h3>
-<p>Growing from hundreds to millions of queries:</p>
-<ol>
-<li><strong>Sharded Indices</strong>: Partition by domain/category</li>
-<li><strong>Read Replicas</strong>: Distribute query load</li>
-<li><strong>Async Processing</strong>: Queue heavy operations</li>
-<li><strong>Edge Caching</strong>: CDN for common queries</li>
-</ol>
-<h3 id="cost-effective-growth">Cost-Effective Growth</h3>
-<p>Strategies for managing growth:</p>
-<h3 id="scaling-economics">Scaling Economics</h3>
-<p>Focus on business value, not just cost savings. Target economic value (better decisions) rather than just time savings.</p>
-<p><strong>Progressive Enhancement:</strong></p>
-<ol>
-<li>Start with simple, cheap solutions</li>
-<li>Identify high-value query segments</li>
-<li>Invest in specialized solutions for those segments</li>
-<li>Monitor ROI continuously</li>
-</ol>
-<h2 id="maintenance-and-evolution">Maintenance and Evolution</h2>
-<h3 id="continuous-improvement">Continuous Improvement</h3>
-<p>Production systems require ongoing attention:</p>
+<p><strong>Business</strong>:</p>
 <ul>
-<li><strong>Weekly</strong>: Review error logs and user feedback</li>
-<li><strong>Monthly</strong>: Analyze cost trends and optimization opportunities</li>
-<li><strong>Quarterly</strong>: Evaluate new models and approaches</li>
-<li><strong>Annually</strong>: Architecture review and major upgrades</li>
+<li>Queries with no results: &gt; 5% is a problem</li>
+<li>User retry rate: &gt; 10% means frustration</li>
+<li>Daily active queries: Trending down = dying product</li>
 </ul>
-<h3 id="team-structure">Team Structure</h3>
-<p>Recommended team composition:</p>
+<p><strong>Cost</strong>:</p>
 <ul>
-<li><strong>ML Engineer</strong>: Model selection and fine-tuning</li>
-<li><strong>Backend Engineer</strong>: Infrastructure and scaling</li>
-<li><strong>Data Analyst</strong>: Metrics and optimization</li>
-<li><strong>Domain Expert</strong>: Content and quality assurance</li>
+<li>Cost per query: Track religiously</li>
+<li>Token usage by component: Find the hogs</li>
+<li>Cache hit rates: Money saved</li>
 </ul>
-<h2 id="key-takeaways">Key Takeaways</h2>
-<h2 id="production-principles">Production Principles</h2>
+<p>Here's our dashboard query:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">date_trunc</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">timestamp</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">hour</span><span class="p">,</span>
+<span class="w">    </span><span class="n">percentile_cont</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="n">WITHIN</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">latency</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">p50</span><span class="p">,</span>
+<span class="w">    </span><span class="n">percentile_cont</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">95</span><span class="p">)</span><span class="w"> </span><span class="n">WITHIN</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">latency</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">p95</span><span class="p">,</span>
+<span class="w">    </span><span class="n">percentile_cont</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">99</span><span class="p">)</span><span class="w"> </span><span class="n">WITHIN</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">latency</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">p99</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">query_count</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)::</span><span class="nb">float</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">no_result_rate</span><span class="p">,</span>
+<span class="w">    </span><span class="k">AVG</span><span class="p">(</span><span class="n">token_cost</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_cost</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">queries</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">timestamp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">NOW</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;24 hours&#39;</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">hour</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">hour</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="the-degradation-strategy-nobody-implements-until-its-too-late">The Degradation Strategy Nobody Implements (Until It's Too Late)</h3>
+<p>Your primary retriever will fail. Your LLM provider will have an outage. Plan for it.</p>
+<p>Our degradation hierarchy:</p>
 <ol>
-<li><strong>Calculate costs before building</strong>: Know your economics</li>
-<li><strong>Start simple, enhance gradually</strong>: Earn complexity</li>
-<li><strong>Monitor everything</strong>: Can't improve what you don't measure</li>
-<li><strong>Plan for failure</strong>: Design for graceful degradation</li>
-<li><strong>Focus on value</strong>: Technical metrics need business impact</li>
+<li><strong>Primary</strong>: Full RAG with all features</li>
+<li><strong>Degraded 1</strong>: Cached results only (Redis)</li>
+<li><strong>Degraded 2</strong>: Keyword search (Elasticsearch)</li>
+<li><strong>Degraded 3</strong>: Static FAQ responses</li>
+<li><strong>Maintenance</strong>: "We'll be back soon"</li>
 </ol>
-<h2 id="next-steps">Next Steps</h2>
-<p>With production considerations in mind, you're ready to:</p>
-<ol>
-<li>Conduct a cost analysis of your current approach</li>
-<li>Implement comprehensive monitoring</li>
-<li>Design degradation strategies</li>
-<li>Plan your scaling roadmap</li>
-</ol>
-<p>Remember: The best production system isn't the most sophisticated—it's the one that reliably delivers value while being maintainable and cost-effective.</p>
-<h2 id="additional-resources">Additional Resources</h2>
-<p>For deeper dives into production topics:</p>
+<p>Each level is progressively worse but progressively more reliable. Users prefer degraded service to no service.</p>
+<h2 id="security-the-stuff-that-keeps-lawyers-happy">Security: The Stuff That Keeps Lawyers Happy</h2>
+<p>I learned about RAG security the hard way when a user asked: "Show me all salaries in the database." Our RAG happily complied. That was a fun meeting.</p>
+<h3 id="the-security-checklist-thats-actually-useful">The Security Checklist That's Actually Useful</h3>
+<p><strong>Data Access</strong>:</p>
 <ul>
-<li><a href="https://sre.google/books/">Google SRE Book</a> - Reliability engineering principles</li>
-<li><a href="https://hpbn.co/">High Performance Browser Networking</a> - Latency optimization</li>
-<li><a href="https://dataintensive.net/">Designing Data-Intensive Applications</a> - Scalability patterns</li>
+<li>Row-level security in your database</li>
+<li>User context passed to every query</li>
+<li>Audit logs for sensitive queries</li>
 </ul>
-<p>Production readiness is an ongoing process of optimization, monitoring, and improvement - not a final destination.</p>
+<p><strong>PII Protection</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">sanitize_for_llm</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="c1"># Remove SSNs</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\b\d</span><span class="si">{3}</span><span class="s1">-\d</span><span class="si">{2}</span><span class="s1">-\d</span><span class="si">{4}</span><span class="s1">\b&#39;</span><span class="p">,</span> <span class="s1">&#39;[SSN]&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="c1"># Remove credit cards</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\b\d</span><span class="si">{4}</span><span class="s1">[\s-]?\d</span><span class="si">{4}</span><span class="s1">[\s-]?\d</span><span class="si">{4}</span><span class="s1">[\s-]?\d</span><span class="si">{4}</span><span class="s1">\b&#39;</span><span class="p">,</span> <span class="s1">&#39;[CC]&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">text</span>
+</code></pre></div>
+<p><strong>Prompt Injection Protection</strong>:</p>
+<ul>
+<li>Never execute user input as code</li>
+<li>Validate all tool parameters</li>
+<li>Log suspicious patterns</li>
+</ul>
+<p>Reality check: In regulated industries, security review takes 3x longer than development. Plan for it.</p>
+<h2 id="scaling-from-hundreds-to-millions">Scaling: From Hundreds to Millions</h2>
+<p>The patterns that work at different scales are completely different.</p>
+<h3 id="the-scaling-stages">The Scaling Stages</h3>
+<p><strong>Stage 1: Hundreds of queries/day</strong></p>
+<ul>
+<li>Single server</li>
+<li>Simple caching</li>
+<li>Focus: Get it working</li>
+</ul>
+<p><strong>Stage 2: Thousands/day</strong></p>
+<ul>
+<li>Load balancer</li>
+<li>Redis caching</li>
+<li>Focus: Reliability</li>
+</ul>
+<p><strong>Stage 3: Hundreds of thousands/day</strong></p>
+<ul>
+<li>Sharded indices</li>
+<li>Read replicas</li>
+<li>Focus: Cost optimization</li>
+</ul>
+<p><strong>Stage 4: Millions/day</strong></p>
+<ul>
+<li>Edge caching</li>
+<li>Regional deployments</li>
+<li>Focus: Latency optimization</li>
+</ul>
+<p>Most teams optimize for Stage 4 while at Stage 1. Don't be that team.</p>
+<h3 id="the-sharding-strategy-that-works">The Sharding Strategy That Works</h3>
+<p>When you hit scale, you'll need to shard. Here's what worked for us:</p>
+<p><strong>By Domain</strong>:</p>
+<ul>
+<li>Customer support → Index 1</li>
+<li>Product docs → Index 2</li>
+<li>Legal docs → Index 3</li>
+</ul>
+<p><strong>Benefits</strong>: Faster searches, independent scaling, team ownership</p>
+<p><strong>Implementation</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_index</span><span class="p">(</span><span class="n">query_type</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;support&quot;</span><span class="p">:</span> <span class="s2">&quot;index_support&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="s2">&quot;index_product&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;legal&quot;</span><span class="p">:</span> <span class="s2">&quot;index_legal&quot;</span>
+    <span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">query_type</span><span class="p">,</span> <span class="s2">&quot;index_default&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Simple, boring, works at scale.</p>
+<h2 id="maintenance-the-daily-reality">Maintenance: The Daily Reality</h2>
+<p>Here's what maintenance actually looks like:</p>
+<h3 id="the-weekly-ritual">The Weekly Ritual</h3>
+<p><strong>Monday</strong>: Review weekend alerts (there are always weekend alerts)
+<strong>Tuesday</strong>: Update embeddings for changed documents
+<strong>Wednesday</strong>: Review cost trends, optimize expensive queries
+<strong>Thursday</strong>: Test disaster recovery (yes, weekly)
+<strong>Friday</strong>: Clean up experiments, update documentation</p>
+<h3 id="the-monthly-deep-dive">The Monthly Deep Dive</h3>
+<p>Every month, we ask:</p>
+<ol>
+<li>What queries are failing most?</li>
+<li>What's our most expensive component?</li>
+<li>What would break if load doubled?</li>
+<li>What are users complaining about?</li>
+</ol>
+<p>This discipline catches problems before they explode.</p>
+<h2 id="team-structure-for-sanity">Team Structure for Sanity</h2>
+<p>After trying every possible team structure, here's what works:</p>
+<p><strong>Core Team</strong>:</p>
+<ul>
+<li>1 ML Engineer (models and embeddings)</li>
+<li>2 Backend Engineers (infrastructure and APIs)</li>
+<li>1 Data Engineer (pipelines and quality)</li>
+<li>0.5 DevOps (yes, half - shared with other teams)</li>
+</ul>
+<p><strong>Extended Team</strong>:</p>
+<ul>
+<li>Domain Expert (2 hours/week)</li>
+<li>Product Manager (5 hours/week)</li>
+<li>Designer (for UI work)</li>
+</ul>
+<p>The key: Domain expert involvement. Without it, you're building in the dark.</p>
+<h2 id="the-hard-truths-about-production-rag">The Hard Truths About Production RAG</h2>
+<p>Let me leave you with the lessons that cost me sleep:</p>
+<p><strong>1. Calculate costs before building</strong>
+A client burned $50k in their first month because nobody did math. Don't be that client.</p>
+<p><strong>2. Simple beats sophisticated</strong>
+My most successful system uses PostgreSQL and basic embeddings. It handles 1M queries/day.</p>
+<p><strong>3. Monitor everything</strong>
+If you're not measuring it, it's broken and you don't know yet.</p>
+<p><strong>4. Plan for degradation</strong>
+Your dependencies will fail. Usually on Black Friday.</p>
+<p><strong>5. Focus on value, not vanity</strong>
+One client optimized retrieval accuracy from 94% to 97%. Users didn't notice. They noticed when we made the UI 200ms faster.</p>
+<h2 id="your-production-checklist">Your Production Checklist</h2>
+<p>Before you go live, make sure you have:</p>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> Cost projections at 10x current load</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Degradation plan for each component</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Monitoring on all critical paths</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Security review completed</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Load tests at expected peak</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Runbooks for common issues</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Backup/restore tested</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Team on-call schedule</li>
+</ul>
+<h2 id="the-path-to-production-success">The Path to Production Success</h2>
+<p>Production isn't about perfection. It's about:</p>
+<ul>
+<li>Knowing your costs</li>
+<li>Graceful degradation</li>
+<li>Measuring everything</li>
+<li>Fixing what matters</li>
+</ul>
+<p>Get these right, and your RAG system will serve users reliably for years. Get them wrong, and you'll be rebuilding every quarter.</p>
+<p>Remember: The best production system isn't the most sophisticated - it's the one that's still running when you're asleep.</p>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Model token economics; route by complexity and cache aggressively</li>
+<li>Prefer boring, reliable infra; plan for graceful degradation</li>
+<li>Monitor performance, business, and cost metrics; alert on drifts</li>
+<li>Secure data access; sanitize PII; validate tool parameters</li>
+<li>Scale via caching, sharding, and right DB choices; test load and recovery</li>
+</ul>
+<p>Good luck out there. You're gonna need it. (But with this guide, maybe a little less than I did.)</p>
+<hr />
+<p>If you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 
 
@@ -3458,7 +3468,7 @@
       <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       

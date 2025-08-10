@@ -20,11 +20,11 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>Implementing Multimodal Search - Systematically Improving RAG Applications</title>
+        <title>5.2 Implementing Multimodal Search - Systematically Improving RAG Applications</title>
       
     
     
@@ -79,7 +79,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#implementing-multimodal-search-specialized-retrieval-techniques" class="md-skip">
+        <a href="#implementing-multimodal-search-handling-different-modalities" class="md-skip">
           Skip to content
         </a>
       
@@ -142,7 +142,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Implementing Multimodal Search
+              5.2 Implementing Multimodal Search
             
           </span>
         </div>
@@ -155,9 +155,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
@@ -165,9 +165,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
@@ -1025,37 +1025,55 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#handling-different-content-types" class="md-nav__link">
+  <a href="#prerequisites-and-context" class="md-nav__link">
     <span class="md-ellipsis">
-      Handling Different Content Types
+      Prerequisites and context
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Handling Different Content Types">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning objectives
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-search-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Search Techniques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Document Search Techniques">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#document-search-beyond-basic-chunking" class="md-nav__link">
+  <a href="#the-mixture-of-data-sources" class="md-nav__link">
     <span class="md-ellipsis">
-      Document Search: Beyond Basic Chunking
+      The Mixture of Data Sources
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#image-search-bridging-visual-and-textual-understanding" class="md-nav__link">
+  <a href="#structured-extraction-example" class="md-nav__link">
     <span class="md-ellipsis">
-      Image Search: Bridging Visual and Textual Understanding
+      Structured Extraction Example
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#table-search-structured-data-in-context" class="md-nav__link">
+  <a href="#pdf-processing-evolution" class="md-nav__link">
     <span class="md-ellipsis">
-      Table Search: Structured Data in Context
+      PDF Processing Evolution
     </span>
   </a>
   
@@ -1067,27 +1085,225 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sql-query-generation-a-case-study-in-capability-building" class="md-nav__link">
+  <a href="#image-search-techniques" class="md-nav__link">
     <span class="md-ellipsis">
-      SQL Query Generation: A Case Study in Capability Building
+      Image Search Techniques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Image Search Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-similarity-assumption-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Similarity Assumption Problem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-two-people-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      The "Two People" Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improving-image-summaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Improving Image Summaries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contextual-augmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contextual Augmentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visual-grounding-for-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visual Grounding for Construction
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-search-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table Search Techniques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Table Search Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#approach-1-table-as-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      Approach 1: Table as Document
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach-2-table-as-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Approach 2: Table as Database
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql-query-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL Query Generation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SQL Query Generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-multiple-correct-answers-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Multiple Correct Answers Problem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-specific-calculations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Business-Specific Calculations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-table-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Table Retrieval
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieving-the-right-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retrieving the Right Capabilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-ui-for-collecting-gold-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      The UI for Collecting Gold Standards
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subjective-query-interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subjective Query Interpretation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics-and-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metrics and evaluation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#bringing-it-all-together" class="md-nav__link">
+  <a href="#common-pitfalls-and-anti-patterns" class="md-nav__link">
     <span class="md-ellipsis">
-      Bringing It All Together
+      Common pitfalls and anti-patterns
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-points" class="md-nav__link">
+  <a href="#integration-points" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Points
+      Integration points
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      What’s next
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reflection-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflection questions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#food-for-thought" class="md-nav__link">
+    <span class="md-ellipsis">
+      Food for Thought
     </span>
   </a>
   
@@ -2913,37 +3129,55 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#handling-different-content-types" class="md-nav__link">
+  <a href="#prerequisites-and-context" class="md-nav__link">
     <span class="md-ellipsis">
-      Handling Different Content Types
+      Prerequisites and context
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Handling Different Content Types">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning objectives
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-search-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Search Techniques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Document Search Techniques">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#document-search-beyond-basic-chunking" class="md-nav__link">
+  <a href="#the-mixture-of-data-sources" class="md-nav__link">
     <span class="md-ellipsis">
-      Document Search: Beyond Basic Chunking
+      The Mixture of Data Sources
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#image-search-bridging-visual-and-textual-understanding" class="md-nav__link">
+  <a href="#structured-extraction-example" class="md-nav__link">
     <span class="md-ellipsis">
-      Image Search: Bridging Visual and Textual Understanding
+      Structured Extraction Example
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#table-search-structured-data-in-context" class="md-nav__link">
+  <a href="#pdf-processing-evolution" class="md-nav__link">
     <span class="md-ellipsis">
-      Table Search: Structured Data in Context
+      PDF Processing Evolution
     </span>
   </a>
   
@@ -2955,27 +3189,225 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sql-query-generation-a-case-study-in-capability-building" class="md-nav__link">
+  <a href="#image-search-techniques" class="md-nav__link">
     <span class="md-ellipsis">
-      SQL Query Generation: A Case Study in Capability Building
+      Image Search Techniques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Image Search Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-similarity-assumption-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Similarity Assumption Problem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-two-people-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      The "Two People" Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improving-image-summaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Improving Image Summaries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contextual-augmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contextual Augmentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visual-grounding-for-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visual Grounding for Construction
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-search-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table Search Techniques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Table Search Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#approach-1-table-as-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      Approach 1: Table as Document
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach-2-table-as-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Approach 2: Table as Database
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql-query-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL Query Generation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SQL Query Generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-multiple-correct-answers-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Multiple Correct Answers Problem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-specific-calculations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Business-Specific Calculations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-table-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Table Retrieval
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieving-the-right-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retrieving the Right Capabilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-ui-for-collecting-gold-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      The UI for Collecting Gold Standards
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subjective-query-interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subjective Query Interpretation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics-and-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metrics and evaluation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#bringing-it-all-together" class="md-nav__link">
+  <a href="#common-pitfalls-and-anti-patterns" class="md-nav__link">
     <span class="md-ellipsis">
-      Bringing It All Together
+      Common pitfalls and anti-patterns
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-points" class="md-nav__link">
+  <a href="#integration-points" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Points
+      Integration points
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      What’s next
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reflection-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflection questions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#food-for-thought" class="md-nav__link">
+    <span class="md-ellipsis">
+      Food for Thought
     </span>
   </a>
   
@@ -2997,471 +3429,202 @@
 
 
 
-<h1 id="implementing-multimodal-search-specialized-retrieval-techniques">Implementing Multimodal Search: Specialized Retrieval Techniques</h1>
-<h2 id="handling-different-content-types">Handling Different Content Types</h2>
-<p>Let's get into the specifics of how to handle documents, images, and tables. Each needs its own approach.</p>
-<h3 id="document-search-beyond-basic-chunking">Document Search: Beyond Basic Chunking</h3>
-<p>Document retrieval still relies on chunking and search, but here are some tweaks that actually help:</p>
-<p><strong>Page-Level Chunking</strong></p>
-<p>For documentation, respect the original page boundaries. The authors already organized the content logically—don't break it up arbitrarily.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Instead of arbitrary chunking:</span>
-<span class="n">chunks</span> <span class="o">=</span> <span class="n">chunk_by_tokens</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
-
-<span class="c1"># Use page-aware chunking:</span>
-<span class="n">chunks</span> <span class="o">=</span> <span class="n">chunk_by_pages</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span>
-                      <span class="n">respect_sections</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                      <span class="n">min_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
-                      <span class="n">max_size</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
-</code></pre></div>
-<p>This works especially well for documentation sites, user manuals, legal documents, and academic papers where context matters.</p>
-<p>Some other document retrieval techniques that work:</p>
+<h1 id="implementing-multimodal-search-handling-different-modalities">Implementing Multimodal Search: Handling Different Modalities</h1>
+<p>Now let's take a look at some specific modalities that we might care about in the context of building entity-specific search indices. We'll talk about documents, images, and a little bit about tables.</p>
+<h2 id="prerequisites-and-context">Prerequisites and context</h2>
 <ul>
-<li><strong>Contextual Retrieval</strong>: Rewrite chunks to include context from the full document. Makes isolated chunks understandable.</li>
-<li><strong>Hybrid Signals</strong>: Mix semantic similarity with recency, authority, citation counts. Don't rely on embeddings alone.</li>
-<li><strong>Multi-stage Retrieval</strong>: Start cheap and fast, then get more sophisticated. Filter garbage early.</li>
+<li>Read: <a href="../chapter5-1/">5.1 Understanding Specialized Retrieval</a></li>
+<li>Builds on segmentation (Chapter 4) and feedback UX (Chapter 3)</li>
 </ul>
-<p><strong>The Power of Context-Aware Chunks</strong></p>
-<p>Original chunk: "Jason the doctor is unhappy with Patient X"</p>
-<p>Without context, this is ambiguous:
-- Is Jason a medical doctor unhappy with a patient?
-- Is a doctor named Jason unhappy?
-- Is someone consulting Dr. Jason about Patient X?</p>
-<p><strong>Solution: Rewrite chunks with full document context:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">create_contextual_chunk</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">document</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Rewrite chunk with document context.&quot;&quot;&quot;</span>
+<h2 id="learning-objectives">Learning objectives</h2>
+<ul>
+<li>Identify when to use document, image, table, and SQL retrievers</li>
+<li>Design summaries or extractions to bridge inventory vs capability gaps</li>
+<li>Evaluate modality pipelines with precision/recall at each stage</li>
+</ul>
+<h2 id="document-search-techniques">Document Search Techniques</h2>
+<p>At a glance, there's only a couple of different ways that we can actually handle searching for documents. We can chunk the documents, we can make sure they have the correct metadata, and we can use things like contextual retrieval to rewrite some of the original text chunks. Once that's in place, we can either use lexical search or semantic search to do a good job.</p>
+<p>And then, with the passages that we find, we apply re-rankers.</p>
+<p>Lastly, we find the documents that matter using the re-rankers and shove it into a language model, take advantage of the long context and move on. And then anything else that we need to do in improving this will either come from the summarization or the extraction that we talked about earlier today.</p>
+<h3 id="the-mixture-of-data-sources">The Mixture of Data Sources</h3>
+<p>If you blend all of these different abilities together, it will result in a system that sometimes returns summaries of data. Sometimes it could return the entire document that we use in long context. And sometimes it might result in specific text chunks. Whether they're structured data that we pull out, or just a regular chunk from an 800 token window and a 50 percent overlap.</p>
+<p>As long as the data is represented correctly - maybe some of the metadata is in the XML format of a prompt or whatnot - all we have to do is to tell the language model that we're going to receive a mixture of these kind of data sources and this will ultimately elicit a higher quality result. And your answers are going to get better and your only job is to curate this mixture of data sets.</p>
+<h3 id="structured-extraction-example">Structured Extraction Example</h3>
+<p>If we use structured outputs, for example, to extract structured data - maybe by defining some kind of category, like type and payment and invoice, we might define a date and a statement. Just by doing this, we can just easily save this into a Postgres database.</p>
+<p>And then when we start having questions about this, we could potentially have a different function that says, you know what, I want to be able to query anything I want. I want to be able to filter on a type, if it matters. And I want to create some kind of date range. And now your only job is to hit that same database, create some kind of SQL statement, and you can extract that data back out. These two things are pretty synonymous.</p>
+<p><strong>Real Examples from My Consulting:</strong></p>
+<p>In finance, it turns out that we really cared about fiscal years compared to calendar years. And if we could resolve them in a better way, we would get better answers. One client had documents using fiscal year (July-June) while users asked about calendar years. Without proper extraction and mapping, 50% of financial queries failed.</p>
+<p>When doing search over legal documents, it turns out that just by being able to predict whether something was a contract that was signed or unsigned, we can have much better ways of processing or filtering. Especially where we can also extract things like payment dates and payment terms, and just simply return the document ID.</p>
+<p>For call transcripts, just by classifying them - maybe by a job interview or a stand up or a design review - we could extract type-specific metadata that allows us to build additional searches against different kinds of transcripts.</p>
+<h3 id="pdf-processing-evolution">PDF Processing Evolution</h3>
+<p>In the world of document processing, PDF parsing has only gotten much, much better. You can get 90 percent accuracy. But even just by using very simple models like Gemini and Anthropic, you still get pretty high performance. In the notebooks later, we'll talk a little bit more about how we might want to use language models that do extraction, but also why we might care about having things like bounding boxes and be able to cite things.</p>
+<p>My general bet is that a lot of this PDF parsing world is gonna be around finding the locations of specific citations.</p>
+<p>So with documents, a lot of it is gonna be around extraction, unstructured querying, and whatnot. And as prompt caching gets better, things like contextual retrieval will work quite well.</p>
+<h2 id="image-search-techniques">Image Search Techniques</h2>
+<p>Images, on the other hand, are a whole other story.</p>
+<p>When we talked about images, we've talked briefly around the idea of generating summaries of images. However, it's really important to recognize that visual language models were trained on captioning data. And so this captioning data and the CLIP embeddings aren't very powerful in some situations.</p>
+<p>While multimodal embeddings like CLIP embeddings might make sense for cost, complex question answering may result in very low precision for the same reasoning and passages.</p>
+<h3 id="the-similarity-assumption-problem">The Similarity Assumption Problem</h3>
+<p>It really comes down to the same assumption we talked about in session 2. Why would the question and an image be similar?</p>
+<p>This assumption, and challenging this assumption, is how you're going to be able to get good summarizations. And generating good summarizations is a skill that you'll need not just for understanding images, but for all kinds of data.</p>
+<p>The big mistake I see when people try to do this kind of work is they have a really simple prompt like, "what's in this image?" And because you're not very specific, maybe the image just says it's two people.</p>
+<h3 id="the-two-people-example">The "Two People" Example</h3>
+<p>To avoid this gap between the embedding of a question and the embedding of a summary, we have to do a lot better on how we write our prompts. We can't simply ask, "what's in this image?" Instead, you have to be very specific and try again to incorporate the questions you anticipate being asked about a system.</p>
+<p>If you just ask, "what's in this image," you might get "two people." If you could do a little bit better, you might get "two people arguing."</p>
+<p>And if you prompt it very well, maybe the actual description is going to be, "this is an image of person one and person two in a mysterious foggy scene arguing over the dinner table and someone has a knife," right? You can definitely imagine the embedding of these two phrases. These three phases are going to dramatically change whether or not information is going to be retrieved.</p>
+<h3 id="improving-image-summaries">Improving Image Summaries</h3>
+<p>To improve the summary, there's a ton of things that you can do. For one, you can leverage things like chain of thought to reason out the captioning data. If you're processing images that exist in the context of other documents, you could augment that context by extracting the image itself, potentially attaching any OCR results from that image, and even attaching nearby passages, maybe the text above and below a figure.</p>
+<p>And we can even do things like leverage things like bounding boxes. And by doing all these techniques, part of the summarization work we talked about, we can create much more powerful summaries that can be used to improve our ability to recall certain documents.</p>
+<p>If you want to pause here, this is an example of a prompt I use to generate better summaries:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_image_summary</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ocr_text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate a detailed, searchable image summary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">    Document context: </span><span class="si">{</span><span class="n">document</span><span class="o">.</span><span class="n">title</span><span class="si">}</span>
-<span class="s2">    Section: </span><span class="si">{</span><span class="n">chunk</span><span class="o">.</span><span class="n">section</span><span class="si">}</span>
+<span class="s2">    Analyze this image and create a comprehensive summary for search.</span>
 
-<span class="s2">    Original chunk: </span><span class="si">{</span><span class="n">chunk</span><span class="o">.</span><span class="n">text</span><span class="si">}</span>
+<span class="s2">    1. Visual Description:</span>
+<span class="s2">       - What objects, people, or scenes are visible?</span>
+<span class="s2">       - What is the mood, lighting, or atmosphere?</span>
+<span class="s2">       - What type of shot or perspective is used?</span>
 
-<span class="s2">    Rewrite this chunk to include necessary context</span>
-<span class="s2">    so it can be understood in isolation.</span>
+<span class="s2">    2. Text Content (if any):</span>
+<span class="s2">    &lt;ocr_text&gt;</span>
+<span class="s2">       </span><span class="si">{</span><span class="n">ocr_text</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">ocr_text</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;No OCR text detected&quot;</span><span class="si">}</span>
+<span class="s2">    &lt;/ocr_text&gt;</span>
+
+<span class="s2">    3. Context (if provided):</span>
+<span class="s2">    &lt;context&gt;</span>
+<span class="s2">       </span><span class="si">{</span><span class="n">context</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;No additional context&quot;</span><span class="si">}</span>
+<span class="s2">    &lt;/context&gt;</span>
+
+<span class="s2">    4. Reasoning:</span>
+<span class="s2">       - What is the likely purpose of this image?</span>
+<span class="s2">       - What questions might users ask about it?</span>
+
+<span class="s2">    5. Generate searchable tags and potential questions</span>
+
+<span class="s2">    6. Final Summary:</span>
+<span class="s2">       Create a 2-3 paragraph description optimized for retrieval</span>
 <span class="s2">    &quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">llm</span><span class="o">.</span><span class="n">complete</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">generate_with_vision_model</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">prompt</span><span class="p">)</span>
 </code></pre></div>
-<p>Result: "In this employee feedback document, Jason (the medical doctor on our staff) expressed dissatisfaction with the Patient X project management software due to frequent crashes."</p>
-<p><strong>Key Decision: Compute at write-time vs read-time</strong>
-- Write-time: Higher storage cost, faster retrieval
-- Read-time: Lower storage cost, slower retrieval
-- Most teams should compute at write-time for production</p>
-<div class="highlight"><pre><span></span><code>flowchart LR
-    A[Query] --&gt; B[Initial Retrieval]
-    B --&gt; C[Candidate Chunks]
-    C --&gt; D[Re-ranking]
-    D --&gt; E[Dynamic Expansion]
-    E --&gt; F[Final Context]
-</code></pre></div>
-<p>Your document retrieval ends up returning different things for different queries:
-- Quick summaries for overview questions
-- Full documents when context matters
-- Specific chunks for precise information</p>
-<p>The system adapts to what the query actually needs.</p>
-<p><strong>Document Processor with Contextual Retrieval</strong></p>
-<div class="highlight"><pre><span></span><code>```python
-from typing import List, Dict, Any
-import re
-
-def process_document_for_retrieval(document: str) -&gt; Dict[str, Any]:
-    &quot;&quot;&quot;
-    Process a document for enhanced retrieval capabilities.
-
-    Args:
-        document: The raw document text
-
-    Returns:
-        Dictionary with processed document components
-    &quot;&quot;&quot;
-    # Extract structured metadata
-    metadata = extract_document_metadata(document)
-
-    # Create standard chunks with overlap
-    chunks = chunk_document(document, chunk_size=800, overlap=0.5)
-
-    # Generate summaries at different levels
-    document_summary = summarize_document(document)
-    section_summaries = [summarize_section(section) for section in extract_sections(document)]
-
-    # Extract any structured data tables
-    tables = extract_tables(document)
-
-    return {
-        &quot;metadata&quot;: metadata,
-        &quot;chunks&quot;: chunks,
-        &quot;document_summary&quot;: document_summary,
-        &quot;section_summaries&quot;: section_summaries,
-        &quot;tables&quot;: tables,
-        &quot;full_document&quot;: document  # Keep original for potential long-context processing
-    }
-
-def contextual_retrieval(query: str, document_store: List[Dict[str, Any]]) -&gt; List[str]:
-    &quot;&quot;&quot;
-    Perform contextual retrieval that adapts based on query type.
-
-    Args:
-        query: User query
-        document_store: Processed document store
-
-    Returns:
-        List of most relevant text chunks for the query
-    &quot;&quot;&quot;
-    # Analyze query to determine retrieval strategy
-    query_analysis = analyze_query(query)
-
-    if query_analysis[&quot;requires_specific_detail&quot;]:
-        # Use chunk-level retrieval for specific information
-        return retrieve_relevant_chunks(query, document_store)
-
-    elif query_analysis[&quot;requires_overview&quot;]:
-        # Use summary-level retrieval for broader questions
-        return retrieve_relevant_summaries(query, document_store)
-
-    elif query_analysis[&quot;requires_structured_data&quot;]:
-        # Use table retrieval for data-oriented questions
-        return retrieve_relevant_tables(query, document_store)
-
-    else:
-        # Fall back to hybrid approach
-        chunks = retrieve_relevant_chunks(query, document_store)
-        summaries = retrieve_relevant_summaries(query, document_store)
-        return rerank_combined_results(query, chunks + summaries)
-```
-</code></pre></div>
-<h3 id="image-search-bridging-visual-and-textual-understanding">Image Search: Bridging Visual and Textual Understanding</h3>
-<p>Image search is tricky because vision models were trained on captions, but people don't search using caption-style language.</p>
-<div class="admonition warning">
-<p class="admonition-title">Embedding Spaces Mismatch</p>
-</div>
-<p>The naive approach—applying the same embedding strategy used for text—often fails because question embeddings and image caption embeddings exist in fundamentally different semantic spaces. Simply embedding captions like "two people" will not retrieve well when users search for "business meeting" or "team collaboration."</p>
-<p><strong>When to Use Vision Language Models</strong>: According to Adit from Reducto, VLMs excel at "things that traditional OCR has always been horrible at" - handwriting, charts, figures, and diagrams. However, for clean structured information, traditional CV provides better precision and token efficiency. <a href="../../talks/reducto-docs-adit/">Learn about their hybrid approach →</a></p>
-<p>Here's how to make image search actually work:</p>
-<p><strong>Advanced Image Description Techniques</strong></p>
-<p><strong>Rich Prompting</strong>: Move beyond simple "what's in this image?" prompts to detailed instructions that anticipate likely queries. Compare:</p>
-<div class="highlight"><pre><span></span><code>*Basic*: &quot;Describe this image.&quot;
-→ Result: &quot;Two people at a table.&quot;
-
-*Better*: &quot;Describe this image in detail, noting the number of people, their apparent relationship, the setting, lighting conditions, objects present, and any text visible in the image.&quot;
-→ Result: &quot;Two people arguing across a dinner table in a dimly lit room. One person appears agitated while the other looks defensive. A knife is visible on the table.&quot;
-
-*Optimal*: &quot;Analyze this image comprehensively as if you were making it searchable in a database. Include details about the people, their emotions, the environment, lighting, objects, potential context, and any visible text. Consider how someone might search for this specific image.&quot;
-→ Result: &quot;This dramatic image shows two business professionals in a tense negotiation across a polished conference table in a corporate boardroom with floor-to-ceiling windows overlooking a city skyline. The older man in a gray suit appears frustrated, gesturing emphatically with papers in hand, while the younger woman in a black blazer maintains a composed but firm expression. Multiple financial reports and what appears to be a contract are spread across the table. The scene is captured in natural lighting with dramatic shadows, suggesting a high-stakes discussion or disagreement over business terms.&quot;
-</code></pre></div>
-<p>In practice, the difference between basic and good image descriptions meant 40% better retrieval rates. The trick was figuring out how users actually describe what they're looking for.</p>
-<p><strong>Additional Image Enhancement Approaches</strong></p>
+<p>We attach the OCR data. We ask about visual descriptions of the scenes. We ask it to reason. And even generate potential questions and tags.</p>
+<p>And only once we've done all that, do we actually ask for a summary and evaluate its performance. And again, its performance is going to be defined by whether or not the embedding of that summary is returned for a synthetic or user question.</p>
+<h3 id="contextual-augmentation">Contextual Augmentation</h3>
+<p>We can also augment the context. This is very similar to how people think about contextual retrieval. You know, we could pass in this entire image to the system. But also make sure we include the text here. That will allow us to get better results. We can just provide the image to the model, add the text above and below, and provide as much context as possible.</p>
+<h3 id="visual-grounding-for-construction">Visual Grounding for Construction</h3>
+<p>And lastly, for other situations where it matters, we can also add things like bounding boxes and visual grounding. In a lot of construction contexts, people ask us to count things, and it's really hard unless we do bounding boxes. And then the question is going to be a factor of whether or not our bounding box system is accurate.</p>
+<p>We have very good classic, classical methods to evaluate that.</p>
+<p>This kind of visual grounding is relevant not only for images, but also for, you know, simple things like PDFs. Because once we get very complex figures, even those are going to be bounding boxes. We can do things like counting and facial recognition and all that, but that's not really in the scope of this course.</p>
+<h2 id="table-search-techniques">Table Search Techniques</h2>
+<p>If you want to look at some of the simpler ways of thinking about tables, the first two I would recommend are the following.</p>
+<h3 id="approach-1-table-as-document">Approach 1: Table as Document</h3>
+<p>If you know that what you're looking for are specific rows in a table, then chunking a table and then using semantic search is totally fine. We might also want to generate summaries of these and run them against things like lexical search and semantic search.</p>
+<p>With this, like I've said many times, synthetic data will tell you whether or not this direction is working. The thing you have to make sure to do is to preserve all the headers as part of the chunking.</p>
+<p>This is really useful if you're looking for things like finding specific tables across many years in a financial document, or finding specifications with order forms, for example.</p>
+<h3 id="approach-2-table-as-database">Approach 2: Table as Database</h3>
+<p>The other thing you can do is directly incorporate the table metadata and treat a table as just another search index, in which case the important task is figuring out which table to query. Here, we can just standardize the schemas. So, for example, we might think of a create statement for a SQL table and then build semantic search against that.</p>
+<p>And the same tools apply. It might be the case that embedding the create table is enough, sometimes we might want to do a summary, and allow for more complexity in that summary by having things like sample data.</p>
+<p>Then your job is to find the right table, and then figure out what to do afterwards. If you find the right table, there's generally two other things you can consider. The first one, the simpler approach, is to just simply put the table into the context. And here, we're treating the table data just as another document.</p>
+<p>This will work quite well with some of the thinking models that are available these days.</p>
+<p>And by giving the language model some ability to write some code, you actually might be able to do some data analysis as well. And the last thing you can do is dynamically load this data either into SQL or write SQL against it, or even load this as a CSV, have a Python interpreter and do some data analysis in pandas.</p>
+<p>This is a lot more complex. We won't really go into the details of how we can run pandas code dynamically, but generally the idea is that if you want to do some more analysis, we will have to load this in some kind of SQL like tool.</p>
+<p>Here, as long as we're able to intelligently find the right table statements, we can use something like lexical search and semantic search. The real challenge will be how we can use pre-existing code snippets and pre-existing code analysis to show the language model what's possible. In this example, the tables themselves are the inventory, and the capabilities might be different ways we want to demonstrate to the language model how we want to create this data.</p>
+<h2 id="sql-query-generation">SQL Query Generation</h2>
+<p>So I also wanted to introduce a baseline on how I think about text to SQL and apply the same ideas we've thought about in synthetic data generation and understanding inventory versus capabilities.</p>
+<h3 id="the-multiple-correct-answers-problem">The Multiple Correct Answers Problem</h3>
+<p>The big challenge with text to SQL is that there's multiple correct answers. And executing some of these things can be very time consuming. And in a lot of practical examples, I've seen companies want to try to work with complex schemas that have tens or even hundreds of columns.</p>
+<p>So if we reframe our approach using the same tools that we have already at our disposal, then we can think about the following. Let's focus on first inventory. Do we have the right tables? Can we retrieve them well? And do we have the right columns? And can we retrieve those well? Then we can focus on the right capabilities.</p>
+<p>Can we demonstrate some understanding from historical data, perhaps? How we can write the correct queries and how we can find the correct joins. It's not always the case that data is going to be defined by some foreign key in a create statement. And oftentimes, in very business specific use cases, something as simple as revenue isn't just a sum of some cost.</p>
+<h3 id="business-specific-calculations">Business-Specific Calculations</h3>
+<p>In some examples like finance, computing profit might be very specific to the business, and it won't be as simple as just summing up a single column somewhere in a database. And once you have a good understanding of what the inventory and the capabilities are, we can actually still try to define precision and recall metrics against that inventory.</p>
+<p>Go back to basics, create synthetic data, and start to flywheel over and over again. And I hope you're really just noticing how repetitive this process is, this process I've been trying to drill into everyone throughout this course.</p>
+<h3 id="testing-table-retrieval">Testing Table Retrieval</h3>
+<p>So the first challenge, again, is to define what is the right asset. And our objective is to test if the system can correctly return the right tables for a search query when there are many tables in place. We might want to take the create statements, have some descriptions for the tables, and generate summaries that point to the reference of the tables.</p>
+<p>Once we do that, we can verify whether or not the questions we're asking are retrieving correctly. A simple example could be if I ask the question like "how many users generate more than 10,000 revenue." Ideally, I want to assert that the users table and the finance table is being retrieved.</p>
+<p>And just like that, we can think about precision and recall all over again.</p>
+<h3 id="retrieving-the-right-capabilities">Retrieving the Right Capabilities</h3>
+<p>It's one thing to make sure that we have the correct tables, but it's another to make sure that we're using them correctly. So one of the other things we want to think about is retrieving the right capabilities.</p>
+<p>Here, our goal is to identify whether or not the system retrieves the correct SQL queries, especially in situations that involve things like joins, and might include different mistakes the average data scientist might make. Here, our goal is to identify patterns in existing SQL queries and create snippets for them.</p>
+<p>For example, in a lot of the companies I work with, month-over-month statistics is a very complex and nuanced situation that might depend on finance, for example. And just having a single example on how to compute month over month or day over day can really help the language model do the right thing.</p>
+<h3 id="the-ui-for-collecting-gold-standards">The UI for Collecting Gold Standards</h3>
+<p>One additional callout is that we can actually build UI to start collecting these gold snippets that we use as few shots in the future. This really goes back to our session three content, where a lot of the product that we build should help us secretly collect data to improve our product and allowing a user to star a SQL statement, for example, can go a long way.</p>
+<h3 id="subjective-query-interpretation">Subjective Query Interpretation</h3>
+<p>And if you really look at how nuanced some of these SQL queries are, you'll realize how powerful pulling out these examples could be. It's not always obvious what month over month means. Sometimes when a company says month over month, they're really thinking 28 day rolling average versus completing the calendar month. We don't really know what they're talking about unless we have examples.</p>
+<p>Let me give you specific examples of how different companies interpret the same query:</p>
+<p><strong>"Month over Month Growth":</strong>
+- Company A: 30-day rolling window from today
+- Company B: 28-day rolling window (for consistency)
+- Company C: Calendar month (1st to last day)
+- Company D: Business month (26th to 25th for billing)</p>
+<p><strong>"Recent customers":</strong>
+- Startup: Last 7 days
+- Enterprise: Last 90 days
+- E-commerce: Since last purchase</p>
+<p><strong>"High-value transactions":</strong>
+- Retail: &gt; $500
+- B2B SaaS: &gt; $10,000
+- Investment firm: &gt; $1,000,000</p>
+<p>I've included some examples of subjective queries that can just be resolved to a very specific query once we know what the customers really want. For example, when I just ask a language model for month over month, it potentially could do a 30 day rolling window, a 28 day rolling window, it might round to the calendar month, but we don't really know which one is the correct one.</p>
+<p>And if we have opinions on this, we can set this in the context, set this as a system message, or dynamically retrieve this as your problem space gets bigger.</p>
+<h2 id="metrics-and-evaluation">Metrics and evaluation</h2>
 <ul>
-<li>
-<p><strong>Contextual Enrichment</strong>: Incorporate surrounding text, OCR results from the image, and metadata about the image's source and purpose. For example, if an image appears in a product manual, include the product name and function in the description.</p>
-</li>
-<li>
-<p><strong>Visual Reasoning</strong>: Use chain-of-thought prompting to guide the model through a reasoning process about the image content, resulting in more comprehensive descriptions. For example: "First identify all objects in the image. Then consider how they relate to each other. Finally, determine what activity or process is being depicted."</p>
-</li>
-<li>
-<p><strong>Bounding Boxes and Visual Grounding</strong>: For applications where precise location or counting is important, supplement descriptions with information about the spatial arrangement of elements. This is particularly valuable in construction, manufacturing, and retail contexts where users often need to locate or count specific items.</p>
-</li>
+<li>Retrieval precision and recall per modality (documents, images, tables)</li>
+<li>Table selection Recall@K for table-as-database approaches</li>
+<li>Re-ranker impact on top-K candidate quality</li>
+<li>Offline evaluations via synthetic question sets per modality</li>
 </ul>
-<p><strong>Construction Site Image Analysis Example</strong>: For a construction company's image database, users frequently needed to count specific items ("How many support beams are installed?") or locate defects ("Show me images of cracked foundations"). By implementing bounding box detection alongside rich descriptions, retrieval accuracy for these queries improved by 65% compared to using only semantic descriptions.</p>
-<p><strong>Rich Image Description Prompt</strong>
-```python
-def generate_rich_image_description(image, ocr_text=None, surrounding_text=None):
-"""
-Generate a comprehensive description optimized for retrieval.</p>
-<div class="highlight"><pre><span></span><code>    Args:
-        image: Image data or path
-        ocr_text: Optional text extracted from the image
-        surrounding_text: Optional text surrounding the image in its original context
-
-    Returns:
-        Detailed description of the image
-    &quot;&quot;&quot;
-    prompt = f&quot;&quot;&quot;
-    # Image Analysis Task
-
-    ## Context Information
-    {&quot;OCR Text from image: &quot; + ocr_text if ocr_text else &quot;No OCR text available.&quot;}
-    {&quot;Surrounding context: &quot; + surrounding_text if surrounding_text else &quot;No surrounding context available.&quot;}
-
-    ## Analysis Instructions
-    Analyze the following image in extreme detail:
-
-    1. First, describe the visual scene, setting, and overall composition
-    2. List all people visible, their approximate positions, actions, and expressions
-    3. Enumerate all objects visible in the image
-    4. Note any text visible in the image
-    5. Describe colors, lighting, and visual style
-    6. If applicable, identify the type of image (photograph, diagram, screenshot, etc.)
-    7. Use chain-of-thought reasoning: think about what is happening and why
-    8. Generate 5-7 potential questions someone might ask when searching for this image
-    9. Suggest 5-10 relevant tags for this image
-
-    ## Final Description
-    Based on your analysis, provide a comprehensive 3-5 sentence description that would
-    help people find this image when searching with natural language queries.
-    &quot;&quot;&quot;
-
-    # Use this prompt with your vision model implementation
-    # ...
-```
-</code></pre></div>
-<p>The enhanced description dramatically improves retrieval capability when troubleshooting specific defects or components.</p>
-<h3 id="table-search-structured-data-in-context">Table Search: Structured Data in Context</h3>
-<p>Tables are weird—they're structured data living in unstructured documents. Here's what works:</p>
-<blockquote>
-<p>"Tables are particularly challenging because they represent two-dimensional associations of data that can be formatted in countless ways. The failures are often subtle - a model might extract what appears to be a valid table but silently drop rows, columns, or individual values."
-— Adit from Reducto</p>
-</blockquote>
-<p>For production-ready table extraction, consider specialized tools. <a href="../../talks/reducto-docs-adit/">Learn more about document ingestion best practices →</a></p>
-<p>Turns out markdown tables work best for LLM lookup:
-- Markdown: 85% accuracy
-- CSV: 73% accuracy<br />
-- JSON: 71% accuracy
-- YAML: 69% accuracy</p>
-<p>Why? The visual structure helps LLMs understand relationships better than nested JSON.</p>
-<div class="highlight"><pre><span></span><code>| Product ID | Name           | Price  | Stock |
-|------------|----------------|--------|-------|
-| SKU-001    | Widget Pro     | $29.99 | 150   |
-| SKU-002    | Widget Basic   | $19.99 | 0     |
-| SKU-003    | Widget Premium | $49.99 | 75    |
-</code></pre></div>
-<p>Watch out for number formatting: <code>1 234 567</code> tokenizes as three separate numbers. Use <code>1234567</code> or <code>1,234,567</code> instead.</p>
-<p><strong>Production Table Extraction</strong>: Reducto's approach to complex tables includes:
-- Using HTML for tables with 3+ merged cells
-- Traditional CV for initial extraction, VLMs for correction
-- Creating natural language summaries for better retrieval</p>
-<p>See their <a href="../../talks/reducto-docs-adit/">complete document parsing methodology</a> for handling PDFs, Excel files, and complex layouts.</p>
-<p>Two ways to handle table retrieval:</p>
-<p><strong>Approach 1: Table as Document</strong>
-Chunk the table (keep headers!) and use semantic search. Add summaries about what the table contains. Good for questions like "Which product had the highest Q3 sales?"</p>
-<p><strong>Approach 2: Table as Database</strong><br />
-Treat tables as mini-databases. The challenge is figuring out which table has the answer. Create schema descriptions and sample queries, then search against those.</p>
-<p><strong>Table Processor Implementation</strong>
-```python
-from typing import List, Dict, Any, Optional
-import pandas as pd</p>
-<div class="highlight"><pre><span></span><code>class TableProcessor:
-    &quot;&quot;&quot;Process tables for enhanced retrievability and querying.&quot;&quot;&quot;
-
-    def process_table(self, table_data: pd.DataFrame, table_name: str,
-                    source_doc: Optional[str] = None) -&gt; Dict[str, Any]:
-        &quot;&quot;&quot;
-        Process a table for both document-like and database-like retrieval.
-
-        Args:
-            table_data: The table as a pandas DataFrame
-            table_name: Name of the table
-            source_doc: Optional source document information
-
-        Returns:
-            Dictionary with processed table components
-        &quot;&quot;&quot;
-        # Generate schema representation
-        schema = self._generate_schema_representation(table_data)
-
-        # Generate natural language summary
-        summary = self._generate_table_summary(table_data, table_name)
-
-        # Generate sample queries this table could answer
-        sample_queries = self._generate_sample_queries(table_data, table_name)
-
-        # Convert to text chunks for semantic search
-        text_chunks = self._table_to_text_chunks(table_data)
-
-        return {
-            &quot;table_name&quot;: table_name,
-            &quot;schema&quot;: schema,
-            &quot;summary&quot;: summary,
-            &quot;sample_queries&quot;: sample_queries,
-            &quot;text_chunks&quot;: text_chunks,
-            &quot;raw_data&quot;: table_data,
-            &quot;source_document&quot;: source_doc
-        }
-
-    def _generate_schema_representation(self, df: pd.DataFrame) -&gt; str:
-        &quot;&quot;&quot;Generate a SQL-like schema representation.&quot;&quot;&quot;
-        types = []
-        for col in df.columns:
-            dtype = df[col].dtype
-            if pd.api.types.is_numeric_dtype(dtype):
-                sql_type = &quot;NUMERIC&quot;
-            elif pd.api.types.is_datetime64_dtype(dtype):
-                sql_type = &quot;TIMESTAMP&quot;
-            else:
-                sql_type = &quot;TEXT&quot;
-
-            # Add sample values for better understanding
-            sample_values = df[col].dropna().unique()[:3]
-            sample_str = f&quot;Sample values: {&#39;, &#39;.join(str(x) for x in sample_values)}&quot;
-
-            types.append(f&quot;{col} {sql_type} -- {sample_str}&quot;)
-
-        return f&quot;CREATE TABLE table (\n  &quot; + &quot;,\n  &quot;.join(types) + &quot;\n);&quot;
-
-    def _generate_table_summary(self, df: pd.DataFrame, table_name: str) -&gt; str:
-        &quot;&quot;&quot;Generate a natural language summary of the table.&quot;&quot;&quot;
-        # Use an LLM to summarize the table contents
-        # Implementation depends on your LLM framework
-        # ...
-
-    def _generate_sample_queries(self, df: pd.DataFrame, table_name: str) -&gt; List[str]:
-        &quot;&quot;&quot;Generate sample natural language queries this table could answer.&quot;&quot;&quot;
-        # Use an LLM to generate sample queries
-        # ...
-
-    def _table_to_text_chunks(self, df: pd.DataFrame) -&gt; List[str]:
-        &quot;&quot;&quot;Convert table to text chunks for semantic search.&quot;&quot;&quot;
-        # Implementation for chunking table content
-        # ...
-```
-</code></pre></div>
-<p>Once the right table is identified, either:</p>
+<h2 id="common-pitfalls-and-anti-patterns">Common pitfalls and anti-patterns</h2>
 <ul>
-<li>Place the table directly into the context for simple analysis</li>
-<li>Generate SQL queries or pandas code for more complex analysis</li>
+<li>Overreliance on generic CLIP captions for complex visual questions</li>
+<li>Losing table headers/metadata when chunking tables</li>
+<li>Treating aggregation/comparison as search instead of a separate capability</li>
+<li>Using vague image summaries instead of task-focused descriptions</li>
 </ul>
-<h2 id="sql-query-generation-a-case-study-in-capability-building">SQL Query Generation: A Case Study in Capability Building</h2>
-<p>SQL generation shows all these principles in action. You need to find the right tables AND write good queries.</p>
-<p>The old approach of "just translate natural language to SQL" breaks down fast when you have:
-- Schemas with hundreds of tables
-- Business-specific definitions (what's an "active user" anyway?)
-- Custom business rules (fiscal calendars, revenue recognition)
-- Performance requirements that need specific query patterns</p>
-<p>We wasted months trying to fine-tune SQL generation models. Then we started retrieving similar queries from our analytics repository instead. Accuracy jumped 30% immediately.</p>
-<p><strong>RAPTOR: Recursive Summarization for Long Documents</strong></p>
-<p>When dealing with concepts that span multiple pages or sections:</p>
+<h2 id="integration-points">Integration points</h2>
+<ul>
+<li>Feeds router design and selection in <a href="../chapter6-1/">6.1</a> and <a href="../chapter6-2/">6.2</a></li>
+<li>Connects to feedback collection in <a href="../chapter3-1/">3.1</a> for training data</li>
+<li>Uses evaluation flywheel from <a href="../chapter1/">1</a> and <a href="../chapter2/">2</a></li>
+</ul>
+<h2 id="whats-next">What’s next</h2>
+<p>Continue to <a href="../chapter6-1/">6.1 Query Routing Foundations</a></p>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Documents: combine lexical/semantic, re-rank, cite, and extract where needed</li>
+<li>Images: generate task-focused summaries; use OCR/context; apply grounding if needed</li>
+<li>Tables: "table as document" vs "table as database"; ensure headers/metadata persist</li>
+<li>SQL: treat inventory (tables/columns) and capabilities (joins/calcs) separately</li>
+</ul>
+<h2 id="reflection-questions">Reflection questions</h2>
 <ol>
-<li>
-<p><strong>Cluster Related Chunks:</strong>
-   <div class="highlight"><pre><span></span><code><span class="c1"># Embed all chunks</span>
-<span class="n">embeddings</span> <span class="o">=</span> <span class="p">[</span><span class="n">embed</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">]</span>
-
-<span class="c1"># Cluster similar chunks</span>
-<span class="n">clusters</span> <span class="o">=</span> <span class="n">cluster_embeddings</span><span class="p">(</span><span class="n">embeddings</span><span class="p">,</span>
-                            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;hierarchical&#39;</span><span class="p">,</span>
-                            <span class="n">threshold</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Summarize Each Cluster:</strong>
-   <div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
-    <span class="n">summary</span> <span class="o">=</span> <span class="n">summarize_chunks</span><span class="p">(</span><span class="n">cluster</span><span class="o">.</span><span class="n">chunks</span><span class="p">)</span>
-    <span class="n">cluster</span><span class="o">.</span><span class="n">summary</span> <span class="o">=</span> <span class="n">summary</span>
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Build Hierarchical Index:</strong></p>
-</li>
-<li>Leaf nodes: Original chunks</li>
-<li>Internal nodes: Cluster summaries</li>
-<li>
-<p>Root node: Document summary</p>
-</li>
-<li>
-<p><strong>Multi-Level Retrieval:</strong></p>
-</li>
-<li>Start with high-level summaries</li>
-<li>Drill down to specific chunks as needed</li>
+<li>Which modality is the current bottleneck for your users, and why?</li>
+<li>What summary/extraction would most improve that modality’s recall or precision?</li>
+<li>How will you evaluate improvements (datasets, metrics, thresholds)?</li>
+<li>What UI affordances help collect relevance signals for that modality?</li>
 </ol>
-<p><strong>Use Cases:</strong>
-- Academic papers (methodology across sections)
-- Legal documents (related clauses)
-- Technical documentation (feature descriptions)
-- Books and long-form content</p>
-<p>This approach handles the "information spread" problem where relevant content is distributed across multiple non-contiguous sections.</p>
-<p><strong>When Simple Tools Beat Embeddings</strong>: Colin Flaherty's experience building top-performing coding agents reveals that sometimes simple tools like grep and find can outperform embedding-based retrieval: "The agent's persistence compensated for less sophisticated tools." However, he notes this works best for highly structured content like code, small to medium-sized repositories, and when distinctive keywords exist. For larger codebases or unstructured content, embeddings become essential. <a href="../../talks/colin-rag-agents/">Explore agentic retrieval patterns →</a></p>
-<p>Here's what actually works for SQL generation:</p>
-<ol>
-<li>Document all your tables with good descriptions and sample data</li>
-<li>Generate test questions for different query patterns</li>
-<li>Check if you're finding the right tables</li>
-<li>Build a library of good SQL queries that work</li>
-<li>Retrieve and include relevant examples when generating new queries</li>
-</ol>
-<p>The same question can mean different things. Take "Show me month-over-month revenue growth":
-- Calendar month or 28-day period?
-- Include weekends or not?
-- Absolute dollars or percentage?
-- All revenue or just recurring?
-- Same day comparison or month-end?
-- What about partial months?</p>
-<p><strong>Subjective Query Interpretations</strong>
-| Question | Possible Interpretation 1 | Possible Interpretation 2 | Possible Interpretation 3 |
-|----------|---------------------------|---------------------------|---------------------------|
-| "Monthly active users" | Users who logged in during calendar month | Users who performed an action in last 30 days | Users who made a purchase in billing cycle |
-| "Revenue by region" | Geographic sales regions | Product categories | Customer segments |
-| "Top performing products" | Highest revenue | Highest profit margin | Highest growth rate |</p>
-<p>Models can't read your mind about business logic. But if you show them examples of how your company calculates these things, they'll follow that pattern.</p>
-<h2 id="bringing-it-all-together">Bringing It All Together</h2>
-<h2 id="key-points">Key Points</h2>
-<ol>
-<li>
-<p><strong>Specialized beats general</strong>: Different content types need different retrieval approaches. One-size-fits-all doesn't work.</p>
-</li>
-<li>
-<p><strong>Two main strategies</strong>: Extract structure from text, or create searchable text from structured data. Both are just AI-processed views of your data.</p>
-</li>
-<li>
-<p><strong>Measure both levels</strong>: Track if you're picking the right retriever AND if that retriever works well. The formula helps debug problems.</p>
-</li>
-<li>
-<p><strong>Each type is different</strong>: Documents need context, images need rich descriptions, tables need schema understanding, SQL needs examples.</p>
-</li>
-<li>
-<p><strong>It's also about org structure</strong>: Specialized indices let teams work independently and improve their piece without breaking everything.</p>
-</li>
-</ol>
-<p><strong>Combining Lexical and Semantic Search</strong></p>
-<p>Don't abandon lexical search! It excels at:
-- Exact matches (product codes, names)
-- Technical terms and abbreviations
-- Queries with specific keywords</p>
-<p><strong>Implementation Strategy:</strong>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">hybrid_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
-    <span class="c1"># Get results from both systems</span>
-    <span class="n">semantic_results</span> <span class="o">=</span> <span class="n">semantic_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">lexical_results</span> <span class="o">=</span> <span class="n">bm25_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
-
-    <span class="c1"># Combine with weighted scores</span>
-    <span class="n">combined</span> <span class="o">=</span> <span class="n">merge_results</span><span class="p">(</span>
-        <span class="n">semantic_results</span><span class="p">,</span>
-        <span class="n">lexical_results</span><span class="p">,</span>
-        <span class="n">semantic_weight</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
-        <span class="n">lexical_weight</span><span class="o">=</span><span class="mf">0.3</span>
-    <span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">combined</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span>
-</code></pre></div></p>
-<p><strong>Pro Tip:</strong> Adjust weights based on query type:
-- Technical queries: Increase lexical weight
-- Conceptual queries: Increase semantic weight
-- Let user behavior guide the optimization</p>
-<div class="highlight"><pre><span></span><code>flowchart TD
-    A[User Query] --&gt; B[Query Analyzer]
-    B --&gt; C[Query Router]
-
-    C --&gt;|Document Query| D[Document Retriever]
-    C --&gt;|Image Query| E[Image Retriever]
-    C --&gt;|Table Query| F[Table Retriever]
-    C --&gt;|SQL Query| G[SQL Generator]
-
-    D --&gt; H[Result Combiner]
-    E --&gt; H
-    F --&gt; H
-    G --&gt; H
-
-    H --&gt; I[Response Generator]
-    I --&gt; J[User Response]
-</code></pre></div>
-<p>The nice thing is this approach scales. The same process—generate test data, segment queries, identify capabilities—works whether you're building your first retriever or your tenth.</p>
-<p><strong>How to actually do this:</strong>
-1. Start with one or two specialized retrievers for your most common queries
-2. Measure everything—individual retriever performance and overall success
-3. Add new retrievers when you find query types that aren't working well
-4. Keep improving based on what users actually search for
-5. Make sure your synthetic text matches how people really ask questions</p>
-<p>Remember: even as AI gets better, you're still responsible for retrieval. Knowing what to retrieve and how to find it is the hard part, not generating the final answer.</p>
-<p><strong>Cross-Reference</strong>: In <a href="../chapter6-1/">Chapter 6</a>, we'll explore how to bring these specialized components together through effective routing strategies, creating a unified system that seamlessly directs users to the appropriate retrievers based on their queries.</p>
+<p>If you try to summarize how we think about handling tables, you'll realize that we cover a lot of what we've learned in the past couple of weeks. Doing well can be defined as having an inventory problem of whether or not we have the right table, or a capabilities problem, whether or not we understand how to query the table effectively.</p>
+<p>We can define very simple metrics like our precision and recall in selecting the right table and selecting the right examples. And as we try to continuously improve the system, a lot of it will be around analyzing these queries to identify underperforming areas, whether we have missing inventory or missing capabilities.</p>
+<p>Once we identify this, we can improve our tables inventory by creating some materialized views or some custom tables that can help us understand, or at least help the AI understand how to query the data.</p>
+<p>With this relatively simple system and simple setup, our general RAG playbook can be reapplied to any subsystem. In this example, we're talking about text to SQL, but this can exist in all other cases, whether it's documents, whether it's images, or anything else.</p>
+<p>Evals provide us with an estimate of the probability of success. And we tend to proxy this with recall. Segmentation allows us to figure out what kinds of problems we have, and the solution oftentimes will be splitting up the monolithic retriever into multiple retrievers.</p>
+<p>And when we want to improve these retrievers, it is likely the case that they'll resemble either extracting structured data and querying structured data, or summarizing information and making those entities be pointers to the source data. And then, as a result, we can recursively apply the playbook for single components and for multiple components and so forth.</p>
+<p>After this, we can continue to apply the synthetic data, segmentation, topics, and capabilities workflow to dig deeper into new problems.</p>
+<p>None of these systems that we deploy is going to be a fire and forget scenario. We're always going to have to be monitoring and iterating on these processes.</p>
+<p><strong>Because no matter how much better the AI gets, you're going to be responsible for retrieval.</strong></p>
+<p>This is the fundamental truth about RAG systems. The models will get better at understanding. They'll get better at generating. But retrieval? That's on you. That's your data, your domain, your users' specific needs. Own it.</p>
+<h2 id="food-for-thought">Food for Thought</h2>
+<p>Before we go, I really want you to think about a couple of things. Whether it's for your work or for your own personal projects. If you've identified any specific user query segments or conversation segments.</p>
+<p>I really want you to think about whether a new index or new metadata could be extracted to help you answer those questions.</p>
+<p>And then start playing around with whether or not you can actually extract this data out of your text chunks. Or whether or not you can write queries for them.</p>
+<p>And once you've built out this new index, then you can start synthetically generating new questions and basically rerun the playbook for that specific segment.</p>
+<p>And if you can just be creative and do these steps really, really well, I think you're going to be in a very good position to improve any arbitrary AI application, whether it's for RAG or anything else. </p>
+<p>Most of machine learning is monolithic model, identifying ways of specializing in such a way that in the future, a monolithic model takes over again. You can see this in LLMs. You first have a small model. It gets bigger. And if we can't make it any bigger, what we just do instead is we just train a mixture of experts. And at some point, you train one more model, and at some point, it becomes a mixture of experts of a bigger model.</p>
+<p>This is just generally how machine learning works. And next week, we'll think about how we can actually have these mixture of retrievers and combine them again using a router.</p>
 <hr />
-<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
+<p>If you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
 <script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 
@@ -3580,7 +3743,7 @@ import pandas as pd</p>
       <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       

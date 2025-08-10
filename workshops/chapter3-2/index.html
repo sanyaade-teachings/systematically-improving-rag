@@ -9,8 +9,6 @@
         <meta name="description" content="Techniques for enhancing both actual and perceived performance in RAG applications">
       
       
-        <meta name="author" content="Jason Liu">
-      
       
         <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/workshops/chapter3-2/">
       
@@ -22,11 +20,11 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>Chapter 3.2: Overcoming Latency - Systematically Improving RAG Applications</title>
+        <title>3.2 Overcoming Latency - Systematically Improving RAG Applications</title>
       
     
     
@@ -81,7 +79,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -144,7 +142,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chapter 3.2: Overcoming Latency
+              3.2 Overcoming Latency
             
           </span>
         </div>
@@ -157,9 +155,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
@@ -167,9 +165,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
@@ -797,6 +795,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#prerequisites-and-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites and context
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning objectives
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#animation-and-perceived-performance" class="md-nav__link">
     <span class="md-ellipsis">
       Animation and Perceived Performance
@@ -950,6 +966,42 @@
   <a href="#the-connection-between-streaming-performance-and-feedback" class="md-nav__link">
     <span class="md-ellipsis">
       The Connection Between Streaming, Performance, and Feedback
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration points
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics-and-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metrics and evaluation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-pitfalls-and-anti-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common pitfalls and anti-patterns
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      What’s next
     </span>
   </a>
   
@@ -3059,6 +3111,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#prerequisites-and-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites and context
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning objectives
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#animation-and-perceived-performance" class="md-nav__link">
     <span class="md-ellipsis">
       Animation and Perceived Performance
@@ -3218,6 +3288,42 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#integration-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration points
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics-and-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metrics and evaluation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-pitfalls-and-anti-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common pitfalls and anti-patterns
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      What’s next
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conclusion-performance-as-experience-design" class="md-nav__link">
     <span class="md-ellipsis">
       Conclusion: Performance as Experience Design
@@ -3273,12 +3379,24 @@
 <h2 id="introduction-managing-latency-in-rag-systems">Introduction: Managing Latency in RAG Systems</h2>
 <p>RAG applications face a fundamental challenge: the processes involved—retrieval, generation, validation, citation lookup—take time. Even accurate answers lose value if users get frustrated waiting for them.</p>
 <p>Perceived performance often matters more than actual performance. Users perceive responsive systems as faster even when the total completion time is identical. This chapter covers practical approaches to address this challenge.</p>
+<h2 id="prerequisites-and-context">Prerequisites and context</h2>
+<ul>
+<li>Read: <a href="../chapter3-1/">3.1 Feedback Collection</a></li>
+<li>You’ll implement streaming and interstitials to boost engagement and feedback</li>
+</ul>
+<h2 id="learning-objectives">Learning objectives</h2>
+<ul>
+<li>Implement end-to-end streaming (backend + frontend) for responses</li>
+<li>Design skeleton screens and meaningful interstitials that reduce perceived wait</li>
+<li>Measure TTFT and p95/p99 latency; track feedback rate lift post-streaming</li>
+<li>Apply caching and progressive loading to improve actual performance</li>
+</ul>
 <div class="admonition warning">
 <p class="admonition-title">The Perception Gap</p>
-<p>Perceived wait times can be up to 25% longer than actual wait times when users have no visibility into system progress. Showing meaningful progress can make perceived wait times up to 40% shorter.</p>
 </div>
+<p>Perceived wait times can be up to 25% longer than actual wait times when users have no visibility into system progress. Showing meaningful progress can make perceived wait times up to 40% shorter.</p>
 <blockquote>
-<p><strong>Industry Perspective:</strong> "Streaming has become table stakes in modern LLM applications. Users expect responses instantly, and implementing streaming significantly improves both actual and perceived performance. Only about 20% of companies I work with have a good understanding of how to implement streaming effectively."</p>
+<p><strong>Industry Perspective:</strong> "Let me be blunt here - streaming has become table stakes in modern LLM applications. Users expect responses instantly, and implementing streaming significantly improves both actual and perceived performance. Only about 20% of companies I work with have a good understanding of how to implement streaming effectively. And here's the thing - the migration from non-streaming to streaming is a pain in the ass if you don't do it early."</p>
 </blockquote>
 <p>We'll explore two complementary approaches to addressing latency:</p>
 <ol>
@@ -3286,16 +3404,8 @@
 <li><strong>Designing meaningful interstitials</strong> that engage users while processing occurs</li>
 </ol>
 <p>These techniques not only improve user experience but also lead to higher engagement and more feedback collection, strengthening the improvement flywheel we established in the previous chapter.</p>
-<p><strong>Implementation Timing Insight:</strong> If you're on the fence about implementing streaming in your RAG application, do it early. Migrating from a non-streaming to a streaming application is significantly more complex than building with streaming from the start. It can add weeks to your development cycle if attempted later in the project lifecycle.</p>
-<div class="admonition example">
-<p class="admonition-title">Impact of Visual Feedback</p>
-<ul>
-<li>Users perceive animated progress bars as 11% faster even when wait times are identical</li>
-<li>Users will tolerate up to 8 seconds of waiting when given visual feedback, reducing abandonment rates</li>
-<li>Applications with engaging loading screens report higher satisfaction scores</li>
-<li>Facebook discovered that skeleton screens significantly reduced perceived load times, resulting in better user retention and engagement</li>
-</ul>
-</div>
+<p><strong>Implementation Timing Insight:</strong> If you're on the fence about implementing streaming in your RAG application, do it early. Trust me on this - I've seen companies waste weeks trying to retrofit streaming into an existing application. Migrating from a non-streaming to a streaming application is a pain in the ass. It's significantly more complex than building with streaming from the start. It can add weeks to your development cycle if attempted later in the project lifecycle.</p>
+<p>!!! example "Impact of Visual Feedback" - Users perceive animated progress bars as 11% faster even when wait times are identical - Users will tolerate up to 8 seconds of waiting when given visual feedback, reducing abandonment rates - Applications with engaging loading screens report higher satisfaction scores - Facebook discovered that skeleton screens significantly reduced perceived load times, resulting in better user retention and engagement</p>
 <p>The strategies we'll cover in this chapter are becoming essential components of modern LLM applications. By the end of this chapter, you'll understand how to turn waiting time from a point of frustration to an opportunity for engagement and trust-building.</p>
 <h2 id="animation-and-perceived-performance">Animation and Perceived Performance</h2>
 <p>Before diving into streaming implementations, let's understand why animated indicators are so effective at improving perceived performance. Research in cognitive psychology reveals that humans perceive time differently when observing movement.</p>
@@ -3322,7 +3432,7 @@
 <li>Allowing users to begin reading before the full response is ready</li>
 </ol>
 <p>In a traditional RAG implementation, users submit a query and wait in silence until the full response appears. With streaming, they see the response unfold in real-time—a far more engaging experience.</p>
-<p><strong>When to Implement Streaming:</strong> My recommendation is to stream everything when possible. You can:</p>
+<p><strong>When to Implement Streaming:</strong> My recommendation is simple - stream everything when possible. I know it sounds extreme, but trust me on this. You can:</p>
 <ul>
 <li>Stream interstitials to explain latency and help users understand what's happening</li>
 <li>Stream different results and UI components so users don't have to wait for completion</li>
@@ -3330,7 +3440,7 @@
 <li>Implement skeleton screens (like those used by Facebook, LinkedIn, and Slack) to improve perceived latency</li>
 </ul>
 <blockquote>
-<p><strong>Industry Experience:</strong> "I've seen companies experience 30-40% higher feedback collection rates after implementing effective streaming compared to traditional 'wait and display' approaches. This creates a cycle where better performance leads to more feedback, which enables more targeted improvements."</p>
+<p><strong>Industry Experience:</strong> "I've seen companies experience 30-40% higher feedback collection rates after implementing effective streaming compared to traditional 'wait and display' approaches. And you know what? You'll really be surprised at how some minor changes can have two to five to even 10X more impact. This creates a cycle where better performance leads to more feedback, which enables more targeted improvements."</p>
 </blockquote>
 <div class="highlight"><pre><span></span><code>sequenceDiagram
     participant User
@@ -3366,18 +3476,18 @@
 <li>Backend routes that maintain open connections</li>
 <li>Frontend components that render incremental updates</li>
 </ol>
-<p><strong>Implementation Timing:</strong> If you're on the fence about implementing streaming, do it early. Migrating from a non-streaming to a streaming application is significantly more complex than building it from the start. It can add weeks to your development cycle if attempted later in the project lifecycle.</p>
+<p><strong>Implementation Timing:</strong> I can't stress this enough - if you're on the fence about implementing streaming, do it early. The migration is a pain in the ass, trust me. I've watched teams spend weeks retrofitting streaming when they could have just built it right from the start. Migrating from a non-streaming to a streaming application is significantly more complex than building it from the start.</p>
 <p>Most modern language models and APIs support streaming, though the specific implementation varies. The effort is worth it - side-by-side comparisons show improved user experience, with streaming responses feeling much more responsive than waiting for complete responses:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Example using OpenAI&#39;s API for streaming</span>
-<span class="kn">import</span> <span class="nn">openai</span>
-<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Request</span>
-<span class="kn">from</span> <span class="nn">fastapi.responses</span> <span class="kn">import</span> <span class="n">StreamingResponse</span>
-<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Request</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.responses</span><span class="w"> </span><span class="kn">import</span> <span class="n">StreamingResponse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/query/stream&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">stream_query_response</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">stream_query_response</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Stream a response to a user query.</span>
 
@@ -3395,7 +3505,7 @@
     <span class="n">context</span> <span class="o">=</span> <span class="n">prepare_context</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
 
     <span class="c1"># Set up streaming response</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">event_generator</span><span class="p">():</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">event_generator</span><span class="p">():</span>
         <span class="c1"># Create a streaming completion</span>
         <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">acreate</span><span class="p">(</span>
             <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">,</span>
@@ -3438,7 +3548,7 @@
 <li>Build dynamic UI that renders each component as it becomes available</li>
 </ul>
 <p>Here's how you might implement structured streaming for a response that includes an answer, citations, and follow-up questions:</p>
-<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">stream_structured_response</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">stream_structured_response</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Stream a structured response with multiple components.</span>
 
@@ -3452,7 +3562,7 @@
     <span class="n">documents</span> <span class="o">=</span> <span class="n">retrieve_documents</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
 
     <span class="c1"># Start streaming response components</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">generate_stream</span><span class="p">():</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">generate_stream</span><span class="p">():</span>
         <span class="c1"># Send response type indicator</span>
         <span class="k">yield</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;components&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;answer&quot;</span><span class="p">,</span> <span class="s2">&quot;citations&quot;</span><span class="p">,</span> <span class="s2">&quot;followup&quot;</span><span class="p">]})</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
 
@@ -3522,7 +3632,7 @@
 <li>Maintain a confident, authoritative tone</li>
 </ol>
 <p>Here's how you might implement meaningful interstitials:</p>
-<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">generate_interstitials</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">generate_interstitials</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate meaningful interstitial messages for a query.</span>
 
@@ -3648,11 +3758,34 @@ Generating response...
 <h2 id="the-connection-between-streaming-performance-and-feedback">The Connection Between Streaming, Performance, and Feedback</h2>
 <p>The techniques discussed in this chapter aren't just about improving user experience—they directly strengthen the feedback collection mechanisms we established in Chapter 3.1.</p>
 <p>Research consistently shows that users provide more feedback when systems feel responsive and engaging. When users abandon sessions due to perceived slowness, you lose valuable feedback opportunities. By implementing streaming and meaningful interstitials, you create an experience that keeps users engaged, increasing the likelihood they'll provide feedback.</p>
-<p>In our experience, implementations with effective streaming collect 30-40% more feedback compared to traditional "wait and display" approaches. This creates a positive cycle where better performance leads to more feedback, which enables more targeted improvements.</p>
+<p>In my consulting work, implementations with effective streaming collect 30-40% more feedback compared to traditional "wait and display" approaches. I mean, you'll really be surprised - some minor changes can have 5x to 10x impact on your feedback collection rates. This creates a positive cycle where better performance leads to more feedback, which enables more targeted improvements.</p>
 <p>The most successful RAG applications aren't just accurate—they're responsive, engaging, and transparent. By applying the techniques in this chapter, you create an experience that keeps users engaged throughout the interaction, building trust and encouraging the feedback that fuels continuous improvement.</p>
 <blockquote>
-<p><strong>Real-world Impact:</strong> "For a customer support RAG application, implementing streaming and feedback-optimized interstitials increased our feedback collection rate from 5.6% to over 25%. This allowed us to fine-tune five times faster and quickly identify the most problematic query types. Within six weeks, we improved customer satisfaction scores by 34% by addressing these specific failure modes."</p>
+<p><strong>Real-world Impact:</strong> "Let me share a concrete example - for a customer support RAG application, implementing streaming and feedback-optimized interstitials increased our feedback collection rate from 5.6% to over 25%. That's a 5x improvement just from changing how we present information! This allowed us to fine-tune five times faster and quickly identify the most problematic query types. Within six weeks, we improved customer satisfaction scores by 34% by addressing these specific failure modes. This is what I mean when I say minor changes can have massive impact."</p>
 </blockquote>
+<h2 id="integration-points">Integration points</h2>
+<ul>
+<li>Builds on feedback collection in <a href="../chapter3-1/">3.1</a></li>
+<li>Streaming UX patterns support measurement in <a href="../chapter6-3/">6.3</a></li>
+<li>Ties to production considerations in <a href="../chapter7/">7</a></li>
+</ul>
+<h2 id="metrics-and-evaluation">Metrics and evaluation</h2>
+<ul>
+<li>Perceived latency: time-to-first-token (TTFT), time-to-first-meaningful-chunk</li>
+<li>Actual latency: p50/p95/p99 end-to-end, retrieval, generation</li>
+<li>Engagement: dwell time, scroll depth, streaming interruption rate</li>
+<li>Feedback lift after streaming/interstitials (delta in response rate)</li>
+<li>Cache hit rates (result/embedding/semantic)</li>
+</ul>
+<h2 id="common-pitfalls-and-anti-patterns">Common pitfalls and anti-patterns</h2>
+<ul>
+<li>Streaming only the final answer instead of streaming meaningful progress</li>
+<li>Spinners without real progress cues (hurts perceived performance)</li>
+<li>Long blocking calls before any UI update</li>
+<li>Overloading interstitials with fluff instead of task-relevant info</li>
+</ul>
+<h2 id="whats-next">What’s next</h2>
+<p>Continue to <a href="../chapter3-3/">3.3 Quality of Life Improvements</a></p>
 <h2 id="conclusion-performance-as-experience-design">Conclusion: Performance as Experience Design</h2>
 <p>Throughout this chapter, we've explored how to overcome latency through a combination of streaming responses, meaningful interstitials, skeleton screens, platform-specific implementations, and technical optimizations. The key insight is that performance isn't just a technical concern—it's a fundamental aspect of experience design that directly impacts your feedback collection rates.</p>
 <p>By implementing streaming, you change the user experience from a binary "waiting/complete" pattern to a continuous flow of information. With skeleton screens, you set clear expectations about what content is loading. By designing meaningful interstitials, you make waiting time both informative and engaging. And by optimizing actual performance, you reduce the waiting time itself.</p>
@@ -3731,7 +3864,7 @@ Generating response...
 </li>
 </ol>
 <hr />
-<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
+<p>If you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
 <script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 
@@ -3850,7 +3983,7 @@ Generating response...
       <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       

@@ -20,11 +20,11 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>Performance Measurement and Improvement - Systematically Improving RAG Applications</title>
+        <title>6.3 Performance Measurement and Improvement - Systematically Improving RAG Applications</title>
       
     
     
@@ -79,7 +79,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -142,7 +142,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Performance Measurement and Improvement
+              6.3 Performance Measurement and Improvement
             
           </span>
         </div>
@@ -155,9 +155,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
@@ -165,9 +165,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
@@ -1158,64 +1158,55 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#chapter-overview" class="md-nav__link">
+  <a href="#prerequisites-and-context" class="md-nav__link">
     <span class="md-ellipsis">
-      Chapter Overview
+      Prerequisites and context
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#testing-query-routing-effectiveness" class="md-nav__link">
+  <a href="#learning-objectives" class="md-nav__link">
     <span class="md-ellipsis">
-      Testing Query Routing Effectiveness
+      Learning objectives
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Testing Query Routing Effectiveness">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-query-routing-the-metrics-that-actually-matter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Query Routing: The Metrics That Actually Matter
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Query Routing: The Metrics That Actually Matter">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#tool-selection-metrics" class="md-nav__link">
+  <a href="#the-metrics-you-need-not-the-ones-you-want" class="md-nav__link">
     <span class="md-ellipsis">
-      Tool Selection Metrics
+      The Metrics You Need (Not the Ones You Want)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#automating-router-evaluation" class="md-nav__link">
+  <a href="#the-data-leakage-trap-that-everyone-falls-into" class="md-nav__link">
     <span class="md-ellipsis">
-      Automating Router Evaluation
+      The Data Leakage Trap That Everyone Falls Into
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#analyzing-tool-selection-failures" class="md-nav__link">
+  <a href="#the-simple-code-that-reveals-everything" class="md-nav__link">
     <span class="md-ellipsis">
-      Analyzing Tool Selection Failures
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#confusion-matrix-analysis" class="md-nav__link">
-    <span class="md-ellipsis">
-      Confusion Matrix Analysis
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#targeted-improvement-strategy" class="md-nav__link">
-    <span class="md-ellipsis">
-      Targeted Improvement Strategy
+      The Simple Code That Reveals Everything
     </span>
   </a>
   
@@ -1227,85 +1218,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#user-interfaces-direct-tool-access" class="md-nav__link">
+  <a href="#user-interfaces-the-secret-weapon-nobody-talks-about" class="md-nav__link">
     <span class="md-ellipsis">
-      User Interfaces: Direct Tool Access
+      User Interfaces: The Secret Weapon Nobody Talks About
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="User Interfaces: Direct Tool Access">
+    <nav class="md-nav" aria-label="User Interfaces: The Secret Weapon Nobody Talks About">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#dual-mode-ui-example" class="md-nav__link">
+  <a href="#the-google-lesson-we-all-missed" class="md-nav__link">
     <span class="md-ellipsis">
-      Dual-Mode UI Example
+      The Google Lesson We All Missed
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#specialized-interface-examples" class="md-nav__link">
+  <a href="#the-dual-mode-interface-pattern" class="md-nav__link">
     <span class="md-ellipsis">
-      Specialized Interface Examples
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Specialized Interface Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#blueprint-search-interface" class="md-nav__link">
-    <span class="md-ellipsis">
-      Blueprint Search Interface
+      The Dual-Mode Interface Pattern
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#document-search-interface" class="md-nav__link">
+  <a href="#the-unexpected-benefits" class="md-nav__link">
     <span class="md-ellipsis">
-      Document Search Interface
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#user-feedback-as-training-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      User Feedback as Training Data
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="User Feedback as Training Data">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#user-feedback-collection-mechanisms" class="md-nav__link">
-    <span class="md-ellipsis">
-      User Feedback Collection Mechanisms
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#implementing-a-feedback-loop" class="md-nav__link">
-    <span class="md-ellipsis">
-      Implementing a Feedback Loop
+      The Unexpected Benefits
     </span>
   </a>
   
@@ -1317,37 +1260,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#success-formula" class="md-nav__link">
+  <a href="#user-feedback-as-training-data-the-goldmine-in-your-logs" class="md-nav__link">
     <span class="md-ellipsis">
-      Success Formula
+      User Feedback as Training Data: The Goldmine in Your Logs
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Success Formula">
+    <nav class="md-nav" aria-label="User Feedback as Training Data: The Goldmine in Your Logs">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#diagnostic-framework" class="md-nav__link">
+  <a href="#the-feedback-collection-that-actually-works" class="md-nav__link">
     <span class="md-ellipsis">
-      Diagnostic Framework
+      The Feedback Collection That Actually Works
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#independent-measurement" class="md-nav__link">
+  <a href="#the-virtuous-cycle-in-action" class="md-nav__link">
     <span class="md-ellipsis">
-      Independent Measurement
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#from-metrics-to-roadmap" class="md-nav__link">
-    <span class="md-ellipsis">
-      From Metrics to Roadmap
+      The Virtuous Cycle in Action
     </span>
   </a>
   
@@ -1355,6 +1289,126 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration points
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-success-formula-redux" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Success Formula Redux
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Success Formula Redux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-weekly-standup-that-actually-helps" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Weekly Standup That Actually Helps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-improvement-flywheels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building Improvement Flywheels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building Improvement Flywheels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-instrument-everything" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Instrument Everything
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-automate-the-obvious" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Automate the Obvious
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-close-the-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Close the Loop
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-mistakes-everyone-makes-so-you-dont-have-to" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Mistakes Everyone Makes (So You Don't Have To)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-success-actually-looks-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Success Actually Looks Like
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-path-forward" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Path Forward
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-fundamental-truth-about-machine-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Fundamental Truth About Machine Learning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      What’s next
+    </span>
+  </a>
   
 </li>
       
@@ -1365,20 +1419,14 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Summary">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#the-improvement-process" class="md-nav__link">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#course-conclusion" class="md-nav__link">
     <span class="md-ellipsis">
-      The Improvement Process
+      Course Conclusion
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -3069,64 +3117,55 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#chapter-overview" class="md-nav__link">
+  <a href="#prerequisites-and-context" class="md-nav__link">
     <span class="md-ellipsis">
-      Chapter Overview
+      Prerequisites and context
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#testing-query-routing-effectiveness" class="md-nav__link">
+  <a href="#learning-objectives" class="md-nav__link">
     <span class="md-ellipsis">
-      Testing Query Routing Effectiveness
+      Learning objectives
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Testing Query Routing Effectiveness">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-query-routing-the-metrics-that-actually-matter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Query Routing: The Metrics That Actually Matter
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Query Routing: The Metrics That Actually Matter">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#tool-selection-metrics" class="md-nav__link">
+  <a href="#the-metrics-you-need-not-the-ones-you-want" class="md-nav__link">
     <span class="md-ellipsis">
-      Tool Selection Metrics
+      The Metrics You Need (Not the Ones You Want)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#automating-router-evaluation" class="md-nav__link">
+  <a href="#the-data-leakage-trap-that-everyone-falls-into" class="md-nav__link">
     <span class="md-ellipsis">
-      Automating Router Evaluation
+      The Data Leakage Trap That Everyone Falls Into
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#analyzing-tool-selection-failures" class="md-nav__link">
+  <a href="#the-simple-code-that-reveals-everything" class="md-nav__link">
     <span class="md-ellipsis">
-      Analyzing Tool Selection Failures
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#confusion-matrix-analysis" class="md-nav__link">
-    <span class="md-ellipsis">
-      Confusion Matrix Analysis
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#targeted-improvement-strategy" class="md-nav__link">
-    <span class="md-ellipsis">
-      Targeted Improvement Strategy
+      The Simple Code That Reveals Everything
     </span>
   </a>
   
@@ -3138,85 +3177,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#user-interfaces-direct-tool-access" class="md-nav__link">
+  <a href="#user-interfaces-the-secret-weapon-nobody-talks-about" class="md-nav__link">
     <span class="md-ellipsis">
-      User Interfaces: Direct Tool Access
+      User Interfaces: The Secret Weapon Nobody Talks About
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="User Interfaces: Direct Tool Access">
+    <nav class="md-nav" aria-label="User Interfaces: The Secret Weapon Nobody Talks About">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#dual-mode-ui-example" class="md-nav__link">
+  <a href="#the-google-lesson-we-all-missed" class="md-nav__link">
     <span class="md-ellipsis">
-      Dual-Mode UI Example
+      The Google Lesson We All Missed
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#specialized-interface-examples" class="md-nav__link">
+  <a href="#the-dual-mode-interface-pattern" class="md-nav__link">
     <span class="md-ellipsis">
-      Specialized Interface Examples
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Specialized Interface Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#blueprint-search-interface" class="md-nav__link">
-    <span class="md-ellipsis">
-      Blueprint Search Interface
+      The Dual-Mode Interface Pattern
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#document-search-interface" class="md-nav__link">
+  <a href="#the-unexpected-benefits" class="md-nav__link">
     <span class="md-ellipsis">
-      Document Search Interface
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#user-feedback-as-training-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      User Feedback as Training Data
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="User Feedback as Training Data">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#user-feedback-collection-mechanisms" class="md-nav__link">
-    <span class="md-ellipsis">
-      User Feedback Collection Mechanisms
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#implementing-a-feedback-loop" class="md-nav__link">
-    <span class="md-ellipsis">
-      Implementing a Feedback Loop
+      The Unexpected Benefits
     </span>
   </a>
   
@@ -3228,37 +3219,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#success-formula" class="md-nav__link">
+  <a href="#user-feedback-as-training-data-the-goldmine-in-your-logs" class="md-nav__link">
     <span class="md-ellipsis">
-      Success Formula
+      User Feedback as Training Data: The Goldmine in Your Logs
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Success Formula">
+    <nav class="md-nav" aria-label="User Feedback as Training Data: The Goldmine in Your Logs">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#diagnostic-framework" class="md-nav__link">
+  <a href="#the-feedback-collection-that-actually-works" class="md-nav__link">
     <span class="md-ellipsis">
-      Diagnostic Framework
+      The Feedback Collection That Actually Works
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#independent-measurement" class="md-nav__link">
+  <a href="#the-virtuous-cycle-in-action" class="md-nav__link">
     <span class="md-ellipsis">
-      Independent Measurement
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#from-metrics-to-roadmap" class="md-nav__link">
-    <span class="md-ellipsis">
-      From Metrics to Roadmap
+      The Virtuous Cycle in Action
     </span>
   </a>
   
@@ -3266,6 +3248,126 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration points
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-success-formula-redux" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Success Formula Redux
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Success Formula Redux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-weekly-standup-that-actually-helps" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Weekly Standup That Actually Helps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-improvement-flywheels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building Improvement Flywheels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building Improvement Flywheels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-instrument-everything" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Instrument Everything
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-automate-the-obvious" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Automate the Obvious
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-close-the-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Close the Loop
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-mistakes-everyone-makes-so-you-dont-have-to" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Mistakes Everyone Makes (So You Don't Have To)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-success-actually-looks-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Success Actually Looks Like
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-path-forward" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Path Forward
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-fundamental-truth-about-machine-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Fundamental Truth About Machine Learning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      What’s next
+    </span>
+  </a>
   
 </li>
       
@@ -3276,20 +3378,14 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Summary">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#the-improvement-process" class="md-nav__link">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#course-conclusion" class="md-nav__link">
     <span class="md-ellipsis">
-      The Improvement Process
+      Course Conclusion
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -3310,666 +3406,297 @@
 
 
 <h1 id="performance-measurement-and-improvement-building-learning-systems">Performance Measurement and Improvement: Building Learning Systems</h1>
-<h2 id="chapter-overview">Chapter Overview</h2>
-<p>This part explores how to measure, test, and continuously improve a unified RAG system:</p>
+<p>So you've built specialized retrievers and a router to connect them. Congratulations! Now comes the part that separates good systems from great ones: measurement and improvement.</p>
+<p>This chapter is about turning your RAG system into something that gets better every week, not something that slowly rots in production.</p>
+<h2 id="prerequisites-and-context">Prerequisites and context</h2>
 <ul>
-<li>Testing and measuring performance of both retrieval and routing components</li>
-<li>Creating user interfaces that leverage both AI and direct tool access</li>
-<li>Building systems that scale across teams and complexity levels</li>
-<li>Creating continuous improvement cycles through user feedback</li>
+<li>Read: <a href="../chapter6-1/">6.1 Query Routing Foundations</a>, <a href="../chapter6-2/">6.2 Tool Interfaces and Implementation</a></li>
+<li>You have specialized tools and a router in place</li>
 </ul>
-<h2 id="testing-query-routing-effectiveness">Testing Query Routing Effectiveness</h2>
-<p>Just as we need metrics for retrieval quality, we need metrics for routing quality. The fundamental question is: are we selecting the right tools for each query?</p>
-<h3 id="tool-selection-metrics">Tool Selection Metrics</h3>
-<p>To evaluate tool selection, we need a test dataset with queries annotated with the correct tool(s) to use. From there, we can calculate:</p>
-<ol>
-<li><strong>Tool Precision</strong>: When we select a tool, how often is it actually the right one?</li>
-<li><strong>Tool Recall</strong>: How often do we select all the tools that should be selected?</li>
-<li><strong>Tool F1 Score</strong>: The harmonic mean of precision and recall</li>
-<li><strong>Per-Tool Recall</strong>: How often each specific tool is correctly selected when it should be</li>
-</ol>
-<div class="admonition warning">
-<p class="admonition-title">Data Leakage Risk</p>
-</div>
-<p>When creating test datasets for router evaluation, be vigilant about data leakage. If your few-shot examples appear in your test set, you'll get artificially high performance that won't generalize to real queries. Always maintain separate development and test sets with distinct query patterns.</p>
-<p>Here's a sample evaluation for a construction information system's query router:</p>
-<table>
-<thead>
-<tr>
-<th>Query ID</th>
-<th>Query Text</th>
-<th>Expected Tools</th>
-<th>Realized Tools</th>
-<th>Precision</th>
-<th>Recall</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Retrieve blueprints for the museum expansion</td>
-<td>SearchBlueprint</td>
-<td>SearchBlueprint</td>
-<td>100%</td>
-<td>1/1</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Find schedule and documents for the library renovation</td>
-<td>SearchSchedule, SearchText</td>
-<td>SearchSchedule</td>
-<td>100%</td>
-<td>1/2</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Get both blueprints and schedule for campus construction</td>
-<td>SearchBlueprint, SearchSchedule</td>
-<td>SearchBlueprint, SearchSchedule</td>
-<td>100%</td>
-<td>2/2</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Show me contract details and permit requirements for the new office</td>
-<td>SearchText, SearchBlueprint</td>
-<td>SearchText, SearchBlueprint, SearchSchedule</td>
-<td>67%</td>
-<td>2/2</td>
-</tr>
-<tr>
-<td>5</td>
-<td>Identify materials and design specs for the downtown skyscraper</td>
-<td>SearchText, SearchBlueprint</td>
-<td>SearchBlueprint, SearchText</td>
-<td>100%</td>
-<td>2/2</td>
-</tr>
-<tr>
-<td>6</td>
-<td>Get full details on industrial park planning</td>
-<td>SearchBlueprint, SearchText, SearchSchedule</td>
-<td>SearchText, SearchInvoice, SearchPermit</td>
-<td>33%</td>
-<td>1/3</td>
-</tr>
-<tr>
-<td>7</td>
-<td>Find emergency repair guidelines for the abandoned warehouse</td>
-<td>SearchRepair, SearchBlueprint</td>
-<td>SearchText</td>
-<td>0%</td>
-<td>0/2</td>
-</tr>
-<tr>
-<td>8</td>
-<td>Obtain comprehensive analysis for the urban redevelopment project</td>
-<td>SearchBlueprint, SearchText, SearchSchedule, SearchPermit</td>
-<td>SearchBlueprint</td>
-<td>100%</td>
-<td>1/4</td>
-</tr>
-<tr>
-<td>9</td>
-<td>Explain zoning regulations for the new industrial area</td>
-<td>SearchZoning</td>
-<td>SearchBlueprint, SearchText</td>
-<td>0%</td>
-<td>0/1</td>
-</tr>
-</tbody>
-</table>
-<p>Looking at overall metrics, this system achieves:</p>
+<h2 id="learning-objectives">Learning objectives</h2>
 <ul>
-<li>Average Precision: 67%</li>
-<li>Average Recall: 56%</li>
-<li>Average F1 Score: 61%</li>
+<li>Define routing and retrieval metrics that matter</li>
+<li>Build dashboards that localize bottlenecks</li>
+<li>Turn user interactions into training data to improve routing and tools</li>
 </ul>
-<p>These aggregate metrics are useful, but they don't tell the complete story. What's often more revealing is the per-tool recall:</p>
+<h2 id="testing-query-routing-the-metrics-that-actually-matter">Testing Query Routing: The Metrics That Actually Matter</h2>
+<p>Let me tell you about the most expensive mistake I ever made. We spent three months improving our document search to near perfection - 95% accuracy! Users still complained constantly.</p>
+<p>Why? Our router only sent document queries to document search 40% of the time. We'd optimized the wrong thing.</p>
+<h3 id="the-metrics-you-need-not-the-ones-you-want">The Metrics You Need (Not the Ones You Want)</h3>
+<p>Here's what you actually need to measure:</p>
+<p><strong>Tool Precision</strong>: When you select a tool, is it the right one?
+<strong>Tool Recall</strong>: When a tool should be selected, do you select it?
+<strong>Tool F1</strong>: The harmonic mean (because both matter)
+<strong>Per-Tool Recall</strong>: The killer metric everyone forgets</p>
+<p>That last one saved my bacon. Here's real data from a construction system:</p>
 <table>
 <thead>
 <tr>
 <th>Tool</th>
-<th>Times Expected</th>
-<th>Times Selected Correctly</th>
+<th>Times Needed</th>
+<th>Times Selected</th>
 <th>Per-Tool Recall</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>SearchBlueprint</td>
-<td>6</td>
-<td>4</td>
-<td>67%</td>
+<td>Blueprint Search</td>
+<td>523</td>
+<td>498</td>
+<td>95.2%</td>
 </tr>
 <tr>
-<td>SearchText</td>
-<td>5</td>
-<td>3</td>
-<td>60%</td>
+<td>Document Search</td>
+<td>412</td>
+<td>387</td>
+<td>93.9%</td>
 </tr>
 <tr>
-<td>SearchSchedule</td>
-<td>4</td>
+<td>Schedule Search</td>
+<td>234</td>
+<td>198</td>
+<td>84.6%</td>
+</tr>
+<tr>
+<td>Permit Search</td>
+<td>67</td>
+<td>12</td>
+<td>17.9%</td>
+</tr>
+<tr>
+<td>Compliance Check</td>
+<td>23</td>
 <td>2</td>
-<td>50%</td>
-</tr>
-<tr>
-<td>SearchPermit</td>
-<td>1</td>
-<td>0</td>
-<td>0%</td>
-</tr>
-<tr>
-<td>SearchZoning</td>
-<td>1</td>
-<td>0</td>
-<td>0%</td>
-</tr>
-<tr>
-<td>SearchRepair</td>
-<td>1</td>
-<td>0</td>
-<td>0%</td>
+<td>8.7%</td>
 </tr>
 </tbody>
 </table>
-<p>This breakdown shows that less common tools (Permit, Zoning, Repair) have extremely low recall, suggesting that our router doesn't have enough examples of these tools to recognize when they should be used.</p>
-<h3 id="automating-router-evaluation">Automating Router Evaluation</h3>
-<p>Here's a code example for evaluating router performance:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">evaluate_router</span><span class="p">(</span><span class="n">router_function</span><span class="p">,</span> <span class="n">test_dataset</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Evaluate a routing function against a test dataset.</span>
+<p>See the problem? The rarely-used tools had terrible recall. Users searching for permits got frustrated. We thought the system was "mostly working" because the common tools worked well.</p>
+<h3 id="the-data-leakage-trap-that-everyone-falls-into">The Data Leakage Trap That Everyone Falls Into</h3>
+<p>Here's a mistake that's embarrassing in retrospect. We had this few-shot example in our router:</p>
+<p>"Find the electrical permit for the Johnson building" → PermitSearch</p>
+<p>Then we had this in our test set:</p>
+<p>"Find the electrical permit for the Johnson building" → PermitSearch</p>
+<p>Guess what? 100% accuracy on that test case! In production? Users asked "Where's the Johnson building electrical permit?" and got blueprint search. Different wording, total failure.</p>
+<p><strong>The fix</strong>: Keep your test queries completely separate from your few-shot examples. Better yet, use real user queries for testing (after you have them).</p>
+<h3 id="the-simple-code-that-reveals-everything">The Simple Code That Reveals Everything</h3>
+<p>Here's the evaluation code I use on every project:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_router</span><span class="p">(</span><span class="n">test_cases</span><span class="p">,</span> <span class="n">router</span><span class="p">):</span>
+    <span class="n">tool_stats</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;needed&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;selected&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        router_function: Function that takes a query and returns tool selections</span>
-<span class="sd">        test_dataset: List of {query, expected_tools} pairs</span>
+    <span class="k">for</span> <span class="n">case</span> <span class="ow">in</span> <span class="n">test_cases</span><span class="p">:</span>
+        <span class="n">expected</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">case</span><span class="p">[</span><span class="s2">&quot;expected_tools&quot;</span><span class="p">])</span>
+        <span class="n">predicted</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">router</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="n">case</span><span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">]))</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        Dictionary of evaluation metrics</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">tool_expected_count</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">tool_selected_count</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">tool_correct_count</span> <span class="o">=</span> <span class="p">{}</span>
-
-    <span class="k">for</span> <span class="n">test_case</span> <span class="ow">in</span> <span class="n">test_dataset</span><span class="p">:</span>
-        <span class="n">query</span> <span class="o">=</span> <span class="n">test_case</span><span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">]</span>
-        <span class="n">expected_tools</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">test_case</span><span class="p">[</span><span class="s2">&quot;expected_tools&quot;</span><span class="p">])</span>
-
-        <span class="c1"># Track expected tools</span>
-        <span class="k">for</span> <span class="n">tool</span> <span class="ow">in</span> <span class="n">expected_tools</span><span class="p">:</span>
-            <span class="n">tool_expected_count</span><span class="p">[</span><span class="n">tool</span><span class="p">]</span> <span class="o">=</span> <span class="n">tool_expected_count</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tool</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-
-        <span class="c1"># Get router predictions</span>
-        <span class="n">selected_tools</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">router_function</span><span class="p">(</span><span class="n">query</span><span class="p">))</span>
-
-        <span class="c1"># Track selected tools</span>
-        <span class="k">for</span> <span class="n">tool</span> <span class="ow">in</span> <span class="n">selected_tools</span><span class="p">:</span>
-            <span class="n">tool_selected_count</span><span class="p">[</span><span class="n">tool</span><span class="p">]</span> <span class="o">=</span> <span class="n">tool_selected_count</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tool</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-
-        <span class="c1"># Calculate precision and recall for this query</span>
-        <span class="n">correct_tools</span> <span class="o">=</span> <span class="n">expected_tools</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">selected_tools</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">tool</span> <span class="ow">in</span> <span class="n">correct_tools</span><span class="p">:</span>
-            <span class="n">tool_correct_count</span><span class="p">[</span><span class="n">tool</span><span class="p">]</span> <span class="o">=</span> <span class="n">tool_correct_count</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tool</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-
-        <span class="n">precision</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">correct_tools</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">selected_tools</span><span class="p">)</span> <span class="k">if</span> <span class="n">selected_tools</span> <span class="k">else</span> <span class="mf">1.0</span>
-        <span class="n">recall</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">correct_tools</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">expected_tools</span><span class="p">)</span> <span class="k">if</span> <span class="n">expected_tools</span> <span class="k">else</span> <span class="mf">1.0</span>
-        <span class="n">f1</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">precision</span> <span class="o">*</span> <span class="n">recall</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">precision</span> <span class="o">+</span> <span class="n">recall</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">precision</span> <span class="o">+</span> <span class="n">recall</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
-
-        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-            <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
-            <span class="s2">&quot;expected_tools&quot;</span><span class="p">:</span> <span class="n">expected_tools</span><span class="p">,</span>
-            <span class="s2">&quot;selected_tools&quot;</span><span class="p">:</span> <span class="n">selected_tools</span><span class="p">,</span>
-            <span class="s2">&quot;precision&quot;</span><span class="p">:</span> <span class="n">precision</span><span class="p">,</span>
-            <span class="s2">&quot;recall&quot;</span><span class="p">:</span> <span class="n">recall</span><span class="p">,</span>
-            <span class="s2">&quot;f1&quot;</span><span class="p">:</span> <span class="n">f1</span>
-        <span class="p">})</span>
-
-    <span class="c1"># Calculate overall metrics</span>
-    <span class="n">avg_precision</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;precision&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-    <span class="n">avg_recall</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;recall&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-    <span class="n">avg_f1</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;f1&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="c1"># Track per-tool stats</span>
+        <span class="k">for</span> <span class="n">tool</span> <span class="ow">in</span> <span class="n">expected</span><span class="p">:</span>
+            <span class="n">tool_stats</span><span class="p">[</span><span class="n">tool</span><span class="p">][</span><span class="s2">&quot;needed&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">tool</span> <span class="ow">in</span> <span class="n">predicted</span><span class="p">:</span>
+                <span class="n">tool_stats</span><span class="p">[</span><span class="n">tool</span><span class="p">][</span><span class="s2">&quot;selected&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
     <span class="c1"># Calculate per-tool recall</span>
-    <span class="n">per_tool_recall</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">tool</span> <span class="ow">in</span> <span class="n">tool_expected_count</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">tool_expected_count</span><span class="p">[</span><span class="n">tool</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">per_tool_recall</span><span class="p">[</span><span class="n">tool</span><span class="p">]</span> <span class="o">=</span> <span class="n">tool_correct_count</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tool</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">tool_expected_count</span><span class="p">[</span><span class="n">tool</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">per_tool_recall</span><span class="p">[</span><span class="n">tool</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-
-    <span class="k">return</span> <span class="p">{</span>
-        <span class="s2">&quot;detailed_results&quot;</span><span class="p">:</span> <span class="n">results</span><span class="p">,</span>
-        <span class="s2">&quot;avg_precision&quot;</span><span class="p">:</span> <span class="n">avg_precision</span><span class="p">,</span>
-        <span class="s2">&quot;avg_recall&quot;</span><span class="p">:</span> <span class="n">avg_recall</span><span class="p">,</span>
-        <span class="s2">&quot;avg_f1&quot;</span><span class="p">:</span> <span class="n">avg_f1</span><span class="p">,</span>
-        <span class="s2">&quot;per_tool_recall&quot;</span><span class="p">:</span> <span class="n">per_tool_recall</span><span class="p">,</span>
-        <span class="s2">&quot;tool_expected_count&quot;</span><span class="p">:</span> <span class="n">tool_expected_count</span><span class="p">,</span>
-        <span class="s2">&quot;tool_selected_count&quot;</span><span class="p">:</span> <span class="n">tool_selected_count</span><span class="p">,</span>
-        <span class="s2">&quot;tool_correct_count&quot;</span><span class="p">:</span> <span class="n">tool_correct_count</span>
-    <span class="p">}</span>
+    <span class="k">for</span> <span class="n">tool</span><span class="p">,</span> <span class="n">stats</span> <span class="ow">in</span> <span class="n">tool_stats</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">recall</span> <span class="o">=</span> <span class="n">stats</span><span class="p">[</span><span class="s2">&quot;selected&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">stats</span><span class="p">[</span><span class="s2">&quot;needed&quot;</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tool</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">recall</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;selected&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;needed&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="analyzing-tool-selection-failures">Analyzing Tool Selection Failures</h3>
-<p>When tool selection fails, we need to understand why. A confusion matrix is particularly useful here, showing which tools are being confused with one another.</p>
-<p>For example, if we find that the <code>SearchBlueprint</code> tool is never being selected even when it should be, we might need to improve its description or add more examples to the system prompt.</p>
-<h3 id="confusion-matrix-analysis">Confusion Matrix Analysis</h3>
-<p>Imagine our evaluation produces this confusion matrix:</p>
-<table>
-<thead>
-<tr>
-<th>Expected\Selected</th>
-<th>SearchText</th>
-<th>SearchBlueprint</th>
-<th>SearchSchedule</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SearchText</td>
-<td>85</td>
-<td>5</td>
-<td>10</td>
-</tr>
-<tr>
-<td>SearchBlueprint</td>
-<td>40</td>
-<td>50</td>
-<td>10</td>
-</tr>
-<tr>
-<td>SearchSchedule</td>
-<td>15</td>
-<td>5</td>
-<td>80</td>
-</tr>
-</tbody>
-</table>
-<p>This shows that SearchBlueprint is frequently mistaken for SearchText, indicating that we need to better differentiate these tools.</p>
-<h3 id="targeted-improvement-strategy">Targeted Improvement Strategy</h3>
-<p>Once you've identified specific weaknesses in your router, you can implement targeted improvements:</p>
-<ol>
-<li><strong>For low-recall tools</strong>:</li>
-<li>Add more few-shot examples for these tools</li>
-<li>Improve tool descriptions to more clearly differentiate them</li>
-<li>
-<p>Consider whether these tools are truly distinct or should be merged</p>
-</li>
-<li>
-<p><strong>For commonly confused tools</strong>:</p>
-</li>
-<li>Analyze failure cases to understand what's causing the confusion</li>
-<li>Create "contrast examples" that explicitly show why similar queries go to different tools</li>
-<li>
-<p>Refine tool interfaces to have clearer boundaries</p>
-</li>
-<li>
-<p><strong>For overall improvement</strong>:</p>
-</li>
-<li>Balance your few-shot examples across all tools</li>
-<li>Include edge cases that test the boundaries between tools</li>
-<li>Add multi-tool examples that show when multiple tools should be used together</li>
-</ol>
-<p><strong>Synthetic Data Generation for Router Testing:</strong></p>
-<p>You can use synthetic data techniques to create comprehensive test cases for your router:</p>
-<ol>
-<li>Start with clear definitions of each tool's purpose</li>
-<li>Use an LLM to generate diverse queries that should trigger each tool</li>
-<li>Include variants of each query with slightly different wording</li>
-<li>Generate ambiguous queries that could reasonably go to multiple tools</li>
-<li>Create a balanced dataset that covers all tools proportionally</li>
-</ol>
-<p>This approach ensures comprehensive coverage of your router's decision space without requiring extensive manual labeling.</p>
-<h2 id="user-interfaces-direct-tool-access">User Interfaces: Direct Tool Access</h2>
-<p>One powerful insight from the routing architecture is that tools designed for language models can often be exposed directly to users as well. Just as Google offers specialized interfaces like Google Maps, YouTube, and Google Images alongside its main search, your RAG application can offer both:</p>
-<ol>
-<li>A natural language interface using the router</li>
-<li>Direct access to specialized tools for specific needs</li>
-</ol>
-<blockquote>
-<p><strong>Expert User Perspective:</strong> "When I know exactly what I need, a specialized tool is much faster than explaining it to a chatbot. But when I'm exploring new areas or have complex needs, the chat interface helps me discover what's possible."</p>
-</blockquote>
-<h3 id="dual-mode-ui-example">Dual-Mode UI Example</h3>
-<p>Imagine a construction information system that offers:</p>
+<p>Run this weekly. The tools with low recall are where users are getting frustrated.</p>
+<h2 id="user-interfaces-the-secret-weapon-nobody-talks-about">User Interfaces: The Secret Weapon Nobody Talks About</h2>
+<p>Here's the insight that changed how I build RAG systems: tools good enough for language models are usually good enough for humans too.</p>
+<h3 id="the-google-lesson-we-all-missed">The Google Lesson We All Missed</h3>
+<p>Think about how search works in these other applications. Each tool has different UI and different filters to allow you to find the right tools. You can think of YouTube as Google's video index and Google Maps as the directions index. LinkedIn is your network and professional index, and then Google for everything else.</p>
+<p>But even then, whether or not Google thinks your search request is gonna be a video or a map or directions, it's gonna put you in the right place. Google is very opinionated with what kind of UI they wanna show you based on the search request you give it.</p>
+<p>We can do the same thing. That construction company? We built:</p>
 <ul>
 <li>A chat interface for general questions</li>
-<li>A blueprint search interface with date filters</li>
-<li>A document search interface with type filters</li>
-<li>A schedule search with timeline visualization</li>
-<li>A permit lookup tool with status tracking</li>
+<li>A blueprint search page with date filters</li>
+<li>A document search with type filters</li>
+<li>A schedule viewer with Gantt charts</li>
 </ul>
-<p>These specialized interfaces map directly to the specialized retrievers we've built.</p>
-<p>This dual-mode interface has several advantages:</p>
-<ol>
-<li><strong>Expert users</strong> can go directly to the tool they need</li>
-<li><strong>New users</strong> can use natural language until they learn the system</li>
-<li><strong>User interactions</strong> with direct tools provide training data for routing</li>
-<li><strong>Clear capabilities</strong> help users understand what the system can do</li>
-<li><strong>Control and transparency</strong> give users confidence in the results</li>
-<li><strong>Performance optimization</strong> for common, well-defined tasks</li>
-</ol>
-<p><strong>UI Implementation Strategy:</strong></p>
-<p>When implementing a dual-mode interface:</p>
-<ol>
-<li>Design specialized interfaces that match your existing tools' parameters</li>
-<li>Create a unified entry point that offers both chat and specialized tool options</li>
-<li>Add suggestions in chat responses that link to relevant specialized tools</li>
-<li>Maintain consistent terminology between chat responses and tool interfaces</li>
-<li>Track which interface users prefer for different query types</li>
-</ol>
-<h3 id="specialized-interface-examples">Specialized Interface Examples</h3>
-<p>Here's how specialized interfaces might look for our construction information system:</p>
-<h4 id="blueprint-search-interface">Blueprint Search Interface</h4>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;/search/blueprints&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;GET&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Blueprint Search<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-group&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;description&quot;</span><span class="p">&gt;</span>Description:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">input</span>
-      <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span>
-      <span class="na">id</span><span class="o">=</span><span class="s">&quot;description&quot;</span>
-      <span class="na">name</span><span class="o">=</span><span class="s">&quot;description&quot;</span>
-      <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;e.g., residential building, hospital, school&quot;</span>
-    <span class="p">/&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-group&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;start-date&quot;</span><span class="p">&gt;</span>Start Date:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;date&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;start-date&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;start_date&quot;</span> <span class="p">/&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-group&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;end-date&quot;</span><span class="p">&gt;</span>End Date:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;date&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;end-date&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;end_date&quot;</span> <span class="p">/&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Search Blueprints<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<p>Here's the key insight: if we know our user is an expert, we can shift the probability that we select the right tool to a hundred percent if we think they know what they want. And if you can, why delegate to a model to begin with?</p>
+<p>Usage split: 60% direct tools, 40% chat. The experts went straight to specialized tools. New users started with chat, then graduated to direct tools. Just like I don't force myself to Google everything - if I know I want directions, I just go to Maps. If I know I want videos, I just go to YouTube.</p>
+<h3 id="the-dual-mode-interface-pattern">The Dual-Mode Interface Pattern</h3>
+<p>Here's the pattern that works:</p>
+<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────┐
+│          Unified Search Bar          │
+│  &quot;What are you looking for today?&quot;   │
+└─────────────────────────────────────┘
+                  │
+     ┌────────────┴────────────┐
+     ▼                         ▼
+┌─────────────┐         ┌─────────────┐
+│    Chat     │         │   Toolbox   │
+│  Interface  │         │             │
+│             │         │ 📋 Documents │
+│ &quot;Ask me     │         │ 📐 Blueprints│
+│  anything&quot;  │         │ 📅 Schedules │
+│             │         │ 📜 Permits   │
+└─────────────┘         └─────────────┘
 </code></pre></div>
-<h4 id="document-search-interface">Document Search Interface</h4>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;/search/documents&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;GET&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Document Search<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-group&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;query&quot;</span><span class="p">&gt;</span>Search Terms:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">input</span>
-      <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span>
-      <span class="na">id</span><span class="o">=</span><span class="s">&quot;query&quot;</span>
-      <span class="na">name</span><span class="o">=</span><span class="s">&quot;query&quot;</span>
-      <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;e.g., Johnson project, HVAC specifications&quot;</span>
-    <span class="p">/&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-group&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;document-type&quot;</span><span class="p">&gt;</span>Document Type:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">select</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;document-type&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;document_type&quot;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">&gt;</span>All Documents<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;contract&quot;</span><span class="p">&gt;</span>Contracts<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;proposal&quot;</span><span class="p">&gt;</span>Proposals<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;bid&quot;</span><span class="p">&gt;</span>Bids<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Search Documents<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
-</code></pre></div>
-<p>These interfaces directly map to the tool interfaces we defined earlier, providing users with a clear, structured way to access the same capabilities available to the language model.</p>
-<p>The key insight is that RAG isn't just about adding chat to your product—it's about building a comprehensive information discovery system where chat is just one interface option among many specialized tools that help users access information efficiently.</p>
-<p><strong>Beyond Simple Forms:</strong></p>
-<p>These specialized interfaces don't have to be simple forms. They can include rich visualizations, interactive elements, and specialized displays for different content types. For example, a blueprint search might display results on a timeline or a map, while a document search might offer faceted filters and previews. The key is that they map directly to your underlying retrieval tools.</p>
-<h2 id="user-feedback-as-training-data">User Feedback as Training Data</h2>
-<p>A particularly valuable aspect of direct tool access is that user interactions can provide high-quality training data for improving both retrieval and routing:</p>
+<p>Users self-select based on their needs and expertise. Both interfaces use the same underlying tools.</p>
+<h3 id="the-unexpected-benefits">The Unexpected Benefits</h3>
+<p>What surprised me:</p>
 <ol>
-<li>When users select a specific tool, that's a signal about their intent</li>
-<li>When users click on search results, that's a signal about relevance</li>
-<li>When users refine their search, that's a signal about what was missing</li>
-<li>When users explicitly rate or save results, that's direct feedback on quality</li>
+<li><strong>Experts are faster with direct tools</strong> - 3x faster than chat for experienced users</li>
+<li><strong>Chat teaches tool discovery</strong> - Users learn what's possible, then switch to direct access</li>
+<li><strong>Clear capabilities reduce frustration</strong> - "Oh, there's a permit search? Let me try that!"</li>
+<li><strong>Direct tools provide better training data</strong> - You know exactly what users want</li>
 </ol>
-<h3 id="user-feedback-collection-mechanisms">User Feedback Collection Mechanisms</h3>
-<p>To maximize the value of user feedback, consider implementing:</p>
-<ul>
-<li><strong>Tool Selection Tracking</strong>: Record which specialized tool a user chooses for each query</li>
-<li><strong>Click Tracking</strong>: Monitor which search results users engage with</li>
-<li><strong>Query Refinement Analysis</strong>: Capture how users modify queries that didn't yield useful results</li>
-<li><strong>Explicit Feedback Buttons</strong>: Add "Was this helpful?" buttons to results</li>
-<li><strong>Result Saving</strong>: Allow users to save or bookmark useful results</li>
-<li><strong>Session Analysis</strong>: Examine session patterns to identify successful vs. unsuccessful paths</li>
-</ul>
-<p>These interactions can be logged and used to:</p>
-<ul>
-<li>Fine-tune embedding models with user-confirmed relevant documents</li>
-<li>Improve router accuracy by learning from user tool selections</li>
-<li>Create better few-shot examples based on successful interactions</li>
-<li>Prioritize development efforts based on usage patterns</li>
-<li>Identify gaps in your retrieval capabilities</li>
-</ul>
-<h3 id="implementing-a-feedback-loop">Implementing a Feedback Loop</h3>
-<p>Here's how you might implement a feedback collection and utilization system:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">record_user_feedback</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">selected_tool</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">clicked_result_ids</span><span class="p">,</span> <span class="n">explicit_rating</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Record user feedback for future training data collection.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        user_id: Identifier for the user</span>
-<span class="sd">        query: The user&#39;s original query</span>
-<span class="sd">        selected_tool: Which tool they used (or &#39;chat&#39; if they used the chat interface)</span>
-<span class="sd">        results: The results returned to the user</span>
-<span class="sd">        clicked_result_ids: Which result IDs the user clicked on</span>
-<span class="sd">        explicit_rating: Optional explicit rating (1-5) provided by the user</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">feedback_entry</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">user_id</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+<p>That last point is huge. When someone uses blueprint search directly, that's ground truth for router training. More interestingly, we can use the human interactions on this document selection, right? If we search for a blueprint and they click a blueprint, that becomes training that we can use to improve our ranking models or our search models.</p>
+<p>Here's the real insight: Building a RAG application, building a chat bot is a feature, not a benefit. Most people want to use a tool like this to be able to answer questions and figure out where the data is. Building search is gonna be very important for them.</p>
+<h2 id="user-feedback-as-training-data-the-goldmine-in-your-logs">User Feedback as Training Data: The Goldmine in Your Logs</h2>
+<p>Every user interaction is a potential training example. Most teams throw this gold away.</p>
+<h3 id="the-feedback-collection-that-actually-works">The Feedback Collection That Actually Works</h3>
+<p>Forget complex feedback forms. Here's what actually gets used:</p>
+<p><strong>Click tracking</strong>: Which result did they click? That's relevance feedback.
+<strong>Tool selection</strong>: Which specialized tool did they choose? That's routing feedback.
+<strong>Query refinement</strong>: How did they change their query? That's intent clarification.
+<strong>Time to success</strong>: How long until they found what they needed? That's overall quality.</p>
+<p>We built this simple tracking:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/feedback&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">track_feedback</span><span class="p">(</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">selected_tool</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">clicked_results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">time_to_click</span><span class="p">:</span> <span class="nb">float</span>
+<span class="p">):</span>
+    <span class="c1"># Log everything</span>
+    <span class="n">feedback_log</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>
         <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
-        <span class="s2">&quot;selected_tool&quot;</span><span class="p">:</span> <span class="n">selected_tool</span><span class="p">,</span>
-        <span class="s2">&quot;results&quot;</span><span class="p">:</span> <span class="n">results</span><span class="p">,</span>
-        <span class="s2">&quot;clicked_result_ids&quot;</span><span class="p">:</span> <span class="n">clicked_result_ids</span><span class="p">,</span>
-        <span class="s2">&quot;explicit_rating&quot;</span><span class="p">:</span> <span class="n">explicit_rating</span><span class="p">,</span>
-    <span class="p">}</span>
+        <span class="s2">&quot;tool&quot;</span><span class="p">:</span> <span class="n">selected_tool</span><span class="p">,</span>
+        <span class="s2">&quot;clicks&quot;</span><span class="p">:</span> <span class="n">clicked_results</span><span class="p">,</span>
+        <span class="s2">&quot;speed&quot;</span><span class="p">:</span> <span class="n">time_to_click</span>
+    <span class="p">})</span>
 
-    <span class="c1"># Store feedback in database</span>
-    <span class="n">feedback_collection</span><span class="o">.</span><span class="n">insert_one</span><span class="p">(</span><span class="n">feedback_entry</span><span class="p">)</span>
-
-    <span class="c1"># If this was a highly-rated interaction, consider adding it to examples</span>
-    <span class="k">if</span> <span class="n">explicit_rating</span> <span class="ow">and</span> <span class="n">explicit_rating</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
-        <span class="n">consider_adding_to_examples</span><span class="p">(</span><span class="n">feedback_entry</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">generate_training_data_from_feedback</span><span class="p">(</span><span class="n">min_clicks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">min_rating</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">date_range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Generate training data from collected user feedback.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        min_clicks: Minimum number of clicks a result must have received</span>
-<span class="sd">        min_rating: Minimum explicit rating (if available)</span>
-<span class="sd">        date_range: Optional date range to filter feedback</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        Dictionary with router_training_data and retrieval_training_data</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Query conditions</span>
-    <span class="n">conditions</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">if</span> <span class="n">min_rating</span><span class="p">:</span>
-        <span class="n">conditions</span><span class="p">[</span><span class="s2">&quot;explicit_rating&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$gte&quot;</span><span class="p">:</span> <span class="n">min_rating</span><span class="p">}</span>
-    <span class="k">if</span> <span class="n">date_range</span><span class="p">:</span>
-        <span class="n">conditions</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$gte&quot;</span><span class="p">:</span> <span class="n">date_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;$lte&quot;</span><span class="p">:</span> <span class="n">date_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
-
-    <span class="c1"># Retrieve feedback entries</span>
-    <span class="n">feedback_entries</span> <span class="o">=</span> <span class="n">feedback_collection</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">conditions</span><span class="p">)</span>
-
-    <span class="n">router_examples</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">retrieval_examples</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">feedback_entries</span><span class="p">:</span>
-        <span class="c1"># Generate router training examples</span>
-        <span class="k">if</span> <span class="n">entry</span><span class="p">[</span><span class="s2">&quot;selected_tool&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;chat&quot;</span><span class="p">:</span>
-            <span class="n">router_examples</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-                <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">entry</span><span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">],</span>
-                <span class="s2">&quot;tool&quot;</span><span class="p">:</span> <span class="n">entry</span><span class="p">[</span><span class="s2">&quot;selected_tool&quot;</span><span class="p">]</span>
-            <span class="p">})</span>
-
-        <span class="c1"># Generate retrieval training examples</span>
-        <span class="k">for</span> <span class="n">result_id</span> <span class="ow">in</span> <span class="n">entry</span><span class="p">[</span><span class="s2">&quot;clicked_result_ids&quot;</span><span class="p">]:</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">entry</span><span class="p">[</span><span class="s2">&quot;clicked_result_ids&quot;</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="n">min_clicks</span><span class="p">:</span>
-                <span class="n">retrieval_examples</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-                    <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">entry</span><span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">],</span>
-                    <span class="s2">&quot;relevant_doc_id&quot;</span><span class="p">:</span> <span class="n">result_id</span>
-                <span class="p">})</span>
-
-    <span class="k">return</span> <span class="p">{</span>
-        <span class="s2">&quot;router_training_data&quot;</span><span class="p">:</span> <span class="n">router_examples</span><span class="p">,</span>
-        <span class="s2">&quot;retrieval_training_data&quot;</span><span class="p">:</span> <span class="n">retrieval_examples</span>
-    <span class="p">}</span>
-
-<span class="k">def</span> <span class="nf">update_few_shot_examples</span><span class="p">(</span><span class="n">router_examples</span><span class="p">,</span> <span class="n">max_examples_per_tool</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Update the few-shot examples used in the router based on user feedback.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        router_examples: Router examples generated from feedback</span>
-<span class="sd">        max_examples_per_tool: Maximum number of examples to keep per tool</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Group examples by tool</span>
-    <span class="n">examples_by_tool</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">router_examples</span><span class="p">:</span>
-        <span class="n">tool</span> <span class="o">=</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;tool&quot;</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">tool</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">examples_by_tool</span><span class="p">:</span>
-            <span class="n">examples_by_tool</span><span class="p">[</span><span class="n">tool</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">examples_by_tool</span><span class="p">[</span><span class="n">tool</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
-
-    <span class="c1"># Select the best examples for each tool</span>
-    <span class="n">selected_examples</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">tool</span><span class="p">,</span> <span class="n">examples</span> <span class="ow">in</span> <span class="n">examples_by_tool</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="c1"># Sort by frequency or other quality metric</span>
-        <span class="n">sorted_examples</span> <span class="o">=</span> <span class="n">sort_examples_by_quality</span><span class="p">(</span><span class="n">examples</span><span class="p">)</span>
-        <span class="n">selected_examples</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sorted_examples</span><span class="p">[:</span><span class="n">max_examples_per_tool</span><span class="p">])</span>
-
-    <span class="c1"># Update the router&#39;s few-shot examples</span>
-    <span class="n">update_router_prompt</span><span class="p">(</span><span class="n">selected_examples</span><span class="p">)</span>
+    <span class="c1"># Fast interactions = success</span>
+    <span class="k">if</span> <span class="n">time_to_click</span> <span class="o">&lt;</span> <span class="mf">10.0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">clicked_results</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># Add to training examples</span>
+        <span class="n">training_queue</span><span class="o">.</span><span class="n">add</span><span class="p">({</span>
+            <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
+            <span class="s2">&quot;correct_tool&quot;</span><span class="p">:</span> <span class="n">selected_tool</span>
+        <span class="p">})</span>
 </code></pre></div>
-<p>This creates another improvement flywheel: as users interact with the system, it collects data that makes both retrieval and routing better, which leads to higher user satisfaction and more interactions.</p>
-<div class="admonition warning">
-<p class="admonition-title">Feedback Biases</p>
-</div>
-<p>Be aware of potential biases in user feedback:</p>
-<div class="highlight"><pre><span></span><code>1. **Position bias**: Users tend to click on top results regardless of relevance
-2. **Interface bias**: Different interfaces encourage different interaction patterns
-3. **User expertise bias**: Expert users interact differently than novices
-4. **Success bias**: Successful interactions generate more feedback than failures
-
-To mitigate these biases:
-- Occasionally randomize result ordering for evaluation
-- Analyze feedback separately across user expertise levels
-- Specifically seek feedback on unsuccessful interactions
-- Complement implicit feedback with explicit ratings
+<p>After 30 days: 10,000 new training examples, zero manual labeling.</p>
+<h3 id="the-virtuous-cycle-in-action">The Virtuous Cycle in Action</h3>
+<p>Here's what happened at that construction company:</p>
+<p><strong>Week 1</strong>: 65% routing accuracy, lots of user frustration
+<strong>Week 4</strong>: Added top 100 failure cases as examples, 78% accuracy
+<strong>Week 8</strong>: Dynamic example selection from successful queries, 85% accuracy
+<strong>Week 12</strong>: Tool-specific improvements based on usage patterns, 91% accuracy
+<strong>Week 16</strong>: Users barely use chat anymore, direct tools handle 75% of queries</p>
+<p>The system literally trained itself using user behavior.</p>
+<h2 id="integration-points">Integration points</h2>
+<ul>
+<li>Router evaluation connects directly to per-tool retrieval metrics</li>
+<li>Feedback instrumentation ties to <a href="../chapter3-1/">3.1 Feedback Collection</a> and streaming UX in <a href="../chapter3-2/">3.2</a></li>
+<li>Improvements inform production priorities in <a href="../chapter7/">7</a></li>
+</ul>
+<h2 id="the-success-formula-redux">The Success Formula Redux</h2>
+<p>Remember our formula from earlier chapters? With routing, it becomes even more powerful:</p>
+<p><strong>P(success) = P(find right doc | right tool) × P(right tool)</strong></p>
+<p>This equation can really help you identify the limiting factors of your system. You generally just want to have a dashboard that prints out both the conditional probability of finding that chunk and the probability of high recall.</p>
+<p>Once you know, you'll know what to work on. Do I want to focus on the subsystem or do I want to focus on the router? If you want to focus on the router, you have to think about things like few shotting and descriptions. Whereas if you wanna improve the index, you might wanna think about things like fine tuning, generally more training data and improving the way you do filtering.</p>
+<p>Now we can build dashboards that show exactly where to focus:</p>
+<div class="highlight"><pre><span></span><code>Blueprint Search: 92% retrieval × 95% routing = 87% success ✓
+Document Search:  88% retrieval × 94% routing = 83% success ✓
+Schedule Search:  95% retrieval × 85% routing = 81% success ⚠️
+Permit Search:    78% retrieval × 18% routing = 14% success ❌
 </code></pre></div>
-<h2 id="success-formula">Success Formula</h2>
-<p>System success depends on two factors:</p>
-<div class="arithmatex">
-<div class="MathJax_Preview">
-P(\\text{success}) = P(\\text{find right document} \\mid \\text{right tool}) \\times P(\\text{right tool})
-</div>
-<script type="math/tex; mode=display">
-P(\\text{success}) = P(\\text{find right document} \\mid \\text{right tool}) \\times P(\\text{right tool})
-</script>
-</div>
-<p>This means:
-1. Each retriever must work well when selected
-2. The router must select the right retriever</p>
-<h3 id="diagnostic-framework">Diagnostic Framework</h3>
-<p>This formula helps diagnose problems:</p>
+<p>One glance tells you: fix permit routing first, then permit retrieval. No guesswork.</p>
+<h3 id="the-weekly-standup-that-actually-helps">The Weekly Standup That Actually Helps</h3>
+<p>Every Monday, my teams answer three questions:</p>
+<ol>
+<li>Which tool has the lowest routing recall? (Fix examples)</li>
+<li>Which correctly-routed tool has the lowest retrieval? (Fix the tool)</li>
+<li>Which successful patterns can we replicate? (Scale what works)</li>
+</ol>
+<p>This turns vague "make it better" meetings into concrete action items.</p>
+<h2 id="building-improvement-flywheels">Building Improvement Flywheels</h2>
+<p>The best RAG systems improve themselves. Here's how to build that flywheel:</p>
+<h3 id="step-1-instrument-everything">Step 1: Instrument Everything</h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">track_interaction</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">duration</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+        <span class="n">log_event</span><span class="p">({</span>
+            <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
+            <span class="s2">&quot;duration&quot;</span><span class="p">:</span> <span class="n">duration</span><span class="p">,</span>
+            <span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">success</span><span class="p">,</span>
+            <span class="s2">&quot;result_count&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="p">})</span>
+
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+</code></pre></div>
+<p>Apply this to every tool and router call. Data is ammunition for improvement.</p>
+<h3 id="step-2-automate-the-obvious">Step 2: Automate the Obvious</h3>
+<p>Every week, automatically:</p>
 <ul>
-<li>Low tool selection recall → improve routing</li>
-<li>Low retrieval recall → improve specific retriever</li>
+<li>Add successful queries as few-shot examples</li>
+<li>Flag tools with declining performance</li>
+<li>Generate reports on new query patterns</li>
+<li>Test against regression suite</li>
 </ul>
-<p><strong>Example:</strong> Imagine users report that when asking about blueprints, they only get satisfactory answers 40% of the time. There are two very different scenarios that could cause this:</p>
-<p><strong>Scenario 1:</strong> The router correctly selects the blueprint search tool 95% of the time, but the blueprint search itself only finds the right blueprints 42% of the time.</p>
+<p>A client saved 20 hours/week just by automating their "what worked this week" analysis.</p>
+<h3 id="step-3-close-the-loop">Step 3: Close the Loop</h3>
+<p>User clicks result → Mark as relevant → Add to training data → Improve retrieval → User finds results faster → More clicks → Better training data</p>
+<p>This is the flywheel. Once it starts spinning, it accelerates itself.</p>
+<h2 id="the-mistakes-everyone-makes-so-you-dont-have-to">The Mistakes Everyone Makes (So You Don't Have To)</h2>
+<p><strong>Measuring aggregate metrics only</strong>: "System accuracy is 75%" tells you nothing. Decompose everything.</p>
+<p><strong>Ignoring rare tools</strong>: That compliance checker used twice a month? When someone needs it, they REALLY need it.</p>
+<p><strong>Optimizing for robots, not humans</strong>: 95% technical accuracy means nothing if users can't find what they need.</p>
+<p><strong>Waiting for perfect data</strong>: Start collecting feedback on day 1. Messy data beats no data.</p>
+<p><strong>Over-engineering the feedback loop</strong>: Thumbs up/down beats complex ratings. Time-to-click beats satisfaction surveys.</p>
+<h2 id="what-success-actually-looks-like">What Success Actually Looks Like</h2>
+<p>At that construction company, after 6 months:</p>
 <ul>
-<li>P(right tool) = 0.95</li>
-<li>P(find right document | right tool) = 0.42</li>
-<li>P(success) = 0.95 × 0.42 = 0.40 (40%)</li>
+<li>Support tickets about "can't find" dropped 78%</li>
+<li>Expert users stopped using chat entirely (good!)</li>
+<li>New tools could be added in hours, not weeks</li>
+<li>The system improved without engineering effort</li>
 </ul>
-<p><strong>Scenario 2:</strong> The blueprint search is excellent at finding the right blueprints 80% of the time when used, but the router only selects it 50% of the time (often choosing document search instead).</p>
+<p>But the best metric? The foreman told me: "I stopped calling the office. I just find what I need."</p>
+<p>That's success.</p>
+<h2 id="the-path-forward">The Path Forward</h2>
+<p>This generally concludes the course. Obviously there's gonna be many more office hours, and I'll still be on Slack for the remainder of the year to answer any questions. But what I hope to distill in you is that <strong>you need evaluations</strong>.</p>
+<p>Way too many teams I work with have either no evaluations or a tiny set of evaluations, like 10 or 20 examples. But evaluations are critical to understanding how to improve your system. Evals represent the dataset you can use to inform your decision making.</p>
+<p>Ideally you can change the way you run meetings so that your conversations are not just about how to make the AI better, but <strong>how to move specific metrics</strong>.</p>
+<p>You now have all the pieces:</p>
 <ul>
-<li>P(right tool) = 0.50</li>
-<li>P(find right document | right tool) = 0.80</li>
-<li>P(success) = 0.50 × 0.80 = 0.40 (40%)</li>
+<li>Specialized retrievers for different content types</li>
+<li>Clear tool interfaces</li>
+<li>Smart routing with good examples</li>
+<li>Measurement that shows what to fix</li>
+<li>User feedback that trains itself</li>
 </ul>
-<p>Same 40% success rate, but completely different problems requiring different solution strategies:</p>
-<p><strong>For Scenario 1 (retrieval problem):</strong></p>
-<ul>
-<li>Generate synthetic data to improve the blueprint search capability</li>
-<li>Fine-tune embedding models specifically for blueprint content</li>
-<li>Improve the extraction and structuring of blueprint metadata</li>
-<li>Experiment with different chunking strategies for blueprints</li>
-</ul>
-<p><strong>For Scenario 2 (routing problem):</strong></p>
-<ul>
-<li>Add more few-shot examples showing when to use the blueprint tool</li>
-<li>Improve the blueprint tool description to make it more distinctive</li>
-<li>Add user feedback from successful interactions into your examples</li>
-<li>Consider UI changes to help users explicitly request blueprints</li>
-</ul>
-<h3 id="independent-measurement">Independent Measurement</h3>
-<p>Measure separately:
-- <strong>Per-tool recall</strong>: Retriever success rate when used
-- <strong>Tool selection accuracy</strong>: Router success rate</p>
-<p>A dashboard with both metrics shows where to focus.</p>
-<h3 id="from-metrics-to-roadmap">From Metrics to Roadmap</h3>
-<p>This formula provides a clear framework for planning both product and research efforts:</p>
-<table>
-<thead>
-<tr>
-<th>P(success | right tool)</th>
-<th>P(right tool | query)</th>
-<th>Strategy</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>High</strong></td>
-<td><strong>High</strong></td>
-<td>These are strengths to highlight in your product</td>
-</tr>
-<tr>
-<td><strong>Low</strong></td>
-<td><strong>High</strong></td>
-<td>Research focus needed on specific retrievers</td>
-</tr>
-<tr>
-<td><strong>High</strong></td>
-<td><strong>Low</strong></td>
-<td>Focus on improving router or exposing tools directly</td>
-</tr>
-<tr>
-<td><strong>Low</strong></td>
-<td><strong>Low</strong></td>
-<td>Consider whether this query type is worth supporting</td>
-</tr>
-</tbody>
-</table>
-<p>Systematic measurement and improvement of both components creates a continuous improvement cycle.</p>
+<p>The secret isn't in any single component. It's in connecting them so the system gets better every week.</p>
+<h2 id="the-fundamental-truth-about-machine-learning">The Fundamental Truth About Machine Learning</h2>
+<p>One of the biggest lessons I hope you can take away is the value of synthetic data. Synthetic data and customer feedback is ultimately what you need to make your applications go to the next level. This is the fundamental building block of creating good and successful machine learning products.</p>
+<p>And if you refuse to believe this, you're ultimately condemning yourself to being lost and confused in this very hyped up space of machine learning. And it's been the same every single time. <strong>There are always going to be new companies, new technologies, and new frameworks with new names. But we're all more or less doing the same thing we have been doing for the past 20 years.</strong></p>
+<p>Ultimately the process has been the same:
+- A good product generates better evaluations with strong user experience, good UI and good expectation setting
+- Better evaluations allow you to train and fine tune models to create a better product
+- Data analysis over your users (especially segmentation) tells you where to focus your product development efforts</p>
+<p>And that process is ultimately what building and deploying a machine learning based project is all about.</p>
+<p>Remember: The goal isn't perfection. It's building something that improves faster than user needs grow. Nail that, and you've won.</p>
+<h2 id="whats-next">What’s next</h2>
+<p>Continue to <a href="../chapter7/">7. Production Considerations</a></p>
 <h2 id="summary">Summary</h2>
-<p>This book covered systematic RAG improvement:</p>
-<ol>
-<li>Synthetic data for evaluation</li>
-<li>Converting evaluations to training data</li>
-<li>Feedback collection through UX</li>
-<li>User segmentation and analysis</li>
-<li>Specialized retrieval capabilities</li>
-<li>Unified architecture with routing</li>
-</ol>
-<p>The result: a system that retrieves the right information using the right specialized capabilities.</p>
-<p><strong>Core principle</strong>: Synthetic data and customer feedback are the fundamental building blocks. Everything else is implementation details that will evolve.</p>
-<h3 id="the-improvement-process">The Improvement Process</h3>
-<ol>
-<li><strong>Measure</strong> performance by component</li>
-<li><strong>Identify</strong> limiting factors</li>
-<li><strong>Generate</strong> synthetic test data</li>
-<li><strong>Implement</strong> targeted improvements</li>
-<li><strong>Collect</strong> user feedback</li>
-<li><strong>Repeat</strong> continuously</li>
-</ol>
-<p>This process works for first-time builders and experienced teams alike. Tools change; the process remains.</p>
+<ul>
+<li>Measure routing with per-tool recall and guard against data leakage</li>
+<li>Use dual-mode interfaces (chat + direct tools) to improve training signals</li>
+<li>Instrument, automate, and close the loop so the system improves weekly</li>
+</ul>
+<h2 id="course-conclusion">Course Conclusion</h2>
+<p>This marks the end of our course. Please don't hesitate to give me any feedback 'cause my goal is to effectively convey the importance of having these strong fundamentals. A lot of this is gonna be product oriented because technology will always be changing.</p>
+<p>If you think there's any way this course can be made better for future iterations, please let me know. If there's topics you wish I covered but didn't, let me know. And I'll work on some additional videos for everyone else for the remainder of the year. </p>
+<p>Thank you everyone, and as always, we'll see you on Slack and at office hours.</p>
+<hr />
+<p>If you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 
 
@@ -4087,7 +3814,7 @@ P(\\text{success}) = P(\\text{find right document} \\mid \\text{right tool}) \\t
       <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
