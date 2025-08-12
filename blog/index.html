@@ -6,26 +6,28 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-      
-      
-        <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/workshops/INTRO_OUTLINE/">
-      
+        <meta name="description" content="Discover systematic strategies to enhance your Retrieval-Augmented Generation (RAG) systems for better performance and user experience.">
       
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+        <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/blog/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>Workshop Chapter Introduction Outline - Systematically Improving RAG Applications</title>
+        <title>Systematically Improving Your RAG - Systematically Improving RAG Applications</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -44,9 +46,9 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -73,7 +75,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -82,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#workshop-chapter-introduction-outline" class="md-skip">
+        <a href="#systematically-improving-your-rag" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +118,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Systematically Improving RAG Applications" class="md-header__button md-logo" aria-label="Systematically Improving RAG Applications" data-md-component="logo">
+    <a href=".." title="Systematically Improving RAG Applications" class="md-header__button md-logo" aria-label="Systematically Improving RAG Applications" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -136,7 +138,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Workshop Chapter Introduction Outline
+              Systematically Improving Your RAG
             
           </span>
         </div>
@@ -149,9 +151,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
@@ -159,9 +161,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
@@ -242,7 +244,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href=".." class="md-tabs__link">
         
   
   
@@ -263,7 +265,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../" class="md-tabs__link">
+        <a href="../workshops/" class="md-tabs__link">
           
   
   
@@ -285,7 +287,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../office-hours/" class="md-tabs__link">
+        <a href="../office-hours/" class="md-tabs__link">
           
   
   
@@ -307,7 +309,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../talks/" class="md-tabs__link">
+        <a href="../talks/" class="md-tabs__link">
           
   
   
@@ -343,7 +345,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Systematically Improving RAG Applications" class="md-nav__button md-logo" aria-label="Systematically Improving RAG Applications" data-md-component="logo">
+    <a href=".." title="Systematically Improving RAG Applications" class="md-nav__button md-logo" aria-label="Systematically Improving RAG Applications" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -361,7 +363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   
@@ -422,7 +424,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../workshops/" class="md-nav__link ">
               
   
   
@@ -457,7 +459,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter0/" class="md-nav__link">
+      <a href="../workshops/chapter0/" class="md-nav__link">
         
   
   
@@ -529,7 +531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter1/" class="md-nav__link">
+      <a href="../workshops/chapter1/" class="md-nav__link">
         
   
   
@@ -609,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter2/" class="md-nav__link">
+      <a href="../workshops/chapter2/" class="md-nav__link">
         
   
   
@@ -693,7 +695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter3-1/" class="md-nav__link">
+      <a href="../workshops/chapter3-1/" class="md-nav__link">
         
   
   
@@ -716,7 +718,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter3-2/" class="md-nav__link">
+      <a href="../workshops/chapter3-2/" class="md-nav__link">
         
   
   
@@ -739,7 +741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter3-3/" class="md-nav__link">
+      <a href="../workshops/chapter3-3/" class="md-nav__link">
         
   
   
@@ -821,7 +823,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter4-1/" class="md-nav__link">
+      <a href="../workshops/chapter4-1/" class="md-nav__link">
         
   
   
@@ -844,7 +846,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter4-2/" class="md-nav__link">
+      <a href="../workshops/chapter4-2/" class="md-nav__link">
         
   
   
@@ -926,7 +928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter5-1/" class="md-nav__link">
+      <a href="../workshops/chapter5-1/" class="md-nav__link">
         
   
   
@@ -949,7 +951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter5-2/" class="md-nav__link">
+      <a href="../workshops/chapter5-2/" class="md-nav__link">
         
   
   
@@ -1033,7 +1035,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter6-1/" class="md-nav__link">
+      <a href="../workshops/chapter6-1/" class="md-nav__link">
         
   
   
@@ -1056,7 +1058,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter6-2/" class="md-nav__link">
+      <a href="../workshops/chapter6-2/" class="md-nav__link">
         
   
   
@@ -1079,7 +1081,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chapter6-3/" class="md-nav__link">
+      <a href="../workshops/chapter6-3/" class="md-nav__link">
         
   
   
@@ -1158,7 +1160,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../office-hours/" class="md-nav__link ">
+            <a href="../office-hours/" class="md-nav__link ">
               
   
   
@@ -1193,7 +1195,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../office-hours/faq/" class="md-nav__link">
+      <a href="../office-hours/faq/" class="md-nav__link">
         
   
   
@@ -1216,7 +1218,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../office-hours/AGENTS/" class="md-nav__link">
+      <a href="../office-hours/AGENTS/" class="md-nav__link">
         
   
   
@@ -1292,7 +1294,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../office-hours/cohort2/week1-summary/" class="md-nav__link">
+      <a href="../office-hours/cohort2/week1-summary/" class="md-nav__link">
         
   
   
@@ -1315,7 +1317,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../office-hours/cohort3/week-1-1/" class="md-nav__link">
+      <a href="../office-hours/cohort3/week-1-1/" class="md-nav__link">
         
   
   
@@ -1338,7 +1340,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../office-hours/cohort3/week-1-2/" class="md-nav__link">
+      <a href="../office-hours/cohort3/week-1-2/" class="md-nav__link">
         
   
   
@@ -1422,7 +1424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../office-hours/cohort2/week2-summary/" class="md-nav__link">
+      <a href="../office-hours/cohort2/week2-summary/" class="md-nav__link">
         
   
   
@@ -1445,7 +1447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../office-hours/cohort3/week-2-1/" class="md-nav__link">
+      <a href="../office-hours/cohort3/week-2-1/" class="md-nav__link">
         
   
   
@@ -1468,7 +1470,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../office-hours/cohort3/week-2-2/" class="md-nav__link">
+      <a href="../office-hours/cohort3/week-2-2/" class="md-nav__link">
         
   
   
@@ -1550,7 +1552,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../office-hours/cohort2/week3-summary/" class="md-nav__link">
+      <a href="../office-hours/cohort2/week3-summary/" class="md-nav__link">
         
   
   
@@ -1573,7 +1575,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../office-hours/cohort3/week-3-1/" class="md-nav__link">
+      <a href="../office-hours/cohort3/week-3-1/" class="md-nav__link">
         
   
   
@@ -1657,7 +1659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../office-hours/cohort2/week4-summary/" class="md-nav__link">
+      <a href="../office-hours/cohort2/week4-summary/" class="md-nav__link">
         
   
   
@@ -1680,7 +1682,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../office-hours/cohort3/week-4-1/" class="md-nav__link">
+      <a href="../office-hours/cohort3/week-4-1/" class="md-nav__link">
         
   
   
@@ -1703,7 +1705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../office-hours/cohort3/week-4-2/" class="md-nav__link">
+      <a href="../office-hours/cohort3/week-4-2/" class="md-nav__link">
         
   
   
@@ -1787,7 +1789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../office-hours/cohort2/week5-summary/" class="md-nav__link">
+      <a href="../office-hours/cohort2/week5-summary/" class="md-nav__link">
         
   
   
@@ -1810,7 +1812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../office-hours/cohort3/week-5-1/" class="md-nav__link">
+      <a href="../office-hours/cohort3/week-5-1/" class="md-nav__link">
         
   
   
@@ -1833,7 +1835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../office-hours/cohort3/week-5-2/" class="md-nav__link">
+      <a href="../office-hours/cohort3/week-5-2/" class="md-nav__link">
         
   
   
@@ -1913,7 +1915,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../office-hours/cohort2/week6-summary/" class="md-nav__link">
+      <a href="../office-hours/cohort2/week6-summary/" class="md-nav__link">
         
   
   
@@ -1986,7 +1988,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../talks/" class="md-nav__link ">
+            <a href="../talks/" class="md-nav__link ">
               
   
   
@@ -2078,7 +2080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/chromadb-anton-chunking/" class="md-nav__link">
+      <a href="../talks/chromadb-anton-chunking/" class="md-nav__link">
         
   
   
@@ -2101,7 +2103,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/john-lexical-search/" class="md-nav__link">
+      <a href="../talks/john-lexical-search/" class="md-nav__link">
         
   
   
@@ -2124,7 +2126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/query-routing-anton/" class="md-nav__link">
+      <a href="../talks/query-routing-anton/" class="md-nav__link">
         
   
   
@@ -2147,7 +2149,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/semantic-search-exa-will-bryk/" class="md-nav__link">
+      <a href="../talks/semantic-search-exa-will-bryk/" class="md-nav__link">
         
   
   
@@ -2170,7 +2172,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/rag-without-apis-browser-michael-struwig/" class="md-nav__link">
+      <a href="../talks/rag-without-apis-browser-michael-struwig/" class="md-nav__link">
         
   
   
@@ -2254,7 +2256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/glean-manav/" class="md-nav__link">
+      <a href="../talks/glean-manav/" class="md-nav__link">
         
   
   
@@ -2277,7 +2279,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/fine-tuning-rerankers-embeddings-ayush-lancedb/" class="md-nav__link">
+      <a href="../talks/fine-tuning-rerankers-embeddings-ayush-lancedb/" class="md-nav__link">
         
   
   
@@ -2300,7 +2302,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
+      <a href="../talks/embedding-performance-generative-evals-kelly-hong/" class="md-nav__link">
         
   
   
@@ -2384,7 +2386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/online-evals-production-monitoring-ben-sidhant/" class="md-nav__link">
+      <a href="../talks/online-evals-production-monitoring-ben-sidhant/" class="md-nav__link">
         
   
   
@@ -2407,7 +2409,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/rag-antipatterns-skylar-payne/" class="md-nav__link">
+      <a href="../talks/rag-antipatterns-skylar-payne/" class="md-nav__link">
         
   
   
@@ -2430,7 +2432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/zapier-vitor-evals/" class="md-nav__link">
+      <a href="../talks/zapier-vitor-evals/" class="md-nav__link">
         
   
   
@@ -2516,7 +2518,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/rag-is-dead-cline-nik/" class="md-nav__link">
+      <a href="../talks/rag-is-dead-cline-nik/" class="md-nav__link">
         
   
   
@@ -2539,7 +2541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/colin-rag-agents/" class="md-nav__link">
+      <a href="../talks/colin-rag-agents/" class="md-nav__link">
         
   
   
@@ -2562,7 +2564,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/sourcegraph-agentic-code-agent-rag/" class="md-nav__link">
+      <a href="../talks/sourcegraph-agentic-code-agent-rag/" class="md-nav__link">
         
   
   
@@ -2585,7 +2587,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/devin-cognition-multi-agents/" class="md-nav__link">
+      <a href="../talks/devin-cognition-multi-agents/" class="md-nav__link">
         
   
   
@@ -2669,7 +2671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/reducto-docs-adit/" class="md-nav__link">
+      <a href="../talks/reducto-docs-adit/" class="md-nav__link">
         
   
   
@@ -2692,7 +2694,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/superlinked-encoder-stacking/" class="md-nav__link">
+      <a href="../talks/superlinked-encoder-stacking/" class="md-nav__link">
         
   
   
@@ -2715,7 +2717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../talks/extend-document-automation/" class="md-nav__link">
+      <a href="../talks/extend-document-automation/" class="md-nav__link">
         
   
   
@@ -2773,135 +2775,162 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#consistent-format-for-all-chapters" class="md-nav__link">
+  <a href="#the-problem-that-started-it-all" class="md-nav__link">
     <span class="md-ellipsis">
-      Consistent Format for All Chapters
+      The Problem That Started It All
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#chapter-0-beyond-implementation-to-improvement" class="md-nav__link">
+  <a href="#the-two-biases-that-kill-rag-projects" class="md-nav__link">
     <span class="md-ellipsis">
-      Chapter 0: Beyond Implementation to Improvement
+      The Two Biases That Kill RAG Projects
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Two Biases That Kill RAG Projects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#absence-bias-absence-blindness" class="md-nav__link">
+    <span class="md-ellipsis">
+      Absence Bias (Absence Blindness)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intervention-bias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intervention Bias
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#my-systematic-rag-playbook" class="md-nav__link">
+    <span class="md-ellipsis">
+      My Systematic RAG Playbook
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#chapter-1-kickstarting-the-data-flywheel-with-synthetic-data" class="md-nav__link">
+  <a href="#1-start-with-synthetic-data" class="md-nav__link">
     <span class="md-ellipsis">
-      Chapter 1: Kickstarting the Data Flywheel with Synthetic Data
+      1) Start with Synthetic Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1) Start with Synthetic Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-synthetic-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Create Synthetic Data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-utilize-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      2) Utilize Metadata
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#chapter-2-converting-evaluations-into-training-data-for-fine-tuning" class="md-nav__link">
+  <a href="#3-use-both-full-text-search-and-vector-search" class="md-nav__link">
     <span class="md-ellipsis">
-      Chapter 2: Converting Evaluations into Training Data for Fine-Tuning
+      3) Use Both Full-Text Search and Vector Search
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3) Use Both Full-Text Search and Vector Search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#understanding-the-differences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding the Differences
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-implement-clear-user-feedback-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      4) Implement Clear User Feedback Mechanisms
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#chapter-31-feedback-collection" class="md-nav__link">
+  <a href="#5-cluster-and-model-topics" class="md-nav__link">
     <span class="md-ellipsis">
-      Chapter 3.1: Feedback Collection
+      5) Cluster and Model Topics
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#chapter-32-overcoming-latency" class="md-nav__link">
+  <a href="#6-continuously-monitor-and-experiment" class="md-nav__link">
     <span class="md-ellipsis">
-      Chapter 3.2: Overcoming Latency
+      6) Continuously Monitor and Experiment
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#chapter-33-quality-of-life-improvements" class="md-nav__link">
+  <a href="#7-balance-latency-and-performance" class="md-nav__link">
     <span class="md-ellipsis">
-      Chapter 3.3: Quality of Life Improvements
+      7) Balance Latency and Performance
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#chapter-41-finding-patterns-in-user-data" class="md-nav__link">
+  <a href="#wrapping-up" class="md-nav__link">
     <span class="md-ellipsis">
-      Chapter 4.1: Finding Patterns in User Data
+      Wrapping Up
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#chapter-42-topics-vs-capabilities" class="md-nav__link">
+  <a href="#want-to-learn-more" class="md-nav__link">
     <span class="md-ellipsis">
-      Chapter 4.2: Topics vs Capabilities
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#chapter-51-when-one-size-doesnt-fit-all" class="md-nav__link">
-    <span class="md-ellipsis">
-      Chapter 5.1: When One Size Doesn't Fit All
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#chapter-52-search-beyond-text" class="md-nav__link">
-    <span class="md-ellipsis">
-      Chapter 5.2: Search Beyond Text
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#chapter-61-query-routing-basics" class="md-nav__link">
-    <span class="md-ellipsis">
-      Chapter 6.1: Query Routing Basics
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#chapter-62-building-the-router" class="md-nav__link">
-    <span class="md-ellipsis">
-      Chapter 6.2: Building the Router
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#chapter-63-measuring-and-improving-routers" class="md-nav__link">
-    <span class="md-ellipsis">
-      Chapter 6.3: Measuring and Improving Routers
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#chapter-7-production-considerations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Chapter 7: Production Considerations
+      Want to learn more?
     </span>
   </a>
   
@@ -2923,265 +2952,182 @@
 
 
 
-<h1 id="workshop-chapter-introduction-outline">Workshop Chapter Introduction Outline</h1>
-<h2 id="consistent-format-for-all-chapters">Consistent Format for All Chapters</h2>
+<h1 id="systematically-improving-your-rag">Systematically Improving Your RAG</h1>
+<h2 id="the-problem-that-started-it-all">The Problem That Started It All</h2>
+<p>I'll never forget the panic in the engineering director's voice during our emergency call. "Our RAG system worked in demos," he said, "but now that it's in production, users are complaining that it can't answer basic questions about our own documentation. We've tried three different embedding models and tweaked our prompts dozens of times. Nothing helps. I don't feel good about launching this to all our customers."</p>
+<p>The fundamental issue? Everyone was treating RAG as a one-time implementation project rather than an evolving product. They'd optimize for the wrong metrics, guess at solutions, and make random changes hoping something would stick.</p>
+<h2 id="the-two-biases-that-kill-rag-projects">The Two Biases That Kill RAG Projects</h2>
+<p>Behind these surface-level mistakes lie two fundamental biases that kill more RAG projects than anything else:</p>
+<h3 id="absence-bias-absence-blindness">Absence Bias (Absence Blindness)</h3>
+<p>You can't fix what you can't see. Sounds obvious, right? But I see teams obsess over generation quality while completely ignoring whether retrieval works at all.</p>
+<p>I had a client spend three weeks fine-tuning prompts. When we finally checked, their retrieval system was returning completely irrelevant documents. No amount of prompt engineering can fix that.</p>
+<p>Questions teams forget to ask:</p>
+<ul>
+<li>Is retrieval actually finding the right documents?</li>
+<li>Are our chunks the right size?</li>
+<li>Is our data extraction pipeline working?</li>
+<li>Do we have separate metrics for retrieval vs generation?</li>
+</ul>
+<h3 id="intervention-bias">Intervention Bias</h3>
+<p>This is our tendency to do <em>something</em> just to feel like we're making progress. In RAG, it shows up as constantly switching models, tweaking prompts, or adding features without measuring impact.</p>
+<ul>
+<li>Should we use GPT-4 or Claude? Maybe a new embedding model? What about chunking?</li>
+<li>Will this new prompt technique help? I read on Arxiv that this new prompt technique is the best...</li>
+</ul>
+<p>The solution? Resist the hype. Start from real data, measure carefully, do simple experiments, and only keep what actually helps.</p>
+<div class="admonition quote">
+<p class="admonition-title">You Can't Manage What You Can't Measure</p>
+<p>This classic management principle applies perfectly to RAG systems. Without proper measurement, you're flying blind—making changes based on hunches rather than data. The teams that succeed are the ones who measure everything: retrieval quality, generation accuracy, user satisfaction, and system performance.</p>
+</div>
+<h2 id="my-systematic-rag-playbook">My Systematic RAG Playbook</h2>
+<p>This is my systematic approach to making RAG applications better. It's a step-by-step guide that will help you improve your RAG systems over time.</p>
+<p>By the end of this post, you'll understand my systematic approach to making RAG applications better. We'll look at important areas like:</p>
+<ul>
+<li>Making fake questions and answers to quickly test how well your system works</li>
+<li>Using both full-text search and vector search together for the best results</li>
+<li>Setting up the right ways to get feedback from users about what you want to study</li>
+<li>Using grouping to find sets of questions that have problems, sorted by topics and abilities</li>
+<li>Building specific systems to improve abilities</li>
+<li>Constantly checking and testing as you get more real-world data</li>
+</ul>
+<p>Through this step-by-step runbook, you'll gain practical knowledge on how to incrementally enhance the performance and utility of your RAG applications, unlocking their full potential to deliver exceptional user experiences and drive business value. Let's dive in and explore how to systematically improve your RAG systems together!</p>
+<!-- more -->
+
+<h2 id="1-start-with-synthetic-data">1) Start with Synthetic Data</h2>
+<p>Here's a brutal truth: most teams spend months fine-tuning prompts without ever measuring if their retrieval actually works. When they finally check, they discover their systems retrieve the correct documents only 30-40% of the time. </p>
+<p>No amount of prompt engineering can fix retrieving the wrong information.</p>
+<p><strong>Synthetic data</strong> is your escape hatch. It lets you evaluate your system before you have real users, so you can fix the fundamentals first.</p>
+<h3 id="how-to-create-synthetic-data">How to Create Synthetic Data</h3>
 <ol>
-<li><strong>Hook (1-2 sentences)</strong>: A relatable problem or observation that draws readers in</li>
-<li><strong>Context paragraph</strong>: Why this chapter matters and what problem it solves</li>
-<li><strong>"Here's what we'll cover:"</strong> section with 3-4 bullet points previewing main topics</li>
-<li><strong>Optional "Building on:"</strong> section for chapters that depend on previous material</li>
+<li>Create synthetic questions for each text chunk in your database</li>
+<li>Use these questions to test your retrieval system</li>
+<li>Calculate precision and recall scores to establish a baseline</li>
+<li>Identify areas for improvement based on the baseline scores</li>
 </ol>
+<p><strong>What is Recall?</strong> Recall measures how many of the relevant documents your system actually found. If there are 10 relevant documents for a query and your system only found 7 of them, your recall is 70%. In RAG systems, missing relevant documents is often worse than finding some irrelevant ones, so recall is usually the more critical metric.</p>
+<p>What we should be finding with synthetic data is that synthetic data should just be around 80-90% recall. And synthetic data might just look like something very simple to begin with.</p>
+<p>A simple procedure works but only if you look at your own data. Imagine for every text chunk, I want it to synthetically generate a set of questions that this text chunk answers. For those questions, can we retrieve those text chunks? And you might think the answer is always going to be yes. But I found in practice that when I was doing tests against essays, full text search and embeddings basically performed the same, except full text search was about 10 times faster.</p>
+<p>Whereas when I did the same experiment on pulling issues from a repository, it was the case that full text search got around 55% recall, and then embedding search got around 65% recall. Way worse! And just knowing how challenging these questions are on the baseline is super important to figure out what kind of experimentation you need to perform better.
+This will give you a baseline to work with and help you identify areas for improvement.</p>
+<div class="admonition info">
+<p class="admonition-title">Agent Persistence Changes Everything</p>
+<p>State-of-the-art coding agents have reached the top of SWE-Bench leaderboards using simple grep and find tools instead of sophisticated embeddings. Why? Agent persistence compensates for less sophisticated tools - they'll keep trying different approaches until they find what they need. This means traditional component-level metrics (like embedding quality) may not translate to end-to-end performance in agent-based systems.</p>
+</div>
+<p>This doesn't mean that we need an agentic rag for everything. Inventing search is cheap and can be seen as a cost-saving factor, both in terms of maintenance, implementation, and complexity. What Semantic Search could do with one API call, Agentic Rag could do with 15 if you give it simpler tools. Again, we're making trade-offs along a continuum.</p>
+<p>But the benefit is - if you have a number to set a goal against, you can always trade off your recall, your latency, and your performance. </p>
+<h2 id="2-utilize-metadata">2) Utilize Metadata</h2>
+<p>Your users ask questions that pure text search can't answer. "What's the latest version?" "Show me documents from last quarter." "Who owns this project?"</p>
+<p><strong>Metadata</strong> bridges this gap. It's the structured information that makes your documents searchable beyond just their text content.</p>
+<p>Think of it as adding labels to your documents: dates, authors, categories, statuses. When users ask specific questions, you can filter and find exactly what they need.</p>
+<p>For example, if someone asks, "What is the latest x, y, and z?" Text search will never get that answer. Semantic search will never get that answer.</p>
+<p>You need to perform query understanding to extract date ranges. There will be some prompt engineering that needs to happen. That's the metadata, and being aware that there will be questions that people aren't answering because those filters can never be caught by full text search and semantic search.</p>
+<p>And what this looks like in practice is if you ask the question, what are recent developments in the field, the search query is now expanded out to more terms. There's a date range where the language model has reasoned about what recent looks like for the research, and it's also decided that you should only be searching specific sources. If you don't do this, then you may not get trusted sources. You may be unable to figure out what recent means.</p>
+<p>You'll need to do some query understanding to extract date ranges and include metadata in your search.</p>
+<p>This has become more and more feasible as function calling and other loans become much more powerful. You can just have arguments that include start dates and end dates and do quite well. But what this still means is you need to index things correctly with the relevant metadata.</p>
+<h2 id="3-use-both-full-text-search-and-vector-search">3) Use Both Full-Text Search and Vector Search</h2>
+<p>The RAG community loves to debate: "Should I use full-text search or vector search?" </p>
+<p>Here's the secret: <strong>use both</strong>. They solve different problems, and the best RAG systems combine them intelligently.</p>
+<p>Full-text search finds exact matches and handles technical terms. Vector search understands meaning and context. Together, they cover the full spectrum of what users actually ask.</p>
+<h3 id="understanding-the-differences">Understanding the Differences</h3>
+<p><strong>Full-Text Search (Lexical Search):</strong></p>
+<ul>
+<li>Uses traditional information retrieval techniques like BM25 scoring</li>
+<li>Excels at exact matches for product codes, names, and specific phrases</li>
+<li>Handles technical terms and abbreviations that embedding models might miss</li>
+<li>Provides efficient filtering and metadata aggregation</li>
+<li>Works well with Boolean logic and structured queries</li>
+<li>Much faster for simple keyword searches</li>
+</ul>
+<p><strong>Vector Search (Semantic Search):</strong></p>
+<ul>
+<li>Converts text into embedding vectors that capture meaning</li>
+<li>Finds semantically similar content even when exact words don't match</li>
+<li>Handles synonyms and different ways of expressing the same concept</li>
+<li>Better at understanding context and intent</li>
+<li>Can process complex, contextual queries</li>
+<li>More effective for conceptual and exploratory searches</li>
+</ul>
+<p>Okay, so which one do I use? </p>
+<p>It depends on your data. This is why you created synthetic data in the first place. Don't take my word. Set up evals and check whether or not semantic search is worth the 10x greater latency than full text search based on the recall. If you get a 1% improvement with 10x latency, maybe it's not worth it. If you get a 15% improvement in recall, maybe it is. It's up to you. It's up to your problem.</p>
+<h2 id="4-implement-clear-user-feedback-mechanisms">4) Implement Clear User Feedback Mechanisms</h2>
+<p>Most RAG systems get feedback rates below 1%. Users don't tell you what's wrong because you're not asking the right questions.</p>
+<p><strong>Good feedback collection</strong> means asking specific, actionable questions. "Did we answer your question correctly?" beats "How did we do?" every time.</p>
+<p>The goal is to build a continuous improvement loop where user feedback drives your next improvements.</p>
+<p>I find that it's important to build out these feedback mechanisms as soon as possible. And making sure that the copy of these feedback mechanisms explicitly describe what you're worried about.</p>
+<p>Sometimes, we'll get a thumbs down even if the answer is correct, but they didn't like the tone. Or the answer was correct, but the latency was too high. Or it took too many hops.</p>
+<p>This means we couldn't actually produce an evaluation dataset just by figuring out what was a thumbs up and a thumbs down. It was a lot of confounding variables. We had to change the copy to just "Did we answer the question correctly? Yes or no." We need to recognize that improvements in tone and improvements in latency will come eventually. But we needed the user feedback to build us that evaluation dataset.</p>
+<p>Make sure the copy for these feedback mechanisms explicitly describes what you're worried about. This will help you isolate the specific issues users are facing.</p>
+<h2 id="5-cluster-and-model-topics">5) Cluster and Model Topics</h2>
+<p>You've collected user feedback and now have thousands of queries. Great! But staring at individual ratings won't tell you what to fix next after a few 1000 examples. </p>
+<p>You need to see the bigger picture.</p>
+<p><strong>Topic modeling and clustering</strong> transform your raw feedback into actionable insights. Instead of reading through queries one by one, you group similar ones and look for patterns. This reveals the real problems worth fixing.</p>
+<p>The key insight? Not all improvements matter equally. Some query types affect 80% of your users, while others might be rare but critical for your biggest customers. You need to know the difference.</p>
+<p>Consider this example from a technical documentation search system. By clustering user queries, two main patterns emerged:</p>
+<ol>
+<li>
+<p>Topic Clusters: A significant portion of user queries were related to a specific product feature that had recently been updated. However, our system was not retrieving the most up-to-date documentation for this feature, leading to confusion and frustration among users.</p>
+</li>
+<li>
+<p>Capability Gaps: Another cluster of queries revealed that users were frequently asking for troubleshooting steps and error code explanations. While our system could retrieve relevant documentation, it struggled to provide direct, actionable answers to these types of questions.</p>
+</li>
+</ol>
+<p>Based on these insights, we prioritized updating the product feature documentation and implementing a feature to extract step-by-step instructions and error code explanations. These targeted improvements led to higher user satisfaction and reduced support requests.</p>
+<p>Look for patterns like:</p>
+<ul>
+<li>
+<p>Topic clusters: Are users asking about specific topics more than others? This could indicate a need for more content in those areas or better retrieval of existing content.</p>
+</li>
+<li>
+<p>Capabilities: Are there types of questions your system categorically cannot answer? This could indicate a need for new features or capabilities, such as direct answer extraction, multi-document summarization, or domain-specific reasoning.</p>
+</li>
+</ul>
+<p>By continuously analyzing topic clusters and capability gaps, you can identify high-impact areas for improvement and allocate your resources more effectively. This data-driven approach to prioritization ensures that you're always working on the most critical issues affecting your users.</p>
+<p>Once you have this in place, once you have these topics and these clusters, you can talk to domain experts for a couple of weeks to figure out what these categories are explicitly. Then, you can build out systems to tag that as data comes in.</p>
+<p>In the same way that when you open up ChatGPT and make a conversation, it creates an automatic title in the corner. You can now do that for every question. As part of that capability, you can add the classification, such as what are the topics and what are the capabilities. Capabilities could include ownership and responsibility, fetching tables, fetching images, fetching documents only, no synthesis, compare and contrast, deadlines, and so on.</p>
+<p>You can then put this information into a tool like Amplitude or Sentry (or Raindrop for ai natives). This will give you a running stream of the types of queries people are asking, which can help you understand how to prioritize these capabilities and topics.</p>
+<h2 id="6-continuously-monitor-and-experiment">6) Continuously Monitor and Experiment</h2>
+<p>Your RAG system isn't a one-time project. It's a living system that needs constant attention.</p>
+<p><strong>Continuous monitoring</strong> means tracking performance over time, not just during development. You need to know when things break, when performance degrades, and when new patterns emerge.</p>
+<p>The key is running experiments systematically. Test changes on real data, measure the impact, and only keep what actually helps.</p>
+<p>This could include tweaking search parameters, adding metadata, or trying different embedding models. Measure the impact on precision and recall to see if the changes are worthwhile.</p>
+<div class="admonition quote">
+<p class="admonition-title">Start with Vibe Checks, Not Just Metrics</p>
+<p>"Start with 5-10 examples and do end-to-end vibe checks before moving to quantitative evaluation. With natural language systems, you can learn so much just from looking at a few examples." This is especially important for agent-based systems where improving individual components (like embeddings) might not improve end-to-end performance.</p>
+</div>
+<p>Once you now have these questions in place, you have your synthetic data set and a bunch of user data with ratings. This is where the real work begins when it comes to systematically improving your RAG.</p>
+<p>The system will be running many clusters of topic modeling around the questions, modeling that against the thumbs up and thumbs down ratings to figure out what clusters are underperforming. It will then determine the count and probability of user dissatisfaction for each cluster.</p>
+<p>The system will be doing this on a regular cadence, figuring out for what volume of questions and user satisfaction levels it should focus on improving these specific use cases.</p>
+<p>What might happen is you onboard a new organization, and all of a sudden, those distributions shift because their use cases are different. That's when you can go in and say, "We onboarded these new clients, and they very much care about deadlines. We knew we decided not to service deadlines, but now we know this is a priority, as it went from 2% of questions asking about deadlines to 80%." You can then determine what kind of education or improvements can be done around that.</p>
+<h2 id="7-balance-latency-and-performance">7) Balance Latency and Performance</h2>
+<p>Every improvement comes with a cost. Better recall might mean slower responses. More sophisticated search might mean higher compute costs.</p>
+<p><strong>Trade-off decisions</strong> should be based on your specific use case, not generic best practices. A medical diagnostic tool might prioritize accuracy over speed, while a customer support chatbot might need instant responses.</p>
+<p>The key is measuring the impact of each change and making informed decisions about what matters most for your users.</p>
+<div class="admonition tip">
+<p class="admonition-title">Agentic Systems Change the Equation</p>
+<p>In agentic systems, the trade-offs shift. Agents are persistent - they'll eventually find what they need even with suboptimal tools. This means you might accept higher latency for better end-to-end outcomes, since agents can iterate and course-correct. The best approach often combines both: expose your high-quality embeddings as tools to agents, getting persistence AND efficiency.</p>
+</div>
+<p>Here, this is where having the synthetic questions that test against will effectively answer that question. Because what we'll do is we'll run the query with and without this parent document retriever, and we will have a recall with and without that feature and the latency improvement of that feature.</p>
+<p>And so now we'll be able to say, okay. Well, recall doubles. The latency increases by 20%, then a conversation can happen. Or, is that worth the investment? But if latency goes up double and the recall goes up 1%, again, it depends on, okay.</p>
+<p>Well, if this is a medical diagnostic, maybe I do care that the 1% is included because the stakes are so high. But if it's for a doc page, maybe the increased latency will reduce in churn.</p>
+<p>If you can improve recall by 1%, and the system is too complex, it's not worth deploying it in the future as well.</p>
+<p>For example, if you're building a medical diagnostic tool, a slight increase in latency might be worth it for better recall. But if you're building a general-purpose search tool, faster results might be more important.</p>
+<h2 id="wrapping-up">Wrapping Up</h2>
+<p>This systematic approach has been refined through countless implementations. While many implementation details have been simplified here, the key is to start measuring and iterating rather than guessing.</p>
+<h2 id="want-to-learn-more">Want to learn more?</h2>
+<p>For a deeper dive into these concepts, check out the free 6-week email course on RAG that covers all these strategies in detail:</p>
+<p><a class="md-button md-button--primary" href="https://improvingrag.com/">Enroll in the Free 6-Day Email Course</a></p>
 <hr />
-<h2 id="chapter-0-beyond-implementation-to-improvement">Chapter 0: Beyond Implementation to Improvement</h2>
-<p><strong>Hook:</strong>
-Teams ship RAG systems, celebrate, then watch them slowly fail in production. I've seen this pattern dozens of times.</p>
-<p><strong>Context:</strong>
-Most RAG failures aren't technical - they're organizational. The teams that succeed treat their systems as evolving products, not static implementations. This chapter shows you the mindset shift that makes the difference between systems that spin their wheels and ones that ship improvements every week.</p>
-<p><strong>Here's what we'll cover:</strong></p>
-<ul>
-<li>Why thinking of RAG as a "project" instead of a "product" dooms most implementations</li>
-<li>How to steal ideas from recommendation systems (because that's really what RAG is)</li>
-<li>A practical framework for turning user frustration into system improvements</li>
-<li>Real examples from companies that got this right (and wrong)</li>
-</ul>
-<hr />
-<h2 id="chapter-1-kickstarting-the-data-flywheel-with-synthetic-data">Chapter 1: Kickstarting the Data Flywheel with Synthetic Data</h2>
-<p><strong>Hook:</strong>
-Most teams I work with are stuck in this weird loop where they keep tweaking things randomly and hoping something sticks. Sound familiar?</p>
-<p><strong>Context:</strong>
-You can't fix what you can't measure, but you also can't wait for users to generate data. This chapter solves the chicken-and-egg problem by showing you how to use synthetic data to start your improvement process before you even have users. We'll also fix the vague metrics problem that keeps most teams guessing.</p>
-<p><strong>Here's what we'll cover:</strong></p>
-<ul>
-<li>How to set up evaluations that actually tell you something useful</li>
-<li>Common ways teams shoot themselves in the foot (and how to avoid them)</li>
-<li>How to use synthetic data to test your system before you even have users</li>
-<li>Building a practical evaluation framework with precision/recall metrics</li>
-</ul>
-<p><strong>Building on:</strong></p>
-<ul>
-<li>Chapter 0's product mindset by making it concrete with metrics</li>
-</ul>
-<hr />
-<h2 id="chapter-2-converting-evaluations-into-training-data-for-fine-tuning">Chapter 2: Converting Evaluations into Training Data for Fine-Tuning</h2>
-<p><strong>Hook:</strong>
-Generic embeddings work poorly for specialized applications. Meanwhile, teams are sitting on evaluation data without realizing it's training gold.</p>
-<p><strong>Context:</strong>
-Embedding fine-tuning costs ~$1.50 and takes 40 minutes, but delivers 6-10% improvements. This chapter shows you how to turn the evaluation data you're already collecting into immediate improvements through few-shot prompts, then scale up to fine-tuning when ready.</p>
-<p><strong>Here's what we'll cover:</strong></p>
-<ul>
-<li>How to turn evaluation examples into few-shot prompts (immediate value)</li>
-<li>Why generic embeddings fail for specialized domains</li>
-<li>Building datasets for fine-tuning embeddings and re-rankers</li>
-<li>A practical workflow that goes from 20 examples to production improvements</li>
-</ul>
-<p><strong>Building on:</strong></p>
-<ul>
-<li>Uses the evaluation data created in Chapter 1 as raw material</li>
-<li>Shows how systematic measurement enables systematic improvement</li>
-</ul>
-<hr />
-<h2 id="chapter-31-feedback-collection">Chapter 3.1: Feedback Collection</h2>
-<p><strong>Hook:</strong>
-You've built a RAG system that works, but you're flying blind - you don't know which queries fail, which documents are unhelpful, or what users actually need.</p>
-<p><strong>Context:</strong>
-Most RAG systems collect almost no feedback (less than 0.1% engagement rate), missing critical improvement opportunities. Well-designed feedback mechanisms can increase collection rates by 5x, creating the data that powers all future improvements. This chapter shows you how to build feedback loops that users actually use.</p>
-<p><strong>Here's what we'll cover:</strong></p>
-<ul>
-<li>Making feedback visible and engaging (not hidden in menus)</li>
-<li>Segmenting feedback to identify specific pipeline failures</li>
-<li>Mining implicit signals from user behavior (query refinements, abandonment)</li>
-<li>Building enterprise feedback loops with Slack integration</li>
-</ul>
-<p><strong>Building on:</strong></p>
-<ul>
-<li>The evaluation framework from Chapter 1 provides baseline metrics</li>
-<li>Generates the data needed for fine-tuning techniques from Chapter 2</li>
-</ul>
-<hr />
-<h2 id="chapter-32-overcoming-latency">Chapter 3.2: Overcoming Latency</h2>
-<p><strong>Hook:</strong>
-Even accurate RAG responses lose value if users abandon while waiting. Worse, perceived wait times are 25% longer without progress indicators.</p>
-<p><strong>Context:</strong>
-Streaming has become table stakes in modern LLM applications, and better perceived performance leads to 30-40% higher feedback collection rates. This chapter shows you how to make your RAG system feel fast, even when it's doing complex work behind the scenes.</p>
-<p><strong>Here's what we'll cover:</strong></p>
-<ul>
-<li>Implementing streaming responses for real-time content delivery</li>
-<li>Designing meaningful interstitials that engage users during processing</li>
-<li>Using skeleton screens to create the illusion of progress</li>
-<li>Platform-specific implementations (like Slack bot pseudo-streaming)</li>
-</ul>
-<p><strong>Building on:</strong></p>
-<ul>
-<li>Enhances the feedback collection mechanisms from Chapter 3.1</li>
-<li>Creates the responsive foundation for Chapter 3.3's improvements</li>
-</ul>
-<hr />
-<h2 id="chapter-33-quality-of-life-improvements">Chapter 3.3: Quality of Life Improvements</h2>
-<p><strong>Hook:</strong>
-RAG systems that just retrieve and generate aren't enough - users need transparency, trust, and reliability. These "small" improvements determine whether your system gets used occasionally or becomes a daily tool.</p>
-<p><strong>Context:</strong>
-Chain of thought alone provides a consistent 10% performance boost. Interactive citations build trust while creating feedback opportunities. Simple validation can reduce error rates from 4% to near zero. This chapter covers the improvements that turn a functional system into one users love.</p>
-<p><strong>Here's what we'll cover:</strong></p>
-<ul>
-<li>Interactive citations for transparency and feedback collection</li>
-<li>Chain of thought reasoning for improved accuracy and explainability</li>
-<li>Monologuing techniques for handling complex contexts</li>
-<li>Validation patterns to catch errors before users see them</li>
-</ul>
-<p><strong>Building on:</strong></p>
-<ul>
-<li>The feedback foundation from Chapter 3.1</li>
-<li>The streaming infrastructure from Chapter 3.2</li>
-</ul>
-<hr />
-<h2 id="chapter-41-finding-patterns-in-user-data">Chapter 4.1: Finding Patterns in User Data</h2>
-<p><strong>Hook:</strong>
-You've collected thousands of feedback signals but have no systematic way to find patterns. When your manager asks "What should we improve next?" you have no data-driven answer.</p>
-<p><strong>Context:</strong>
-Not all improvements matter equally - some affect 80% of users, others are critical for key customers. This chapter shows you how to segment queries like a product manager segments users, finding the patterns that actually matter for your improvement roadmap.</p>
-<p><strong>Here's what we'll cover:</strong></p>
-<ul>
-<li>Segmenting queries into meaningful groups through clustering</li>
-<li>Finding performance patterns that actually matter</li>
-<li>Building a data-driven improvement roadmap</li>
-<li>Identifying which improvements will have the most impact</li>
-</ul>
-<p><strong>Building on:</strong></p>
-<ul>
-<li>All the feedback data collected through Chapter 3's mechanisms</li>
-<li>Transforms raw signals into actionable insights</li>
-</ul>
-<hr />
-<h2 id="chapter-42-topics-vs-capabilities">Chapter 4.2: Topics vs Capabilities</h2>
-<p><strong>Hook:</strong>
-Teams confuse topics (what users ask about) with capabilities (what they want the system to do). This confusion leads to building the wrong solutions that don't address actual user needs.</p>
-<p><strong>Context:</strong>
-The same topic can require completely different capabilities - asking about pricing might need comparison, summarization, or calculation. Understanding this matrix is key to building features that actually help users. This chapter shows you how to analyze both dimensions to identify what's really broken.</p>
-<p><strong>Here's what we'll cover:</strong></p>
-<ul>
-<li>Understanding the topics vs. capabilities matrix</li>
-<li>Prioritizing improvements based on impact and effort</li>
-<li>Building strategic roadmaps from query patterns</li>
-<li>Aligning technical improvements with business objectives</li>
-</ul>
-<p><strong>Building on:</strong></p>
-<ul>
-<li>The patterns discovered in Chapter 4.1</li>
-<li>Sets up the foundation for specialized solutions in Chapter 5</li>
-</ul>
-<hr />
-<h2 id="chapter-51-when-one-size-doesnt-fit-all">Chapter 5.1: When One Size Doesn't Fit All</h2>
-<p><strong>Hook:</strong>
-Most RAG systems fail because they use a one-size-fits-all approach. Different types of queries need fundamentally different retrieval approaches, just like Google built Maps, Photos, and YouTube for different query types.</p>
-<p><strong>Context:</strong>
-This chapter introduces the critical concept that specialized retrievers beat general-purpose ones - both mathematically and organizationally. It's the foundation for building production-quality RAG systems that can handle diverse query types effectively.</p>
-<p><strong>Here's what we'll cover:</strong></p>
-<ul>
-<li>Why monolithic RAG systems break down as query diversity increases</li>
-<li>Two core strategies: extracting metadata from text vs. creating synthetic text chunks</li>
-<li>The RAPTOR approach for handling extremely long documents (1,500+ pages)</li>
-<li>How to measure success with specialized indices (router selection × retriever performance)</li>
-</ul>
-<p><strong>Building on:</strong></p>
-<ul>
-<li>Chapter 4's user segmentation revealed different query patterns</li>
-<li>Chapter 3's feedback collection helps identify when the monolithic approach fails</li>
-</ul>
-<hr />
-<h2 id="chapter-52-search-beyond-text">Chapter 5.2: Search Beyond Text</h2>
-<p><strong>Hook:</strong>
-Real-world data isn't just text - it's images, tables, charts, and structured data. Each type has unique challenges that generic approaches can't handle.</p>
-<p><strong>Context:</strong>
-Vision models trained on captions don't match how users search, tables need special formatting, and SQL generation requires business context. This chapter provides concrete implementation strategies for each content type that actually work in production.</p>
-<p><strong>Here's what we'll cover:</strong></p>
-<ul>
-<li>Document retrieval techniques: contextual chunks, page-aware chunking, hybrid signals</li>
-<li>Image search: rich prompting strategies and why basic captions fail</li>
-<li>Table handling: why markdown beats JSON/CSV, approaches for retrieval</li>
-<li>SQL generation: using example libraries instead of pure translation</li>
-</ul>
-<p><strong>Building on:</strong></p>
-<ul>
-<li>Chapter 5.1's specialized retrieval concepts</li>
-<li>Chapter 2's fine-tuning can be applied to each content type</li>
-</ul>
-<hr />
-<h2 id="chapter-61-query-routing-basics">Chapter 6.1: Query Routing Basics</h2>
-<p><strong>Hook:</strong>
-Having great specialized retrievers is useless if you can't route queries to the right one. It's like having specialized tools in a toolbox but no way to pick the right tool for each job.</p>
-<p><strong>Context:</strong>
-This chapter introduces the architectural pattern that makes specialized retrieval practical: treating each retriever as an API that language models can call. This creates a scalable system similar to microservices, where teams can work independently while serving a unified interface.</p>
-<p><strong>Here's what we'll cover:</strong></p>
-<ul>
-<li>The tools-as-APIs pattern for language models</li>
-<li>Benefits of modular architecture (team independence, testability, scalability)</li>
-<li>Migration path from monolithic to modular RAG systems</li>
-<li>How this enables both LLM and direct user access to capabilities</li>
-</ul>
-<p><strong>Building on:</strong></p>
-<ul>
-<li>Chapter 5's specialized retrievers become the building blocks</li>
-<li>Chapter 4's capability analysis informs which tools to build</li>
-</ul>
-<hr />
-<h2 id="chapter-62-building-the-router">Chapter 6.2: Building the Router</h2>
-<p><strong>Hook:</strong>
-How do you actually build interfaces that both LLMs and users can effectively use? How do you ensure queries go to the right tool?</p>
-<p><strong>Context:</strong>
-This chapter provides the concrete implementation details for building a production routing system. You'll learn how to design clear tool interfaces, train routers with few-shot examples, and continuously improve routing accuracy based on real usage.</p>
-<p><strong>Here's what we'll cover:</strong></p>
-<ul>
-<li>Implementing tool interfaces with clear contracts and documentation</li>
-<li>Building effective routers using few-shot examples</li>
-<li>Multi-agent vs single-agent architectures</li>
-<li>Dynamic example selection and continuous improvement</li>
-</ul>
-<p><strong>Building on:</strong></p>
-<ul>
-<li>Chapter 6.1's architectural foundations</li>
-<li>Chapter 3's user feedback improves routing accuracy over time</li>
-</ul>
-<hr />
-<h2 id="chapter-63-measuring-and-improving-routers">Chapter 6.3: Measuring and Improving Routers</h2>
-<p><strong>Hook:</strong>
-A unified RAG system's success depends on two factors: picking the right tool AND that tool finding the right information. Missing either means failure.</p>
-<p><strong>Context:</strong>
-This chapter completes the system by showing how to measure, diagnose, and continuously improve both routing and retrieval performance. You'll build a true learning system that gets better over time through systematic measurement and user feedback.</p>
-<p><strong>Here's what we'll cover:</strong></p>
-<ul>
-<li>Testing frameworks for router effectiveness (precision, recall, per-tool metrics)</li>
-<li>Dual-mode interfaces: chat plus direct tool access</li>
-<li>Using user interactions as high-quality training data</li>
-<li>The success formula: P(success) = P(right tool) × P(find right doc | right tool)</li>
-</ul>
-<p><strong>Building on:</strong></p>
-<ul>
-<li>Synthesizes the entire book: evaluation metrics, feedback loops, segmentation, and architecture</li>
-</ul>
-<hr />
-<h2 id="chapter-7-production-considerations">Chapter 7: Production Considerations</h2>
-<p><strong>Hook:</strong>
-A working prototype and a production system are vastly different. What works for 10 queries might fail catastrophically at 10,000.</p>
-<p><strong>Context:</strong>
-This chapter bridges the gap between academic understanding and real-world deployment. Features matter less than operational excellence - your sophisticated techniques mean nothing if the system isn't reliable, cost-effective, and compliant.</p>
-<p><strong>Here's what we'll cover:</strong></p>
-<ul>
-<li>Token economics and cost optimization strategies (60-75% of costs are LLM generation)</li>
-<li>Infrastructure decisions: write-time vs read-time computation, database selection</li>
-<li>Monitoring, security, and compliance requirements by industry</li>
-<li>Scaling strategies and team structure for ongoing maintenance</li>
-</ul>
-<p><strong>Building on:</strong></p>
-<ul>
-<li>Ensures all techniques from previous chapters can actually run in production</li>
-<li>Completes the journey from idea to scaled system</li>
-</ul>
+<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 
 
 
 
 
+
+  
+  
 
 
 
@@ -3249,16 +3195,16 @@ This chapter bridges the gap between academic understanding and real-world deplo
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["announce.dismiss", "navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
-        <script src="../../javascripts/mathjax.js"></script>
+        <script src="../javascripts/mathjax.js"></script>
       
     
   </body>

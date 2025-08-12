@@ -24,7 +24,7 @@
     
     
       
-        <title>6.1 Query Routing Foundations - Systematically Improving RAG Applications</title>
+        <title>Query Routing Foundations - Systematically Improving RAG Applications</title>
       
     
     
@@ -79,7 +79,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -142,7 +142,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              6.1 Query Routing Foundations
+              Query Routing Foundations
             
           </span>
         </div>
@@ -155,9 +155,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
@@ -165,9 +165,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
@@ -1112,146 +1112,53 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites-and-context" class="md-nav__link">
+  <a href="#what-this-chapter-covers" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites and context
+      What This Chapter Covers
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
+  <a href="#the-query-routing-problem" class="md-nav__link">
     <span class="md-ellipsis">
-      Learning objectives
+      The Query Routing Problem
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-goal-of-this-week" class="md-nav__link">
+  <a href="#tools-as-apis-pattern" class="md-nav__link">
     <span class="md-ellipsis">
-      The Goal of This Week
+      Tools as APIs Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools as APIs Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#benefits-of-the-api-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits of the API Approach
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#recap-two-ways-to-improve-search" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#moving-from-monolithic-to-modular" class="md-nav__link">
     <span class="md-ellipsis">
-      Recap: Two Ways to Improve Search
+      Moving from Monolithic to Modular
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#the-construction-company-blueprint-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Construction Company Blueprint Example
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#building-apis-for-your-language-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      Building APIs for Your Language Model
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#model-context-protocol-mcp" class="md-nav__link">
-    <span class="md-ellipsis">
-      Model Context Protocol (MCP)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#youre-a-framework-developer-now" class="md-nav__link">
-    <span class="md-ellipsis">
-      You're a Framework Developer Now
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adding-more-capabilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      Adding More Capabilities
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#building-the-gateway-router" class="md-nav__link">
-    <span class="md-ellipsis">
-      Building the Gateway Router
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-classic-architecture-pattern-interface-implementation-gateway" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Classic Architecture Pattern (Interface, Implementation, Gateway)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-next-the-system-remains-the-same" class="md-nav__link">
-    <span class="md-ellipsis">
-      What's Next: The System Remains the Same
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metrics-and-evaluation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Metrics and evaluation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-points" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integration points
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-next" class="md-nav__link">
-    <span class="md-ellipsis">
-      What’s next
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      Summary
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2988,146 +2895,53 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites-and-context" class="md-nav__link">
+  <a href="#what-this-chapter-covers" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites and context
+      What This Chapter Covers
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
+  <a href="#the-query-routing-problem" class="md-nav__link">
     <span class="md-ellipsis">
-      Learning objectives
+      The Query Routing Problem
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-goal-of-this-week" class="md-nav__link">
+  <a href="#tools-as-apis-pattern" class="md-nav__link">
     <span class="md-ellipsis">
-      The Goal of This Week
+      Tools as APIs Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools as APIs Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#benefits-of-the-api-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits of the API Approach
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#recap-two-ways-to-improve-search" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#moving-from-monolithic-to-modular" class="md-nav__link">
     <span class="md-ellipsis">
-      Recap: Two Ways to Improve Search
+      Moving from Monolithic to Modular
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#the-construction-company-blueprint-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Construction Company Blueprint Example
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#building-apis-for-your-language-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      Building APIs for Your Language Model
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#model-context-protocol-mcp" class="md-nav__link">
-    <span class="md-ellipsis">
-      Model Context Protocol (MCP)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#youre-a-framework-developer-now" class="md-nav__link">
-    <span class="md-ellipsis">
-      You're a Framework Developer Now
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adding-more-capabilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      Adding More Capabilities
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#building-the-gateway-router" class="md-nav__link">
-    <span class="md-ellipsis">
-      Building the Gateway Router
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-classic-architecture-pattern-interface-implementation-gateway" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Classic Architecture Pattern (Interface, Implementation, Gateway)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-next-the-system-remains-the-same" class="md-nav__link">
-    <span class="md-ellipsis">
-      What's Next: The System Remains the Same
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metrics-and-evaluation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Metrics and evaluation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-points" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integration points
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-next" class="md-nav__link">
-    <span class="md-ellipsis">
-      What’s next
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      Summary
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3148,132 +2962,79 @@
 
 
 <h1 id="query-routing-foundations-building-a-cohesive-rag-system">Query Routing Foundations: Building a Cohesive RAG System</h1>
-<p>Welcome back to the last core session of systematically improving RAG applications. Last session, we talked mostly about how we improved our search indices one by one. This could mean extracting data, generating summaries, and then using that to combine both lexical search filters and semantic search to create a single index.</p>
-<p>And today we'll talk about how we can combine them to create a cohesive application.</p>
-<h2 id="prerequisites-and-context">Prerequisites and context</h2>
+<h2 id="what-this-chapter-covers">What This Chapter Covers</h2>
 <ul>
-<li>Read: <a href="../chapter5-1/">5.1 Understanding Specialized Retrieval</a>, <a href="../chapter5-2/">5.2 Implementing Multimodal Search</a></li>
-<li>Feedback and streaming patterns from <a href="../chapter3-1/">3.1</a> and <a href="../chapter3-2/">3.2</a></li>
+<li>Building unified RAG architectures with query routing</li>
+<li>Designing tool interfaces for specialized retrievers</li>
+<li>Implementing effective routing between components</li>
+<li>Measuring system-level performance</li>
 </ul>
-<h2 id="learning-objectives">Learning objectives</h2>
-<ul>
-<li>Understand routing goals and trade-offs</li>
-<li>Define clear tool APIs for routing targets</li>
-<li>Establish evaluation for routing precision/recall</li>
-</ul>
-<h2 id="the-goal-of-this-week">The Goal of This Week</h2>
-<p>The goal of this week is to talk a little bit more about query routing versus building these specific indices. We'll discuss the challenges we have, how we can improve things with more testing, and more importantly, think about what the UI could look like to improve the way we collect data and improve our search indices.</p>
-<p>Overall, this should be a pretty quick session, and then we'll conclude with some food for thought, and then conclude the course as a whole.</p>
-<h2 id="recap-two-ways-to-improve-search">Recap: Two Ways to Improve Search</h2>
-<p>In the previous week, we talked about the idea that there are two ways of improving our ability to search. One of them is to turn chunk data into more structured data, and the other was to build text summaries of our data so that we can fully represent them in full text search or embedding search.</p>
-<h2 id="the-construction-company-blueprint-example">The Construction Company Blueprint Example</h2>
-<p>So as a hypothetical, imagine us being a construction company and we want to be able to search over the images of different blueprints. One thing we can do is define a blueprint extractor and extract out a description of the blueprint. And potentially the date the blueprint was set. And so you can imagine in this situation, we know that in this data set, all the images have blueprints and they have some date in the OCR.</p>
-<p>Once we extract that and put into a database, now we can think about querying that database.</p>
-<p>In the first example, we define a blueprint extractor, which saves a date and a description. Now we can build a search blueprint model that searches the description and potentially has start and end dates. And now we have to define an execute method that builds the query and then sends it off to the database.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">BlueprintExtractor</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">extract_blueprint_description</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Extract the description of the blueprint from the image.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">return</span> <span class="n">client</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-      <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
-        <span class="p">{</span>
-          <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="p">{</span>
-              <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
-              <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Extract the description of the blueprint from the image.&quot;</span>
-            <span class="p">},</span>
-            <span class="p">{</span>
-              <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;image_url&quot;</span><span class="p">,</span>
-              <span class="s2">&quot;image_url&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;data:image/jpeg;base64,</span><span class="si">{</span><span class="n">image</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-      <span class="p">],</span>
-      <span class="n">response_model</span><span class="o">=</span><span class="n">BlueprintExtractor</span><span class="p">,</span>
-    <span class="p">)</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">search_blueprint</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Search the blueprint database for a description.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">db</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">description</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
-        <span class="n">date</span> <span class="o">&gt;=</span> <span class="n">start_date</span> <span class="k">if</span> <span class="n">start_date</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">date</span> <span class="o">&lt;=</span> <span class="n">end_date</span> <span class="k">if</span> <span class="n">end_date</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span>
-</code></pre></div>
-<h2 id="building-apis-for-your-language-model">Building APIs for Your Language Model</h2>
-<p>With this simple tool, we can start testing whether or not that document we're looking for is returned in the arguments that we specified.</p>
-<p>What we've basically done is two things. We've defined the extractor and saved it into a database, and then we defined the search method that calls that database. These are the two primary ideas. And now if you want to use a language model to be able to use this tool, we just have to specify it in the response model.</p>
-<p>I have a prompt that tells the language model that they have access to the search blueprint tool, and I've given it a couple of examples. "Find blueprints for the city hall built in 2010." And you can imagine we can search city hall blueprints with a start and end date.</p>
-<p>The idea that these few-shot examples can help us understand how to use this response model.</p>
-<p>Now, when a user asks something like, "can you help me find the plans for the 123 Main Street building," it's gonna be able to use the search blueprint model.</p>
-<p>Each of these retrieval requests should feel very much like a get request or a post request in a REST API. It's about building an index and then defining some kind of API over that index. But defining many APIs to query that database.</p>
-<h2 id="model-context-protocol-mcp">Model Context Protocol (MCP)</h2>
-<p>This is something that Model Context Protocol could support in the future that would allow you to build this tool once, expose the protocol once and expose it to many interfaces, whether it's to Claude API, or potentially Cursor.</p>
-<h2 id="youre-a-framework-developer-now">You're a Framework Developer Now</h2>
-<p>By defining these APIs, separating our concerns, making this a lot more modular and allowing bigger teams to work together.</p>
-<p>Individual teams can work on specific APIs, whether it's our ability to search emails versus blueprints or schedules or something else. And it allows us to have a bigger team work together. </p>
-<p><strong>You realize you're effectively a framework developer for the language model.</strong></p>
-<p>From my own experience, I spent many years developing multiple microservices to do retrieval for other teams, and I think moving forward it's gonna feel a lot like building distributed microservices. The patterns are the same - clear interfaces, separation of concerns, team ownership. But now instead of serving other engineers, you're serving an AI that calls your functions.</p>
-<h2 id="adding-more-capabilities">Adding More Capabilities</h2>
-<p>Now we can take this a lot further.</p>
-<p>Originally we had a search blueprint tool that had a description to search against, start and end date to filter. But we might also want to define some more text search abilities. Here we have a search query and also a filter by type. And here we can filter by contracts, proposals, bids, and all.</p>
-<p>We could have discovered these were the important capabilities through our data analysis. We may have even discovered that bids, proposals, and contracts were the important kinds of filters through our data analysis and segmentation. And again, you can build a very simple filter to do this.</p>
-<p>Here we are running some search query, applying some filter, and then executing the search query. It doesn't really matter whether it's LanceDB or Chroma or Turbopuffer, or Postgres. The detail really is that you're likely gonna be running these queries by yourself.</p>
-<h2 id="building-the-gateway-router">Building the Gateway Router</h2>
-<p>Now what we do is we can define a gateway or router. We can have a system prompt that says that you can search documents and blueprints. We can probably include a bunch of different examples of how we use search blueprints and how we use search text, but this time we're gonna use parallel function calling.</p>
-<p>I wanted to notice one thing here. I just talked about two tools, you know, search blueprint and search text. But more likely is that you're gonna have a lot more tools at your disposal. You might want to have a tool that specifically is prompted to clarify what the customer is asking. And other tools to give answers in previous examples.</p>
-<p>An answer could contain not only the response, but citations and sources and follow up questions. And this can be all defined in the single model.</p>
-<p>And now when we execute a search query, we can basically send it to the search function, return a list of queries, and then gather all the results. And then what we can do is we can pass these results back into a language model that answers the question, and then you can go forward from here.</p>
-<h2 id="the-classic-architecture-pattern-interface-implementation-gateway">The Classic Architecture Pattern (Interface, Implementation, Gateway)</h2>
-<p>This might harken back to the old school way of doing things with interfaces that we can experiment with. And they can define the interactions of the tools with our client and with our backend. Then we have implementations of individual tools. And then lastly, we have a gateway that puts it all together.</p>
-<p><strong>And these boundaries will ultimately help you figure out how to split your team and your resources.</strong> </p>
-<p>Each team can experiment with a different aspect:
-- <strong>Interface team</strong>: Explores the segmentation of the tools and figures out what the right interfaces are
-- <strong>Implementation team</strong>: Runs experiments to improve the implementation of each one, improving the per-tool recall
-- <strong>Gateway team</strong>: Tests the tools and sees how they can be connected and put together through the gateway router system</p>
-<p>This separation of concerns is critical. One team could be improving SQL search while another is working on document retrieval, and they don't step on each other's toes. They can ship independently.</p>
-<p>And obviously we talked about the first two in sessions four and five.</p>
-<h2 id="whats-next-the-system-remains-the-same">What's Next: The System Remains the Same</h2>
-<p>So this week we're mostly gonna be talking about how we can think about testing. And again, we're gonna go back to the same concepts of precision and recall. You can imagine creating a simple data set in the beginning that is just for a certain question, what were the tools being called?</p>
-<p>Once we have a data set that looks like this, we can go back to just doing precision and recall of tool selection.</p>
-<p>And if this sounds similar, it's because it is. <strong>The reason I called this course Systematically Improving RAG Applications is because we are applying this system over and over again.</strong> I really want you to pause here, internalize this concept, because this system is what we repeat over and over again:</p>
+<h2 id="the-query-routing-problem">The Query Routing Problem</h2>
+<p>In Chapter 5, we built specialized retrievers for different content types. Now we need to decide when to use each one.</p>
+<p><strong>Query routing</strong> means directing user queries to the right retrieval components. Without it, even excellent specialized retrievers become useless if they're never called for the right queries.</p>
+<p>The architecture we'll build:</p>
 <ol>
-<li>Start with synthetic data to produce query-to-tool or tool-to-query data</li>
-<li>Create recall metrics</li>
-<li>Iterate on the few-shot examples of each tool to improve recall or tool selection</li>
-<li>Build data flywheels that continuously improve the system</li>
+<li>Uses specialized retrievers built from user segmentation data</li>
+<li>Routes queries to appropriate components</li>
+<li>Provides clear interfaces for both models and users</li>
+<li>Collects feedback to improve routing accuracy</li>
 </ol>
-<p>Throughout this whole course, I'm just teaching the same thing over and over again. The system remains the same.</p>
-<h2 id="metrics-and-evaluation">Metrics and evaluation</h2>
+<h2 id="tools-as-apis-pattern">Tools as APIs Pattern</h2>
+<p>Treat each specialized retriever as an API that language models can call. This creates separation between:</p>
+<ol>
+<li><strong>Tool Interfaces</strong>: Definitions of what each tool does and its parameters</li>
+<li><strong>Tool Implementations</strong>: The actual retrieval code</li>
+<li><strong>Routing Logic</strong>: Code that selects which tools to call</li>
+</ol>
+<p>This is similar to building microservices, except the primary client is a language model rather than another service. The pattern evolved from simple function calling in LLM APIs to more sophisticated tool selection frameworks.</p>
+<h3 id="benefits-of-the-api-approach">Benefits of the API Approach</h3>
 <ul>
-<li>Routing precision/recall and per-tool recall</li>
-<li>End-to-end success = retrieval success × routing success</li>
-<li>Regression suite for routing examples</li>
+<li><strong>Clear Boundaries</strong>: Teams work independently on different tools</li>
+<li><strong>Testability</strong>: Components can be tested in isolation</li>
+<li><strong>Reusability</strong>: Tools work for both LLMs and direct API calls</li>
+<li><strong>Scalability</strong>: Add new capabilities without changing existing code</li>
+<li><strong>Performance</strong>: Enable parallel execution</li>
+<li><strong>Team Structure</strong>: Different teams own different components</li>
 </ul>
-<h2 id="integration-points">Integration points</h2>
+<div class="admonition example">
+<p class="admonition-title">Organizational Structure</p>
+</div>
+<p>One effective team structure:
+- <strong>Interface Team</strong>: Designs the API contracts and tool specifications based on user needs
+- <strong>Implementation Team</strong>: Builds and optimizes individual retrievers for specific content types
+- <strong>Router Team</strong>: Creates and optimizes the query routing system
+- <strong>Evaluation Team</strong>: Tests the performance of the entire system and identifies bottlenecks</p>
+<div class="highlight"><pre><span></span><code>graph TD
+    A[User Query] --&gt; B[Query Router]
+    B --&gt; C[Tool Selection]
+    C --&gt; D[Document Tool]
+    C --&gt; E[Image Tool]
+    C --&gt; F[Table Tool]
+    D --&gt; G[Ranking]
+    E --&gt; G
+    F --&gt; G
+    G --&gt; H[Context Assembly]
+    H --&gt; I[Response Generation]
+    I --&gt; J[User Interface]
+</code></pre></div>
+<p>This architecture resembles modern microservice patterns where specialized services handle specific tasks. The difference is that the "client" making API calls is often a language model rather than another service.</p>
+<h3 id="moving-from-monolithic-to-modular">Moving from Monolithic to Modular</h3>
+<p>Most RAG systems start monolithic: one vector database, one chunking strategy, one retrieval method. This breaks down as content types diversify.</p>
+<p>Typical migration path:</p>
+<ol>
+<li><strong>Recognition</strong>: Different queries need different retrieval</li>
+<li><strong>Separation</strong>: Break into specialized components</li>
+<li><strong>Interface</strong>: Define clear contracts between components</li>
+<li><strong>Orchestration</strong>: Build routing layer</li>
+</ol>
+<p><strong>Example</strong>: A financial services client migrated from a single vector database to specialized components:</p>
 <ul>
-<li>Targets specialized retrievers from <a href="../chapter5-1/">5.1</a> and <a href="../chapter5-2/">5.2</a></li>
-<li>Feeds implementation in <a href="../chapter6-2/">6.2</a> and measurement in <a href="../chapter6-3/">6.3</a></li>
+<li>Development velocity: 40% faster feature delivery</li>
+<li>Retrieval quality: 25-35% improvement by query type</li>
+<li>Team coordination: Fewer cross-team dependencies</li>
+<li>Scaling: New content types added without disrupting existing features</li>
 </ul>
-<h2 id="whats-next">What’s next</h2>
-<p>Continue to <a href="../chapter6-2/">6.2 Tool Interfaces and Implementation</a></p>
-<h2 id="summary">Summary</h2>
-<ul>
-<li>Define tool APIs like REST endpoints over your indices</li>
-<li>Route queries with clear examples; measure routing precision/recall</li>
-<li>Evaluate success as: retrieval success × routing success; fix the bottleneck first</li>
-</ul>
-<hr />
-<p>If you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
+<p>The key was treating each retriever as a service with a clear API contract.</p>
 
 
 

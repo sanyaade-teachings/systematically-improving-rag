@@ -73,7 +73,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -149,9 +149,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
@@ -159,9 +159,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
@@ -2826,39 +2826,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#formatting-and-style-rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      Formatting and Style Rules
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#transcript-alignment-rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      Transcript Alignment Rules
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Transcript Alignment Rules">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#chapter-template-copypaste" class="md-nav__link">
-    <span class="md-ellipsis">
-      Chapter template (copy/paste)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2927,146 +2894,6 @@
 <li>Integrate multimodal data effectively</li>
 <li>Build production-ready RAG architectures</li>
 </ul>
-<h2 id="formatting-and-style-rules">Formatting and Style Rules</h2>
-<p>These rules standardize every workshop chapter for consistency and skimmability.</p>
-<ul>
-<li>Front matter</li>
-<li>Required: <code>title</code>, <code>description</code>, <code>authors</code>, <code>date</code>, <code>tags</code></li>
-<li>Use <code>authors</code> (array), never <code>author</code></li>
-<li>Title format in front matter: <code>X. Subtitle</code> where <code>X</code> is chapter number (e.g., <code>5.2 Implementing Multimodal Search</code>)</li>
-<li>Do not add <code>estimated_time</code> or <code>level</code></li>
-<li>Headings</li>
-<li>One H1 per file (chapter title). Keep H1 descriptive; numeric prefix optional but must be consistent across a chapter family if used</li>
-<li>Use H2 for primary sections; H3 sparingly for sub-steps</li>
-<li>Mandatory sections (in this order where applicable)</li>
-<li>Introduction (short paragraph)</li>
-<li>Prerequisites and context (links to prior chapters; when to apply)</li>
-<li>Learning objectives (3–5 bullets)</li>
-<li>Core concepts (brief; include diagram if clarifying)</li>
-<li>Implementation guide (steps + minimal runnable code)</li>
-<li>Metrics and evaluation (what to measure; how to test)</li>
-<li>Case study (optional but encouraged)</li>
-<li>Common pitfalls and anti-patterns</li>
-<li>UX patterns and product considerations (if applicable)</li>
-<li>Integration points (how it connects to other chapters/systems)</li>
-<li>Summary (bulleted recap)</li>
-<li>Reflection questions (4–7 prompts)</li>
-<li>Additional resources (links)</li>
-<li>What’s next (link to next chapter)</li>
-<li>Callouts and visuals</li>
-<li>Use admonitions: <code>!!! warning</code>, <code>!!! success</code>, <code>!!! example</code></li>
-<li>Prefer one small Mermaid diagram per key concept</li>
-<li>Keep images local in <code>docs/assets/images/</code></li>
-<li>Code</li>
-<li>Minimal, runnable examples only</li>
-<li>Prefer Python <code>async</code> where applicable; mention if parallelization is possible</li>
-<li>Use fenced blocks with language tags (e.g., ```python)</li>
-<li>Links and references</li>
-<li>Use relative links to sibling chapters (e.g., <code>[3.2](chapter3-2.md)</code>)</li>
-<li>Cross-reference earlier/next chapters in Prerequisites and What’s next</li>
-<li>Voice and tone</li>
-<li>9th-grade reading level, practical, action-oriented</li>
-<li>Numbers over adjectives; show deltas and concrete metrics where possible</li>
-</ul>
-<h2 id="transcript-alignment-rules">Transcript Alignment Rules</h2>
-<p>Always align chapters with their lecture transcripts before making edits.</p>
-<ul class="task-list">
-<li>Source of truth</li>
-<li>For each chapter, review the corresponding <code>chapter*-transcript.txt</code> to ensure the notes reflect the lecture’s emphasis, examples, cautions, and “homework.”</li>
-<li>Do not copy transcripts verbatim. Summarize, structure, and adapt to the style rules above.</li>
-<li>File mapping</li>
-<li><code>chapter0-transcript.txt</code> → <code>chapter0.md</code></li>
-<li><code>chapter1-transcript.txt</code> → <code>chapter1.md</code></li>
-<li><code>chapter2-transcript.txt</code> → <code>chapter2.md</code></li>
-<li><code>chapter3-transcript.txt</code> → <code>chapter3-1.md</code>, <code>chapter3-2.md</code>, <code>chapter3-3.md</code></li>
-<li><code>chapter4-transcript.txt</code> → <code>chapter4-1.md</code>, <code>chapter4-2.md</code></li>
-<li><code>chapter5-transcript.txt</code> → <code>chapter5-1.md</code>, <code>chapter5-2.md</code></li>
-<li><code>chapter6-transcript.txt</code> → <code>chapter6-1.md</code>, <code>chapter6-2.md</code>, <code>chapter6-3.md</code></li>
-<li>Required alignment checklist (per chapter)</li>
-<li class="task-list-item"><input type="checkbox" disabled/> Review transcript and note: key concepts, cautions, metrics, and case studies</li>
-<li class="task-list-item"><input type="checkbox" disabled/> Add/refresh “Learning objectives” to match lecture intent</li>
-<li class="task-list-item"><input type="checkbox" disabled/> Ensure “Metrics and evaluation” reflect lecture metrics (e.g., per-tool recall, confusion matrix)</li>
-<li class="task-list-item"><input type="checkbox" disabled/> Incorporate important cautions (e.g., data leakage) under “Common pitfalls”</li>
-<li class="task-list-item"><input type="checkbox" disabled/> Add an “Exercises” or “Homework” subsection (end of chapter) if the lecture provided specific tasks</li>
-<li class="task-list-item"><input type="checkbox" disabled/> Keep voice at 9th-grade reading level; remove filler and asides from lectures</li>
-<li class="task-list-item"><input type="checkbox" disabled/> Preserve admonitions, diagrams, and code minimalism</li>
-<li>Multi-part chapters</li>
-<li>When a single transcript spans multiple sub-chapters (e.g., 3.x, 4.x, 5.x, 6.x), distribute content logically across parts while keeping cross-links coherent.</li>
-</ul>
-<h3 id="chapter-template-copypaste">Chapter template (copy/paste)</h3>
-<div class="highlight"><pre><span></span><code>---
-title: &quot;X. Subtitle&quot;
-description: One or two sentences on the value of this chapter
-authors:
-<span class="w">  </span><span class="k">-</span><span class="w"> </span>Jason Liu
-date: YYYY-MM-DD
-tags:
-<span class="w">  </span><span class="k">-</span><span class="w"> </span>primary-tag
-<span class="gu">  - secondary-tag</span>
-<span class="gu">---</span>
-
-<span class="gh"># Subtitle (H1)</span>
-
-<span class="gu">## Introduction</span>
-
-One short paragraph framing why this matters.
-
-<span class="gu">## Prerequisites and context</span>
-
-<span class="k">-</span><span class="w"> </span>Read: [<span class="nt">N-1</span>](<span class="na">chapterN-1.md</span>)
-<span class="k">-</span><span class="w"> </span>You’ll use this when …
-
-<span class="gu">## Learning objectives</span>
-
-<span class="k">-</span><span class="w"> </span>Objective 1
-<span class="k">-</span><span class="w"> </span>Objective 2
-<span class="k">-</span><span class="w"> </span>Objective 3
-
-<span class="gu">## Core concepts</span>
-
-Optional mermaid diagram.
-
-<span class="gu">## Implementation guide</span>
-
-Step-by-step with minimal, runnable code.
-
-<span class="gu">## Metrics and evaluation</span>
-
-What to measure and how.
-
-<span class="gu">## Case study (optional)</span>
-
-Inputs → approach → measurable impact.
-
-<span class="gu">## Common pitfalls and anti-patterns</span>
-
-<span class="k">-</span><span class="w"> </span>Pitfall → remedy
-
-<span class="gu">## UX patterns and product considerations</span>
-
-Notes if relevant.
-
-<span class="gu">## Integration points</span>
-
-APIs/interfaces; how to connect to other chapters.
-
-<span class="gu">## Summary</span>
-
-<span class="k">-</span><span class="w"> </span>Key takeaway 1
-<span class="k">-</span><span class="w"> </span>Key takeaway 2
-
-<span class="gu">## Reflection questions</span>
-
-<span class="k">1.</span> …
-
-<span class="gu">## Additional resources</span>
-
-<span class="k">-</span><span class="w"> </span>…
-
-<span class="gu">## What’s next</span>
-
-Continue to [<span class="nt">N+1</span>](<span class="na">chapterN+1.md</span>)
-</code></pre></div>
 
 
 

@@ -9,6 +9,8 @@
         <meta name="description" content="Building feedback flywheels into your RAG applications">
       
       
+        <meta name="author" content="Jason Liu">
+      
       
         <link rel="canonical" href="https://567-labs.github.io/systematically-improving-rag/workshops/chapter3-1/">
       
@@ -24,7 +26,7 @@
     
     
       
-        <title>3.1 Feedback Collection - Systematically Improving RAG Applications</title>
+        <title>Chapter 3.1: Feedback Collection - Systematically Improving RAG Applications</title>
       
     
     
@@ -79,7 +81,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -142,7 +144,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              3.1 Feedback Collection
+              Chapter 3.1: Feedback Collection
             
           </span>
         </div>
@@ -155,9 +157,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
@@ -165,9 +167,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
@@ -772,42 +774,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#prerequisites-and-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prerequisites and context
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      Learning objectives
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metrics-and-evaluation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Metrics and evaluation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-pitfalls-and-anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common pitfalls and anti-patterns
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#feedback-visibility-make-it-impossible-to-miss" class="md-nav__link">
     <span class="md-ellipsis">
       Feedback Visibility: Make It Impossible to Miss
@@ -958,33 +924,6 @@
   <a href="#conclusion-feedback-as-foundation" class="md-nav__link">
     <span class="md-ellipsis">
       Conclusion: Feedback as Foundation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-points" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integration points
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-points_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integration points
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-next" class="md-nav__link">
-    <span class="md-ellipsis">
-      What’s next
     </span>
   </a>
   
@@ -3123,42 +3062,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#prerequisites-and-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prerequisites and context
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      Learning objectives
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metrics-and-evaluation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Metrics and evaluation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-pitfalls-and-anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common pitfalls and anti-patterns
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#feedback-visibility-make-it-impossible-to-miss" class="md-nav__link">
     <span class="md-ellipsis">
       Feedback Visibility: Make It Impossible to Miss
@@ -3315,33 +3218,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#integration-points" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integration points
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-points_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integration points
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-next" class="md-nav__link">
-    <span class="md-ellipsis">
-      What’s next
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#reflection-questions" class="md-nav__link">
     <span class="md-ellipsis">
       Reflection Questions
@@ -3401,46 +3277,16 @@
 
 <h1 id="feedback-collection-building-your-improvement-flywheel">Feedback Collection: Building Your Improvement Flywheel</h1>
 <h2 id="introduction">Introduction</h2>
-<p>I've seen this over and over again in my consulting work - you'll really be surprised at how some minor changes can have two to five to even 10X more impact. RAG systems improve most when they collect feedback effectively. But here's the thing: many implementations focus exclusively on the technical details of retrieval and generation while neglecting the infrastructure needed to collect and utilize user feedback.</p>
-<p><strong>Building on Previous Chapters:</strong></p>
-<ul>
-<li><strong><a href="../chapter1/">Chapter 1</a></strong>: The evaluation framework you built provides the baseline</li>
-<li><strong><a href="../chapter2/">Chapter 2</a></strong>: The fine-tuning techniques need feedback data to be effective</li>
-</ul>
-<p>This chapter shows you how to collect the data that powers continuous improvement.</p>
-<h2 id="prerequisites-and-context">Prerequisites and context</h2>
-<ul>
-<li>Read: <a href="../chapter1/">1. Kickstarting the Data Flywheel with Synthetic Data</a>, <a href="../chapter2/">2. Converting Evaluations into Training Data</a></li>
-<li>You’ll instrument a running RAG app to collect explicit and implicit signals</li>
-</ul>
-<h2 id="learning-objectives">Learning objectives</h2>
-<ul>
-<li>Design visible, high-signal feedback UI</li>
-<li>Segment feedback to target retrieval vs generation issues</li>
-<li>Capture implicit signals (clicks, refinements, dwell time) safely and reliably</li>
-</ul>
-<h2 id="metrics-and-evaluation">Metrics and evaluation</h2>
-<ul>
-<li>Feedback response rate (overall and by segment)</li>
-<li>Positive/negative rate and distribution by failure mode (retrieval vs generation vs formatting)</li>
-<li>Document-level relevance signals: citation clicks, per-citation thumbs up/down</li>
-<li>Implicit signals: query retry rate, time-to-first-click, abandonment rate</li>
-<li>Coverage of feedback across major query segments (from Chapter 4)</li>
-</ul>
-<h2 id="common-pitfalls-and-anti-patterns">Common pitfalls and anti-patterns</h2>
-<ul>
-<li>Generic prompts like "Rate your experience" that collect low-signal feedback</li>
-<li>Hiding feedback controls in low-visibility UI locations</li>
-<li>Asking for long-form feedback on every response (fatigue → low completion)</li>
-<li>Not separating retrieval vs generation issues in analysis</li>
-<li>Collecting feedback you don’t act on (dashboard noise)</li>
-</ul>
+<p>RAG systems improve most when they collect feedback effectively. Many implementations focus exclusively on the technical details of retrieval and generation while neglecting the infrastructure needed to collect and utilize user feedback.</p>
+<p>!!! note "Building on Previous Chapters" - <strong><a href="../chapter1/">Chapter 1</a></strong>: The evaluation framework you built provides the baseline - <strong><a href="../chapter2/">Chapter 2</a></strong>: The fine-tuning techniques need feedback data to be effective</p>
+<div class="highlight"><pre><span></span><code>This chapter shows you how to collect the data that powers continuous improvement.
+</code></pre></div>
 <p>In this chapter, we'll explore how to build effective feedback mechanisms that turn your RAG application from a static implementation into a continuously improving system. This approach creates a feedback loop where user interactions provide the data needed to make the system better.</p>
 <div class="admonition warning">
 <p class="admonition-title">The Invisible Feedback Problem</p>
 </div>
 <p>Many RAG implementations hide feedback mechanisms in obscure UI locations or use generic "thumbs up/down" buttons that provide minimal insight. Users interact with these minimal feedback options less than 0.1% of the time, providing insufficient data for meaningful improvements.</p>
-<p>In my consulting practice, I've seen that simply changing the copy from generic "How did we do?" to specific "Did we answer your question?" can increase feedback rates by <strong>5x to 10x</strong>. I mean, you'll really be surprised at how some minor changes can have two to five to even 10X more impact than other things. Well-designed feedback mechanisms don't just collect more data—they accelerate your entire improvement cycle, allowing you to fine-tune 5x faster and deploy with greater confidence.</p>
+<p>In my consulting practice, I've seen that simply changing the copy from generic "How did we do?" to specific "Did we answer your question?" can increase feedback rates by <strong>5x</strong>. Well-designed feedback mechanisms don't just collect more data—they accelerate your entire improvement cycle, allowing you to fine-tune 5x faster and deploy with greater confidence.</p>
 <div class="admonition success">
 <p class="admonition-title">Effective Feedback Copy</p>
 </div>
@@ -3493,8 +3339,9 @@ If they click &quot;Somewhat&quot; or &quot;No&quot;:
 <li><strong>Email Follow-ups:</strong> Send follow-up emails asking for feedback on recent sessions</li>
 </ol>
 <p>Each approach has advantages for different use cases. The key is to make feedback collection a natural part of the user experience rather than an afterthought.</p>
-<p><strong>Streaming and Perceived Performance:</strong></p>
-<p>Let me tell you something - only about 20 percent of the companies I work with have a good understanding of how to implement streaming. And here's the kicker - streaming is table stakes now. If you're not streaming, you're leaving a lot on the table.</p>
+<div class="admonition tip">
+<p class="admonition-title">Streaming and Perceived Performance</p>
+</div>
 <p><strong>The Claude Progress Counter Effect:</strong></p>
 <div class="highlight"><pre><span></span><code>Claude&#39;s implementation of progress counters during response generation serves multiple purposes:
 - Shows &quot;thinking&quot; progress (e.g., &quot;Analyzing document 3 of 5...&quot;)
@@ -3525,8 +3372,10 @@ This pattern makes feedback feel like a natural continuation of the interaction 
 <li>Document how feedback is addressed and integrated into your evaluation suite</li>
 <li>Report back on improvements during regular sync meetings</li>
 </ol>
-<p>This approach creates transparency and builds trust by showing customers that their feedback drives real improvements. I've worked with companies like Hinge and Tinder who collected massive amounts of data this way - the volume of data collection was actually their key success factor. This method typically increases feedback by 5x compared to traditional forms, while also improving customer retention.</p>
-<p><strong>Enterprise Feedback Pattern:</strong></p>
+<p>This approach creates transparency and builds trust by showing customers that their feedback drives real improvements. This method typically increases feedback by 5x compared to traditional forms, while also improving customer retention.</p>
+<div class="admonition example">
+<p class="admonition-title">Enterprise Feedback Pattern</p>
+</div>
 <p><strong>The Most Effective B2B Feedback Flow:</strong></p>
 <div class="highlight"><pre><span></span><code>1. **In-App Collection:**
    - Binary feedback (thumbs up/down) for quick signals
@@ -3551,12 +3400,16 @@ This pattern makes feedback feel like a natural continuation of the interaction 
 
 This pattern has helped teams achieve 30-40% feedback rates in enterprise settings.
 </code></pre></div>
-<p><strong>Slack Webhook Integration Code:</strong>
-<img alt="Example of Slack feedback integration showing code that posts negative feedback to a Slack channel" src="../../assets/images/slack-feedback-code.png" /></p>
+<div class="admonition example">
+<p class="admonition-title">Slack Webhook Integration Code</p>
+</div>
+<p><img alt="Example of Slack feedback integration showing code that posts negative feedback to a Slack channel" src="../../assets/images/slack-feedback-code.png" /></p>
 <div class="highlight"><pre><span></span><code>*This code integrates feedback collection with Slack, automatically posting negative feedback to a shared channel for immediate visibility and follow-up.*
 </code></pre></div>
-<p><strong>Feedback UI Implementation:</strong>
-<img alt="Example of feedback UI implementation showing a Python function that generates HTML with feedback buttons" src="../../assets/images/feedback-ui-code.png" /></p>
+<div class="admonition example">
+<p class="admonition-title">Feedback UI Implementation</p>
+</div>
+<p><img alt="Example of feedback UI implementation showing a Python function that generates HTML with feedback buttons" src="../../assets/images/feedback-ui-code.png" /></p>
 <div class="highlight"><pre><span></span><code>*This code renders a response with prominent feedback options, automatically showing a more detailed form if the user indicates the response wasn&#39;t fully helpful.*
 </code></pre></div>
 <h2 id="segmented-feedback-make-it-actionable">Segmented Feedback: Make It Actionable</h2>
@@ -3596,14 +3449,16 @@ This pattern has helped teams achieve 30-40% feedback rates in enterprise settin
 <li><strong>Scrolling behavior:</strong> Whether users read the entire response or just skim</li>
 </ul>
 <p>By tracking these behaviors, you can identify patterns that indicate success or failure even when users don't provide explicit feedback.</p>
-<p><strong>Implicit Feedback Collection:</strong>
-<img alt="Example of JavaScript code for tracking implicit feedback signals" src="../../assets/images/implicit-feedback-code.png" /></p>
+<div class="admonition example">
+<p class="admonition-title">Implicit Feedback Collection</p>
+</div>
+<p><img alt="Example of JavaScript code for tracking implicit feedback signals" src="../../assets/images/implicit-feedback-code.png" /></p>
 <div class="highlight"><pre><span></span><code>*This code tracks key implicit feedback signals including query refinements, citation clicks, and engagement time, providing valuable data even when users don&#39;t explicitly rate responses.*
 </code></pre></div>
 <h3 id="mining-hard-negatives-from-user-behavior">Mining Hard Negatives from User Behavior</h3>
 <p>One particularly valuable form of implicit feedback is the identification of "hard negatives"—documents that appear relevant based on keyword or semantic matching but are actually irrelevant or misleading for a particular query.</p>
 <p>When a user submits a query, views the response and citations, then immediately refines their query or provides negative feedback, there's a good chance that the retrieved documents were not helpful. These interactions provide strong signals about weaknesses in your retrieval system.</p>
-<p>By tracking these patterns, you can build datasets of queries paired with documents that should NOT be retrieved—invaluable training data for improving embedding models or reranking systems. This is exactly what Facebook would have done with their "people you may know" feature - they used the people you deleted (to see more people) as hard negatives to train their recommendation system.</p>
+<p>By tracking these patterns, you can build datasets of queries paired with documents that should NOT be retrieved—invaluable training data for improving embedding models or reranking systems.</p>
 <h4 id="creative-ui-patterns-for-hard-negative-collection">Creative UI Patterns for Hard Negative Collection</h4>
 <p>Consider these UI patterns specifically designed to help collect hard negative examples:</p>
 <ol>
@@ -3611,7 +3466,7 @@ This pattern has helped teams achieve 30-40% feedback rates in enterprise settin
 <p><strong>Interactive Citations</strong>: Display the source documents used to generate the response and allow users to mark specific citations as irrelevant. This direct feedback creates perfect triplets for contrastive learning (query → relevant docs → irrelevant docs).</p>
 </li>
 <li>
-<p><strong>Document Filtering UI</strong>: Similar to how Facebook shows "People You May Know," present a scrollable list of potentially relevant documents and let users remove irrelevant ones. Each removal creates a hard negative training example. The genius of Facebook's approach was that when you didn't add someone, that became a hard negative signal - they weren't just randomly showing you people, they were actively learning from who you rejected.</p>
+<p><strong>Document Filtering UI</strong>: Similar to how social networks show "People You May Know," present a scrollable list of potentially relevant documents and let users remove irrelevant ones. Each removal creates a hard negative training example.</p>
 </li>
 <li>
 <p><strong>Limited Options with Refresh</strong>: Show only the top 5 most relevant documents, with options to "add" (positive) or "delete" (negative) each one. When a user deletes a document to see another option, you've collected a hard negative.</p>
@@ -3620,8 +3475,10 @@ This pattern has helped teams achieve 30-40% feedback rates in enterprise settin
 <p><strong>Regeneration After Removal</strong>: Allow users to remove citation sources and then regenerate the answer. Documents removed before regeneration become strong hard negative candidates for that query.</p>
 </li>
 </ol>
-<p><strong>Interactive Citations UI:</strong>
-<img alt="Example of interactive citations UI with buttons to mark sources as relevant or irrelevant" src="../../assets/images/interactive-citations-ui.png" /></p>
+<div class="admonition example">
+<p class="admonition-title">Interactive Citations UI</p>
+</div>
+<p><img alt="Example of interactive citations UI with buttons to mark sources as relevant or irrelevant" src="../../assets/images/interactive-citations-ui.png" /></p>
 <div class="highlight"><pre><span></span><code>*This UI allows users to mark specific citations as relevant or irrelevant and regenerate answers, creating valuable training data for improving retrieval quality.*
 
 Remember: Hard negatives are the most valuable training examples for improving retrieval quality through embedding model fine-tuning. While standard negatives (completely unrelated documents) are easy to find, hard negatives (seemingly relevant but actually unhelpful documents) are rare and therefore extremely valuable for training.
@@ -3644,8 +3501,10 @@ Remember: Hard negatives are the most valuable training examples for improving r
 <li><strong>Inline highlights</strong>: Highlighting portions of text with the source documents they came from</li>
 <li><strong>Visual PDF overlays</strong>: For document-based applications, highlighting the exact location in a PDF</li>
 </ol>
-<p><strong>Markdown-based Citation Implementation:</strong>
-<img alt="Example of JavaScript code for implementing markdown-based citations with feedback options" src="../../assets/images/citations-implementation.png" /></p>
+<div class="admonition example">
+<p class="admonition-title">Markdown-based Citation Implementation</p>
+</div>
+<p><img alt="Example of JavaScript code for implementing markdown-based citations with feedback options" src="../../assets/images/citations-implementation.png" /></p>
 <div class="highlight"><pre><span></span><code>*This code formats responses with clickable citations and builds a reference list that includes feedback options for each source, helping collect document-level relevance signals.*
 </code></pre></div>
 <h3 id="advanced-visualization-with-bounding-boxes">Advanced Visualization with Bounding Boxes</h3>
@@ -3658,12 +3517,15 @@ Remember: Hard negatives are the most valuable training examples for improving r
 </ol>
 <p>This approach is particularly valuable for PDF-heavy domains like legal, medical, or technical documentation where source verification is critical.</p>
 <h3 id="citation-implementation-patterns">Citation Implementation Patterns</h3>
-<blockquote>
-<p><strong>Preventing Hallucinations:</strong> Skylar Payne emphasizes that hallucination remains a critical challenge, especially in sensitive domains. His most effective approach: "Force the LLM to provide inline citations, validate that each citation exists in the retrieved documents, and semantically validate that each citation actually supports the claimed content."</p>
-</blockquote>
+<div class="admonition quote">
+<p class="admonition-title">Preventing Hallucinations</p>
+</div>
+<p>Skylar Payne emphasizes that hallucination remains a critical challenge, especially in sensitive domains. His most effective approach: "Force the LLM to provide inline citations, validate that each citation exists in the retrieved documents, and semantically validate that each citation actually supports the claimed content."</p>
 <div class="highlight"><pre><span></span><code>This is particularly critical for healthcare, legal, and financial applications. [See more anti-patterns to avoid →](../talks/rag-antipatterns-skylar-payne.md)
 </code></pre></div>
-<p><strong>XML-Based Citation Pattern:</strong></p>
+<div class="admonition info">
+<p class="admonition-title">XML-Based Citation Pattern</p>
+</div>
 <p><strong>The Most Robust Approach:</strong></p>
 <div class="highlight"><pre><span></span><code>Instead of relying on markdown links or footnotes, use XML tags with start/end word anchoring:
 
@@ -3686,7 +3548,9 @@ includes a penalty fee of $10,000&lt;/cite&gt;.
 </code></pre></div>
 <h2 id="building-a-feedback-driven-roadmap">Building a Feedback-Driven Roadmap</h2>
 <p>The ultimate goal of feedback collection is to guide your improvement roadmap. Rather than making enhancement decisions based on intuition or technical interest, you can prioritize based on user needs revealed through feedback.</p>
-<p><strong>Production Monitoring: Beyond Basic Feedback</strong></p>
+<div class="admonition info">
+<p class="admonition-title">Production Monitoring: Beyond Basic Feedback</p>
+</div>
 <p>Ben Hylak and Sidhant Bendre highlight a critical insight: "There's no exception being thrown when something goes wrong - the model simply produces an inadequate response." Their approach combines implicit signals (user frustration, task failures) with explicit signals (ratings, regenerations) to identify issues that traditional monitoring misses. The Trellis framework they present helps organize the "infinite chaos" of AI outputs into controllable segments. <a href="../../talks/online-evals-production-monitoring-ben-sidhant/">Learn about production monitoring strategies →</a></p>
 <p>A feedback-driven roadmap:</p>
 <ol>
@@ -3699,7 +3563,7 @@ includes a penalty fee of $10,000&lt;/cite&gt;.
 <h2 id="conclusion-feedback-as-foundation">Conclusion: Feedback as Foundation</h2>
 <p>Effective feedback collection is the foundation of systematic RAG improvement. Without robust feedback mechanisms, you're left guessing about which aspects of your system need enhancement and whether your changes actually improve the user experience.</p>
 <p>By implementing the strategies outlined in this chapter—making feedback visible, segmenting it for actionability, mining user behaviors for implicit signals, and using feedback to drive your roadmap—you establish a data-driven approach to continuous improvement.</p>
-<p>The migration from non-streaming to streaming is a pain in the ass if you don't do it early. Trust me on this one. Well-designed feedback mechanisms provide concrete benefits:</p>
+<p>Well-designed feedback mechanisms provide concrete benefits:</p>
 <ol>
 <li><strong>Faster improvement</strong>: With 5x more feedback, you can fine-tune models 5x faster</li>
 <li><strong>Better training data</strong>: Hard negatives mined from user interactions improve retrieval quality</li>
@@ -3709,19 +3573,7 @@ includes a penalty fee of $10,000&lt;/cite&gt;.
 </ol>
 <p>Remember that small UX changes can make enormous differences in feedback collection rates. The most successful RAG applications aren't always those with the most sophisticated technology—they're the ones that most effectively learn from their users.</p>
 <p>In the next chapter, we'll explore how to reduce perceived latency through streaming and progressive responses, building on the feedback foundation to create a more engaging user experience.</p>
-<h2 id="integration-points">Integration points</h2>
-<ul>
-<li>Feedback powers segmentation in <a href="../chapter4-1/">4.1</a> and prioritization in <a href="../chapter4-2/">4.2</a></li>
-<li>Reveals needs for specialized retrievers in <a href="../chapter5-1/">5.1</a></li>
-<li>Improves router/tool decisions in <a href="../chapter6-2/">6.2</a> and measurement in <a href="../chapter6-3/">6.3</a></li>
-</ul>
-<h2 id="integration-points_1">Integration points</h2>
-<ul>
-<li>Instrumentation feeds evaluation in <a href="../chapter1/">1</a> and training in <a href="../chapter2/">2</a></li>
-<li>Pairs with streaming and interstitials from <a href="../chapter3-2/">3.2</a></li>
-</ul>
-<h2 id="whats-next">What’s next</h2>
-<p>Continue to <a href="../chapter3-2/">3.2 Overcoming Latency</a></p>
+<p>!!! info "How This Chapter Connects Forward" - <strong><a href="../chapter4-2/">Chapter 4</a></strong>: The feedback you collect enables query segmentation and analysis - <strong><a href="../chapter5-1/">Chapter 5</a></strong>: User behavior patterns reveal which specialized retrievers to build - <strong><a href="../chapter6-2/">Chapter 6</a></strong>: Feedback on router decisions improves tool selection</p>
 <h2 id="reflection-questions">Reflection Questions</h2>
 <ol>
 <li>
@@ -3791,7 +3643,10 @@ These changes can typically be implemented in 1-2 sprints and deliver immediate,
 </li>
 </ol>
 <hr />
-<p>If you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
+<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
+<p><a class="md-button md-button--primary" href="https://improvingrag.com/">Enroll in the Free 6-Day Email Course</a></p>
+<hr />
+<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
 <script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 

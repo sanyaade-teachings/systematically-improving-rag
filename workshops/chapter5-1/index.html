@@ -24,7 +24,7 @@
     
     
       
-        <title>5.1 Understanding Specialized Retrieval - Systematically Improving RAG Applications</title>
+        <title>Understanding Specialized Retrieval - Systematically Improving RAG Applications</title>
       
     
     
@@ -79,7 +79,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -142,7 +142,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              5.1 Understanding Specialized Retrieval
+              Understanding Specialized Retrieval
             
           </span>
         </div>
@@ -155,9 +155,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
@@ -165,9 +165,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
@@ -1002,91 +1002,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#quick-recap" class="md-nav__link">
+  <a href="#introduction" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Recap
+      Introduction
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#prerequisites-and-context" class="md-nav__link">
+  <a href="#why-specialization-works" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites and context
+      Why Specialization Works
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      Learning objectives
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-most-important-point-build-specific-indices" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Most Important Point: Build Specific Indices
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-hardware-store-example-why-you-need-multiple-indices" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Hardware Store Example: Why You Need Multiple Indices
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#google-already-did-this-and-so-should-you" class="md-nav__link">
-    <span class="md-ellipsis">
-      Google Already Did This (And So Should You)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#organizational-benefits-the-hidden-superpower" class="md-nav__link">
-    <span class="md-ellipsis">
-      Organizational Benefits (The Hidden Superpower)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#two-classes-of-improvements" class="md-nav__link">
-    <span class="md-ellipsis">
-      Two Classes of Improvements
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Two Classes of Improvements">
+    <nav class="md-nav" aria-label="Why Specialization Works">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#approach-1-extracting-metadata" class="md-nav__link">
+  <a href="#beyond-the-monolithic-approach" class="md-nav__link">
     <span class="md-ellipsis">
-      Approach 1: Extracting Metadata
+      Beyond the Monolithic Approach
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#approach-2-building-synthetic-text-chunks" class="md-nav__link">
+  <a href="#the-mathematics-of-specialization" class="md-nav__link">
     <span class="md-ellipsis">
-      Approach 2: Building Synthetic Text Chunks
+      The Mathematics of Specialization
     </span>
   </a>
   
@@ -1098,99 +1044,84 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-materialized-view-mental-model" class="md-nav__link">
+  <a href="#two-paths-to-better-retrieval" class="md-nav__link">
     <span class="md-ellipsis">
-      The Materialized View Mental Model
+      Two Paths to Better Retrieval
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Two Paths to Better Retrieval">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strategy-1-extracting-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategy 1: Extracting Metadata
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#the-same-metrics-apply" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#strategy-2-building-synthetic-text-chunks" class="md-nav__link">
     <span class="md-ellipsis">
-      The Same Metrics Apply
+      Strategy 2: Building Synthetic Text Chunks
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#the-chain-rule-formula-your-north-star" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#strategy-3-raptor-for-long-documents" class="md-nav__link">
     <span class="md-ellipsis">
-      The Chain Rule Formula (Your North Star)
+      Strategy 3: RAPTOR for Long Documents
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Strategy 3: RAPTOR for Long Documents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-raptor-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      The RAPTOR Process
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#the-development-process-warning-it-gets-boring" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#implementation-considerations" class="md-nav__link">
     <span class="md-ellipsis">
-      The Development Process (Warning: It Gets Boring)
+      Implementation Considerations
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#metrics-and-evaluation" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#practical-example" class="md-nav__link">
     <span class="md-ellipsis">
-      Metrics and evaluation
+      Practical Example
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#common-pitfalls-and-anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common pitfalls and anti-patterns
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#integration-points" class="md-nav__link">
+  <a href="#measuring-what-matters" class="md-nav__link">
     <span class="md-ellipsis">
-      Integration points
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-next" class="md-nav__link">
-    <span class="md-ellipsis">
-      What’s next
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      Summary
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reflection-questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reflection questions
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      Next Steps
+      Measuring What Matters
     </span>
   </a>
   
@@ -3039,91 +2970,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#quick-recap" class="md-nav__link">
+  <a href="#introduction" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Recap
+      Introduction
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#prerequisites-and-context" class="md-nav__link">
+  <a href="#why-specialization-works" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites and context
+      Why Specialization Works
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      Learning objectives
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-most-important-point-build-specific-indices" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Most Important Point: Build Specific Indices
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-hardware-store-example-why-you-need-multiple-indices" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Hardware Store Example: Why You Need Multiple Indices
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#google-already-did-this-and-so-should-you" class="md-nav__link">
-    <span class="md-ellipsis">
-      Google Already Did This (And So Should You)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#organizational-benefits-the-hidden-superpower" class="md-nav__link">
-    <span class="md-ellipsis">
-      Organizational Benefits (The Hidden Superpower)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#two-classes-of-improvements" class="md-nav__link">
-    <span class="md-ellipsis">
-      Two Classes of Improvements
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Two Classes of Improvements">
+    <nav class="md-nav" aria-label="Why Specialization Works">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#approach-1-extracting-metadata" class="md-nav__link">
+  <a href="#beyond-the-monolithic-approach" class="md-nav__link">
     <span class="md-ellipsis">
-      Approach 1: Extracting Metadata
+      Beyond the Monolithic Approach
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#approach-2-building-synthetic-text-chunks" class="md-nav__link">
+  <a href="#the-mathematics-of-specialization" class="md-nav__link">
     <span class="md-ellipsis">
-      Approach 2: Building Synthetic Text Chunks
+      The Mathematics of Specialization
     </span>
   </a>
   
@@ -3135,99 +3012,84 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-materialized-view-mental-model" class="md-nav__link">
+  <a href="#two-paths-to-better-retrieval" class="md-nav__link">
     <span class="md-ellipsis">
-      The Materialized View Mental Model
+      Two Paths to Better Retrieval
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Two Paths to Better Retrieval">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strategy-1-extracting-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategy 1: Extracting Metadata
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#the-same-metrics-apply" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#strategy-2-building-synthetic-text-chunks" class="md-nav__link">
     <span class="md-ellipsis">
-      The Same Metrics Apply
+      Strategy 2: Building Synthetic Text Chunks
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#the-chain-rule-formula-your-north-star" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#strategy-3-raptor-for-long-documents" class="md-nav__link">
     <span class="md-ellipsis">
-      The Chain Rule Formula (Your North Star)
+      Strategy 3: RAPTOR for Long Documents
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Strategy 3: RAPTOR for Long Documents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-raptor-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      The RAPTOR Process
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#the-development-process-warning-it-gets-boring" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#implementation-considerations" class="md-nav__link">
     <span class="md-ellipsis">
-      The Development Process (Warning: It Gets Boring)
+      Implementation Considerations
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#metrics-and-evaluation" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#practical-example" class="md-nav__link">
     <span class="md-ellipsis">
-      Metrics and evaluation
+      Practical Example
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#common-pitfalls-and-anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common pitfalls and anti-patterns
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#integration-points" class="md-nav__link">
+  <a href="#measuring-what-matters" class="md-nav__link">
     <span class="md-ellipsis">
-      Integration points
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-next" class="md-nav__link">
-    <span class="md-ellipsis">
-      What’s next
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      Summary
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reflection-questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reflection questions
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      Next Steps
+      Measuring What Matters
     </span>
   </a>
   
@@ -3250,140 +3112,209 @@
 
 
 <h1 id="understanding-specialized-retrieval-beyond-basic-rag">Understanding Specialized Retrieval: Beyond Basic RAG</h1>
-<p>Today we're mostly going to be focused on navigating multimodal RAG, and in particular, thinking about how we can split up these different capabilities that we discovered through our segmentation work and start addressing these one at a time.</p>
-<h2 id="quick-recap">Quick Recap</h2>
-<p>So let's recap what we've covered so far. In session one, we talked about the RAG playbook and the importance of doing synthetic data generation to create evals. In session two, we focused on fine-tuning. The idea here is that once we know what relevancy is, we can start building these ourselves one at a time.</p>
-<p>Then in session three, we focused on building a user experience that helps us collect more data. And in the last session, session four, we built out models to segment the users and the queries and the conversations. By doing so, we can prioritize our segments, find new capabilities based on the impact, the volume, and the probability of success.</p>
-<p>And today, we're mostly going to be focused on how we can solve these individual user experiences. Next week in session six, we'll think about how we can combine them in a unified solution.</p>
-<h2 id="prerequisites-and-context">Prerequisites and context</h2>
-<ul>
-<li>Read: <a href="../chapter4-1/">4.1 Topic Modeling and Analysis</a>, <a href="../chapter4-2/">4.2 Prioritization and Roadmapping</a></li>
-<li>Feedback and latency UX from <a href="../chapter3-1/">3.1</a> and <a href="../chapter3-2/">3.2</a></li>
-</ul>
-<h2 id="learning-objectives">Learning objectives</h2>
-<ul>
-<li>Define and scope specialized indices per segment/capability</li>
-<li>Choose between metadata extraction vs synthetic summaries</li>
-<li>Measure per-index precision/recall and plan improvements</li>
-</ul>
-<h2 id="the-most-important-point-build-specific-indices">The Most Important Point: Build Specific Indices</h2>
-<p>The most important point of today's lesson is that you should be building very specific indices to solve very specific problems. Next week we'll think about how we can bring them together using a router. And this is always going to be the case.</p>
-<p>When segments exist in a population, the assumption we can make is that a local decision model, a smaller model that solves a specific problem, will outperform the global model. Think about it - a specialized tool built for one job will always beat a general-purpose tool trying to do everything.</p>
-<div class="admonition warning">
-<p class="admonition-title">The Monolithic Trap</p>
-<p>I've seen so many teams try to build the "one RAG system to rule them all." They spend months tweaking embeddings, adjusting chunk sizes, trying different models. Meanwhile, their users just want date filtering that works and comparison queries that don't fail. Stop building monoliths. Start building tools.</p>
+<h2 id="introduction">Introduction</h2>
+<p>We've covered the basics: the RAG playbook, synthetic data generation, fine-tuning, user feedback collection, and segmentation. Now let's talk about something that actually makes a big difference in production systems—building specialized search indices for different types of content.</p>
+<p>!!! note "Building on the Foundation" - <strong><a href="../chapter1/">Chapter 1</a></strong>: Evaluation metrics for each specialized retriever - <strong><a href="../chapter2/">Chapter 2</a></strong>: Fine-tuning embeddings for specific domains - <strong><a href="../chapter3-1/">Chapter 3</a></strong>: Collecting feedback on retrieval quality - <strong><a href="../chapter4-2/">Chapter 4</a></strong>: Identifying which capabilities need specialization</p>
+<p>The basic idea is straightforward: different types of queries need different retrieval approaches. A search for a specific product number works differently than a search for "durable power tools" or "items under 50 pounds". Once you accept this, the path forward becomes clearer.</p>
+<h2 id="why-specialization-works">Why Specialization Works</h2>
+<h3 id="beyond-the-monolithic-approach">Beyond the Monolithic Approach</h3>
+<p>Most RAG systems start with one big index that tries to handle everything. This works until it doesn't—usually when you realize your users are asking wildly different types of questions that need different handling.</p>
+<div class="admonition example">
+<p class="admonition-title">Diverse Query Needs</p>
 </div>
-<h2 id="the-hardware-store-example-why-you-need-multiple-indices">The Hardware Store Example: Why You Need Multiple Indices</h2>
-<p>Let me make this concrete. Imagine us building a specific search index for a hardware store. Sometimes we might want to use lexical search, right? When we compare two specific serial numbers. They're not really going to embed to anything specific. But by building lexical search, we can just search the code specifically.</p>
-<p>Then, we might also want to think about semantic search. "What do people think about this saw's durability?" That would be a semantic search question.</p>
-<p>And lastly, we might want to just search across the structured data. How much does this weigh? What's the latest version? Those things might need to be answered through text to SQL.</p>
-<p>Instead of building a single search index, we might want to split up the problem space and solve each one locally.</p>
-<h2 id="google-already-did-this-and-so-should-you">Google Already Did This (And So Should You)</h2>
-<p>If you think about it, search engines have been doing this for a very long time. We have different tools for Google Maps, Google Photos, YouTube, and Web. However, at some point in time, Google has learned how to decide which tool to show you depending on what you search. Even if you search for directions in the web, it might take you to the map, for example.</p>
-<p>They didn't start with one unified search. They built Maps. They built Photos. They built YouTube search. Each one solved a specific problem really well. Only later did they figure out how to route between them. That's exactly the approach we're taking here.</p>
-<h2 id="organizational-benefits-the-hidden-superpower">Organizational Benefits (The Hidden Superpower)</h2>
-<p>By building specific indices, from an organizational perspective, working on these specific indices means that you can divide the labor into these isolated tests, right? A couple people can work on each individual problem, and then we can combine them again with a router.</p>
-<p>As you learn more about individuals and specific user needs, adding a new index is easier than rebuilding an entire system.</p>
-<p>Here's what I love about this approach: you can have your best SQL person build the SQL index, your NLP expert handle document search, and your computer vision person tackle image search. They don't step on each other's toes. They ship independently. And when someone inevitably asks for "invoice search," you add a new index instead of breaking everything else.</p>
-<h2 id="two-classes-of-improvements">Two Classes of Improvements</h2>
-<p>When it comes to creating multiple indices to build these RAG applications, there tends to be two kinds of improvements, two classes of improvements.</p>
-<h3 id="approach-1-extracting-metadata">Approach 1: Extracting Metadata</h3>
-<p>The first one is defining more metadata into your text chunks. This would be in line with the capabilities that we talked about in the previous session. The idea is that we can expose these new structured data sets to a search engine.</p>
-<p>In my consulting, we found a bunch of different capabilities that really mattered to our use case:</p>
-<p><strong>In finance</strong>, it turns out that we really cared about fiscal years compared to calendar years. And if we could resolve them in a better way, we would get better answers.</p>
-<p><strong>When doing search over legal documents</strong>, it turns out that just by being able to predict whether something was a contract that was signed or unsigned, we can have much better ways of processing or filtering. Especially where we can also extract things like payment dates and payment terms, and just simply return the document ID.</p>
-<p><strong>For call transcripts</strong>, just by classifying them - maybe by a job interview or a stand up or a design review - we could extract type-specific metadata that allows us to build additional searches against different kinds of transcripts.</p>
-<p>So my first question to you is: think about all the different kinds of queries that you see, and really ask yourself, what kind of metadata exists that could make your ability to search much simpler?</p>
-<p>For example, if you wanted to extract facts from a book, you can define some kind of Pydantic object that defines the fact class, apply it to your language model, and you'll start extracting facts where we have the names of people and their statements.</p>
-<p>You could also imagine doing this for financial statements. Here we're trying to extract the revenue and the net income and earnings per share. And all this information can be just used in a search engine, maybe in Postgres, rather than trying to deal with all this embeddings and text chunks and whatnot.</p>
-<h3 id="approach-2-building-synthetic-text-chunks">Approach 2: Building Synthetic Text Chunks</h3>
-<p>So if the first approach is to extract structured data out of a text chunk so that it is easier to search in a structured way, the second approach is taking structured data, or even unstructured data, and producing a synthetic text chunk. A text chunk that then we can use to embed and index.</p>
-<p>The second approach is using a language model to create a summary or a synthetic text chunk that is optimized for recall. And with this new piece of text, we can use things like BM25 or Semantic Search and find the synthetic text chunk.</p>
-<p>Not only can we return the synthetic text chunk into our language model - maybe this would be something like an image summary, or a summary of a transcript, or even just something like contextual retrieval - we can also retrieve the original source text. And now these synthetic text chunks become pointers to the source data.</p>
-<p>A simple example might be if you're doing research interviews or something like that, we can have a language model extract a FAQ.</p>
-<p>For images, you can give the language model images and ask it to generate detailed descriptions based on sample user queries. Some queries that we've seen in different examples have been things like "count the number of cones in the image," or "describe the mood of an image," or "describe the type of shot, or camera shot."</p>
-<p>That might not be something that an image embedding could do, but a language model could definitely describe the image in a specific way if we know that's how people want to search for the product.</p>
-<h2 id="the-materialized-view-mental-model">The Materialized View Mental Model</h2>
-<p>And if you can remember anything about this talk, make it this. If you look closely, what we're doing is effectively extracting structured outputs and then either putting it back into a database or indexing it a different way.</p>
-<p>But the general idea is that this feels like a materialized view of your existing data, but processed by AI, either through structuring or rewriting.</p>
-<p><strong>It's just a materialized view + AI.</strong></p>
-<p>That's it. Every fancy RAG technique boils down to this: take your data, transform it with AI into a format optimized for a specific query pattern, index it. Just like database views, but with language models doing the transformation.</p>
-<div class="admonition success">
-<p class="admonition-title">The Database Analogy</p>
-<p>In databases, we create materialized views to speed up complex queries. In RAG, we create AI-processed views (summaries, extractions, synthetic chunks) to speed up semantic queries. Same concept, different transformation function.</p>
+<p>Consider a hardware store's knowledge base. A customer searching for a specific product by model number requires a fundamentally different search approach than someone asking about the durability of various power tools, or another customer trying to find items within a specific weight range. The first query is best served by lexical search matching exact strings, the second by semantic search understanding concepts and opinions, and the third by structured data queries.</p>
+<p>Look at how Google evolved: they built Maps for location queries, Photos for visual search, YouTube for video. The real win came when they figured out how to automatically route queries to the right tool. We can apply the same thinking to RAG systems.</p>
+<div class="admonition quote">
+<p class="admonition-title">From Previous Cohort</p>
 </div>
-<h2 id="the-same-metrics-apply">The Same Metrics Apply</h2>
-<p>If you recall sessions one and four, in session one, we defined a global index. All of our text chunks are a single search engine. And our job is to create some synthetic data to test the performance of our recall.</p>
-<p>However, by session four, we realized that we might want to have some local solutions because we identified some topics and capabilities through our segmentation process. And now the obvious next step after segmentation is to improve each one.</p>
-<p>When we think about how we want to merge all these tools, it turns out we're using the same metrics. Now, instead of choosing which text chunk from a single search engine, precision and recall could also be defined as choosing the right search method out of the total set of search methods.</p>
-<p>High recall means that we're actually hitting the right index. And high precision means that we're not hitting irrelevant indices. So, for example, if we are asking a question that should have been answered through text to SQL, are we doing so?</p>
-<h2 id="the-chain-rule-formula-your-north-star">The Chain Rule Formula (Your North Star)</h2>
-<p>And so what we discover is that there's really two things. This is the formula that changed how I think about RAG:</p>
-<p><strong>P(Correct chunk found) = P(Correct chunk found | correct retriever) × P(correct retriever)</strong></p>
-<p>If you multiply those two together, you basically get the probability you find the right data. And now your only job is to break down which one is the limiting factor. Is the tool having a hard time finding the relevant data? Or are we having a hard time choosing which tool to use?</p>
-<p>And just with this formula, we can figure out the root cause of where our system is breaking down.</p>
-<p>Let me make this concrete with real numbers:
-- If your SQL tool finds the right data 90% of the time when selected
-- But you only route to it correctly 50% of the time
-- Your overall success is 0.9 × 0.5 = 45%</p>
-<p>Now you know exactly what to fix: the router, not the SQL tool.</p>
-<h2 id="the-development-process-warning-it-gets-boring">The Development Process (Warning: It Gets Boring)</h2>
-<p>This effectively gives you a way to determine what needs to be improved in your entire system. First, you see if retrieval works in a global sense. Once you're happy with that, then you can figure out clusters. And through this clustering process, you can figure out the probability of success, the impact this segment has on the population, and how many people ask these kinds of questions.</p>
-<p>Using that, you can prioritize what you want to invest in. And as you develop new retrievers, you can identify whether or not the retriever is finding the right data, whether it's precision or recall. And then secondly, measure whether or not the language model is choosing the right tools.</p>
-<p>At any given step of this process, you have a way of prioritizing what you need to do tomorrow.</p>
-<p><strong>And here's the thing nobody tells you: if you do this long enough, it's gonna feel very boring.</strong></p>
-<p>Let me be honest with you. After a while, all the work that ends up happening is the work that's required to collect these data points. You'll always know what you need to improve next:
-- Do I need to make sure the segment gets more traffic?
-- Do I need to make sure the segment gets less traffic?
-- If this segment is important, is it because we don't have the right tool?
-- Can we choose the right tool?
-- And when we choose the right tool, is it finding the right answer?</p>
-<p>That's just really going to be a bunch of numbers multiplied together. And you just got to figure out which one's the lowest and improve that one.</p>
-<div class="admonition info">
-<p class="admonition-title">The Boring Truth</p>
-<p>This is the relevance of having these very short term, these very simple metrics like recall, because if you just throw LLMs across this whole process, you're really not going to know what you need to do next. The boring, systematic approach beats random AI improvements every time.</p>
+<p>"I've been building separate indices for years without realizing that's what I was doing. This framework just helps me do it more systematically."</p>
+<h3 id="the-mathematics-of-specialization">The Mathematics of Specialization</h3>
+<p>The math backs this up: when you have distinct query types, specialized models beat general-purpose ones. You see this pattern everywhere in ML—mixture of experts, task decomposition, modular systems. It's not just theory; it's how things actually work better.</p>
+<div class="highlight"><pre><span></span><code>graph TD
+    A[Monolithic Approach] --&gt; B[One-size-fits-all]
+    C[Specialized Approach] --&gt; D[Domain-specific Models]
+
+    B --&gt;|Limited Performance| E[General Coverage]
+    D --&gt;|Optimized Performance| F[Targeted Coverage]
+
+    F --&gt; G[Better Overall Results]
+    E --&gt; G
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+</code></pre></div>
+<p>Specialized indices also make your life easier organizationally:
+- Teams can work on specific problems without breaking everything else
+- You can add new capabilities without rebuilding the whole system<br />
+- Different teams can optimize their piece without coordination overhead</p>
+<div class="admonition quote">
+<p class="admonition-title">Industry Perspective</p>
 </div>
-<p>But here's the beautiful part: boring means predictable. Boring means you know exactly what to fix. Boring means you're not guessing anymore. I'll take boring and effective over exciting and broken any day.</p>
-<h2 id="metrics-and-evaluation">Metrics and evaluation</h2>
-<ul>
-<li>Per-index Recall@K on synthetic and real question sets</li>
-<li>Router-independent tool success rate (execute() returns &gt;=1 relevant results)</li>
-<li>Change in end-to-end success after index improvements</li>
-</ul>
-<h2 id="common-pitfalls-and-anti-patterns">Common pitfalls and anti-patterns</h2>
-<ul>
-<li>Building one monolithic index instead of multiple purpose-built indices</li>
-<li>Skipping metadata extraction where time/comparison are key</li>
-<li>Over-optimizing chunk sizes before fixing inventory or capabilities</li>
-</ul>
-<h2 id="integration-points">Integration points</h2>
-<ul>
-<li>Feeds router work in <a href="../chapter6-1/">6.1</a> and <a href="../chapter6-2/">6.2</a></li>
-<li>Uses evaluation flywheel from <a href="../chapter1/">1</a> and training from <a href="../chapter2/">2</a></li>
-</ul>
-<h2 id="whats-next">What’s next</h2>
-<p>Continue to <a href="../chapter5-2/">5.2 Implementing Multimodal Search</a></p>
-<h2 id="summary">Summary</h2>
-<ul>
-<li>Build specific indices for specific problems; avoid monoliths</li>
-<li>Two levers: extract metadata for structure or synthesize summaries for recall</li>
-<li>Measure per-index success and iterate using the evaluation flywheel</li>
-</ul>
-<h2 id="reflection-questions">Reflection questions</h2>
+<p>"Building specialized indices isn't just about performance—it's about creating a sustainable path for continuous improvement."</p>
+<h2 id="two-paths-to-better-retrieval">Two Paths to Better Retrieval</h2>
+<p>When improving retrieval capabilities for RAG applications, two complementary strategies emerge. Think of them as opposite sides of the same coin—one extracting structure from the unstructured, the other creating retrieval-optimized representations of structured data.</p>
+<p>Here's the core idea: both strategies create AI-processed views of your data—either by extracting structure from text or by rewriting structured data as searchable text.</p>
+<h3 id="strategy-1-extracting-metadata">Strategy 1: Extracting Metadata</h3>
+<p>First approach: pull structured data out of your text. Instead of treating everything as a blob of text, identify the structured information hiding in there that would make search work better.</p>
+<div class="admonition example">
+<p class="admonition-title">Metadata Extraction Examples</p>
+</div>
+<p>- In finance applications, distinguishing between fiscal years and calendar years
+- For legal document systems, classifying contracts as signed or unsigned and extracting payment dates and terms
+- When processing call transcripts, categorizing them by type (job interviews, stand-ups, design reviews)
+- For product documentation, identifying specifications, compatibility information, and warranty details</p>
+<p>Ask yourself: what structured data is buried in this text that users actually want to filter by? Once you extract it, you can use regular databases for filtering—way more powerful than vector search alone.</p>
+<div class="admonition tip">
+<p class="admonition-title">Practical Application</p>
+</div>
+<p>When consulting with financial clients, we discovered that simply being able to distinguish between fiscal years and calendar years dramatically improved search accuracy for financial metrics. Similarly, for legal teams, identifying whether a contract was signed or unsigned allowed for immediate filtering that saved hours of manual review.</p>
+<div class="admonition example">
+<p class="admonition-title">Financial Metadata Model</p>
+</div>
+<div class="highlight"><pre><span></span><code>```python
+from pydantic import BaseModel
+from datetime import date
+from typing import Optional, List
+
+class FinancialStatement(BaseModel):
+    &quot;&quot;&quot;Structured representation of a financial statement document.&quot;&quot;&quot;
+    company: str
+    period_ending: date
+    revenue: float
+    net_income: float
+    earnings_per_share: float
+    fiscal_year: bool = True  # Is this fiscal year (vs calendar year)?
+    # Additional fields that might be valuable:
+    sector: Optional[str] = None
+    currency: str = &quot;USD&quot;
+    restated: bool = False  # Has this statement been restated?
+
+def extract_financial_data(document_text: str) -&gt; FinancialStatement:
+    &quot;&quot;&quot;
+    Extract structured financial data from document text using LLM.
+
+    Args:
+        document_text: Raw text from financial document
+
+    Returns:
+        Structured FinancialStatement object with extracted data
+    &quot;&quot;&quot;
+    # Define a structured extraction prompt
+    system_prompt = &quot;&quot;&quot;
+    Extract the following financial information from the document:
+    - Company name
+    - Period end date
+    - Whether this is a fiscal year report (vs calendar year)
+    - Revenue amount (with currency)
+    - Net income amount
+    - Earnings per share
+    - Business sector
+    - Whether this statement has been restated
+
+    Format your response as a JSON object with these fields.
+    &quot;&quot;&quot;
+
+    # Use LLM to extract the structured information
+    # Implementation depends on your LLM framework
+    extracted_json = call_llm(system_prompt, document_text)
+
+    # Parse the extracted JSON into our Pydantic model
+    return FinancialStatement.parse_raw(extracted_json)
+```
+</code></pre></div>
+<p>By extracting these structured elements from quarterly reports, organizations can enable precise filtering and comparison that would have been impossible with text-only search. For instance, you can easily query "Show me all companies in the tech sector with revenue growth over 10% in fiscal year 2024" or "Find all restated financial statements from the last quarter."</p>
+<h3 id="strategy-2-building-synthetic-text-chunks">Strategy 2: Building Synthetic Text Chunks</h3>
+<p>Second approach: take your data (structured or not) and generate text chunks specifically designed to match how people search. These synthetic chunks act as better search targets that point back to your original content.</p>
+<div class="admonition tip">
+<p class="admonition-title">Synthetic Text Applications</p>
+</div>
+<p>- For image collections: Generate detailed descriptions capturing searchable aspects
+- For research interviews: Extract common questions and answers to form an easily searchable FAQ
+- For numerical data: Create natural language descriptions of key trends and outliers
+- For product documentation: Generate comprehensive feature summaries that anticipate user queries
+- For customer service transcripts: Create problem-solution pairs that capture resolution patterns</p>
+<p>The synthetic chunks work as a bridge—they're easier to search than your original content but point back to the source when you need the full details. Done right, you get better search without losing information.</p>
+<h3 id="strategy-3-raptor-for-long-documents">Strategy 3: RAPTOR for Long Documents</h3>
+<p>When dealing with extremely long documents (1,500-2,000+ pages), traditional chunking strategies often fail to capture information that spans multiple sections. The RAPTOR (Recursive Abstractive Processing for Tree-Organized Retrieval) approach offers a sophisticated solution.</p>
+<div class="admonition tip">
+<p class="admonition-title">Production Insight</p>
+</div>
+<p>From office hours: "For documents with 1,500-2,000 pages, the RAPTOR approach with clustering and summarization shows significant promise. After chunking documents, recluster the chunks to identify concepts that span multiple pages, then summarize those clusters for retrieval."</p>
+<h4 id="the-raptor-process">The RAPTOR Process</h4>
 <ol>
-<li>Which top segments justify their own index today?</li>
-<li>What metadata or structure would most improve retrieval for those segments?</li>
-<li>Where would synthetic summaries bridge gaps between user intent and inventory?</li>
-<li>How will you measure per-index improvements (which metrics, which datasets)?</li>
-<li>Can you calculate P(success) for your current system using the chain rule?</li>
-<li>Which is your limiting factor: tool selection or retrieval within tools?</li>
+<li><strong>Initial Chunking</strong>: Start with page-level or section-level chunks</li>
+<li><strong>Embedding &amp; Clustering</strong>: Embed chunks and cluster semantically similar content</li>
+<li><strong>Hierarchical Summarization</strong>: Create summaries at multiple levels of abstraction</li>
+<li><strong>Tree Structure</strong>: Build a retrieval tree from detailed chunks to high-level summaries</li>
 </ol>
-<h2 id="next-steps">Next Steps</h2>
-<p>In the next part, we'll take a look at some specific modalities that we might care about in the context of building entity-specific search indices. We'll talk about documents, images, and a little bit about tables.</p>
-<p>The critical insight today is that we have to focus first on these individual tools and then we can start using routers to connect them all in one place. And by doing this, solving individual tools can also be developed concurrently due to their separation of concerns.</p>
-<p>We might want to have teams that focus on image search versus text to SQL or something else altogether.</p>
+<div class="admonition example">
+<p class="admonition-title">Legal Document Processing</p>
+</div>
+<p>A tax law firm implemented RAPTOR for their regulatory documents: - Laws on pages 1-30, exemptions scattered throughout pages 50-200 - Clustering identified related exemptions across different sections - Summaries linked laws with all relevant exemptions - One-time processing cost: $10 in LLM calls per document - Result: 85% improvement in finding complete legal information</p>
+<h4 id="implementation-considerations">Implementation Considerations</h4>
+<p><strong>When to Use RAPTOR:</strong></p>
+<ul>
+<li>Documents where related information is scattered across many pages</li>
+<li>Content with hierarchical structure (laws/exemptions, rules/exceptions)</li>
+<li>Long-form documents that don't change frequently (worth the preprocessing cost)</li>
+<li>Cases where missing related information has high consequences</li>
+</ul>
+<p><strong>Cost-Benefit Analysis:</strong></p>
+<ul>
+<li><strong>Upfront Cost</strong>: $5-20 in LLM calls per document for clustering and summarization</li>
+<li><strong>Processing Time</strong>: 10-30 minutes per document depending on length</li>
+<li><strong>Benefit</strong>: Dramatically improved recall for cross-document concepts</li>
+<li><strong>ROI</strong>: Justified for documents accessed frequently or with high-value queries</li>
+</ul>
+<p>!!! warning "Implementation Tips" 1. Test on a subset first to validate clustering quality 2. Store cluster relationships for explainability 3. Consider incremental updates for living documents 4. Monitor which summary levels get used most</p>
+<h4 id="practical-example">Practical Example</h4>
+<p>For a construction company's specification documents:</p>
+<div class="highlight"><pre><span></span><code>Original Structure:
+- General requirements (pages 1-50)
+- Specific materials (pages 51-300)
+- Installation procedures (pages 301-500)
+- Exceptions and special cases (scattered throughout)
+
+After RAPTOR Processing:
+- Clustered related materials with their installation procedures
+- Linked all exceptions to their base requirements
+- Created summaries at project, section, and detail levels
+- Reduced average retrieval attempts from 5.2 to 1.3 per query
+</code></pre></div>
+<p>RAPTOR basically turns long document search into a hierarchy problem. Yes, it costs more upfront to process documents this way, but for complex queries that span multiple sections, the improvement in retrieval accuracy is worth it.</p>
+<p>For implementation details, see:</p>
+<ul>
+<li><a href="https://arxiv.org/abs/2401.18059">Original RAPTOR paper</a></li>
+<li><a href="https://docs.llamaindex.ai/en/stable/examples/retrievers/raptor.html">LlamaIndex RAPTOR implementation</a></li>
+</ul>
+<h2 id="measuring-what-matters">Measuring What Matters</h2>
+<p>With specialized indices, you need to measure two things:</p>
+<div class="admonition info">
+<p class="admonition-title">Two-Level Measurement Framework</p>
+</div>
+<div class="highlight"><pre><span></span><code>1. Are we selecting the right retrieval method for each query?
+2.  Is each retrieval method finding the right information?
+</code></pre></div>
+<p>Your overall success rate is just multiplication:</p>
+<div class="admonition example">
+<p class="admonition-title">Performance Formula</p>
+</div>
+<p>P(finding correct data) = P(selecting correct retriever) × P(finding correct data | correct retriever)</p>
+<p>This formula is actually useful for debugging. When things aren't working, you can figure out if the problem is picking the wrong retriever or if the retriever itself is broken.</p>
+<div class="admonition tip">
+<p class="admonition-title">Diagnostic Example</p>
+</div>
+<p>If you find that your system correctly routes 95% of queries to the appropriate retriever, but those retrievers only find relevant information 60% of the time, your priority should be improving retrieval quality rather than router accuracy.</p>
+<p>Measuring both levels tells you where to focus your efforts.</p>
+<div class="admonition tip">
+<p class="admonition-title">Next Steps</p>
+</div>
+<p>In <a href="../chapter6-1/">Chapter 6</a>, we'll explore how to bring these specialized components together through intelligent routing, creating a unified system that seamlessly directs queries to the appropriate retrievers.</p>
 <hr />
-<p>If you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
+<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
+<p><a class="md-button md-button--primary" href="https://improvingrag.com/">Enroll in the Free 6-Day Email Course</a></p>
+<hr />
+<p>IF you want to get discounts and 6 day email source on the topic make sure to subscribe to</p>
 <script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
 
 
