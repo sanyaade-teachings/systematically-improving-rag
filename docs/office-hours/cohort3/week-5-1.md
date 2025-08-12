@@ -268,9 +268,3 @@ Newer models with improved attention mechanisms handle long contexts better than
 
 ---
 
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

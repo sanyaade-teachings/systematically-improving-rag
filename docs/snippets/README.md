@@ -62,9 +62,3 @@ To modify the appearance or content:
 2. All instances will automatically update
 3. Test locally with `mkdocs serve`
 4. Deploy with `mkdocs gh-deploy`
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

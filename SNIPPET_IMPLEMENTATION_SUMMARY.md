@@ -114,8 +114,3 @@ The `mkdocs.yml` already had `pymdownx.snippets` enabled, so no configuration ch
 The snippet implementation provides a robust, maintainable solution for managing recurring content across the documentation. It eliminates duplication, ensures consistency, and makes future updates much easier to manage.
 
 The system is now ready for production use and can be easily extended for other types of recurring content. 
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

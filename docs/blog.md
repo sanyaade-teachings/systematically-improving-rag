@@ -261,9 +261,3 @@ For a deeper dive into these concepts, check out the free 6-week email course on
 
 ---
 
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
