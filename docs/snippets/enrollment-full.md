@@ -4,7 +4,7 @@
 
 ## 🚀 Ready to Systematically Improve Your RAG Applications?
 
-**Join thousands of developers who are building better AI applications with our proven methodology.**
+**Join over 10,000 developers who are building better AI applications with our proven methodology.**
 
 [Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary .md-button--large }
 
@@ -12,7 +12,8 @@
 
 </div>
 
---- 
+---
+
 ---
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to

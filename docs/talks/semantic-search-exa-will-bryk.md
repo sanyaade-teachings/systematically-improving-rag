@@ -203,14 +203,9 @@ Exa's neural embedding-based approach makes it inherently more resistant to trad
 
 Exa works with web documents which naturally have a structure that makes them manageable for embedding. While there are limits to document size, Exa can handle most web content effectively. The company is exploring chunking strategies for longer documents but has found that the natural structure of web content often provides reasonable document boundaries.
 
----
-
 --8<--
   "snippets/enrollment-button.md"
 --8<--
-
----
-
 
 ---
 

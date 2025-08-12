@@ -8,7 +8,7 @@ This directory contains reusable content snippets that can be included in any ma
 Simple enrollment button without additional styling:
 ```markdown
 --8<--
-  "docs/snippets/enrollment-button.md"
+  "snippets/enrollment-button.md"
 --8<--
 ```
 
@@ -16,7 +16,7 @@ Simple enrollment button without additional styling:
 Enrollment section with basic styling and explanatory text:
 ```markdown
 --8<--
-  "docs/snippets/enrollment-section.md"
+  "snippets/enrollment-section.md"
 --8<--
 ```
 
@@ -24,7 +24,7 @@ Enrollment section with basic styling and explanatory text:
 Comprehensive enrollment section with gradient background and detailed copy:
 ```markdown
 --8<--
-  "docs/snippets/enrollment-full.md"
+  "snippets/enrollment-full.md"
 --8<--
 ```
 
@@ -49,7 +49,7 @@ Comprehensive enrollment section with gradient background and detailed copy:
 Here's how to build better RAG applications...
 
 --8<--
-  "docs/snippets/enrollment-section.md"
+  "snippets/enrollment-section.md"
 --8<--
 
 Continue reading about evaluation strategies...
@@ -61,7 +61,8 @@ To modify the appearance or content:
 1. Edit the snippet file in `docs/snippets/`
 2. All instances will automatically update
 3. Test locally with `mkdocs serve`
-4. Deploy with `mkdocs gh-deploy` 
+4. Deploy with `mkdocs gh-deploy`
+
 ---
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
