@@ -106,4 +106,10 @@ For more information about the broader curriculum, see the [main index](../index
 
 Get access to exclusive discounts and our free 6-day email course on RAG improvement:
 
+[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
 <script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

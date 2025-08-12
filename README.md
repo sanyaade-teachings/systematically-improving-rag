@@ -229,7 +229,7 @@ This is educational material for the "Systematically Improving RAG Applications"
 
 Want to learn more about RAG? Take our free email course and get the latest news and information about RAG techniques and best practices.
 
-[**Sign up for the free RAG Crash Course →**](https://fivesixseven.ck.page/rag-crash-course)
+[**Sign up for the free RAG Crash Course →**](https://fivesixseven.ck.page/rag-crash-course){ .md-button .md-button--primary }
 
 ---
 

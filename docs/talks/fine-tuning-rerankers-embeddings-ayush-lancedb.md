@@ -233,4 +233,10 @@ Start with a small experiment using a lightweight model that you can train quick
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 
+[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
 <script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>

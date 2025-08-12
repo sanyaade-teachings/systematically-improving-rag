@@ -402,7 +402,7 @@ What really matters isn't the absolute number but whether we can move these metr
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
+[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ---
 
@@ -806,7 +806,7 @@ This approach helps ensure reliability across different types of function callin
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
+[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ---
 
@@ -1110,7 +1110,7 @@ _Note: I'll continue to add resources and notes from future office hours session
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
+[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ---
 
@@ -1502,7 +1502,7 @@ The protocol is still evolving but shows promise for creating more powerful AI s
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
+[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ---
 
@@ -1693,7 +1693,7 @@ Follow-up prompts at the end of interactions help maintain momentum. By asking w
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
+[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ---
 
@@ -1941,7 +1941,7 @@ For most organizations building AI applications, starting with a specific domain
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
+[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ---
 
@@ -3404,7 +3404,7 @@ Beyond the course, I'm organizing a speaker series with guests from OpenAI's mem
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
+[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 !!! success "Key Takeaway"
 The future of RAG systems, especially for structured data like code, may involve less semantic search and more tool-based approaches where agents navigate information using a portfolio of tools to build context incrementally.
@@ -3716,7 +3716,7 @@ Newer models with improved attention mechanisms handle long contexts better than
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
+[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ---
 
@@ -3941,7 +3941,7 @@ Not entirely. Even as models improve at reasoning, having a portfolio of special
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 
-<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
+[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ---
 
@@ -3954,3 +3954,9 @@ IF you want to get discounts and 6 day email source on the topic make sure to su
 ## Contributing
 
 Found an error or want to suggest improvements to these FAQs? The source files are located in the office hours documentation and can be regenerated using the `generate_faq_md.py` script.
+
+---
+
+IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+
+<script async data-uid="010fd9b52b" src="https://fivesixseven.kit.com/010fd9b52b/index.js"></script>
