@@ -880,33 +880,12 @@ If you achieve better than 55% v2 recall or discover interesting patterns, consi
 !!! note "The Improvement Flywheel in Action"
 This case study demonstrates the [improvement flywheel](../../../../docs/workshops/chapter0.md#the-improvement-flywheel-from-static-to-dynamic-systems) from Chapter 0 in practice. We started with synthetic evaluation data, identified the alignment problem through metrics, tested hypotheses systematically, and achieved a 358% improvement through iterative refinement. This is exactly how the product mindset transforms static RAG implementations into continuously improving systems.
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
+--8<--
+  "snippets/enrollment-button.md"
+--8<--
 
 ---
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ---
 

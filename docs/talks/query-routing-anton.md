@@ -166,33 +166,12 @@ The key message throughout Anton's presentation was that data organization isn't
 
 ## **_Key Takeaway:_** Data organization for RAG systems requires thinking beyond traditional search paradigms. By carefully considering user access patterns, data source characteristics, and query requirements, you can design a system that delivers better results while maintaining security and performance.
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
+--8<--
+  "snippets/enrollment-button.md"
+--8<--
 
 ---
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ---
 

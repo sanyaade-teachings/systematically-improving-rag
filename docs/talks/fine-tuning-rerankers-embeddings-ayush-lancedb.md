@@ -231,33 +231,12 @@ Start with a small experiment using a lightweight model that you can train quick
 
 ## Multimodal retrieval is likely the next frontier. While much work has been done on text retrieval, there's still significant room for improvement in retrieving and ranking content across different modalities like images, audio, and video. Building better benchmarks and baselines for multimodal RAG systems represents an important area for future development.
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
+--8<--
+  "snippets/enrollment-button.md"
+--8<--
 
 ---
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ---
 

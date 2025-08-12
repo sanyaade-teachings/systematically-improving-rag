@@ -224,33 +224,12 @@ Monitor your system before and after making changes to see if the frequency of r
 
 ---
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
+--8<--
+  "snippets/enrollment-button.md"
+--8<--
 
 ---
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ---
 

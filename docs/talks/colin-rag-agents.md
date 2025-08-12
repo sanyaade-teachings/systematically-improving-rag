@@ -185,33 +185,12 @@ For the SWE-Bench coding evaluation, embedding models didn't significantly impro
 
 ## This doesn't mean embedding models aren't valuable—they become essential for larger codebases, less structured content, or more complex retrieval tasks.
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
+--8<--
+  "snippets/enrollment-button.md"
+--8<--
 
 ---
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ---
 

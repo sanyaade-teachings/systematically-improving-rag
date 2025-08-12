@@ -400,9 +400,9 @@ What really matters isn't the absolute number but whether we can move these metr
 
 ---
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
+--8<--
+  "snippets/enrollment-button.md"
+--8<--
 
 ---
 
@@ -804,12 +804,6 @@ This approach helps ensure reliability across different types of function callin
 
 ---
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
 ## When gathering negative feedback from documents not being found, how do we use and validate the reliability of an LLM labeler?
 
 When it comes to getting negative feedback that documents were not found, I'd assume we're running into issues around low recall. This might manifest as low re-ranker scores or low cosine similarities with embedding models.
@@ -1080,8 +1074,6 @@ Even systems like Deep Research might evolve to pull from sources you tend to ag
 
 ---
 
----
-
 ## Key Takeaways and Additional Resources
 
 ### Key Takeaways:
@@ -1105,12 +1097,6 @@ Even systems like Deep Research might evolve to pull from sources you tend to ag
 - For friends example in recommendation systems, consider platforms like Facebook's friend recommendation system as reference implementations
 
 _Note: I'll continue to add resources and notes from future office hours sessions_
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ---
 
@@ -1500,12 +1486,6 @@ The protocol is still evolving but shows promise for creating more powerful AI s
 
 ---
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
 ## How should we handle Excel files with multiple sheets and tables?
 
 Handling Excel files with multiple sheets and tables is challenging, and few companies have solved this problem well. Experience from companies like Zapier shows that connecting Excel spreadsheets to automation tools requires many controls to work properly.
@@ -1688,12 +1668,6 @@ For more structured workflows, some developers create development plans using mo
 Many developers find that keeping AI agents away from certain code areas (particularly tests) helps maintain structure. This can be accomplished either through explicit instructions or by adding files to the cursor.ignore configuration, which prevents them from being indexed while still allowing the AI to run commands like pytest.
 
 Follow-up prompts at the end of interactions help maintain momentum. By asking what else needs to be done or what the next steps are, you encourage the AI to reference the to-do list and continue working on remaining tasks, creating a more cohesive development experience.
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ---
 
@@ -1936,12 +1910,6 @@ For most organizations building AI applications, starting with a specific domain
 - [Claude 3.7 Sonnet](https://www.anthropic.com/news/claude-3-7-sonnet) - Latest model referenced in discussions
 - [Cloud Code](https://cloud.google.com/code) - AI coding tool discussed in the sessions
 - [Manus](https://manus.ai/) - Emerging AI agent mentioned in the discussions
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ---
 
@@ -3402,9 +3370,7 @@ Beyond the course, I'm organizing a speaker series with guests from OpenAI's mem
 
 ---
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 !!! success "Key Takeaway"
 The future of RAG systems, especially for structured data like code, may involve less semantic search and more tool-based approaches where agents navigate information using a portfolio of tools to build context incrementally.
@@ -3714,12 +3680,6 @@ Newer models with improved attention mechanisms handle long contexts better than
 
 ---
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
 ## How should I approach dynamically generating and handling metadata for documents?
 
 When dealing with the need to extract new metadata from existing documents, the architectural approach depends largely on your current infrastructure. Most companies I work with already have some existing setup, so we're rarely building from scratch.
@@ -3939,12 +3899,6 @@ Not entirely. Even as models improve at reasoning, having a portfolio of special
 
 ---
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
 ## Additional Resources
 
 - [Office Hours Overview](index.md)
@@ -3957,27 +3911,10 @@ Found an error or want to suggest improvements to these FAQs? The source files a
 
 ---
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
 
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ---
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
----
-
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ---
 

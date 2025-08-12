@@ -1,14 +1,10 @@
-# systematically-improving-rag
-
 ---
 
---8<--
-  "snippets/enrollment-button.md"
---8<--
+**Want to systematically improve your RAG applications?**
 
----
+[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
-
+--- 
 ---
 
 IF you want to get discounts and 6 day email source on the topic make sure to subscribe to

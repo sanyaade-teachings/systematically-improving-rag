@@ -231,21 +231,17 @@ Want to learn more about RAG? Take our free email course and get the latest news
 
 [**Sign up for the free RAG Crash Course →**](https://fivesixseven.ck.page/rag-crash-course){ .md-button .md-button--primary }
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
-
 ---
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
+## 🚀 Ready to Systematically Improve Your RAG Applications?
 
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
+**Join thousands of developers who are building better AI applications with our proven methodology.**
 
----
+--8<--
+  "snippets/enrollment-button.md"
+--8<--
 
-IF you want to get discounts and 6 day email source on the topic make sure to subscribe to
-
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
+*Learn evaluation strategies, user experience design, and architectural patterns that actually work in production.*
 
 ---
 
