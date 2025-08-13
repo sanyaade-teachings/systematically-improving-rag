@@ -140,20 +140,6 @@ This approach creates transparency and builds trust by showing customers that th
 
     This pattern has helped teams achieve 30-40% feedback rates in enterprise settings.
 
-!!! example "Slack Webhook Integration Code"
-![Example of Slack feedback integration showing code that posts negative feedback to a Slack channel](../assets/images/slack-feedback-code.png)
-
-```
-*This code integrates feedback collection with Slack, automatically posting negative feedback to a shared channel for immediate visibility and follow-up.*
-```
-
-!!! example "Feedback UI Implementation"
-![Example of feedback UI implementation showing a Python function that generates HTML with feedback buttons](../assets/images/feedback-ui-code.png)
-
-```
-*This code renders a response with prominent feedback options, automatically showing a more detailed form if the user indicates the response wasn't fully helpful.*
-```
-
 ## Segmented Feedback: Make It Actionable
 
 Generic feedback like thumbs up/down provides minimal insight for improvement. To make feedback truly actionable, segment it into specific aspects of your RAG pipeline.
@@ -200,13 +186,6 @@ Key implicit feedback signals include:
 
 By tracking these behaviors, you can identify patterns that indicate success or failure even when users don't provide explicit feedback.
 
-!!! example "Implicit Feedback Collection"
-![Example of JavaScript code for tracking implicit feedback signals](../assets/images/implicit-feedback-code.png)
-
-```
-*This code tracks key implicit feedback signals including query refinements, citation clicks, and engagement time, providing valuable data even when users don't explicitly rate responses.*
-```
-
 ### Mining Hard Negatives from User Behavior
 
 One particularly valuable form of implicit feedback is the identification of "hard negatives"—documents that appear relevant based on keyword or semantic matching but are actually irrelevant or misleading for a particular query.
@@ -227,14 +206,7 @@ Consider these UI patterns specifically designed to help collect hard negative e
 
 1. **Regeneration After Removal**: Allow users to remove citation sources and then regenerate the answer. Documents removed before regeneration become strong hard negative candidates for that query.
 
-!!! example "Interactive Citations UI"
-![Example of interactive citations UI with buttons to mark sources as relevant or irrelevant](../assets/images/interactive-citations-ui.png)
-
-```
-*This UI allows users to mark specific citations as relevant or irrelevant and regenerate answers, creating valuable training data for improving retrieval quality.*
-
 Remember: Hard negatives are the most valuable training examples for improving retrieval quality through embedding model fine-tuning. While standard negatives (completely unrelated documents) are easy to find, hard negatives (seemingly relevant but actually unhelpful documents) are rare and therefore extremely valuable for training.
-```
 
 Here's a simple algorithm for mining hard negatives from user interactions:
 
@@ -258,13 +230,6 @@ There are several approaches to implementing citations in your RAG interface:
 1. **Numbered citations**: Academic-style numbered references with hover previews
 1. **Inline highlights**: Highlighting portions of text with the source documents they came from
 1. **Visual PDF overlays**: For document-based applications, highlighting the exact location in a PDF
-
-!!! example "Markdown-based Citation Implementation"
-![Example of JavaScript code for implementing markdown-based citations with feedback options](../assets/images/citations-implementation.png)
-
-```
-*This code formats responses with clickable citations and builds a reference list that includes feedback options for each source, helping collect document-level relevance signals.*
-```
 
 ### Advanced Visualization with Bounding Boxes
 

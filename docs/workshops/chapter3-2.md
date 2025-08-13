@@ -182,8 +182,6 @@ async def stream_query_response(request: Request):
 On the frontend, you'll need to handle Server-Sent Events (SSE) or WebSockets to receive and display the streamed content:
 
 !!! example "Frontend Streaming Implementation"
-![Example of JavaScript frontend code that handles streaming responses](../assets/images/frontend-streaming-code.png)
-
 ```
 *This code shows how to handle streaming responses on the frontend, creating a reader for the response stream, decoding chunks as they arrive, and updating the UI in real-time to display incremental results.*
 ```
@@ -262,8 +260,6 @@ async def stream_structured_response(query: str):
 On the frontend, you'd handle this structured stream by updating different UI components based on the message type:
 
 !!! example "Structured Data Streaming Handler"
-![Example of JavaScript code for handling structured data streaming](../assets/images/structured-streaming-handler.png)
-
 ```
 *This code processes a structured data stream, separating different components (answer chunks, citations, follow-up questions) and rendering each in their appropriate UI sections. This creates a dynamic, engaging experience where different parts of the response appear progressively.*
 ```
@@ -379,8 +375,6 @@ async def generate_interstitials(query: str):
 On the frontend, you'd display these interstitials in sequence during the waiting period:
 
 !!! example "Meaningful Interstitials Implementation"
-![Example of JavaScript code for displaying meaningful interstitials in sequence](../assets/images/interstitials-code.png)
-
 ```
 *This code shows how to fetch and display domain-specific interstitial messages that rotate every few seconds. The animation and context-specific messages engage users during waiting time, making the system feel more responsive.*
 ```
@@ -448,8 +442,6 @@ Here's a simple but effective approach for Slack bots:
 1. **Feedback Collection**: Pre-fill emoji reactions (👍 👎 ⭐) to prompt users for feedback on the response quality.
 
 !!! example "Slack Bot Pseudo-Streaming Implementation"
-![Example of JavaScript code for implementing pseudo-streaming in a Slack bot](../assets/images/slack-bot-code.png)
-
 ```
 *This code shows how to implement pseudo-streaming in a Slack bot environment, using message updates, emoji reactions, and staged processing to create the illusion of progress and maintain user engagement.*
 ```
