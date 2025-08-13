@@ -120,10 +120,7 @@ def create_citation_prompt(query: str, documents: list):
 
 On the frontend, you can turn these citations into interactive elements:
 
-!!! example "Interactive Citations Rendering"
-```
-*This code turns a response with citation markers into an interactive UI where citations are clickable elements, and sources can be rated for relevance.*
-```
+
 
 This creates an interactive experience where citations are visually distinct, clickable elements. When users engage with these elements, you can collect valuable feedback while enhancing their understanding of the response.
 
@@ -239,10 +236,7 @@ def chain_of_thought_prompt(query: str, documents: list):
 
 Taking this a step further, you can stream the thinking process as a separate UI component or interstitial. This serves two purposes: it makes the waiting time more engaging by showing users that complex reasoning is happening, and it allows users to intervene if they notice the reasoning going astray.
 
-!!! example "Chain of Thought Streaming Implementation"
-```
-*This code processes streamed tokens containing XML-tagged thinking and answer sections, rendering them in separate UI components. This makes the reasoning process transparent and engaging for users.*
-```
+
 
 A financial advisory firm implemented this approach for their investment recommendation system. As the model reasoned through market conditions, client preferences, and portfolio considerations, this thinking was streamed to the advisor in a separate panel. If the advisor noticed a misunderstanding, they could pause generation and refine their query before the final recommendation.
 
