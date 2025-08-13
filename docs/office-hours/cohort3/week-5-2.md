@@ -190,8 +190,7 @@ Not entirely. Even as models improve at reasoning, having a portfolio of special
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

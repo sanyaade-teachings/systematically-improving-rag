@@ -13,7 +13,6 @@ tags:
 
 # 3.3 Quality of Life Improvements: Citations, Chain of Thought, and Validation
 
-
 ## Introduction: Building Better User Experience
 
 In the previous chapters, we covered feedback collection (Chapter 3.1) and techniques to overcome latency (Chapter 3.2). Now we'll address practical improvements that significantly enhance user experience.

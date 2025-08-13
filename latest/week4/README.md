@@ -162,8 +162,7 @@ After completing this week's materials, you'll have:
 ## **Note**: This week's analysis techniques are applicable beyond RAG systems. The same approach can help understand user behavior in any text-based application, making these skills broadly valuable for product improvement.
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

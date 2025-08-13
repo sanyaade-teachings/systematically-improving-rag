@@ -69,24 +69,25 @@ This methodology has been used by engineers and data scientists at companies inc
 ## The Problem: Why Most RAG Systems Fail
 
 !!! quote "Real Patterns from the Field"
-    After working with dozens of companies, the failure pattern is predictable:
-    
-    **Week 1-2:** "Our RAG demo is amazing!"  
-    **Week 3-4:** "Why are users getting irrelevant results?"  
-    **Week 5-6:** "Let's try a different model..."  
-    **Week 7-8:** "Maybe we need better prompts..."  
+After working with dozens of companies, the failure pattern is predictable:
+
+    **Week 1-2:** "Our RAG demo is amazing!"
+    **Week 3-4:** "Why are users getting irrelevant results?"
+    **Week 5-6:** "Let's try a different model..."
+    **Week 7-8:** "Maybe we need better prompts..."
     **Week 9+:** "Our users have stopped using it."
 
 Sound familiar? You're not alone. The issue isn't your technology—it's your approach.
 
 !!! info "Get Updates"
-    Subscribe for updates on new content and frameworks:
-    
+Subscribe for updates on new content and frameworks:
+
     [Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ## The Solution: The RAG Improvement Flywheel
 
 ### [Introduction: The Product Mindset Shift](workshops/chapter0.md)
+
 **The Foundation That Changes Everything**
 
 Stop thinking like an engineer. Start thinking like a product leader. Learn why treating RAG as a product rather than a project is the #1 predictor of success.
@@ -96,6 +97,7 @@ Stop thinking like an engineer. Start thinking like a product leader. Learn why 
 ---
 
 ### [Chapter 1: Starting the Data Flywheel](workshops/chapter1.md)
+
 **From Zero to Evaluation in Days, Not Months**
 
 The cold-start problem kills most RAG projects. Learn the synthetic data techniques that get you from zero to measurable improvement in days.
@@ -107,6 +109,7 @@ The cold-start problem kills most RAG projects. Learn the synthetic data techniq
 ---
 
 ### [Chapter 2: From Evaluation to Enhancement](workshops/chapter2.md)
+
 **Fine-Tuning That Actually Moves Business Metrics**
 
 Stop guessing which model to use. Learn how to systematically improve retrieval through fine-tuning, re-ranking, and targeted enhancements.
@@ -118,6 +121,7 @@ Stop guessing which model to use. Learn how to systematically improve retrieval 
 ---
 
 ### [Chapter 3: User Experience and Feedback](workshops/chapter3-1.md)
+
 **5x Your Feedback Collection with One Simple Change**
 
 The secret to improvement? Getting users to tell you what's wrong. Learn the UX patterns that transform silent users into active contributors.
@@ -129,6 +133,7 @@ The secret to improvement? Getting users to tell you what's wrong. Learn the UX 
 ---
 
 ### [Chapter 4: Understanding Your Users](workshops/chapter4-1.md)
+
 **Segmentation Strategies That Reveal Hidden Opportunities**
 
 Not all queries are equal. Learn to identify high-value user segments and build targeted solutions that delight specific audiences.
@@ -140,6 +145,7 @@ Not all queries are equal. Learn to identify high-value user segments and build 
 ---
 
 ### [Chapter 5: Building Specialized Capabilities](workshops/chapter5-1.md)
+
 **Build Purpose-Built Retrievers That Users Love**
 
 One-size-fits-all RAG is dead. Learn to build specialized retrievers for documents, code, images, and structured data.
@@ -151,6 +157,7 @@ One-size-fits-all RAG is dead. Learn to build specialized retrievers for documen
 ---
 
 ### [Chapter 6: Unified Product Architecture](workshops/chapter6-1.md)
+
 **Unified Systems That Route Intelligently**
 
 Tie it all together with routing architectures that seamlessly direct queries to specialized components while maintaining a simple user experience.
@@ -162,6 +169,7 @@ Tie it all together with routing architectures that seamlessly direct queries to
 ---
 
 ### [Conclusion: Product Principles for AI Applications](misc/what-i-want-you-to-takeaway.md)
+
 **The Lessons That Survive Every Technology Shift**
 
 Models change. Principles endure. Take away the core insights that will guide your AI product development for years to come.
@@ -169,13 +177,13 @@ Models change. Principles endure. Take away the core insights that will guide yo
 ## Learn from Industry Leaders: 20+ Expert Talks
 
 !!! info "Featured Lightning Lessons"
-    Companies like Zapier, ChromaDB, LanceDB, Glean, and Sourcegraph share their battle-tested strategies
+Companies like Zapier, ChromaDB, LanceDB, Glean, and Sourcegraph share their battle-tested strategies
 
 ### Featured Talks
 
 **[How Zapier 4x'd Their AI Feedback](talks/zapier-vitor-evals.md)** - Vitor (Staff Engineer, Zapier) reveals the one-line change that transformed their feedback collection
 
-*"Jason helped us set you on the right path... emphasis on looking at your data and building a metrics-based flywheel."* - **Vitor**, Staff Software Engineer, Zapier
+_"Jason helped us set you on the right path... emphasis on looking at your data and building a metrics-based flywheel."_ - **Vitor**, Staff Software Engineer, Zapier
 
 **[The 12% RAG Boost You're Missing](talks/fine-tuning-rerankers-embeddings-ayush-lancedb.md)** - Ayush (LanceDB) shows why re-rankers are the "low-hanging fruit" everyone ignores
 
@@ -216,20 +224,24 @@ Models change. Principles endure. Take away the core insights that will guide yo
 Common improvements that can be implemented quickly:
 
 **1. Improve Feedback Collection**
+
 - Replace "How did we do?" with "Did we answer your question?"
 - More specific questions get better response rates
 
 **2. Better Data Formatting**
+
 - Format structured data as markdown tables instead of JSON/CSV
 - Use XML for complex tables
 - Improves lookup accuracy for structured information
 
 **3. Show Progress to Users**
+
 - Display "Searching... Analyzing... Generating..." with progress indicators
 - Stream responses as they're generated
 - Reduces perceived latency
 
 **4. Page-Level Chunking**
+
 - For documentation, chunk by page boundaries rather than arbitrary text length
 - Pages often contain semantically coherent units
 
@@ -243,9 +255,9 @@ Common improvements that can be implemented quickly:
 
 !!! info "Learn from the Experts"
 
-    Before implementing, learn from these practical talks: 
-    - [**RAG Anti-patterns in the Wild**](talks/rag-antipatterns-skylar-payne.md) 
-    - [**Document Ingestion Best Practices**](talks/reducto-docs-adit.md) 
+    Before implementing, learn from these practical talks:
+    - [**RAG Anti-patterns in the Wild**](talks/rag-antipatterns-skylar-payne.md)
+    - [**Document Ingestion Best Practices**](talks/reducto-docs-adit.md)
 
 ## About the Author
 
@@ -258,8 +270,7 @@ Begin your journey by reading the [Introduction](workshops/chapter0.md) or jump 
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

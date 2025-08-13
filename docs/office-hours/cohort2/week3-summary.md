@@ -281,8 +281,7 @@ _Note: I'll continue to add resources and notes from future office hours session
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

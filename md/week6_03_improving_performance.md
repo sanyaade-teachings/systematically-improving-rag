@@ -1059,8 +1059,7 @@ As we deploy these systems to production, this data-driven approach becomes even
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

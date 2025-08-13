@@ -26,6 +26,7 @@ After working with dozens of companies on their RAG applications, I keep seeing 
 I can't tell you how many times I hear "we need more complex reasoning" or "the model isn't smart enough." Nine times out of ten, that's not the problem. The real issue? You don't actually know what your users want.
 
 Think about it - when was the last time you:
+
 - Actually looked at data from customers?
 - Read user feedback (not just the positive reviews)?
 - Actively asked users what they're struggling with?
@@ -34,11 +35,12 @@ If you're like most teams, the answer is "uhh..." And that's the problem. You en
 
 ### The Vague Metrics Problem
 
-Here's another one that drives me crazy. Teams will spend weeks changing things and then evaluate success by asking "does it look better?" or "does it feel right?" 
+Here's another one that drives me crazy. Teams will spend weeks changing things and then evaluate success by asking "does it look better?" or "does it feel right?"
 
 I worked with a company valued at $100 million that had maybe 30 evaluation examples. Total. When something broke or improved, they had no idea what actually changed or why.
 
 Without concrete metrics, you get stuck in this loop:
+
 1. Make random changes based on gut feeling
 2. Get unclear results
 3. Feel frustrated
@@ -59,7 +61,7 @@ flowchart TD
 
 This one's tough because it often comes from good intentions. You want to build something that helps everyone! But here's what actually happens: you build a generic tool that does everything poorly instead of one thing well.
 
-I see this with teams that have 30-40% churn rates but are too scared to narrow their focus because they might miss out on some hypothetical use case. 
+I see this with teams that have 30-40% churn rates but are too scared to narrow their focus because they might miss out on some hypothetical use case.
 
 My advice? Pick a narrow domain, become world-class at it, then expand. You'll learn way more from 100 happy users in one domain than 1,000 frustrated users across ten.
 
@@ -70,6 +72,7 @@ This concept changed how I think about improving systems. I learned it at Facebo
 ### Lagging Metrics
 
 Lagging metrics are the things you care about but can't directly control:
+
 - Application quality
 - User satisfaction
 - Churn rates
@@ -80,6 +83,7 @@ They're like your body weight - easy to measure, hard to change directly.
 ### Leading Metrics
 
 Leading metrics are things you can control that predict future performance:
+
 - Number of experiments run per week
 - Evaluation coverage of different question types
 - Retrieval precision and recall
@@ -114,6 +118,7 @@ You can't fix what you can't see. Sounds obvious, right? But I see teams obsess 
 I had a client spend three weeks fine-tuning prompts. When we finally checked, their retrieval system was returning completely irrelevant documents. No amount of prompt engineering can fix that.
 
 Questions teams forget to ask:
+
 - Is retrieval actually finding the right documents?
 - Are our chunks the right size?
 - Is our data extraction pipeline working?
@@ -121,9 +126,9 @@ Questions teams forget to ask:
 
 ### Intervention Bias
 
-This is our tendency to do *something* just to feel like we're making progress. In RAG, it shows up as constantly switching models, tweaking prompts, or adding features without measuring impact.
+This is our tendency to do _something_ just to feel like we're making progress. In RAG, it shows up as constantly switching models, tweaking prompts, or adding features without measuring impact.
 
-"Should we use GPT-4 or Claude?" 
+"Should we use GPT-4 or Claude?"
 "Will this new prompt technique help?"
 
 My answer is always the same: depends on your data and evaluations. There's no universal answer.
@@ -152,12 +157,14 @@ But with retrieval, it's simple: did you find the right document or not?
 Let's make these concepts concrete:
 
 **Testing Different K Values:**
+
 - Start with K=10
 - Test K=3, 5, 10, 20 to understand tradeoffs
 - Higher K improves recall but may hurt precision
 - Advanced models (GPT-4, Claude) handle irrelevant docs better, so lean toward higher K
 
 **Why Score Thresholds Are Dangerous:**
+
 - Score distributions vary wildly by query type
 - A threshold that works for one category fails for others
 - Example: average ada-002 score is 0.7, but 0.5 for ada-003
@@ -214,7 +221,7 @@ A client generates reports from user research interviews. Consultants do 15-30 i
 
 **Problem**: Reports were missing quotes. A consultant knew 6 experts said something similar, but the report only cited 3. That 50% recall rate killed trust.
 
-**Solution**: We built manual evaluation sets from problematic examples. Turns out, better text chunking fixed most issues. 
+**Solution**: We built manual evaluation sets from problematic examples. Turns out, better text chunking fixed most issues.
 
 **Result**: Recall went from 50% to 90% in a few iterations. Customers noticed immediately.
 
@@ -237,6 +244,7 @@ Another client needed AI search for construction blueprints - workers asking que
 Start with 800 tokens and 50% overlap. This works for most use cases.
 
 Why chunk optimization rarely gives big wins:
+
 - Usually yields <10% improvements
 - Better to focus on:
   - Query understanding and expansion
@@ -245,6 +253,7 @@ Why chunk optimization rarely gives big wins:
   - Better embedding models
 
 When to adjust:
+
 - Legal/regulatory: Larger chunks (1500-2000 tokens) to preserve full clauses
 - Technical docs: Smaller chunks (400-600 tokens) for precise retrieval
 - Conversational: Page-level chunks to maintain context
@@ -268,30 +277,30 @@ Here's a simple but effective evaluation pipeline:
 def evaluate_retrieval(evaluation_data, retriever_fn, k=10):
     """
     Evaluate retrieval performance on a dataset.
-    
+
     Args:
         evaluation_data: List of dicts with 'question' and 'relevant_docs' keys
         retriever_fn: Function that takes question text and returns docs
         k: Number of top results to consider
-        
+
     Returns:
         Dict containing evaluation metrics
     """
     results = []
-    
+
     for item in evaluation_data:
         question = item['question']
         ground_truth = set(item['relevant_docs'])
-        
+
         # Call retrieval system
         retrieved_docs = retriever_fn(question, top_k=k)
         retrieved_ids = [doc['id'] for doc in retrieved_docs]
-        
+
         # Calculate metrics
         retrieved_relevant = set(retrieved_ids) & ground_truth
         precision = len(retrieved_relevant) / len(retrieved_ids) if retrieved_ids else 0
         recall = len(retrieved_relevant) / len(ground_truth) if ground_truth else 1.0
-        
+
         # Store individual result
         results.append({
             'question_id': item.get('id', ''),
@@ -302,11 +311,11 @@ def evaluate_retrieval(evaluation_data, retriever_fn, k=10):
             'relevant_docs': list(ground_truth),
             'metadata': item.get('metadata', {})
         })
-    
+
     # Aggregate metrics
     avg_precision = sum(r['precision'] for r in results) / len(results)
     avg_recall = sum(r['recall'] for r in results) / len(results)
-    
+
     return {
         'avg_precision': avg_precision,
         'avg_recall': avg_recall,
@@ -327,11 +336,13 @@ Make evaluation part of your routine:
 **Production Monitoring Tips:**
 
 Track these over time:
+
 - Average cosine distance between queries and retrieved docs
 - Percentage of queries with no results above threshold
 - Score distributions (watch for bimodal patterns)
 
 Segment by user type:
+
 - New vs returning users have different patterns
 - Technical vs non-technical users need different strategies
 - Time-based patterns (like during product launches)
@@ -366,14 +377,14 @@ First, figure out:
 
 ### Vector Database Comparison
 
-| Database | Best For | Pros | Cons | When to Use |
-|----------|----------|------|------|-------------|
-| **PostgreSQL + pgvector** | Teams with SQL expertise | • Familiar SQL interface<br>• Metadata filtering<br>• ACID compliance<br>• Single database for everything | • Not optimized for vector operations<br>• Limited to ~1M vectors for good performance<br>• No built-in hybrid search | When you need to combine vector search with complex SQL queries and already use PostgreSQL |
-| **LanceDB** | Experimentation & hybrid search | • One-line hybrid search<br>• Built-in re-ranking<br>• S3 storage support<br>• DuckDB for analytics | • Newer, less battle-tested<br>• Smaller community | When you want to quickly test lexical vs vector vs hybrid search approaches |
-| **Timescale pgvector_scale** | Large-scale exhaustive search | • Exhaustive search capability<br>• Better scaling than pgvector<br>• Time-series support | • Requires Timescale<br>• More complex setup | When you need guaranteed recall on large datasets with time-based queries |
-| **ChromaDB** | Simple prototypes | • Easy to get started<br>• Good Python API<br>• Local development friendly | • Performance issues at scale<br>• Limited production features | For POCs and demos under 100k documents |
-| **Turbopuffer** | High-performance search | • Very fast<br>• Good scaling<br>• Simple API | • Newer entrant<br>• Limited ecosystem | When raw performance is critical |
-| **Pinecone** | Managed solution | • Fully managed<br>• Good performance<br>• Reliable | • Expensive at scale<br>• Vendor lock-in | When you want zero infrastructure management |
+| Database                     | Best For                        | Pros                                                                                                      | Cons                                                                                                                  | When to Use                                                                                |
+| ---------------------------- | ------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| **PostgreSQL + pgvector**    | Teams with SQL expertise        | • Familiar SQL interface<br>• Metadata filtering<br>• ACID compliance<br>• Single database for everything | • Not optimized for vector operations<br>• Limited to ~1M vectors for good performance<br>• No built-in hybrid search | When you need to combine vector search with complex SQL queries and already use PostgreSQL |
+| **LanceDB**                  | Experimentation & hybrid search | • One-line hybrid search<br>• Built-in re-ranking<br>• S3 storage support<br>• DuckDB for analytics       | • Newer, less battle-tested<br>• Smaller community                                                                    | When you want to quickly test lexical vs vector vs hybrid search approaches                |
+| **Timescale pgvector_scale** | Large-scale exhaustive search   | • Exhaustive search capability<br>• Better scaling than pgvector<br>• Time-series support                 | • Requires Timescale<br>• More complex setup                                                                          | When you need guaranteed recall on large datasets with time-based queries                  |
+| **ChromaDB**                 | Simple prototypes               | • Easy to get started<br>• Good Python API<br>• Local development friendly                                | • Performance issues at scale<br>• Limited production features                                                        | For POCs and demos under 100k documents                                                    |
+| **Turbopuffer**              | High-performance search         | • Very fast<br>• Good scaling<br>• Simple API                                                             | • Newer entrant<br>• Limited ecosystem                                                                                | When raw performance is critical                                                           |
+| **Pinecone**                 | Managed solution                | • Fully managed<br>• Good performance<br>• Reliable                                                       | • Expensive at scale<br>• Vendor lock-in                                                                              | When you want zero infrastructure management                                               |
 
 ### Decision Framework
 
@@ -382,21 +393,21 @@ flowchart TD
     A[Start] --> B{Do you have<br>existing PostgreSQL?}
     B -->|Yes| C{Need exhaustive<br>search?}
     B -->|No| D{Want to experiment<br>with hybrid search?}
-    
+
     C -->|Yes| E[pgvector_scale]
     C -->|No| F{< 1M vectors?}
     F -->|Yes| G[pgvector]
     F -->|No| H[Consider migration]
-    
+
     D -->|Yes| I[LanceDB]
     D -->|No| J{Budget for<br>managed service?}
-    
+
     J -->|Yes| K[Pinecone]
     J -->|No| L{Team size?}
-    
+
     L -->|Small| M[ChromaDB]
     L -->|Large| N[LanceDB/Turbopuffer]
-    
+
     style E fill:#90EE90
     style G fill:#90EE90
     style I fill:#90EE90
@@ -465,22 +476,22 @@ No user data yet? No problem. Synthetic data gets you started. But it's not as s
 flowchart TD
     A["Document Corpus"] --> B["Sample Representative<br>Text Chunks"]
     B --> C["LLM-Powered<br>Question Generation"]
-    
+
     C --> D1["Factual<br>Questions"]
     C --> D2["Inferential<br>Questions"]
     C --> D3["Comparative<br>Questions"]
     C --> D4["Hypothetical<br>Questions"]
-    
+
     D1 & D2 & D3 & D4 --> E["Verify Retrievability<br>with Current System"]
-    
+
     E --> F1["Easy Questions<br>(80-90% expected recall)"]
     E --> F2["Medium Questions<br>(50-70% expected recall)"]
     E --> F3["Hard Questions<br>(30-50% expected recall)"]
-    
+
     F1 & F2 & F3 --> G["Comprehensive<br>Evaluation Dataset"]
-    
+
     H["Real User<br>Questions"] -.->|"As they become<br>available"| G
-    
+
     style A fill:#CCCCFF,stroke:#0000AA
     style C fill:#FFD700,stroke:#B8860B
     style E fill:#90EE90,stroke:#006400
@@ -505,6 +516,7 @@ For truly valuable synthetic data, you need variety:
 #### 1. Variation in Question Types
 
 Test different retrieval capabilities:
+
 - **Factual**: Direct questions with explicit answers
 - **Inferential**: Connecting multiple pieces of info
 - **Comparative**: Comparing entities or concepts
@@ -514,6 +526,7 @@ Test different retrieval capabilities:
 #### 2. Linguistic Diversity Techniques
 
 Vary phrasing:
+
 - **Paraphrasing**: Multiple ways to ask the same thing
 - **Terminology**: Synonyms and domain language
 - **Complexity**: Mix simple and compound queries
@@ -605,11 +618,13 @@ Good synthetic data upfront accelerates everything else.
 Models are more sensitive to irrelevant info than you'd expect. Even GPT-4 and Claude get distracted by marginally relevant content.
 
 This matters for:
+
 - Multi-step reasoning
 - Numerical calculations
 - Finding specific facts in specific documents
 
 Test by:
+
 1. Creating test cases with varying irrelevant info
 2. Measuring performance degradation
 3. Using results to set precision/recall tradeoffs
@@ -619,6 +634,7 @@ Example: One team found 5 irrelevant documents (even marked as "potentially less
 ## Additional Resources
 
 **Tools and Libraries for RAG Evaluation:**
+
 - **[RAGAS](https://github.com/explodinggradients/ragas)**: Open-source framework for evaluating RAG applications
 - **[LangChain Evaluation](https://python.langchain.com/docs/guides/evaluation/)**: Tools for evaluating retrieval and generation
 - **[Prompttools](https://github.com/promptslab/prompttools)**: Toolkit for testing and evaluating LLM applications
@@ -659,8 +675,7 @@ As one client told me: "We spent three months trying to improve through prompt e
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

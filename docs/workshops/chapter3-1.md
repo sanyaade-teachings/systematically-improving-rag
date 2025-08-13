@@ -6,7 +6,6 @@ author: Jason Liu
 
 # Feedback Collection: Building Your Improvement Flywheel
 
-
 ## Introduction
 
 RAG systems improve most when they collect feedback effectively. Many implementations focus exclusively on the technical details of retrieval and generation while neglecting the infrastructure needed to collect and utilize user feedback.
@@ -397,8 +396,7 @@ Effective feedback collection is essential for systematic improvement of RAG sys
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

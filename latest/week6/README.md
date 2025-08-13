@@ -158,8 +158,7 @@ After completing this week's materials, you'll have:
 ## **Note**: The systematic approach demonstrated this week - metrics, testing, and targeted improvement - can be applied to any AI system optimization challenge. These skills transfer far beyond RAG applications.
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

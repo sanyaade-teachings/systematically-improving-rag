@@ -49,10 +49,12 @@ Always calculate expected costs before choosing an approach:
 **Cost Calculation Template:**
 
 1. **Document Processing**:
+
    - Number of documents × Average tokens per document × Embedding cost
    - One-time cost (unless documents change frequently)
 
 2. **Query Processing**:
+
    - Expected queries/day × (Retrieval tokens + Generation tokens) × Token cost
    - Recurring cost that scales with usage
 
@@ -62,6 +64,7 @@ Always calculate expected costs before choosing an approach:
    - Development and maintenance time
 
 **Example**: E-commerce search (50K queries/day)
+
 - **API-based**: $180/day ($5,400/month)
 - **Self-hosted**: $23/day + $3,000/month engineer
 - **Hybrid**: $65/day (self-host embeddings, API for generation)
@@ -107,11 +110,13 @@ A fundamental architectural decision:
 ### Write-Time vs Read-Time Trade-offs
 
 **Write-time computation** (preprocessing):
+
 - Higher storage costs
 - Better query latency
 - Good for stable content
 
 **Read-time computation** (on-demand):
+
 - Lower storage costs
 - Higher query latency
 - Good for dynamic content
@@ -125,6 +130,7 @@ Multi-level caching for production systems:
 3. **Semantic Cache**: Cache similar queries (requires similarity threshold)
 
 **Example**: Customer support semantic caching
+
 - 30% of queries were semantically similar
 - Used 0.95 similarity threshold
 - Reduced LLM calls by 28% ($8,000/month saved)
@@ -152,12 +158,14 @@ Essential metrics for production RAG systems:
 ### Key Metrics to Track
 
 **Performance Metrics:**
+
 - Query latency (p50, p95, p99)
 - Retrieval recall and precision
 - Token usage per query
 - Cache hit rates
 
 **Business Metrics:**
+
 - User satisfaction scores
 - Query success rates
 - Cost per query
@@ -173,6 +181,7 @@ Graceful degradation strategies:
 4. **Circuit Breakers**: Prevent cascade failures
 
 **Example**: Financial advisory degradation
+
 - Primary: Complex multi-index RAG
 - Fallback 1: Single-index semantic search
 - Fallback 2: Pre-computed FAQ responses

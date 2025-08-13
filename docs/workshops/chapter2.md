@@ -13,7 +13,6 @@ tags:
 
 # Converting Evaluations into Training Data for Fine-Tuning
 
-
 !!! warning "Key Insight"
 
     **If you're not fine-tuning, you're Blockbuster, not Netflix.** The goal isn't to fine-tune language models (which are expensive and complex), but to fine-tune embedding models that move toward your specific data distributions and improve retrieval, not generation.
@@ -569,8 +568,7 @@ If you do this right, every piece of data makes your system better. The improvem
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

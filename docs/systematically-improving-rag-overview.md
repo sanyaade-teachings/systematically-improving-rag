@@ -428,8 +428,9 @@ Based on hundreds of office hours with practitioners, here are battle-tested rec
 
 !!! example "Common Solutions" - **Domain-specific RAG**: Don't build one universal system - create specialized indices per document type - **Hard negative mining**: Track which chunks users delete from results - perfect training data - **Latency perception**: Stream thinking tokens for 45% faster perceived performance - **Cost optimization**: Route simple queries to cheaper models, complex ones to reasoning models
 
-!!! info "When NOT to Use Advanced Techniques" - **DSPy**: Only for well-defined classification with clear metrics - **Graph RAG**: Taxonomy development often harder than embedding approach  
- - **Fine-tuning**: Wait for 6,000+ examples - **One universal RAG**: Always segment by document type and use case
+!!! info "When NOT to Use Advanced Techniques" - **DSPy**: Only for well-defined classification with clear metrics - **Graph RAG**: Taxonomy development often harder than embedding approach
+
+- **Fine-tuning**: Wait for 6,000+ examples - **One universal RAG**: Always segment by document type and use case
 
 [Learn more from Office Hours →](office-hours/index.md)
 

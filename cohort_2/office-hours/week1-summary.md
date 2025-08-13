@@ -325,8 +325,7 @@ Even with one-to-one mappings, MRR (Mean Reciprocal Rank) is still useful to see
 ## What really matters isn't the absolute number but whether we can move these metrics in a positive direction with our interventions. It's like weighing yourself—the absolute number may vary by scale, but if you've gained two pounds, you've definitely gained two pounds.
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

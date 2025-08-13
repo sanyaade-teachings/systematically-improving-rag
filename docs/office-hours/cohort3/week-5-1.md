@@ -263,8 +263,7 @@ Newer models with improved attention mechanisms handle long contexts better than
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

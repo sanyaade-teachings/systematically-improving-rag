@@ -167,8 +167,7 @@ The key message throughout Anton's presentation was that data organization isn't
 ## **_Key Takeaway:_** Data organization for RAG systems requires thinking beyond traditional search paradigms. By carefully considering user access patterns, data source characteristics, and query requirements, you can design a system that delivers better results while maintaining security and performance.
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

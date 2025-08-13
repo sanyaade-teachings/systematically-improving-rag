@@ -74,8 +74,7 @@ Modern RAG systems increasingly rely on tool orchestration beyond simple retriev
 ## This approach demonstrates how simple prompting changes can dramatically improve tool selection, enabling RAG systems to coordinate multiple specialized capabilities rather than relying on retrieval alone.
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

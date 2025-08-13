@@ -14,11 +14,12 @@ tags:
 
 # Beyond Implementation to Improvement: A Product Mindset for RAG
 
-Look, I've been building AI systems for over a decade, and I keep seeing the same mistake: teams ship a RAG system, pat themselves on the back, and then watch it slowly fail in production. 
+Look, I've been building AI systems for over a decade, and I keep seeing the same mistake: teams ship a RAG system, pat themselves on the back, and then watch it slowly fail in production.
 
 This chapter is about avoiding that trap. We're going to talk about why the most successful RAG systems aren't the ones with the fanciest embeddings or the biggest context windows—they're the ones that get better every week based on what users actually do with them.
 
 Here's what we'll cover:
+
 - Why thinking of RAG as a "project" instead of a "product" dooms most implementations
 - How to steal ideas from recommendation systems (because that's really what RAG is)
 - A practical framework for turning user frustration into system improvements
@@ -37,13 +38,15 @@ I've built AI systems at Facebook, Stitch Fix, and worked with companies like Hu
 Here's a quick way to tell which mindset a team has:
 
 **Implementation Mindset:**
-- "We need to implement RAG" 
+
+- "We need to implement RAG"
 - Obsessing over embedding dimensions and context windows
 - Success = it works in the demo
 - Big upfront architecture decisions
 - Focus on picking the "best" model
 
 **Product Mindset:**
+
 - "We need to help users find answers faster"
 - Tracking answer relevance and task completion
 - Success = users keep coming back
@@ -129,14 +132,16 @@ What's great about this is that it compounds. More data leads to better insights
 
 ### Optimizing Feedback Collection
 
-**A quick story about feedback:** We spent weeks at one company getting almost no user feedback. Then we changed the prompt from "How did we do?" to "Did we answer your question?" Feedback rates went up 5x overnight. 
+**A quick story about feedback:** We spent weeks at one company getting almost no user feedback. Then we changed the prompt from "How did we do?" to "Did we answer your question?" Feedback rates went up 5x overnight.
 
 Here's what actually works:
+
 - ✅ "Did we answer your question?" (specific and clear)
 - ✅ "Did we take the correct actions?" (for systems that do things)
 - ❌ "Rate your experience" (too vague, people think you mean the UI)
 
 Other tips that actually move the needle:
+
 - Thumbs up/down beats 5-star ratings by 3x (people are lazy)
 - In enterprise settings, pipe feedback to a Slack channel—transparency drives improvement
 - Only ask for written feedback AFTER they click thumbs down
@@ -182,14 +187,17 @@ Without a systematic approach, teams face significant challenges:
 Here's what happens in real meetings:
 
 **"Make the AI better"**
+
 - Without a system: Everyone looks nervous, suggests random ideas
 - With a system: "Our top failure mode is date-related queries at 23% error rate. Here's our plan."
 
 **"Where should we focus engineering time?"**
+
 - Without a system: Whoever argues loudest wins
 - With a system: "42% of failures are inventory problems. Let's start there."
 
 **"Is this new embedding model worth it?"**
+
 - Without a system: "The benchmarks look good?"
 - With a system: "It improves our technical documentation queries by 15% but hurts on short questions. Not worth it."
 
@@ -213,7 +221,7 @@ The shift from engineer to product thinker is subtle but powerful. Here's how yo
 
 This shift doesn't mean abandoning technical rigor. It means applying that rigor to problems that actually matter to your users, guided by data instead of assumptions.
 
-**Quick story:** A restaurant chain spent months perfecting their voice AI's speech recognition. Then someone actually listened to the call recordings. Turns out 30% of callers were asking "What's good here?" 
+**Quick story:** A restaurant chain spent months perfecting their voice AI's speech recognition. Then someone actually listened to the call recordings. Turns out 30% of callers were asking "What's good here?"
 
 They added a simple feature: when someone asks that, the AI recommends the three most popular items. Revenue went up 9%. They didn't improve the AI at all—they just paid attention to what people actually wanted.
 
@@ -230,6 +238,7 @@ Let me walk you through how this played out with a legal tech company I worked w
 **Step 3:** Shipped it and watched what lawyers actually did. Added thumbs up/down buttons and tracked what they copied.
 
 **Step 4:** After 2 months and 5,000 queries, patterns emerged. Three main query types:
+
 - Case citations (worked great)
 - Legal definitions (OK)
 - Procedural questions (total failure)
@@ -243,12 +252,14 @@ End result: lawyers actually started using the system. Research time dropped 40%
 **Pro tip:** When something's not working, first ask: "Is this an inventory problem or a capabilities problem?"
 
 **Inventory problem:** You don't have the answer in your knowledge base
+
 - Missing documents
 - Outdated info
 - Gaps in coverage
 - Fix: Add more/better content
 
 **Capabilities problem:** You have the answer but can't find it
+
 - Bad retrieval
 - Wrong search strategy
 - Can't understand the query
@@ -259,6 +270,7 @@ I've seen teams waste months improving retrieval when they simply didn't have th
 ## Who This Is For
 
 Based on who's shown up to my workshops, you're probably:
+
 - A technical leader trying to figure out why your RAG system isn't getting better
 - An engineer who built a RAG system and is now stuck maintaining it
 - Part of a team (engineering, data science, product) trying to make AI actually useful
@@ -330,8 +342,7 @@ _Note: I've used this approach with companies across legal, finance, healthcare,
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

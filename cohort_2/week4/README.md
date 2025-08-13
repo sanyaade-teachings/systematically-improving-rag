@@ -73,8 +73,7 @@ Together, these notebooks provide a systematic approach to understanding and imp
 ## This data-driven approach helps identify which query areas need improvement most urgently, allowing targeted enhancements rather than making random changes.
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

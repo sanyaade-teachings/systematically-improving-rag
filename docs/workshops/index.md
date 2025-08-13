@@ -74,6 +74,7 @@ How to know if your router works and make it better. Covers metrics, dual-mode U
 Each chapter includes practical exercises you can apply to your own RAG system. They build on each other, so start from the beginning unless you know what you're doing.
 
 The progression:
+
 1. **Getting Started** (Intro & Ch 1): Think like a product, set up evaluation
 2. **Making It Better** (Ch 2): Turn evaluation into improvements
 3. **User Experience** (Ch 3): Get feedback, feel fast, don't break
@@ -88,6 +89,7 @@ You should know what RAG is and have at least played with it. If you're totally 
 ## What You'll Have When Done
 
 A RAG system that:
+
 - Gets better from user feedback
 - Routes queries to the right specialized tools
 - Feels fast and responsive

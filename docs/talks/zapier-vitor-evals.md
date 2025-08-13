@@ -117,8 +117,7 @@ This cycle becomes particularly valuable when evaluating new model versions. Whe
 ## **_Key Takeaway:_** Feedback collection isn't just about fixing immediate issues - it's a critical component of a sustainable AI product development cycle. Each round of feedback strengthens your evaluation suite, which in turn enables more confident decision-making about system changes and model upgrades.
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

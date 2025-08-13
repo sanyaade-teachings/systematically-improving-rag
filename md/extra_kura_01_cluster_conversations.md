@@ -20,11 +20,13 @@ While topic modeling isn't objective ground truth, it's an invaluable discovery 
 In this first notebook, you'll discover how to:
 
 1. **Prepare Query Data for Analysis**
+
    - Format JSON data into Kura conversation objects
    - Structure query-document pairs with proper metadata
    - Set up data for effective clustering
 
 2. **Run Hierarchical Topic Clustering**
+
    - Use Kura's procedural API for LLM-enhanced clustering
    - Generate meaningful summaries of conversation groups
    - Visualize the topic hierarchies that emerge
@@ -554,8 +556,7 @@ By replacing vague summaries like "user seeks information about tracking" with p
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

@@ -13,7 +13,6 @@ tags:
 
 # Implementing Multimodal Search: Specialized Retrieval Techniques
 
-
 ## Handling Different Content Types
 
 Let's get into the specifics of how to handle documents, images, and tables. Each needs its own approach.
@@ -92,6 +91,7 @@ flowchart LR
 ```
 
 Your document retrieval ends up returning different things for different queries:
+
 - Quick summaries for overview questions
 - Full documents when context matters
 - Specific chunks for precise information
@@ -268,8 +268,9 @@ Adit from Reducto emphasizes that tables are particularly challenging: "Tables a
     For production-ready table extraction, consider specialized tools. [Learn more about document ingestion best practices →](../talks/reducto-docs-adit.md)
 
 Turns out markdown tables work best for LLM lookup:
+
 - Markdown: 85% accuracy
-- CSV: 73% accuracy  
+- CSV: 73% accuracy
 - JSON: 71% accuracy
 - YAML: 69% accuracy
 
@@ -277,7 +278,7 @@ Why? The visual structure helps LLMs understand relationships better than nested
 
 ```markdown
 | Product ID | Name           | Price  | Stock |
-|------------|----------------|--------|-------|
+| ---------- | -------------- | ------ | ----- |
 | SKU-001    | Widget Pro     | $29.99 | 150   |
 | SKU-002    | Widget Basic   | $19.99 | 0     |
 | SKU-003    | Widget Premium | $49.99 | 75    |
@@ -393,6 +394,7 @@ Once the right table is identified, either:
 SQL generation shows all these principles in action. You need to find the right tables AND write good queries.
 
 The old approach of "just translate natural language to SQL" breaks down fast when you have:
+
 - Schemas with hundreds of tables
 - Business-specific definitions (what's an "active user" anyway?)
 - Custom business rules (fiscal calendars, revenue recognition)
@@ -454,6 +456,7 @@ Here's what actually works for SQL generation:
 5. Retrieve and include relevant examples when generating new queries
 
 The same question can mean different things. Take "Show me month-over-month revenue growth":
+
 - Calendar month or 28-day period?
 - Include weekends or not?
 - Absolute dollars or percentage?
@@ -537,6 +540,7 @@ flowchart TD
 The nice thing is this approach scales. The same process—generate test data, segment queries, identify capabilities—works whether you're building your first retriever or your tenth.
 
 **How to actually do this:**
+
 1. Start with one or two specialized retrievers for your most common queries
 2. Measure everything—individual retriever performance and overall success
 3. Add new retrievers when you find query types that aren't working well
@@ -551,8 +555,7 @@ In [Chapter 6](chapter6-1.md), we'll explore how to bring these specialized comp
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

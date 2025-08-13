@@ -108,8 +108,7 @@ The ChromaDB team is developing better tooling to help with this process, but in
 ## By focusing on these fundamentals rather than blindly applying frameworks or following defaults, you can significantly improve the performance of your RAG applications and deliver better results to your users.
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

@@ -175,6 +175,7 @@ mkdocs build
 ## Getting Started
 
 ### Prerequisites
+
 - Python 3.11 (required - the project uses specific features from this version)
 - `uv` package manager (recommended) or `pip`
 
@@ -182,13 +183,15 @@ mkdocs build
 
 1. Clone the repository
 2. Install dependencies:
+
    ```bash
    # Using uv (recommended)
    uv install
-   
+
    # Or using pip
    pip install -e .
    ```
+
 3. Start with `/latest/week0/` for the most up-to-date content
 4. Follow the notebooks in sequential order within each week
 5. Reference the corresponding book chapters in `/docs` for deeper understanding
@@ -196,6 +199,7 @@ mkdocs build
 ### Code Quality
 
 Before committing changes, run:
+
 ```bash
 # Format and fix code issues
 uv run ruff check --fix --unsafe-fixes .
@@ -238,7 +242,7 @@ Want to learn more about RAG? Take our free email course and get the latest news
 **Join thousands of developers who are building better AI applications with our proven methodology.**
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
-*Learn evaluation strategies, user experience design, and architectural patterns that actually work in production.*
+_Learn evaluation strategies, user experience design, and architectural patterns that actually work in production._

@@ -13,7 +13,6 @@ tags:
 
 # Prioritization and Roadmapping: From Insights to Action
 
-
 ## Topics vs Capabilities: Two Ways to Slice Your Data
 
 You need to understand the difference between topics and capabilities before you can prioritize anything. Most teams mix these up and end up wasting time.
@@ -25,6 +24,7 @@ You need to understand the difference between topics and capabilities before you
 Most teams only look at topics. That's a mistake. You need both dimensions to understand what's actually broken.
 
 Example from a healthcare company I worked with: They were categorizing everything by medical condition. Seemed logical, right? But when we added capability analysis, we found:
+
 - Common conditions (diabetes, hypertension): Users mostly wanted comparisons between treatments
 - Rare conditions: Users needed comprehensive summaries of all options
 
@@ -43,8 +43,7 @@ See how the same capability (like comparison) can apply to different topics? And
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

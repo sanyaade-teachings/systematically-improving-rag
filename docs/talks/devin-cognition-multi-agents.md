@@ -63,11 +63,13 @@ At Cognition, they trained a specialized model to identify and preserve critical
 Several practical approaches have emerged for managing context in agent systems:
 
 ### Read-only sub-agents
+
 Both Claude Code and OpenCode use sub-agents that only read and don't make decisions. These agents perform tasks like listing project files, examining packages, or looking for imports, then report back to the main agent.
 
 > "The designers of these systems of these agent builders are very careful to constrain their sub agents to only doing read-only tasks. I think if you read the cloud Sys prompt. If you read open code Sysprompt, you'll probably find stuff that's like you should only use subagents for things that involve reading code."
 
 ### Edit-apply models
+
 Systems like Cursor and Windsurf use a two-stage approach where a smart coding model generates human-readable instructions for code changes, and a simpler "edit-apply" model implements those changes. This approach can be fragile if the instructions aren't perfectly clear.
 
 > "When you see complaints online about, hey? Sometimes in these code editors the edit will be like wrong and or mess something up. It is often because of this that the smart coding agent left out some important detail, or wasn't specific enough about something."
@@ -95,16 +97,19 @@ The path forward likely involves making single agents smarter and more collabora
 Current agents struggle with several key collaboration skills:
 
 ### Escalation awareness
+
 Recognizing when they've reached the limits of their decision-making authority and need human input.
 
 > "When can a system recognize when it reaches its own limits of the decisions it is allowed to make... How do you know, like a you should? Either way, you should notify the human that like, Hey, there's something weird that's happening here."
 
 ### Confidence assessment
+
 Accurately evaluating and communicating their confidence in proposed solutions.
 
 > "In Devin. One thing we do is when you collaborating with your agent, when you collaborate when you're collaborating with Devin, Devin will give you the how confident it is in its plan. And that way you, as a human, can say, like, okay, Devin is like 99% confident that this is going to work, you can roughly be hands off."
 
 ### Concise communication
+
 Providing key information without overwhelming users with unnecessary details.
 
 > "People hate how like, you know, Llms will just send you like a wall of text, and Markdown, a smart engineer will like manage to hone in on the key problems and the key things you have to think about with like minimal words, one sentence, 2 sentence of words."
@@ -132,16 +137,19 @@ While detailed planning (like creating extensive plan.md files) can improve resu
 We're still in the early stages of agent development - comparable to the HTML/CSS/JavaScript era of web development before frameworks like React emerged. However, some promising patterns are emerging:
 
 ### Cache-aware frameworks
+
 Systems that optimize for caching, even before API-level caching was available.
 
 > "Our system has been built with caching kind of like being a very core condition. So even as you scale out and do these sub agents and things like that, having a system that still manages to like optimally cache work from before, I think is going to be important thing."
 
 ### Integrated evaluation systems
+
 Frameworks that tightly couple agent code with evaluation systems.
 
 > "We kind of like segment functionalities of our system into modules and these modules are tagged in such a way that not only are things that go through those modules, things that like we can track and feed into eval systems. When we change code inside these modules, we can then also back, run them against evals from before."
 
 ### Universal tools over specialized integrations
+
 Providing agents with powerful general-purpose tools like shell access rather than numerous specialized integrations.
 
 > "I personally like to just like, give our agent the most universal tools possible, and make sure there's very easy to use. So the shell command, like the the bash tool, for example, is so fucking powerful, it like literally, it means like anything you can do on a computer like your agent can do now."

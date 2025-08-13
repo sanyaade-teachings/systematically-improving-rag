@@ -156,8 +156,7 @@ After completing this week's materials, you'll have:
 ## **Note**: This week's content is foundational. Take time to understand each concept thoroughly as they'll be used extensively throughout the course.
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

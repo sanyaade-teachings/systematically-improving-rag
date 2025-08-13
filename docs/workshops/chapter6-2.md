@@ -25,6 +25,7 @@ tags:
 Here's how to implement tool interfaces for a construction information system with blueprints, documents, and schedules.
 
 **Related concepts from previous chapters:**
+
 - Chapter 1: Evaluation metrics for testing router accuracy
 - Chapter 3: Feedback showing which tools users need
 - Chapter 4: Query analysis for tool requirements
@@ -128,6 +129,7 @@ Detailed docstrings help both developers and language models understand when to 
 MCP is Anthropic's standard for connecting AI to data sources and tools. It's like USB-C for AI applications – a universal connection standard.
 
 Benefits:
+
 - **Standardization**: One protocol instead of many connectors
 - **Interoperability**: Maintain context across tools
 - **Ecosystem**: Reusable connectors for common systems
@@ -154,17 +156,20 @@ Modern LLMs handle this well with clear tool definitions and examples.
 ### Multi-Agent vs Single-Agent
 
 **Multi-agent challenges:**
+
 - Complex state sharing
 - Message passing latency
 - Harder debugging
 - Error cascades
 
 **Multi-agent benefits:**
+
 - Token efficiency (each agent sees only relevant context)
 - Specialization (different models for different tasks)
 - Read/write separation for safety
 
 **Example**: A coding assistant might use:
+
 - Single agent for reading/analysis
 - Specialized agent for code generation
 - Separate agent for file operations
@@ -294,21 +299,25 @@ Good examples are critical for router effectiveness. They help the model recogni
 ### RAG Architecture Evolution
 
 **Generation 1: Pure Embeddings**
+
 - Single vector database
 - Semantic search only
 - Limited to similarity
 
 **Generation 2: Hybrid Search**
+
 - Semantic + lexical
 - Metadata filtering
 - Still retrieval-focused
 
 **Generation 3: Tool-Based**
+
 - Multiple specialized tools
 - Beyond retrieval to computation
 - Matches user mental models
 
 **Example progression:**
+
 - V1: "Find documents about project X"
 - V2: "Find recent documents about project X by John"
 - V3: "Compare project X budget vs actuals"
@@ -318,6 +327,7 @@ V3 requires computation tools, not just retrieval.
 ### How This Connects
 
 This chapter combines concepts from throughout the book:
+
 - Chapter 0: Improvement flywheel
 - Chapter 1: Evaluation frameworks
 - Chapter 2: Fine-tuning

@@ -23,12 +23,15 @@ You can use Cursor's AI capabilities to generate summary files from the transcri
 1. **Open Cursor and navigate to the repository**
 
 2. **Open the transcript files for the week you want to summarize**
+
    - For example, to create a Week 1 summary, open the transcript files from the `week1/` folder
 
 3. **Create a new file**
+
    - Create `week#-summary.md` in the office-hours directory (e.g., `week1-summary.md`)
 
 4. **Use Cursor's AI composer (CTRL+K or CMD+K)**
+
    - In the composer, enter a prompt like:
 
    ```
@@ -46,6 +49,7 @@ You can use Cursor's AI capabilities to generate summary files from the transcri
    ```
 
 5. **Review and edit the generated content**
+
    - Cursor may need multiple attempts to generate all content
    - You can ask it to "check if anything is missing and add that back" to ensure comprehensive coverage
 
@@ -126,8 +130,7 @@ The script handles various transcript file formats and naming patterns, includin
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

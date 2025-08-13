@@ -161,8 +161,7 @@ After completing this week's materials, you'll have:
 ## **Note**: Ensure you've completed Week 1's evaluation framework before starting these notebooks. The metrics and benchmarking tools from Week 1 are essential for measuring the improvements achieved through fine-tuning.
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

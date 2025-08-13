@@ -184,8 +184,8 @@ The emphasis on company-specific language models is particularly noteworthy - th
 **Key Takeaway:** Successful enterprise search requires a pragmatic approach that combines custom embedding models, unified data architecture, hybrid search techniques, and continuous learning from user feedback rather than relying solely on off-the-shelf solutions.
 
 ## --8<--
-  "snippets/enrollment-button.md"
+
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

@@ -250,8 +250,7 @@ This approach delivers business value faster while building organizational comfo
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

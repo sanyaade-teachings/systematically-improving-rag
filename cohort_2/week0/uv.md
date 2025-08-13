@@ -105,8 +105,7 @@ When working with virtual environments, we recommend the following best practice
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

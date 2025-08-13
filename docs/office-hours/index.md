@@ -73,8 +73,7 @@ Get access to exclusive discounts and our free 6-day email course on RAG improve
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

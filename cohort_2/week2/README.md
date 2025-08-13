@@ -72,8 +72,7 @@ These notebooks demonstrate two distinct approaches to improving embedding perfo
 ## Both approaches show significant performance gains (15-30% in MRR and recall), highlighting that domain-specific fine-tuning is one of the most effective ways to improve RAG system performance.
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

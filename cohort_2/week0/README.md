@@ -63,8 +63,7 @@ These notebooks provide the essential tools and concepts you'll use throughout t
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

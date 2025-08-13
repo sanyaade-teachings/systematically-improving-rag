@@ -31,8 +31,7 @@ The `RAGClassifier` is a classifier that uses a retreival model to classify user
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

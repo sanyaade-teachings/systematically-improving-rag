@@ -5,7 +5,8 @@ categories:
   - RAG
 comments: true
 date: 2024-05-22
-description: Discover systematic strategies to enhance your Retrieval-Augmented Generation
+description:
+  Discover systematic strategies to enhance your Retrieval-Augmented Generation
   (RAG) systems for better performance and user experience.
 draft: false
 tags:
@@ -43,7 +44,7 @@ Questions teams forget to ask:
 
 ### Intervention Bias
 
-This is our tendency to do *something* just to feel like we're making progress. In RAG, it shows up as constantly switching models, tweaking prompts, or adding features without measuring impact.
+This is our tendency to do _something_ just to feel like we're making progress. In RAG, it shows up as constantly switching models, tweaking prompts, or adding features without measuring impact.
 
 - Should we use GPT-4 or Claude? Maybe a new embedding model? What about chunking?
 - Will this new prompt technique help? I read on Arxiv that this new prompt technique is the best...
@@ -73,7 +74,7 @@ Through this step-by-step runbook, you'll gain practical knowledge on how to inc
 
 ## 1) Start with Synthetic Data
 
-Here's a brutal truth: most teams spend months fine-tuning prompts without ever measuring if their retrieval actually works. When they finally check, they discover their systems retrieve the correct documents only 30-40% of the time. 
+Here's a brutal truth: most teams spend months fine-tuning prompts without ever measuring if their retrieval actually works. When they finally check, they discover their systems retrieve the correct documents only 30-40% of the time.
 
 No amount of prompt engineering can fix retrieving the wrong information.
 
@@ -101,7 +102,7 @@ This will give you a baseline to work with and help you identify areas for impro
 
 This doesn't mean that we need an agentic rag for everything. Inventing search is cheap and can be seen as a cost-saving factor, both in terms of maintenance, implementation, and complexity. What Semantic Search could do with one API call, Agentic Rag could do with 15 if you give it simpler tools. Again, we're making trade-offs along a continuum.
 
-But the benefit is - if you have a number to set a goal against, you can always trade off your recall, your latency, and your performance. 
+But the benefit is - if you have a number to set a goal against, you can always trade off your recall, your latency, and your performance.
 
 ## 2) Utilize Metadata
 
@@ -123,7 +124,7 @@ This has become more and more feasible as function calling and other loans becom
 
 ## 3) Use Both Full-Text Search and Vector Search
 
-The RAG community loves to debate: "Should I use full-text search or vector search?" 
+The RAG community loves to debate: "Should I use full-text search or vector search?"
 
 Here's the secret: **use both**. They solve different problems, and the best RAG systems combine them intelligently.
 
@@ -149,7 +150,7 @@ Full-text search finds exact matches and handles technical terms. Vector search 
 - Can process complex, contextual queries
 - More effective for conceptual and exploratory searches
 
-Okay, so which one do I use? 
+Okay, so which one do I use?
 
 It depends on your data. This is why you created synthetic data in the first place. Don't take my word. Set up evals and check whether or not semantic search is worth the 10x greater latency than full text search based on the recall. If you get a 1% improvement with 10x latency, maybe it's not worth it. If you get a 15% improvement in recall, maybe it is. It's up to you. It's up to your problem.
 
@@ -171,7 +172,7 @@ Make sure the copy for these feedback mechanisms explicitly describes what you'r
 
 ## 5) Cluster and Model Topics
 
-You've collected user feedback and now have thousands of queries. Great! But staring at individual ratings won't tell you what to fix next after a few 1000 examples. 
+You've collected user feedback and now have thousands of queries. Great! But staring at individual ratings won't tell you what to fix next after a few 1000 examples.
 
 You need to see the bigger picture.
 
@@ -212,7 +213,7 @@ The key is running experiments systematically. Test changes on real data, measur
 This could include tweaking search parameters, adding metadata, or trying different embedding models. Measure the impact on precision and recall to see if the changes are worthwhile.
 
 !!! quote "Start with Vibe Checks, Not Just Metrics"
-    "Start with 5-10 examples and do end-to-end vibe checks before moving to quantitative evaluation. With natural language systems, you can learn so much just from looking at a few examples." This is especially important for agent-based systems where improving individual components (like embeddings) might not improve end-to-end performance.
+"Start with 5-10 examples and do end-to-end vibe checks before moving to quantitative evaluation. With natural language systems, you can learn so much just from looking at a few examples." This is especially important for agent-based systems where improving individual components (like embeddings) might not improve end-to-end performance.
 
 Once you now have these questions in place, you have your synthetic data set and a bunch of user data with ratings. This is where the real work begins when it comes to systematically improving your RAG.
 
@@ -231,7 +232,7 @@ Every improvement comes with a cost. Better recall might mean slower responses. 
 The key is measuring the impact of each change and making informed decisions about what matters most for your users.
 
 !!! tip "Agentic Systems Change the Equation"
-    In agentic systems, the trade-offs shift. Agents are persistent - they'll eventually find what they need even with suboptimal tools. This means you might accept higher latency for better end-to-end outcomes, since agents can iterate and course-correct. The best approach often combines both: expose your high-quality embeddings as tools to agents, getting persistence AND efficiency.
+In agentic systems, the trade-offs shift. Agents are persistent - they'll eventually find what they need even with suboptimal tools. This means you might accept higher latency for better end-to-end outcomes, since agents can iterate and course-correct. The best approach often combines both: expose your high-quality embeddings as tools to agents, getting persistence AND efficiency.
 
 Here, this is where having the synthetic questions that test against will effectively answer that question. Because what we'll do is we'll run the query with and without this parent document retriever, and we will have a recall with and without that feature and the latency improvement of that feature.
 
@@ -256,8 +257,7 @@ For a deeper dive into these concepts, check out the free 6-week email course on
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

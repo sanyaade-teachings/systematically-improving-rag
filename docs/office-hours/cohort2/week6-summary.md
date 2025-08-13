@@ -232,8 +232,7 @@ For most organizations building AI applications, starting with a specific domain
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

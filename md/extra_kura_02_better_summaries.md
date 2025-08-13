@@ -22,11 +22,13 @@ Domain-specific summaries enable us to:
 In this notebook, you'll discover how to:
 
 1. **Build Custom Summary Models**
+
    - Design specialized prompts that extract domain-specific information
    - Implement length constraints for focused, consistent summaries
    - Replace Kura's default summarization with your custom approach
 
 2. **Compare Summarization Approaches**
+
    - Analyze the limitations of generic vs. domain-specific summaries
    - See how improved summaries change clustering outcomes
    - Understand the impact of summary quality on cluster interpretability
@@ -482,8 +484,7 @@ This classifier will enable you to automatically categorize incoming queries in 
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

@@ -1,0 +1,5 @@
+# Ignore NDJSON-style files that are not valid single JSON documents
+cohort_2/week5/queries.json
+latest/week5/queries.json
+
+

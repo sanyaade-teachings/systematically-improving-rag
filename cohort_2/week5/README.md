@@ -91,8 +91,7 @@ These notebooks move beyond simple semantic search to address complex real-world
 ## By combining vector search with structured filtering, SQL access, and document parsing, you'll build RAG systems capable of handling sophisticated user needs that pure semantic search can't address alone.
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

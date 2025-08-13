@@ -76,9 +76,7 @@
           "type": "array"
         }
       },
-      "required": [
-        "inputs"
-      ],
+      "required": ["inputs"],
       "title": "Case",
       "type": "object"
     },
@@ -436,9 +434,7 @@
           "$ref": "#/$defs/evaluator_params_Contains"
         }
       },
-      "required": [
-        "Contains"
-      ],
+      "required": ["Contains"],
       "title": "evaluator_Contains",
       "type": "object"
     },
@@ -449,9 +445,7 @@
           "$ref": "#/$defs/evaluator_params_LLMJudge"
         }
       },
-      "required": [
-        "LLMJudge"
-      ],
+      "required": ["LLMJudge"],
       "title": "evaluator_LLMJudge",
       "type": "object"
     },
@@ -470,9 +464,7 @@
           "type": "boolean"
         }
       },
-      "required": [
-        "value"
-      ],
+      "required": ["value"],
       "title": "evaluator_params_Contains",
       "type": "object"
     },
@@ -499,9 +491,7 @@
           "type": "boolean"
         }
       },
-      "required": [
-        "rubric"
-      ],
+      "required": ["rubric"],
       "title": "evaluator_params_LLMJudge",
       "type": "object"
     },
@@ -512,9 +502,7 @@
           "title": "Contains"
         }
       },
-      "required": [
-        "Contains"
-      ],
+      "required": ["Contains"],
       "title": "short_evaluator_Contains",
       "type": "object"
     },
@@ -525,9 +513,7 @@
           "title": "Equals"
         }
       },
-      "required": [
-        "Equals"
-      ],
+      "required": ["Equals"],
       "title": "short_evaluator_Equals",
       "type": "object"
     },
@@ -538,9 +524,7 @@
           "$ref": "#/$defs/SpanQuery"
         }
       },
-      "required": [
-        "HasMatchingSpan"
-      ],
+      "required": ["HasMatchingSpan"],
       "title": "short_evaluator_HasMatchingSpan",
       "type": "object"
     },
@@ -552,9 +536,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "IsInstance"
-      ],
+      "required": ["IsInstance"],
       "title": "short_evaluator_IsInstance",
       "type": "object"
     },
@@ -566,9 +548,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "LLMJudge"
-      ],
+      "required": ["LLMJudge"],
       "title": "short_evaluator_LLMJudge",
       "type": "object"
     },
@@ -588,9 +568,7 @@
           "title": "Maxduration"
         }
       },
-      "required": [
-        "MaxDuration"
-      ],
+      "required": ["MaxDuration"],
       "title": "short_evaluator_MaxDuration",
       "type": "object"
     }
@@ -645,9 +623,7 @@
       "type": "string"
     }
   },
-  "required": [
-    "cases"
-  ],
+  "required": ["cases"],
   "title": "Dataset",
   "type": "object"
 }

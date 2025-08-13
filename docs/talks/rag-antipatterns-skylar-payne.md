@@ -283,8 +283,7 @@ Metadata becomes more valuable when you have both high data volume and diverse q
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

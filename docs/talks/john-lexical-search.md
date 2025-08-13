@@ -116,8 +116,7 @@ The most promising direction appears to be hybrid approaches that leverage the s
 ## **_Key Takeaway:_** The debate isn't really about lexical versus semantic search, but rather how to effectively combine them to create retrieval systems that are both precise and understanding - offering both the filtering power of traditional search and the semantic comprehension of modern embedding-based approaches.
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

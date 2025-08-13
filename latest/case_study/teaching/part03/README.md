@@ -45,23 +45,27 @@ The alignment problem can be solved by changing what we embed to match what we s
 **Hypothesis**: Different summary types will show varying effectiveness for different query types:
 
 1. **v1 summaries** (search-optimized, 2-3 sentences):
+
    - Best for v1 queries (60%+ Recall@1)
    - Minimal improvement for v2 queries (15-20% Recall@1)
    - Smallest storage footprint
 
 2. **v2 summaries** (comprehensive, 21 sections):
+
    - Moderate improvement for both query types
    - v1: 50-55% Recall@1
    - v2: 25-35% Recall@1
    - Large storage due to detailed summaries
 
 3. **v3 summaries** (concise pattern-focused, 3-5 sentences):
+
    - Balanced performance
    - v1: 55-60% Recall@1
    - v2: 30-40% Recall@1
    - Moderate storage requirements
 
 4. **v4 summaries** (pattern-optimized):
+
    - Dramatic improvement for v2 queries (40-50% Recall@1)
    - Moderate performance for v1 queries (45-55% Recall@1)
    - Designed specifically to match v2 query patterns
@@ -881,8 +885,7 @@ If you achieve better than 55% v2 recall or discover interesting patterns, consi
 This case study demonstrates the [improvement flywheel](../../../../docs/workshops/chapter0.md#the-improvement-flywheel-from-static-to-dynamic-systems) from Chapter 0 in practice. We started with synthetic evaluation data, identified the alignment problem through metrics, tested hypotheses systematically, and achieved a 358% improvement through iterative refinement. This is exactly how the product mindset transforms static RAG implementations into continuously improving systems.
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

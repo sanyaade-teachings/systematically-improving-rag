@@ -1,3 +1,4 @@
+ebook/
 .cache
 .DS_Store
 .venv
@@ -58,3 +59,7 @@ coverage.xml
 chroma_db/
 logs/
 nohup.out
+
+# Workshop files
+docs/workshops/*.pdf
+docs/workshops/*.txt

@@ -262,6 +262,7 @@ Remember that the goal isn't perfect retrieval but helping users find the inform
 For specific workflows with well-defined steps, DAGs (Directed Acyclic Graphs) often provide more reliable and predictable results than fully agentic approaches:
 
 1. **Use DAGs when**:
+
    - The workflow has clear, sequential steps
    - You know the process is correct and just need to choose the right workflow
    - You're implementing established protocols (like therapy approaches or compliance processes)
@@ -312,11 +313,13 @@ The key insight is to avoid an all-or-nothing approach to response generation. B
 MCP (Model Context Protocol) is becoming increasingly important as it allows different AI systems to connect with each other:
 
 1. **Key benefits**:
+
    - Standardizes integrations between AI systems
    - Reduces boilerplate code when connecting to different services
    - Allows models to access data and functionality they wouldn't normally have permission to use
 
 1. **Practical examples**:
+
    - Image generation servers in Cursor for creating assets while building applications
    - Servers that connect to network logs for debugging web applications
    - Connectors to production databases that help models understand schemas and write SQL
@@ -362,8 +365,7 @@ The protocol is still evolving but shows promise for creating more powerful AI s
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

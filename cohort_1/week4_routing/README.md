@@ -7,8 +7,7 @@ This directory shows how to test whether we are retrieving the correct tools. It
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

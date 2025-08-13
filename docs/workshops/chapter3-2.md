@@ -6,7 +6,6 @@ author: Jason Liu
 
 # Overcoming Latency: Streaming and Interstitials
 
-
 ## Introduction: Managing Latency in RAG Systems
 
 RAG applications face a fundamental challenge: the processes involved—retrieval, generation, validation, citation lookup—take time. Even accurate answers lose value if users get frustrated waiting for them.
@@ -545,8 +544,7 @@ Remember: If you only implement one improvement from this chapter, make it strea
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

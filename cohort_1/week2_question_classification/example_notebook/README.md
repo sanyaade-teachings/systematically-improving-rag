@@ -9,8 +9,7 @@ Because you'll want data when first exploring this code, the notebook uses synth
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

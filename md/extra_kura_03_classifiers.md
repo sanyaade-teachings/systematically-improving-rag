@@ -22,11 +22,13 @@
 In this final notebook, you'll discover how to:
 
 1. **Create Production-Ready Classifiers**
+
    - Build efficient classifiers using the `instructor-classify` framework
    - Generate weak labels automatically for rapid dataset creation
    - Design systematic workflows for human label verification
 
 2. **Achieve High Classification Accuracy**
+
    - Start with baseline performance and iterate systematically
    - Apply advanced prompting techniques (system prompts, few-shot examples)
    - Measure and visualize improvements using confusion matrices
@@ -53,11 +55,13 @@ By the end of this notebook, you'll have moved from "we think users struggle wit
 In this notebook, you'll discover how to:
 
 1. **Generate Weak Labels and Create a Golden Dataset**
+
    - Create an initial classifier using the instructor-classify framework
    - Generate preliminary labels for your conversation dataset
    - Use app.py to review and correct weak labels for a high-quality labeled dataset
 
 2. **Iteratively Improve Classification Accuracy**
+
    - Start with a simple baseline classifier
    - Enhance performance with few-shot examples and system prompts
    - Measure improvements using confusion matrices and accuracy metrics
@@ -1516,8 +1520,7 @@ The key insight from this entire series is that improving RAG systems isn't abou
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

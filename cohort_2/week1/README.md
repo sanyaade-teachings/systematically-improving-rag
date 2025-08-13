@@ -83,8 +83,7 @@ This approach ensures you invest in retrieval techniques that provide measurable
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

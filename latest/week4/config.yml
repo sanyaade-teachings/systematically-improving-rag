@@ -1,13 +1,12 @@
-
 length:
   - short message that's got 1-2 spelling mistakes
   - medium message that's straight to the point
   - message with some useless context
 
 persona:
-  - user that's not tech savvy  
+  - user that's not tech savvy
   - new user to klarna
-  - frequent user of klarna 
+  - frequent user of klarna
   - someone that's not tech savvy and wants to use klarna for the first time
 
 customer_intents:

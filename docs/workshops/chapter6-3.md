@@ -177,11 +177,13 @@ This shows that SearchBlueprint is frequently mistaken for SearchText, indicatin
 Once you've identified specific weaknesses in your router, you can implement targeted improvements:
 
 1. **For low-recall tools**:
+
    - Add more few-shot examples for these tools
    - Improve tool descriptions to more clearly differentiate them
    - Consider whether these tools are truly distinct or should be merged
 
 1. **For commonly confused tools**:
+
    - Analyze failure cases to understand what's causing the confusion
    - Create "contrast examples" that explicitly show why similar queries go to different tools
    - Refine tool interfaces to have clearer boundaries
@@ -481,6 +483,7 @@ P(\\text{success}) = P(\\text{find right document} \\mid \\text{right tool}) \\t
 $$
 
 This means:
+
 1. Each retriever must work well when selected
 2. The router must select the right retriever
 
@@ -524,6 +527,7 @@ Same 40% success rate, but completely different problems requiring different sol
 ### Independent Measurement
 
 Measure separately:
+
 - **Per-tool recall**: Retriever success rate when used
 - **Tool selection accuracy**: Router success rate
 

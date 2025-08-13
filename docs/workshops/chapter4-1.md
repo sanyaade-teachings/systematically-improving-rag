@@ -13,7 +13,6 @@ tags:
 
 # Topic Modeling and Analysis: Finding Patterns in User Feedback
 
-
 ## The Problem: Too Much Feedback, Not Enough Insight
 
 So you deployed your RAG system and added feedback collection. Great. Now you've got thousands of queries, ratings, and signals. Your manager asks "What should we improve next?" and you realize you have no idea.
@@ -27,6 +26,7 @@ Here's the thing: not all improvements matter equally. Some query types affect 8
 Think of it like product management - you segment users and focus on what matters most. Same with RAG queries. A small fix for a common query type beats a perfect solution for something nobody asks.
 
 I'll show you how to:
+
 - Segment queries into meaningful groups
 - Find performance patterns that actually matter
 - Build a roadmap based on data, not guesswork

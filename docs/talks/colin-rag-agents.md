@@ -186,8 +186,7 @@ For the SWE-Bench coding evaluation, embedding models didn't significantly impro
 ## This doesn't mean embedding models aren't valuable—they become essential for larger codebases, less structured content, or more complex retrieval tasks.
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

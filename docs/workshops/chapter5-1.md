@@ -13,7 +13,6 @@ tags:
 
 # Understanding Specialized Retrieval: Beyond Basic RAG
 
-
 ## Introduction
 
 We've covered the basics: the RAG playbook, synthetic data generation, fine-tuning, user feedback collection, and segmentation. Now let's talk about something that actually makes a big difference in production systems—building specialized search indices for different types of content.
@@ -56,8 +55,9 @@ graph TD
 ```
 
 Specialized indices also make your life easier organizationally:
+
 - Teams can work on specific problems without breaking everything else
-- You can add new capabilities without rebuilding the whole system  
+- You can add new capabilities without rebuilding the whole system
 - Different teams can optimize their piece without coordination overhead
 
 !!! quote "Industry Perspective"
@@ -144,7 +144,6 @@ By extracting these structured elements from quarterly reports, organizations ca
 ### Strategy 2: Building Synthetic Text Chunks
 
 Second approach: take your data (structured or not) and generate text chunks specifically designed to match how people search. These synthetic chunks act as better search targets that point back to your original content.
-
 
 !!! tip "Synthetic Text Applications"
 \- For image collections: Generate detailed descriptions capturing searchable aspects
@@ -244,8 +243,7 @@ In [Chapter 6](chapter6-1.md), we'll explore how to bring these specialized comp
 ---
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-

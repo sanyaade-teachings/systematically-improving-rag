@@ -259,8 +259,7 @@ Even systems like Deep Research might evolve to pull from sources you tend to ag
 ## _Note: I'll continue to add resources and notes from future office hours sessions_
 
 --8<--
-  "snippets/enrollment-button.md"
+"snippets/enrollment-button.md"
 --8<--
 
 ---
-
