@@ -99,6 +99,7 @@ nav:
           - "Why Your AI Is Failing in Production (Ben & Sidhant)": "talks/online-evals-production-monitoring-ben-sidhant.md"
           - "The RAG Mistakes That Are Killing Your AI (Skylar Payne)": "talks/rag-antipatterns-skylar-payne.md"
           - "How Zapier 4x'd Their AI Feedback Collection (Vitor)": "talks/zapier-vitor-evals.md"
+          - "Domain Experts: The Lever for Vertical AI (Chris Lovejoy, Anterior)": "talks/chris-lovejoy-domain-expert-vertical-ai.md"
       - "Coding Agents":
           - "Why Cline Ditched RAG for Direct Code Reading (Nik Pash)": "talks/rag-is-dead-cline-nik.md"
           - "Grep Beat Embeddings on SWE-Bench (Colin Flaherty, Augment)": "talks/colin-rag-agents.md"
@@ -118,6 +119,7 @@ nav:
 # --- Recommended Plugins ---
 plugins:
   - search
+  - social
 
 # --- Markdown Extensions ---
 markdown_extensions:
