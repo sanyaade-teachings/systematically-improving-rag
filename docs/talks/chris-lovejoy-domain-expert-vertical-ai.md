@@ -262,3 +262,23 @@ As you scale and can no longer review all outputs, implement a strategic samplin
 - Stratified sampling across different characteristics
 
 You can also implement an LLM‑as‑judge system that evaluates outputs in real‑time, providing confidence scores that help prioritize which cases need human review and potentially taking automated actions for low‑confidence outputs.
+
+---
+
+## Connect with Chris Lovejoy
+
+- **[Book time here](https://forms.fillout.com/t/uYXsRp2K8Pus)** - Schedule a consultation with Chris
+- **[Sign up to mailing list here](https://chrislovejoy.me/email)** - Get updates on vertical AI insights
+
+## Additional Resources
+
+**Chris Lovejoy's Talks & Content:**
+
+- **[How to build an LLM-Native Expert System](https://www.youtube.com/watch?v=MRM7oA3JsFs)** - Dr Chris Lovejoy, AI Engineer World's Fair (SF, June 2025)
+- **[Why custom AI review dashboards transform AI products - and how to build one](https://chrislovejoy.me/review-dashboard)** - Dr Chris Lovejoy
+- **[Mission-Critical Evals at Scale](https://www.youtube.com/watch?v=cZ5ZJy19KMo)** - Dr Chris Lovejoy, AI Engineer Summit (NY, Feb 2025)
+- **[Why you need a principal domain expert for building vertical AI - and how to find them](https://chrislovejoy.me/domain-expert-vertical-ai)** - Dr Chris Lovejoy
+
+**Industry Resources:**
+
+- **[2025 Top 10 Risks and Mitigations for LLM Applications & Generative AI](https://genai.owasp.org/llm-top-10/)** - OWASP
