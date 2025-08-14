@@ -62,15 +62,16 @@ dependencies = [
     "mkdocs>=1.6.1",
     "mkdocs-material>=9.6.14",
     "sqlmodel>=0.0.24",
-    "mkdocs-awesome-pages-plugin>=2.9.1",         # For easy page ordering and structure
-    "mkdocs-git-revision-date-localized-plugin>=1.2.0",  # Show last updated date on each page
-    "mkdocs-minify-plugin>=0.7.1",               # Minify HTML output
-    "mkdocs-redirects>=1.2.0",                   # Avoid broken links
-    "mkdocs-section-index>=0.3.5",               # Section index pages
-    "mkdocs-glightbox>=0.3.0",                   # Image lightboxes
-    "mkdocs-mermaid2-plugin>=1.1.1",             # Enhanced Mermaid support
+    "mkdocs-awesome-pages-plugin>=2.9.1", # For easy page ordering and structure
+    "mkdocs-git-revision-date-localized-plugin>=1.2.0", # Show last updated date on each page
+    "mkdocs-minify-plugin>=0.7.1", # Minify HTML output
+    "mkdocs-redirects>=1.2.0", # Avoid broken links
+    "mkdocs-section-index>=0.3.5", # Section index pages
+    "mkdocs-glightbox>=0.3.0", # Image lightboxes
+    "mkdocs-mermaid2-plugin>=1.1.1", # Enhanced Mermaid support
     # "mkdocs-sitemap-plugin>=0.8.0",            # Uncomment for SEO sitemap
     # "mike>=2.0.0",                             # Uncomment for versioned docs
+    "cairosvg>=2.8.2",
 ]
 
 [build-system]

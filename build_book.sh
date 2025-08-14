@@ -356,6 +356,12 @@ main() {
   if [[ "${EBOOK_SKIP_PDF:-}" != "1" ]]; then
     echo "Generating master LaTeX that includes per-file .tex…"
     local master_tex="$EBOOK_DIR/systematically_improving_rag_book.tex"
+    
+    # Check if master_tex already exists and has been manually modified
+    if [[ -f "$master_tex" ]]; then
+      echo "Master LaTeX file already exists. Preserving manual modifications."
+      echo "To regenerate from template, delete: $master_tex"
+    else
     {
       cat <<'LATEX'
 \documentclass[11pt,twoside,openright]{book}
@@ -647,6 +653,7 @@ LATEX
 \end{document}
 LATEX
     } > "$master_tex"
+    fi  # End of master_tex generation check
 
     echo "Building PDFs and LaTeX into ${EBOOK_DIR}..."
     # Also produce concatenated pandoc builds (legacy)

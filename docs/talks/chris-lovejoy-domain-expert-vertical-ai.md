@@ -10,7 +10,7 @@ tags: [vertical AI, domain experts, evaluation, prompting, trust, security]
 
 I hosted a session featuring Chris Lovejoy, Head of Clinical AI at Anterior, who shared valuable insights from his experience building AI agents for specialized industries. Chris brings a unique perspective as a former medical doctor who transitioned to AI, working across healthcare, education, recruiting, and retail sectors.
 
-[Lessons from building verticalized AI agents](https://maven.com/p/504453/lessons-from-building-verticalized-ai-agents?utm_medium=ll_share_link&utm_source=instructor){.md-button .md-button--primary}
+[▶️ Lessons from building verticalized AI agents](https://maven.com/p/504453/lessons-from-building-verticalized-ai-agents?utm_medium=ll_share_link&utm_source=instructor){.md-button .md-button--primary}
 
 ## Why is it so hard to successfully apply LLMs to specialized industries?
 
