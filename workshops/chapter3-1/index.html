@@ -70,32 +70,6 @@
 
     
     
-      
-        <meta  property="og:type"  content="website" >
-      
-        <meta  property="og:title"  content="Chapter 3.1: Feedback Collection - Systematically Improving RAG Applications" >
-      
-        <meta  property="og:description"  content="Building feedback flywheels into your RAG applications" >
-      
-        <meta  property="og:image"  content="https://567-labs.github.io/systematically-improving-rag/assets/images/social/workshops/chapter3-1.png" >
-      
-        <meta  property="og:image:type"  content="image/png" >
-      
-        <meta  property="og:image:width"  content="1200" >
-      
-        <meta  property="og:image:height"  content="630" >
-      
-        <meta  property="og:url"  content="https://567-labs.github.io/systematically-improving-rag/workshops/chapter3-1/" >
-      
-        <meta  name="twitter:card"  content="summary_large_image" >
-      
-        <meta  name="twitter:title"  content="Chapter 3.1: Feedback Collection - Systematically Improving RAG Applications" >
-      
-        <meta  name="twitter:description"  content="Building feedback flywheels into your RAG applications" >
-      
-        <meta  name="twitter:image"  content="https://567-labs.github.io/systematically-improving-rag/assets/images/social/workshops/chapter3-1.png" >
-      
-    
     
   </head>
   
@@ -132,17 +106,10 @@
               </button>
             
             
-<p>
-  This material is supported by
-  <a
-    href="https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK"
-    target="_blank"
-    ><strong>Applied LLMs on Maven</strong></a
-  >. Readers get 20% off. Not ready? Check out the
-  <a href="https://fivesixseven.ck.page/rag-crash-course" target="_blank"
-    ><strong>free email course</strong></a
-  >.
-</p>
+  <p>
+    This material is supported by <a href="https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK" target="_blank"><strong>Applied LLMs on Maven</strong></a>.  Readers get 20% off.
+    Not ready? Check out the <a href="https://fivesixseven.ck.page/rag-crash-course" target="_blank"><strong>free email course</strong></a>.
+  </p>
 
           </div>
           
@@ -2652,8 +2619,6 @@
       
         
       
-        
-      
     
     
     
@@ -2751,29 +2716,6 @@
   
   <span class="md-ellipsis">
     How Zapier 4x'd Their AI Feedback Collection (Vitor)
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../talks/chris-lovejoy-domain-expert-vertical-ai/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Domain Experts: The Lever for Vertical AI (Chris Lovejoy, Anterior)
     
   </span>
   
@@ -3458,6 +3400,18 @@ This pattern makes feedback feel like a natural continuation of the interaction 
 
 This pattern has helped teams achieve 30-40% feedback rates in enterprise settings.
 </code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Slack Webhook Integration Code</p>
+</div>
+<p><img alt="Example of Slack feedback integration showing code that posts negative feedback to a Slack channel" src="../../assets/images/slack-feedback-code.png" /></p>
+<div class="highlight"><pre><span></span><code>*This code integrates feedback collection with Slack, automatically posting negative feedback to a shared channel for immediate visibility and follow-up.*
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Feedback UI Implementation</p>
+</div>
+<p><img alt="Example of feedback UI implementation showing a Python function that generates HTML with feedback buttons" src="../../assets/images/feedback-ui-code.png" /></p>
+<div class="highlight"><pre><span></span><code>*This code renders a response with prominent feedback options, automatically showing a more detailed form if the user indicates the response wasn&#39;t fully helpful.*
+</code></pre></div>
 <h2 id="segmented-feedback-make-it-actionable">Segmented Feedback: Make It Actionable</h2>
 <p>Generic feedback like thumbs up/down provides minimal insight for improvement. To make feedback truly actionable, segment it into specific aspects of your RAG pipeline.</p>
 <div class="admonition warning">
@@ -3495,6 +3449,12 @@ This pattern has helped teams achieve 30-40% feedback rates in enterprise settin
 <li><strong>Scrolling behavior:</strong> Whether users read the entire response or just skim</li>
 </ul>
 <p>By tracking these behaviors, you can identify patterns that indicate success or failure even when users don't provide explicit feedback.</p>
+<div class="admonition example">
+<p class="admonition-title">Implicit Feedback Collection</p>
+</div>
+<p><img alt="Example of JavaScript code for tracking implicit feedback signals" src="../../assets/images/implicit-feedback-code.png" /></p>
+<div class="highlight"><pre><span></span><code>*This code tracks key implicit feedback signals including query refinements, citation clicks, and engagement time, providing valuable data even when users don&#39;t explicitly rate responses.*
+</code></pre></div>
 <h3 id="mining-hard-negatives-from-user-behavior">Mining Hard Negatives from User Behavior</h3>
 <p>One particularly valuable form of implicit feedback is the identification of "hard negatives"—documents that appear relevant based on keyword or semantic matching but are actually irrelevant or misleading for a particular query.</p>
 <p>When a user submits a query, views the response and citations, then immediately refines their query or provides negative feedback, there's a good chance that the retrieved documents were not helpful. These interactions provide strong signals about weaknesses in your retrieval system.</p>
@@ -3515,7 +3475,14 @@ This pattern has helped teams achieve 30-40% feedback rates in enterprise settin
 <p><strong>Regeneration After Removal</strong>: Allow users to remove citation sources and then regenerate the answer. Documents removed before regeneration become strong hard negative candidates for that query.</p>
 </li>
 </ol>
-<p>Remember: Hard negatives are the most valuable training examples for improving retrieval quality through embedding model fine-tuning. While standard negatives (completely unrelated documents) are easy to find, hard negatives (seemingly relevant but actually unhelpful documents) are rare and therefore extremely valuable for training.</p>
+<div class="admonition example">
+<p class="admonition-title">Interactive Citations UI</p>
+</div>
+<p><img alt="Example of interactive citations UI with buttons to mark sources as relevant or irrelevant" src="../../assets/images/interactive-citations-ui.png" /></p>
+<div class="highlight"><pre><span></span><code>*This UI allows users to mark specific citations as relevant or irrelevant and regenerate answers, creating valuable training data for improving retrieval quality.*
+
+Remember: Hard negatives are the most valuable training examples for improving retrieval quality through embedding model fine-tuning. While standard negatives (completely unrelated documents) are easy to find, hard negatives (seemingly relevant but actually unhelpful documents) are rare and therefore extremely valuable for training.
+</code></pre></div>
 <p>Here's a simple algorithm for mining hard negatives from user interactions:</p>
 <p>By collecting these potential hard negatives over time, you can build a dataset for fine-tuning embedding models or training re-rankers to avoid these problematic documents in future queries.</p>
 <h2 id="citations-for-building-trust-and-collecting-feedback">Citations for Building Trust and Collecting Feedback</h2>
@@ -3534,6 +3501,12 @@ This pattern has helped teams achieve 30-40% feedback rates in enterprise settin
 <li><strong>Inline highlights</strong>: Highlighting portions of text with the source documents they came from</li>
 <li><strong>Visual PDF overlays</strong>: For document-based applications, highlighting the exact location in a PDF</li>
 </ol>
+<div class="admonition example">
+<p class="admonition-title">Markdown-based Citation Implementation</p>
+</div>
+<p><img alt="Example of JavaScript code for implementing markdown-based citations with feedback options" src="../../assets/images/citations-implementation.png" /></p>
+<div class="highlight"><pre><span></span><code>*This code formats responses with clickable citations and builds a reference list that includes feedback options for each source, helping collect document-level relevance signals.*
+</code></pre></div>
 <h3 id="advanced-visualization-with-bounding-boxes">Advanced Visualization with Bounding Boxes</h3>
 <p>For document-centric applications, consider implementing bounding box citations that highlight the exact location in the source documents:</p>
 <ol>

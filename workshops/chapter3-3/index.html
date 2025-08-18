@@ -68,32 +68,6 @@
 
     
     
-      
-        <meta  property="og:type"  content="website" >
-      
-        <meta  property="og:title"  content="Quality of Life Improvements - Systematically Improving RAG Applications" >
-      
-        <meta  property="og:description"  content="Advanced techniques that enhance trust, reasoning quality, and error prevention in RAG systems using citations, chain of thought, and validation" >
-      
-        <meta  property="og:image"  content="https://567-labs.github.io/systematically-improving-rag/assets/images/social/workshops/chapter3-3.png" >
-      
-        <meta  property="og:image:type"  content="image/png" >
-      
-        <meta  property="og:image:width"  content="1200" >
-      
-        <meta  property="og:image:height"  content="630" >
-      
-        <meta  property="og:url"  content="https://567-labs.github.io/systematically-improving-rag/workshops/chapter3-3/" >
-      
-        <meta  name="twitter:card"  content="summary_large_image" >
-      
-        <meta  name="twitter:title"  content="Quality of Life Improvements - Systematically Improving RAG Applications" >
-      
-        <meta  name="twitter:description"  content="Advanced techniques that enhance trust, reasoning quality, and error prevention in RAG systems using citations, chain of thought, and validation" >
-      
-        <meta  name="twitter:image"  content="https://567-labs.github.io/systematically-improving-rag/assets/images/social/workshops/chapter3-3.png" >
-      
-    
     
   </head>
   
@@ -130,17 +104,10 @@
               </button>
             
             
-<p>
-  This material is supported by
-  <a
-    href="https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK"
-    target="_blank"
-    ><strong>Applied LLMs on Maven</strong></a
-  >. Readers get 20% off. Not ready? Check out the
-  <a href="https://fivesixseven.ck.page/rag-crash-course" target="_blank"
-    ><strong>free email course</strong></a
-  >.
-</p>
+  <p>
+    This material is supported by <a href="https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK" target="_blank"><strong>Applied LLMs on Maven</strong></a>.  Readers get 20% off.
+    Not ready? Check out the <a href="https://fivesixseven.ck.page/rag-crash-course" target="_blank"><strong>free email course</strong></a>.
+  </p>
 
           </div>
           
@@ -2692,8 +2659,6 @@
       
         
       
-        
-      
     
     
     
@@ -2791,29 +2756,6 @@
   
   <span class="md-ellipsis">
     How Zapier 4x'd Their AI Feedback Collection (Vitor)
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../talks/chris-lovejoy-domain-expert-vertical-ai/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Domain Experts: The Lever for Vertical AI (Chris Lovejoy, Anterior)
     
   </span>
   
@@ -3504,6 +3446,12 @@
     <span class="k">return</span> <span class="n">prompt</span>
 </code></pre></div>
 <p>On the frontend, you can turn these citations into interactive elements:</p>
+<div class="admonition example">
+<p class="admonition-title">Interactive Citations Rendering</p>
+</div>
+<p><img alt="Example of JavaScript code for rendering interactive citations in responses" src="../../assets/images/interactive-citations-rendering.png" /></p>
+<div class="highlight"><pre><span></span><code>*This code turns a response with citation markers into an interactive UI where citations are clickable elements, and sources can be rated for relevance.*
+</code></pre></div>
 <p>This creates an interactive experience where citations are visually distinct, clickable elements. When users engage with these elements, you can collect valuable feedback while enhancing their understanding of the response.</p>
 <h3 id="advanced-citation-implementation">Advanced Citation Implementation</h3>
 <p>Based on extensive office hours discussions, here are production-tested approaches for implementing reliable citations that scale.</p>
@@ -3602,6 +3550,12 @@
     <span class="k">return</span> <span class="n">prompt</span>
 </code></pre></div>
 <p>Taking this a step further, you can stream the thinking process as a separate UI component or interstitial. This serves two purposes: it makes the waiting time more engaging by showing users that complex reasoning is happening, and it allows users to intervene if they notice the reasoning going astray.</p>
+<div class="admonition example">
+<p class="admonition-title">Chain of Thought Streaming Implementation</p>
+</div>
+<p><img alt="Example of JavaScript code for processing and displaying streamed chain of thought" src="../../assets/images/chain-of-thought-streaming.png" /></p>
+<div class="highlight"><pre><span></span><code>*This code processes streamed tokens containing XML-tagged thinking and answer sections, rendering them in separate UI components. This makes the reasoning process transparent and engaging for users.*
+</code></pre></div>
 <p>A financial advisory firm implemented this approach for their investment recommendation system. As the model reasoned through market conditions, client preferences, and portfolio considerations, this thinking was streamed to the advisor in a separate panel. If the advisor noticed a misunderstanding, they could pause generation and refine their query before the final recommendation.</p>
 <p>This interactive approach improved recommendation quality and created a feedback loop where advisors could correct misunderstandings early. Each correction became training data.</p>
 <p>On the frontend, you can implement this with an expandable "See reasoning" section that users can toggle to view the model's step-by-step analysis. This transparency builds trust by demystifying the AI process and gives users insight into how conclusions were reached.</p>

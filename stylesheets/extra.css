@@ -1,9 +1,9 @@
 /* Style the announcement bar links */
 .md-banner a {
-  color: var(--md-primary-bg-color);
-  text-decoration: underline;
+    color: var(--md-primary-bg-color);
+    text-decoration: underline;
 }
 
 .md-banner a:hover {
-  opacity: 0.8;
+    opacity: 0.8;
 }

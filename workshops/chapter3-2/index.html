@@ -70,32 +70,6 @@
 
     
     
-      
-        <meta  property="og:type"  content="website" >
-      
-        <meta  property="og:title"  content="Chapter 3.2: Overcoming Latency - Systematically Improving RAG Applications" >
-      
-        <meta  property="og:description"  content="Techniques for enhancing both actual and perceived performance in RAG applications" >
-      
-        <meta  property="og:image"  content="https://567-labs.github.io/systematically-improving-rag/assets/images/social/workshops/chapter3-2.png" >
-      
-        <meta  property="og:image:type"  content="image/png" >
-      
-        <meta  property="og:image:width"  content="1200" >
-      
-        <meta  property="og:image:height"  content="630" >
-      
-        <meta  property="og:url"  content="https://567-labs.github.io/systematically-improving-rag/workshops/chapter3-2/" >
-      
-        <meta  name="twitter:card"  content="summary_large_image" >
-      
-        <meta  name="twitter:title"  content="Chapter 3.2: Overcoming Latency - Systematically Improving RAG Applications" >
-      
-        <meta  name="twitter:description"  content="Techniques for enhancing both actual and perceived performance in RAG applications" >
-      
-        <meta  name="twitter:image"  content="https://567-labs.github.io/systematically-improving-rag/assets/images/social/workshops/chapter3-2.png" >
-      
-    
     
   </head>
   
@@ -132,17 +106,10 @@
               </button>
             
             
-<p>
-  This material is supported by
-  <a
-    href="https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK"
-    target="_blank"
-    ><strong>Applied LLMs on Maven</strong></a
-  >. Readers get 20% off. Not ready? Check out the
-  <a href="https://fivesixseven.ck.page/rag-crash-course" target="_blank"
-    ><strong>free email course</strong></a
-  >.
-</p>
+  <p>
+    This material is supported by <a href="https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK" target="_blank"><strong>Applied LLMs on Maven</strong></a>.  Readers get 20% off.
+    Not ready? Check out the <a href="https://fivesixseven.ck.page/rag-crash-course" target="_blank"><strong>free email course</strong></a>.
+  </p>
 
           </div>
           
@@ -2649,8 +2616,6 @@
       
         
       
-        
-      
     
     
     
@@ -2748,29 +2713,6 @@
   
   <span class="md-ellipsis">
     How Zapier 4x'd Their AI Feedback Collection (Vitor)
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../talks/chris-lovejoy-domain-expert-vertical-ai/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Domain Experts: The Lever for Vertical AI (Chris Lovejoy, Anterior)
     
   </span>
   
@@ -3490,6 +3432,12 @@
     <span class="p">)</span>
 </code></pre></div>
 <p>On the frontend, you'll need to handle Server-Sent Events (SSE) or WebSockets to receive and display the streamed content:</p>
+<div class="admonition example">
+<p class="admonition-title">Frontend Streaming Implementation</p>
+</div>
+<p><img alt="Example of JavaScript frontend code that handles streaming responses" src="../../assets/images/frontend-streaming-code.png" /></p>
+<div class="highlight"><pre><span></span><code>*This code shows how to handle streaming responses on the frontend, creating a reader for the response stream, decoding chunks as they arrive, and updating the UI in real-time to display incremental results.*
+</code></pre></div>
 <h3 id="showing-function-call-arguments">Showing Function Call Arguments</h3>
 <p>One unique advantage of streaming is the ability to show users not just the final response but also the thinking and processing that led to it. This creates engagement and builds trust by making the system's operation more transparent.</p>
 <p>For example, you can stream the function calls and arguments that your RAG system is using:</p>
@@ -3552,6 +3500,12 @@
     <span class="k">return</span> <span class="n">StreamingResponse</span><span class="p">(</span><span class="n">generate_stream</span><span class="p">(),</span> <span class="n">media_type</span><span class="o">=</span><span class="s2">&quot;application/json&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>On the frontend, you'd handle this structured stream by updating different UI components based on the message type:</p>
+<div class="admonition example">
+<p class="admonition-title">Structured Data Streaming Handler</p>
+</div>
+<p><img alt="Example of JavaScript code for handling structured data streaming" src="../../assets/images/structured-streaming-handler.png" /></p>
+<div class="highlight"><pre><span></span><code>*This code processes a structured data stream, separating different components (answer chunks, citations, follow-up questions) and rendering each in their appropriate UI sections. This creates a dynamic, engaging experience where different parts of the response appear progressively.*
+</code></pre></div>
 <p>This approach creates a dynamic, engaging experience where different parts of the response appear progressively, keeping users engaged throughout the generation process.</p>
 <h2 id="meaningful-interstitials-making-waiting-engaging">Meaningful Interstitials: Making Waiting Engaging</h2>
 <p>For situations where some processing must happen before any content can be displayed, well-designed interstitials can turn waiting time from a frustrating experience into an engaging one.</p>
@@ -3652,6 +3606,12 @@
     <span class="k">return</span> <span class="n">message_list</span>
 </code></pre></div>
 <p>On the frontend, you'd display these interstitials in sequence during the waiting period:</p>
+<div class="admonition example">
+<p class="admonition-title">Meaningful Interstitials Implementation</p>
+</div>
+<p><img alt="Example of JavaScript code for displaying meaningful interstitials in sequence" src="../../assets/images/interstitials-code.png" /></p>
+<div class="highlight"><pre><span></span><code>*This code shows how to fetch and display domain-specific interstitial messages that rotate every few seconds. The animation and context-specific messages engage users during waiting time, making the system feel more responsive.*
+</code></pre></div>
 <h2 id="optimizing-actual-performance">Optimizing Actual Performance</h2>
 <p>While perceived performance is critical, we shouldn't neglect actual performance optimizations. Here are several strategies for reducing real latency in RAG applications:</p>
 <h3 id="1-optimize-your-retrieval-pipeline">1. Optimize Your Retrieval Pipeline</h3>
@@ -3709,6 +3669,12 @@ Generating response...
 <p><strong>Feedback Collection</strong>: Pre-fill emoji reactions (👍 👎 ⭐) to prompt users for feedback on the response quality.</p>
 </li>
 </ol>
+<div class="admonition example">
+<p class="admonition-title">Slack Bot Pseudo-Streaming Implementation</p>
+</div>
+<p><img alt="Example of JavaScript code for implementing pseudo-streaming in a Slack bot" src="../../assets/images/slack-bot-code.png" /></p>
+<div class="highlight"><pre><span></span><code>*This code shows how to implement pseudo-streaming in a Slack bot environment, using message updates, emoji reactions, and staged processing to create the illusion of progress and maintain user engagement.*
+</code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Slack Feedback Collection</p>
 </div>
