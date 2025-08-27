@@ -19,67 +19,34 @@ If you want to see all the questions and answers, you can find them in the [FAQ]
 
 ## Chapters & Sessions
 
-<div class="grid cards" markdown>
+### Chapter 1: Starting the Flywheel
 
--   :rocket: **Chapter 1: Starting the Flywheel**
+- Cohort 2: [Week 1 Summary](cohort2/week1-summary.md)
+- Cohort 3: [Session 1](cohort3/week-1-1.md), [Session 2](cohort3/week-1-2.md)
 
-    ---
+### Chapter 2: From Evaluation to Enhancement
 
-    Learn to establish baselines and begin the improvement cycle
+- Cohort 2: [Week 2 Summary](cohort2/week2-summary.md)
+- Cohort 3: [Session 1](cohort3/week-2-1.md), [Session 2](cohort3/week-2-2.md)
 
-    **Cohort 2:** [Week 1 Summary](cohort2/week1-summary.md)
-    
-    **Cohort 3:** [Session 1](cohort3/week-1-1.md) • [Session 2](cohort3/week-1-2.md)
+### Chapter 3: User Experience
 
--   :chart_with_upwards_trend: **Chapter 2: From Evaluation to Enhancement**
+- Cohort 2: [Week 3 Summary](cohort2/week3-summary.md)
+- Cohort 3: [Session 1](cohort3/week-3-1.md)
 
-    ---
+### Chapter 4: Topic Modeling
 
-    Master evaluation frameworks and improvement methodologies
+- Cohort 2: [Week 4 Summary](cohort2/week4-summary.md)
+- Cohort 3: [Session 1](cohort3/week-4-1.md), [Session 2](cohort3/week-4-2.md)
 
-    **Cohort 2:** [Week 2 Summary](cohort2/week2-summary.md)
-    
-    **Cohort 3:** [Session 1](cohort3/week-2-1.md) • [Session 2](cohort3/week-2-2.md)
+### Chapter 5: Multimodal Capabilities
 
--   :bust_in_silhouette: **Chapter 3: User Experience**
+- Cohort 2: [Week 5 Summary](cohort2/week5-summary.md)
+- Cohort 3: [Session 1](cohort3/week-5-1.md), [Session 2](cohort3/week-5-2.md)
 
-    ---
+### Chapter 6: Architecture
 
-    Design RAG systems with user-centered approaches
-
-    **Cohort 2:** [Week 3 Summary](cohort2/week3-summary.md)
-    
-    **Cohort 3:** [Session 1](cohort3/week-3-1.md)
-
--   :bookmark_tabs: **Chapter 4: Topic Modeling**
-
-    ---
-
-    Implement advanced topic modeling and clustering techniques
-
-    **Cohort 2:** [Week 4 Summary](cohort2/week4-summary.md)
-    
-    **Cohort 3:** [Session 1](cohort3/week-4-1.md) • [Session 2](cohort3/week-4-2.md)
-
--   :camera: **Chapter 5: Multimodal Capabilities**
-
-    ---
-
-    Extend RAG systems to handle images, audio, and video
-
-    **Cohort 2:** [Week 5 Summary](cohort2/week5-summary.md)
-    
-    **Cohort 3:** [Session 1](cohort3/week-5-1.md) • [Session 2](cohort3/week-5-2.md)
-
--   :building_construction: **Chapter 6: Architecture**
-
-    ---
-
-    Scale RAG systems with robust architecture patterns
-
-    **Cohort 2:** [Week 6 Summary](cohort2/week6-summary.md)
-
-</div>
+- Cohort 2: [Week 6 Summary](cohort2/week6-summary.md)
 
 ---
 
@@ -95,9 +62,6 @@ Office hours cover a wide range of topics including:
 - User experience considerations
 - Architecture decisions
 - Product development approaches
-
-!!! tip "Get the Most from Office Hours"
-Review the workshop materials before office hours sessions to come prepared with specific questions and challenges from your own RAG implementations.
 
 ---
 

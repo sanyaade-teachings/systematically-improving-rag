@@ -16,73 +16,58 @@ Most RAG implementations struggle in production because teams focus on model sel
 
 This guide presents frameworks developed through real-world experience with companies like HubSpot, Zapier, and others to help you build RAG systems that become more valuable over time.
 
-# Trusted by Professionals from Leading Organizations:
+👉 If you want to learn more about RAG systems, check out our RAG Playbook course. Here is a 20% discount code for readers. 👈
 
-These are the companies that took our masterclass.
+[RAG Playbook - 20% off for readers](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }
+
+## Trusted by Leading Organizations
+
+This methodology has been battle-tested by professionals at:
 
 <div class="grid two-columns" markdown="1">
 
-| Company                                         | Industry                    |
-| ----------------------------------------------- | --------------------------- |
-| [OpenAI](https://openai.com)                    | AI Research & Development   |
-| [Anthropic](https://anthropic.com)              | AI Research & Development   |
-| [Google](https://google.com)                    | Search Engine, Technology   |
-| [Microsoft](https://microsoft.com)              | Software, Cloud Computing   |
-| [TikTok](https://tiktok.com)                    | Social Media                |
-| [Databricks](https://databricks.com)            | Data Platform               |
-| [Amazon](https://amazon.com)                    | E-commerce, Cloud Computing |
-| [Airbnb](https://airbnb.com)                    | Travel                      |
-| [Zapier](https://zapier.com)                    | Automation                  |
-| [HubSpot](https://hubspot.com)                  | Marketing Software          |
-| [Shopify](https://shopify.com)                  | E-commerce Platform         |
-| [PwC](https://pwc.com)                          | Professional Services       |
-| [Booz Allen Hamilton](https://boozallen.com)    | Consulting                  |
-| [Bain & Company](https://bain.com)              | Consulting                  |
-| [Northrop Grumman](https://northropgrumman.com) | Aerospace & Defense         |
-| [Visa](https://visa.com)                        | Financial Services          |
-| [KPMG](https://kpmg.com)                        | Professional Services       |
+| Company                                         | Company
+| ----------------------------------------------- | ------------------------------- |
+| [OpenAI](https://openai.com)                    | [Anthropic](https://anthropic.com)
+| [Google](https://google.com)                    | [Microsoft](https://microsoft.com)
+| [TikTok](https://tiktok.com)                    | [Databricks](https://databricks.com)
+| [Amazon](https://amazon.com)                    | [Airbnb](https://airbnb.com)
+| [Zapier](https://zapier.com)                    | [HubSpot](https://hubspot.com) 
+| [Shopify](https://shopify.com)                  | [PwC](https://pwc.com)
+| [Booz Allen Hamilton](https://boozallen.com)    | [Bain & Company](https://bain.com)
+| [Northrop Grumman](https://northropgrumman.com) | [Visa](https://visa.com)
+| [KPMG](https://kpmg.com)                        | [KPMG](https://kpmg.com)
 
-| Company                                           | Industry                        |
+| Company                                           | Company
 | ------------------------------------------------- | ------------------------------- |
-| [Decagon](https://decagon.ai/)                    | Technology                      |
-| [Anysphere](https://anysphere.com)                | AI                              |
-| [GitLab](https://gitlab.com)                      | Software Development            |
-| [Intercom](https://intercom.com)                  | Customer Engagement             |
-| [Lincoln Financial](https://lincolnfinancial.com) | Financial Services              |
-| [DataStax](https://datastax.com)                  | Database Technology             |
-| [Timescale](https://timescale.com)                | Database Technology             |
-| [PostHog](https://posthog.com)                    | Product Analytics               |
-| [Gumroad](https://gumroad.com)                    | E-commerce Platform             |
-| [Miro](https://miro.com)                          | Collaboration                   |
-| [Workday](https://workday.com)                    | Enterprise Software             |
-| [Accenture](https://accenture.com)                | Consulting, Technology Services |
-| [Mozilla](https://mozilla.org)                    | Non-profit                      |
-| [Redhat](https://redhat.com)                      | Software Development            |
-| [Nvidia](https://nvidia.com)                      | AI                              |
+| [Decagon](https://decagon.ai/)                    | [Anysphere](https://anysphere.com)
+| [GitLab](https://gitlab.com)                      | [Intercom](https://intercom.com)
+| [Lincoln Financial](https://lincolnfinancial.com) | [DataStax](https://datastax.com)
+| [Timescale](https://timescale.com)                | [PostHog](https://posthog.com)
+| [Gumroad](https://gumroad.com)                    | [Miro](https://miro.com)
+| [Workday](https://workday.com)                    | [Accenture](https://accenture.com)
+| [Mozilla](https://mozilla.org)                    | [Redhat](https://redhat.com)
+| [Nvidia](https://nvidia.com)                      | 
 
 </div>
 
-## Who Uses This Approach
-
-This methodology has been used by engineers and data scientists at companies including Zapier, Adobe, Red Hat, and others to build production RAG systems with measurable improvements in user satisfaction and business outcomes.
 
 ## The Problem: Why Most RAG Systems Fail
 
 !!! quote "Real Patterns from the Field"
-After working with dozens of companies, the failure pattern is predictable:
+    After working with dozens of companies, the failure pattern is predictable:
 
     **Week 1-2:** "Our RAG demo is amazing!"
+
     **Week 3-4:** "Why are users getting irrelevant results?"
+
     **Week 5-6:** "Let's try a different model..."
+
     **Week 7-8:** "Maybe we need better prompts..."
+
     **Week 9+:** "Our users have stopped using it."
 
 Sound familiar? You're not alone. The issue isn't your technology—it's your approach.
-
-!!! info "Get Updates"
-Subscribe for updates on new content and frameworks:
-
-    [Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
 
 ## The Solution: The RAG Improvement Flywheel
 
@@ -177,7 +162,7 @@ Models change. Principles endure. Take away the core insights that will guide yo
 ## Learn from Industry Leaders: 20+ Expert Talks
 
 !!! info "Featured Lightning Lessons"
-Companies like Zapier, ChromaDB, LanceDB, Glean, and Sourcegraph share their battle-tested strategies
+    Companies like Zapier, ChromaDB, LanceDB, Glean, and Sourcegraph share their battle-tested strategies
 
 ### Featured Talks
 
@@ -198,7 +183,8 @@ _"Jason helped us set you on the right path... emphasis on looking at your data 
 ## For Product Leaders, Engineers, and Data Scientists
 
 !!! info "What You'll Learn"
-**For Product Leaders**
+
+    **For Product Leaders**
 
     - How to establish metrics that align with business outcomes
     - Frameworks for prioritizing AI product improvements
@@ -219,58 +205,13 @@ _"Jason helped us set you on the right path... emphasis on looking at your data 
     - Frameworks for measuring retrieval effectiveness
     - Approaches to continuous learning from user interactions
 
-## Quick Improvements
-
-Common improvements that can be implemented quickly:
-
-**1. Improve Feedback Collection**
-
-- Replace "How did we do?" with "Did we answer your question?"
-- More specific questions get better response rates
-
-**2. Better Data Formatting**
-
-- Format structured data as markdown tables instead of JSON/CSV
-- Use XML for complex tables
-- Improves lookup accuracy for structured information
-
-**3. Show Progress to Users**
-
-- Display "Searching... Analyzing... Generating..." with progress indicators
-- Stream responses as they're generated
-- Reduces perceived latency
-
-**4. Page-Level Chunking**
-
-- For documentation, chunk by page boundaries rather than arbitrary text length
-- Pages often contain semantically coherent units
-
-**Medium-Term Improvements (2-4 weeks)**
-
-- **Fine-tune embeddings**: Cost-effective way to improve domain-specific performance
-- **Add re-ranker**: Secondary ranking step that improves retrieval relevance
-- **Build specialized tools**: Domain-specific retrievers for documents, code, or structured data
-- **Implement contextual retrieval**: Better understanding of query context
-- **Create Slack feedback integration**: Collect feedback directly in enterprise workflows
-
-!!! info "Learn from the Experts"
-
-    Before implementing, learn from these practical talks:
-    - [**RAG Anti-patterns in the Wild**](talks/rag-antipatterns-skylar-payne.md)
-    - [**Document Ingestion Best Practices**](talks/reducto-docs-adit.md)
-
 ## About the Author
 
 Jason Liu is a machine learning engineer with experience at Facebook and Stitch Fix, and has consulted for companies like HubSpot and Zapier on RAG implementations. His background includes computer vision, recommendation systems, and retrieval applications across various domains.
 
-## Getting Started
 
-Begin your journey by reading the [Introduction](workshops/chapter0.md) or jump directly to [Chapter 1](workshops/chapter1.md) to start building your evaluation framework and data foundation.
+## Stay Updated
 
----
+👉 If you want to learn more about RAG systems, check out our RAG Playbook course. Here is a 20% discount code for readers. 👈
 
---8<--
-"snippets/enrollment-button.md"
---8<--
-
----
+[RAG Playbook - 20% off for readers](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }
