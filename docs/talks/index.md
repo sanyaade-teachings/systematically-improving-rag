@@ -7,6 +7,13 @@ description: Collection of talks, lightning lessons, and presentations from the 
 
 This section contains talks and presentations from the Systematically Improving RAG Applications series, featuring insights from industry experts and practitioners. Each talk provides specific learning outcomes, actionable techniques, and often surprising insights that challenge conventional RAG wisdom.
 
+---
+
+If you want to learn more about RAG systems, check out our RAG Playbook course. Here is a 20% discount code for readers.
+
+[RAG Playbook - 20% off for readers](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button }
+---
+
 ## Talks by Chapter
 
 ### Chapter 1: Foundation and Evaluation
