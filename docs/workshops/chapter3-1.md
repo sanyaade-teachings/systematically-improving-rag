@@ -10,13 +10,16 @@ author: Jason Liu
 
 RAG systems improve most when they collect feedback effectively. Many implementations focus exclusively on the technical details of retrieval and generation while neglecting the infrastructure needed to collect and utilize user feedback.
 
-!!! note "Building on Previous Chapters" - **[Chapter 1](chapter1.md)**: The evaluation framework you built provides the baseline - **[Chapter 2](chapter2.md)**: The fine-tuning techniques need feedback data to be effective
+**Building on Previous Chapters:**
+- **[Chapter 1](chapter1.md)**: The evaluation framework you built provides the baseline
+- **[Chapter 2](chapter2.md)**: The fine-tuning techniques need feedback data to be effective
 
-    This chapter shows you how to collect the data that powers continuous improvement.
+This chapter shows you how to collect the data that powers continuous improvement.
 
 In this chapter, we'll explore how to build effective feedback mechanisms that turn your RAG application from a static implementation into a continuously improving system. This approach creates a feedback loop where user interactions provide the data needed to make the system better.
 
-!!! warning "The Invisible Feedback Problem"
+### The Invisible Feedback Problem
+
 Many RAG implementations hide feedback mechanisms in obscure UI locations or use generic "thumbs up/down" buttons that provide minimal insight. Users interact with these minimal feedback options less than 0.1% of the time, providing insufficient data for meaningful improvements.
 
 In my consulting practice, I've seen that simply changing the copy from generic "How did we do?" to specific "Did we answer your question?" can increase feedback rates by **5x**. Well-designed feedback mechanisms don't just collect more data—they accelerate your entire improvement cycle, allowing you to fine-tune 5x faster and deploy with greater confidence.
@@ -44,7 +47,8 @@ This chapter focuses on the practical implementation of feedback mechanisms in R
 
 The first principle of effective feedback collection is visibility. Your feedback mechanisms should be prominent and engaging, not hidden in dropdown menus or settings pages. Users should encounter feedback options naturally as part of their interaction flow.
 
-!!! example "High-Visibility Feedback UI"
+### High-Visibility Feedback UI
+
 Consider the difference between these two approaches:
 
 ```
@@ -79,28 +83,29 @@ Here are several patterns for implementing high-visibility feedback mechanisms:
 
 Each approach has advantages for different use cases. The key is to make feedback collection a natural part of the user experience rather than an afterthought.
 
-!!! tip "Streaming and Perceived Performance"
+### Streaming and Perceived Performance
+
 **The Claude Progress Counter Effect:**
 
-    Claude's implementation of progress counters during response generation serves multiple purposes:
-    - Shows "thinking" progress (e.g., "Analyzing document 3 of 5...")
-    - Reduces perceived latency by up to 45%
-    - Gives users confidence the system is working
-    - Creates natural moments for feedback collection
+Claude's implementation of progress counters during response generation serves multiple purposes:
+- Shows "thinking" progress (e.g., "Analyzing document 3 of 5...")
+- Reduces perceived latency by up to 45%
+- Gives users confidence the system is working
+- Creates natural moments for feedback collection
 
-    **Implementation Pattern:**
-    ```
-    Searching documents... [████░░░░░░] 40%
-    Found 5 relevant sources
-    Analyzing content... [████████░░] 80%
-    Generating response... [██████████] 100%
+**Implementation Pattern:**
+```
+Searching documents... [████░░░░░░] 40%
+Found 5 relevant sources
+Analyzing content... [████████░░] 80%
+Generating response... [██████████] 100%
 
-    [Response appears here]
+[Response appears here]
 
-    Did we find the right information? [Yes] [No]
-    ```
+Did we find the right information? [Yes] [No]
+```
 
-    This pattern makes feedback feel like a natural continuation of the interaction rather than an interruption.
+This pattern makes feedback feel like a natural continuation of the interaction rather than an interruption.
 
 ### Enterprise Feedback Collection with Slack Integration
 
@@ -144,12 +149,15 @@ This approach creates transparency and builds trust by showing customers that th
 
 Generic feedback like thumbs up/down provides minimal insight for improvement. To make feedback truly actionable, segment it into specific aspects of your RAG pipeline.
 
-!!! warning "The Problem with Generic Feedback"
-A simple "thumbs down" could mean many things: - The retrieval system found irrelevant documents - The generation step produced inaccurate information - The answer was technically correct but poorly formatted - The answer was too brief or too verbose
+### The Problem with Generic Feedback
 
-```
+A simple "thumbs down" could mean many things:
+- The retrieval system found irrelevant documents
+- The generation step produced inaccurate information
+- The answer was technically correct but poorly formatted
+- The answer was too brief or too verbose
+
 Without knowing which aspect failed, you can't target improvements effectively.
-```
 
 Segmented feedback isolates specific parts of your RAG pipeline, helping you identify exactly where issues occur. Instead of asking "Was this helpful?" consider questions like:
 
@@ -244,10 +252,11 @@ This approach is particularly valuable for PDF-heavy domains like legal, medical
 
 ### Citation Implementation Patterns
 
-!!! quote "Preventing Hallucinations"
-Skylar Payne emphasizes that hallucination remains a critical challenge, especially in sensitive domains. His most effective approach: "Force the LLM to provide inline citations, validate that each citation exists in the retrieved documents, and semantically validate that each citation actually supports the claimed content."
-
-    This is particularly critical for healthcare, legal, and financial applications. [See more anti-patterns to avoid →](../talks/rag-antipatterns-skylar-payne.md)
+> **Preventing Hallucinations**
+> 
+> Skylar Payne emphasizes that hallucination remains a critical challenge, especially in sensitive domains. His most effective approach: "Force the LLM to provide inline citations, validate that each citation exists in the retrieved documents, and semantically validate that each citation actually supports the claimed content."
+> 
+> This is particularly critical for healthcare, legal, and financial applications. [See more anti-patterns to avoid →](../talks/rag-antipatterns-skylar-payne.md)
 
 !!! info "XML-Based Citation Pattern"
 **The Most Robust Approach:**
@@ -275,7 +284,8 @@ Skylar Payne emphasizes that hallucination remains a critical challenge, especia
 
 The ultimate goal of feedback collection is to guide your improvement roadmap. Rather than making enhancement decisions based on intuition or technical interest, you can prioritize based on user needs revealed through feedback.
 
-!!! info "Production Monitoring: Beyond Basic Feedback"
+### Production Monitoring: Beyond Basic Feedback
+
 Ben Hylak and Sidhant Bendre highlight a critical insight: "There's no exception being thrown when something goes wrong - the model simply produces an inadequate response." Their approach combines implicit signals (user frustration, task failures) with explicit signals (ratings, regenerations) to identify issues that traditional monitoring misses. The Trellis framework they present helps organize the "infinite chaos" of AI outputs into controllable segments. [Learn about production monitoring strategies →](../talks/online-evals-production-monitoring-ben-sidhant.md)
 
 A feedback-driven roadmap:
@@ -305,7 +315,11 @@ Remember that small UX changes can make enormous differences in feedback collect
 
 In the next chapter, we'll explore how to reduce perceived latency through streaming and progressive responses, building on the feedback foundation to create a more engaging user experience.
 
-!!! info "How This Chapter Connects Forward" - **[Chapter 4](chapter4-2.md)**: The feedback you collect enables query segmentation and analysis - **[Chapter 5](chapter5-1.md)**: User behavior patterns reveal which specialized retrievers to build - **[Chapter 6](chapter6-2.md)**: Feedback on router decisions improves tool selection
+### How This Chapter Connects Forward
+
+- **[Chapter 4](chapter4-2.md)**: The feedback you collect enables query segmentation and analysis
+- **[Chapter 5](chapter5-1.md)**: User behavior patterns reveal which specialized retrievers to build
+- **[Chapter 6](chapter6-2.md)**: Feedback on router decisions improves tool selection
 
 ## Reflection Questions
 

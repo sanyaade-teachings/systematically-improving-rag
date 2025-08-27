@@ -17,7 +17,12 @@ tags:
 
 We've covered the basics: the RAG playbook, synthetic data generation, fine-tuning, user feedback collection, and segmentation. Now let's talk about something that actually makes a big difference in production systems—building specialized search indices for different types of content.
 
-!!! note "Building on the Foundation" - **[Chapter 1](chapter1.md)**: Evaluation metrics for each specialized retriever - **[Chapter 2](chapter2.md)**: Fine-tuning embeddings for specific domains - **[Chapter 3](chapter3-1.md)**: Collecting feedback on retrieval quality - **[Chapter 4](chapter4-2.md)**: Identifying which capabilities need specialization
+### Building on the Foundation
+
+- **[Chapter 1](chapter1.md)**: Evaluation metrics for each specialized retriever
+- **[Chapter 2](chapter2.md)**: Fine-tuning embeddings for specific domains
+- **[Chapter 3](chapter3-1.md)**: Collecting feedback on retrieval quality
+- **[Chapter 4](chapter4-2.md)**: Identifying which capabilities need specialization
 
 The basic idea is straightforward: different types of queries need different retrieval approaches. A search for a specific product number works differently than a search for "durable power tools" or "items under 50 pounds". Once you accept this, the path forward becomes clearer.
 
@@ -27,13 +32,15 @@ The basic idea is straightforward: different types of queries need different ret
 
 Most RAG systems start with one big index that tries to handle everything. This works until it doesn't—usually when you realize your users are asking wildly different types of questions that need different handling.
 
-!!! example "Diverse Query Needs"
+**Example: Diverse Query Needs**
+
 Consider a hardware store's knowledge base. A customer searching for a specific product by model number requires a fundamentally different search approach than someone asking about the durability of various power tools, or another customer trying to find items within a specific weight range. The first query is best served by lexical search matching exact strings, the second by semantic search understanding concepts and opinions, and the third by structured data queries.
 
 Look at how Google evolved: they built Maps for location queries, Photos for visual search, YouTube for video. The real win came when they figured out how to automatically route queries to the right tool. We can apply the same thinking to RAG systems.
 
-!!! quote "From Previous Cohort"
-"I've been building separate indices for years without realizing that's what I was doing. This framework just helps me do it more systematically."
+> "I've been building separate indices for years without realizing that's what I was doing. This framework just helps me do it more systematically."
+> 
+> — Previous Cohort Participant
 
 ### The Mathematics of Specialization
 
@@ -60,8 +67,9 @@ Specialized indices also make your life easier organizationally:
 - You can add new capabilities without rebuilding the whole system
 - Different teams can optimize their piece without coordination overhead
 
-!!! quote "Industry Perspective"
-"Building specialized indices isn't just about performance—it's about creating a sustainable path for continuous improvement."
+> "Building specialized indices isn't just about performance—it's about creating a sustainable path for continuous improvement."
+> 
+> — Industry Perspective
 
 ## Two Paths to Better Retrieval
 
@@ -73,16 +81,16 @@ Here's the core idea: both strategies create AI-processed views of your data—e
 
 First approach: pull structured data out of your text. Instead of treating everything as a blob of text, identify the structured information hiding in there that would make search work better.
 
-!!! example "Metadata Extraction Examples"
-\- In finance applications, distinguishing between fiscal years and calendar years
-\- For legal document systems, classifying contracts as signed or unsigned and extracting payment dates and terms
-\- When processing call transcripts, categorizing them by type (job interviews, stand-ups, design reviews)
-\- For product documentation, identifying specifications, compatibility information, and warranty details
+**Metadata Extraction Examples:**
+
+- In finance applications, distinguishing between fiscal years and calendar years
+- For legal document systems, classifying contracts as signed or unsigned and extracting payment dates and terms
+- When processing call transcripts, categorizing them by type (job interviews, stand-ups, design reviews)
+- For product documentation, identifying specifications, compatibility information, and warranty details
 
 Ask yourself: what structured data is buried in this text that users actually want to filter by? Once you extract it, you can use regular databases for filtering—way more powerful than vector search alone.
 
-!!! tip "Practical Application"
-When consulting with financial clients, we discovered that simply being able to distinguish between fiscal years and calendar years dramatically improved search accuracy for financial metrics. Similarly, for legal teams, identifying whether a contract was signed or unsigned allowed for immediate filtering that saved hours of manual review.
+**Practical Application:** When consulting with financial clients, we discovered that simply being able to distinguish between fiscal years and calendar years dramatically improved search accuracy for financial metrics. Similarly, for legal teams, identifying whether a contract was signed or unsigned allowed for immediate filtering that saved hours of manual review.
 
 !!! example "Financial Metadata Model"
 
@@ -145,12 +153,13 @@ By extracting these structured elements from quarterly reports, organizations ca
 
 Second approach: take your data (structured or not) and generate text chunks specifically designed to match how people search. These synthetic chunks act as better search targets that point back to your original content.
 
-!!! tip "Synthetic Text Applications"
-\- For image collections: Generate detailed descriptions capturing searchable aspects
-\- For research interviews: Extract common questions and answers to form an easily searchable FAQ
-\- For numerical data: Create natural language descriptions of key trends and outliers
-\- For product documentation: Generate comprehensive feature summaries that anticipate user queries
-\- For customer service transcripts: Create problem-solution pairs that capture resolution patterns
+**Synthetic Text Applications:**
+
+- For image collections: Generate detailed descriptions capturing searchable aspects
+- For research interviews: Extract common questions and answers to form an easily searchable FAQ
+- For numerical data: Create natural language descriptions of key trends and outliers
+- For product documentation: Generate comprehensive feature summaries that anticipate user queries
+- For customer service transcripts: Create problem-solution pairs that capture resolution patterns
 
 The synthetic chunks work as a bridge—they're easier to search than your original content but point back to the source when you need the full details. Done right, you get better search without losing information.
 
@@ -158,8 +167,7 @@ The synthetic chunks work as a bridge—they're easier to search than your origi
 
 When dealing with extremely long documents (1,500-2,000+ pages), traditional chunking strategies often fail to capture information that spans multiple sections. The RAPTOR (Recursive Abstractive Processing for Tree-Organized Retrieval) approach offers a sophisticated solution.
 
-!!! tip "Production Insight"
-From office hours: "For documents with 1,500-2,000 pages, the RAPTOR approach with clustering and summarization shows significant promise. After chunking documents, recluster the chunks to identify concepts that span multiple pages, then summarize those clusters for retrieval."
+**Production Insight:** From office hours: "For documents with 1,500-2,000 pages, the RAPTOR approach with clustering and summarization shows significant promise. After chunking documents, recluster the chunks to identify concepts that span multiple pages, then summarize those clusters for retrieval."
 
 #### The RAPTOR Process
 
@@ -169,7 +177,13 @@ From office hours: "For documents with 1,500-2,000 pages, the RAPTOR approach wi
 4. **Tree Structure**: Build a retrieval tree from detailed chunks to high-level summaries
 
 !!! example "Legal Document Processing"
-A tax law firm implemented RAPTOR for their regulatory documents: - Laws on pages 1-30, exemptions scattered throughout pages 50-200 - Clustering identified related exemptions across different sections - Summaries linked laws with all relevant exemptions - One-time processing cost: $10 in LLM calls per document - Result: 85% improvement in finding complete legal information
+    A tax law firm implemented RAPTOR for their regulatory documents:
+    
+    - Laws on pages 1-30, exemptions scattered throughout pages 50-200
+    - Clustering identified related exemptions across different sections
+    - Summaries linked laws with all relevant exemptions
+    - One-time processing cost: $10 in LLM calls per document
+    - Result: 85% improvement in finding complete legal information
 
 #### Implementation Considerations
 
@@ -187,7 +201,12 @@ A tax law firm implemented RAPTOR for their regulatory documents: - Laws on page
 - **Benefit**: Dramatically improved recall for cross-document concepts
 - **ROI**: Justified for documents accessed frequently or with high-value queries
 
-!!! warning "Implementation Tips" 1. Test on a subset first to validate clustering quality 2. Store cluster relationships for explainability 3. Consider incremental updates for living documents 4. Monitor which summary levels get used most
+### Implementation Tips
+
+1. Test on a subset first to validate clustering quality
+2. Store cluster relationships for explainability
+3. Consider incremental updates for living documents
+4. Monitor which summary levels get used most
 
 #### Practical Example
 
@@ -218,16 +237,17 @@ For implementation details, see:
 
 With specialized indices, you need to measure two things:
 
-!!! info "Two-Level Measurement Framework"
+### Two-Level Measurement Framework
 
 ```
 1. Are we selecting the right retrieval method for each query?
-2.  Is each retrieval method finding the right information?
+2. Is each retrieval method finding the right information?
 ```
 
 Your overall success rate is just multiplication:
 
-!!! example "Performance Formula"
+**Performance Formula:**
+
 P(finding correct data) = P(selecting correct retriever) × P(finding correct data | correct retriever)
 
 This formula is actually useful for debugging. When things aren't working, you can figure out if the problem is picking the wrong retriever or if the retriever itself is broken.

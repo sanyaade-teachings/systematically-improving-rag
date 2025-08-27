@@ -286,4 +286,3 @@ Many teams we’ve worked with (and several guest speakers) have upgraded from o
 ## Learn more
 
 - Read the overview: [Systematically Improving RAG](../../systematically-improving-rag-overview.md)
-- Browse office hours notes: [Cohort 3](./)

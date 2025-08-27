@@ -44,42 +44,39 @@ Some other document retrieval techniques that work:
 - **Hybrid Signals**: Mix semantic similarity with recency, authority, citation counts. Don't rely on embeddings alone.
 - **Multi-stage Retrieval**: Start cheap and fast, then get more sophisticated. Filter garbage early.
 
-!!! example "Contextual Retrieval Implementation"
-**The Power of Context-Aware Chunks:**
+**The Power of Context-Aware Chunks**
 
-    Original chunk: "Jason the doctor is unhappy with Patient X"
+Original chunk: "Jason the doctor is unhappy with Patient X"
 
-    Without context, this is ambiguous:
-    - Is Jason a medical doctor unhappy with a patient?
-    - Is a doctor named Jason unhappy?
-    - Is someone consulting Dr. Jason about Patient X?
+Without context, this is ambiguous:
+- Is Jason a medical doctor unhappy with a patient?
+- Is a doctor named Jason unhappy?
+- Is someone consulting Dr. Jason about Patient X?
 
-    **Solution: Rewrite chunks with full document context:**
+**Solution: Rewrite chunks with full document context:**
 
-    ```python
-    def create_contextual_chunk(chunk, document):
-        """Rewrite chunk with document context."""
-        prompt = f"""
-        Document context: {document.title}
-        Section: {chunk.section}
+```python
+def create_contextual_chunk(chunk, document):
+    """Rewrite chunk with document context."""
+    prompt = f"""
+    Document context: {document.title}
+    Section: {chunk.section}
 
-        Original chunk: {chunk.text}
+    Original chunk: {chunk.text}
 
-        Rewrite this chunk to include necessary context
-        so it can be understood in isolation.
-        """
+    Rewrite this chunk to include necessary context
+    so it can be understood in isolation.
+    """
 
-        return llm.complete(prompt)
-    ```
+    return llm.complete(prompt)
+```
 
-    Result: "In this employee feedback document, Jason (the medical doctor
-    on our staff) expressed dissatisfaction with the Patient X project
-    management software due to frequent crashes."
+Result: "In this employee feedback document, Jason (the medical doctor on our staff) expressed dissatisfaction with the Patient X project management software due to frequent crashes."
 
-    **Key Decision: Compute at write-time vs read-time**
-    - Write-time: Higher storage cost, faster retrieval
-    - Read-time: Lower storage cost, slower retrieval
-    - Most teams should compute at write-time for production
+**Key Decision: Compute at write-time vs read-time**
+- Write-time: Higher storage cost, faster retrieval
+- Read-time: Lower storage cost, slower retrieval
+- Most teams should compute at write-time for production
 
 ```mermaid
 flowchart LR
@@ -98,9 +95,8 @@ Your document retrieval ends up returning different things for different queries
 
 The system adapts to what the query actually needs.
 
-!!! example "Document Processor with Contextual Retrieval"
+### Document Processor with Contextual Retrieval
 
-````
 ```python
 from typing import List, Dict, Any
 import re
@@ -169,7 +165,6 @@ def contextual_retrieval(query: str, document_store: List[Dict[str, Any]]) -> Li
         summaries = retrieve_relevant_summaries(query, document_store)
         return rerank_combined_results(query, chunks + summaries)
 ```
-````
 
 ### Image Search: Bridging Visual and Textual Understanding
 
@@ -178,8 +173,7 @@ Image search is tricky because vision models were trained on captions, but peopl
 !!! warning "Embedding Spaces Mismatch"
 The naive approach—applying the same embedding strategy used for text—often fails because question embeddings and image caption embeddings exist in fundamentally different semantic spaces. Simply embedding captions like "two people" will not retrieve well when users search for "business meeting" or "team collaboration."
 
-!!! tip "When to Use Vision Language Models"
-According to Adit from Reducto, VLMs excel at "things that traditional OCR has always been horrible at" - handwriting, charts, figures, and diagrams. However, for clean structured information, traditional CV provides better precision and token efficiency. [Learn about their hybrid approach →](../talks/reducto-docs-adit.md)
+**When to Use Vision Language Models:** According to Adit from Reducto, VLMs excel at "things that traditional OCR has always been horrible at" - handwriting, charts, figures, and diagrams. However, for clean structured information, traditional CV provides better precision and token efficiency. [Learn about their hybrid approach →](../talks/reducto-docs-adit.md)
 
 Here's how to make image search actually work:
 
@@ -199,25 +193,23 @@ Here's how to make image search actually work:
 
 In practice, the difference between basic and good image descriptions meant 40% better retrieval rates. The trick was figuring out how users actually describe what they're looking for.
 
-!!! info "Additional Image Enhancement Approaches"
-\- **Contextual Enrichment**: Incorporate surrounding text, OCR results from the image, and metadata about the image's source and purpose. For example, if an image appears in a product manual, include the product name and function in the description.
+### Additional Image Enhancement Approaches
 
-```
+- **Contextual Enrichment**: Incorporate surrounding text, OCR results from the image, and metadata about the image's source and purpose. For example, if an image appears in a product manual, include the product name and function in the description.
+
 - **Visual Reasoning**: Use chain-of-thought prompting to guide the model through a reasoning process about the image content, resulting in more comprehensive descriptions. For example: "First identify all objects in the image. Then consider how they relate to each other. Finally, determine what activity or process is being depicted."
 
 - **Bounding Boxes and Visual Grounding**: For applications where precise location or counting is important, supplement descriptions with information about the spatial arrangement of elements. This is particularly valuable in construction, manufacturing, and retail contexts where users often need to locate or count specific items.
-```
 
-!!! example "Construction Site Image Analysis"
-For a construction company's image database, users frequently needed to count specific items ("How many support beams are installed?") or locate defects ("Show me images of cracked foundations"). By implementing bounding box detection alongside rich descriptions, retrieval accuracy for these queries improved by 65% compared to using only semantic descriptions.
+**Construction Site Image Analysis:** For a construction company's image database, users frequently needed to count specific items ("How many support beams are installed?") or locate defects ("Show me images of cracked foundations"). By implementing bounding box detection alongside rich descriptions, retrieval accuracy for these queries improved by 65% compared to using only semantic descriptions.
 
-!!! example "Rich Image Description Prompt"
-\`\`\`python
+### Rich Image Description Prompt
+
+```python
 def generate_rich_image_description(image, ocr_text=None, surrounding_text=None):
-"""
-Generate a comprehensive description optimized for retrieval.
+    """
+    Generate a comprehensive description optimized for retrieval.
 
-````
     Args:
         image: Image data or path
         ocr_text: Optional text extracted from the image
@@ -254,7 +246,6 @@ Generate a comprehensive description optimized for retrieval.
     # Use this prompt with your vision model implementation
     # ...
 ```
-````
 
 The enhanced description dramatically improves retrieval capability when troubleshooting specific defects or components.
 
@@ -262,10 +253,9 @@ The enhanced description dramatically improves retrieval capability when trouble
 
 Tables are weird—they're structured data living in unstructured documents. Here's what works:
 
-!!! quote "Expert Insight: Document Parsing Challenges"
-Adit from Reducto emphasizes that tables are particularly challenging: "Tables are particularly challenging because they represent two-dimensional associations of data that can be formatted in countless ways. The failures are often subtle - a model might extract what appears to be a valid table but silently drop rows, columns, or individual values."
-
-    For production-ready table extraction, consider specialized tools. [Learn more about document ingestion best practices →](../talks/reducto-docs-adit.md)
+> Adit from Reducto emphasizes that tables are particularly challenging: "Tables are particularly challenging because they represent two-dimensional associations of data that can be formatted in countless ways. The failures are often subtle - a model might extract what appears to be a valid table but silently drop rows, columns, or individual values."
+>
+> For production-ready table extraction, consider specialized tools. [Learn more about document ingestion best practices →](../talks/reducto-docs-adit.md)
 
 Turns out markdown tables work best for LLM lookup:
 
@@ -286,13 +276,12 @@ Why? The visual structure helps LLMs understand relationships better than nested
 
 Watch out for number formatting: `1 234 567` tokenizes as three separate numbers. Use `1234567` or `1,234,567` instead.
 
-    !!! info "Production Table Extraction"
-        Reducto's approach to complex tables includes:
-        - Using HTML for tables with 3+ merged cells
-        - Traditional CV for initial extraction, VLMs for correction
-        - Creating natural language summaries for better retrieval
+**Production Table Extraction:** Reducto's approach to complex tables includes:
+- Using HTML for tables with 3+ merged cells
+- Traditional CV for initial extraction, VLMs for correction
+- Creating natural language summaries for better retrieval
 
-        See their [complete document parsing methodology](../talks/reducto-docs-adit.md) for handling PDFs, Excel files, and complex layouts.
+See their [complete document parsing methodology](../talks/reducto-docs-adit.md) for handling PDFs, Excel files, and complex layouts.
 
 Two ways to handle table retrieval:
 
@@ -302,12 +291,12 @@ Chunk the table (keep headers!) and use semantic search. Add summaries about wha
 **Approach 2: Table as Database**  
 Treat tables as mini-databases. The challenge is figuring out which table has the answer. Create schema descriptions and sample queries, then search against those.
 
-!!! example "Table Processor Implementation"
-\`\`\`python
+### Table Processor Implementation
+
+```python
 from typing import List, Dict, Any, Optional
 import pandas as pd
 
-````
 class TableProcessor:
     """Process tables for enhanced retrievability and querying."""
 
@@ -382,7 +371,6 @@ class TableProcessor:
         # Implementation for chunking table content
         # ...
 ```
-````
 
 Once the right table is identified, either:
 
@@ -442,10 +430,14 @@ We wasted months trying to fine-tune SQL generation models. Then we started retr
 
     This approach handles the "information spread" problem where relevant content is distributed across multiple non-contiguous sections.
 
-!!! info "When Simple Tools Beat Embeddings"
-Colin Flaherty's experience building top-performing coding agents reveals that sometimes simple tools like grep and find can outperform embedding-based retrieval: "The agent's persistence compensated for less sophisticated tools." However, he notes this works best for: - Highly structured content like code - Small to medium-sized repositories - When distinctive keywords exist
+### When Simple Tools Beat Embeddings
 
-    For larger codebases or unstructured content, embeddings become essential. [Explore agentic retrieval patterns →](../talks/colin-rag-agents.md)
+Colin Flaherty's experience building top-performing coding agents reveals that sometimes simple tools like grep and find can outperform embedding-based retrieval: "The agent's persistence compensated for less sophisticated tools." However, he notes this works best for:
+- Highly structured content like code
+- Small to medium-sized repositories
+- When distinctive keywords exist
+
+For larger codebases or unstructured content, embeddings become essential. [Explore agentic retrieval patterns →](../talks/colin-rag-agents.md)
 
 Here's what actually works for SQL generation:
 

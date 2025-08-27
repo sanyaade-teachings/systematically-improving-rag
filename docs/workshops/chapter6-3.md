@@ -13,16 +13,12 @@ tags:
 
 # Performance Measurement and Improvement: Building Learning Systems
 
-!!! abstract "Chapter Overview"
-
-```
 This part explores how to measure, test, and continuously improve a unified RAG system:
 
 - Testing and measuring performance of both retrieval and routing components
 - Creating user interfaces that leverage both AI and direct tool access
 - Building systems that scale across teams and complexity levels
 - Creating continuous improvement cycles through user feedback
-```
 
 ## Testing Query Routing Effectiveness
 
@@ -158,9 +154,8 @@ When tool selection fails, we need to understand why. A confusion matrix is part
 
 For example, if we find that the `SearchBlueprint` tool is never being selected even when it should be, we might need to improve its description or add more examples to the system prompt.
 
-!!! example "Confusion Matrix Analysis"
+### Confusion Matrix Analysis
 
-```
 Imagine our evaluation produces this confusion matrix:
 
 | Expected\Selected | SearchText | SearchBlueprint | SearchSchedule |
@@ -170,7 +165,6 @@ Imagine our evaluation produces this confusion matrix:
 | SearchSchedule    | 15         | 5               | 80             |
 
 This shows that SearchBlueprint is frequently mistaken for SearchText, indicating that we need to better differentiate these tools.
-```
 
 ### Targeted Improvement Strategy
 
@@ -193,10 +187,10 @@ Once you've identified specific weaknesses in your router, you can implement tar
    - Include edge cases that test the boundaries between tools
    - Add multi-tool examples that show when multiple tools should be used together
 
-!!! tip "Synthetic Data Generation for Router Testing"
+### Synthetic Data Generation for Router Testing
+
 You can use synthetic data techniques to create comprehensive test cases for your router:
 
-```
 1. Start with clear definitions of each tool's purpose
 2. Use an LLM to generate diverse queries that should trigger each tool
 3. Include variants of each query with slightly different wording
@@ -204,7 +198,6 @@ You can use synthetic data techniques to create comprehensive test cases for you
 5. Create a balanced dataset that covers all tools proportionally
 
 This approach ensures comprehensive coverage of your router's decision space without requiring extensive manual labeling.
-```
 
 ## User Interfaces: Direct Tool Access
 
@@ -213,13 +206,14 @@ One powerful insight from the routing architecture is that tools designed for la
 1. A natural language interface using the router
 1. Direct access to specialized tools for specific needs
 
-!!! quote "Expert User Perspective"
-"When I know exactly what I need, a specialized tool is much faster than explaining it to a chatbot. But when I'm exploring new areas or have complex needs, the chat interface helps me discover what's possible."
+> "When I know exactly what I need, a specialized tool is much faster than explaining it to a chatbot. But when I'm exploring new areas or have complex needs, the chat interface helps me discover what's possible."
+> 
+> *— Expert User Perspective*
 
-!!! example "Dual-Mode UI"
+### Dual-Mode UI Example
+
 Imagine a construction information system that offers:
 
-```
 - A chat interface for general questions
 - A blueprint search interface with date filters
 - A document search interface with type filters
@@ -227,7 +221,6 @@ Imagine a construction information system that offers:
 - A permit lookup tool with status tracking
 
 These specialized interfaces map directly to the specialized retrievers we've built.
-```
 
 This dual-mode interface has several advantages:
 
@@ -238,16 +231,15 @@ This dual-mode interface has several advantages:
 1. **Control and transparency** give users confidence in the results
 1. **Performance optimization** for common, well-defined tasks
 
-!!! tip "UI Implementation Strategy"
+### UI Implementation Strategy
+
 When implementing a dual-mode interface:
 
-```
 1. Design specialized interfaces that match your existing tools' parameters
 2. Create a unified entry point that offers both chat and specialized tool options
 3. Add suggestions in chat responses that link to relevant specialized tools
 4. Maintain consistent terminology between chat responses and tool interfaces
 5. Track which interface users prefer for different query types
-```
 
 ### Specialized Interface Examples
 
@@ -317,7 +309,8 @@ These interfaces directly map to the tool interfaces we defined earlier, providi
 
 The key insight is that RAG isn't just about adding chat to your product—it's about building a comprehensive information discovery system where chat is just one interface option among many specialized tools that help users access information efficiently.
 
-!!! note "Beyond Simple Forms"
+### Beyond Simple Forms
+
 These specialized interfaces don't have to be simple forms. They can include rich visualizations, interactive elements, and specialized displays for different content types. For example, a blueprint search might display results on a timeline or a map, while a document search might offer faceted filters and previews. The key is that they map directly to your underlying retrieval tools.
 
 ## User Feedback as Training Data
@@ -329,17 +322,16 @@ A particularly valuable aspect of direct tool access is that user interactions c
 1. When users refine their search, that's a signal about what was missing
 1. When users explicitly rate or save results, that's direct feedback on quality
 
-!!! example "User Feedback Collection Mechanisms"
+### User Feedback Collection Mechanisms
+
 To maximize the value of user feedback, consider implementing:
 
-```
 - **Tool Selection Tracking**: Record which specialized tool a user chooses for each query
 - **Click Tracking**: Monitor which search results users engage with
 - **Query Refinement Analysis**: Capture how users modify queries that didn't yield useful results
 - **Explicit Feedback Buttons**: Add "Was this helpful?" buttons to results
 - **Result Saving**: Allow users to save or bookmark useful results
 - **Session Analysis**: Examine session patterns to identify successful vs. unsuccessful paths
-```
 
 These interactions can be logged and used to:
 

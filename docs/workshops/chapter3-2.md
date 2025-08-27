@@ -12,11 +12,9 @@ RAG applications face a fundamental challenge: the processes involved—retrieva
 
 Perceived performance often matters more than actual performance. Users perceive responsive systems as faster even when the total completion time is identical. This chapter covers practical approaches to address this challenge.
 
-!!! warning "The Perception Gap"
-Perceived wait times can be up to 25% longer than actual wait times when users have no visibility into system progress. Showing meaningful progress can make perceived wait times up to 40% shorter.
+**Understanding the Perception Gap**: Perceived wait times can be up to 25% longer than actual wait times when users have no visibility into system progress. Showing meaningful progress can make perceived wait times up to 40% shorter.
 
-!!! quote "Industry Perspective"
-"Streaming has become table stakes in modern LLM applications. Users expect responses instantly, and implementing streaming significantly improves both actual and perceived performance. Only about 20% of companies I work with have a good understanding of how to implement streaming effectively."
+> "Streaming has become table stakes in modern LLM applications. Users expect responses instantly, and implementing streaming significantly improves both actual and perceived performance. Only about 20% of companies I work with have a good understanding of how to implement streaming effectively."
 
 We'll explore two complementary approaches to addressing latency:
 
@@ -25,8 +23,7 @@ We'll explore two complementary approaches to addressing latency:
 
 These techniques not only improve user experience but also lead to higher engagement and more feedback collection, strengthening the improvement flywheel we established in the previous chapter.
 
-!!! tip "Implementation Timing Insight"
-If you're on the fence about implementing streaming in your RAG application, do it early. Migrating from a non-streaming to a streaming application is significantly more complex than building with streaming from the start. It can add weeks to your development cycle if attempted later in the project lifecycle.
+**Implementation Timing**: If you're on the fence about implementing streaming in your RAG application, do it early. Migrating from a non-streaming to a streaming application is significantly more complex than building with streaming from the start. It can add weeks to your development cycle if attempted later in the project lifecycle.
 
 !!! example "Impact of Visual Feedback"
 \- Users perceive animated progress bars as 11% faster even when wait times are identical
@@ -40,8 +37,7 @@ The strategies we'll cover in this chapter are becoming essential components of 
 
 Before diving into streaming implementations, let's understand why animated indicators are so effective at improving perceived performance. Research in cognitive psychology reveals that humans perceive time differently when observing movement.
 
-!!! example "Progress Indicators"
-Nielsen Norman Group found that users reported 15-20% faster perceived load time when shown an animated progress indicator compared to a static wait screen, with identical actual load times.
+**Research on Progress Indicators**: Nielsen Norman Group found that users reported 15-20% faster perceived load time when shown an animated progress indicator compared to a static wait screen, with identical actual load times.
 
 Animated indicators work by:
 
@@ -69,18 +65,16 @@ Streaming takes the concept of progress indicators to its logical conclusion by 
 
 In a traditional RAG implementation, users submit a query and wait in silence until the full response appears. With streaming, they see the response unfold in real-time—a far more engaging experience.
 
-!!! tip "When to Implement Streaming"
+### When to Implement Streaming
+
 My recommendation is to stream everything when possible. You can:
 
-```
 - Stream interstitials to explain latency and help users understand what's happening
 - Stream different results and UI components so users don't have to wait for completion
 - Stream tool calls and function arguments to show intermediate states
 - Implement skeleton screens (like those used by Facebook, LinkedIn, and Slack) to improve perceived latency
-```
 
-!!! quote "Industry Experience"
-"I've seen companies experience 30-40% higher feedback collection rates after implementing effective streaming compared to traditional 'wait and display' approaches. This creates a cycle where better performance leads to more feedback, which enables more targeted improvements."
+> "I've seen companies experience 30-40% higher feedback collection rates after implementing effective streaming compared to traditional 'wait and display' approaches. This creates a cycle where better performance leads to more feedback, which enables more targeted improvements."
 
 ```mermaid
 sequenceDiagram
@@ -120,8 +114,7 @@ Implementing streaming requires coordination across your entire stack:
 1. Backend routes that maintain open connections
 1. Frontend components that render incremental updates
 
-!!! tip "Implementation Timing"
-If you're on the fence about implementing streaming, do it early. Migrating from a non-streaming to a streaming application is significantly more complex than building it from the start. It can add weeks to your development cycle if attempted later in the project lifecycle.
+**Implementation Timing**: If you're on the fence about implementing streaming, do it early. Migrating from a non-streaming to a streaming application is significantly more complex than building it from the start. It can add weeks to your development cycle if attempted later in the project lifecycle.
 
 Most modern language models and APIs support streaming, though the specific implementation varies. The effort is worth it - side-by-side comparisons show improved user experience, with streaming responses feeling much more responsive than waiting for complete responses:
 
@@ -270,8 +263,7 @@ The key principle is to make interstitials meaningful rather than generic. Inste
 
 Skeleton screens are placeholder UI elements that mimic the structure of content while it loads. Unlike traditional spinners or progress bars, they create the impression that content is almost ready by showing its outline.
 
-!!! example "Facebook's Discovery"
-Facebook's user experience research discovered that skeleton screens significantly reduced perceived load times, resulting in better user retention and engagement. Users reported that the experience "felt faster" even when actual load times were identical to spinner-based approaches.
+**Facebook's Research**: Facebook's user experience research discovered that skeleton screens significantly reduced perceived load times, resulting in better user retention and engagement. Users reported that the experience "felt faster" even when actual load times were identical to spinner-based approaches.
 
 Skeleton screens work because they:
 
@@ -287,15 +279,14 @@ For RAG applications, skeleton screens can be particularly effective when showin
 - Follow-up question button outlines
 - Tool usage summaries that will appear
 
-!!! example "Meaningful vs. Generic Interstitials"
+### Meaningful vs. Generic Interstitials
+
 **Generic Interstitial:** "Loading..."
 
-```
 **Meaningful Interstitial:**
-"Searching 382,549 documents in our knowledge base..."
-"Finding relevant precedent cases from 2021-2022..."
-"Analyzing 3 legal frameworks that might apply to your question..."
-```
+- "Searching 382,549 documents in our knowledge base..."
+- "Finding relevant precedent cases from 2021-2022..."
+- "Analyzing 3 legal frameworks that might apply to your question..."
 
 Meaningful interstitials should:
 
