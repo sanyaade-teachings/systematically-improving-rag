@@ -4,12 +4,10 @@ Script to parse office hours markdown files and generate a comprehensive FAQ.md 
 Outputs: faq.md formatted as a standard docs page with proper navigation.
 """
 
-import os
 import re
 import yaml
 from pathlib import Path
-from typing import List, Dict, Any, Optional
-from collections import defaultdict
+from typing import List, Dict, Any
 
 
 def extract_frontmatter_and_content(file_content: str) -> tuple[Dict[str, Any], str]:
@@ -141,7 +139,7 @@ This comprehensive FAQ is compiled from all office hours sessions across multipl
         
         # Add key takeaway if present
         if key_takeaway:
-            md_content += f"!!! success \"Key Takeaway\"\n"
+            md_content += "!!! success \"Key Takeaway\"\n"
             md_content += f"    {key_takeaway}\n\n"
         
         md_content += "---\n\n"

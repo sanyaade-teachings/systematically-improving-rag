@@ -68,6 +68,32 @@
 
     
     
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Implementing Multimodal Search - Systematically Improving RAG Applications" >
+      
+        <meta  property="og:description"  content="Learn practical implementation techniques for documents, images, tables, and SQL generation" >
+      
+        <meta  property="og:image"  content="https://567-labs.github.io/systematically-improving-rag/assets/images/social/workshops/chapter5-2.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://567-labs.github.io/systematically-improving-rag/workshops/chapter5-2/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Implementing Multimodal Search - Systematically Improving RAG Applications" >
+      
+        <meta  name="twitter:description"  content="Learn practical implementation techniques for documents, images, tables, and SQL generation" >
+      
+        <meta  name="twitter:image"  content="https://567-labs.github.io/systematically-improving-rag/assets/images/social/workshops/chapter5-2.png" >
+      
+    
     
   </head>
   
@@ -104,10 +130,17 @@
               </button>
             
             
-  <p>
-    This material is supported by <a href="https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK" target="_blank"><strong>Applied LLMs on Maven</strong></a>.  Readers get 20% off.
-    Not ready? Check out the <a href="https://fivesixseven.ck.page/rag-crash-course" target="_blank"><strong>free email course</strong></a>.
-  </p>
+<p>
+  This material is supported by
+  <a
+    href="https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK"
+    target="_blank"
+    ><strong>Applied LLMs on Maven</strong></a
+  >. Readers get 20% off. Not ready? Check out the
+  <a href="https://fivesixseven.ck.page/rag-crash-course" target="_blank"
+    ><strong>free email course</strong></a
+  >.
+</p>
 
           </div>
           
@@ -1044,6 +1077,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#document-processor-with-contextual-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Processor with Contextual Retrieval
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#image-search-bridging-visual-and-textual-understanding" class="md-nav__link">
     <span class="md-ellipsis">
       Image Search: Bridging Visual and Textual Understanding
@@ -1053,9 +1095,36 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#additional-image-enhancement-approaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Image Enhancement Approaches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rich-image-description-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rich Image Description Prompt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#table-search-structured-data-in-context" class="md-nav__link">
     <span class="md-ellipsis">
       Table Search: Structured Data in Context
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-processor-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table Processor Implementation
     </span>
   </a>
   
@@ -1072,6 +1141,21 @@
       SQL Query Generation: A Case Study in Capability Building
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="SQL Query Generation: A Case Study in Capability Building">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-simple-tools-beat-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      When Simple Tools Beat Embeddings
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1277,8 +1361,6 @@
       
         
       
-        
-      
     
     
     
@@ -1355,29 +1437,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../office-hours/AGENTS/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Agents
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
       
@@ -1402,10 +1461,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
         
           
-          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
             
   
   
@@ -1418,8 +1477,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             Chapter 1: Starting the Flywheel
           </label>
@@ -1532,10 +1591,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
         
           
-          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
             
   
   
@@ -1548,8 +1607,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
             <span class="md-nav__icon md-icon"></span>
             Chapter 2: From Evaluation to Enhancement
           </label>
@@ -1660,10 +1719,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
             
   
   
@@ -1676,8 +1735,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_6">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
             <span class="md-nav__icon md-icon"></span>
             Chapter 3: User Experience
           </label>
@@ -1767,10 +1826,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
         
           
-          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
             
   
   
@@ -1783,8 +1842,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
             <span class="md-nav__icon md-icon"></span>
             Chapter 4: Topic Modeling
           </label>
@@ -1897,10 +1956,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7" >
         
           
-          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
             
   
   
@@ -1913,8 +1972,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
             <span class="md-nav__icon md-icon"></span>
             Chapter 5: Multimodal Capabilities
           </label>
@@ -2023,10 +2082,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_9" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_8" >
         
           
-          <label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
             
   
   
@@ -2039,8 +2098,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
             <span class="md-nav__icon md-icon"></span>
             Chapter 6: Architecture
           </label>
@@ -2479,6 +2538,8 @@
       
         
       
+        
+      
     
     
     
@@ -2576,6 +2637,29 @@
   
   <span class="md-ellipsis">
     How Zapier 4x'd Their AI Feedback Collection (Vitor)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/chris-lovejoy-domain-expert-vertical-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Domain Experts: The Lever for Vertical AI (Chris Lovejoy, Anterior)
     
   </span>
   
@@ -2932,6 +3016,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#document-processor-with-contextual-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Processor with Contextual Retrieval
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#image-search-bridging-visual-and-textual-understanding" class="md-nav__link">
     <span class="md-ellipsis">
       Image Search: Bridging Visual and Textual Understanding
@@ -2941,9 +3034,36 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#additional-image-enhancement-approaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Image Enhancement Approaches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rich-image-description-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rich Image Description Prompt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#table-search-structured-data-in-context" class="md-nav__link">
     <span class="md-ellipsis">
       Table Search: Structured Data in Context
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-processor-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table Processor Implementation
     </span>
   </a>
   
@@ -2960,6 +3080,21 @@
       SQL Query Generation: A Case Study in Capability Building
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="SQL Query Generation: A Case Study in Capability Building">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-simple-tools-beat-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      When Simple Tools Beat Embeddings
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3020,44 +3155,32 @@
 <li><strong>Hybrid Signals</strong>: Mix semantic similarity with recency, authority, citation counts. Don't rely on embeddings alone.</li>
 <li><strong>Multi-stage Retrieval</strong>: Start cheap and fast, then get more sophisticated. Filter garbage early.</li>
 </ul>
-<div class="admonition example">
-<p class="admonition-title">Contextual Retrieval Implementation</p>
-</div>
-<p><strong>The Power of Context-Aware Chunks:</strong></p>
-<div class="highlight"><pre><span></span><code>Original chunk: &quot;Jason the doctor is unhappy with Patient X&quot;
-
-Without context, this is ambiguous:
+<p><strong>The Power of Context-Aware Chunks</strong></p>
+<p>Original chunk: "Jason the doctor is unhappy with Patient X"</p>
+<p>Without context, this is ambiguous:
 - Is Jason a medical doctor unhappy with a patient?
 - Is a doctor named Jason unhappy?
-- Is someone consulting Dr. Jason about Patient X?
+- Is someone consulting Dr. Jason about Patient X?</p>
+<p><strong>Solution: Rewrite chunks with full document context:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_contextual_chunk</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">document</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Rewrite chunk with document context.&quot;&quot;&quot;</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Document context: </span><span class="si">{</span><span class="n">document</span><span class="o">.</span><span class="n">title</span><span class="si">}</span>
+<span class="s2">    Section: </span><span class="si">{</span><span class="n">chunk</span><span class="o">.</span><span class="n">section</span><span class="si">}</span>
 
-**Solution: Rewrite chunks with full document context:**
+<span class="s2">    Original chunk: </span><span class="si">{</span><span class="n">chunk</span><span class="o">.</span><span class="n">text</span><span class="si">}</span>
 
-```python
-def create_contextual_chunk(chunk, document):
-    &quot;&quot;&quot;Rewrite chunk with document context.&quot;&quot;&quot;
-    prompt = f&quot;&quot;&quot;
-    Document context: {document.title}
-    Section: {chunk.section}
+<span class="s2">    Rewrite this chunk to include necessary context</span>
+<span class="s2">    so it can be understood in isolation.</span>
+<span class="s2">    &quot;&quot;&quot;</span>
 
-    Original chunk: {chunk.text}
-
-    Rewrite this chunk to include necessary context
-    so it can be understood in isolation.
-    &quot;&quot;&quot;
-
-    return llm.complete(prompt)
-```
-
-Result: &quot;In this employee feedback document, Jason (the medical doctor
-on our staff) expressed dissatisfaction with the Patient X project
-management software due to frequent crashes.&quot;
-
-**Key Decision: Compute at write-time vs read-time**
+    <span class="k">return</span> <span class="n">llm</span><span class="o">.</span><span class="n">complete</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+</code></pre></div>
+<p>Result: "In this employee feedback document, Jason (the medical doctor on our staff) expressed dissatisfaction with the Patient X project management software due to frequent crashes."</p>
+<p><strong>Key Decision: Compute at write-time vs read-time</strong>
 - Write-time: Higher storage cost, faster retrieval
 - Read-time: Lower storage cost, slower retrieval
-- Most teams should compute at write-time for production
-</code></pre></div>
+- Most teams should compute at write-time for production</p>
 <div class="highlight"><pre><span></span><code>flowchart LR
     A[Query] --&gt; B[Initial Retrieval]
     B --&gt; C[Candidate Chunks]
@@ -3072,77 +3195,73 @@ management software due to frequent crashes.&quot;
 <li>Specific chunks for precise information</li>
 </ul>
 <p>The system adapts to what the query actually needs.</p>
-<div class="admonition example">
-<p class="admonition-title">Document Processor with Contextual Retrieval</p>
-</div>
-<div class="highlight"><pre><span></span><code>```python
-from typing import List, Dict, Any
-import re
+<h3 id="document-processor-with-contextual-retrieval">Document Processor with Contextual Retrieval</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 
-def process_document_for_retrieval(document: str) -&gt; Dict[str, Any]:
-    &quot;&quot;&quot;
-    Process a document for enhanced retrieval capabilities.
+<span class="k">def</span><span class="w"> </span><span class="nf">process_document_for_retrieval</span><span class="p">(</span><span class="n">document</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Process a document for enhanced retrieval capabilities.</span>
 
-    Args:
-        document: The raw document text
+<span class="sd">    Args:</span>
+<span class="sd">        document: The raw document text</span>
 
-    Returns:
-        Dictionary with processed document components
-    &quot;&quot;&quot;
-    # Extract structured metadata
-    metadata = extract_document_metadata(document)
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary with processed document components</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Extract structured metadata</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">extract_document_metadata</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
 
-    # Create standard chunks with overlap
-    chunks = chunk_document(document, chunk_size=800, overlap=0.5)
+    <span class="c1"># Create standard chunks with overlap</span>
+    <span class="n">chunks</span> <span class="o">=</span> <span class="n">chunk_document</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
-    # Generate summaries at different levels
-    document_summary = summarize_document(document)
-    section_summaries = [summarize_section(section) for section in extract_sections(document)]
+    <span class="c1"># Generate summaries at different levels</span>
+    <span class="n">document_summary</span> <span class="o">=</span> <span class="n">summarize_document</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+    <span class="n">section_summaries</span> <span class="o">=</span> <span class="p">[</span><span class="n">summarize_section</span><span class="p">(</span><span class="n">section</span><span class="p">)</span> <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">extract_sections</span><span class="p">(</span><span class="n">document</span><span class="p">)]</span>
 
-    # Extract any structured data tables
-    tables = extract_tables(document)
+    <span class="c1"># Extract any structured data tables</span>
+    <span class="n">tables</span> <span class="o">=</span> <span class="n">extract_tables</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
 
-    return {
-        &quot;metadata&quot;: metadata,
-        &quot;chunks&quot;: chunks,
-        &quot;document_summary&quot;: document_summary,
-        &quot;section_summaries&quot;: section_summaries,
-        &quot;tables&quot;: tables,
-        &quot;full_document&quot;: document  # Keep original for potential long-context processing
-    }
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="n">metadata</span><span class="p">,</span>
+        <span class="s2">&quot;chunks&quot;</span><span class="p">:</span> <span class="n">chunks</span><span class="p">,</span>
+        <span class="s2">&quot;document_summary&quot;</span><span class="p">:</span> <span class="n">document_summary</span><span class="p">,</span>
+        <span class="s2">&quot;section_summaries&quot;</span><span class="p">:</span> <span class="n">section_summaries</span><span class="p">,</span>
+        <span class="s2">&quot;tables&quot;</span><span class="p">:</span> <span class="n">tables</span><span class="p">,</span>
+        <span class="s2">&quot;full_document&quot;</span><span class="p">:</span> <span class="n">document</span>  <span class="c1"># Keep original for potential long-context processing</span>
+    <span class="p">}</span>
 
-def contextual_retrieval(query: str, document_store: List[Dict[str, Any]]) -&gt; List[str]:
-    &quot;&quot;&quot;
-    Perform contextual retrieval that adapts based on query type.
+<span class="k">def</span><span class="w"> </span><span class="nf">contextual_retrieval</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">document_store</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform contextual retrieval that adapts based on query type.</span>
 
-    Args:
-        query: User query
-        document_store: Processed document store
+<span class="sd">    Args:</span>
+<span class="sd">        query: User query</span>
+<span class="sd">        document_store: Processed document store</span>
 
-    Returns:
-        List of most relevant text chunks for the query
-    &quot;&quot;&quot;
-    # Analyze query to determine retrieval strategy
-    query_analysis = analyze_query(query)
+<span class="sd">    Returns:</span>
+<span class="sd">        List of most relevant text chunks for the query</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Analyze query to determine retrieval strategy</span>
+    <span class="n">query_analysis</span> <span class="o">=</span> <span class="n">analyze_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
 
-    if query_analysis[&quot;requires_specific_detail&quot;]:
-        # Use chunk-level retrieval for specific information
-        return retrieve_relevant_chunks(query, document_store)
+    <span class="k">if</span> <span class="n">query_analysis</span><span class="p">[</span><span class="s2">&quot;requires_specific_detail&quot;</span><span class="p">]:</span>
+        <span class="c1"># Use chunk-level retrieval for specific information</span>
+        <span class="k">return</span> <span class="n">retrieve_relevant_chunks</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">document_store</span><span class="p">)</span>
 
-    elif query_analysis[&quot;requires_overview&quot;]:
-        # Use summary-level retrieval for broader questions
-        return retrieve_relevant_summaries(query, document_store)
+    <span class="k">elif</span> <span class="n">query_analysis</span><span class="p">[</span><span class="s2">&quot;requires_overview&quot;</span><span class="p">]:</span>
+        <span class="c1"># Use summary-level retrieval for broader questions</span>
+        <span class="k">return</span> <span class="n">retrieve_relevant_summaries</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">document_store</span><span class="p">)</span>
 
-    elif query_analysis[&quot;requires_structured_data&quot;]:
-        # Use table retrieval for data-oriented questions
-        return retrieve_relevant_tables(query, document_store)
+    <span class="k">elif</span> <span class="n">query_analysis</span><span class="p">[</span><span class="s2">&quot;requires_structured_data&quot;</span><span class="p">]:</span>
+        <span class="c1"># Use table retrieval for data-oriented questions</span>
+        <span class="k">return</span> <span class="n">retrieve_relevant_tables</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">document_store</span><span class="p">)</span>
 
-    else:
-        # Fall back to hybrid approach
-        chunks = retrieve_relevant_chunks(query, document_store)
-        summaries = retrieve_relevant_summaries(query, document_store)
-        return rerank_combined_results(query, chunks + summaries)
-```
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Fall back to hybrid approach</span>
+        <span class="n">chunks</span> <span class="o">=</span> <span class="n">retrieve_relevant_chunks</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">document_store</span><span class="p">)</span>
+        <span class="n">summaries</span> <span class="o">=</span> <span class="n">retrieve_relevant_summaries</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">document_store</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">rerank_combined_results</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">chunks</span> <span class="o">+</span> <span class="n">summaries</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="image-search-bridging-visual-and-textual-understanding">Image Search: Bridging Visual and Textual Understanding</h3>
 <p>Image search is tricky because vision models were trained on captions, but people don't search using caption-style language.</p>
@@ -3150,10 +3269,7 @@ def contextual_retrieval(query: str, document_store: List[Dict[str, Any]]) -&gt;
 <p class="admonition-title">Embedding Spaces Mismatch</p>
 </div>
 <p>The naive approach—applying the same embedding strategy used for text—often fails because question embeddings and image caption embeddings exist in fundamentally different semantic spaces. Simply embedding captions like "two people" will not retrieve well when users search for "business meeting" or "team collaboration."</p>
-<div class="admonition tip">
-<p class="admonition-title">When to Use Vision Language Models</p>
-</div>
-<p>According to Adit from Reducto, VLMs excel at "things that traditional OCR has always been horrible at" - handwriting, charts, figures, and diagrams. However, for clean structured information, traditional CV provides better precision and token efficiency. <a href="../../talks/reducto-docs-adit/">Learn about their hybrid approach →</a></p>
+<p><strong>When to Use Vision Language Models:</strong> According to Adit from Reducto, VLMs excel at "things that traditional OCR has always been horrible at" - handwriting, charts, figures, and diagrams. However, for clean structured information, traditional CV provides better precision and token efficiency. <a href="../../talks/reducto-docs-adit/">Learn about their hybrid approach →</a></p>
 <p>Here's how to make image search actually work:</p>
 <div class="admonition example">
 <p class="admonition-title">Advanced Image Description Techniques</p>
@@ -3169,71 +3285,67 @@ def contextual_retrieval(query: str, document_store: List[Dict[str, Any]]) -&gt;
 → Result: &quot;This dramatic image shows two business professionals in a tense negotiation across a polished conference table in a corporate boardroom with floor-to-ceiling windows overlooking a city skyline. The older man in a gray suit appears frustrated, gesturing emphatically with papers in hand, while the younger woman in a black blazer maintains a composed but firm expression. Multiple financial reports and what appears to be a contract are spread across the table. The scene is captured in natural lighting with dramatic shadows, suggesting a high-stakes discussion or disagreement over business terms.&quot;
 </code></pre></div>
 <p>In practice, the difference between basic and good image descriptions meant 40% better retrieval rates. The trick was figuring out how users actually describe what they're looking for.</p>
-<div class="admonition info">
-<p class="admonition-title">Additional Image Enhancement Approaches</p>
-</div>
-<p>- <strong>Contextual Enrichment</strong>: Incorporate surrounding text, OCR results from the image, and metadata about the image's source and purpose. For example, if an image appears in a product manual, include the product name and function in the description.</p>
-<div class="highlight"><pre><span></span><code>- **Visual Reasoning**: Use chain-of-thought prompting to guide the model through a reasoning process about the image content, resulting in more comprehensive descriptions. For example: &quot;First identify all objects in the image. Then consider how they relate to each other. Finally, determine what activity or process is being depicted.&quot;
+<h3 id="additional-image-enhancement-approaches">Additional Image Enhancement Approaches</h3>
+<ul>
+<li>
+<p><strong>Contextual Enrichment</strong>: Incorporate surrounding text, OCR results from the image, and metadata about the image's source and purpose. For example, if an image appears in a product manual, include the product name and function in the description.</p>
+</li>
+<li>
+<p><strong>Visual Reasoning</strong>: Use chain-of-thought prompting to guide the model through a reasoning process about the image content, resulting in more comprehensive descriptions. For example: "First identify all objects in the image. Then consider how they relate to each other. Finally, determine what activity or process is being depicted."</p>
+</li>
+<li>
+<p><strong>Bounding Boxes and Visual Grounding</strong>: For applications where precise location or counting is important, supplement descriptions with information about the spatial arrangement of elements. This is particularly valuable in construction, manufacturing, and retail contexts where users often need to locate or count specific items.</p>
+</li>
+</ul>
+<p><strong>Construction Site Image Analysis:</strong> For a construction company's image database, users frequently needed to count specific items ("How many support beams are installed?") or locate defects ("Show me images of cracked foundations"). By implementing bounding box detection alongside rich descriptions, retrieval accuracy for these queries improved by 65% compared to using only semantic descriptions.</p>
+<h3 id="rich-image-description-prompt">Rich Image Description Prompt</h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_rich_image_description</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ocr_text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">surrounding_text</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate a comprehensive description optimized for retrieval.</span>
 
-- **Bounding Boxes and Visual Grounding**: For applications where precise location or counting is important, supplement descriptions with information about the spatial arrangement of elements. This is particularly valuable in construction, manufacturing, and retail contexts where users often need to locate or count specific items.
-</code></pre></div>
-<div class="admonition example">
-<p class="admonition-title">Construction Site Image Analysis</p>
-</div>
-<p>For a construction company's image database, users frequently needed to count specific items ("How many support beams are installed?") or locate defects ("Show me images of cracked foundations"). By implementing bounding box detection alongside rich descriptions, retrieval accuracy for these queries improved by 65% compared to using only semantic descriptions.</p>
-<div class="admonition example">
-<p class="admonition-title">Rich Image Description Prompt</p>
-</div>
-<p>```python
-def generate_rich_image_description(image, ocr_text=None, surrounding_text=None):
-"""
-Generate a comprehensive description optimized for retrieval.</p>
-<div class="highlight"><pre><span></span><code>    Args:
-        image: Image data or path
-        ocr_text: Optional text extracted from the image
-        surrounding_text: Optional text surrounding the image in its original context
+<span class="sd">    Args:</span>
+<span class="sd">        image: Image data or path</span>
+<span class="sd">        ocr_text: Optional text extracted from the image</span>
+<span class="sd">        surrounding_text: Optional text surrounding the image in its original context</span>
 
-    Returns:
-        Detailed description of the image
-    &quot;&quot;&quot;
-    prompt = f&quot;&quot;&quot;
-    # Image Analysis Task
+<span class="sd">    Returns:</span>
+<span class="sd">        Detailed description of the image</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    # Image Analysis Task</span>
 
-    ## Context Information
-    {&quot;OCR Text from image: &quot; + ocr_text if ocr_text else &quot;No OCR text available.&quot;}
-    {&quot;Surrounding context: &quot; + surrounding_text if surrounding_text else &quot;No surrounding context available.&quot;}
+<span class="s2">    ## Context Information</span>
+<span class="s2">    </span><span class="si">{</span><span class="s2">&quot;OCR Text from image: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ocr_text</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">ocr_text</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;No OCR text available.&quot;</span><span class="si">}</span>
+<span class="s2">    </span><span class="si">{</span><span class="s2">&quot;Surrounding context: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">surrounding_text</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">surrounding_text</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;No surrounding context available.&quot;</span><span class="si">}</span>
 
-    ## Analysis Instructions
-    Analyze the following image in extreme detail:
+<span class="s2">    ## Analysis Instructions</span>
+<span class="s2">    Analyze the following image in extreme detail:</span>
 
-    1. First, describe the visual scene, setting, and overall composition
-    2. List all people visible, their approximate positions, actions, and expressions
-    3. Enumerate all objects visible in the image
-    4. Note any text visible in the image
-    5. Describe colors, lighting, and visual style
-    6. If applicable, identify the type of image (photograph, diagram, screenshot, etc.)
-    7. Use chain-of-thought reasoning: think about what is happening and why
-    8. Generate 5-7 potential questions someone might ask when searching for this image
-    9. Suggest 5-10 relevant tags for this image
+<span class="s2">    1. First, describe the visual scene, setting, and overall composition</span>
+<span class="s2">    2. List all people visible, their approximate positions, actions, and expressions</span>
+<span class="s2">    3. Enumerate all objects visible in the image</span>
+<span class="s2">    4. Note any text visible in the image</span>
+<span class="s2">    5. Describe colors, lighting, and visual style</span>
+<span class="s2">    6. If applicable, identify the type of image (photograph, diagram, screenshot, etc.)</span>
+<span class="s2">    7. Use chain-of-thought reasoning: think about what is happening and why</span>
+<span class="s2">    8. Generate 5-7 potential questions someone might ask when searching for this image</span>
+<span class="s2">    9. Suggest 5-10 relevant tags for this image</span>
 
-    ## Final Description
-    Based on your analysis, provide a comprehensive 3-5 sentence description that would
-    help people find this image when searching with natural language queries.
-    &quot;&quot;&quot;
+<span class="s2">    ## Final Description</span>
+<span class="s2">    Based on your analysis, provide a comprehensive 3-5 sentence description that would</span>
+<span class="s2">    help people find this image when searching with natural language queries.</span>
+<span class="s2">    &quot;&quot;&quot;</span>
 
-    # Use this prompt with your vision model implementation
-    # ...
-```
+    <span class="c1"># Use this prompt with your vision model implementation</span>
+    <span class="c1"># ...</span>
 </code></pre></div>
 <p>The enhanced description dramatically improves retrieval capability when troubleshooting specific defects or components.</p>
 <h3 id="table-search-structured-data-in-context">Table Search: Structured Data in Context</h3>
 <p>Tables are weird—they're structured data living in unstructured documents. Here's what works:</p>
-<div class="admonition quote">
-<p class="admonition-title">Expert Insight: Document Parsing Challenges</p>
-</div>
+<blockquote>
 <p>Adit from Reducto emphasizes that tables are particularly challenging: "Tables are particularly challenging because they represent two-dimensional associations of data that can be formatted in countless ways. The failures are often subtle - a model might extract what appears to be a valid table but silently drop rows, columns, or individual values."</p>
-<div class="highlight"><pre><span></span><code>For production-ready table extraction, consider specialized tools. [Learn more about document ingestion best practices →](../talks/reducto-docs-adit.md)
-</code></pre></div>
+<p>For production-ready table extraction, consider specialized tools. <a href="../../talks/reducto-docs-adit/">Learn more about document ingestion best practices →</a></p>
+</blockquote>
 <p>Turns out markdown tables work best for LLM lookup:</p>
 <ul>
 <li>Markdown: 85% accuracy</li>
@@ -3243,105 +3355,99 @@ Generate a comprehensive description optimized for retrieval.</p>
 </ul>
 <p>Why? The visual structure helps LLMs understand relationships better than nested JSON.</p>
 <div class="highlight"><pre><span></span><code>| Product ID | Name           | Price  | Stock |
-|------------|----------------|--------|-------|
+| ---------- | -------------- | ------ | ----- |
 | SKU-001    | Widget Pro     | $29.99 | 150   |
 | SKU-002    | Widget Basic   | $19.99 | 0     |
 | SKU-003    | Widget Premium | $49.99 | 75    |
 </code></pre></div>
 <p>Watch out for number formatting: <code>1 234 567</code> tokenizes as three separate numbers. Use <code>1234567</code> or <code>1,234,567</code> instead.</p>
-<div class="highlight"><pre><span></span><code>!!! info &quot;Production Table Extraction&quot;
-    Reducto&#39;s approach to complex tables includes:
-    - Using HTML for tables with 3+ merged cells
-    - Traditional CV for initial extraction, VLMs for correction
-    - Creating natural language summaries for better retrieval
-
-    See their [complete document parsing methodology](../talks/reducto-docs-adit.md) for handling PDFs, Excel files, and complex layouts.
-</code></pre></div>
+<p><strong>Production Table Extraction:</strong> Reducto's approach to complex tables includes:
+- Using HTML for tables with 3+ merged cells
+- Traditional CV for initial extraction, VLMs for correction
+- Creating natural language summaries for better retrieval</p>
+<p>See their <a href="../../talks/reducto-docs-adit/">complete document parsing methodology</a> for handling PDFs, Excel files, and complex layouts.</p>
 <p>Two ways to handle table retrieval:</p>
 <p><strong>Approach 1: Table as Document</strong>
 Chunk the table (keep headers!) and use semantic search. Add summaries about what the table contains. Good for questions like "Which product had the highest Q3 sales?"</p>
 <p><strong>Approach 2: Table as Database</strong><br />
 Treat tables as mini-databases. The challenge is figuring out which table has the answer. Create schema descriptions and sample queries, then search against those.</p>
-<div class="admonition example">
-<p class="admonition-title">Table Processor Implementation</p>
-</div>
-<p>```python
-from typing import List, Dict, Any, Optional
-import pandas as pd</p>
-<div class="highlight"><pre><span></span><code>class TableProcessor:
-    &quot;&quot;&quot;Process tables for enhanced retrievability and querying.&quot;&quot;&quot;
+<h3 id="table-processor-implementation">Table Processor Implementation</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
-    def process_table(self, table_data: pd.DataFrame, table_name: str,
-                    source_doc: Optional[str] = None) -&gt; Dict[str, Any]:
-        &quot;&quot;&quot;
-        Process a table for both document-like and database-like retrieval.
+<span class="k">class</span><span class="w"> </span><span class="nc">TableProcessor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process tables for enhanced retrievability and querying.&quot;&quot;&quot;</span>
 
-        Args:
-            table_data: The table as a pandas DataFrame
-            table_name: Name of the table
-            source_doc: Optional source document information
+    <span class="k">def</span><span class="w"> </span><span class="nf">process_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                    <span class="n">source_doc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Process a table for both document-like and database-like retrieval.</span>
 
-        Returns:
-            Dictionary with processed table components
-        &quot;&quot;&quot;
-        # Generate schema representation
-        schema = self._generate_schema_representation(table_data)
+<span class="sd">        Args:</span>
+<span class="sd">            table_data: The table as a pandas DataFrame</span>
+<span class="sd">            table_name: Name of the table</span>
+<span class="sd">            source_doc: Optional source document information</span>
 
-        # Generate natural language summary
-        summary = self._generate_table_summary(table_data, table_name)
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary with processed table components</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Generate schema representation</span>
+        <span class="n">schema</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_schema_representation</span><span class="p">(</span><span class="n">table_data</span><span class="p">)</span>
 
-        # Generate sample queries this table could answer
-        sample_queries = self._generate_sample_queries(table_data, table_name)
+        <span class="c1"># Generate natural language summary</span>
+        <span class="n">summary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_table_summary</span><span class="p">(</span><span class="n">table_data</span><span class="p">,</span> <span class="n">table_name</span><span class="p">)</span>
 
-        # Convert to text chunks for semantic search
-        text_chunks = self._table_to_text_chunks(table_data)
+        <span class="c1"># Generate sample queries this table could answer</span>
+        <span class="n">sample_queries</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_sample_queries</span><span class="p">(</span><span class="n">table_data</span><span class="p">,</span> <span class="n">table_name</span><span class="p">)</span>
 
-        return {
-            &quot;table_name&quot;: table_name,
-            &quot;schema&quot;: schema,
-            &quot;summary&quot;: summary,
-            &quot;sample_queries&quot;: sample_queries,
-            &quot;text_chunks&quot;: text_chunks,
-            &quot;raw_data&quot;: table_data,
-            &quot;source_document&quot;: source_doc
-        }
+        <span class="c1"># Convert to text chunks for semantic search</span>
+        <span class="n">text_chunks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_table_to_text_chunks</span><span class="p">(</span><span class="n">table_data</span><span class="p">)</span>
 
-    def _generate_schema_representation(self, df: pd.DataFrame) -&gt; str:
-        &quot;&quot;&quot;Generate a SQL-like schema representation.&quot;&quot;&quot;
-        types = []
-        for col in df.columns:
-            dtype = df[col].dtype
-            if pd.api.types.is_numeric_dtype(dtype):
-                sql_type = &quot;NUMERIC&quot;
-            elif pd.api.types.is_datetime64_dtype(dtype):
-                sql_type = &quot;TIMESTAMP&quot;
-            else:
-                sql_type = &quot;TEXT&quot;
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;table_name&quot;</span><span class="p">:</span> <span class="n">table_name</span><span class="p">,</span>
+            <span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="n">schema</span><span class="p">,</span>
+            <span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="n">summary</span><span class="p">,</span>
+            <span class="s2">&quot;sample_queries&quot;</span><span class="p">:</span> <span class="n">sample_queries</span><span class="p">,</span>
+            <span class="s2">&quot;text_chunks&quot;</span><span class="p">:</span> <span class="n">text_chunks</span><span class="p">,</span>
+            <span class="s2">&quot;raw_data&quot;</span><span class="p">:</span> <span class="n">table_data</span><span class="p">,</span>
+            <span class="s2">&quot;source_document&quot;</span><span class="p">:</span> <span class="n">source_doc</span>
+        <span class="p">}</span>
 
-            # Add sample values for better understanding
-            sample_values = df[col].dropna().unique()[:3]
-            sample_str = f&quot;Sample values: {&#39;, &#39;.join(str(x) for x in sample_values)}&quot;
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_schema_representation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate a SQL-like schema representation.&quot;&quot;&quot;</span>
+        <span class="n">types</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span>
+            <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_numeric_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
+                <span class="n">sql_type</span> <span class="o">=</span> <span class="s2">&quot;NUMERIC&quot;</span>
+            <span class="k">elif</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_datetime64_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
+                <span class="n">sql_type</span> <span class="o">=</span> <span class="s2">&quot;TIMESTAMP&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sql_type</span> <span class="o">=</span> <span class="s2">&quot;TEXT&quot;</span>
 
-            types.append(f&quot;{col} {sql_type} -- {sample_str}&quot;)
+            <span class="c1"># Add sample values for better understanding</span>
+            <span class="n">sample_values</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">()[:</span><span class="mi">3</span><span class="p">]</span>
+            <span class="n">sample_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Sample values: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">sample_values</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
 
-        return f&quot;CREATE TABLE table (\n  &quot; + &quot;,\n  &quot;.join(types) + &quot;\n);&quot;
+            <span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">sql_type</span><span class="si">}</span><span class="s2"> -- </span><span class="si">{</span><span class="n">sample_str</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    def _generate_table_summary(self, df: pd.DataFrame, table_name: str) -&gt; str:
-        &quot;&quot;&quot;Generate a natural language summary of the table.&quot;&quot;&quot;
-        # Use an LLM to summarize the table contents
-        # Implementation depends on your LLM framework
-        # ...
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;CREATE TABLE table (</span><span class="se">\n</span><span class="s2">  &quot;</span> <span class="o">+</span> <span class="s2">&quot;,</span><span class="se">\n</span><span class="s2">  &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">types</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">);&quot;</span>
 
-    def _generate_sample_queries(self, df: pd.DataFrame, table_name: str) -&gt; List[str]:
-        &quot;&quot;&quot;Generate sample natural language queries this table could answer.&quot;&quot;&quot;
-        # Use an LLM to generate sample queries
-        # ...
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_table_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate a natural language summary of the table.&quot;&quot;&quot;</span>
+        <span class="c1"># Use an LLM to summarize the table contents</span>
+        <span class="c1"># Implementation depends on your LLM framework</span>
+        <span class="c1"># ...</span>
 
-    def _table_to_text_chunks(self, df: pd.DataFrame) -&gt; List[str]:
-        &quot;&quot;&quot;Convert table to text chunks for semantic search.&quot;&quot;&quot;
-        # Implementation for chunking table content
-        # ...
-```
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_sample_queries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate sample natural language queries this table could answer.&quot;&quot;&quot;</span>
+        <span class="c1"># Use an LLM to generate sample queries</span>
+        <span class="c1"># ...</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_table_to_text_chunks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert table to text chunks for semantic search.&quot;&quot;&quot;</span>
+        <span class="c1"># Implementation for chunking table content</span>
+        <span class="c1"># ...</span>
 </code></pre></div>
 <p>Once the right table is identified, either:</p>
 <ul>
@@ -3399,12 +3505,12 @@ import pandas as pd</p>
 
 This approach handles the &quot;information spread&quot; problem where relevant content is distributed across multiple non-contiguous sections.
 </code></pre></div>
-<div class="admonition info">
-<p class="admonition-title">When Simple Tools Beat Embeddings</p>
-</div>
-<p>Colin Flaherty's experience building top-performing coding agents reveals that sometimes simple tools like grep and find can outperform embedding-based retrieval: "The agent's persistence compensated for less sophisticated tools." However, he notes this works best for: - Highly structured content like code - Small to medium-sized repositories - When distinctive keywords exist</p>
-<div class="highlight"><pre><span></span><code>For larger codebases or unstructured content, embeddings become essential. [Explore agentic retrieval patterns →](../talks/colin-rag-agents.md)
-</code></pre></div>
+<h3 id="when-simple-tools-beat-embeddings">When Simple Tools Beat Embeddings</h3>
+<p>Colin Flaherty's experience building top-performing coding agents reveals that sometimes simple tools like grep and find can outperform embedding-based retrieval: "The agent's persistence compensated for less sophisticated tools." However, he notes this works best for:
+- Highly structured content like code
+- Small to medium-sized repositories
+- When distinctive keywords exist</p>
+<p>For larger codebases or unstructured content, embeddings become essential. <a href="../../talks/colin-rag-agents/">Explore agentic retrieval patterns →</a></p>
 <p>Here's what actually works for SQL generation:</p>
 <ol>
 <li>Document all your tables with good descriptions and sample data</li>

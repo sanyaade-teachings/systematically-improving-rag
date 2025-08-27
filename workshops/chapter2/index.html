@@ -68,6 +68,32 @@
 
     
     
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Converting Evaluations into Training Data - Systematically Improving RAG Applications" >
+      
+        <meta  property="og:description"  content="Learn how to use your evaluation data to create few-shot examples and training datasets for fine-tuning" >
+      
+        <meta  property="og:image"  content="https://567-labs.github.io/systematically-improving-rag/assets/images/social/workshops/chapter2.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://567-labs.github.io/systematically-improving-rag/workshops/chapter2/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Converting Evaluations into Training Data - Systematically Improving RAG Applications" >
+      
+        <meta  name="twitter:description"  content="Learn how to use your evaluation data to create few-shot examples and training datasets for fine-tuning" >
+      
+        <meta  name="twitter:image"  content="https://567-labs.github.io/systematically-improving-rag/assets/images/social/workshops/chapter2.png" >
+      
+    
     
   </head>
   
@@ -104,10 +130,17 @@
               </button>
             
             
-  <p>
-    This material is supported by <a href="https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK" target="_blank"><strong>Applied LLMs on Maven</strong></a>.  Readers get 20% off.
-    Not ready? Check out the <a href="https://fivesixseven.ck.page/rag-crash-course" target="_blank"><strong>free email course</strong></a>.
-  </p>
+<p>
+  This material is supported by
+  <a
+    href="https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK"
+    target="_blank"
+    ><strong>Applied LLMs on Maven</strong></a
+  >. Readers get 20% off. Not ready? Check out the
+  <a href="https://fivesixseven.ck.page/rag-crash-course" target="_blank"
+    ><strong>free email course</strong></a
+  >.
+</p>
 
           </div>
           
@@ -676,6 +709,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#key-insight" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Insight
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#introduction" class="md-nav__link">
     <span class="md-ellipsis">
       Introduction
@@ -693,6 +735,15 @@
   
     <nav class="md-nav" aria-label="Why Generic Embeddings Fall Short">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limitation-of-generic-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limitation of Generic Models
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#the-elusive-nature-of-similarity" class="md-nav__link">
@@ -737,6 +788,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#how-few-shot-learning-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Few-Shot Learning Works
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#selecting-the-right-examples" class="md-nav__link">
     <span class="md-ellipsis">
       Selecting the Right Examples
@@ -755,9 +815,102 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#creating-effective-triplets-for-rag" class="md-nav__link">
+  <a href="#structured-few-shot-prompt-example" class="md-nav__link">
     <span class="md-ellipsis">
-      Creating Effective Triplets for RAG
+      Structured Few-Shot Prompt Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-implementation-building-the-data-flywheel-for-fine-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Implementation: Building the Data Flywheel for Fine-Tuning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical Implementation: Building the Data Flywheel for Fine-Tuning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#starting-the-flywheel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Starting the Flywheel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-collecting-now" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start Collecting Now
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-data-should-you-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Data Should You Log?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#domain-specific-relevance-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Domain-Specific Relevance Signals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-logging-yesterday" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start Logging Yesterday!
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-contrastive-learning-for-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding Contrastive Learning for Embeddings
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Understanding Contrastive Learning for Embeddings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#learning-through-contrasts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Through Contrasts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triplet-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Triplet Structure
     </span>
   </a>
   
@@ -767,6 +920,33 @@
   <a href="#the-challenge-of-hard-negatives-and-how-ux-can-help" class="md-nav__link">
     <span class="md-ellipsis">
       The Challenge of Hard Negatives and How UX Can Help
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hard-negative-mining-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hard Negative Mining Strategies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#value-of-hard-negatives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Value of Hard Negatives
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#designing-ux-for-better-training-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Designing UX for Better Training Data
     </span>
   </a>
   
@@ -797,9 +977,27 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#model-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Comparison
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#creating-training-data-for-re-rankers" class="md-nav__link">
     <span class="md-ellipsis">
       Creating Training Data for Re-Rankers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graded-relevance-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graded Relevance Example
     </span>
   </a>
   
@@ -1499,8 +1697,6 @@
       
         
       
-        
-      
     
     
     
@@ -1577,29 +1773,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../office-hours/AGENTS/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Agents
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
       
@@ -1624,10 +1797,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
         
           
-          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
             
   
   
@@ -1640,8 +1813,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             Chapter 1: Starting the Flywheel
           </label>
@@ -1754,10 +1927,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
         
           
-          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
             
   
   
@@ -1770,8 +1943,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
             <span class="md-nav__icon md-icon"></span>
             Chapter 2: From Evaluation to Enhancement
           </label>
@@ -1882,10 +2055,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
             
   
   
@@ -1898,8 +2071,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_6">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
             <span class="md-nav__icon md-icon"></span>
             Chapter 3: User Experience
           </label>
@@ -1989,10 +2162,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
         
           
-          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
             
   
   
@@ -2005,8 +2178,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
             <span class="md-nav__icon md-icon"></span>
             Chapter 4: Topic Modeling
           </label>
@@ -2119,10 +2292,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7" >
         
           
-          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
             
   
   
@@ -2135,8 +2308,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
             <span class="md-nav__icon md-icon"></span>
             Chapter 5: Multimodal Capabilities
           </label>
@@ -2245,10 +2418,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_9" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_8" >
         
           
-          <label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
             
   
   
@@ -2261,8 +2434,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
             <span class="md-nav__icon md-icon"></span>
             Chapter 6: Architecture
           </label>
@@ -2701,6 +2874,8 @@
       
         
       
+        
+      
     
     
     
@@ -2798,6 +2973,29 @@
   
   <span class="md-ellipsis">
     How Zapier 4x'd Their AI Feedback Collection (Vitor)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../talks/chris-lovejoy-domain-expert-vertical-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Domain Experts: The Lever for Vertical AI (Chris Lovejoy, Anterior)
     
   </span>
   
@@ -3135,6 +3333,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#key-insight" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Insight
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#introduction" class="md-nav__link">
     <span class="md-ellipsis">
       Introduction
@@ -3152,6 +3359,15 @@
   
     <nav class="md-nav" aria-label="Why Generic Embeddings Fall Short">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limitation-of-generic-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limitation of Generic Models
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#the-elusive-nature-of-similarity" class="md-nav__link">
@@ -3196,6 +3412,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#how-few-shot-learning-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Few-Shot Learning Works
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#selecting-the-right-examples" class="md-nav__link">
     <span class="md-ellipsis">
       Selecting the Right Examples
@@ -3214,9 +3439,102 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#creating-effective-triplets-for-rag" class="md-nav__link">
+  <a href="#structured-few-shot-prompt-example" class="md-nav__link">
     <span class="md-ellipsis">
-      Creating Effective Triplets for RAG
+      Structured Few-Shot Prompt Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-implementation-building-the-data-flywheel-for-fine-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Implementation: Building the Data Flywheel for Fine-Tuning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical Implementation: Building the Data Flywheel for Fine-Tuning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#starting-the-flywheel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Starting the Flywheel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-collecting-now" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start Collecting Now
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-data-should-you-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Data Should You Log?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#domain-specific-relevance-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Domain-Specific Relevance Signals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-logging-yesterday" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start Logging Yesterday!
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-contrastive-learning-for-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding Contrastive Learning for Embeddings
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Understanding Contrastive Learning for Embeddings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#learning-through-contrasts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Through Contrasts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triplet-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Triplet Structure
     </span>
   </a>
   
@@ -3226,6 +3544,33 @@
   <a href="#the-challenge-of-hard-negatives-and-how-ux-can-help" class="md-nav__link">
     <span class="md-ellipsis">
       The Challenge of Hard Negatives and How UX Can Help
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hard-negative-mining-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hard Negative Mining Strategies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#value-of-hard-negatives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Value of Hard Negatives
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#designing-ux-for-better-training-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Designing UX for Better Training Data
     </span>
   </a>
   
@@ -3256,9 +3601,27 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#model-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Comparison
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#creating-training-data-for-re-rankers" class="md-nav__link">
     <span class="md-ellipsis">
       Creating Training Data for Re-Rankers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graded-relevance-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graded Relevance Example
     </span>
   </a>
   
@@ -3442,10 +3805,8 @@
 
 
 <h1 id="converting-evaluations-into-training-data-for-fine-tuning">Converting Evaluations into Training Data for Fine-Tuning</h1>
-<div class="admonition warning">
-<p class="admonition-title">Key Insight</p>
+<h3 id="key-insight">Key Insight</h3>
 <p><strong>If you're not fine-tuning, you're Blockbuster, not Netflix.</strong> The goal isn't to fine-tune language models (which are expensive and complex), but to fine-tune embedding models that move toward your specific data distributions and improve retrieval, not generation.</p>
-</div>
 <div class="admonition success">
 <p class="admonition-title">Fine-Tuning Cost Reality Check</p>
 </div>
@@ -3460,20 +3821,16 @@ This dramatic difference explains why embedding fine-tuning should be your first
 </code></pre></div>
 <h2 id="introduction">Introduction</h2>
 <p>In the previous chapter, we set up evaluation and generated synthetic data to benchmark our RAG system. Now let's talk about how to actually use that data to improve things.</p>
-<p>!!! note "Prerequisites from Previous Chapters" - <strong><a href="../chapter0/">Chapter 0</a></strong>: Understanding the improvement flywheel concept - <strong><a href="../chapter1/">Chapter 1</a></strong>: Creating evaluation datasets with synthetic data</p>
-<div class="highlight"><pre><span></span><code>The evaluation examples from Chapter 1 become your training data in this chapter.
-</code></pre></div>
+<p><strong>Prerequisites from Previous Chapters:</strong>
+- <strong><a href="../chapter0/">Chapter 0</a></strong>: Understanding the improvement flywheel concept
+- <strong><a href="../chapter1/">Chapter 1</a></strong>: Creating evaluation datasets with synthetic data</p>
+<p>The evaluation examples from Chapter 1 become your training data in this chapter.</p>
 <p>Here's the thing: the data you collect for evaluation shouldn't just sit there. Every question, every relevance judgment, every piece of feedback—it can all be used to improve your system. That's what we'll cover here.</p>
-<div class="admonition quote">
-<p class="admonition-title">Key Philosophy</p>
-</div>
-<p>"Every evaluation example is a potential training example. The data flywheel transforms what begins as a handful of evaluation examples into few-shot prompts, then into training datasets for fine-tuning embedding models and re-rankers."</p>
+<p><strong>Key Philosophy:</strong> "Every evaluation example is a potential training example. The data flywheel transforms what begins as a handful of evaluation examples into few-shot prompts, then into training datasets for fine-tuning embedding models and re-rankers."</p>
 <p>The process is straightforward: you start with evaluation examples, turn them into few-shot prompts, then eventually use them to fine-tune your embedding models and re-rankers. Each step builds on the last.</p>
 <h2 id="why-generic-embeddings-fall-short">Why Generic Embeddings Fall Short</h2>
 <p>Let me start with something that trips up a lot of teams: generic embeddings from providers like OpenAI often don't work great for specialized applications. They're good models, don't get me wrong. But they're built to handle everything, which means they don't handle your specific thing particularly well.</p>
-<div class="admonition warning">
-<p class="admonition-title">Limitation of Generic Models</p>
-</div>
+<h3 id="limitation-of-generic-models">Limitation of Generic Models</h3>
 <p>Generic embedding models come with built-in assumptions about what "similarity" means. You don't know:</p>
 <ul>
 <li>What data they were trained on</li>
@@ -3483,36 +3840,25 @@ This dramatic difference explains why embedding fine-tuning should be your first
 </ul>
 <h3 id="the-elusive-nature-of-similarity">The Elusive Nature of "Similarity"</h3>
 <p>Embedding models seem simple enough: they turn text into numbers, and similar text should end up with similar numbers. Measure the distance between vectors and you know how similar things are.</p>
-<div class="admonition example">
-<p class="admonition-title">Domain-Specific Similarity</p>
-</div>
-<p>In e-commerce, what makes two products "similar"? Are they substitutes (different brands of red shirts) or complements (a shirt and matching pants)? Depends on what you're trying to do.</p>
+<p><strong>Domain-Specific Similarity Example:</strong> In e-commerce, what makes two products "similar"? Are they substitutes (different brands of red shirts) or complements (a shirt and matching pants)? Depends on what you're trying to do.</p>
 <p>Take music recommendations. Songs might be similar because they're the same genre, or because they show up in the same playlists, or because the same people like them. If you're adding songs to a playlist, you want one kind of similarity. If you're building Spotify's Discovery Weekly, you want something else entirely.</p>
 <p>My favorite example is from dating apps. Should "I love coffee" and "I hate coffee" be similar? Linguistically, they're opposites. But both people care about coffee enough to mention it. Maybe opposites don't attract when it comes to beverages. Or maybe they do if one person likes tea and the other likes coffee.</p>
 <p>Here's the thing: <strong>What actually matters for a dating app is whether two people will like each other</strong>, not whether their profiles use similar words. Generic embeddings trained on web text have no idea about this.</p>
 <p>The problem is that "similarity" means different things in different contexts. There's no universal right answer—it depends on what you're trying to do.</p>
 <h3 id="the-hidden-assumptions-in-provider-models">The Hidden Assumptions in Provider Models</h3>
 <p>When you use OpenAI or Cohere's embeddings, you're stuck with their definition of similarity. It might not match what you need.</p>
-<div class="admonition example">
-<p class="admonition-title">Legal Document Search Failure</p>
-</div>
-<p>One memorable case involved a legal document search application. The generic embeddings performed reasonably well for finding factual information but struggled with procedural questions. The embeddings didn't adequately capture the relationships between legal procedures and their applications—a specific type of similarity vital to legal professionals but not emphasized in general-purpose training data.</p>
+<p><strong>Legal Document Search Example:</strong> One memorable case involved a legal document search application. The generic embeddings performed reasonably well for finding factual information but struggled with procedural questions. The embeddings didn't adequately capture the relationships between legal procedures and their applications—a specific type of similarity vital to legal professionals but not emphasized in general-purpose training data.</p>
 <p>Provider embeddings aren't bad—they're great for general use. But your application probably isn't general. Fine-tuning with your own data fixes this mismatch.</p>
 <h2 id="from-evaluation-to-few-shot-examples">From Evaluation to Few-Shot Examples</h2>
 <p>Before jumping into fine-tuning, there's something simpler you can try: few-shot examples. Let's talk about turning your evaluation data into prompts that actually work.</p>
 <h3 id="the-power-of-examples-in-context">The Power of Examples in Context</h3>
 <p>Few-shot learning is pretty straightforward: instead of retraining the model, you just show it some examples in the prompt. No special infrastructure needed.</p>
-<div class="admonition info">
-<p class="admonition-title">How Few-Shot Learning Works</p>
-</div>
+<h3 id="how-few-shot-learning-works">How Few-Shot Learning Works</h3>
 <p>When you provide a language model with examples of how to respond to similar queries, you activate its ability to recognize patterns and apply them to new inputs. It's like showing a human a few examples of a task before asking them to perform it themselves—no specialized training required, just clear demonstrations.</p>
 <p>This works especially well for RAG because different types of questions need different approaches. Show the model a few examples and it figures out what kind of question it's dealing with.</p>
 <h3 id="selecting-the-right-examples">Selecting the Right Examples</h3>
 <p>Don't just grab random examples from your evaluation set. I've watched teams do this and make their model worse. You need to pick the right examples.</p>
-<div class="admonition tip">
-<p class="admonition-title">Characteristics of Good Examples</p>
-</div>
-<p>Good few-shot examples:</p>
+<p><strong>Characteristics of Good Examples:</strong></p>
 <ul>
 <li>Match the queries your users actually ask</li>
 <li>Show clear reasoning steps</li>
@@ -3530,121 +3876,98 @@ This dramatic difference explains why embedding fine-tuning should be your first
 <li>Test them with your actual pipeline</li>
 <li>Keep the ones that work, toss the ones that don't</li>
 </ol>
-<div class="admonition example">
-<p class="admonition-title">Structured Few-Shot Prompt</p>
-</div>
+<h3 id="structured-few-shot-prompt-example">Structured Few-Shot Prompt Example</h3>
 <div class="highlight"><pre><span></span><code>You are an assistant specialized in answering questions about [domain].
 
-    Here are some examples of how to answer questions:
+Here are some examples of how to answer questions:
 
-    Question: [Example Question 1]
-    Thinking: [First, I&#39;ll identify the key entities in the question. Then I&#39;ll look for information about their relationship...]
-    Answer: [Example Answer 1]
+Question: [Example Question 1]
+Thinking: [First, I&#39;ll identify the key entities in the question. Then I&#39;ll look for information about their relationship...]
+Answer: [Example Answer 1]
 
-    Question: [Example Question 2]
-    Thinking: [This appears to be a comparison question. I should look for information about both entities and highlight similarities and differences...]
-    Answer: [Example Answer 2]
+Question: [Example Question 2]
+Thinking: [This appears to be a comparison question. I should look for information about both entities and highlight similarities and differences...]
+Answer: [Example Answer 2]
 
-    Now please answer the following question:
-    Question: [Actual User Query]
-    ```
-
-Having an organized library means you can track what works, swap out examples that get stale, and keep improving based on what your users actually do.
-
-## Practical Implementation: Building the Data Flywheel for Fine-Tuning
-
-Few-shot examples are great, but fine-tuning your embeddings is where you see real improvements. The trick is getting enough good data to make it worth doing.
-
-### Starting the Flywheel
-
-Building a RAG system is iterative. You start with a few examples for evaluation. Those become few-shot prompts. Eventually you have enough for fine-tuning. Each stage builds on the last.
-
-!!! info &quot;Data Collection Milestones&quot; - With 20 examples, you can build basic evaluation benchmarks - With 30 examples, you can create effective few-shot prompts - With 1000+ examples, you can fine-tune your retrieval models
-
-What&#39;s nice is you&#39;re not throwing away data—you&#39;re using it differently as you get more of it.
-
-!!! warning &quot;Start Collecting Now&quot;
-You need to start collecting the right data now, even if you&#39;re not ready to fine-tune yet. The sooner you start logging relevant user interactions, the sooner you&#39;ll reach the critical mass needed for fine-tuning.
-
-### What Data Should You Log?
-
-For RAG, here&#39;s what you should be logging:
-
-1. What users actually ask
-2. Which chunks got used in responses
-3. Which responses users liked (or didn&#39;t)
-4. Which queries needed follow-ups
-
-This tells you what&#39;s actually relevant to what—which is exactly what you need for fine-tuning.
-
-!!! example &quot;Domain-Specific Relevance Signals&quot;
-For other applications, the relevance signals will differ:
-
-    - In e-commerce: track which items are purchased together, viewed in sequence, or added to the same lists
-    - For music recommendations: log which songs appear in the same playlists or are hearted by the same users
-    - For dating apps: record which profiles match and go on to have meaningful conversations
-
-The key is defining what &quot;relevance&quot; means in your specific context and systematically collecting data that captures this relationship.
-
-!!! warning &quot;Start Logging Yesterday!&quot;
-I&#39;ve seen numerous companies hire machine learning engineers to fine-tune embedding models, only to realize they hadn&#39;t started logging relevance data. These teams then have to wait 3-6 months to collect enough data before they can begin the work they intended to do immediately.
-
-**The most important action you can take today is to start logging relevance data**, even if you&#39;re not ready to hire ML specialists or begin fine-tuning. Save the top 20-40 chunks for each query and use an LLM to mark relevance if human annotation isn&#39;t feasible. This data will be invaluable when you&#39;re ready to improve your models.
-
-I watched a team build a great RAG app for internal docs. Six months later they wanted to fine-tune embeddings but had zero data because they never set up logging. Had to start from scratch with synthetic data. Don&#39;t do this.
-
-!!! success &quot;Small Datasets Can Make Big Differences&quot;
-The team at Sentence Transformers has demonstrated that even with just 6,000 examples, you can achieve 6-10% better performance. With 40 minutes of fine-tuning on a laptop, you can create significant lifetime value for your application. This makes fine-tuning embedding models accessible even to teams without massive datasets or specialized infrastructure.
-
-## Understanding Contrastive Learning for Embeddings
-
-Let&#39;s talk about how fine-tuning actually works. Most approaches use something called contrastive learning.
-
-### Learning Through Contrasts
-
-Contrastive learning is simple: you teach the model what&#39;s similar by showing it what&#39;s different. It&#39;s all about relationships, not absolute values.
-
-!!! info &quot;Triplet Structure&quot;
-The most common implementation uses a structure called a triplet, which consists of:
-
-    1. An **anchor** (usually the query)
-    2. A **positive example** (a document that&#39;s relevant to the query)
-    3. A **negative example** (a document that&#39;s not relevant to the query)
-
-The goal of training is straightforward: adjust the embedding model so that the distance between the anchor and positive example decreases, while the distance between the anchor and negative example increases. In other words, pull similar things closer together and push dissimilar things further apart.
-
-```mermaid
-graph LR
+Now please answer the following question:
+Question: [Actual User Query]
+</code></pre></div>
+<p>Having an organized library means you can track what works, swap out examples that get stale, and keep improving based on what your users actually do.</p>
+<h2 id="practical-implementation-building-the-data-flywheel-for-fine-tuning">Practical Implementation: Building the Data Flywheel for Fine-Tuning</h2>
+<p>Few-shot examples are great, but fine-tuning your embeddings is where you see real improvements. The trick is getting enough good data to make it worth doing.</p>
+<h3 id="starting-the-flywheel">Starting the Flywheel</h3>
+<p>Building a RAG system is iterative. You start with a few examples for evaluation. Those become few-shot prompts. Eventually you have enough for fine-tuning. Each stage builds on the last.</p>
+<p><strong>Data Collection Milestones:</strong>
+- With 20 examples, you can build basic evaluation benchmarks
+- With 30 examples, you can create effective few-shot prompts
+- With 1000+ examples, you can fine-tune your retrieval models</p>
+<p>What's nice is you're not throwing away data—you're using it differently as you get more of it.</p>
+<h3 id="start-collecting-now">Start Collecting Now</h3>
+<p>You need to start collecting the right data now, even if you're not ready to fine-tune yet. The sooner you start logging relevant user interactions, the sooner you'll reach the critical mass needed for fine-tuning.</p>
+<h3 id="what-data-should-you-log">What Data Should You Log?</h3>
+<p>For RAG, here's what you should be logging:</p>
+<ol>
+<li>What users actually ask</li>
+<li>Which chunks got used in responses</li>
+<li>Which responses users liked (or didn't)</li>
+<li>Which queries needed follow-ups</li>
+</ol>
+<p>This tells you what's actually relevant to what—which is exactly what you need for fine-tuning.</p>
+<h3 id="domain-specific-relevance-signals">Domain-Specific Relevance Signals</h3>
+<p>For other applications, the relevance signals will differ:</p>
+<ul>
+<li>In e-commerce: track which items are purchased together, viewed in sequence, or added to the same lists</li>
+<li>For music recommendations: log which songs appear in the same playlists or are hearted by the same users</li>
+<li>For dating apps: record which profiles match and go on to have meaningful conversations</li>
+</ul>
+<p>The key is defining what "relevance" means in your specific context and systematically collecting data that captures this relationship.</p>
+<h3 id="start-logging-yesterday">Start Logging Yesterday!</h3>
+<p>I've seen numerous companies hire machine learning engineers to fine-tune embedding models, only to realize they hadn't started logging relevance data. These teams then have to wait 3-6 months to collect enough data before they can begin the work they intended to do immediately.</p>
+<p><strong>The most important action you can take today is to start logging relevance data</strong>, even if you're not ready to hire ML specialists or begin fine-tuning. Save the top 20-40 chunks for each query and use an LLM to mark relevance if human annotation isn't feasible. This data will be invaluable when you're ready to improve your models.</p>
+<p>I watched a team build a great RAG app for internal docs. Six months later they wanted to fine-tune embeddings but had zero data because they never set up logging. Had to start from scratch with synthetic data. Don't do this.</p>
+<div class="admonition success">
+<p class="admonition-title">Small Datasets Can Make Big Differences</p>
+</div>
+<p>The team at Sentence Transformers has demonstrated that even with just 6,000 examples, you can achieve 6-10% better performance. With 40 minutes of fine-tuning on a laptop, you can create significant lifetime value for your application. This makes fine-tuning embedding models accessible even to teams without massive datasets or specialized infrastructure.</p>
+<h2 id="understanding-contrastive-learning-for-embeddings">Understanding Contrastive Learning for Embeddings</h2>
+<p>Let's talk about how fine-tuning actually works. Most approaches use something called contrastive learning.</p>
+<h3 id="learning-through-contrasts">Learning Through Contrasts</h3>
+<p>Contrastive learning is simple: you teach the model what's similar by showing it what's different. It's all about relationships, not absolute values.</p>
+<h3 id="triplet-structure">Triplet Structure</h3>
+<p>The most common implementation uses a structure called a triplet, which consists of:</p>
+<ol>
+<li>An <strong>anchor</strong> (usually the query)</li>
+<li>A <strong>positive example</strong> (a document that's relevant to the query)</li>
+<li>A <strong>negative example</strong> (a document that's not relevant to the query)</li>
+</ol>
+<p>The goal of training is straightforward: adjust the embedding model so that the distance between the anchor and positive example decreases, while the distance between the anchor and negative example increases. In other words, pull similar things closer together and push dissimilar things further apart.</p>
+<p><div class="highlight"><pre><span></span><code>graph LR
     A[Anchor: Query] --- P[Positive: Relevant Document]
     A --- N[Negative: Irrelevant Document]
     P -.- |&quot;Pull Closer&quot;| A
     N -.- |&quot;Push Away&quot;| A
+````
+
+This works great for embeddings because you&#39;re directly optimizing the distance relationships that matter for retrieval.
+
+### Creating Effective Triplets for RAG
+
+For RAG applications, there are several natural ways to create triplet datasets:
+
+- **Anchor**: The user&#39;s query
+- **Positive**: Document chunks that were cited in the final response or received positive feedback
+- **Negative**: Document chunks that were retrieved but not cited, or received negative feedback
+
+### Healthcare RAG Triplet Example
+
+Imagine a healthcare RAG application where a user asks:
 </code></pre></div>
-<p>This works great for embeddings because you're directly optimizing the distance relationships that matter for retrieval.</p>
-<h3 id="creating-effective-triplets-for-rag">Creating Effective Triplets for RAG</h3>
-<p>For RAG applications, there are several natural ways to create triplet datasets:</p>
-<ul>
-<li><strong>Anchor</strong>: The user's query</li>
-<li><strong>Positive</strong>: Document chunks that were cited in the final response or received positive feedback</li>
-<li><strong>Negative</strong>: Document chunks that were retrieved but not cited, or received negative feedback</li>
-</ul>
-<div class="admonition example">
-<p class="admonition-title">Healthcare RAG Triplet</p>
-</div>
-<p>Imagine a healthcare RAG application where a user asks:</p>
-<div class="highlight"><pre><span></span><code>```
 What are the side effects of medication X?
-```
-
-Our retrieval system might return several documents, including:
-
-```
-Document A: &quot;Medication X may cause drowsiness, nausea, and in rare cases, allergic reactions.&quot;
-
-Document B: &quot;Medication X is used to treat high blood pressure and should be taken with food.&quot;
-```
-
-If Document A is cited in the response while Document B isn&#39;t, we can create a triplet:
+<div class="highlight"><pre><span></span><code>Our retrieval system might return several documents, including:
+</code></pre></div>
+Document A: "Medication X may cause drowsiness, nausea, and in rare cases, allergic reactions."</p>
+<p>Document B: "Medication X is used to treat high blood pressure and should be taken with food."
+<div class="highlight"><pre><span></span><code>If Document A is cited in the response while Document B isn&#39;t, we can create a triplet:
 
 ```json
 {
@@ -3652,76 +3975,85 @@ If Document A is cited in the response while Document B isn&#39;t, we can create
   &quot;positive&quot;: &quot;Medication X may cause drowsiness, nausea, and in rare cases, allergic reactions.&quot;,
   &quot;negative&quot;: &quot;Medication X is used to treat high blood pressure and should be taken with food.&quot;
 }
-```
-</code></pre></div>
+</code></pre></div></p>
 <p>Through many such examples, the model learns that queries about side effects should be closer to texts describing adverse reactions than to texts describing indications or administration instructions.</p>
 <h3 id="the-challenge-of-hard-negatives-and-how-ux-can-help">The Challenge of Hard Negatives and How UX Can Help</h3>
 <p>Notice something subtle in that example? The negative document is still about the same medication—just not about side effects. That's a "hard negative": similar in some ways, different in the ways that matter.</p>
-<div class="admonition example">
-<p class="admonition-title">Hard Negative Mining Strategies</p>
-</div>
+<h3 id="hard-negative-mining-strategies">Hard Negative Mining Strategies</h3>
 <p><strong>Effective Approaches:</strong></p>
-<div class="highlight"><pre><span></span><code>1. **Semantic Similarity with Different Intent:**
-   - &quot;Software engineer&quot; vs &quot;Software engineering recruiter&quot;
-   - Both about software roles, but serving different user needs
-
-2. **User Deletion Signals:**
-   - Track which documents users actively remove from results
-   - These are perfect hard negatives - retrieved but explicitly rejected
-
-3. **Category Boundaries:**
-   - Items from adjacent but different categories
-   - Example: &quot;Red running shoes&quot; vs &quot;Red dress shoes&quot;
-
-4. **Temporal Relevance:**
-   - Outdated versions of correct information
-   - Example: &quot;2023 tax rates&quot; when user needs &quot;2024 tax rates&quot;
-</code></pre></div>
-<div class="admonition quote">
-<p class="admonition-title">Agentic Retrieval Perspective</p>
-</div>
+<ol>
+<li><strong>Semantic Similarity with Different Intent:</strong></li>
+<li>"Software engineer" vs "Software engineering recruiter"</li>
+<li>
+<p>Both about software roles, but serving different user needs</p>
+</li>
+<li>
+<p><strong>User Deletion Signals:</strong></p>
+</li>
+<li>Track which documents users actively remove from results</li>
+<li>
+<p>These are perfect hard negatives - retrieved but explicitly rejected</p>
+</li>
+<li>
+<p><strong>Category Boundaries:</strong></p>
+</li>
+<li>Items from adjacent but different categories</li>
+<li>
+<p>Example: "Red running shoes" vs "Red dress shoes"</p>
+</li>
+<li>
+<p><strong>Temporal Relevance:</strong></p>
+</li>
+<li>Outdated versions of correct information</li>
+<li>Example: "2023 tax rates" when user needs "2024 tax rates"</li>
+</ol>
+<blockquote>
+<p><strong>Agentic Retrieval Perspective</strong></p>
 <p>Colin Flaherty's work on agentic coding systems reveals a surprising insight: "We found that for SweeBench tasks, embedding-based retrieval was not the bottleneck - grep and find were sufficient." The agent's persistence effectively compensated for less sophisticated tools. This suggests that while fine-tuning embeddings is valuable, the agent layer can sometimes overcome retrieval limitations through persistence. <a href="../../talks/colin-rag-agents/">Learn more about agentic approaches →</a></p>
-<div class="admonition info">
-<p class="admonition-title">Value of Hard Negatives</p>
-</div>
+</blockquote>
+<h3 id="value-of-hard-negatives">Value of Hard Negatives</h3>
 <p>Hard negatives are way more valuable than easy ones. If your negative example was about car maintenance instead of medications, the model learns nothing—it already knows car maintenance isn't relevant to medication side effects.</p>
 <p>The real challenge is teaching the model to distinguish between different aspects of the same topic. That's where you get actual improvements.</p>
 <p>That's why hard negative mining matters—finding examples that are tricky but teachable.</p>
-<div class="admonition tip">
-<p class="admonition-title">Designing UX for Better Training Data</p>
-</div>
+<h3 id="designing-ux-for-better-training-data">Designing UX for Better Training Data</h3>
 <p>If you're serious about improving your embeddings, consider explicitly designing your UX to capture these signals:</p>
-<div class="highlight"><pre><span></span><code>1. **Document-level feedback mechanisms**: Add simple thumbs up/down options next to each retrieved document, not just for the final answer
-
-2. **Click tracking**: Record which documents users click on and which they ignore—those ignored despite ranking highly are excellent hard negative candidates
-
-3. **Dwell time analysis**: If a user quickly returns from a document without spending time reading it, that&#39;s a strong signal it wasn&#39;t relevant
-
-4. **Explicit comparison interfaces**: For critical applications, consider interfaces that ask users to compare documents and select the most relevant one
-
-5. **Query reformulation tracking**: When a user modifies their query slightly and gets better results, you can pair the original query with documents from the improved results to create training pairs
-</code></pre></div>
+<ol>
+<li>
+<p><strong>Document-level feedback mechanisms</strong>: Add simple thumbs up/down options next to each retrieved document, not just for the final answer</p>
+</li>
+<li>
+<p><strong>Click tracking</strong>: Record which documents users click on and which they ignore—those ignored despite ranking highly are excellent hard negative candidates</p>
+</li>
+<li>
+<p><strong>Dwell time analysis</strong>: If a user quickly returns from a document without spending time reading it, that's a strong signal it wasn't relevant</p>
+</li>
+<li>
+<p><strong>Explicit comparison interfaces</strong>: For critical applications, consider interfaces that ask users to compare documents and select the most relevant one</p>
+</li>
+<li>
+<p><strong>Query reformulation tracking</strong>: When a user modifies their query slightly and gets better results, you can pair the original query with documents from the improved results to create training pairs</p>
+</li>
+</ol>
 <p>One team I worked with added a "more like this" button next to helpful documents. Users loved it, and it gave us perfect training data about what users actually consider similar—which often wasn't what we expected from just reading the text.</p>
 <h2 id="the-power-of-re-rankers-in-rag-systems">The Power of Re-Rankers in RAG Systems</h2>
 <p>Embeddings do the heavy lifting in retrieval, but re-rankers add polish. The difference: embeddings process queries and documents separately, while re-rankers look at them together and can make smarter decisions.</p>
 <h3 id="bi-encoders-vs-cross-encoders-understanding-the-trade-offs">Bi-Encoders vs. Cross-Encoders: Understanding the Trade-offs</h3>
 <p>Here's the trade-off: embeddings are fast, re-rankers are accurate.</p>
-<div class="admonition info">
-<p class="admonition-title">Model Comparison</p>
-</div>
-<p><strong>Bi-encoders (embedding models)</strong>: - Encode query and document independently - Allow pre-computation of document embeddings - Enable fast vector similarity operations - Work well for first-pass retrieval of candidates - Examples include OpenAI's text-embedding models, SBERT, MPNet</p>
-<div class="highlight"><pre><span></span><code>**Cross-encoders (re-rankers)**:
+<h3 id="model-comparison">Model Comparison</h3>
+<p><strong>Bi-encoders (embedding models):</strong>
+- Encode query and document independently
+- Allow pre-computation of document embeddings
+- Enable fast vector similarity operations
+- Work well for first-pass retrieval of candidates
+- Examples include OpenAI's text-embedding models, SBERT, MPNet</p>
+<p><strong>Cross-encoders (re-rankers):</strong>
 - Process query and document together as a pair
 - Cannot pre-compute relevance scores
 - Provide more accurate relevance judgments
 - Work best for re-ranking a smaller set of candidates
-- Examples include Cohere Rerank, monoT5
-</code></pre></div>
+- Examples include Cohere Rerank, monoT5</p>
 <p>Use them together: embeddings grab candidates quickly, re-ranker sorts them properly.</p>
-<div class="admonition example">
-<p class="admonition-title">Re-Ranker Success Story</p>
-</div>
-<p>One team I worked with was debating whether to invest in fine-tuning their embeddings or implementing a re-ranker. When they tested both approaches, they found that fine-tuning embeddings improved recall from 65% to 78%, while adding a re-ranker (even without fine-tuning) improved it to 82%. Combining both approaches pushed performance to 91%—a transformative improvement from where they started.</p>
+<p><strong>Re-Ranker Success Story:</strong> One team I worked with was debating whether to invest in fine-tuning their embeddings or implementing a re-ranker. When they tested both approaches, they found that fine-tuning embeddings improved recall from 65% to 78%, while adding a re-ranker (even without fine-tuning) improved it to 82%. Combining both approaches pushed performance to 91%—a transformative improvement from where they started.</p>
 <h3 id="creating-training-data-for-re-rankers">Creating Training Data for Re-Rankers</h3>
 <p>Re-rankers work better with graded relevance scores instead of just yes/no labels. Try this:</p>
 <ol>
@@ -3729,10 +4061,17 @@ If Document A is cited in the response while Document B isn&#39;t, we can create
 <li>Include the full range of scores</li>
 <li>Train the model to predict these scores</li>
 </ol>
-<div class="admonition example">
-<p class="admonition-title">Graded Relevance Example</p>
-</div>
-<p><code>json     {       "query": "How do I reset my password?",       "documents": [         {"text": "Step-by-step password reset guide", "score": 5},         {"text": "General account management information", "score": 3},         {"text": "Creating a strong password", "score": 2},         {"text": "About our company", "score": 0}       ]     }</code></p>
+<h3 id="graded-relevance-example">Graded Relevance Example</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;How do I reset my password?&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;documents&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Step-by-step password reset guide&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;General account management information&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Creating a strong password&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;About our company&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>This helps the re-ranker understand degrees of relevance, not just binary yes/no. Users notice the difference.</p>
 <h2 id="practical-fine-tuning-workflow">Practical Fine-Tuning Workflow</h2>
 <p>Here's a workflow that actually works, based on what I've seen teams do successfully.</p>
