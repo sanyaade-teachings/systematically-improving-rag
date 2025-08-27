@@ -24,6 +24,14 @@ Study Notes:
 
 I hosted an office hours session focused on advanced retrieval-augmented generation (RAG) strategies and implementation challenges. Here are my insights on building effective RAG systems for specialized domains, handling complex data structures, and designing economically valuable AI solutions that go beyond simple question-answering.
 
+---
+
+If you want to learn more about RAG systems, check out our RAG Playbook course. Here is a 20% discount code for readers.
+
+[RAG Playbook - 20% off for readers](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button }
+
+---
+
 ## How should I approach medical RAG systems with complex queries?
 
 When dealing with specialized domains like medical records where users ask comprehensive questions (e.g., "Give a complete medical history of patient X"), the key is understanding that you can't just throw everything into a generic RAG system and expect good results.

@@ -24,6 +24,14 @@ Study Notes:
 
 I hosted a focused office hours session addressing questions about re-ranking models, embedding model fine-tuning, and data strategies for RAG systems. Here are my insights on selecting appropriate models, creating effective training datasets with hard negatives, and making strategic decisions about compute allocation in retrieval systems.
 
+---
+
+If you want to learn more about RAG systems, check out our RAG Playbook course. Here is a 20% discount code for readers.
+
+[RAG Playbook - 20% off for readers](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button }
+
+---
+
 ## What open-source re-ranking models work well for fine-tuning?
 
 When selecting re-ranking models for fine-tuning, I believe the right approach depends on your specific constraints and data volume. For many scenarios, the BGE models from the Beijing Academy of Artificial Intelligence (BAAI) have proven quite stable and easy to fine-tune with datasets of around 100,000 examples.

@@ -23,6 +23,14 @@ topics:
 
 I hosted an office hours session focused on fine-tuning models for citation accuracy and designing effective tool portfolios for RAG systems. Here are my insights on improving citation capabilities through fine-tuning, structuring data for temporal reasoning, and creating effective tool portfolios for specialized retrieval tasks.
 
+---
+
+If you want to learn more about RAG systems, check out our RAG Playbook course. Here is a 20% discount code for readers.
+
+[RAG Playbook - 20% off for readers](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button }
+
+---
+
 ## How effective is fine-tuning for improving citation accuracy?
 
 When working with citation requirements, fine-tuning can dramatically reduce error rates. In one project, we used OpenAI's fine-tuning API with about 1,000 examples to improve our marketing content generation system.

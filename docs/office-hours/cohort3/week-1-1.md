@@ -21,6 +21,14 @@ Study Notes:
 
 I hosted an office hours session focused on RAG implementation challenges, precision-recall tradeoffs, and practical business applications of AI systems. Here are my insights on evaluating RAG systems, understanding model sensitivity to context quality, and identifying high-value business opportunities through data analysis rather than just technical improvements.
 
+---
+
+If you want to learn more about RAG systems, check out our RAG Playbook course. Here is a 20% discount code for readers.
+
+[RAG Playbook - 20% off for readers](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button }
+
+---
+
 ## How should we understand precision in the context of LLMs and RAG?
 
 Precision has become increasingly important as most people are comfortable adding substantial information to the context window. The key question is how sensitive these models are to ambiguous or irrelevant information.

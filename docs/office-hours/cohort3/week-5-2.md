@@ -24,6 +24,14 @@ Study Notes:
 
 In this office hours session, I addressed questions about specialized indices, data engineering for AI applications, and strategies for blending traditional ML with LLMs. The discussion covered practical approaches to metadata extraction, cost considerations for processing large datasets, and techniques for improving recommendation systems with AI.
 
+---
+
+If you want to learn more about RAG systems, check out our RAG Playbook course. Here is a 20% discount code for readers.
+
+[RAG Playbook - 20% off for readers](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button }
+
+---
+
 ## How should I approach dynamically generating and handling metadata for documents?
 
 When dealing with the need to extract new metadata from existing documents, the architectural approach depends largely on your current infrastructure. Most companies I work with already have some existing setup, so we're rarely building from scratch.

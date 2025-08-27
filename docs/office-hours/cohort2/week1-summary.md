@@ -20,6 +20,14 @@ topics:
 
 # RAG Office Hours Q&A Summary - Week 1
 
+---
+
+If you want to learn more about RAG systems, check out our RAG Playbook course. Here is a 20% discount code for readers.
+
+[RAG Playbook - 20% off for readers](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button }
+
+---
+
 ## What is your take on DSpy? Should we use it?
 
 Generally, I think DSpy allows you to do some kind of prompt optimization by synthetically creating a bunch of few-shot examples and then identifying which of these examples could improve the performance of your system.

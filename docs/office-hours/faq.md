@@ -8,7 +8,16 @@ description: Comprehensive FAQ compiled from all office hours sessions across co
 This comprehensive FAQ is compiled from all office hours sessions across multiple cohorts.
 
 !!! tip "Quick Navigation"
-Use your browser's search (Ctrl+F) to find specific terms or questions, or browse through the questions below.
+
+    Use your browser's search (Ctrl+F) to find specific terms or questions, or browse through the questions below.
+
+---
+
+If you want to learn more about RAG systems, check out our RAG Playbook course. Here is a 20% discount code for readers.
+
+[RAG Playbook - 20% off for readers](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button }
+
+---
 
 ## What is your take on DSpy? Should we use it?
 

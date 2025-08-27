@@ -25,6 +25,14 @@ Study Notes:
 
 I hosted an office hours session focused on practical RAG implementation challenges, data management strategies, and the business aspects of AI consulting. Here are my insights on handling evaluation data, choosing the right tools, and thinking strategically about AI business models and value capture.
 
+---
+
+If you want to learn more about RAG systems, check out our RAG Playbook course. Here is a 20% discount code for readers.
+
+[RAG Playbook - 20% off for readers](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button }
+
+---
+
 ## How should we approach evaluation data collection for RAG systems?
 
 One participant was struggling with exporting conversation data from Langsmith for evaluation purposes. This highlights a common challenge with many tracing tools - they're often better at collecting data than exporting it in useful formats.

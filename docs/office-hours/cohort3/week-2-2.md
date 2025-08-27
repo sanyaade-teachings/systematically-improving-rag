@@ -25,6 +25,14 @@ Study Notes:
 
 I hosted an office hours session focused on retrieval-augmented generation (RAG) implementation challenges and strategies. Participants shared their experiences with the course materials and discussed specific technical issues they're facing in their RAG projects, from processing technical documentation to handling irrelevant data in vector databases.
 
+---
+
+If you want to learn more about RAG systems, check out our RAG Playbook course. Here is a 20% discount code for readers.
+
+[RAG Playbook - 20% off for readers](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button }
+
+---
+
 ## How can I apply course concepts to my actual project while balancing time constraints?
 
 Several participants expressed the challenge of finding time to apply course concepts to their real-world projects while managing full-time jobs. One participant noted, "I have a day job with a packed schedule. I already have to make room for lectures and these conversations, which leaves very little time to apply this to my project."
