@@ -1,4 +1,5 @@
 ebook/
+emails/
 .cache
 .DS_Store
 .venv
