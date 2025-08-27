@@ -23,6 +23,14 @@ Study Notes:
 
 I hosted an office hours session focused on advanced report generation with dynamic visualizations, professional styling challenges, and effective approaches to analyzing unstructured customer feedback data. Here are my insights on integrating visual elements into AI-generated reports, managing professional styling requirements, and building effective feedback analysis systems.
 
+---
+
+If you want to learn more about RAG systems, check out our RAG Playbook course. Here is a 20% discount code for readers.
+
+[RAG Playbook - 20% off for readers](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button }
+
+---
+
 ## How should I approach dynamic data visualization in AI-generated reports?
 
 When creating AI-generated reports with dynamic visualizations, there are several approaches to consider depending on your specific needs.
