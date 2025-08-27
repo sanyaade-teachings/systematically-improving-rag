@@ -61,7 +61,6 @@ nav:
   - "Office Hours":
       - "office-hours/index.md"
       - "FAQ": "office-hours/faq.md"
-      - "Agents": "office-hours/AGENTS.md"
       - "Chapter 1: Starting the Flywheel":
           - "Cohort 2 - Week 1": "office-hours/cohort2/week1-summary.md"
           - "Cohort 3 - Session 1": "office-hours/cohort3/week-1-1.md"
