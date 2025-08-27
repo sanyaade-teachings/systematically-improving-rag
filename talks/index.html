@@ -16,7 +16,7 @@
         <link rel="prev" href="../office-hours/cohort2/week6-summary/">
       
       
-        <link rel="next" href="chromadb-anton-chunking/">
+        <link rel="next" href="turbopuffer-engine/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -2052,6 +2052,8 @@
       
         
       
+        
+      
     
     
     
@@ -2092,6 +2094,29 @@
             Search / Indexing / Chunking
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="turbopuffer-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    TurboPuffer: Object Storage-First Vector Database Architecture (Simon, TurboPuffer)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -3021,6 +3046,8 @@ Hybrid computer vision + VLM pipelines outperform pure approaches for document p
 <p><strong><a href="superlinked-encoder-stacking/">Encoder Stacking and Multi-Modal Retrieval</a></strong> - Daniel (Superlinked)<br />
 LLMs as "pilots that see the world as strings" fundamentally can't understand numerical relationships. Solution: mixture of specialized encoders for different data types (text, numerical, location, graph) rather than forcing everything through text embeddings. This approach eliminates over-reliance on re-ranking.</p>
 <h4 id="search-technologies">Search Technologies</h4>
+<p><strong><a href="turbopuffer-engine/">TurboPuffer: Object Storage-First Vector Database Architecture</a></strong> - Simon (TurboPuffer)<br />
+Object storage-first vector database reduces costs by up to 95% while maintaining performance through intelligent caching. Surprising insight: traditional vector databases become prohibitively expensive at scale, but TurboPuffer's tiered storage approach (object storage → SSD → RAM) makes vector search economically viable for massive datasets. Real-world validation: companies like Notion, Cursor, and Linear have migrated to save millions while improving performance.</p>
 <p><strong><a href="john-lexical-search/">Lexical Search in RAG Applications</a></strong> - John Berryman<br />
 Why semantic search struggles with exact matching, product IDs, and specialized terminology. Lexical search provides efficient simultaneous filtering and rich metadata that helps LLMs make better decisions. Recommended approach: use lexical search for filtering, semantic search for understanding meaning.</p>
 <h3 id="chapter-6-advanced-topics-and-innovation">Chapter 6: Advanced Topics and Innovation</h3>
@@ -3100,13 +3127,13 @@ Browser-as-data-layer for secure financial data access without traditional API r
         
         
           
-          <a href="chromadb-anton-chunking/" class="md-footer__link md-footer__link--next" aria-label="Next: Text Chunking Strategies (Anton, ChromaDB)">
+          <a href="turbopuffer-engine/" class="md-footer__link md-footer__link--next" aria-label="Next: TurboPuffer: Object Storage-First Vector Database Architecture (Simon, TurboPuffer)">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Text Chunking Strategies (Anton, ChromaDB)
+                TurboPuffer: Object Storage-First Vector Database Architecture (Simon, TurboPuffer)
               </div>
             </div>
             <div class="md-footer__button md-icon">
