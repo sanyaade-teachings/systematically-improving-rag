@@ -28,10 +28,10 @@ MTEB_DATASETS = [
 ]
 
 DEFAULT_MODELS = {
-    "openai": "text-embedding-3-large",
-    "cohere": "embed-english-v3.0",
-    "gemini": "models/text-embedding-004",
-    "voyager": "voyage-3.5",
+    "openai": ["text-embedding-3-small", "text-embedding-3-large"],
+    "cohere": ["embed-english-v3.0", "embed-multilingual-v3.0"],
+    "gemini": ["models/text-embedding-004", "models/embedding-001"],
+    "voyager": ["voyage-3.5", "voyage-large-2"],
 }
 
 
@@ -64,7 +64,7 @@ class OpenAIProvider(EmbeddingProvider):
         self, texts: list[str], model: Optional[str] = None
     ) -> dict[str, Any]:
         if not model:
-            model = DEFAULT_MODELS["openai"]
+            model = DEFAULT_MODELS["openai"][0]
 
         await asyncio.sleep(random.uniform(0.1, 0.3) * len(texts))
 
@@ -92,7 +92,7 @@ class CohereProvider(EmbeddingProvider):
         self, texts: list[str], model: Optional[str] = None
     ) -> dict[str, Any]:
         if not model:
-            model = DEFAULT_MODELS["cohere"]
+            model = DEFAULT_MODELS["cohere"][0]
 
         await asyncio.sleep(random.uniform(0.08, 0.2) * len(texts))
 
@@ -120,7 +120,7 @@ class GeminiProvider(EmbeddingProvider):
         self, texts: list[str], model: Optional[str] = None
     ) -> dict[str, Any]:
         if not model:
-            model = DEFAULT_MODELS["gemini"]
+            model = DEFAULT_MODELS["gemini"][0]
 
         await asyncio.sleep(random.uniform(0.2, 0.4) * len(texts))
 
@@ -148,7 +148,7 @@ class VoyagerProvider(EmbeddingProvider):
         self, texts: list[str], model: Optional[str] = None
     ) -> dict[str, Any]:
         if not model:
-            model = DEFAULT_MODELS["voyager"]
+            model = DEFAULT_MODELS["voyager"][0]
 
         await asyncio.sleep(random.uniform(0.1, 0.25) * len(texts))
 
@@ -245,7 +245,7 @@ class BenchmarkEngine:
         }
 
     async def run_benchmark_batch(
-        self, provider_name: str, texts: list[str], batch_size: int
+        self, provider_name: str, texts: list[str], batch_size: int, model: Optional[str] = None
     ) -> dict:
         provider = self.providers[provider_name]
 
@@ -253,10 +253,10 @@ class BenchmarkEngine:
             return {"success": False, "error": f"{provider_name} API key not available"}
 
         cached_result = self.cache.get_cached_result(
-            provider_name, texts, "default", batch_size
+            provider_name, texts, model or "default", batch_size
         )
         if cached_result:
-            print(f"   📋 Using cached result for {provider_name}")
+            print(f"   📋 Using cached result for {provider_name}/{model or 'default'}")
             return cached_result
 
         async with self.semaphore:
@@ -266,11 +266,11 @@ class BenchmarkEngine:
             batch_results = []
 
             for batch in batches:
-                result = await provider.embed_batch(batch)
+                result = await provider.embed_batch(batch, model)
                 batch_results.append(result)
 
                 self.cache.cache_result(
-                    provider_name, batch, "default", len(batch), result
+                    provider_name, batch, model or "default", len(batch), result
                 )
 
             return self._aggregate_batch_results(batch_results)
@@ -306,11 +306,11 @@ def print_latency_statistics(results: dict[str, dict]):
     print("   • Embedding generation: 100-500ms (10-25x slower!)")
 
     print(
-        f"\n{'Provider':<12} {'P50 (ms)':<10} {'P95 (ms)':<10} {'P99 (ms)':<10} {'Throughput':<12} {'Status'}"
+        f"\n{'Provider/Model':<25} {'P50 (ms)':<10} {'P95 (ms)':<10} {'P99 (ms)':<10} {'Throughput':<12} {'Status'}"
     )
-    print("-" * 70)
+    print("-" * 85)
 
-    for provider, result in results.items():
+    for provider_model, result in results.items():
         if result.get("success", False) and "latencies" in result:
             latencies_ms = [
                 latency * 1000 for latency in result["latencies"]
@@ -322,12 +322,12 @@ def print_latency_statistics(results: dict[str, dict]):
             throughput = result.get("throughput", 0)
 
             print(
-                f"{provider.title():<12} {p50:<10.1f} {p95:<10.1f} {p99:<10.1f} {throughput:<12.1f} ✅"
+                f"{provider_model:<25} {p50:<10.1f} {p95:<10.1f} {p99:<10.1f} {throughput:<12.1f} ✅"
             )
         else:
             error = result.get("error", "Unknown error")
             print(
-                f"{provider.title():<12} {'N/A':<10} {'N/A':<10} {'N/A':<10} {'N/A':<12} ❌ {error}"
+                f"{provider_model:<25} {'N/A':<10} {'N/A':<10} {'N/A':<10} {'N/A':<12} ❌ {error}"
             )
 
     print("\n💡 Recommendations:")
@@ -382,30 +382,35 @@ async def run_benchmarks(
 
     for provider in providers:
         print(f"🔄 Benchmarking {provider.title()}...")
-        provider_results = []
+        
+        for model in DEFAULT_MODELS[provider]:
+            print(f"   Testing model: {model}")
+            provider_model_results = []
 
-        for batch_size in batch_sizes:
-            print(f"   Testing batch size: {batch_size}")
-            result = await engine.run_benchmark_batch(provider, all_texts, batch_size)
+            for batch_size in batch_sizes:
+                print(f"     Testing batch size: {batch_size}")
+                result = await engine.run_benchmark_batch(provider, all_texts, batch_size, model)
 
-            if result.get("success", False):
-                provider_results.extend(result.get("latencies", []))
-                print(f"   ✅ Completed batch size {batch_size}")
+                if result.get("success", False):
+                    provider_model_results.extend(result.get("latencies", []))
+                    print(f"     ✅ Completed batch size {batch_size}")
+                else:
+                    print(
+                        f"     ❌ Failed batch size {batch_size}: {result.get('error', 'Unknown error')}"
+                    )
+
+            provider_model_key = f"{provider.title()}/{model.split('/')[-1]}"  # Use short model name
+            
+            if provider_model_results:
+                results[provider_model_key] = {
+                    "success": True,
+                    "latencies": provider_model_results,
+                    "throughput": len(all_texts) / sum(provider_model_results)
+                    if provider_model_results
+                    else 0,
+                }
             else:
-                print(
-                    f"   ❌ Failed batch size {batch_size}: {result.get('error', 'Unknown error')}"
-                )
-
-        if provider_results:
-            results[provider] = {
-                "success": True,
-                "latencies": provider_results,
-                "throughput": len(all_texts) / sum(provider_results)
-                if provider_results
-                else 0,
-            }
-        else:
-            results[provider] = {"success": False, "error": "All batch sizes failed"}
+                results[provider_model_key] = {"success": False, "error": "All batch sizes failed"}
 
     print_latency_statistics(results)
 
