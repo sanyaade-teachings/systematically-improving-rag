@@ -40,27 +40,27 @@ direnv allow
 ### Basic Benchmarking
 
 ```bash
-# Run benchmarks with default settings (mock implementation)
-python scripts/embedding-benchmarks/run_mock.py benchmark
+# Run benchmarks with default settings
+python scripts/embedding-benchmarks/run.py benchmark
 
 # Benchmark specific providers
-python scripts/embedding-benchmarks/run_mock.py benchmark --providers openai,cohere
+python scripts/embedding-benchmarks/run.py benchmark --providers openai,cohere
 
 # Control sample size and batch sizes
-python scripts/embedding-benchmarks/run_mock.py benchmark --samples-per-category 20 --batch-sizes 1,10,50,100
+python scripts/embedding-benchmarks/run.py benchmark --samples-per-category 20 --batch-sizes 1,10,50,100
 
 # Use custom cache directory
-python scripts/embedding-benchmarks/run_mock.py benchmark --cache-dir ./cache
+python scripts/embedding-benchmarks/run.py benchmark --cache-dir ./cache
 ```
 
 ### Utility Commands
 
 ```bash
 # List available MTEB datasets
-python scripts/embedding-benchmarks/run_mock.py list-datasets
+python scripts/embedding-benchmarks/run.py list-datasets
 
 # Clear benchmark cache
-python scripts/embedding-benchmarks/run_mock.py clear-cache
+python scripts/embedding-benchmarks/run.py clear-cache
 ```
 
 ## Configuration
@@ -154,7 +154,7 @@ The script includes analysis of how embedding model placement affects total RAG 
 
 ```
 scripts/embedding-benchmarks/
-├── run_mock.py           # Main benchmarking script (mock implementation)
+├── run.py               # Main benchmarking script
 ├── .envrc               # Environment variables template
 ├── README.md            # This file
 └── data/                # Output directory (created when running)
@@ -163,15 +163,19 @@ scripts/embedding-benchmarks/
 
 ## Implementation Notes
 
-This is currently a **mock implementation** that simulates realistic embedding latencies without making actual API calls. The mock provides:
+This implementation uses real API calls to embedding providers:
 
-- Realistic latency ranges for each provider
-- Proper async/await patterns
-- Caching functionality
-- Statistical analysis
-- Console output formatting
+- **OpenAI**: Uses the official `openai` library with async client
+- **Cohere**: Uses the official `cohere` library with AsyncClientV2
+- **Gemini**: Uses `google-generativeai` library with async wrapper
+- **Voyager**: Uses the official `voyageai` library with async client
 
-To use with real APIs, replace the mock `embed_batch` methods in each provider class with actual API calls.
+Features:
+- Real API latency measurements
+- Proper async/await patterns with retry logic
+- Caching functionality for restartability
+- Statistical analysis (P50, P95, P99)
+- Graceful error handling and provider skipping
 
 ## Dependencies
 

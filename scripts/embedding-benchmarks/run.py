@@ -7,15 +7,20 @@ that embedding models are the primary bottleneck in RAG systems, not database re
 """
 
 import os
-import random
 import asyncio
 import argparse
 import json
 import hashlib
+import time
 from pathlib import Path
 from typing import Any, Optional
 from abc import ABC, abstractmethod
 import numpy as np
+import openai
+import cohere
+import google.generativeai as genai
+import voyageai
+from tenacity import retry, stop_after_attempt, wait_exponential
 
 MTEB_DATASETS = [
     "mteb/amazon_counterfactual",
@@ -29,9 +34,9 @@ MTEB_DATASETS = [
 
 DEFAULT_MODELS = {
     "openai": ["text-embedding-3-small", "text-embedding-3-large"],
-    "cohere": ["embed-english-v3.0", "embed-multilingual-v3.0"],
-    "gemini": ["models/text-embedding-004", "models/embedding-001"],
-    "voyager": ["voyage-3.5", "voyage-large-2"],
+    "cohere": ["embed-v4.0"],
+    "gemini": ["gemini-embedding-001"],
+    "voyager": ["voyage-3-large", "voyage-3.5"],
 }
 
 
@@ -56,113 +61,186 @@ class EmbeddingProvider(ABC):
 class OpenAIProvider(EmbeddingProvider):
     def __init__(self):
         super().__init__("openai")
+        if self.available:
+            self.client = openai.AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     def _check_availability(self) -> bool:
         return os.getenv("OPENAI_API_KEY") is not None
 
+    @retry(
+        stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=4, max=10)
+    )
     async def embed_batch(
         self, texts: list[str], model: Optional[str] = None
     ) -> dict[str, Any]:
         if not model:
             model = DEFAULT_MODELS["openai"][0]
 
-        await asyncio.sleep(random.uniform(0.1, 0.3) * len(texts))
+        start_time = time.perf_counter()
+        try:
+            response = await self.client.embeddings.create(input=texts, model=model)
+            end_time = time.perf_counter()
 
-        simulated_latency = random.uniform(0.15, 0.25) * len(texts)
-        mock_embeddings = [[random.random() for _ in range(1536)] for _ in texts]
-
-        return {
-            "success": True,
-            "latency": simulated_latency,
-            "embeddings": mock_embeddings,
-            "model": model,
-            "batch_size": len(texts),
-            "provider": self.name,
-        }
+            return {
+                "success": True,
+                "latency": end_time - start_time,
+                "embeddings": [e.embedding for e in response.data],
+                "model": model,
+                "batch_size": len(texts),
+                "provider": self.name,
+            }
+        except Exception as e:
+            end_time = time.perf_counter()
+            return {
+                "success": False,
+                "error": str(e),
+                "latency": end_time - start_time,
+                "model": model,
+                "batch_size": len(texts),
+                "provider": self.name,
+            }
 
 
 class CohereProvider(EmbeddingProvider):
     def __init__(self):
         super().__init__("cohere")
+        if self.available:
+            self.client = cohere.AsyncClientV2(api_key=os.getenv("COHERE_API_KEY"))
 
     def _check_availability(self) -> bool:
         return os.getenv("COHERE_API_KEY") is not None
 
+    @retry(
+        stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=4, max=10)
+    )
     async def embed_batch(
         self, texts: list[str], model: Optional[str] = None
     ) -> dict[str, Any]:
         if not model:
             model = DEFAULT_MODELS["cohere"][0]
 
-        await asyncio.sleep(random.uniform(0.08, 0.2) * len(texts))
+        start_time = time.perf_counter()
+        try:
+            response = await self.client.embed(
+                texts=texts,
+                model=model,
+                input_type="search_document",
+                embedding_types=["float"],
+            )
+            end_time = time.perf_counter()
 
-        simulated_latency = random.uniform(0.12, 0.18) * len(texts)
-        mock_embeddings = [[random.random() for _ in range(1024)] for _ in texts]
-
-        return {
-            "success": True,
-            "latency": simulated_latency,
-            "embeddings": mock_embeddings,
-            "model": model,
-            "batch_size": len(texts),
-            "provider": self.name,
-        }
+            return {
+                "success": True,
+                "latency": end_time - start_time,
+                "embeddings": response.embeddings.float,
+                "model": model,
+                "batch_size": len(texts),
+                "provider": self.name,
+            }
+        except Exception as e:
+            end_time = time.perf_counter()
+            return {
+                "success": False,
+                "error": str(e),
+                "latency": end_time - start_time,
+                "model": model,
+                "batch_size": len(texts),
+                "provider": self.name,
+            }
 
 
 class GeminiProvider(EmbeddingProvider):
     def __init__(self):
         super().__init__("gemini")
+        if self.available:
+            genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
     def _check_availability(self) -> bool:
         return os.getenv("GOOGLE_API_KEY") is not None
 
+    @retry(
+        stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=4, max=10)
+    )
     async def embed_batch(
         self, texts: list[str], model: Optional[str] = None
     ) -> dict[str, Any]:
         if not model:
             model = DEFAULT_MODELS["gemini"][0]
 
-        await asyncio.sleep(random.uniform(0.2, 0.4) * len(texts))
+        start_time = time.perf_counter()
+        try:
 
-        simulated_latency = random.uniform(0.25, 0.35) * len(texts)
-        mock_embeddings = [[random.random() for _ in range(768)] for _ in texts]
+            def sync_embed():
+                return genai.embed_content(
+                    model=model, content=texts, task_type="semantic_similarity"
+                )
 
-        return {
-            "success": True,
-            "latency": simulated_latency,
-            "embeddings": mock_embeddings,
-            "model": model,
-            "batch_size": len(texts),
-            "provider": self.name,
-        }
+            response = await asyncio.to_thread(sync_embed)
+            end_time = time.perf_counter()
+
+            return {
+                "success": True,
+                "latency": end_time - start_time,
+                "embeddings": response["embedding"],
+                "model": model,
+                "batch_size": len(texts),
+                "provider": self.name,
+            }
+        except Exception as e:
+            end_time = time.perf_counter()
+            return {
+                "success": False,
+                "error": str(e),
+                "latency": end_time - start_time,
+                "model": model,
+                "batch_size": len(texts),
+                "provider": self.name,
+            }
 
 
 class VoyagerProvider(EmbeddingProvider):
     def __init__(self):
         super().__init__("voyager")
+        if self.available:
+            self.client = voyageai.AsyncClient(api_key=os.getenv("VOYAGER_API_KEY"))
 
     def _check_availability(self) -> bool:
         return os.getenv("VOYAGER_API_KEY") is not None
 
+    @retry(
+        stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=4, max=10)
+    )
     async def embed_batch(
         self, texts: list[str], model: Optional[str] = None
     ) -> dict[str, Any]:
         if not model:
             model = DEFAULT_MODELS["voyager"][0]
 
-        await asyncio.sleep(random.uniform(0.1, 0.25) * len(texts))
+        start_time = time.perf_counter()
+        try:
+            response = await self.client.embed(
+                texts=texts, model=model, input_type="document"
+            )
+            end_time = time.perf_counter()
 
-        simulated_latency = random.uniform(0.13, 0.22) * len(texts)
-        mock_embeddings = [[random.random() for _ in range(1024)] for _ in texts]
-
-        return {
-            "success": True,
-            "latency": simulated_latency,
-            "embeddings": mock_embeddings,
-            "model": model,
-            "batch_size": len(texts),
-            "provider": self.name,
-        }
+            return {
+                "success": True,
+                "latency": end_time - start_time,
+                "embeddings": response.embeddings,
+                "model": model,
+                "batch_size": len(texts),
+                "provider": self.name,
+            }
+        except Exception as e:
+            end_time = time.perf_counter()
+            return {
+                "success": False,
+                "error": str(e),
+                "latency": end_time - start_time,
+                "model": model,
+                "batch_size": len(texts),
+                "provider": self.name,
+            }
 
 
 class MTEBDataLoader:
@@ -245,7 +323,11 @@ class BenchmarkEngine:
         }
 
     async def run_benchmark_batch(
-        self, provider_name: str, texts: list[str], batch_size: int, model: Optional[str] = None
+        self,
+        provider_name: str,
+        texts: list[str],
+        batch_size: int,
+        model: Optional[str] = None,
     ) -> dict:
         provider = self.providers[provider_name]
 
@@ -382,14 +464,16 @@ async def run_benchmarks(
 
     for provider in providers:
         print(f"🔄 Benchmarking {provider.title()}...")
-        
+
         for model in DEFAULT_MODELS[provider]:
             print(f"   Testing model: {model}")
             provider_model_results = []
 
             for batch_size in batch_sizes:
                 print(f"     Testing batch size: {batch_size}")
-                result = await engine.run_benchmark_batch(provider, all_texts, batch_size, model)
+                result = await engine.run_benchmark_batch(
+                    provider, all_texts, batch_size, model
+                )
 
                 if result.get("success", False):
                     provider_model_results.extend(result.get("latencies", []))
@@ -399,8 +483,10 @@ async def run_benchmarks(
                         f"     ❌ Failed batch size {batch_size}: {result.get('error', 'Unknown error')}"
                     )
 
-            provider_model_key = f"{provider.title()}/{model.split('/')[-1]}"  # Use short model name
-            
+            provider_model_key = (
+                f"{provider.title()}/{model.split('/')[-1]}"  # Use short model name
+            )
+
             if provider_model_results:
                 results[provider_model_key] = {
                     "success": True,
@@ -410,7 +496,10 @@ async def run_benchmarks(
                     else 0,
                 }
             else:
-                results[provider_model_key] = {"success": False, "error": "All batch sizes failed"}
+                results[provider_model_key] = {
+                    "success": False,
+                    "error": "All batch sizes failed",
+                }
 
     print_latency_statistics(results)
 
