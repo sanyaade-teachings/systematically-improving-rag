@@ -45,7 +45,7 @@ class EmbeddingProvider(ABC):
         self.name = name
         self.available = self._check_availability()
         if self.available:
-            print(f"🔧 Mock {name.title()} client initialized")
+            print(f"🔧 {name.title()} client initialized")
 
     @abstractmethod
     def _check_availability(self) -> bool:
@@ -248,35 +248,79 @@ class MTEBDataLoader:
         self.available_datasets = MTEB_DATASETS
 
     def load_samples(self, samples_per_category: int = 10) -> dict[str, list[str]]:
-        """Load mock samples simulating MTEB datasets."""
+        """Load samples from real MTEB datasets using Hugging Face datasets library."""
+        from datasets import load_dataset
+        import random
+
         samples = {}
 
-        mock_texts = [
-            "This is a short query about machine learning.",
-            "Natural language processing has revolutionized how we interact with computers and understand human communication patterns.",
-            "The quick brown fox jumps over the lazy dog in this classic pangram sentence.",
-            "Artificial intelligence systems are becoming increasingly sophisticated in their ability to understand context and nuance.",
-            "Database optimization techniques can significantly improve query performance and reduce latency in large-scale applications.",
-            "Embedding models transform text into high-dimensional vector representations that capture semantic meaning and relationships.",
-            "RAG systems combine retrieval mechanisms with generative models to provide more accurate and contextually relevant responses.",
-            "Vector databases enable efficient similarity search across millions of high-dimensional embeddings using approximate nearest neighbor algorithms.",
-            "The latency bottleneck in most RAG applications comes from embedding generation rather than database retrieval operations.",
-            "Modern transformer architectures have enabled significant improvements in text understanding and generation capabilities across various domains.",
-        ]
-
         for dataset_name in self.available_datasets:
-            print(f"📊 Loading mock dataset: {dataset_name}")
-            dataset_samples = []
-            for i in range(samples_per_category):
-                base_text = mock_texts[i % len(mock_texts)]
-                if i % 3 == 0:
-                    base_text += f" Additional context for sample {i} from {dataset_name.split('/')[-1]}."
-                dataset_samples.append(base_text)
+            print(f"📊 Loading dataset: {dataset_name}")
+            try:
+                dataset = load_dataset(
+                    dataset_name, split="test", trust_remote_code=True
+                )
 
-            samples[dataset_name] = dataset_samples
-            print(f"   Loaded {len(dataset_samples)} mock samples")
+                text_field = self._get_text_field(dataset)
+                if not text_field:
+                    print(
+                        f"   ⚠️  Could not find text field in {dataset_name}, skipping"
+                    )
+                    continue
+
+                texts = []
+                for item in dataset:
+                    if text_field in item and item[text_field]:
+                        text = str(item[text_field]).strip()
+                        if len(text) > 10:
+                            texts.append(text)
+
+                if not texts:
+                    print(f"   ⚠️  No valid texts found in {dataset_name}, skipping")
+                    continue
+
+                num_samples = min(samples_per_category, len(texts))
+                sampled_texts = random.sample(texts, num_samples)
+                samples[dataset_name] = sampled_texts
+                print(f"   Loaded {len(sampled_texts)} samples from {text_field} field")
+
+            except Exception as e:
+                print(f"   ❌ Failed to load {dataset_name}: {e}")
+                mock_texts = [
+                    f"Sample text from {dataset_name.split('/')[-1]} dataset for benchmarking purposes.",
+                    f"This is a fallback text sample when {dataset_name} cannot be loaded from Hugging Face.",
+                    f"Embedding latency testing with synthetic data from {dataset_name.split('/')[-1]}.",
+                ]
+                fallback_samples = []
+                for i in range(samples_per_category):
+                    base_text = mock_texts[i % len(mock_texts)]
+                    fallback_samples.append(f"{base_text} Sample {i + 1}.")
+                samples[dataset_name] = fallback_samples
+                print(f"   Using {len(fallback_samples)} fallback samples")
 
         return samples
+
+    def _get_text_field(self, dataset) -> str:
+        """Determine the text field name for the dataset."""
+        common_fields = [
+            "text",
+            "sentence",
+            "query",
+            "passage",
+            "document",
+            "review",
+            "content",
+        ]
+
+        for field in common_fields:
+            if field in dataset.column_names:
+                return field
+
+        for field_name in dataset.column_names:
+            if dataset.features[field_name].dtype == "string":
+                return field_name
+
+        return None
 
 
 class BenchmarkCache:
