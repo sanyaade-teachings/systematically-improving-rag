@@ -7,7 +7,6 @@ different regions for comprehensive latency analysis.
 
 import modal
 from pathlib import Path
-import json
 import os
 
 app = modal.App("embedding-benchmarks")
@@ -119,7 +118,6 @@ def aggregate_regional_results(results_data: dict):
     import pandas as pd
     import matplotlib.pyplot as plt
     import seaborn as sns
-    from pathlib import Path
     
     output_dir = Path("/results")
     
@@ -198,7 +196,7 @@ def main(
     print("Aggregating results...")
     comparison_path = aggregate_regional_results.remote(results)
     
-    print(f"Multi-region benchmark complete!")
+    print("Multi-region benchmark complete!")
     print(f"Results visualization: {comparison_path}")
     
     return results
