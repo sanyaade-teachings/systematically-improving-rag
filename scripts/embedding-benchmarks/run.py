@@ -16,6 +16,9 @@ from pathlib import Path
 from typing import Any, Optional
 from abc import ABC, abstractmethod
 import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 import openai
 import cohere
 import google.generativeai as genai
@@ -421,46 +424,177 @@ class BenchmarkEngine:
         }
 
 
-def print_latency_statistics(results: dict[str, dict]):
-    """Print P50, P95, P99 latency statistics to console."""
-    print("\n" + "=" * 80)
-    print("📊 EMBEDDING LATENCY BENCHMARK RESULTS")
-    print("=" * 80)
+def generate_latency_histograms(results: dict[str, dict], output_dir: str):
+    """Generate and save histogram visualizations for latency analysis."""
+    images_dir = Path(output_dir) / "images"
+    images_dir.mkdir(parents=True, exist_ok=True)
+    
+    plt.style.use('default')
+    sns.set_palette("husl")
+    
+    successful_results = {k: v for k, v in results.items() if v.get("success", False) and "latencies" in v}
+    
+    if not successful_results:
+        print("No successful results to visualize")
+        return
+    
+    fig, axes = plt.subplots(2, 2, figsize=(16, 12))
+    fig.suptitle('Embedding Latency Analysis Across Providers', fontsize=16, fontweight='bold')
+    
+    ax1 = axes[0, 0]
+    for provider_model, result in successful_results.items():
+        latencies_ms = [lat * 1000 for lat in result["latencies"]]
+        ax1.hist(latencies_ms, alpha=0.7, label=provider_model, bins=20)
+    ax1.set_xlabel('Latency (ms)')
+    ax1.set_ylabel('Frequency')
+    ax1.set_title('Latency Distribution by Provider/Model')
+    ax1.legend()
+    ax1.grid(True, alpha=0.3)
+    
+    ax2 = axes[0, 1]
+    box_data = []
+    box_labels = []
+    for provider_model, result in successful_results.items():
+        latencies_ms = [lat * 1000 for lat in result["latencies"]]
+        box_data.append(latencies_ms)
+        box_labels.append(provider_model.replace('/', '\n'))
+    ax2.boxplot(box_data, labels=box_labels)
+    ax2.set_ylabel('Latency (ms)')
+    ax2.set_title('Latency Percentiles Comparison')
+    ax2.tick_params(axis='x', rotation=45)
+    ax2.grid(True, alpha=0.3)
+    
+    ax3 = axes[1, 0]
+    providers = list(successful_results.keys())
+    throughputs = [result.get("throughput", 0) for result in successful_results.values()]
+    bars = ax3.bar(providers, throughputs)
+    ax3.set_ylabel('Throughput (embeddings/sec)')
+    ax3.set_title('Throughput Comparison')
+    ax3.tick_params(axis='x', rotation=45)
+    for bar, throughput in zip(bars, throughputs):
+        ax3.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.1, 
+                f'{throughput:.1f}', ha='center', va='bottom')
+    
+    ax4 = axes[1, 1]
+    x = np.arange(len(providers))
+    width = 0.25
+    
+    p50_values = []
+    p95_values = []
+    p99_values = []
+    
+    for result in successful_results.values():
+        latencies_ms = [lat * 1000 for lat in result["latencies"]]
+        p50_values.append(np.percentile(latencies_ms, 50))
+        p95_values.append(np.percentile(latencies_ms, 95))
+        p99_values.append(np.percentile(latencies_ms, 99))
+    
+    ax4.bar(x - width, p50_values, width, label='P50', alpha=0.8)
+    ax4.bar(x, p95_values, width, label='P95', alpha=0.8)
+    ax4.bar(x + width, p99_values, width, label='P99', alpha=0.8)
+    
+    ax4.set_xlabel('Provider/Model')
+    ax4.set_ylabel('Latency (ms)')
+    ax4.set_title('Percentile Latencies by Provider')
+    ax4.set_xticks(x)
+    ax4.set_xticklabels([p.replace('/', '\n') for p in providers])
+    ax4.legend()
+    ax4.grid(True, alpha=0.3)
+    
+    plt.tight_layout()
+    
+    histogram_path = images_dir / "embedding_latency_analysis.png"
+    plt.savefig(histogram_path, dpi=300, bbox_inches='tight')
+    print(f"Saved comprehensive analysis to: {histogram_path}")
+    
+    for provider_model, result in successful_results.items():
+        plt.figure(figsize=(10, 6))
+        latencies_ms = [lat * 1000 for lat in result["latencies"]]
+        
+        plt.hist(latencies_ms, bins=30, alpha=0.7, edgecolor='black')
+        plt.axvline(np.percentile(latencies_ms, 50), color='red', linestyle='--', label=f'P50: {np.percentile(latencies_ms, 50):.1f}ms')
+        plt.axvline(np.percentile(latencies_ms, 95), color='orange', linestyle='--', label=f'P95: {np.percentile(latencies_ms, 95):.1f}ms')
+        plt.axvline(np.percentile(latencies_ms, 99), color='purple', linestyle='--', label=f'P99: {np.percentile(latencies_ms, 99):.1f}ms')
+        
+        plt.xlabel('Latency (ms)')
+        plt.ylabel('Frequency')
+        plt.title(f'Latency Distribution: {provider_model}')
+        plt.legend()
+        plt.grid(True, alpha=0.3)
+        
+        individual_path = images_dir / f"{provider_model.replace('/', '_')}_histogram.png"
+        plt.savefig(individual_path, dpi=300, bbox_inches='tight')
+        plt.close()
+        print(f"Saved individual histogram to: {individual_path}")
+    
+    plt.close('all')
+
+
+def print_latency_statistics(results: dict[str, dict], output_dir: str = None):
+    """Print comprehensive P50, P95, P99 latency statistics and additional metrics."""
+    print("\n" + "=" * 100)
+    print("📊 COMPREHENSIVE EMBEDDING LATENCY BENCHMARK RESULTS")
+    print("=" * 100)
 
     print("\n🎯 Key Finding: Embedding latency dominates RAG pipeline performance")
     print("   • Database reads: 8-20ms")
     print("   • Embedding generation: 100-500ms (10-25x slower!)")
 
     print(
-        f"\n{'Provider/Model':<25} {'P50 (ms)':<10} {'P95 (ms)':<10} {'P99 (ms)':<10} {'Throughput':<12} {'Status'}"
+        f"\n{'Provider/Model':<25} {'P50 (ms)':<10} {'P95 (ms)':<10} {'P99 (ms)':<10} {'Mean (ms)':<10} {'Std (ms)':<10} {'Throughput':<12} {'Samples':<8} {'Status'}"
     )
-    print("-" * 85)
+    print("-" * 120)
 
+    stats_data = []
+    
     for provider_model, result in results.items():
         if result.get("success", False) and "latencies" in result:
             latencies_ms = [
                 latency * 1000 for latency in result["latencies"]
-            ]  # Convert to milliseconds
+            ]
 
             p50 = np.percentile(latencies_ms, 50)
             p95 = np.percentile(latencies_ms, 95)
             p99 = np.percentile(latencies_ms, 99)
+            mean_latency = np.mean(latencies_ms)
+            std_latency = np.std(latencies_ms)
             throughput = result.get("throughput", 0)
+            sample_count = len(latencies_ms)
 
             print(
-                f"{provider_model:<25} {p50:<10.1f} {p95:<10.1f} {p99:<10.1f} {throughput:<12.1f} ✅"
+                f"{provider_model:<25} {p50:<10.1f} {p95:<10.1f} {p99:<10.1f} {mean_latency:<10.1f} {std_latency:<10.1f} {throughput:<12.1f} {sample_count:<8} ✅"
             )
+            
+            stats_data.append({
+                'Provider/Model': provider_model,
+                'P50_ms': p50,
+                'P95_ms': p95,
+                'P99_ms': p99,
+                'Mean_ms': mean_latency,
+                'Std_ms': std_latency,
+                'Throughput': throughput,
+                'Sample_Count': sample_count,
+                'Min_ms': np.min(latencies_ms),
+                'Max_ms': np.max(latencies_ms)
+            })
         else:
             error = result.get("error", "Unknown error")
             print(
-                f"{provider_model:<25} {'N/A':<10} {'N/A':<10} {'N/A':<10} {'N/A':<12} ❌ {error}"
+                f"{provider_model:<25} {'N/A':<10} {'N/A':<10} {'N/A':<10} {'N/A':<10} {'N/A':<10} {'N/A':<12} {'N/A':<8} ❌ {error}"
             )
+
+    if output_dir and stats_data:
+        df = pd.DataFrame(stats_data)
+        csv_path = Path(output_dir) / "embedding_latency_statistics.csv"
+        df.to_csv(csv_path, index=False)
+        print(f"\n📄 Detailed statistics saved to: {csv_path}")
 
     print("\n💡 Recommendations:")
     print("   1. Co-locate embedding models with your database infrastructure")
     print("   2. Use batch processing to improve throughput")
     print("   3. Cache frequently requested embeddings")
     print("   4. Monitor embedding latency as the primary RAG bottleneck")
+    print("   5. Consider Cohere for fastest response times in production")
 
     print("\n🏗️  Database Co-location Impact Analysis:")
     print("   Scenario              | DB Read | Embedding | Network | Total")
@@ -468,6 +602,9 @@ def print_latency_statistics(results: dict[str, dict]):
     print("   Separate regions     |   15ms  |   200ms   |  50ms   | 265ms")
     print("   Different clouds     |   15ms  |   200ms   | 100ms   | 315ms")
     print("\n   → Embedding latency dominates; database optimizations are secondary")
+    
+    if output_dir:
+        generate_latency_histograms(results, output_dir)
 
 
 async def run_benchmarks(
@@ -545,7 +682,7 @@ async def run_benchmarks(
                     "error": "All batch sizes failed",
                 }
 
-    print_latency_statistics(results)
+    print_latency_statistics(results, cache_dir.replace('/cache', ''))
 
 
 def main():
@@ -565,7 +702,7 @@ def main():
     benchmark_parser.add_argument(
         "--samples-per-category",
         type=int,
-        default=10,
+        default=100,
         help="Number of samples to load per MTEB dataset category",
     )
     benchmark_parser.add_argument(
