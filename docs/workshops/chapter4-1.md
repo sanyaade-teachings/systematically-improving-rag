@@ -378,9 +378,9 @@ This organization-level comparison helps identify:
 
 This segmentation analysis feeds directly into:
 
-- **[Chapter 5](../chapter5-1.md)**: Building specialized retrievers for identified segments
-- **[Chapter 6](../chapter6-1.md)**: Routing queries to appropriate specialized systems
-- **[Chapter 2](../chapter2.md)**: Creating training data for underperforming segments
+- **[Chapter 5](chapter5-1.md)**: Building specialized retrievers for identified segments
+- **[Chapter 6](chapter6-1.md)**: Routing queries to appropriate specialized systems
+- **[Chapter 2](chapter2.md)**: Creating training data for underperforming segments
 
 ## Key Takeaways
 
