@@ -6,6 +6,13 @@ author: Jason Liu
 
 # Feedback Collection: Building Your Improvement Flywheel
 
+### Key Insight
+
+**Good copy beats good UI—changing "How did we do?" to "Did we answer your question?" increases feedback rates by 5x.** The difference between 0.1% and 0.5% feedback isn't just more data. It's the difference between flying blind and having a clear view of what's working. Design your feedback mechanisms to be specific, contextual, and integrated into the natural user flow.
+
+!!! info "Learn the Complete RAG Playbook"
+    All of this content comes from my [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course. Readers get **20% off** with code EBOOK. Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
+
 ## Introduction
 
 RAG systems improve most when they collect feedback effectively. Many implementations focus exclusively on the technical details of retrieval and generation while neglecting the infrastructure needed to collect and utilize user feedback.
@@ -374,8 +381,4 @@ Effective feedback collection is essential for systematic improvement of RAG sys
 
 ---
 
---8<--
-"snippets/enrollment-button.md"
---8<--
 
----

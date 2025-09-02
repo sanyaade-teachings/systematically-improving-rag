@@ -13,6 +13,13 @@ tags:
 
 # Topic Modeling and Analysis: Finding Patterns in User Feedback
 
+### Key Insight
+
+**Not all query failures are equal—fixing 20% of segments can solve 80% of user problems.** Segmentation transforms vague complaints into actionable insights. Use the 2x2 matrix (volume vs satisfaction) to identify your danger zones: high-volume, low-satisfaction segments that are killing your product. The formula is simple: Expected Value = Impact × Volume % × Success Rate.
+
+!!! info "Learn the Complete RAG Playbook"
+    All of this content comes from my [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course. Readers get **20% off** with code EBOOK. Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
+
 ## Introduction
 
 So you deployed your RAG system and added feedback collection. Great. Now you've got thousands of queries, ratings, and signals. Your manager asks "What should we improve next?" and you realize you have no idea.
@@ -396,8 +403,4 @@ In [Chapter 4-2](chapter4-2.md), we'll dive into how to turn these segments into
 
 ---
 
---8<--
-"snippets/enrollment-button.md"
---8<--
 
----

@@ -17,6 +17,9 @@ tags:
 
 **If you're not fine-tuning, you're Blockbuster, not Netflix.** The goal isn't to fine-tune language models (which are expensive and complex), but to fine-tune embedding models that move toward your specific data distributions and improve retrieval, not generation.
 
+!!! info "Learn the Complete RAG Playbook"
+    All of this content comes from my [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course. Readers get **20% off** with code EBOOK. Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
+
 !!! success "Fine-Tuning Cost Reality Check"
 **Embedding Model Fine-Tuning:** - Cost: ~$1.50 for 6,000 examples - Time: 40 minutes on a laptop - Infrastructure: Consumer GPU or cloud notebook - Improvement: 6-10% better performance
 
@@ -589,8 +592,4 @@ If you do this right, every piece of data makes your system better. The improvem
 
 ---
 
---8<--
-"snippets/enrollment-button.md"
---8<--
 
----

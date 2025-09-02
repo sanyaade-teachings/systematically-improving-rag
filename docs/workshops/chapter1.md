@@ -13,6 +13,13 @@ tags:
 
 # Kickstarting the Data Flywheel with Synthetic Data
 
+### Key Insight
+
+**You can't improve what you can't measure—and you can measure before you have users.** Synthetic data isn't just a stopgap until real users arrive. It's a powerful tool for establishing baselines, testing edge cases, and building the evaluation infrastructure that will power continuous improvement. Start with retrieval metrics (precision and recall), not generation quality, because they're faster, cheaper, and more objective.
+
+!!! info "Learn the Complete RAG Playbook"
+    All of this content comes from my [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course. Readers get **20% off** with code EBOOK. Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
+
 Alright, let's talk about making RAG applications actually work. Most teams I work with are stuck in this weird loop where they keep tweaking things randomly and hoping something sticks. Sound familiar?
 
 Here's what we're going to cover: how to set up evaluations that actually tell you something useful, common ways teams shoot themselves in the foot (and how to avoid them), and how to use synthetic data to test your system before you even have users.
@@ -674,8 +681,4 @@ As one client told me: "We spent three months trying to improve through prompt e
 
 ---
 
---8<--
-"snippets/enrollment-button.md"
---8<--
 
----

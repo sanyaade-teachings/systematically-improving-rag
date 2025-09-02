@@ -13,6 +13,15 @@ tags:
 
 # Tool Interfaces and Implementation: Building the Components
 
+### Key Insight
+
+**Tools are just specialized retrievers with clear interfaces—success comes from matching tool capabilities to query patterns.** Don't build one monolithic system trying to handle everything. Build focused tools that excel at specific tasks (blueprint search, schedule lookup, document retrieval) and let the router orchestrate them. The interface is the contract that makes this work.
+
+!!! info "Learn the Complete RAG Playbook"
+    All of this content comes from my [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course. Readers get **20% off** with code EBOOK. Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
+
+## Introduction
+
 ## What This Chapter Covers
 
 - Implementing tool interfaces for different content types

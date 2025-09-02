@@ -13,6 +13,13 @@ tags:
 
 # 3.3 Quality of Life Improvements: Citations, Chain of Thought, and Validation
 
+### Key Insight
+
+**Having the model "think out loud" before answering improves accuracy by 15-20%—especially for long contexts.** When dealing with complex queries or extensive documents, asking the model to explicitly reiterate key information reorganizes the context and enables effective "re-reading" of the prompt. This simple technique improves reasoning without any architectural changes.
+
+!!! info "Learn the Complete RAG Playbook"
+    All of this content comes from my [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course. Readers get **20% off** with code EBOOK. Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
+
 ## Introduction: Building Better User Experience
 
 In the previous chapters, we covered feedback collection (Chapter 3.1) and techniques to overcome latency (Chapter 3.2). Now we'll address practical improvements that significantly enhance user experience.

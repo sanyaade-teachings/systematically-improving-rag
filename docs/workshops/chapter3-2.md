@@ -6,7 +6,14 @@ author: Jason Liu
 
 # Overcoming Latency: Streaming and Interstitials
 
-## Introduction: Managing Latency in RAG Systems
+### Key Insight
+
+**Perceived performance beats actual performance—users will wait 8 seconds with progress bars but abandon after 3 seconds of silence.** Streaming isn't just about showing text faster. It's about maintaining user engagement through the entire retrieval-generation pipeline. Implement streaming early because retrofitting it later adds weeks to your development cycle.
+
+!!! info "Learn the Complete RAG Playbook"
+    All of this content comes from my [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course. Readers get **20% off** with code EBOOK. Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
+
+## Introduction
 
 RAG applications face a fundamental challenge: the processes involved—retrieval, generation, validation, citation lookup—take time. Even accurate answers lose value if users get frustrated waiting for them.
 
@@ -514,8 +521,4 @@ Remember: If you only implement one improvement from this chapter, make it strea
 
 ---
 
---8<--
-"snippets/enrollment-button.md"
---8<--
 
----

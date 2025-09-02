@@ -13,6 +13,13 @@ tags:
 
 # Prioritization and Roadmapping: From Insights to Action
 
+### Key Insight
+
+**Inventory issues need data, capability issues need features—knowing the difference saves months.** When retrieval fails, ask: is the information missing (inventory) or can't we process it correctly (capability)? Use the priority formula: (Impact × Volume %) / (Effort × Risk). This transforms "make the AI better" into "fix scheduling queries affecting 20% of users."
+
+!!! info "Learn the Complete RAG Playbook"
+    All of this content comes from my [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course. Readers get **20% off** with code EBOOK. Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
+
 ## Introduction
 
 In Part 1, you learned to segment queries and identify patterns. Now we turn those insights into action. This chapter shows you how to prioritize which segments to fix first and build a systematic roadmap.
@@ -600,8 +607,4 @@ Remember: The goal isn't to fix everything at once. It's to systematically impro
 
 ---
 
---8<--
-"snippets/enrollment-button.md"
---8<--
 
----

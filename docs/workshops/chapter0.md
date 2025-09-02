@@ -14,6 +14,13 @@ tags:
 
 # Beyond Implementation to Improvement: A Product Mindset for RAG
 
+### Key Insight
+
+**Successful RAG systems aren't projects that ship once—they're products that improve continuously.** The difference between teams that succeed and those that fail isn't the embedding model or vector database they choose. It's whether they treat RAG as a living product that learns from every user interaction, or as a static implementation that slowly decays in production.
+
+!!! info "Learn the Complete RAG Playbook"
+    All of this content comes from my [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course. Readers get **20% off** with code EBOOK. Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
+
 Look, I've been building AI systems for over a decade, and I keep seeing the same mistake: teams ship a RAG system, pat themselves on the back, and then watch it slowly fail in production.
 
 This chapter is about avoiding that trap. We're going to talk about why the most successful RAG systems aren't the ones with the fanciest embeddings or the biggest context windows—they're the ones that get better every week based on what users actually do with them.
@@ -341,8 +348,4 @@ _Note: I've used this approach with companies across legal, finance, healthcare,
 
 ---
 
---8<--
-"snippets/enrollment-button.md"
---8<--
 
----

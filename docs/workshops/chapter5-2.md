@@ -13,6 +13,15 @@ tags:
 
 # Implementing Multimodal Search: Specialized Retrieval Techniques
 
+### Key Insight
+
+**Images need rich descriptions, tables need markdown, SQL needs examples—format your data for how users actually search.** The best retrieval strategy matches the user's mental model, not the data's storage format. Convert images to detailed text descriptions (85% accuracy), tables to markdown (not CSV), and SQL queries to a library of patterns. Success comes from bridging the gap between what users type and how data is stored.
+
+!!! info "Learn the Complete RAG Playbook"
+    All of this content comes from my [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course. Readers get **20% off** with code EBOOK. Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
+
+## Introduction
+
 ## Handling Different Content Types
 
 Let's get into the specifics of how to handle documents, images, and tables. Each needs its own approach.
@@ -546,8 +555,4 @@ In [Chapter 6](chapter6-1.md), we'll explore how to bring these specialized comp
 
 ---
 
---8<--
-"snippets/enrollment-button.md"
---8<--
 
----

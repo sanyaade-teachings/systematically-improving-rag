@@ -13,6 +13,15 @@ tags:
 
 # Performance Measurement and Improvement: Building Learning Systems
 
+### Key Insight
+
+**Measure both retrieval AND routing—a perfect retriever is useless if the router never calls it.** Your system's performance is the product of routing accuracy and retrieval quality. Track tool selection precision (did we pick the right tool?), retrieval recall (did the tool find the answer?), and end-to-end success. The compound effect means 90% routing × 90% retrieval = 81% overall success.
+
+!!! info "Learn the Complete RAG Playbook"
+    All of this content comes from my [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course. Readers get **20% off** with code EBOOK. Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
+
+## Introduction
+
 This part explores how to measure, test, and continuously improve a unified RAG system:
 
 - Testing and measuring performance of both retrieval and routing components

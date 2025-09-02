@@ -13,6 +13,13 @@ tags:
 
 # Understanding Specialized Retrieval: Beyond Basic RAG
 
+### Key Insight
+
+**Different queries need different retrievers—one-size-fits-all is why most RAG systems underperform.** A search for "SKU-12345" needs exact matching, "compare pricing plans" needs structured comparison, and "how do I reset my password" needs procedural knowledge. Build specialized indices for each pattern and let a router decide. This is how Google evolved: Maps for location, Images for visual, YouTube for video.
+
+!!! info "Learn the Complete RAG Playbook"
+    All of this content comes from my [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course. Readers get **20% off** with code EBOOK. Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
+
 ## Introduction
 
 We've covered the basics: the RAG playbook, synthetic data generation, fine-tuning, user feedback collection, and segmentation. Now let's talk about something that actually makes a big difference in production systems—building specialized search indices for different types of content.
@@ -262,8 +269,4 @@ In [Chapter 6](chapter6-1.md), we'll explore how to bring these specialized comp
 
 ---
 
---8<--
-"snippets/enrollment-button.md"
---8<--
 
----
