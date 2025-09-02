@@ -1035,6 +1035,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#key-insight" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Insight
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#introduction" class="md-nav__link">
     <span class="md-ellipsis">
       Introduction
@@ -3048,6 +3057,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#key-insight" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Insight
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#introduction" class="md-nav__link">
     <span class="md-ellipsis">
       Introduction
@@ -3235,6 +3253,12 @@
 
 
 <h1 id="understanding-specialized-retrieval-beyond-basic-rag">Understanding Specialized Retrieval: Beyond Basic RAG</h1>
+<h3 id="key-insight">Key Insight</h3>
+<p><strong>Different queries need different retrievers—one-size-fits-all is why most RAG systems underperform.</strong> A search for "SKU-12345" needs exact matching, "compare pricing plans" needs structured comparison, and "how do I reset my password" needs procedural knowledge. Build specialized indices for each pattern and let a router decide. This is how Google evolved: Maps for location, Images for visual, YouTube for video.</p>
+<div class="admonition info">
+<p class="admonition-title">Learn the Complete RAG Playbook</p>
+<p>All of this content comes from my <a href="https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK">Systematically Improving RAG Applications</a> course. Readers get <strong>20% off</strong> with code EBOOK. Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.</p>
+</div>
 <h2 id="introduction">Introduction</h2>
 <p>We've covered the basics: the RAG playbook, synthetic data generation, fine-tuning, user feedback collection, and segmentation. Now let's talk about something that actually makes a big difference in production systems—building specialized search indices for different types of content.</p>
 <h3 id="building-on-the-foundation">Building on the Foundation</h3>
@@ -3442,7 +3466,6 @@ After RAPTOR Processing:
 <p class="admonition-title">Next Steps</p>
 </div>
 <p>In <a href="../chapter6-1/">Chapter 6</a>, we'll explore how to bring these specialized components together through intelligent routing, creating a unified system that seamlessly directs queries to the appropriate retrievers.</p>
-<hr />
 <hr />
 
 

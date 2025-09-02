@@ -842,6 +842,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#key-insight" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Insight
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#introduction-building-better-user-experience" class="md-nav__link">
     <span class="md-ellipsis">
       Introduction: Building Better User Experience
@@ -996,7 +1005,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#key-insight" class="md-nav__link">
+  <a href="#key-insight_1" class="md-nav__link">
     <span class="md-ellipsis">
       Key Insight
     </span>
@@ -3180,6 +3189,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#key-insight" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Insight
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#introduction-building-better-user-experience" class="md-nav__link">
     <span class="md-ellipsis">
       Introduction: Building Better User Experience
@@ -3334,7 +3352,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#key-insight" class="md-nav__link">
+  <a href="#key-insight_1" class="md-nav__link">
     <span class="md-ellipsis">
       Key Insight
     </span>
@@ -3499,6 +3517,12 @@
 
 
 <h1 id="33-quality-of-life-improvements-citations-chain-of-thought-and-validation">3.3 Quality of Life Improvements: Citations, Chain of Thought, and Validation</h1>
+<h3 id="key-insight">Key Insight</h3>
+<p><strong>Having the model "think out loud" before answering improves accuracy by 15-20%—especially for long contexts.</strong> When dealing with complex queries or extensive documents, asking the model to explicitly reiterate key information reorganizes the context and enables effective "re-reading" of the prompt. This simple technique improves reasoning without any architectural changes.</p>
+<div class="admonition info">
+<p class="admonition-title">Learn the Complete RAG Playbook</p>
+<p>All of this content comes from my <a href="https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK">Systematically Improving RAG Applications</a> course. Readers get <strong>20% off</strong> with code EBOOK. Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.</p>
+</div>
 <h2 id="introduction-building-better-user-experience">Introduction: Building Better User Experience</h2>
 <p>In the previous chapters, we covered feedback collection (Chapter 3.1) and techniques to overcome latency (Chapter 3.2). Now we'll address practical improvements that significantly enhance user experience.</p>
 <p>These "quality of life" improvements often make the difference between systems that are occasionally useful and those that become daily tools. They build trust through transparency, improve reasoning through explicit thinking processes, and prevent errors before they reach users.</p>
@@ -3688,7 +3712,7 @@
 <h3 id="reasoning-in-limited-windows">Reasoning in Limited Windows</h3>
 <p>As context windows grow larger, one might think that managing complex information would become easier. Counterintuitively, though, larger context windows often create new challenges for language models, which can struggle to attend to the most relevant information among thousands of tokens.</p>
 <p>Monologuing—having the model explicitly reiterate key information before generating a response—has emerged as an effective technique to enhance reasoning and quality, especially with large contexts and complex documents.</p>
-<h3 id="key-insight">Key Insight</h3>
+<h3 id="key-insight_1">Key Insight</h3>
 <p>When dealing with long contexts, language models often struggle with recall and processing all instructions. Having the model monologue - explicitly reiterate key information before answering - reorganizes the context to allow effective "re-reading" of the prompt, improving reasoning without complex architectural changes.</p>
 <p>The process is simple: ask the model to "think out loud" about what information is relevant before generating the final answer. This serves several purposes:</p>
 <ol>
