@@ -16,9 +16,12 @@ Most RAG implementations struggle in production because teams focus on model sel
 
 This guide presents frameworks developed through real-world experience with companies like HubSpot, Zapier, and others to help you build RAG systems that become more valuable over time.
 
-👉 If you want to learn more about RAG systems, check out our RAG Playbook course. Here is a 20% discount code for readers. 👈
-
-[RAG Playbook - 20% off for readers](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }
+!!! success "🎓 Get the Complete Course - 20% Off"
+    Transform your RAG system with our comprehensive course on Maven.
+    
+    **Exclusive discount for book readers: Save 20% with code `EBOOK`**
+    
+    [Get the RAG Playbook Course →](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }
 
 ## Trusted by Leading Organizations
 
@@ -210,8 +213,16 @@ _"Jason helped us set you on the right path... emphasis on looking at your data 
 Jason Liu is a machine learning engineer with experience at Facebook and Stitch Fix, and has consulted for companies like HubSpot and Zapier on RAG implementations. His background includes computer vision, recommendation systems, and retrieval applications across various domains.
 
 
-## Stay Updated
+## Ready to Transform Your RAG System?
 
-👉 If you want to learn more about RAG systems, check out our RAG Playbook course. Here is a 20% discount code for readers. 👈
+!!! success "🎓 Get the Complete Course - 20% Off"
+    This book is just the beginning. Get hands-on with our comprehensive course that includes:
+    
+    - **Live workshops** with real-world case studies
+    - **Office hours** for personalized guidance
+    - **Private community** of 500+ practitioners
+    - **Code templates** and implementation guides
+    
+    **Save 20% with discount code: `EBOOK`**
 
-[RAG Playbook - 20% off for readers](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }
+[Enroll in the RAG Playbook Course →](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }

@@ -97,8 +97,19 @@ A RAG system that:
 - Doesn't break in weird ways
 - Works for teams, not just demos
 
+## Get the Complete Course - 20% Off for Readers
+
+!!! success "Exclusive Discount for Book Readers"
+    This content is from the [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course on Maven.
+    
+    **Save 20% with code: `EBOOK`**
+    
+    Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
+
+[Get the RAG Playbook Course - 20% Off](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }
+
 ## Stay Updated
 
-Get access to exclusive discounts and our free 6-day email course on RAG improvement
+Get access to our free 6-day email course on RAG improvement
 
-[Subscribe for updates](https://himprovingrag.com){ .md-button .md-button--primary }
+[Subscribe for updates](https://himprovingrag.com){ .md-button }
