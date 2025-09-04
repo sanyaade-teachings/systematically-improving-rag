@@ -20,6 +20,17 @@ tags:
 !!! info "Learn the Complete RAG Playbook"
     All of this content comes from my [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course. Readers get **20% off** with code EBOOK. Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
 
+## Learning Objectives
+
+By the end of this chapter, you will:
+
+1. **Build production-ready tool interfaces** - Create blueprint search, document search, and structured data tools with clear parameter specifications and error handling
+2. **Master query routing with few-shot learning** - Implement intelligent routing using Instructor and structured outputs, with 10-40 examples per tool for production systems
+3. **Design multi-agent vs single-agent architectures** - Understand when to use specialized agents vs unified routing, balancing token efficiency with system complexity
+4. **Implement dynamic example selection** - Build systems that improve routing accuracy by retrieving relevant historical examples based on query similarity
+5. **Create feedback loops for continuous improvement** - Turn routing decisions and user interactions into training data that enhances both routing and retrieval performance
+6. **Apply RAG architecture evolution patterns** - Understand the progression from pure embeddings to hybrid search to tool-based systems and their trade-offs
+
 ## Introduction
 
 ## What This Chapter Covers
@@ -531,3 +542,160 @@ def route_query_with_dynamic_examples(query: str) -> Iterable[Tool]:
 ```
 
 This creates a learning system that improves routing based on successful interactions.
+
+### Critical Warning: Preventing Data Leakage
+
+**The Most Common Router Evaluation Mistake:**
+
+When you have limited data (20-50 examples total), it's easy for your test queries to accidentally appear in your few-shot examples. This creates artificially high performance that doesn't generalize.
+
+**Why This Happens:**
+- Small datasets mean high overlap probability
+- Synthetic data generation can create similar queries
+- Teams reuse examples across different purposes
+
+**Consequences:**
+```
+Development Results: 95% routing accuracy ✓
+Production Reality: 60% routing accuracy ✗
+User Experience: Getting few-shot examples as answers (very confusing)
+```
+
+**Prevention Strategy:**
+1. **Strict Data Splits**: Create test set first, never let it contaminate few-shot examples
+2. **Diverse Synthetic Data**: Generate test queries from different prompts than training examples
+3. **Regular Auditing**: Check for semantic similarity between test and few-shot examples
+4. **Production Validation**: Always validate performance on completely new user queries
+
+### Advanced Router Challenges and Solutions
+
+**Challenge 1: Low Per-Class Recall**
+
+Imagine your router evaluation shows 65% overall recall, but when you break it down by tool:
+
+| Tool | Expected | Correctly Selected | Per-Tool Recall |
+|------|----------|-------------------|----------------|
+| SearchText | 20 | 18 | 90% |
+| SearchBlueprint | 10 | 2 | 20% |
+| SearchSchedule | 8 | 6 | 75% |
+
+**Root Cause**: SearchBlueprint has extremely low recall despite good overall metrics.
+
+**Solution Strategy:**
+- Add 10-15 specific examples for SearchBlueprint
+- Improve tool description to differentiate from SearchText
+- Create contrast examples: "similar query, different tools"
+
+**Challenge 2: Tool Confusion Matrix**
+
+| Expected\Predicted | SearchText | SearchBlueprint | SearchSchedule |
+|--------------------|------------|-----------------|----------------|
+| SearchText | 18 | 1 | 1 |
+| SearchBlueprint | 8 | 2 | 0 |
+| SearchSchedule | 2 | 0 | 6 |
+
+**Analysis**: Blueprint queries are frequently misclassified as text search.
+
+**Systematic Debugging Process:**
+1. **Filter Failures**: Extract all queries where SearchBlueprint was expected but not selected
+2. **Pattern Analysis**: Look for common characteristics in failed queries
+3. **Targeted Examples**: Create specific few-shot examples addressing these patterns
+4. **Delineation**: Add examples showing boundaries between blueprint vs text queries
+
+### Production Scale Considerations
+
+**Few-Shot Example Scale:**
+- **Development**: Start with 5-10 examples per tool
+- **Production**: Scale to 10-40 examples per tool (don't be surprised by this!)
+- **Advanced**: Use dynamic example selection with 100+ historical examples per tool
+
+**Why Large Example Sets Work:**
+- **Prompt Caching**: Makes large contexts economical
+- **Edge Case Coverage**: More examples = better handling of unusual queries
+- **Continuous Learning**: Successful interactions automatically become examples
+
+**Economic Considerations:**
+```
+Cost Analysis (GPT-4 with prompt caching):
+- 40 examples per tool × 5 tools = 200 examples
+- ~8,000 tokens cached context = $0.0025 per query
+- vs Fine-tuning: $200+ upfront + retraining costs
+- Break-even: ~80,000 queries (often worth it for production)
+```
+
+## This Week's Action Items
+
+### Tool Interface Implementation (Week 1)
+1. **Build Production-Ready Tool Interfaces**
+   - [ ] Implement the blueprint search tool with date filtering and description search
+   - [ ] Create document search tool with type filtering (contracts, proposals, bids)
+   - [ ] Build structured data tools following the Pydantic patterns shown in the examples
+   - [ ] Add comprehensive error handling and parameter validation to all tools
+
+2. **Design Tool Portfolio Strategy**
+   - [ ] Map your retrievers to multiple tool access patterns (like document retriever → multiple tools)
+   - [ ] Design tools that match user mental models, not just technical boundaries
+   - [ ] Create clear documentation strings that help both developers and LLMs understand usage
+   - [ ] Plan tool interfaces that work for both LLM and direct human access
+
+### Query Routing Implementation (Week 1-2)
+3. **Build Intelligent Query Router**
+   - [ ] Implement the Instructor-based routing system with structured outputs
+   - [ ] Create 10-40 few-shot examples per tool (don't be surprised by this scale!)
+   - [ ] Test parallel tool calling and result combination
+   - [ ] Implement both ClarifyQuestion and AnswerQuestion tools for comprehensive coverage
+
+4. **Master Few-Shot Example Management**
+   - [ ] Create diverse examples covering edge cases and multi-tool scenarios
+   - [ ] Include contrast examples for commonly confused tools
+   - [ ] Test and prevent data leakage between few-shot examples and test sets
+   - [ ] Implement example quality scoring and selection mechanisms
+
+### Advanced Routing Strategies (Week 2-3)
+5. **Implement Dynamic Example Selection**
+   - [ ] Build example database with query embeddings for similarity matching
+   - [ ] Implement runtime retrieval of most relevant historical routing examples  
+   - [ ] Create continuous improvement cycle where successful interactions become examples
+   - [ ] Test performance improvement from dynamic vs static examples
+
+6. **Multi-Agent vs Single-Agent Decisions**
+   - [ ] Analyze your use case for token efficiency vs specialization benefits
+   - [ ] Consider read/write separation for safety in coding or file operations
+   - [ ] Test different agent architectures for your specific domain
+   - [ ] Implement state sharing mechanisms if using multi-agent approach
+
+### Feedback Loop Creation (Week 2-3)
+7. **Build Continuous Improvement System**
+   - [ ] Implement routing decision logging and analysis
+   - [ ] Create user feedback collection mechanisms from successful interactions
+   - [ ] Build automated example database updates from high-quality routing decisions
+   - [ ] Test feedback loop effectiveness on routing accuracy improvements
+
+8. **Architecture Evolution Implementation**
+   - [ ] Assess your current architecture: Generation 1 (embeddings), 2 (hybrid), or 3 (tools)
+   - [ ] Plan migration path to more advanced architecture if needed
+   - [ ] Implement Generation 3 capabilities: computation tools beyond just retrieval
+   - [ ] Test user satisfaction with tool-based vs pure retrieval approaches
+
+### Production Integration (Week 3-4)
+9. **Model Context Protocol (MCP) Preparation**
+   - [ ] Research MCP standards for your tool interfaces (early adoption consideration)
+   - [ ] Design tools to be MCP-compatible for future interoperability
+   - [ ] Plan for standardized tool connections across different AI systems
+   - [ ] Consider building custom connectors if adopting MCP early
+
+10. **Performance Optimization**
+    - [ ] Implement prompt caching for large few-shot example sets
+    - [ ] Optimize parallel tool execution for minimal latency
+    - [ ] Build monitoring for routing accuracy and response times
+    - [ ] Plan scaling strategy for increased query volume
+
+### Success Metrics
+- **Tool Interface Quality**: Clear, well-documented interfaces that work for both AI and humans
+- **Routing Accuracy**: High precision (when tools selected, they're correct) and recall (all needed tools selected)
+- **System Learning**: Measurable improvement in routing decisions from feedback loops
+- **Architecture Maturity**: Successful migration to Generation 3 tool-based system with computation capabilities
+- **User Experience**: Both AI routing and direct tool access provide value to different user types
+
+!!! tip "Next Steps"
+	In [Chapter 6-3](chapter6-3.md), we'll implement comprehensive performance measurement and create user interfaces that leverage both AI routing and direct tool access.

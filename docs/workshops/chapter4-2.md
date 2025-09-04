@@ -13,6 +13,19 @@ tags:
 
 # Prioritization and Roadmapping: From Insights to Action
 
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Distinguish inventory from capability issues** - Identify whether retrieval failures stem from missing data (inventory) or inability to process requests correctly (capability), saving months of misdirected effort
+2. **Master the priority formula** - Apply (Impact × Volume %) / (Effort × Risk) to transform vague requests like "make the AI better" into specific, measurable improvement projects
+3. **Build systematic improvement roadmaps** - Create data-driven 4-week improvement cycles that progress from analysis to quick wins to strategic capabilities
+4. **Apply the two-dimensional analysis framework** - Separately analyze query topics (what users ask about) and capabilities (what they want the system to do) for more effective solutions
+5. **Implement portfolio-balanced development** - Structure roadmaps with 30% quick wins, 40% strategic bets, 20% maintenance, and 10% experiments for sustainable progress
+6. **Avoid common prioritization pitfalls** - Prevent analysis paralysis, recognize user adaptation patterns, and focus on simplest solutions that work rather than over-engineering
+
+These objectives build directly on the segmentation analysis from Chapter 4.1 and prepare you for building specialized retrievers in Chapter 5.
+
 ### Key Insight
 
 **Inventory issues need data, capability issues need features—knowing the difference saves months.** When retrieval fails, ask: is the information missing (inventory) or can't we process it correctly (capability)? Use the priority formula: (Impact × Volume %) / (Effort × Risk). This transforms "make the AI better" into "fix scheduling queries affecting 20% of users."

@@ -1,792 +1,540 @@
-# Chapter1 Slides
-
-*Extracted from PDF slides using docling*
-
----
+# Chapter 1 Slides
 
 ## jxnl.co
 
 @jxnlco
 
+<!-- Welcome to the first actual lecture for Systematically Improving RAG Applications. This week is all about giving you the tools to kickstart the data flywheel, and in particular thinking about evaluations, the mistakes people make, and then ultimately thinking about synthetic data as a way of addressing a lot of these concerns before you even have users. -->
+
 ## Systematically Improving RAG Applications
 
-Session 1
-
-Kickstart the Data Flywheel: Fake it till you make it
+**Session 1:** Kickstart the Data Flywheel: Fake it Till You Make It
 
 Jason Liu
 
-<!-- image -->
+<!-- Today we're covering the common pitfalls that most AI developers make and the vicious cycle I see in every consulting engagement that I go into. We'll talk about how we over emphasize lagging metrics and how many of us fall victim to absence blindness and intervention bias. -->
 
-<!-- image -->
+---
 
-<!-- image -->
+## Today's Goals
 
-## Common pitfalls made by RAG developers
+**Break the Vicious Cycle of RAG Development**
 
-Enter into a vicious cycle
+- Identify common pitfalls that sabotage RAG applications
+- Understand the difference between lagging and leading metrics
+- Combat absence blindness and intervention bias
+- Build the foundation: synthetic data and evaluations
+- Start the data flywheel before you have users
 
-The RAG playbook
+**Focus: Measurements before features**
 
-Enter into a vicious cycle
+<!-- This is the key mindset shift I want you to take away today. We need to fundamentally restructure how we think about stand-up meetings and team priorities. Instead of focusing on features, we need to focus on the velocity of learning through experiments. -->
 
-Overemphasize lagging metrics
+---
 
-Overemphasize lagging metrics
+## The Challenge: "We Need Complex Reasoning"
 
-Fall victim to absence blindness and intervention bias
+> "Often when I hear 'we need complex reasoning' it comes from lack of user empathy"
 
-Fall victim to absence blindness and intervention bias
+**Hot Take:** This usually means:
+- Haven't looked at customer data in months
+- Never asked for specific feedback  
+- Building generic solutions for broad problems
+- Focusing on features instead of outcomes
 
-The RAG playbook
+**Key Questions to Ask:**
+- When was the last time we looked at data from customers?
+- When was the last time we read that feedback?
+- When was the last time we asked for that feedback?
 
-Homework for this week
+**Solution:** Build high-specificity tooling that users actually care about
 
-Homework for this week
+<!-- My first question is, how often do we hear things like "we need more complex reasoning"? My hot take here is that it's often going to be a case of a lack of user empathy. When you hear something like this, I would really challenge you to figure out when was the last time we looked at data from customers and figured out what they want, what they really cared about. This is a general result of a lack of specificity in the tools that we actually build for our customers. -->
 
-Sneak peak for next week
+---
 
-Sneak peak for next week
+## Common RAG Developer Pitfalls
 
-<!-- image -->
+### The Vicious Cycle
 
-## We need to build high-specificity tooling that users care about
+**Developers unknowingly sabotage their applications through:**
 
-Often when I hear "we need complex reasoning" it often comes from lack of user empathy and not knowing what the user wants.
+1. **Vague Metrics**
+   - "Does it look better?"
+   - "Doesn't feel right"
+   - No clear success criteria
+   - You're sabotaging not only your product but your team and yourself
 
-<!-- image -->
+2. **No Superpowers**
+   - Generic solutions for broad problems
+   - 30-40% churn rates
+   - Too scared to fully launch
+   - Focus on features rather than outcomes
+   - Mandate too broad, overpromised
 
-<!-- image -->
+3. **Poor Feedback Loops**
+   - LLM-based feedback only
+   - No actionable insights
+   - No roadmap for improvements
+   - Feedback not actionable - doesn't identify what's next
 
-Common pitfalls made by RAG developers
+<!-- This is how we enter the vicious cycle. These developers unknowingly sabotage their applications because they define very vague metrics. We think things like "does it look better" or "does it feel right?" And ultimately you're sabotaging not only your product but your team and yourself if you don't define these clear metrics. You would be surprised at how pervasive these problems are - there have been companies I've worked with with 100 million dollar valuations with less than 30 evals. -->
 
-## Common pitfalls made by RAG developers
+---
 
-## Enter into a vicious cycle
+## The $100M Problem
 
-Overemphasize lagging metrics
+> "Companies with $100M valuations operating with less than 30 evaluations"
 
-The RAG playbook
+**When something changes, you have no way to understand what moves the needle**
 
-Overemphasize lagging metrics
+**Real Impact:** I've worked with companies with $100M+ valuations that have fewer than 30 evaluations total
 
-Fall victim to absence blindness and intervention bias
+**The Result:**
+- Disappointed leadership
+- Frustrated developers
+- Products that nobody uses
+- Endless feature churn
 
-Fall victim to absence blindness and intervention bias
+**The Solution:** Focus on metrics and experiments, not just features
 
-The RAG playbook
+<!-- When something changes, you have no way of understanding what is actually moving the needle. This leads to disappointed leadership and very sad developers. After looking at data, you're supposed to take action. But this won't be you. If you're in this class, I really challenge you to spend the next couple of weeks thinking about how we can fundamentally shift our mindsets into making our teams focus on metrics and running experiments rather than just features. -->
 
-Homework for this week
+---
 
-Homework for this week
+## Lagging vs Leading Metrics
 
-Sneak peak for next week
+### Lagging Metrics: Easy to Measure, Hard to Improve
+- **What:** Past outcomes (weight, strength, churn, satisfaction)
+- **Characteristics:** Unresponsive, measures outputs
+- **Problem:** Shows results after it's too late to act
 
-Sneak peak for next week
+### Leading Metrics: Hard to Measure, Easy to Improve  
+- **What:** Future predictors (calories, workouts, experiments)
+- **Characteristics:** Actionable, measures inputs
+- **Power:** Provides feedback on when and where to intervene
 
-## RAG developers unknowingly sabotage their own applications
+**Key Insight:** Control the inputs to influence the outputs
 
-## Vague Metrics
+<!-- If you're a product scientist or data scientist, this might be very obvious to you, but for everyone else, let's define what these metrics really mean. This was really profound to me when I was working at Facebook. A lagging metric is difficult to improve, but very easy to measure. A good example might be being stronger or losing weight - we can always test how strong we are or weigh ourselves, but we can't do much about it at the time. Leading metrics are easy to change but much harder to measure - like counting calories and working out. -->
 
-- · Thinks "Look better?"
-- · Thinks "Don't feel right"
+---
 
-<!-- image -->
+## The Only Leading Metric That Matters
 
-<!-- image -->
+**For RAG Development: Number of Experiments**
 
-## RAG developers unknowingly sabotage their own applications
+> "If you're feeling lost, plan to do a couple more experiments"
 
-## Vague Metrics
+**Focus Areas:**
+- How many experiments are we running?
+- What infrastructure investments improve velocity?
+- How can we brainstorm better experiment designs?
 
-## No superpowers
+**Success Pattern:** Doing the obvious thing over and over again
+- Like counting calories in vs calories out
+- Boring but effective
+- Way more boring than you think, but that's what success looks like
 
-- · Thinks "Look better?"
-- · Thinks "Don't feel right"
-- · Build generic solutions for broad problems (e.g., search all personal data) instead of on specific tasks (e.g., meeting preparation tool)
-- · Outcomes not features
+**In Practice:**
+- Focus on how many experiments we're running
+- What infrastructure investments improve velocity?
+- How can we brainstorm better experiment designs?
+- Build stronger intuition through continual experimentation
 
-<!-- image -->
+<!-- The simple example I want you to think about most in the upcoming weeks is just how many experiments are we running. A simple analogy is counting calories and burning calories and working out. On any given moment of any given day, you can count up how many calories you've eaten. If you want to gain weight, check if you've eaten enough. If you want to lose weight, check if you've eaten too much. If you want to control your weight, the only thing that matters is calories in and calories out. This is going to be way more boring than you think - doing the obvious thing over and over again - but that is often what success looks like. -->
 
-<!-- image -->
+---
 
-## RAG developers unknowingly sabotage their own applications
+## Absence Blindness: You Don't Fix What You Can't See
 
-## Vague Metrics
+**Common Pattern:**
+- Everyone talks about generation quality and latency
+- Nobody checks if retrieval actually works
+- Focus on visible problems, ignore hidden ones
 
-## No superpowers
+**Hidden Issues We Miss:**
+- Is retrieval finding relevant documents?
+- Are text chunks properly extracted?
+- Do embeddings match query semantics?
+- Has data been extracted correctly?
+- Are representations and text chunks working?
 
-- · Thinks "Look better?"
-- · Thinks "Don't feel right"
-- · Build generic solutions for broad problems (e.g., search all personal data) instead of on specific tasks (e.g., meeting preparation tool)
-- · Outcomes not features
+**Reality Check:** People always talk about generation and latency, but no one has ever really looked at whether the retrieval is good or bad
 
-<!-- image -->
+**Solution:** Measure retrieval before generation
 
-<!-- image -->
+<!-- You don't fix what you can't see. I see this every day with almost every client. People are always talking about generation and latency, and no one has ever really looked at whether the retrieval is good or bad, whether the representations and the text chunks are bad, or even if the data has been extracted correctly. Too many of us focus on what you can see - the generation and latency - and not the retrieval itself. This is why a lot of the focus of today's lecture is around thinking about precision and recall. -->
 
-## Unactionable Feedback
+---
 
-- · Reviews focused on generation before establishing search evals
-- · Looking at data does not result in recommendations for next time
-- · Vibes translation is generally unsolved
+## Intervention Bias: Action Without Purpose
 
-## This leads to a disappointed leadership and sad developers
+**The Pattern:**
+- Switch between models randomly
+- Add prompt tweaks everywhere
+- Do things just to feel in control
 
-After looking at the data, you're supposed to then take action
+**Why This Fails:**
+- No specific hypothesis being tested
+- No metrics to validate improvements
+- "It depends on your data" - always
+- Trying to feel in control vs. being in control
 
-<!-- image -->
+**The Reality:**
+- Pay consultants just to hear what you hope to hear
+- But the answer is always: "it depends on your data, your evaluations, and your benchmarks"
 
-<!-- image -->
+**Better Approach:** Specific interventions against specific metrics
 
-<!-- image -->
+<!-- Something else that we do too often is we just try to do things in order to feel control. We'll just switch between different models and add a couple of lines of prompts everywhere and we just want to see if anything gets better. A lot of people pay me just to tell them what they hope to hear, but that's usually not how things work. Things are very empirical. If you send me an email and pay me a couple dollars to ask whether this thing or that thing is going to work, the answer is always going to be: it depends on your data, your evaluations, and your benchmarks. It's one thing to do something because you want to feel like you're in control, versus taking specific interventions against specific metrics. -->
 
-<!-- image -->
-
-Common pitfalls made by RAG developers
-
-## Common pitfalls made by RAG developers
-
-Enter into a vicious cycle
-
-Enter into a vicious cycle
-
-## Overemphasize lagging metrics
-
-Fall victim to absence blindness and intervention bias
-
-Fall victim to absence blindness and intervention bias
-
-The RAG playbook
-
-The RAG playbook
-
-Notebook exercises
-
-Notebook exercises
-
-Homework for this week
-
-Homework for this week
-
-Sneak peak for next week
-
-Sneak peak for next week
-
-## Difference between leading and lagging metrics
-
-## Leading
-
-<!-- image -->
-
-<!-- image -->
-
-## Easy to improve
-
-- · Track and predict future performance
-- · Provide feedback on when and where to intervene
-- · Often Inputs to a system
-
-## Example
-
-Number of experiments run
-
-## Easy Analogy:
-
-Counting Calories, Burning Calories, Working out
-
-<!-- image -->
-
-## Difficult to improve
-
-- · Measure past outcomes
-- · Often unresponsive and hard to change
-- · Often Outputs of a system
-
-## Example
-
-Application quality, Churn, Satisfaction
-
-## Easy Analogy:
-
-"Be strong, lose weight"
-
-## Difference between leading and lagging metrics
-
-## Leading
-
-<!-- image -->
-
-## Easy to improve
-
-- · Track and predict future performance
-- · Provide feedback on when and where to intervene
-- · Often Inputs to a system
-
-## Example
-
-Number of experiments run
-
-<!-- image -->
-
-## Set concrete goals for leading metrics
-
-- · Focus on increasing the number of hypotheses tested per week
-- · Through continual experimentation, build a stronger intuition for better retrieval methods or indices
-- · It's going to be way more boring, like counting calories
-
-maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-<!-- image -->
-
-<!-- image -->
-
-Common pitfalls made by RAG developers
-
-## Common pitfalls made by RAG developers
-
-Enter into a vicious cycle
-
-Enter into a vicious cycle
-
-Overemphasize lagging metrics
-
-Overemphasize lagging metrics
-
-## Fall victim to absence blindness and intervention bias
-
-The RAG playbook
-
-The RAG playbook
-
-Homework for this session
-
-Homework for this session
-
-Sneak peak for next session
-
-Sneak peak for next session
-
-<!-- image -->
-
-<!-- image -->
-
-## Absence blindness:
-
-## You don't fix what you can't see
-
-## Everyone sees:
-
-Generation, Latency
-
-Not everyone sees:
-
-Poor Retrieval
-
-Bad Representations
-
-Bad Chunks
-
-Bad Extraction
-
-<!-- image -->
-
-## Intervention bias:
-
-You try to do things to feel in control
-
-People keep trying to change generation and apply techniques to feel in control
-
-<!-- image -->
-
-<!-- image -->
-
-Common pitfalls made by RAG developers
-
-## Common pitfalls made by RAG developers
-
-The RAG playbook
-
-The RAG playbook
-
-## Step 1-4: Initial implementation: focus on retrieval metrics
-
-Step 2 Deep dive: Synthetic data generation: fast testing  review processes
-
-Step 2 Deep dive: Synthetic data generation: fast testing &amp; review processes
-
-Homework for this session
-
-Homework for this session
-
-Sneak peak for next session
-
-Sneak peak for next session
+---
 
 ## The RAG Flywheel
 
-Thesis: The principles we've applied in search are highly relevant to what we want to do with RAG
+**Core Principle:** Everything from search applies to RAG
 
-<!-- image -->
+### Step 1: Basic RAG Setup
+Start with existing system
 
-| Step      |                                   | Description                                                                                                                                                            |
-|-----------|-----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1         | Initial implementation            | Start with a basic RAG system setup                                                                                                                                    |
-| 2         | Synthetic data generation         | Create synthetic questions to test the system's retrieval abilities                                                                                                    |
-| 3         | Build fast evaluations            | Conduct quick, unit test-like evaluations to assess basic retrieval capabilities (e.g., precision, recall, mean reciprocal rank), and explain why each matters         |
-| 4         | Real-world data collection        | Gather real user queries and interactions. Ensure feedback is aligned with business outcomes or correlated with important qualities that predict customer satisfaction |
-| 5         | Classification and analysis       | Categorize and analyze user questions to identify patterns and gaps                                                                                                    |
-| 6         | System improvements               | Based on analysis, make targeted improvements to the system                                                                                                            |
-| 7         | Production monitoring             | Implement ongoing monitoring to track system performance                                                                                                               |
-| @jxnlco 8 | @jxnlco User feedback integration | maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook Continuously incorporate user feedback into the system                                         |
+### Step 2: Synthetic Data Generation  
+Create test questions for retrieval abilities
 
-<!-- image -->
+### Step 3: Fast Evaluations
+Unit-test-like assessments (precision, recall)
 
-<!-- image -->
+### Step 4: Real-World Data
+Collect actual user queries and feedback
 
-<!-- image -->
+**Goal:** Build intuition through continuous experimentation
 
-<!-- image -->
+<!-- The basic principle here is that everything that we've applied in search is incredibly relevant to how we want to do retrieval. Many of you already have a basic RAG setup, and the only thing to do next is to think about how we can bring in synthetic questions that test the system's ability to do retrieval. Then we can conduct very fast unit tests like evaluations that assess basic retrieval capabilities like precision and recall. -->
 
-<!-- image -->
+---
 
-## Fundamental mindset shift: Stop using LGTM@K ('Looks good to me')
+## Why Retrieval Evals Beat Generation Evals
 
-In the long term, LLMs are going to improve their ability to synthesize information in context (ICL -in-context learning)    It 's our responsibility to own improving search/retrieval
+### Generation Evals: Too Subjective
+```
+Q: "What is the powerhouse of the cell?"
+A1: "Mitochondria [1]"
+A2: "The powerhouse of the cell is the mitochondria, which..."
+A3: "Mitochondria are organelles that..."
+```
+**Problem:** Which answer is "correct"? Too subjective.
 
-|                          | Generation evals                                                                                           | Retrieval evals                                                 |
-|--------------------------|------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| Testing for…             | Factuality Team lead : 'Looks better now' (based on made up evaluations that don't capture usage behavior) | Recall, precision@K Lexical search, semantic search, re-rankers |
-| Speed of tests           | Slow ~1s to 10s per test                                                                                   | Fast ~10ms to 800ms per test                                    |
-| Cost of tests            | $100s per run Team lead : 'who spent $1000 on OpenAI credits yesterday?'                                   | Negligible per run                                              |
-| Frequency of tests       | Infrequent                                                                                                 | Frequent                                                        |
-| Speed of test iterations | Slow iterations (tests that could take minutes take hours)                                                 | Fast iterations                                                 |
-| Ease of test scalability | Difficult                                                                                                  | Easy                                                            |
+<!-- For every company that I worked with that did not come from a machine learning background, they started focusing on things like subjective generation evals way too early. In the long term, language models are going to improve their ability to synthesize new data in context, but it's our responsibility to be improving things like our search and retrieval evals. If we focus on generation evals, things like factuality become very subjective and confusing. -->
 
-## What is the difference between a generation and retrieval eval?
+### Retrieval Evals: Objective and Clear
+```
+Q: "What is the powerhouse of the cell?"
+Expected pages: [6, 9, 13]
+Retrieved pages: [6, 8, 9, 13, 15]
+Recall: 3/3 = 100% ✓
+Precision: 3/5 = 60%
+```
 
-## When we use generation evals, we assume there are no issues in the retrieval steps
+<!-- If we start committing to improving precision and recall directly, now we can test things like whether lexical search, semantic search, or re-rankers can help us improve our retrieval. Instead of running tests that take minutes or hours to run, you can run tests that take seconds. They're also going to be much cheaper, and we're not going to run into issues where we wake up one Monday morning and realize an engineer has spent $1,000 on OpenAI credits to run your factuality evals. -->
 
-| Examples            | Generation eval (test for generation and factuality)                                                                                                                                                                | Retrieval eval (test for recall and precision)                                                                   |
-|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| Textbook analogy    |  Question: 'What is the powerhouse of the cell?'  Potential desired answers: • 'Mitochondria[6,9,13]' • 'The powerhouse of the cell is mitochondria from pages 6, 9, 13' • Definition of mitochondria + Paragraph | • Question : 'What page(s) can I find the answer to 'what is the powerhouse of the cell?'' • Answer : '6, 9, 13' |
-| Contact information |  Question : 'How do I contact Jason?  Answer: • 'Jason's email is jason@jxnl.co ' • 'Phone number: (408) -555- 8796' • 'You can contact Jason on X @jxnlco                                                        |  Question : 'What document has the contact information for Jason?'  Answer : 'teamcontacts.docx'               |
+---
 
-Data sets for creating generation evals are expensive to build and verify, so many retrieval issues may go unnoticed
+## Retrieval Eval Benefits
 
-Developers don't realize that building out retrieval may be powerful enough for several initial use cases to start gathering feedback on (and do generation afterwards)
+**Speed & Cost**
+- Seconds vs minutes/hours
+- Cheap vs expensive (no LLM judge needed)
+- Can run frequently vs infrequently
 
-maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
+**Scalability**
+- Hundreds/thousands of tests
+- Clear pass/fail criteria
+- No subjective interpretation
 
-<!-- image -->
+**Actionability**
+- Test lexical vs semantic search
+- Evaluate reranker impact
+- Measure chunk extraction quality
 
-## Precision and recall are key metrics for evaluating Retrieval
+<!-- As they get more expensive and take longer, we tend to run them more infrequently, and now we lose the ability to run more experiments in a shorter amount of time. As you scale to having hundreds or even thousands of tests, retrieval evals scale incredibly well, whereas generation evals and using LLM as a judge too early in the process can result in much more difficult test cycles. -->
 
-relevant elements
+---
 
-|                                   | Recall                                                                                                                                                         | Precision                                                                                                                             |
-|-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| Definition                        | % of relevant documents that are successfully retrieved (Relevant retrieved documents) (Total relevant documents)                                              | % of retrieved documents relevant to the query (Relevant retrieved documents) (Total retrieved documents)                             |
-| Why is this important to measure? |  High recall means the system finds most of the relevant documents  This is especially important in cases where facts are hard to find across many documents |  High precision means the system retrieves mostly relevant documents  Dumber models might get more confused with irrelevant context |
+## Precision and Recall Fundamentals
 
-<!-- image -->
+### Recall: Percentage of relevant documents found
+```
+10 correct documents exist
+Retrieved 5, found 4 correct ones
+Recall = 4/10 = 40%
+```
+**High recall:** System finds most relevant documents
+**Critical when:** Facts scattered across many documents
 
-@jxnlco
+### Precision: Percentage of retrieved documents that are relevant
+```
+Retrieved 10 documents
+2 are actually relevant
+Precision = 2/10 = 20%
+```
+**High precision:** System avoids irrelevant results
+**Critical when:** Too much noise confuses the model
 
-@jxnlco
+<!-- So recall is the percentage of relevant documents that are successfully retrieved. If there are 10 correct documents and we find the top five and four of them are in there, then recall is four out of 10. High recall means that the system is able to find most of the relevant documents. This is particularly important where facts are hard to find across many documents. Precision is the percentage of retrieved documents that are relevant to the query. High precision means that the system retrieves mostly relevant documents. This is important because dumber models might be more confused with irrelevant context. -->
 
-## Case study: AI-generated reports for consultants
+---
 
-Personal anecdote about the importance of the recall metric
+## Case Study 1: Research Interview Reports
 
-## Situation
+**Problem:** Consultants losing trust in AI-generated reports
+- "I know 6 people liked the product, but only 3 quotes showed up"
+- **Recall:** 3/6 = 50%
 
-## Complication
+**The Problem in Detail:**
+- Consultants do 15-30 research interviews with experts
+- AI generates reports from interview data
+- Customer: "I know 6 people liked the product, but only 3 quotes showed up"
+- **Trust broken:** "I know there were 6. There's something wrong."
+
+**Solution Process:**
+1. Manual question-chunk dataset creation
+2. Focused on preprocessing experiments (our hypothesis)
+3. 3-4 experiments on preprocessing text chunks before ingestion
+4. Improved recall from 50% to 90%
+5. Rebuilt customer trust through data-driven examples
+
+**Key Lesson:** Specific goals enable rapid experimentation and customer-driven test suites. Preprocessing aligned with anticipated customer queries.
+
+<!-- I work with a company that does report generation for user interviews. These consultants do about 15 to 30 research interviews with experts. These consulting teams then request an AI generated report and what they found was that only a subset of the quotes were being found. The consultant says, "I know I asked 15 people and six of them said they really like the product. But when this report was generated, only three of them said so. I know there were six. There's something wrong." And now I don't trust the system. We had a three out of six recall. We manually built out a question chunk dataset and found that a lot of the work could be done in preprocessing. By doing three or four experiments on preprocessing text chunks before ingestion, we improved recall from 50% to 90%. -->
+
+---
+
+## Case Study 2: Construction Blueprint Search
+
+**Problem:** Workers couldn't find relevant blueprints
+- **Recall:** 27% for finding correct images
+- Critical documents going unfound
+
+**The Detailed Process:**
+1. Built synthetic dataset of blueprint queries
+2. **Hypothesis:** Better image summaries and captions needed
+3. Used visual language models to create captions and descriptions
+4. Applied chain of thought reasoning about blueprints
+5. Generated hypothetical questions for each blueprint
+6. Tested ability to recall correct document and answer questions
 
-- · Consultants do 15-30 research interviews with experts
-- · The consultants know which experts had specific perspectives about the products
-- · The consulting team requested an AI-generated report
-- · For certain fields, only found 3 out of 6 people quoted
-- · The consulting team expected the AI report to retrieve 6 quotes
-- · As a result, the team lost confidence in the system
+**Results:** 4 days, ~12 prompts, 3 models → 27% to 85% recall
 
-## Key takeaway:
+**Bonus Discovery:** 20% of queries were about counting objects in blueprints
+- Justified investment in bounding box models
+- Applied technique to tables, documents, other artifacts
 
-- · It's essential that the pre -processing that is done aligns with the anticipated queries to improve recall
-- · Leverage customer interactions to motivate your test suites
+**Key Lesson:** Highly specific prompts for synthetic summary generation + domain expertise
 
-## @jxnlco @jxnlco
+<!-- Another example was around using AI for multimodal search and in particular searching blueprints at a construction company. Construction workers want to ask questions regarding blueprints. When we took some examples of questions, we found that we only had a 27% recall for even finding the correct image, the correct blueprint. We found that we might be able to do better if we had better image summaries. Our approach was using a visual language model to create captions and descriptions over these blueprints. In just four days of experimenting, maybe about 12 prompts and trying three models, we went from 27% recall to 85%. Once we looked at those queries, we found that 20% were around counting objects in blueprints, which justified investment in bounding box models. -->
 
-## Approach
+---
 
-- · Shifted focus to ensure 100% of recall of all correct citations
-- · Manually built Question &gt; chunk datasets for relevance
+## The Synthetic Data Strategy
 
-## Impact
+**Before Users:** Create synthetic questions to test systems
 
-90%+ recall from 50% by doing significant pre-processing work
+**Benefits:**
+- Test edge cases before they happen
+- Build confidence in system capabilities
+- Establish baseline performance metrics
+- Enable rapid iteration cycles
 
-- · Continues the sales processed by building trust and customer specific evaluations
+**Simple Starting Process:**
+1. Take a random text chunk
+2. Ask LLM to generate a question this chunk answers
+3. Verify that retrieval finds this chunk when searching the generated question
+4. Now you have synthetic dataset testing chunk retrieval
+5. Recall becomes a very binary metric
 
-## Case study: AI for blueprint search at construction company
+**Advanced Process (with user data):**
+1. Use user queries as few-shot examples for generation
+2. Generate chunks from queries and test retrievability
+3. Use LLM as ranker to produce weak ranking labels
+4. Review weak labels to get correct labels
+5. Test precision and recall (correlated with real performance)
 
-Personal anecdote about the importance of pre-processing based on unique data sets
+**Key Question:** Given what I know about user data, what questions could I NOT answer with current infrastructure?
 
-## Situation
+<!-- Everyone talks about synthetic data, but it's not as simple as just asking an LLM for more data. The questions here revolve around how do you make an LLM create diverse and interesting datasets that reflect production traffic. If you have no query data, the simplest thing you can do is just take a random text chunk, ask a language model to generate a question that this text chunk answers, and just verify that when you do retrieval, that text chunk is recovered when you search the question that was generated. Here, recall is a very binary metric. -->
+
+---
 
-## Complication
+## Building Your First Evaluation Set
 
-## Approach
+**Start Simple:**
+```python
+test_cases = [
+    {
+        "query": "How to contact Jason?", 
+        "expected_chunks": ["contact_info_page_1", "about_page_3"]
+    },
+    {
+        "query": "What is the powerhouse of the cell?",
+        "expected_chunks": ["biology_chapter_6", "cell_structure_page_9"] 
+    }
+]
 
-- · Construction workers want to ask questions regarding blueprints
-- · We used VLLM labeled data we got ~27% recall@75 for image specific search tool
-- · We need better image summary prompts to be able to recover descriptions beyond image captioning
-- · Tested VLLM captioning and search over descriptions
-- · Used Chain of Thought (CoT) and asked language model to reason about the blue print before describing it
-- · 'How many rooms…'
-- · 'Describe the rooms…'
-- · 'How big was the room...'
+def evaluate_retrieval(query, expected_chunks):
+    retrieved = retrieval_system.search(query, top_k=10)
+    retrieved_ids = [chunk.id for chunk in retrieved]
+    
+    hits = len(set(expected_chunks) & set(retrieved_ids))
+    recall = hits / len(expected_chunks)
+    precision = hits / len(retrieved_ids)
+    
+    return recall, precision
+```
 
-## Key takeaway:
+## Example Prompt for Question Generation
 
-- · Testing the ability of a single subsystem becomes very fast if we have the right baselines to test against
-- · Experimenting with high-specificity prompts for synthetic summary generation goes a long way in improving recall of images, tables, documents and any other artifacts
+**Domain-Specific Product Search Example:**
+```
+You are generating questions for product search.
+Given this product description: [PRODUCT_DESCRIPTION]
+Context: [OTHER_CONTEXT_ABOUT_TEXT_DATA]
 
-<!-- image -->
+Generate questions that would retrieve this product, such as:
+- Comparison questions
+- Pattern recognition questions  
+- Feature-specific questions
 
-## Impact
+Example questions: [FEW_SHOT_EXAMPLES]
 
-85%+ recall from ~27% through preprocessing of blueprint data sets
+Bake in domain knowledge about:
+- Document types you're working with
+- Common user query patterns
+- Business-specific terminology
+```
 
-4 days only were spent on iterating on summarization prompts
+**Note:** In sessions 4-5, we'll use topic modeling and segmentation to understand core capabilities and question types.
 
--  12 prompts and 3 models included
-- · Presented to design partners to obtain real user data with this level of recall
-- · ~20% of queries were related to counting objects in blueprints
-- · Justified an investment to run bounding box models to attempt to count images
+<!-- We want to try to bake as much information as possible in the domain knowledge of these prompts. We want to change these prompts based on things like document types or other information. This prompt in particular is about trying to create questions that would retrieve certain products. We might want to give it a product description, some other context around the text data, and maybe some example questions. In sessions four and five, we're going to talk about using topic modeling and segmentation to really understand the core capabilities and the core questions people are asking. -->
 
-<!-- image -->
+---
 
-<!-- image -->
+## Common Pitfalls to Avoid
 
-Common pitfalls made by RAG developers
+**1. Oversimplification**
+- Don't aim for 100% recall - probably means test cases too simple
+- Define dynamic datasets vs static datasets
+- As scores improve, add more complex examples
 
-Common pitfalls made by RAG developers
+**2. Neglecting Real Data**
+- If you have real user data, don't neglect it
+- Include it in your dataset for higher quality testing
 
-The RAG playbook
+**3. Production Misalignment** 
+- Ensure search implementations match production exactly
+- No misalignment in configuration or specifications
+- Test what you actually ship
 
-The RAG playbook
+<!-- The first pitfall is oversimplification. You don't actually want 100% recall, because it probably means that your test cases are too simple. I want you to think about defining dynamic datasets versus static datasets. As your scores get higher, it means your models are getting better, so add more complex examples into your dataset. If you have real data, don't neglect it - make sure it's included. Also make sure that the search implementations you're using and testing are the same ones in production. Make sure there are no misalignments in how things are being configured. -->
 
-Step 1-4: Initial implementation: focus on retrieval metrics
+---
 
-Step 1-4: Initial implementation: focus on retrieval metrics
+## This Week's Homework
 
-## Step 2 Deep dive: Synthetic data generation: fast testing &amp; review processes
+**Step 1: Audit Current State**
+- How many evaluations do you currently have?
+- What metrics are you tracking?
+- Are they leading or lagging metrics?
 
-Homework for this session
+**Step 2: Create Your First Eval Set**
+- 10-20 query/expected-chunk pairs
+- Focus on your most common use cases
+- Test current retrieval performance
 
-Homework for this session
+**Step 3: Run Your First Experiment**
+- Change one thing (chunk size, embedding model, etc.)
+- Measure before and after performance
+- Document what you learned
 
-Sneak peak for next session
+**Experiment Ideas:**
+- Try BM25 and full-text search (if using LanceDB/ChromaDB)
+- Test different embedding models
+- Experiment with chunking strategies
+- Try different re-rankers (e.g., Cohere)
+- Test different top-k values (10, 20, 30)
+- Compare latency vs retrieval quality tradeoffs
 
-Sneak peak for next session
+**Important:** If experiments don't improve metrics, do nothing. Choose to do nothing rather than add tech debt.
 
-<!-- image -->
+<!-- Don't hesitate to ask me any questions during office hours or on Slack. This is what we're here to do. We can just deep dive into the problems of your application and what you're struggling with. I really want you to start thinking about creating evaluation datasets by leveraging synthetic data. If you're using something like LanceDB or ChromaDB, also check if something like BM25 and full text search can improve these systems. Review these generated questions with subject matter experts. Ask them, are these questions even relevant for the use cases? -->
 
-## Fake it until you make it
+---
 
-make it ≡ get users
+## Next Week Preview: Fine-tuning
 
-## The RAG Flywheel
+**Session 2 Focus:**
+- When and how to fine-tune embedding models
+- Building relevancy into your representations
+- Moving beyond off-the-shelf solutions
+- Creating custom models for your domain
 
-Thesis: The principles we've applied in search are highly relevant to what we want to do with RAG
+**Goal:** Once you know what relevancy is, build it yourself
 
-<!-- image -->
+<!-- The focus for next week is thinking about taking this synthetic dataset, and exploring things like fine tuning, representations, and embeddings, and ultimately training re-ranker models to just give you that extra boost in precision and recall. -->
 
-<!-- image -->
+---
 
-<!-- image -->
+## Key Takeaways
 
-<!-- image -->
+### Mindset Shifts
+1. **Experiments over features** - measure velocity of learning
+2. **Leading over lagging metrics** - control inputs, not just outputs  
+3. **Retrieval over generation** - fix what you can't see first
+4. **Specific over generic** - build superpowers, not generic tools
 
-<!-- image -->
+### Action Items
+1. **Count your experiments** - how many can you run this week?
+2. **Build synthetic data** - before you have real users
+3. **Focus on recall first** - can you find the right documents?
+4. **Measure everything** - absence blindness kills RAG systems
 
-<!-- image -->
+<!-- These are the fundamental mindset shifts I want you to take away. We need to focus on experiments over features - measure the velocity of learning. Leading over lagging metrics - control inputs, not just outputs. Retrieval over generation - fix what you can't see first. Specific over generic - build superpowers, not generic tools. Count your experiments - how many can you run this week? Build synthetic data before you have real users. Focus on recall first - can you find the right documents? -->
 
-<!-- image -->
+---
 
-<!-- image -->
+## Remember: Fake It Till You Make It
 
-<!-- image -->
+**The Data Flywheel:**
+- Synthetic data → Fast evaluations → Better intuition → More experiments → Better product
 
-| Step                                                                                    |                                                                                         | Description                                                                                                                                                            |
-|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1                                                                                       | Initial implementation                                                                  | Start with a basic RAG system setup                                                                                                                                    |
-| 2                                                                                       | Synthetic data generation                                                               | Create synthetic questions to test the system's retrieval abilities                                                                                                    |
-| 3                                                                                       | Fast evaluations                                                                        | Conduct quick, unit test-like evaluations to assess basic retrieval capabilities (e.g., precision, recall, mean reciprocal rank), and explain why each matters         |
-| 4                                                                                       | Real-world data collection                                                              | Gather real user queries and interactions. Ensure feedback is aligned with business outcomes or correlated with important qualities that predict customer satisfaction |
-| 5                                                                                       | Classification and analysis                                                             | Categorize and analyze user questions to identify patterns and gaps                                                                                                    |
-| 6                                                                                       | System improvements                                                                     | Based on analysis, make targeted improvements to the system                                                                                                            |
-| 7                                                                                       | Production monitoring                                                                   | Implement ongoing monitoring to track system performance                                                                                                               |
-| 8                                                                                       | User feedback integration                                                               | Continuously incorporate user feedback into the system                                                                                                                 |
-| @jxnlco @jxnlco maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook | @jxnlco @jxnlco maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook | @jxnlco @jxnlco maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook                                                                                |
+**Success Metrics:**
+- Number of experiments run per week
+- Precision and recall improvements  
+- Customer trust and satisfaction growth
 
-<!-- image -->
+**Foundation First:** Build the evaluation infrastructure that will guide all future improvements
 
-Deep dive
+**Collection Strategy:**
+- Start simple: Google Sheets for valuable labels
+- Every demo, user interview, thumbs up/down = gold data
+- Later: Use tools like Braintrust for programmatic collection
+- Review generated questions with subject matter experts
+- Ask: "Are these questions even relevant for our use cases?"
 
-## Procedure overview
+**Data Collection Mindset:** Log everything. Track questions. Create evals from every interaction.
 
-## If you have no user query data…
+<!-- The data flywheel is: synthetic data leads to fast evaluations, which leads to better intuition, which leads to more experiments, which leads to better product. Your success metrics should be: number of experiments run per week, precision and recall improvements, and customer trust and satisfaction growth. Build the evaluation infrastructure that will guide all future improvements. Start simple with Google Sheets for valuable labels. Every demo, user interview, thumbs up/down is gold data. Later use tools like Braintrust for programmatic collection. -->
 
-- · Use existing data to generate evals to get a benchmark for precision and recall
-- · question
-- · answer
-- · chunk\_id
-- · Can be as simple as:
+---
 
-assert eval.chunk\_id in search(eval.question, limit=k).chunk\_ids
+## Thank You
 
-## If you have some user query data…
+**Questions for office hours:**
+- How to generate synthetic data for your domain?
+- What's a good starting number of evaluations?
+- How to convince leadership to invest in metrics?
 
-- · Use query data as few shot examples for generation
-- · You can even generate chunks from queries and test if they can be retrieved
-- · Use LLM as a Ranker to produce Weak Ranking labels
-- ▪ Review the weak labels to get correct labels
-- ▪ Continue to test Precision / Recall metrics, or even ranking metrics
-- · Ask yourself: given what I know about the user data, what kinds of questions could I not answer with this method?
+**Next week:** From measuring relevancy to building it
 
-## Collect everything and track the questions and create evals
+*maven.com/applied-llms/rag-playbook*
 
-- · Every demo, every user interview
-- · Collect thumbs up ratings, allow users to delete sources
-- maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook · Put it in a google sheet, just collect it, those labels are the gold.
-
-## Example prompt for question generation
-
-Try to bake as much domain knowledge into these prompts, change prompts based on document types, be specific
-
-You are tasked with generating relevant questions that a user of a search product might ask. This task is crucial for understanding user needs and improving the product's functionality.
-
-To generate relevant questions:
-
-- 1. Analyze the product description to understand its purpose and target users.
-- 2. Examine the example text data to identify key information, patterns, or insights it might contain.
-- 3. Consider the types of questions users might ask to extract valuable insight from the product.
-- 4. Generate a diverse set of questions that cover different aspects of the data and product functionality.
-
-When formulating questions, consider the following:
-
-- - Information extraction: What specific data points might users want to retrieve?
-- - Pattern recognition: What trends or relationships in the data might be of interest?
-- - Comparative analysis: How might users want to compare different elements in the data?
-- - Contextual understanding: What questions might help users better understand the context of the data?
-
-Present your generated questions in the following format:
-
-Before listing the questions, provide a brief explanation for each question, highlighting why it would be relevant and valuable to a user of this product. Present these explanations in the following format:
-
-maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-&lt;product\_description&gt;
-
-{{PRODUCT\_DESCRIPTION}} &lt;/product\_description&gt;
-
-Now, examine the example text data:
-
-&lt;document&gt;
-
-{{DOCUMENT}}
-
-&lt;/document&gt;
-
-Here are some example of other queries users have asked:
-
-&lt;example\_questions&gt;
-
-{{EXAMPLE QUESTIONS}}
-
-&lt;/example\_qustions&gt;
-
-<!-- image -->
-
-## Example prompt for ranking generation
-
-For each chunk, you should:
-
-You are tasked with evaluating the relevance of text chunks to a given question. Your goal is to determine which chunks contain information that could be useful in answering the question, while preserving the original chunk IDs for later processing.
-
-Here is the question you will be using to evaluate the relevance of the chunks:
-
-&lt;question&gt;
-
-{{QUESTION}}
-
-&lt;/question&gt;
-
-You will be provided with a list of text chunks, each with a unique ID. The chunks will be in the following format:
-
-&lt;chunks&gt;
-
-{{CHUNKS}}
-
-&lt;/chunks&gt;
-
-<!-- image -->
-
-- 1. Carefully read and understand its content.
-- 2. Evaluate whether the information in the chunk is relevant to answering the question.
-- 3. Provide a brief explanation of why the chunk is or is not relevant.
-- 4. Assign a relevance score from 0 to 1, where 0 is completely irrelevant and 1 is highly relevant.
-
-Present your evaluation for each chunk in the following format:
-
-&lt;evaluation&gt;
-
-&lt;chunk\_id&gt;[Insert the original chunk ID here]&lt;/chunk\_id&gt;
-
-&lt;reasoning&gt;[Your explanation of relevance or irrelevance]&lt;/reasoning&gt;
-
-&lt;relevance\_score&gt;[Your score from 0 to 1]&lt;/relevance\_score&gt;
-
-&lt;/evaluation&gt;
-
-Important notes:
-
-- - Maintain objectivity in your evaluations.
-- - Focus on the content's relevance to the question, not its quality or completeness.
-- - Be consistent in your scoring across all chunks.
-- - Do not modify or summarize the original chunk text.
-- - If a chunk contains partial relevance, explain which parts are relevant and which are not.
-
-## How does this help me?
-
-Troubleshoot early: By stress-testing your system with diverse synthetic queries, you can identify and address potential issues before they impact real users
-
-Iterate quickly: With a well-structured synthetic dataset, you can quickly evaluate changes to your system, enabling rapid experimentation and improvement
-
-Establish common ground: Synthetic data and its results can serve as a common reference point for discussions with team members, leadership, clients about system capabilities and goals
-
-<!-- image -->
-
-maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-<!-- image -->
-
-<!-- image -->
-
-Common pitfalls made by RAG developers
-
-Common pitfalls made by RAG developers
-
-The RAG playbook
-
-The RAG playbook
-
-## Homework for this session
-
-Sneak peak for next session
-
-Sneak peak for next session
-
-## Homework
-
-<!-- image -->
-
-Create an evaluation data set by leveraging synthetic and user queries to improve precision and recall
-
-<!-- image -->
-
-<!-- image -->
-
-## Establish a baseline to run experiments on
-
-- · Check BM25, Embeddings, Chunkers, and Rerankers (LanceDB)
-- · With baselines, we can 'do nothing' if experiments don't pan out
-
-Review generated question sets with subject matter experts
-
-- · LOOK at questions that generate low scores
-
-<!-- image -->
-
-## Homework if you already have advanced automations in production:
-
-<!-- image -->
-
-Review user queries: Sample some % of user traffic and run the LLM Ranker over retrieved text chunks and monitor questions that have low precision
-
-Ask yourself: "Could my system possibility answer these questions?"
-
-Start to build process and flywheel: Establish regular cadence to review questions or documents that get poor recall or even just low cosine or reranker scores
-
-<!-- image -->
-
-@jxnlco @jxnlco
-
-maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-## Experiments to run
-
-If you anticipate common questions from users, use these questions as few-shot examples to generate more aligned questions!
-
-If you run out of ideas lets chat in #show-your-work!!!
-
-Try different embedding models
-
-Test how Rerankers improves retrieval, experiment with the top K with cosine and top N with reranker to see how to get better recall where N &lt;&lt; K
-
-Test how Hybrid search improves retrieval
-
-Check if embedding additional metadata attached to text chunks helps
-
-Compare latency trade-offs for retrieval methods
-
-<!-- image -->
-
-## Common pitfalls to avoid
-
-- · Oversimplification : Don't create only simple, easily answerable questions, when your recall metrics are too high (&gt; 85%), focus on blending in user data
-- · Static datasets: Avoid treating your synthetic data as a one-time creation. It should evolve with your system as you continue to learn about your user needs
-- · Neglecting synthetic or real data : As you accumulate real user data, don't abandon synthetic data. Instead, use both in complementary ways
-- · Misalignment: Make sure that the search implementation you are testing are the same ones in production, and that there is no misalignment in how things are configured or specified
-
-<!-- image -->
-
-<!-- image -->
-
-<!-- image -->
-
-Common pitfalls made by RAG developers
-
-Common pitfalls made by RAG developers
-
-The RAG playbook
-
-The RAG playbook
-
-Homework for this session
-
-Homework for this session
-
-Sneak peak for next sessions
-
-## Sneak peek for next week
-
-## · Focus for this week:
-
-- · Generate a single evaluation set and review the questions line by line, potentially with subject matter experts
-- · Start logging user queries so we can use them to augment synthetic data generation
-- · Eventually, we will run into limitations with this method. As we get more data, more opinions, and more diverse users, we will need to be able to 'see the forest from the trees'…
-
-## · Focus for next week:
-
-- · Finetuning, Embeddings, and Representations
-- · We're still learning who you are!
-- · As we learn everyone's technical level we'll dig deeper during office hours and calibrate office hours to everyone's level
-- · Remember:
-- · In this session, we're just trying to establish baselines to have a null hypothesis. With this, we can start testing differen t interventions to see which make a real difference in our metrics
-- · By using benchmarks, we can also reject interventions. We don't have to just add superstitious interventions that become tech debt
-- · As you collect more data, you can slowly transition your evals dataset to a training / fine-tuning dataset
-
-<!-- image -->
+<!-- We're still learning who you are. As we learn everyone's technical levels, we'll be able to dig deeper in these office hours and calibrate to everyone's level. So make sure to ask questions on Slack. Remember, we're trying to establish baselines. With this, we'll be able to use the techniques we learn in sessions four, five, and six, and really start testing different interventions and seeing which ones make a real difference in our metrics. Most importantly, by using these benchmarks, we can also reject interventions - we don't have to add superstitious interventions that become tech debt too quickly. -->

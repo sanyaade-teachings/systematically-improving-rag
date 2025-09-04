@@ -20,6 +20,18 @@ tags:
 !!! info "Learn the Complete RAG Playbook"
     All of this content comes from my [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course. Readers get **20% off** with code EBOOK. Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
 
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Understand why specialized retrieval beats monolithic approaches** - Learn why different query types need fundamentally different search strategies and how this mirrors Google's evolution from one search to specialized tools
+2. **Master the two core improvement strategies** - Distinguish between extracting structured metadata and generating synthetic text, understanding when to use each approach
+3. **Implement RAPTOR for long documents** - Apply hierarchical summarization techniques for documents with 1,500+ pages where related information spans multiple sections
+4. **Design measurement frameworks** - Use the two-level performance equation P(finding data) = P(selecting retriever) × P(finding data | retriever) to debug system bottlenecks
+5. **Apply the materialized views concept** - Think systematically about specialized indices as AI-processed views of existing data
+
+These objectives build directly on the roadmapping foundations from Chapter 4 and prepare you for the multimodal implementation techniques in Chapter 5.2.
+
 ## Introduction
 
 We've covered the basics: the RAG playbook, synthetic data generation, fine-tuning, user feedback collection, and segmentation. Now let's talk about something that actually makes a big difference in production systems—building specialized search indices for different types of content.
@@ -329,9 +341,46 @@ If you find that your system correctly routes 95% of queries to the appropriate 
 
 Measuring both levels tells you where to focus your efforts.
 
+## This Week's Action Items
+
+### Immediate Tasks (Week 1)
+1. **Audit Your Current System**
+   - [ ] Analyze your query logs to identify at least 3 distinct query patterns that need different retrieval approaches
+   - [ ] Document the specific failure cases where your current monolithic system performs poorly
+   - [ ] Calculate your current overall retrieval accuracy as a baseline
+
+2. **Choose Your Strategy**
+   - [ ] For each query pattern, decide between Strategy 1 (structured extraction) or Strategy 2 (synthetic text generation)
+   - [ ] Prioritize the pattern with highest impact × volume × probability of success
+   - [ ] Create a simple test set of 20-30 queries for your chosen pattern
+
+3. **Implement Your First Specialized Index**
+   - [ ] Build either a metadata extraction pipeline OR synthetic text generation system
+   - [ ] Test on your query set and measure recall improvement over baseline
+   - [ ] Document what specific capabilities this index enables
+
+### Advanced Implementation (Week 2-3)
+4. **Expand Your Specialized Capabilities**
+   - [ ] Implement the second improvement strategy for a different query pattern
+   - [ ] For documents >1,500 pages, test RAPTOR clustering and summarization
+   - [ ] Create performance dashboards showing P(retriever success | correct selection)
+
+5. **Measurement and Analysis**
+   - [ ] Implement the two-level measurement framework
+   - [ ] Break down failures: routing vs retrieval issues
+   - [ ] Use the multiplication formula to identify your limiting factor
+
+### Production Preparation (Week 3-4)
+6. **Scale and Optimize**
+   - [ ] Consider incremental update strategies for living documents
+   - [ ] Implement caching for expensive AI processing steps
+   - [ ] Plan team organization around specialized capabilities
+   - [ ] Prepare for Chapter 6 routing implementation
+
+### Success Metrics
+- **Target**: 25-40% improvement in retrieval accuracy for your specialized capability
+- **Business Impact**: Reduced time-to-answer for users in your target segment
+- **System Health**: Clear separation between routing accuracy and individual retriever performance
+
 !!! tip "Next Steps"
-In [Chapter 6](chapter6-1.md), we'll explore how to bring these specialized components together through intelligent routing, creating a unified system that seamlessly directs queries to the appropriate retrievers.
-
----
-
-
+    In [Chapter 6](chapter6-1.md), we'll explore how to bring these specialized components together through intelligent routing, creating a unified system that seamlessly directs queries to the appropriate retrievers.

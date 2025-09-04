@@ -13,6 +13,19 @@ tags:
 
 # Topic Modeling and Analysis: Finding Patterns in User Feedback
 
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Apply the 80/20 rule to RAG improvement** - Identify how fixing 20% of query segments can solve 80% of user problems using systematic segmentation rather than random improvements
+2. **Build query segmentation systems** - Transform user feedback into actionable segments using K-means clustering and analyze patterns within each cluster for targeted improvements
+3. **Master the 2x2 prioritization matrix** - Use volume vs satisfaction analysis to identify danger zones (high volume, low satisfaction) that require immediate attention
+4. **Implement the Expected Value formula** - Calculate Impact × Volume % × Success Rate to make data-driven decisions about which improvements to prioritize
+5. **Detect user adaptation patterns** - Recognize when users modify their behavior to work around system limitations, preventing misleading satisfaction metrics
+6. **Build production classification systems** - Create real-time query classification that routes queries to appropriate segments and tracks performance trends
+
+These objectives build directly on the feedback collection techniques from Chapter 3 and prepare you for the strategic roadmapping decisions in Chapter 4.2.
+
 ### Key Insight
 
 **Not all query failures are equal—fixing 20% of segments can solve 80% of user problems.** Segmentation transforms vague complaints into actionable insights. Use the 2x2 matrix (volume vs satisfaction) to identify your danger zones: high-volume, low-satisfaction segments that are killing your product. The formula is simple: Expected Value = Impact × Volume % × Success Rate.
@@ -22,16 +35,16 @@ tags:
 
 ## Introduction
 
-So you deployed your RAG system and added feedback collection. Great. Now you've got thousands of queries, ratings, and signals. Your manager asks "What should we improve next?" and you realize you have no idea.
+Remember that feedback collection from Chapter 3? You've got all this data - thousands of queries, ratings, signals. Your manager asks "What should we improve next?" and suddenly you realize you have no idea.
 
-This happened to me. We had tons of data but no systematic way to find patterns. Looking at individual bad ratings wasn't helping - we needed to see the bigger picture.
+I've been there. We had tons of data but no systematic way to find patterns. Remember that $100M company with 30 evals from Chapter 1? This is what happens next - you collect the feedback, but then you need to make sense of it.
 
-The solution? Topic modeling and clustering. Instead of reading through feedback one by one, you group similar queries and look for patterns. This lets you find the real problems worth fixing.
+**Where We've Been:**
+- **Chapter 1**: Built evaluation framework (your baseline)
+- **Chapter 2**: Turned evals into training data (the flywheel) 
+- **Chapter 3**: Collected real user feedback (the fuel)
 
-**Building on Previous Chapters:**
-- **[Chapter 1](chapter1.md)**: Evaluation metrics to measure each segment's performance
-- **[Chapter 2](chapter2.md)**: Training data generation from identified patterns
-- **[Chapter 3](chapter3-1.md)**: Feedback collection that feeds this analysis
+**Now What?** Topic modeling and clustering. Instead of reading feedback one by one, you group similar queries and find the real problems worth fixing.
 
 Here's the thing: not all improvements matter equally. Some query types affect 80% of your users. Others might be rare but critical for your biggest customers. You need to know the difference.
 
@@ -43,7 +56,7 @@ Without segmentation, you're flying blind. But if you segment your data, you mig
 
 ### The Marketing Parallel
 
-This exact approach worked at Stitch Fix. When their sales jumped 80%, they didn't just celebrate—they segmented the data and discovered that 60% of the increase came from 30-45 year old women in the Midwest. This insight was worth millions in targeted marketing spend.
+This is exactly what we did at Stitch Fix. Sales jumped 80% and we didn't just celebrate - we segmented everything. Found that 60% came from 30-45 year old women in the Midwest. That insight was worth millions in targeted spend.
 
 ```mermaid
 graph TD
@@ -60,12 +73,14 @@ graph TD
     style F fill:#FFD700,stroke:#B8860B,stroke-width:2px
 ```
 
-Same principle applies to RAG queries. Without segmentation, you see "70% satisfaction" and think you're doing okay. With segmentation, you discover:
-- Document search: 85% satisfaction (great!)
-- Schedule queries: 35% satisfaction (disaster!)
-- Comparison queries: 60% satisfaction (needs work)
+Same with RAG queries. Without segmentation: "70% satisfaction, we're doing okay." 
 
-Now you know exactly what to fix first.
+With segmentation? You discover:
+- Document search: 85% satisfaction (crushing it!)
+- Schedule queries: 35% satisfaction (yikes!)
+- Comparison queries: 60% satisfaction (fixable)
+
+Now you know where to focus. Remember from Chapter 2 - systems at 70% can reach 85-90%. But you need to know which 70% to focus on first.
 
 ## The Core Formula for Decision Making
 

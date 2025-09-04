@@ -1,8 +1,4 @@
-# Chapter3 Slides
-
-*Extracted from PDF slides using docling*
-
----
+# Chapter 3 Slides
 
 ## jxnl.co
 
@@ -10,728 +6,660 @@
 
 ## Systematically Improving RAG Applications
 
-Session 3
-
-The Art of RAG UX: Turning Design into Data
+**Session 3:** The Art of RAG UX: Turning Design into Data
 
 Jason Liu
 
-<!-- image -->
+---
 
-## Overview
+## Today's Goals
 
-## Three goals for today
+**From Synthetic Data to Real User Feedback**
 
-- 1. Makes sure we're taking actions to collect feedback
-- 2. Expand on what is possible with streaming
-- 3. Give you a small set of prompting and UX tips to improve satisfaction and quality
+- Design systems that collect high-quality user feedback
+- Master streaming techniques for better user experience
+- Learn prompting and Chain of Thought best practices
+- Turn every user interaction into training data
+- Bridge the gap between synthetic and real-world data
 
-Consider this mostly a survey of other techniques that I apply. This does not fit neatly into the other sections this course.
+**Focus: Small UX changes = 5-10x more feedback**
 
-The past two sessions have been around: faking data, creating synthetic data, in hopes that one day user data will supplement the work that we're doing. ''
+---
 
-This session, the goal is to figure out how we can collect that user data and how can we give the users a good experience?
+## Course Context: Building the Data Flywheel
 
-<!-- image -->
+### Sessions 1-2: Foundation
+- **Session 1:** Synthetic data and evaluations (faking it)
+- **Session 2:** Fine-tuning on synthetic data (making it)
 
-<!-- image -->
+### Session 3: The Bridge ← Today
+- **Goal:** Collect real user data to supplement synthetic work
+- **Challenge:** How to get users to give us quality feedback
+- **Opportunity:** Design choices that 5-10x feedback volume
 
-## Collecting more feedback
+### Sessions 4-6: Data-Driven Optimization
+- Use real feedback for segmentation and improvement
 
-Streaming for better user satisfaction
+---
 
-Streaming for better user satisfaction
+## The Feedback Collection Hierarchy
 
-Prompting and Chain of Thought
+**Most Important:** Looking at your input data  
+**Second Most Important:** Getting user feedback
 
-Prompting and Chain of Thought
+**The Problem:** Most systems collect terrible feedback
+- Vague thumbs up/down with no context
+- Hidden or hard-to-find feedback buttons
+- No follow-up questions to understand failures
+- Feedback that doesn't correlate with actual problems
 
-## Look at your data
+**The Opportunity:** Small design changes → massive data improvements
 
-<!-- image -->
+---
 
-<!-- image -->
+## Bad vs Good Feedback Design
 
-Getting user feedback is the second most important thing you can be doing after looking at your input data
+### Bad Design: Subtle and Generic
+```
+[Answer displayed]
 
-<!-- image -->
+                    👍  👎
+                 (tiny buttons, bottom right)
+```
 
-https://claude.site/artifacts/d57936fe-03c1-4815-8511cbdb507d6d9c
+### Good Design: Prominent and Specific
+```
+[Answer displayed]
 
-<!-- image -->
+Did we answer your question today?
+┌─────────────────┬─────────────────┐
+│     👍 YES      │      👎 NO      │
+│   (large btn)   │   (large btn)   │
+└─────────────────┴─────────────────┘
+```
 
-## Don't be subtle
+**Result:** 5x more feedback with better design
 
-https://claude.site/artifacts/d57936fe-03c1-4815-8511cbdb507d6d9c
+---
 
-<!-- image -->
+## The Power of Specific Copy
 
-@jxnlco @jxnlco
+### Generic (Useless)
+```
+👍 Good    👎 Bad
+```
+**Problem:** "Bad" could mean slow, wrong, too long, confusing, etc.
 
-maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
+### Specific (Actionable)  
+```
+Did we successfully complete your task?
+┌─────────────────────────────────────┐
+│            👍 YES, DONE             │
+└─────────────────────────────────────┘
+┌─────────────────────────────────────┐
+│         👎 NO, DIDN'T HELP          │
+└─────────────────────────────────────┘
+```
 
-<!-- image -->
+**Benefits:** 
+- Clear success criteria alignment
+- Actionable labels for data analysis
+- Better correlation with business outcomes
 
-## Don't be subtle
+---
 
-https://claude.site/artifacts/d57936fe-03c1-4815-8511cbdb507d6d9c
+## Follow-Up Questions for Rich Data
 
-<!-- image -->
-
-@jxnlco @jxnlco
-
-maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-<!-- image -->
-
-## Don't be subtle
-
-https://claude.site/artifacts/d57936fe-03c1-4815-8511-cbdb507d6d9c
-
-<!-- image -->
-
-<!-- image -->
-
-All this feedback can be used as part of your segmentation and exploration.
-
-## Question:
-
-- · Are there certain question segments that fall victim to these failure modes?
-- · Could we predict if a question might lead to a failure mode?
-
-## Feedback from enterprise customers
-
-All of this works well for consumer cases. For enterprise, we'll have to try a lot harder
-
-<!-- image -->
-
-<!-- image -->
-
-We need to hear about your negative feedback. It's essential in order for us to improve our application
-
-What you share with us will be discussed:
-
-- · In a shared channel with Customer Success
-- · At our weekly/bi-weekly syncs
-
-We'll bring up this negative feedback, add it to our evaluation framework (set), and report back to you how much they have improved over time
-
-This is how we can drive the volume of feedback for our customers while building trust, collecting data, and building evals
-
-<!-- image -->
-
-we can also use feedback it to improve our re-rankers and our embedding models (session 2).
-
-For example, re-labeling data if the feedback is about relevance
-
-<!-- image -->
-
-## Recall from our fine tune section the notion of triplets
-
-## So what happens when we finetune?
-
-Create triplet examples (anchor and positive have same label, negative has different label)
-
-## Before fine-tuning
-
-## After fine-tuning
-
-<!-- image -->
-
-<!-- image -->
-
-The hardest part of this task is actually about finding the negative examples.
-
-## Finding Hard Negatives
-
-Consider Facebook's people you may know  feature
-
-<!-- image -->
-
-@jxnlco @jxnlco https://claude.site/artifacts/8bf394073a66-46be-84ff-a042a4161485
-
-maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-## Finding Hard Negatives
-
-Consider Facebook's people you may know  feature
-
-<!-- image -->
-
-@jxnlco @jxnlco https://claude.site/artifacts/8bf394073a66-46be-84ff-a042a4161485
-
-maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-<!-- image -->
-
-There will be numerous ways to collect positive and negative examples.
-
-I firmly believe that the success of Tinder and Hinge is rooted in the volume of data they collect and their ability to obtain negatives.
-
-- - Lightweight Interaction (Swipe)
-- - Positive and Negative interactions (Like, Dislike)
-- - Simple objective (Match)
-
-I believe I can do the same thing with citations, allowing us to collect data, while also building more trust in our system
-
-## Building Citations To Improve Trust
-
-https://claude.site/artifacts/14cbd428-0382-44b8-9353-1c06d830b8dc
-
-<!-- image -->
-
-<!-- image -->
-
-## Building Citations :
-
-- · Allow Preview of Citation text
-- · Allow Delete/Regenerate in order to give negative feedback
-
-maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-## Building Citations To Improve Trust
-
-<!-- image -->
-
-<!-- image -->
-
-Provide a prompt
-
-## Generate citations to build satisfaction and trust (cont'd)
-
-## &lt;task&gt;
-
-Your task is to provide a summary of the user schedule and important messages , with citations to the original sources . Use the following format for citations: (cited text) [citation number].
-
-&lt;ltask&gt;
-
-&lt;given\_information&gt;
-
-- [2] The user received an email from jasonacompany.com with the subject "Quarterly Report Due" &lt;litem&gt;
-- [1] The user has a calendar event: "Marketing Team Meeting" at 2 PM today.&lt;/item&gt;
-
-Generate a brief summary that mentions both the meeting and the email, us citations ing
-
-<!-- image -->
-
-Your response should be in JSON format with a "body" field for the main text and a "citations" array for the citation details.&lt;/stepz
-
-<!-- image -->
-
-## Negative examples: generate citations to build satisfaction and trust (cont'd)
-
-## &lt;task&gt;
-
-Your task is to provide a summary of the user schedule and important messages , with citations to the original sources . Use the following format for citations: (cited text) [citation number]. &lt;ltask&gt;
-
-&lt;given\_information&gt;
-
-- [2] The user received an email from jasonacompany.com with the subject "Quarterly Report Due" .&lt;/item&gt;
-- [1] The user has a calendar event: "Marketing Team Meeting" at 2 PM today.&lt;/item&gt;
-
-&lt;Igiven\_information&gt;
-
-Generate a brief summary that mentions both the meeting and the email, us citations ing
-
-Your response should be in JSON format with a "body" field for the main text and a "citations" array for the citation details. &lt;Istepz
-
-<!-- image -->
-
-<!-- image -->
-
-Use consistent formatting for links and employ IDs as pointers maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-| Price (9 May 14, USS):    | 129.45       |
-|---------------------------|--------------|
-| Target Price (USS):       | 170.00       |
-| 52-Week Price Range:      | 55.28-174.98 |
-| Market Cap. (USS m):      | 8,196.0      |
-| Enterprise Value (USS m): | 9,089.5      |
-
-<!-- image -->
-
-<!-- image -->
-
-<!-- image -->
-
-Collecting more feedback
-
-Collecting more feedback
-
-## Streaming for better user satisfaction
-
-Prompting and Chain of Thought
-
-Prompting and Chain of Thought
-
-## Streaming Overview
-
-- 1. Stream interstitials to explain latency
-- 2. Stream results and  UI
-- 3. Stream tool calls!
-
-<!-- image -->
-
-<!-- image -->
-
-@jxnlco @jxnlco
-
-maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-## Streaming overview
-
-## Why we should stream:
-
-## Lower perceived wait time
-
-- · Users perceive animated progress bars as 11% faster, even with equal wait times (Harrison et al.).
-
-## Reduce user churn / disengagement
-
-- · Users will tolerate up to 8 seconds of waiting if given visual feedback reducing abandonment (Nah).
-
-## Increase satisfaction and trust
-
-- · Applications with engaging loading screens often report higher user satisfaction scores.
-- · Facebook discovered that skeleton screens reduced perceived load times, resulting in better user retention and engagement.
-
-Harrison, C., Yeo, Z., &amp; Hudson, S. E. (2010). Faster progress bars: manipulating perceived duration with visual augmentations. Proceedings of the SIGCHI Conference on Human Factors in Computing Systems.
-
-Nah, F. F. (2004). A study on tolerable waiting time: how long are Web users willing to wait?. Behaviour &amp; Information Technology.
-
-<!-- image -->
-
-## Streaming overview
-
-## Why we should stream:
-
-## Lower perceived wait time
-
-- · Users perceive animated progress bars as 11% faster, even with equal wait times (Harrison et al.).
-
-## Reduce user churn / disengagement
-
-- · Users will tolerate up to 8 seconds of waiting if given visual feedback reducing abandonment (Nah).
-
-## Increase satisfaction and trust
-
-- · Applications with engaging loading screens often report higher user satisfaction scores.
-- · Facebook discovered that skeleton screens reduced perceived load times, resulting in better user retention and engagement.
-
-Harrison, C., Yeo, Z., &amp; Hudson, S. E. (2010). Faster progress bars: manipulating perceived duration with visual augmentations. Proceedings of the SIGCHI Conference on Human Factors in Computing Systems.
-
-Nah, F. F. (2004). A study on tolerable waiting time: how long are Web users willing to wait?. Behaviour &amp; Information Technology.
-
-<!-- image -->
-
-## What we can stream:
-
-- · Responses (incl. citations or follow-up questions)
-- · Arguments of function calls
-- · Interstitials
-
-## We should assess:
-
-- · Track user feedback to understand user demand
-- · Migrating to streaming is complex and challenging
-- · Understand how much latency matters in your application
-
-If you're thinking about it...
-
-Migrating from non-streaming to streaming is a pain the ass, you either have to build it from the start or it'll take weeks out of your dev cycle to 'upgrade'
-
-It's worth it.
-
-<!-- image -->
-
-Stream and parse the response and other attributes (follow-up actions) in real time
-
-<!-- image -->
-
-https://claude.site/artifacts/8644e9fc-939a-4520-8fa2-58f589f929d3
-
-@jxnlco @jxnlco maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-## Stream and parse the response and other attributes (follow-up actions) in real time
-
-<!-- image -->
-
-https://claude.site/artifacts/8644e9fc-939a-4520-8fa2-58f589f929d3
-
-@jxnlco @jxnlco
-
-<!-- image -->
-
-<!-- image -->
-
-maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-If you build a lot of follow-up action UI, you can build datasets and again use retrieval to few-shot your prompts to take follow-up actions
-
-<!-- image -->
-
-## Interstitials for explainability
-
-<!-- image -->
-
-@jxnlco @jxnlco https://claude.site/artifacts/bba5efe9-1d4149ff-a43f-05d3d349e193
-
-maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-## Interstitials for explainability
-
-<!-- image -->
-
-@jxnlco @jxnlco https://claude.site/artifacts/bba5efe9-1d4149ff-a43f-05d3d349e193
-
-## Use webhooks, server-sent events, or a generator to stream
-
-<!-- image -->
-
-maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-## Stream tool arguments and render in UI
-
-<!-- image -->
-
-<!-- image -->
-
-https://claude.site/artifacts/1a2a1e9a-e5d7-4511-a299211d70fdeb3b maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-## Stream tool arguments and render in UI
-
-<!-- image -->
-
-## Benefits
-
-- · Create UI that allows users to edit and rerun tools
-- o This becomes data collection that we can leverage to create better few-shot examples or fine-tuning data.
-- · Enables collection of better feedback data
-- · Supports analytics on what questions have additional attributes
-
-https://claude.site/artifacts/1a2a1e9a-e5d7-4511-a299211d70fdeb3b maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-## Simple Example: Slack Bots
-
-As an interstitial, the slack integration can react with the eyes emoji to communicate it has seen the user's message
-
-<!-- image -->
-
-<!-- image -->
-
-## Simple Example: Slack Bots
-
-As an interstitial, the slack integration can react with the eyes emoji to communicate it has seen the user's message
-
-<!-- image -->
-
-Use a checkmark to communicate the bot has finished answering
-
-<!-- image -->
-
-maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-## Simple Example: Slack Bots
-
-As an interstitial, the slack integration can react with the eyes emoji to communicate it has seen the user's message
-
-<!-- image -->
-
-Use a checkmark to communicate the bot has finished answering
-
-<!-- image -->
-
-Pre-fill emoji reactions (thumbs-up, thumbs-down, star) to communicate to the user there are alternative ways to provide feedback
-
-<!-- image -->
-
-This would be saved as an approved questionanswer pair which could be used in few-shot examples maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-If you see great examples of using interstitials and streaming I would love to see them on Slack in #random
-
-<!-- image -->
-
-<!-- image -->
-
-<!-- image -->
-
-<!-- image -->
-
-Collecting more feedback
-
-Collecting more feedback
-
-Streaming for better user satisfaction
-
-Streaming for better user satisfaction
-
-## Prompting and Chain of Thought
-
-## Prompting: Showcase capabilities
-
-Perplexity is always showing off capaibilites trying to guide the user to behavior we perform well in
-
-<!-- image -->
-
-Example queries
-
-Literally a list of capabilities, which likely have different prompts
-
-<!-- image -->
-
-<!-- image -->
-
-In session 4 we'll talk about how to discover them through data analysis maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-## Provide example and related queries
-
-Focus on capabilities available and dynamically change prompting based on specific use case
-
-<!-- image -->
-
-Special UI elements for sources by type (e.g., video), related queries, etc.
-
-## Provide example and related queries
-
-Focus on capabilities available and dynamically change prompting based on specific use case
-
-Share and Copy buttons for feedback
-
-<!-- image -->
-
-<!-- image -->
-
-Special UI elements for sources by type (e.g., video), related queries, etc.
-
-Related queries
-
-## @jxnlco @jxnlco
-
-Once you start looking for interactions that help collect data, you'll see them everywhere
-
-## Prompting: Reject Work
-
-## Reject work.
-
-- · Just like how we had to perform segmentations, I believe it's crucial to consider ways to enable the language model to reject work
-- o Explore if few shotting works well "Here are examples of similar questions we cannot answer..."
-- · Give it permission to say no, but follow up, and set expectations
-- · If we model the success of this rejection system it's just another precision / recall trade off
-
-<!-- image -->
-
-<!-- image -->
-
-## Monologues and Chain of Thought
-
-I still see many companies underestimate the power of Chain of Thought
-
-- · Chain of Thought is often a 10% bump in performance
-- · It can often make the difference between something that is usable vs. unusable
-- · If we wrapped Chain of Thought in either XML or in streaming, we can:
-- · Build a dynamic UI that renders the Chain of Thought as separate data
-- · Treat the Chain of Thought as some kind of loading interstitial too!
-
-<!-- image -->
-
-<!-- image -->
-
-## Monologues and Chain of Thought
-
-## Overview:
-
-- · Leverage the monologue for multiple purposes
-- · When dealing with lengthy contexts, the LLM may struggle with recall or fully process instructions
-- · Try to prompt the model to reiterate relevant instructions and key text chunks before response generation
-- · This is like training an intern who you'd naturally ask them to review and summarize important info
-- · Consider including a 're -reading' prompt to improve reasoning
-
-## Re-Reading Improves Reasoning in Large Language Models
-
-Xiaohan Xu' Chongyang Tao? Tao Shen' Can Xu? Hongbo Xu' , Guodong Long Jian-guang Lou? 'Institute of Information Engineering; CAS, {xuxiaohan,hbxu}@iie.ac.cn
-
-2Microsoft Corporation, {chotao, caxu, jlou}@microsoft.com
-
-<!-- image -->
-
-## @jxnlco @jxnlco
-
-<!-- image -->
-
-maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-## Case study: Generating Quotes for SaaS Pricing
-
-Overview: We built a capability focused on generating pricing quotes based on a call transcript
-
-- · Detect that a pricing quote was being requested for a call
-- · LLM Classifier was measured w/ recall
-- · In the prompt, we included the entire one-hour transcript and the entire pricing document
-- · By using monologues and Chain of Thought, we asked the LLM to:
-- · Reiterate what variables determine the quotes
-- · Reiterate relevant parts of the transcript
-- · Reiterate parts of the pricing document that were relevant
-- · As a result, the LLM reasoned what pricing options might be available before generating a response. With a single prompt, we were able to get our pricing questions answered without complex multi-stage reasoning
-- · This allow us to make sure our follow ups were A+ and we had citations for our sales reps to verify the generated quotes. (We paid them to correct quotes, more data!)
-
-<!-- image -->
-
-Monologues before responses dramatically improve tonality and quality, which can be fine-tuned later without monologues.
-
-<!-- image -->
-
-## Monologues and Chain of Thought
-
-Try to bake as much domain knowledge into these prompts, change prompts based on document types, be specific
-
-You are an AI assistant tasked with answering queries based on given context.
-
-Before generating a response, you must use &lt;monologue&gt;&lt;/monologue&gt; tags to reiterate the relevant instructions and the relevant text chunks involved in answering the query.
-
-Here is the context you will be working with:
-
-&lt;context&gt;
-
-{{CONTEXT}}
-
-&lt;/context&gt;
-
-When answering a query, follow these steps:
-
-- 1. Use &lt;monologue&gt;&lt;/monologue&gt; tags to:
-- a. Reiterate the relevant instructions under &lt;relevant\_instructions&gt; tags
-- b. Include the relevant parts of the context under &lt;relevant\_context&gt; tags
-- 2. After the monologue, generate your response and enclose it in &lt;response&gt;&lt;/response&gt; tags.
-
-## Monologues and Chain of Thought
-
-Try to bake as much domain knowledge into these prompts, change prompts based on document types, be specific
-
-You are an AI assistant tasked with answering queries based on given context.
-
-Before generating a response, you must use &lt;monologue&gt;&lt;/monologue&gt; tags to reiterate the relevant instructions and the relevant text chunks involved in answering the query.
-
-Here is the context you will be working with:
-
-&lt;context&gt;
-
-{{CONTEXT}}
-
-&lt;/context&gt;
-
-When answering a query, follow these steps:
-
-- 1. Use &lt;monologue&gt;&lt;/monologue&gt; tags to:
-- a. Reiterate the relevant instructions under &lt;relevant\_instructions&gt; tags
-- b. Include the relevant parts of the context under &lt;relevant\_context&gt; tags
-- 2. After the monologue, generate your response and enclose it in &lt;response&gt;&lt;/response&gt; tags.
-
-<!-- image -->
-
-Here is the query you need to answer:
-
-&lt;query&gt;
-
-{{QUERY}}
-
-&lt;/query&gt;
-
-Your output should follow this format:
-
-&lt;monologue&gt;
-
-&lt;relevant\_instructions&gt;
-
-## [Reiterate the relevant instructions here]
-
-&lt;/relevant\_instructions&gt;
-
-&lt;relevant\_context&gt;
-
-[Include the relevant parts of the context here]
-
-&lt;/relevant\_context&gt;
-
-&lt;/monologue&gt;
-
-&lt;response&gt;
-
-## [Your answer to the query goes here]
-
-&lt;/response&gt;
-
-Remember to always use the monologue tags before generating your response and ensure that your answer is based on the information provided in the context.
-
-A single step is often not enough.
-
-I would consider a validation pattern before going into full-blown multi-stage agents.
-
-As our LLMS get more powerful, we're going to be able to do more and more within a single prompt. What might take an agent now might be possible with a single prompt in the future.
-
-<!-- image -->
-
-## Incorporating validators
-
-- · In latency-insensitive applications, incorporating validators can help increase user trust and satisfaction in your product
-- · Just use evals / tests within the production workflow
-- · When we have components like reasoning, citations, and text chunks, we can utilize them in a secondary prompt:
-- o Use an external system to evaluate whether the reasoning, citations, and generated response effectively answer the question
-- o If they don't, the system provides detailed feedback on what's incorrect, unreasonable, or needs revision
-- · Note!
-- o These tests could be language models but it could also be unit tests or calls to external APIs
-
-## @jxnlco @jxnlco
-
-<!-- image -->
-
-## Incorporating validators: Referencing Content without Hallucinations
-
-## Problem:
-
-- ▪ We wanted a language model to respond to emails with references to case studies and marketing material.
-- ▪ However, we wanted to ensure that every single link is from the company namespace and that there were no hallucinations or invalid links since our links included UUIDs in the URL.
-
-@jxnlco @jxnlco
-
-<!-- image -->
-
-maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-## Incorporating validators: Referencing Content without Hallucinations
-
-## Solution:
-
-- · Our validator used a regular expression to find all urls
-- · Checked domains for our allow list
-- · We made a GET request to each URL to verify 200 status
-- · If there were any issues, we would send an error and request regeneration
-- · We initially had 4% failure rate, after 1 retry, it was 0%, after finetuning gpt-4o, 0% in a single pass
-
-<!-- image -->
-
-maven.com/applied-llms/rag-playbook maven.com/applied-llms/rag-playbook
-
-Even as of Feb 2025, Deep Research will include fake links to example.com/slug-1-2-3 when given the opportunity
-
-## Food for thought: try this at work or in your own projects
-
-<!-- image -->
-
-## Work on food for thought from last few sessions
-
-- · Generate synthetic data to test your system
-- · Improve representations for each sub-task. Consider preparing triplet data sets, using Cohere re-rankers, or finetuning an embedding model (with sufficient data)
-- · Implement user feedback mechanisms
-
-<!-- image -->
-
-<!-- image -->
-
-## Questions to ask yourself
-
-- · Am I being too subtle with collecting feedback on my product.
-- · Could building better citations help me gain user trust and satisfaction?
-- o Is there any way for me to leverage the citations to collect more relevancy data?
-- · Could I implement better streaming, interstitials, and follow-up actions to make my application feel faster?
-- · How can I better promote capabilities and reject other work
-- · Can I include monologues and chains of thought to reiterate parts of the prompt and improve reasoning in my system.
+### When User Says "No"
+```
+Why wasn't your question answered?
+
+□ Too slow
+□ Called wrong functions  
+□ Bad response format
+□ Misinterpreted my request
+□ Missing information
+□ Other: ___________
+```
+
+**Impact:**
+- Segment failure modes
+- Identify specific improvement areas
+- Create targeted evaluation datasets
+- Debug system bottlenecks systematically
+
+---
+
+## Enterprise Feedback: The Slack Integration
+
+### Consumer Pattern
+- Small feedback buttons
+- Passive collection
+- Volume-based insights
+
+### Enterprise Pattern
+- **Direct Slack integration:** Negative feedback → Customer success channel
+- **Human review:** Manual assessment of each failure
+- **Eval integration:** Add examples to test suites
+- **Customer loop:** Report back on improvements in meetings
+- **Critical:** Let customers know their feedback will improve the product
+- **Behavior:** Customers need to see feedback leads to action
+
+**Result:** 5x more feedback + stronger customer relationships
+- **Speed:** Fine-tune 5x faster with more data
+- **Trust:** Build trust while collecting data and building evals
+
+---
+
+## Mining Hard Negatives Through UX
+
+**The Challenge:** Finding good negative examples for fine-tuning
+
+### Traditional Approach
+```
+Anchor: "How to deploy?"
+Positive: deployment_guide.md
+Negative: ??? (random documents)
+```
+
+### UX-Driven Approach: Citation Deletion
+```
+[Generated Answer with Citations]
+📄 deployment_guide.md    [×] Delete
+📄 security_setup.md     [×] Delete  
+📄 api_reference.md      [×] Delete
+
+When user deletes → Hard negative example!
+```
+
+**Benefit:** User-validated irrelevant content = perfect training data
+
+---
+
+## Facebook-Style Feedback Collection
+
+### Infinite Scroll Pattern
+```
+People You May Know:
+┌─────────────────┬─────────────────┐
+│  User 1  [Add]  │  User 2  [Add]  │
+└─────────────────┴─────────────────┘
+┌─────────────────┬─────────────────┐
+│  User 3  [Add]  │  User 4  [Add]  │  
+└─────────────────┴─────────────────┘
+                  ...
+```
+
+### Limited Options Pattern  
+```
+Top 5 Suggestions:
+┌─────────────────────────────────────┐
+│  User A  [Add]              [Skip]  │
+│  User B  [Add]              [Skip]  │
+│  User C  [Add]              [Skip]  │
+└─────────────────────────────────────┘
+```
+
+**RAG Application:** Show top documents, let users add/remove = training data
+
+---
+
+## The Dating App Secret
+
+**Why Tinder/Hinge Have Great Models:**
+
+1. **High Volume:** Millions of interactions daily
+2. **Clear Positive/Negative:** Swipe right/left  
+3. **Simple Objective:** Match prediction
+4. **Continuous Feedback:** Every interaction is a label
+
+**RAG Lesson:** Design interactions that naturally generate training labels
+
+**Examples:**
+- Citation deletion = negative examples
+- Follow-up clicks = positive examples  
+- Query refinement = preference learning
+
+---
+
+## Citations: Trust + Training Data
+
+### Why Citations Matter
+- **User Trust:** "Where did this come from?"
+- **Verification:** Users can check sources
+- **Training Data:** Click patterns = relevance signals
+- **Customer Questions:** "How does AI get this info?" "How do I know it's accurate?"
+- **Beat them to the punch:** Include citations proactively
+- **Preview functionality:** Show what data is being used
+
+### Simple Citation Implementation
+```python
+class Response(BaseModel):
+    content: str
+    citations: List[Citation]
+
+class Citation(BaseModel):
+    text: str
+    source_id: str
+    title: str
+```
+
+### Advanced: Bounding Box Citations
+```python
+class BoundingBoxCitation(BaseModel):
+    text: str
+    pdf_path: str
+    page_number: int
+    bbox: List[float]  # [x1, y1, x2, y2]
+```
+
+**Recent Innovation:** Cite bounding boxes of parsed data
+- **Beyond text chunks:** Cite actual PDF locations
+- **Visual citations:** Show boxes over original document
+- **High fidelity:** Reference specific tables, titles, sections
+- **Better trust:** Users see exact source location
+
+---
+
+## Streaming: The Table Stakes Feature
+
+**Reality Check:** Only 20% of companies implement streaming well
+
+### Why Streaming Matters
+- **User Expectation:** Instant response feeling
+- **Perceived Performance:** 11% faster with animated progress (same wait time!)
+- **Retention:** Users tolerate 8 seconds with visual feedback vs instant abandonment
+- **Abandonment:** Reduces dropout rates significantly
+- **Trust:** Applications with engaging loading screens report higher satisfaction
+- **Real Examples:** Facebook's skeleton screens reduced perceived load times
+
+### What to Stream
+1. **Response Text:** Token by token
+2. **Tool Calls:** Show function execution  
+3. **Interstitials:** "Searching documents...", "Analyzing results..."
+4. **UI Components:** Citations, follow-ups as they're ready
+
+---
+
+## Streaming Implementation Strategy
+
+### The Migration Problem
+> "Migrating from non-streaming to streaming is a pain in the ass"
+
+**Recommendation:** Build streaming from day one
+- **Reality:** Will take weeks out of your dev cycle to upgrade later
+- **Streaming is table stakes:** Users expect it in LLM applications
+- **Build it now:** Much easier than retrofitting later
+
+### Technical Approach
+```python
+@app.route('/chat', methods=['POST'])
+def chat_stream():
+    def generate():
+        # Stream interstitials
+        yield f"data: {json.dumps({'type': 'status', 'message': 'Searching...'})}\n\n"
+        
+        # Stream tool calls
+        for tool_result in execute_tools():
+            yield f"data: {json.dumps({'type': 'tool', 'data': tool_result})}\n\n"
+        
+        # Stream response
+        for token in llm_stream():
+            yield f"data: {json.dumps({'type': 'token', 'data': token})}\n\n"
+    
+    return Response(generate(), mimetype='text/plain')
+```
+
+---
+
+## Structured Streaming with Citations
+
+### Traditional Response
+```json
+{
+  "answer": "The deployment process involves three steps...",
+  "done": true
+}
+```
+
+### Structured Streaming Response
+```python
+class StreamingResponse(BaseModel):
+    content: str = ""
+    citations: List[Citation] = []
+    follow_ups: List[str] = []
+    status: str = "generating"
+
+# Stream updates to each field
+for update in llm_stream():
+    response.content += update.token
+    if update.citation:
+        response.citations.append(update.citation)
+    yield response.model_dump()
+```
+
+**Advanced Pattern:** Stream different UI components separately
+- **Content:** Streams token by token
+- **Citations:** Added as they're identified
+- **Follow-ups:** Generated and streamed at the end
+- **Status:** Updates throughout the process
+
+**Result:** Users see progress on multiple fronts, better perceived performance
+
+---
+
+## Slack Bot Feedback Patterns
+
+### Basic Acknowledgment
+```
+User: "How do I deploy the app?"
+Bot: 👀 (eyes reaction - received)
+     
+     [Processing...]
+     
+     ✅ (checkmark - completed)
+     Response: "To deploy the app..."
+```
+
+### Pre-seeded Feedback
+```
+Bot Response: "To deploy the app, run..."
+
+👍 👎 ⭐ (auto-added reactions)
+```
+
+**Impact:** Pre-seeded reactions dramatically increase feedback rates
+
+**Key Insight:** If reactions aren't there, users won't think to give feedback
+- **Behavioral psychology:** Prompt the action you want
+- **"How did I do?"** + pre-seeded reactions = 5-10x more feedback
+- **Simple implementation:** Auto-add emoji reactions to responses
+
+**Data Collection:** Track reaction patterns for continuous improvement
+- **Cache:** Save question-answer pairs as few-shot examples
+- **Analytics:** Monitor which responses get what reactions
+
+---
+
+## Prompting the User, Not Just the AI
+
+**Insight:** People are lazy and don't know what they want
+
+### Bad Approach
+```
+[Empty text box]
+"What would you like to know?"
+```
+
+### Good Approach  
+```
+Try asking:
+• "How do I deploy to production?"
+• "What are the security requirements?"
+• "Show me the API documentation"
+• "Help me troubleshoot connection issues"
+```
+
+**Benefits:**
+- Shows capabilities users didn't know existed
+- Reduces empty/vague queries
+- Generates higher-quality training data
+- **Key insight:** People are lazy and don't know what they want
+- **Discovery:** Show features users wouldn't have thought about
+- **Session 4 preview:** Discover these through conversation data analysis
+
+---
+
+## Chain of Thought: The Hidden Performance Booster
+
+**Reality:** Massively underutilized by most teams
+
+### Performance Impact
+- **10% improvement** in most tasks
+- **Make or break** difference for production deployment
+- **Loading interstitial** opportunity with streaming
+- **Game changer:** With O1/R1 models, reasoning becomes visible
+- **Multiple purposes:** Better reasoning + loading indicator
+
+### Modern Implementation
+```python
+# With O1/R1 models
+response = client.chat.completions.create(
+    model="o1-preview",
+    messages=[{"role": "user", "content": prompt}]
+)
+
+# Stream the reasoning
+for chunk in response:
+    if chunk.type == "reasoning":
+        yield {"type": "thinking", "content": chunk.content}
+    elif chunk.type == "response":  
+        yield {"type": "answer", "content": chunk.content}
+```
+
+---
+
+## Chain of Thought for Complex Tasks
+
+### Use Case: SaaS Pricing Quotes
+```
+Context: 15-page pricing document + 1-hour transcript
+Goal: Generate pricing proposal email
+
+Chain of Thought Prompt:
+1. "First, reiterate the key pricing variables from our document"
+2. "Next, identify parts of transcript that mention pricing"  
+3. "Then, find relevant sections of pricing document"
+4. "Finally, reason through the appropriate pricing options"
+```
+
+### Results
+- **90% acceptance rate** for generated quotes
+- **Single prompt** replaces complex multi-agent system
+- **Easy verification** with structured reasoning
+- **Rich training data** from sales rep feedback
+
+---
+
+## The Long Context + Chain of Thought Pattern
+
+### Traditional RAG Approach
+```
+Query → Retrieve chunks → Stuff context → Generate
+```
+
+### Long Context + CoT Approach  
+```python
+system_prompt = f"""
+Context: {full_pricing_document}
+
+For each query:
+1. Reiterate relevant pricing variables
+2. Extract pricing mentions from transcript  
+3. Reference applicable document sections
+4. Reason through recommendation
+"""
+
+user_prompt = f"""
+Transcript: {full_transcript}
+Generate pricing proposal email.
+"""
+```
+
+**Benefits:** Better reasoning, verifiable citations, simpler architecture
+
+---
+
+## Validation: The Hidden Quality Multiplier
+
+**The Problem:** Single-step generation isn't enough for high-quality answers
+
+### Validation Pattern
+```python
+class EmailResponse(BaseModel):
+    subject: str
+    body: str
+    
+    @validator('body')
+    def validate_urls(cls, v):
+        urls = extract_urls(v)
+        for url in urls:
+            if not is_allowed_domain(url):
+                raise ValueError(f"Invalid URL domain: {url}")
+            if not url_exists(url):  # GET request check
+                raise ValueError(f"URL not found: {url}")
+        return v
+```
+
+### Real Results
+- **Before validation:** 4% failure rate (invalid URLs)
+- **After validation:** 0% failure rate with retry loop
+- **After fine-tuning:** Validators never triggered again
+- **Implementation time:** 3 days to build
+
+**Key Insight:** Validators become evals in production, improving both user experience and model training
+
+---
+
+## UI Components That Collect Data
+
+### Follow-Up Questions
+```
+[Generated Response]
+
+Continue with:
+• "Tell me more about deployment"
+• "What about security considerations?"  
+• "Show me code examples"
+```
+**Data:** Track click patterns → improve suggestions
+
+### Source Interaction
+```
+[Response with hoverable citations]
+📄 deployment.md ← Click to preview
+📄 security.md   ← Click to preview
+```
+**Data:** Preview clicks = relevance signals
+
+### Share/Save Buttons
+```
+[Response] 
+├── 📋 Copy   ← Usage signal
+├── ⭐ Save   ← High quality signal  
+└── 🔗 Share  ← Validation signal
+```
+
+---
+
+## Data Collection Everywhere
+
+**Once you start looking, you'll see feedback opportunities everywhere:**
+
+### Perplexity Patterns
+- Related questions
+- Source hover interactions
+- Follow-up suggestions
+- Share/copy behaviors
+
+### ChatGPT Patterns  
+- Regeneration requests
+- Edit suggestions
+- Conversation ratings
+- Feature usage tracking
+
+**Exercise:** Audit your favorite AI tools for data collection patterns
+
+### The Universal Truth
+**Once you start looking for feedback collection, you'll see it everywhere:**
+- Perplexity: Related questions, source hovers, follow-up suggestions
+- ChatGPT: Regeneration, edit suggestions, conversation ratings
+- Every tool: Multiple touchpoints for data collection
+
+**Your mission:** Identify 5 feedback opportunities in your current application
+
+---
+
+## This Week's Implementation Checklist
+
+### Immediate (Day 1)
+1. **Redesign feedback buttons:** Make them large and specific
+2. **Add follow-up questions:** When users give negative feedback  
+3. **Implement basic streaming:** At minimum, token-by-token response
+
+### Short-term (This Week)
+1. **Add citations:** Basic markdown links to sources
+2. **Create suggestion prompts:** Show example queries
+3. **Set up feedback logging:** Store all user interactions
+
+### Medium-term (Next Month)
+1. **Slack/webhook integration:** Route feedback to team channels
+2. **Citation deletion UI:** Let users remove irrelevant sources  
+3. **Chain of Thought streaming:** Show reasoning process
+
+---
+
+## Next Week Preview: Data Analysis
+
+**Session 4 Focus:**
+- Analyze all the feedback you've collected
+- Segment users and queries to find patterns
+- Identify high-impact improvement opportunities  
+- Build data-driven product roadmaps
+
+**Connection:** This week's UX improvements become next week's analysis dataset
+
+---
+
+## Key Takeaways
+
+### Design Insights
+1. **Small changes, big impact** - 5-10x feedback improvement possible
+2. **Specific > Generic** - "Did we complete your task?" vs "Good/Bad"
+3. **Streaming is table stakes** - Build it from day one
+4. **Every interaction is data** - Design for continuous learning
+
+### Technical Insights  
+1. **Chain of Thought works** - 10% performance improvement
+2. **Citations build trust** - And provide training signals
+3. **Structured streaming** - Better UX + richer data collection
+4. **Long context + CoT** - Often beats complex RAG systems
+
+### Strategic Insights
+1. **Feedback design = competitive advantage** - Most teams do this poorly
+2. **User prompting matters** - Show capabilities proactively  
+3. **Enterprise needs human touch** - Slack integrations build relationships
+4. **Data compounds** - Today's UX decisions become tomorrow's models
+
+---
+
+## Remember: Every User Interaction is an Opportunity
+
+**The Flywheel:**
+- Better UX → More feedback → Better training data → Better models → Better UX
+
+**Your Goal:** Turn every user session into multiple training examples
+
+**Success Metric:** 5-10x increase in useful feedback volume within 2 weeks
+
+**Reality Check:** Most teams collect terrible feedback because:
+- Buttons are too small and hidden
+- Copy is vague ("good/bad" tells you nothing)
+- No follow-up questions to understand failures
+- Users don't know their feedback matters
+
+**The Fix:** Small design changes = massive data improvements
+
+---
+
+## Thank You
+
+**Questions for office hours:**
+- How to implement streaming in your tech stack?
+- Best feedback patterns for your specific use case?
+- Chain of Thought prompting strategies?
+- Citation implementation approaches?
+
+**Next week:** Analyzing all that beautiful data you'll collect
+
+*maven.com/applied-llms/rag-playbook*

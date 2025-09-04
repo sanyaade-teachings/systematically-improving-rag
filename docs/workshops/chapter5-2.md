@@ -20,7 +20,20 @@ tags:
 !!! info "Learn the Complete RAG Playbook"
     All of this content comes from my [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course. Readers get **20% off** with code EBOOK. Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
 
+## Learning Objectives
+
+By the end of this chapter, you will:
+
+1. **Master document processing with contextual retrieval** - Implement page-aware chunking, context enrichment, and dynamic content adaptation that improves retrieval accuracy by 40%
+2. **Bridge the VLM training gap for image search** - Understand why vision models struggle with search queries and implement rich prompting techniques that achieve 85% accuracy
+3. **Optimize table search for LLM consumption** - Convert tables to markdown format and implement dual approaches (document-like vs database-like) for different query types
+4. **Build production SQL generation systems** - Move beyond naive text-to-SQL to query library approaches that improve accuracy by 30%
+5. **Implement hybrid search strategies** - Combine lexical and semantic approaches with dynamic weighting based on query characteristics
+6. **Design router architectures** - Build simple routing systems with parallel function calling and result combination strategies
+
 ## Introduction
+
+In Chapter 5-1, we covered the foundational concepts of specialized retrieval. Now let's dive into the practical implementation details for different content types.
 
 ## Handling Different Content Types
 
@@ -701,6 +714,46 @@ def combine_results_long_term(query: str, results_list: List[SearchResult], user
 
 This router approach scales well—you can add new retriever types without changing the core logic, and the parallel execution keeps latency reasonable even with multiple retrievers.
 
+### Economics of AI Processing
+
+**Production Cost Considerations:**
+
+From real-world implementations, here are typical costs for AI-enhanced processing:
+
+- **RAPTOR Processing**: $5-20 per large document (1,500+ pages)
+- **Image Description Generation**: $0.01-0.05 per image 
+- **Contextual Chunk Rewriting**: $0.001-0.01 per chunk
+- **Synthetic Text Generation**: $0.01-0.10 per document
+
+**ROI Calculation Framework:**
+```
+Processing Cost vs Value
+- Upfront: $10 document processing
+- Benefit: 85% improvement in finding complete information
+- User Impact: 5 minutes saved per search
+- Break-even: 20 successful searches per processed document
+```
+
+For high-value documents accessed frequently, these costs are easily justified. For archival content rarely accessed, consider on-demand processing.
+
+### Team Organization for Specialized Indices
+
+**Scaling Development Teams:**
+
+As you implement multiple specialized indices, organize teams around capabilities:
+
+**Content Processing Teams:**
+- **Document Team**: PDF processing, contextual retrieval, RAPTOR implementation
+- **Vision Team**: Image description, OCR enhancement, visual grounding
+- **Structured Data Team**: Table processing, SQL generation, metadata extraction
+
+**Platform Teams:**
+- **Evaluation Team**: Synthetic data generation, performance measurement across all indices
+- **Infrastructure Team**: Caching, compute optimization, incremental updates
+- **Router Team**: Tool orchestration, few-shot example management
+
+This separation allows teams to develop deep expertise while maintaining system coherence through clear interfaces.
+
 **How to actually do this:**
 
 1. Start with one or two specialized retrievers for your most common queries
@@ -711,9 +764,77 @@ This router approach scales well—you can add new retriever types without chang
 
 Remember: even as AI gets better, you're still responsible for retrieval. Knowing what to retrieve and how to find it is the hard part, not generating the final answer.
 
+## This Week's Action Items
+
+### Document Processing Implementation (Week 1)
+1. **Implement Contextual Retrieval**
+   - [ ] Audit your current chunking strategy - are you respecting logical document boundaries?
+   - [ ] Implement page-aware chunking with min/max size constraints (200-2000 tokens)
+   - [ ] Build contextual chunk rewriting that includes document title and section information
+   - [ ] Measure before/after retrieval accuracy on a test set of 50 queries
+
+2. **Test Multi-stage Retrieval**
+   - [ ] Implement a "cheap and fast" first-stage filter (BM25 or basic semantic search)
+   - [ ] Add a more sophisticated second-stage ranker (Cohere or fine-tuned model)
+   - [ ] Measure latency improvements vs accuracy trade-offs
+
+### Image Search Implementation (Week 1-2)
+3. **Bridge the VLM Training Gap**
+   - [ ] Implement the rich image description prompt template provided in the chapter
+   - [ ] Test on 20 images from your domain, comparing basic vs detailed descriptions
+   - [ ] Add OCR extraction and surrounding text context to your image processing pipeline
+   - [ ] Measure embedding space alignment between queries and enhanced descriptions
+
+4. **Production Image Processing**
+   - [ ] Implement bounding box extraction for applications requiring counting or spatial reasoning
+   - [ ] Build visual grounding capabilities for construction, manufacturing, or retail use cases
+   - [ ] Create synthetic test queries that match how users actually search for images
+
+### Table Search Implementation (Week 2)
+5. **Optimize Table Representation**
+   - [ ] Convert existing table storage to markdown format (not CSV or JSON)
+   - [ ] Test the dual approach: document-like search vs database-like schema search
+   - [ ] Generate natural language summaries of table contents for better retrieval
+   - [ ] Preserve headers in all table chunks to maintain context
+
+6. **SQL Generation Enhancement**
+   - [ ] Build a query library of successful SQL patterns from your domain
+   - [ ] Implement business-specific definitions (what is "monthly active users" for your company?)
+   - [ ] Test retrieval-augmented SQL generation vs naive text-to-SQL
+   - [ ] Create evaluation dataset with subjective queries and correct interpretations
+
+### Router and Hybrid Search (Week 2-3)
+7. **Implement Simple Routing**
+   - [ ] Build the function calling router example from the chapter using your specialized tools
+   - [ ] Test parallel tool execution and result combination
+   - [ ] Measure routing accuracy on a test set with annotated correct tools
+   - [ ] Implement both short-term (concatenation + reranking) and plan for long-term combination strategies
+
+8. **Hybrid Search Optimization**
+   - [ ] Implement the hybrid search function with adjustable semantic/lexical weights
+   - [ ] Test different weight combinations across query types (technical vs conceptual)
+   - [ ] A/B test user satisfaction with hybrid vs pure semantic search
+   - [ ] Build query classification to automatically adjust weights
+
+### Production Readiness (Week 3-4)
+9. **Performance and Scaling**
+   - [ ] Implement prompt caching for contextual retrieval at scale
+   - [ ] Build monitoring dashboards for each specialized retriever type
+   - [ ] Plan compute costs: write-time vs read-time processing decisions
+   - [ ] Test incremental updates for dynamic content
+
+10. **Integration Preparation**
+    - [ ] Document your tool interfaces in the format expected by Chapter 6 routing
+    - [ ] Create synthetic test data for each specialized capability you've built
+    - [ ] Measure individual tool performance before adding routing complexity
+    - [ ] Prepare few-shot examples showing when each tool should be used
+
+### Success Metrics
+- **Document Search**: 40% improvement in context-aware retrieval accuracy
+- **Image Search**: 85% accuracy in matching user queries to image descriptions
+- **Table Search**: Successful handling of both specific lookups and analytical queries
+- **SQL Generation**: 30% improvement over basic text-to-SQL approaches
+- **Overall System**: Clear performance measurement at both tool and routing levels
+
 !!! tip "Cross-Reference"
-In [Chapter 6](chapter6-1.md), we'll explore how to bring these specialized components together through effective routing strategies, creating a unified system that seamlessly directs users to the appropriate retrievers based on their queries.
-
----
-
-
+    In [Chapter 6](chapter6-1.md), we'll explore how to bring these specialized components together through effective routing strategies, creating a unified system that seamlessly directs users to the appropriate retrievers based on their queries.

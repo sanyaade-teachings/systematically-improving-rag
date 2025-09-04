@@ -20,6 +20,17 @@ tags:
 !!! info "Learn the Complete RAG Playbook"
     All of this content comes from my [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course. Readers get **20% off** with code EBOOK. Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
 
+## Learning Objectives
+
+By the end of this chapter, you will:
+
+1. **Master two-level performance measurement** - Track both routing accuracy (P(right tool | query)) and retrieval quality (P(success | right tool)) to identify system bottlenecks
+2. **Build comprehensive evaluation systems** - Create test datasets, confusion matrices, and automated router evaluation to prevent performance degradation
+3. **Design dual-mode user interfaces** - Implement both AI-driven chat and direct tool access, learning from Google's specialized interface strategy
+4. **Create user feedback loops** - Transform user interactions (clicks, tool selections, ratings) into training data that improves both routing and retrieval
+5. **Apply the success formula strategically** - Use P(success) = P(success | right tool) × P(right tool | query) × P(query) to plan both research and product roadmaps
+6. **Implement continuous improvement cycles** - Build systems that systematically measure, identify, generate, implement, collect, and repeat for ongoing enhancement
+
 ## Introduction
 
 This part explores how to measure, test, and continuously improve a unified RAG system:
@@ -640,3 +651,102 @@ The result: a system that retrieves the right information using the right specia
 6. **Repeat** continuously
 
 This process works for first-time builders and experienced teams alike. Tools change; the process remains.
+
+## This Week's Action Items
+
+### Router Evaluation Implementation (Week 1)
+1. **Build Comprehensive Router Testing**
+   - [ ] Create test dataset with 100+ queries annotated with correct tools
+   - [ ] Implement automated router evaluation using the provided code framework
+   - [ ] Prevent data leakage by maintaining strict separation between few-shot examples and test sets
+   - [ ] Generate confusion matrix to identify which tools are commonly misclassified
+
+2. **Two-Level Performance Measurement**
+   - [ ] Implement tracking for P(right tool | query) - router accuracy
+   - [ ] Implement tracking for P(success | right tool) - individual retriever performance
+   - [ ] Build dashboards showing both metrics with the multiplication formula
+   - [ ] Use metrics to identify whether problems are routing or retrieval issues
+
+### Tool Selection Optimization (Week 1-2)
+3. **Analyze and Fix Router Failures**
+   - [ ] Calculate per-tool recall to identify tools with low selection rates
+   - [ ] Create targeted improvement strategy for low-recall tools (better examples, descriptions)
+   - [ ] Build contrast examples for commonly confused tools
+   - [ ] Test improvements against confusion matrix patterns
+
+4. **Synthetic Data Generation for Router Testing**
+   - [ ] Use LLM to generate diverse queries for each tool based on tool descriptions
+   - [ ] Create balanced test dataset covering all tools proportionally
+   - [ ] Generate edge cases and multi-tool scenarios
+   - [ ] Validate synthetic data quality against real user queries
+
+### User Interface Development (Week 2)
+5. **Design Dual-Mode Interfaces**
+   - [ ] Build specialized forms for each tool (blueprint search, document search, etc.)
+   - [ ] Implement natural language chat interface with router
+   - [ ] Create unified entry point offering both interface options
+   - [ ] Add cross-interface suggestions (chat → tool, tool → chat)
+
+6. **Implement User Feedback Collection**
+   - [ ] Add click tracking for search results
+   - [ ] Implement explicit rating buttons ("Was this helpful?")
+   - [ ] Enable result saving/bookmarking for positive feedback signals
+   - [ ] Track tool selection patterns when users have choice between interfaces
+
+### Strategic Performance Management (Week 2-3)
+7. **Apply Success Formula for Roadmap Planning**
+   - [ ] Calculate P(success | right tool) × P(right tool | query) × P(query) for key capabilities
+   - [ ] Identify strengths to highlight in product marketing
+   - [ ] Prioritize research efforts on high-demand, low-success capabilities
+   - [ ] Plan UI improvements for good capabilities with low discoverability (low P(query))
+
+8. **Build Continuous Improvement Systems**
+   - [ ] Implement feedback loop where user interactions become training data
+   - [ ] Create automated example database updates from successful interactions
+   - [ ] Build A/B testing framework for routing improvements
+   - [ ] Plan fine-tuning pipeline for embedding models using user feedback
+
+### Advanced Implementation (Week 3-4)
+9. **Implement Advanced Evaluation Techniques**
+   - [ ] Test router performance across different user expertise levels
+   - [ ] Analyze session patterns to identify successful vs unsuccessful interaction flows
+   - [ ] Build comparative evaluation against pure semantic search baseline
+   - [ ] Create longitudinal studies showing system improvement over time
+
+10. **Production Scaling and Monitoring**
+    - [ ] Implement production monitoring for both routing and retrieval metrics
+    - [ ] Create alerting for performance degradation in any component
+    - [ ] Build cost monitoring for AI processing across all tools
+    - [ ] Plan capacity scaling based on query volume and complexity patterns
+
+### Research and Development Alignment (Week 4)
+11. **Align Teams Using Performance Data**
+    - [ ] Use success formula to allocate resources between routing improvement vs retriever improvement
+    - [ ] Plan research roadmap based on capabilities with high P(query) but low P(success | right tool)
+    - [ ] Prioritize product/UI work for capabilities with high P(success | right tool) but low P(query)
+    - [ ] Consider discontinuing capabilities that are low across all dimensions
+
+12. **Build Learning Organization**
+    - [ ] Create regular performance review meetings focused on moving specific metrics
+    - [ ] Implement systematic synthetic data generation and evaluation cycles
+    - [ ] Build knowledge sharing processes across specialized teams
+    - [ ] Document and share improvement patterns that can be applied to new capabilities
+
+### Success Metrics
+- **Router Performance**: >85% precision and >80% recall on tool selection across all tools
+- **Two-Level Visibility**: Clear attribution of failures to routing vs retrieval issues
+- **User Experience**: Both chat and direct tool interfaces provide measurable value
+- **Improvement Velocity**: Demonstrable performance improvements each iteration cycle
+- **Strategic Clarity**: Product and research roadmaps aligned with performance data
+- **System Learning**: Automated improvement from user feedback without manual intervention
+
+### Final Deliverable
+By the end of this chapter implementation, you should have:
+- A fully-functioning unified RAG system with intelligent routing
+- Comprehensive performance measurement at both routing and retrieval levels
+- User interfaces that work for both expert and novice users
+- Automated improvement cycles that learn from user interactions
+- Clear strategic framework for ongoing development priorities
+
+!!! tip "Course Completion"
+	Congratulations! You've now implemented a complete systematically improving RAG application that uses evaluation-driven improvement, specialized capabilities, intelligent routing, and continuous learning. The principles and processes you've learned will remain valuable even as specific technologies evolve.

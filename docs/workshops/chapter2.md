@@ -13,6 +13,19 @@ tags:
 
 # Converting Evaluations into Training Data for Fine-Tuning
 
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Understand why off-the-shelf embeddings fail for specialized applications** - Recognize the limitations of generic models and the hidden assumptions that prevent them from handling domain-specific similarity requirements
+2. **Master the fundamentals of similarity and objective functions** - Define what "similarity" means in your specific context and design training objectives that capture these relationships  
+3. **Build custom embeddings using synthetic data and evaluation frameworks** - Transform your Chapter 1 evaluation examples into training data for fine-tuning embedding models
+4. **Apply contrastive learning techniques for retrieval systems** - Implement triplet structures with hard negatives to improve domain-specific retrieval accuracy by 6-10%
+5. **Design and implement fine-tuning workflows** - Execute complete embedding and re-ranker training processes that cost hundreds of dollars rather than thousands
+6. **Create continuous data collection systems** - Start logging relevancy signals now to build the training datasets that will power future improvements
+
+These objectives build directly on the evaluation foundation from Chapter 1 and prepare you for the feedback collection mechanisms in Chapter 3.
+
 ### Key Insight
 
 **If you're not fine-tuning, you're Blockbuster, not Netflix.** The goal isn't to fine-tune language models (which are expensive and complex), but to fine-tune embedding models that move toward your specific data distributions and improve retrieval, not generation.
@@ -21,7 +34,15 @@ tags:
     All of this content comes from my [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course. Readers get **20% off** with code EBOOK. Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
 
 !!! success "Fine-Tuning Cost Reality Check"
-**Embedding Model Fine-Tuning:** - Cost: ~$1.50 for 6,000 examples - Time: 40 minutes on a laptop - Infrastructure: Consumer GPU or cloud notebook - Improvement: 6-10% better performance
+**Real Numbers from Production:**
+    - **Just 6,000 examples = 6-10% improvement** (Sentence Transformers team validated)
+    - **Cost: Hundreds of dollars in API calls** (vs tens of thousands for data labeling previously)
+    - **Time: 40 minutes training on your laptop** 
+    - **Systems at 70% can reach 85-90%** - remember that 50% to 90% recall jump from Chapter 1? That's exactly this kind of improvement
+    - **Companies see 14% accuracy boost over baseline** just from fine-tuning cross-encoders
+    - **12% increase in exact match** by training better passage encoders
+    - **20% improvement in response accuracy** with rerankers
+    - **30% reduction in irrelevant documents** with proper fine-tuning
 
     **Language Model Fine-Tuning:**
     - Cost: $100-1000s depending on model size
@@ -33,17 +54,14 @@ tags:
 
 ## Introduction
 
-In the previous chapter, we set up evaluation and generated synthetic data to benchmark our RAG system. Now let's talk about how to actually use that data to improve things.
+Remember in Chapter 1 where we talked about that $100M company with only 30 evaluation examples? Well, here's the good news: once you have those evaluation examples, you can multiply their value. The synthetic data and evaluation framework from Chapter 1 becomes your training data in this chapter.
 
-**Prerequisites from Previous Chapters:**
-- **[Chapter 0](chapter0.md)**: Understanding the improvement flywheel concept
-- **[Chapter 1](chapter1.md)**: Creating evaluation datasets with synthetic data
-
-The evaluation examples from Chapter 1 become your training data in this chapter.
+**Building on Chapter 1's Foundation:**
+Your evaluation examples (synthetic questions + ground truth) now become few-shot examples and training data. We're turning that evaluation flywheel into a fine-tuning flywheel.
 
 Here's the thing: the data you collect for evaluation shouldn't just sit there. Every question, every relevance judgment, every piece of feedback—it can all be used to improve your system. That's what we'll cover here.
 
-**Key Philosophy:** "Every evaluation example is a potential training example. The data flywheel transforms what begins as a handful of evaluation examples into few-shot prompts, then into training datasets for fine-tuning embedding models and re-rankers."
+**Key Philosophy:** "This is the "wax on, wax off" moment: 20 examples become evals (Chapter 1), 30 examples become few-shot prompts, 1,000 examples let you start fine-tuning. Remember that $100M company with 30 evals? Once you have that data, this is how you turn it into actual improvements. It's never done, just gets better."
 
 The process is straightforward: you start with evaluation examples, turn them into few-shot prompts, then eventually use them to fine-tune your embedding models and re-rankers. Each step builds on the last.
 
@@ -68,7 +86,7 @@ Embedding models seem simple enough: they turn text into numbers, and similar te
 
 Take music recommendations. Songs might be similar because they're the same genre, or because they show up in the same playlists, or because the same people like them. If you're adding songs to a playlist, you want one kind of similarity. If you're building Spotify's Discovery Weekly, you want something else entirely.
 
-My favorite example is from dating apps. Should "I love coffee" and "I hate coffee" be similar? Linguistically, they're opposites. But both people care about coffee enough to mention it. Maybe opposites don't attract when it comes to beverages. Or maybe they do if one person likes tea and the other likes coffee.
+Take dating apps - should "I love coffee" and "I hate coffee" be similar? Linguistically opposite, but both care enough about coffee to mention it. Generic embeddings see them as opposites. But for matching people? Maybe that matters more than word similarity. This is exactly the kind of nuance you miss without domain-specific fine-tuning.
 
 Here's the thing: **What actually matters for a dating app is whether two people will like each other**, not whether their profiles use similar words. Generic embeddings trained on web text have no idea about this.
 
@@ -536,25 +554,72 @@ Contrastive learning trains models to recognize similarities and differences bet
 
 For large datasets or production workloads:
 
-- Consider parallel processing frameworks (like Modal) to accelerate embedding and training
+- **Modal Labs for Parallel Processing**: Consider platforms like [Modal](https://modal.com) for massive parallelization. As mentioned in our sessions, you can embed all of Wikipedia in 15 minutes or train 200 different model variations across 50 GPUs simultaneously, dramatically reducing iteration time from hours to minutes
 - Experiment with multi-GPU training for faster iterations
 - Evaluate the trade-offs between API costs and self-hosting
 - Test multiple model variations simultaneously to find optimal configurations
-```
+
+## This Week's Action Items
+
+Based on the content covered, here are your specific tasks:
+
+### Immediate Actions (Start This Week)
+
+1. **Start Logging Relevancy Data NOW**
+   - Don't wait for perfect infrastructure - start collecting query + retrieved chunks + user interactions immediately
+   - Save top 20-40 chunks per query for future training data
+   - Use LLM judges to mark relevance if human annotation isn't feasible
+   - This data will be invaluable when you're ready to fine-tune (don't make the mistake of waiting 3-6 months)
+
+2. **Define Your Domain-Specific Similarity**
+   - Clearly define what "relevant" and "similar" mean for your specific application
+   - Document edge cases where generic embeddings fail in your domain
+   - Create examples of hard negatives (topically similar but contextually different)
+
+3. **Build Few-Shot Examples**
+   - Convert your best evaluation examples from Chapter 1 into few-shot prompts
+   - Test different few-shot configurations and measure impact on retrieval quality
+   - Create a library of examples organized by query type
+
+### Technical Implementation
+
+4. **Experiment with Re-Rankers First**
+   - Try Cohere Rerank API (credits provided for course participants)
+   - Measure the 10% recall improvement vs 300-500ms latency tradeoff
+   - Compare results with and without re-ranking using your evaluation framework
+
+5. **Test Domain-Specific Models**
+   - Compare OpenAI embeddings against BGE, E5, or domain-specific models
+   - Use your Chapter 1 evaluation framework to measure differences objectively
+   - Try modern BERT models with 8,000 token context vs older 512 token models
+
+6. **Prepare for Fine-Tuning**
+   - Once you have 1,000+ examples, prepare triplet datasets (anchor, positive, negative)
+   - Focus on hard negatives - documents that are topically similar but serve different intents
+   - Create graded relevance scores (0-5) rather than binary yes/no labels
+
+### Strategic Planning
+
+7. **Build the Data Flywheel**
+   - 20 examples → evaluations
+   - 200 examples → few-shot prompts  
+   - 2,000 examples → fine-tuning datasets
+   - Plan your progression through these milestones
+
+8. **Design UX for Better Training Data**
+   - Add document-level feedback mechanisms (thumbs up/down per retrieved chunk)
+   - Track click patterns and dwell time on retrieved documents
+   - Consider explicit comparison interfaces for critical applications
 
 ## Reflection Questions
 
-!!! question "Self-Assessment" 1. What specific definition of "similarity" is most important for your application's domain?
+Take a minute to think about:
 
-```
+1. What specific definition of "similarity" is most important for your application's domain?
 2. How would you create effective few-shot examples from your existing evaluation data?
-
 3. What user interactions in your application could provide valuable training signals for fine-tuning?
-
 4. If you had to prioritize one retrieval improvement for your system, would it be embeddings, re-ranking, or something else? Why?
-
 5. What experiments could you run to test your hypotheses about improving retrieval quality?
-```
 
 ## Conclusion and Next Steps
 
@@ -572,9 +637,12 @@ The main takeaway: don't waste your data. Every question, every bit of feedback,
 Fine-tuning embeddings really works, and unlike fine-tuning LLMs, it's actually doable. You can see real improvements with just 6,000 examples.
 
 !!! tip "What's Coming Next"
-In [Chapter 3](chapter3-1.md), we'll dive into deployment strategies, user feedback collection methods, and how to use this feedback to further refine your RAG application. We'll explore practical techniques for gathering implicit and explicit feedback, designing effective user interfaces, and closing the loop between user interactions and system improvements.
+    In [Chapter 3](chapter3-1.md), we'll dive into deployment strategies, user feedback collection methods, and how to use this feedback to further refine your RAG application. We'll explore practical techniques for gathering implicit and explicit feedback, designing effective user interfaces, and closing the loop between user interactions and system improvements.
 
-!!! info "Related Concepts in Other Chapters" - **Query Segmentation** ([Chapter 4](chapter4-2.md)): Learn how to identify which queries benefit most from fine-tuning - **Specialized Models** ([Chapter 5](chapter5-1.md)): See how fine-tuned embeddings power specialized retrievers - **Router Optimization** ([Chapter 6](chapter6-2.md)): Understand how fine-tuning improves query routing
+!!! info "Related Concepts in Other Chapters" 
+    - **Query Segmentation** ([Chapter 4](chapter4-2.md)): Learn how to identify which queries benefit most from fine-tuning 
+    - **Specialized Models** ([Chapter 5](chapter5-1.md)): See how fine-tuned embeddings power specialized retrievers 
+    - **Router Optimization** ([Chapter 6](chapter6-2.md)): Understand how fine-tuning improves query routing
 
 ## Summary
 
