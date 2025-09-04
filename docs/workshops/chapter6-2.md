@@ -42,6 +42,54 @@ Here's how to implement tool interfaces for a construction information system wi
 
 ### Building a Blueprint Search Tool
 
+Let's start with a concrete example from a construction company that wants to search over images of different blueprints. The process involves two steps:
+
+1. **Blueprint Extractor**: Extract structured data from blueprint images
+2. **Blueprint Search Tool**: Query the extracted data
+
+#### Step 1: Blueprint Extractor
+
+First, we need an extractor that processes blueprint images and saves structured data:
+
+```python
+from pydantic import BaseModel
+from typing import Optional
+import datetime
+
+class BlueprintExtractor(BaseModel):
+    """Extracts structured data from blueprint images using OCR and AI."""
+    
+    def extract_from_image(self, image_path: str) -> dict:
+        """
+        Extract date and description from blueprint image.
+        
+        Returns:
+            dict: Extracted blueprint metadata
+        """
+        # Use OCR and vision models to extract text
+        ocr_text = self._extract_text_from_image(image_path)
+        
+        # Use LLM to structure the extracted text
+        structured_data = self._structure_blueprint_data(ocr_text)
+        
+        return {
+            "description": structured_data.get("description", ""),
+            "date": structured_data.get("date", None),
+            "image_path": image_path,
+            "extracted_at": datetime.datetime.now().isoformat()
+        }
+    
+    def save_to_database(self, blueprint_data: dict):
+        """Save extracted blueprint data to database for searching."""
+        # Implementation would depend on your database choice
+        # This creates the searchable index for our search tool
+        pass
+```
+
+#### Step 2: Blueprint Search Tool
+
+Now we can build a search tool that queries this structured data:
+
 Based on our analysis in Chapter 5, we've determined that users often search for blueprints by description and date range. We'll define a tool interface that captures this functionality:
 
 ```python

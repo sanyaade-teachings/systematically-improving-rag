@@ -60,12 +60,43 @@ This is similar to building microservices, except the primary client is a langua
 - **Performance**: Enable parallel execution
 - **Team Structure**: Different teams own different components
 
+### Team Organization for Scalable Development
+
+When building these systems at scale, team organization becomes critical. From my experience developing multiple microservices for retrieval at different companies, successful teams organize around these boundaries:
+
 !!! example "Organizational Structure"
-One effective team structure:
-\- **Interface Team**: Designs the API contracts and tool specifications based on user needs
-\- **Implementation Team**: Builds and optimizes individual retrievers for specific content types
-\- **Router Team**: Creates and optimizes the query routing system
-\- **Evaluation Team**: Tests the performance of the entire system and identifies bottlenecks
+    **Interface Team** (Product/API Design)
+    - Designs tool specifications based on user research
+    - Defines the contracts between components  
+    - Decides what capabilities to expose
+    - Manages the user experience across tools
+
+    **Implementation Teams** (Engineering)
+    - **Search Team**: Builds document and text retrievers
+    - **Vision Team**: Handles blueprint and image search
+    - **Structured Data Team**: Manages schedule and metadata search
+    - Each team optimizes their specific retriever type
+
+    **Router Team** (ML Engineering)  
+    - Builds and optimizes the query routing system
+    - Manages few-shot examples and prompt engineering
+    - Handles tool selection accuracy measurement
+
+    **Evaluation Team** (Data Science)
+    - Tests end-to-end system performance
+    - Identifies bottlenecks between routing and retrieval
+    - Runs A/B tests and measures user satisfaction
+
+### Why This Structure Works
+
+This separation allows teams to work independently while maintaining system coherence:
+
+- **Clear ownership**: Each team owns specific metrics and outcomes
+- **Parallel development**: Teams can optimize their components simultaneously  
+- **Scalable expertise**: Teams develop deep knowledge in their domain
+- **Clean interfaces**: Teams coordinate through well-defined APIs
+
+**You're effectively becoming a framework developer for language models.** Moving forward, building RAG systems will feel a lot like building distributed microservices, where each service specializes in a particular type of information retrieval.
 
 ```mermaid
 graph TD

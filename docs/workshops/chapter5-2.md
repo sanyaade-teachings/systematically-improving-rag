@@ -179,8 +179,34 @@ def contextual_retrieval(query: str, document_store: List[Dict[str, Any]]) -> Li
 
 Image search is tricky because vision models were trained on captions, but people don't search using caption-style language.
 
+### The VLM Training Challenge
+
+**Why Vision-Language Models (VLMs) Struggle with Search:**
+
+Vision-Language Models were primarily trained on image-caption pairs from the web, which creates a fundamental mismatch with how people actually search:
+
+**Training Data Format:**
+- *Image captions*: "A man in a blue shirt standing next to a car"
+- *Web descriptions*: "Photo shows person outdoors"
+- *Alt text*: "Stock photo of businessman"
+
+**How Users Actually Search:**  
+- *Conceptual*: "professional headshot"
+- *Contextual*: "team building activities" 
+- *Functional*: "office meeting setup"
+- *Emotional*: "confident leadership pose"
+
+This training gap means VLMs excel at generating accurate captions but struggle to understand the conceptual, contextual, and functional language that users naturally employ when searching.
+
+**Additional VLM Limitations:**
+- **Embedding space mismatch**: Question embeddings and image caption embeddings exist in different semantic spaces
+- **Training bias**: Optimized for caption generation, not retrieval matching
+- **Context loss**: VLMs see isolated images without surrounding document context
+
 !!! warning "Embedding Spaces Mismatch"
 The naive approach—applying the same embedding strategy used for text—often fails because question embeddings and image caption embeddings exist in fundamentally different semantic spaces. Simply embedding captions like "two people" will not retrieve well when users search for "business meeting" or "team collaboration."
+
+**Solution**: Bridge this gap with chain-of-thought reasoning that explicitly connects visual elements to likely search terms.
 
 **When to Use Vision Language Models:** According to Adit from Reducto, VLMs excel at "things that traditional OCR has always been horrible at" - handwriting, charts, figures, and diagrams. However, for clean structured information, traditional CV provides better precision and token efficiency. [Learn about their hybrid approach →](../talks/reducto-docs-adit.md)
 
@@ -539,6 +565,141 @@ flowchart TD
 ```
 
 The nice thing is this approach scales. The same process—generate test data, segment queries, identify capabilities—works whether you're building your first retriever or your tenth.
+
+## Combining Results with Simple Routers
+
+Once you have multiple specialized retrievers, you need a way to decide which ones to use for each query. The good news is that building a basic router is straightforward with modern function calling capabilities.
+
+### Building a Router with Function Calling
+
+Here's how to build a simple router using Instructor for structured outputs:
+
+```python
+from pydantic import BaseModel
+from typing import List
+import instructor
+from openai import OpenAI
+
+client = instructor.from_openai(OpenAI())
+
+class DocumentSearch(BaseModel):
+    """Search through text documents and manuals"""
+    query: str
+    
+class ImageSearch(BaseModel):
+    """Search through images and visual content"""
+    query: str
+    
+class TableSearch(BaseModel):
+    """Search through structured data and tables"""
+    query: str
+
+class SQLQuery(BaseModel):
+    """Query structured databases with SQL"""
+    query: str
+
+def route_query(user_query: str) -> List[BaseModel]:
+    """Route a query to appropriate retrieval tools using parallel function calling."""
+    
+    return client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {
+                "role": "system", 
+                "content": """You are a query router. Analyze the user's query and decide which retrieval tools to use.
+                
+                You can call multiple tools if needed. Here are your available tools:
+                - DocumentSearch: For questions about procedures, policies, or text content
+                - ImageSearch: For questions about visual content, diagrams, or photos  
+                - TableSearch: For questions about data, comparisons, or structured information
+                - SQLQuery: For specific data queries requiring database operations
+                
+                Examples:
+                - "Show me the safety manual" → DocumentSearch
+                - "What does the circuit diagram look like?" → ImageSearch  
+                - "Compare Q1 vs Q2 revenue" → TableSearch
+                - "How many users signed up last month?" → SQLQuery
+                """
+            },
+            {"role": "user", "content": user_query}
+        ],
+        response_model=List[DocumentSearch | ImageSearch | TableSearch | SQLQuery]
+    )
+```
+
+### Parallel Execution and Result Combination
+
+The router can call multiple retrievers simultaneously using parallel function calling:
+
+```python
+async def execute_search(user_query: str):
+    """Execute search across multiple retrievers in parallel."""
+    
+    # Step 1: Route the query
+    selected_tools = route_query(user_query)
+    
+    # Step 2: Execute all searches in parallel
+    tasks = []
+    for tool in selected_tools:
+        if isinstance(tool, DocumentSearch):
+            tasks.append(search_documents(tool.query))
+        elif isinstance(tool, ImageSearch):
+            tasks.append(search_images(tool.query))
+        elif isinstance(tool, TableSearch):
+            tasks.append(search_tables(tool.query))
+        elif isinstance(tool, SQLQuery):
+            tasks.append(execute_sql_query(tool.query))
+    
+    # Wait for all searches to complete
+    results = await asyncio.gather(*tasks)
+    
+    # Step 3: Combine and rank results
+    return combine_and_rank_results(user_query, results)
+```
+
+### Short-term vs Long-term Combination Strategies
+
+**Short-term approach** (implement first):
+- Concatenate results from different retrievers
+- Apply a re-ranker (like Cohere) to the combined results
+- Weight results by retriever confidence scores
+
+**Long-term approach** (as you get more data):
+- Train dedicated ranking models using user feedback
+- Learn weights for different signal types (relevancy, recency, citations, authority)
+- Implement more sophisticated scoring that considers user context
+
+```python
+def combine_results_short_term(query: str, results_list: List[SearchResult]) -> List[SearchResult]:
+    """Simple combination strategy using re-ranking."""
+    
+    # Concatenate all results
+    all_results = []
+    for results in results_list:
+        all_results.extend(results)
+    
+    # Apply re-ranker for final ordering
+    reranked = cohere_rerank(query, all_results)
+    
+    return reranked[:10]  # Return top 10
+
+def combine_results_long_term(query: str, results_list: List[SearchResult], user_context: dict) -> List[SearchResult]:
+    """Advanced combination using learned weights."""
+    
+    # Calculate weighted scores considering multiple signals
+    for result in all_results:
+        result.final_score = (
+            0.4 * result.cosine_similarity +      # Semantic relevance
+            0.3 * result.cohere_rerank_score +    # Re-ranking score  
+            0.2 * result.recency_score +          # How recent
+            0.1 * result.authority_score          # Source authority
+        )
+    
+    # Sort by final score
+    return sorted(all_results, key=lambda x: x.final_score, reverse=True)[:10]
+```
+
+This router approach scales well—you can add new retriever types without changing the core logic, and the parallel execution keeps latency reasonable even with multiple retrievers.
 
 **How to actually do this:**
 

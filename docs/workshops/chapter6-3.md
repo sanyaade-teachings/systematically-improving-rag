@@ -210,10 +210,33 @@ This approach ensures comprehensive coverage of your router's decision space wit
 
 ## User Interfaces: Direct Tool Access
 
-One powerful insight from the routing architecture is that tools designed for language models can often be exposed directly to users as well. Just as Google offers specialized interfaces like Google Maps, YouTube, and Google Images alongside its main search, your RAG application can offer both:
+One powerful insight from the routing architecture is that tools designed for language models can often be exposed directly to users as well. 
+
+### The Google Ecosystem Analogy
+
+Think about how Google structures their search ecosystem:
+
+- **YouTube** = Google's video search index
+- **Google Maps** = Google's directions and location index  
+- **Google Images** = Google's image search index
+- **LinkedIn** (conceptually) = Professional network index
+- **Google Search** = Everything else
+
+Each interface is specialized for a particular type of content and query. But notice something important: when you search on regular Google and it thinks your query is about videos, it shows you YouTube results. When it thinks you want directions, it shows Maps results. **Google is very opinionated about what kind of UI to show you based on your search request.**
+
+This same principle applies to RAG applications. Your system can offer both:
 
 1. A natural language interface using the router
 1. Direct access to specialized tools for specific needs
+
+### Why This Matters
+
+There's a huge opportunity to build UIs that let users naturally map their queries to the specialized tools we've built. In our construction example, we implemented:
+
+- A `SearchText` tool with query and filter parameters  
+- A `SearchBlueprint` tool with description and date parameters
+
+But here's the key insight: **if we can expose these tools to a language model, why not expose them directly to users?**
 
 > "When I know exactly what I need, a specialized tool is much faster than explaining it to a chatbot. But when I'm exploring new areas or have complex needs, the chat interface helps me discover what's possible."
 > 
@@ -477,16 +500,61 @@ To mitigate these biases:
 
 ## Success Formula
 
-System success depends on two factors:
+System success depends on multiple factors that multiply together:
 
 $$
 P(\\text{success}) = P(\\text{find right document} \\mid \\text{right tool}) \\times P(\\text{right tool})
 $$
 
+But we can extend this formula to be even more useful:
+
+$$
+P(\\text{success}) = P(\\text{success} \\mid \\text{correct tool chosen}) \\times P(\\text{tool chosen} \\mid \\text{query}) \\times P(\\text{query})
+$$
+
+Where:
+- **P(success | correct tool chosen)** = Retrieval quality and generation quality
+- **P(tool chosen | query)** = Router accuracy for selecting the right tool
+- **P(query)** = Probability of this type of query happening
+
+### The Role of P(query) in Product Strategy
+
+The **P(query)** component is actually a function of your UI design and user education:
+
+- **UI Design**: What queries do users naturally think to ask?
+- **User Education**: What capabilities do users know about?
+- **Product Marketing**: How do you teach users what's possible?
+
+This gives you control over the query distribution. If you're great at blueprint search but users don't know to ask blueprint questions, you can:
+
+1. **Promote the capability**: Show example blueprint queries in your UI
+2. **Improve discoverability**: Add a dedicated blueprint search interface  
+3. **Educational content**: Help users understand what blueprint questions you can answer
+
+### Strategic Framework
+
+Using this extended formula, you can map your product and research roadmap:
+
+**High P(success | tool) × High P(tool | query) × High P(query)**  
+→ These are your **product strengths** to highlight and market
+
+**Low P(success | tool) × High P(tool | query) × High P(query)**  
+→ **Research priority**: Users want this capability, router works, but retrieval fails
+
+**High P(success | tool) × Low P(tool | query) × High P(query)**  
+→ **Router improvement**: Users want it, tool works, but routing fails
+
+**High P(success | tool) × High P(tool | query) × Low P(query)**  
+→ **Product/UI focus**: Great capability that users don't discover
+
+**Low across all dimensions**  
+→ **Deprioritize or discontinue**: May not be worth the investment
+
 This means:
 
-1. Each retriever must work well when selected
+1. Each retriever must work well when selected  
 2. The router must select the right retriever
+3. Users must know to ask questions that leverage your strengths
 
 ### Diagnostic Framework
 
