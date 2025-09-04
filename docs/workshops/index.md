@@ -7,6 +7,15 @@ description: Hands-on workshops for building self-improving RAG systems
 
 These workshops walk you through building RAG systems that actually get better over time. If you're tired of deploying a RAG system only to watch it stagnate while users complain, this is for you.
 
+!!! success "🎓 Get the Complete Course - 20% Off"
+    This content is from the [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course on Maven.
+    
+    **Readers can enroll for 20% off with code: `EBOOK`**
+    
+    Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
+    
+    [Enroll in the RAG Playbook Course - 20% Off](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }
+
 ## What's Covered
 
 ### [Introduction: Beyond Implementation to Improvement](chapter0.md)
@@ -97,16 +106,6 @@ A RAG system that:
 - Doesn't break in weird ways
 - Works for teams, not just demos
 
-## Get the Complete Course - 20% Off for Readers
-
-!!! success "Exclusive Discount for Book Readers"
-    This content is from the [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course on Maven.
-    
-    **Readers can enroll for 20% off with code: `EBOOK`**
-    
-    Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
-    
-    [Enroll in the RAG Playbook Course - 20% Off](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }
 
 ## Stay Updated
 
