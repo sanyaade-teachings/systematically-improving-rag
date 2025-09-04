@@ -9,9 +9,14 @@ This section contains talks and presentations from the Systematically Improving 
 
 ---
 
-If you want to learn more about RAG systems, check out our RAG Playbook course. Here is a 20% discount code for readers.
+!!! success "📚 Get the Complete Course - 20% Off"
+    This content is from the [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course on Maven.
+    
+    **Save 20% with code: `EBOOK`**
+    
+    Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
 
-[RAG Playbook - 20% off for readers](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button }
+[Enroll in the RAG Playbook Course - 20% Off](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }
 ---
 
 ## Talks by Chapter
@@ -116,12 +121,5 @@ For more information about the broader curriculum, see the [main index](../index
 
 Get access to exclusive discounts and our free 6-day email course on RAG improvement:
 
-[Enroll in the Free 6-Day Email Course](https://improvingrag.com/){ .md-button .md-button--primary }
+[Subscribe for Free 6-Day Email Course](https://improvingrag.com/){ .md-button }
 
----
-
---8<--
-"snippets/enrollment-button.md"
---8<--
-
----

@@ -21,7 +21,7 @@ This guide presents frameworks developed through real-world experience with comp
     
     **Exclusive discount for book readers: Save 20% with code `EBOOK`**
     
-    [Get the RAG Playbook Course →](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }
+    [Enroll in the RAG Playbook Course →](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }
 
 ## Trusted by Leading Organizations
 

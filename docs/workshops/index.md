@@ -106,7 +106,7 @@ A RAG system that:
     
     Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
 
-[Get the RAG Playbook Course - 20% Off](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }
+[Enroll in the RAG Playbook Course - 20% Off](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }
 
 ## Stay Updated
 

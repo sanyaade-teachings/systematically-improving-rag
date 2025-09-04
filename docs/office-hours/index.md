@@ -7,9 +7,14 @@ description: Summaries and key insights from weekly office hours sessions
 
 This section contains summaries and key insights from our weekly office hours sessions, where we discuss challenges, solutions, and best practices for RAG systems.
 
-👉 If you want to learn more about RAG systems, check out our RAG Playbook course. Here is a 20% discount code for readers. 👈
+!!! success "🎓 Get the Complete Course - 20% Off"
+    This content is from the [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course on Maven.
+    
+    **Save 20% with code: `EBOOK`**
+    
+    Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
 
-[RAG Playbook - 20% off for readers](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button }
+[Enroll in the RAG Playbook Course - 20% Off](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }
 
 Office hours are now organized by chapter, matching the structure of the main workshop curriculum. Each chapter contains all relevant sessions from both Cohort 2 and Cohort 3 for that topic/week.
 
@@ -67,6 +72,11 @@ Office hours cover a wide range of topics including:
 
 ## Stay Updated
 
-👉 If you want to learn more about RAG systems, check out our RAG Playbook course. Here is a 20% discount code for readers. 👈
+!!! success "🎓 Get the Complete Course - 20% Off"
+    This content is from the [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course on Maven.
+    
+    **Save 20% with code: `EBOOK`**
+    
+    Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
 
-[RAG Playbook - 20% off for readers](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button }
+[Enroll in the RAG Playbook Course - 20% Off](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }
