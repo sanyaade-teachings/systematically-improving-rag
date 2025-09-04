@@ -4,6 +4,8 @@
 
 @jxnlco
 
+<!-- Welcome to Session 4 of Systematically Improving RAG Applications. This is my favorite session because it's where we get into the real meat of systematic improvement. Today we're talking about splitting - when to double down on capabilities that are working versus when to fold and abandon segments that aren't worth the investment. This is post-production analysis at its finest. -->
+
 ## Systematically Improving RAG Applications
 
 **Session 4:** Split: When to Double Down vs When to Fold
@@ -24,6 +26,8 @@ Jason Liu
 
 **This is the actual playbook for post-production analysis**
 
+<!-- This really is my favorite session because it transforms vague product management into data-driven decision making. We're going to answer fundamental questions: How do we segment user data and queries systematically? When should we double down on capabilities that are working? When should we fold and abandon segments that aren't worth the investment? How do we allocate resources effectively based on data rather than intuition? This is the actual playbook I use with clients for post-production analysis. -->
+
 ---
 
 ## RAG Flywheel Recap
@@ -39,6 +43,8 @@ Jason Liu
 
 **Today:** What do we do post-production with lots of data?
 
+<!-- Let's recap where we've been. In sessions 1-3, we built the foundation: initial RAG system, synthetic data generation for test questions, fast evaluations focused on precision and recall, user interaction data collection through better UI design, fine-tuning of embedding models and rerankers, and finally production deployment of a reasonable product. Now you have a system in production collecting data. Today's question is: what do we do post-production when we have lots of data flowing in? This is where the real systematic improvement begins. -->
+
 ---
 
 ## Post-Production Data Analysis
@@ -53,6 +59,8 @@ Jason Liu
 - **Query Routing** - Ensure right retriever for each job
 
 **This is where the real value gets unlocked!**
+
+<!-- The challenge every team faces post-production is: you have plenty of data coming in, but now what? How do you systematically analyze and act on it? Our approach has five components: First, segmentation and analysis to figure out what's missing and where your blind spots are. Second, identify specific improvements by understanding what segments need targeted work. Third, build specialized systems and specific tools for high-value segments. Fourth, function calling integration to combine tools into a unified system. Finally, query routing to ensure the right retriever handles each job. This is where the real value gets unlocked - not in the initial deployment, but in systematic post-production improvement. -->
 
 ---
 
@@ -73,6 +81,8 @@ Jason Liu
 - **Strategy shift:** Midwest podcasts vs Super Bowl ads
 - **Resource allocation:** Focus where results happen
 
+<!-- Let me give you a concrete example of why segmentation matters. Imagine a consumer product marketing campaign that produces an 80% sales increase. Without segmentation, all you can say is "Sales went up 80%!" There are no actionable insights and you can't replicate the success. But with segmentation, you discover that 60% of the increase came from 30-45 year old women in the Midwest. Now you have actionable insights - target this demographic more. This leads to strategy shifts - invest in Midwest podcasts instead of expensive Super Bowl ads. Resource allocation becomes focused where actual results happen. This is the power of segmentation - turning aggregate success into targeted action. -->
+
 ---
 
 ## Stitch Fix Segmentation Example
@@ -88,6 +98,8 @@ Jason Liu
 - **Reallocate:** Resources to better performing segments
 
 **Same thinking applies to your queries!**
+
+<!-- Here's a real example from my time at Stitch Fix. We discovered that 10% of our customer base was driving 60% of our sales volume, while 40% of our customer base was only driving 10% of sales volume. This led to clear strategic decisions: Double down by investing more in the high-performing segment. Investigate why Segment 1 was outperforming - what made them different? Fold by stopping onboarding of the low-performing segments. Reallocate resources to the better performing segments. This same thinking applies exactly to your RAG queries. Some query types will drive disproportionate value, and you need to systematically identify and double down on those while folding on the rest. -->
 
 ---
 
@@ -105,6 +117,8 @@ Jason Liu
 - Psychographics (attitudes, values, interests)
 - Query embeddings and summaries
 - Chat history patterns
+
+<!-- Applying this to RAG, you'll find query performance patterns that map directly to business decisions. Amazing performance queries should be highlighted and showcased - these are your success stories. Good performance queries you should double down on and target for expansion. Poor performance queries need targeted improvements - these are investment opportunities. Lost causes should be abandoned because they're not worth the continued investment. You can segment along multiple dimensions: role or organization ID, customer cohort or lifecycle stage, psychographics like attitudes and interests, query embeddings and summaries, and chat history patterns. The key is finding the dimensions that actually correlate with performance differences. -->
 
 ---
 
@@ -124,6 +138,8 @@ Jason Liu
 - Performance differences across segments
 - Resource allocation decisions
 
+<!-- Query tagging and classification is where the magic happens. Take this example: "What's the difference between 2022 vs 2023 budgets?" You can automatically tag this with time_filter_required, multiple_queries_needed, financial_domain, and comparative_analysis. Now you have analysis opportunities: group all time-based queries and do frequency analysis, measure customer satisfaction by query type, identify performance differences across segments, and make data-driven resource allocation decisions. The tags become the dimensions for your segmentation analysis. -->
+
 ---
 
 ## The Segmentation Formula
@@ -141,6 +157,8 @@ Expected Value = Σ (Impact × Percentage of Queries × Probability of Success)
 - **Probability of Success** = How well your system handles it
 
 **This is how you improve your application systematically!**
+
+<!-- This formula is the mathematical foundation of systematic improvement. Expected value equals the sum across all segments of impact times percentage of queries times probability of success. Impact is the economic value of solving this query type - some queries matter more for business outcomes. Percentage of queries is how often this segment occurs in your traffic. Probability of success is how well your current system handles it. This formula tells you exactly where to focus your engineering effort for maximum business impact. This is how you improve your application systematically instead of randomly. -->
 
 ---
 
@@ -162,6 +180,8 @@ Expected Value = Σ (Impact × Percentage of Queries × Probability of Success)
 
 *You have some control here through product decisions*
 
+<!-- Understanding the levers in this formula is crucial for strategic thinking. Impact or economic value includes revenue generation potential, cost savings from automation, user satisfaction correlation, and strategic business importance. This is usually determined by user feedback and research - you need to talk to customers to understand what really matters. Percentage of queries or volume is influenced by UX design decisions, user education and onboarding, feature discoverability, and customer behavior patterns. The key insight is you have some control here through product decisions - you can drive traffic toward high-value query types. -->
+
 ---
 
 ## Understanding the Levers (continued)
@@ -176,6 +196,8 @@ Expected Value = Σ (Impact × Percentage of Queries × Probability of Success)
 *This is what you optimize through technical improvements*
 
 **Key Insight:** Build specialized systems to maximize each segment's probability of success!
+
+<!-- Probability of success or performance includes generation quality, citation accuracy, text chunk relevance, user upvote correlation, and task completion rates. This is what you optimize through technical improvements - better embeddings, improved reranking, fine-tuned models. The key insight is to build specialized systems to maximize each segment's probability of success. Don't try to optimize everything globally - build segment-specific solutions that excel at particular query types. This is where the real performance gains come from. -->
 
 ---
 
@@ -192,6 +214,8 @@ Expected Value = Σ (Impact × Percentage of Queries × Probability of Success)
 - Historical trend analysis
 - Success rate by segment
 - Resource allocation tracking
+
+<!-- For practical implementation, start with clustering and classification. Use clustering models for initial query grouping to discover natural patterns in your data. Build few-shot classifiers for conversation analysis - these are surprisingly effective with good prompt engineering. Do batch processing for historical data to establish baselines. Implement online classification for real-time segmentation of incoming queries. Then focus on monitoring and analysis: track segment performance over time, do historical trend analysis, measure success rates by segment, and track resource allocation to ensure you're investing where you get returns. -->
 
 ---
 
@@ -327,6 +351,8 @@ classifier = FewShotClassifier(
 
 **Insight:** Focus engineering on Financial Reports (high impact, fixable), maintain Simple Q&A (working well), and redirect Random Chat users.
 
+<!-- This case study shows the framework in action. Financial Reports has 25% volume, 45% success rate, high impact - this is a clear "Investigate & Fix" case. High impact but fixable performance issues. Simple Q&A has 40% volume, 85% success rate, medium impact - "Double Down" because it's working well and has good volume. Code Debugging has 15% volume, 60% success rate, high impact - "Targeted Improvement" because the impact is high even though volume is lower. Random Chat has 20% volume, 30% success rate, low impact - "Fold/Redirect" because resources are better spent elsewhere. The insight: focus engineering on Financial Reports where you can get high impact wins, maintain Simple Q&A that's already working, and redirect Random Chat users to more valuable interactions. -->
+
 ---
 
 ## Building Your Segmentation System
@@ -417,6 +443,8 @@ classifier = FewShotClassifier(
 
 **This analysis will guide the rest of the course!**
 
+<!-- Your homework this week is to segment your own data. Collect 2-4 weeks of user queries - you need volume for meaningful analysis. Do manual analysis by labeling 100-200 queries by type and theme - this gives you ground truth. Use embeddings to find natural groupings through clustering. Interview stakeholders about query value - don't assume you know what matters. Measure current success rates by segment to establish baselines. Your deliverable is a segment prioritization matrix with volume, impact, and success rates, plus identification of your top 3 segments for targeted improvement and bottom 2 segments for potential abandonment. This analysis will literally guide the rest of the course - it determines what specialized systems you'll build in sessions 5 and 6. -->
+
 ---
 
 ## Key Takeaway
@@ -430,3 +458,5 @@ The magic happens when you:
 4. **Measure** improvements segment by segment
 
 **Segmentation turns RAG from art into science! 🎯**
+
+<!-- This is the key takeaway from today's session: Stop trying to make "the AI" better. Start making specific segments better. The magic happens when you identify what's actually valuable to your users through data analysis, focus engineering effort on high-impact segments based on the expected value formula, abandon segments that aren't worth the investment - this takes courage but it's essential, and measure improvements segment by segment rather than looking at global metrics. Segmentation turns RAG from art into science. It transforms vague product management into data-driven decision making. This is how you systematically improve RAG applications. -->
