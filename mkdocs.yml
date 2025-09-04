@@ -90,6 +90,7 @@ nav:
           - "Query Routing for RAG Systems (Anton, ChromaDB)": "talks/query-routing-anton.md"
           - "Why Google Search Sucks for AI (Will Bryk, Exa)": "talks/semantic-search-exa-will-bryk.md"
           - "How OpenBB Ditched APIs and Put RAG in the Browser (Michael Struwig)": "talks/rag-without-apis-browser-michael-struwig.md"
+          - "Billion Scale vector search with TurboPuffer (Simon, TurboPuffer)": "talks/turbopuffer-engine.md"
       - "Finetuning":
           - "Building Custom Embedding Models Per Customer (Manav, Glean)": "talks/glean-manav.md"
           - "The 12% RAG Performance Boost You're Missing (Ayush, LanceDB)": "talks/fine-tuning-rerankers-embeddings-ayush-lancedb.md"
