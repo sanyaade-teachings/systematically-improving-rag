@@ -19,7 +19,7 @@ This guide presents frameworks developed through real-world experience with comp
 !!! success "🎓 Get the Complete Course - 20% Off"
     Transform your RAG system with our comprehensive course on Maven.
     
-    **Exclusive discount for book readers: Save 20% with code `EBOOK`**
+    **Readers can enroll for 20% off with code: `EBOOK`**
     
     [Enroll in the RAG Playbook Course →](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }
 
@@ -223,6 +223,6 @@ Jason Liu is a machine learning engineer with experience at Facebook and Stitch 
     - **Private community** of 500+ practitioners
     - **Code templates** and implementation guides
     
-    **Save 20% with discount code: `EBOOK`**
-
-[Enroll in the RAG Playbook Course →](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }
+    **Readers can enroll for 20% off with code: `EBOOK`**
+    
+    [Enroll in the RAG Playbook Course →](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }

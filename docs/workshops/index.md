@@ -102,11 +102,11 @@ A RAG system that:
 !!! success "Exclusive Discount for Book Readers"
     This content is from the [Systematically Improving RAG Applications](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK) course on Maven.
     
-    **Save 20% with code: `EBOOK`**
+    **Readers can enroll for 20% off with code: `EBOOK`**
     
     Join 500+ engineers who've transformed their RAG systems from demos to production-ready applications.
-
-[Enroll in the RAG Playbook Course - 20% Off](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }
+    
+    [Enroll in the RAG Playbook Course - 20% Off](https://maven.com/applied-llms/rag-playbook?promoCode=EBOOK){ .md-button .md-button--primary }
 
 ## Stay Updated
 
